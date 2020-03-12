@@ -7,7 +7,8 @@ module.exports = {
     },
     plugins: [
         '@typescript-eslint',
-        'jest'
+        'jest',
+        'prettier'
     ],
     extends: [
         'eslint:recommended',
@@ -15,7 +16,9 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:jest/recommended',
-        'plugin:jest/style'
+        'plugin:jest/style',
+        'plugin:prettier/recommended',
+        'prettier/@typescript-eslint'
     ],
     ignorePatterns: ['node_modules', 'dist', 'coverage'],
 };
