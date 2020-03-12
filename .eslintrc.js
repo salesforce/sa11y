@@ -7,12 +7,15 @@ module.exports = {
     },
     plugins: [
         '@typescript-eslint',
+        'jest'
     ],
     extends: [
         'eslint:recommended',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:jest/recommended',
+        'plugin:jest/style'
     ],
     ignorePatterns: ['node_modules', 'dist', 'coverage'],
 };
