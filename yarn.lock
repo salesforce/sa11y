@@ -2614,6 +2614,22 @@ eslint-plugin-jest@^23.8.2:
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.5.0"
 
+eslint-plugin-license-header@^0.2.0:
+  version "0.2.0"
+  resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/eslint-plugin-license-header/-/eslint-plugin-license-header-0.2.0.tgz#97bfb3da7ae9605d998ee0602c252ff14cf1de7d"
+  integrity sha512-HAyRJa8veCE4LnJM62hxc6FGZCBIXikv2DevDz45i6AvRFlVSsCJZdNTB4CZ/9KSxKkt+EmjImjkmGW85G69tQ==
+  dependencies:
+    requireindex "^1.2.0"
+
+eslint-plugin-notice@^0.8.9:
+  version "0.8.9"
+  resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/eslint-plugin-notice/-/eslint-plugin-notice-0.8.9.tgz#b3b55ba218b36a01fd4de998f68c66a8bf238a82"
+  integrity sha512-Z6xit9Yv7pCG/rS3DohSou1BeDffPOhmuQzE7UWMxV2h/MJmsOq3QZFyXmbi18cExlyWbz4+ztAogi2edeTbjA==
+  dependencies:
+    find-root "^1.1.0"
+    lodash "^4.17.15"
+    metric-lcs "^0.1.2"
+
 eslint-plugin-prettier@^3.1.2:
   version "3.1.2"
   resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/eslint-plugin-prettier/-/eslint-plugin-prettier-3.1.2.tgz#432e5a667666ab84ce72f945c72f77d996a5c9ba"
@@ -2925,6 +2941,11 @@ fill-range@^7.0.1:
   integrity sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==
   dependencies:
     to-regex-range "^5.0.1"
+
+find-root@^1.1.0:
+  version "1.1.0"
+  resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/find-root/-/find-root-1.1.0.tgz#abcfc8ba76f708c42a97b3d685b7e9450bfb9ce4"
+  integrity sha512-NKfW6bec6GfKc0SGx1e07QZY9PE99u0Bft/0rzSD5k3sO/vwkVUpDUKVm5Gpp5Ue3YfShPFTX2070tDs5kB9Ng==
 
 find-up@^1.0.0:
   version "1.1.2"
@@ -4650,6 +4671,11 @@ merge2@^1.2.3:
   resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/merge2/-/merge2-1.3.0.tgz#5b366ee83b2f1582c48f87e47cf1a9352103ca81"
   integrity sha512-2j4DAdlBOkiSZIsaXk4mTE3sRS02yBHAtfy127xRV3bQUFqXkjHCHLW6Scv7DwNRbIWNHH8zpnz9zMaKXIdvYw==
 
+metric-lcs@^0.1.2:
+  version "0.1.2"
+  resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/metric-lcs/-/metric-lcs-0.1.2.tgz#87913f149410e39c7c5a19037512814eaf155e11"
+  integrity sha512-+TZ5dUDPKPJaU/rscTzxyN8ZkX7eAVLAiQU/e+YINleXPv03SCmJShaMT1If1liTH8OcmWXZs0CmzCBRBLcMpA==
+
 micromatch@^3.1.10, micromatch@^3.1.4:
   version "3.1.10"
   resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/micromatch/-/micromatch-3.1.10.tgz#70859bc95c9840952f359a068a3fc49f9ecfac23"
@@ -5821,6 +5847,11 @@ require-main-filename@^2.0.0:
   version "2.0.0"
   resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/require-main-filename/-/require-main-filename-2.0.0.tgz#d0b329ecc7cc0f61649f62215be69af54aa8989b"
   integrity sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==
+
+requireindex@^1.2.0:
+  version "1.2.0"
+  resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/requireindex/-/requireindex-1.2.0.tgz#3463cdb22ee151902635aa6c9535d4de9c2ef1ef"
+  integrity sha512-L9jEkOi3ASd9PYit2cwRfyppc9NoABujTP8/5gFcbERmo5jUoAKovIC3fsF17pkTnGsrByysqX+Kxd2OTNI1ww==
 
 resolve-cwd@^2.0.0:
   version "2.0.0"

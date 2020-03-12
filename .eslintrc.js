@@ -8,7 +8,8 @@ module.exports = {
     plugins: [
         '@typescript-eslint',
         'jest',
-        'prettier'
+        'prettier',
+        'notice', // checks for and fixes copyright header in each file
     ],
     extends: [
         'eslint:recommended',
@@ -20,5 +21,12 @@ module.exports = {
         'plugin:prettier/recommended',
         'prettier/@typescript-eslint'
     ],
+    rules: {
+        'notice/notice':['error',
+            {
+                'templateFile':'license-header.txt'
+            }
+        ]
+    },
     ignorePatterns: ['node_modules', 'dist', 'coverage'],
 };
