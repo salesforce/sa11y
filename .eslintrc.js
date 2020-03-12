@@ -19,14 +19,19 @@ module.exports = {
         'plugin:jest/recommended',
         'plugin:jest/style',
         'plugin:prettier/recommended',
-        'prettier/@typescript-eslint'
+        'prettier/@typescript-eslint',
     ],
     rules: {
-        'notice/notice':['error',
+        'notice/notice': [
+            'error',
             {
-                'templateFile':'license-header.txt'
-            }
-        ]
+                templateFile: 'license-header.txt',
+            },
+        ],
+    },
+    env: {
+        browser: true,
+        node: true,
     },
     ignorePatterns: ['node_modules', 'dist', 'coverage'],
 };
