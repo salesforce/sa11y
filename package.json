@@ -1,7 +1,17 @@
 {
   "name": "root",
   "private": true,
+  "description": "Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)",
+  "repository": {
+    "url": "git://github.com/salesforce/sa11y.git"
+  },
+  "homepage": "https://help.salesforce.com/articleView?id=accessibility_overview.htm&type=5",
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "jest": "^25.1.0",
+    "lerna": "^3.20.2",
+    "typescript": "^3.8.3"
   }
 }
