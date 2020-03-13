@@ -1,21 +1,21 @@
 {
-  "name": "@sa11y/rules",
-  "version": "1.0.0",
-  "description": "Accessibility rule presets ",
-  "keywords": [
-    "accessibility",
-    "automation",
-    "axe"
-  ],
-  "main": "lib/rules.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
-  ],
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  }
+    "name": "@sa11y/rules",
+    "version": "1.0.0",
+    "description": "Accessibility rule presets ",
+    "keywords": [
+        "accessibility",
+        "automation",
+        "axe"
+    ],
+    "main": "lib/index.ts",
+    "directories": {
+        "lib": "lib",
+        "test": "__tests__"
+    },
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "test": "echo \"Error: run tests from root\" && exit 1"
+    }
 }
