@@ -1813,6 +1813,11 @@ aws4@^1.8.0:
   resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/aws4/-/aws4-1.9.1.tgz#7e33d8f7d449b3f673cd72deb9abdc552dbe528e"
   integrity sha512-wMHVg2EOHaMRxbzgFJ9gtjOOCrI80OHLG14rxi28XwOW8ux6IiEbRCGGGqCtdAIg4FQCbW20k9RsT4y3gJlFug==
 
+axe-core@^3.5.2:
+  version "3.5.2"
+  resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/axe-core/-/axe-core-3.5.2.tgz#1946be7a18a05b5d37f18d339989db0d5434ebf6"
+  integrity sha512-9wBDgdzbn06on6Xt+ay7EM4HV+NBOkeXhjK9DMezD8/qvJKeUTzheGHhM+U1uNaX4OvuIR4BePDStRLF7vyOfg==
+
 babel-jest@^25.1.0:
   version "25.1.0"
   resolved "https://sfm-nginx-proxy.internal.salesforce.com/nexus/content/groups/npm-all/babel-jest/-/babel-jest-25.1.0.tgz#206093ac380a4b78c4404a05b3277391278f80fb"
