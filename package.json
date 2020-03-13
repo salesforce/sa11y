@@ -12,7 +12,8 @@
     "scripts": {
         "commit": "! git diff --cached --exit-code && git-cz",
         "lint": "yarn eslint --fix . --ext .js,.ts",
-        "test": "jest"
+        "test": "jest",
+        "build": "tsc --build"
     },
     "husky": {
         "hooks": {
