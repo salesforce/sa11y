@@ -10,8 +10,9 @@
         "packages/*"
     ],
     "scripts": {
+        "commit": "! git diff --cached --exit-code && git-cz",
         "lint": "yarn eslint --fix . --ext .js,.ts",
-        "commit": "! git diff --cached --exit-code && git-cz"
+        "test": "jest"
     },
     "husky": {
         "hooks": {
