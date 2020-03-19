@@ -1,0 +1,62 @@
+{
+    "name": "root",
+    "private": true,
+    "description": "Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)",
+    "repository": {
+        "url": "git://github.com/salesforce/sa11y.git"
+    },
+    "license": "BSD-3-Clause",
+    "homepage": "https://help.salesforce.com/articleView?id=accessibility_overview.htm&type=5",
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "commit": "! git diff --cached --exit-code && git-cz",
+        "lint": "eslint --ext .js,.ts .",
+        "lint:fix": "yarn lint --fix",
+        "test": "jest",
+        "build": "tsc --build",
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
+        "ci": "yarn install --frozen-lockfile && yarn lint && yarn test"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged",
+            "commit-msg": "commitlint -e $GIT_PARAMS"
+        }
+    },
+    "lint-staged": {
+        "**/*.{js,ts}": "eslint --fix",
+        "**/*.{js,ts,json,md}": "prettier --write"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^8.3.5",
+        "@commitlint/config-conventional": "^8.3.4",
+        "@types/jest": "^25.1.4",
+        "@typescript-eslint/eslint-plugin": "^2.23.0",
+        "@typescript-eslint/parser": "^2.23.0",
+        "commitizen": "^4.0.3",
+        "conventional-changelog-cli": "^2.0.31",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.10.0",
+        "eslint-plugin-jest": "^23.8.2",
+        "eslint-plugin-license-header": "^0.2.0",
+        "eslint-plugin-notice": "^0.8.9",
+        "eslint-plugin-prettier": "^3.1.2",
+        "husky": "^4.2.3",
+        "jest": "^25.1.0",
+        "lerna": "^3.20.2",
+        "lint-staged": "^10.0.8",
+        "prettier": "1.19.1",
+        "ts-jest": "^25.2.1",
+        "typescript": "^3.8.3"
+    },
+    "engines": {
+        "node": "^10 || ^12"
+    }
+}
