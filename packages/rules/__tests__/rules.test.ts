@@ -8,7 +8,6 @@
 
 import { extended } from '../lib/extended';
 import { recommended } from '../lib/recommended';
-import { common } from '../lib/common';
 import axe from 'axe-core';
 
 /**
@@ -22,16 +21,11 @@ describe('@sa11y/rules sanity checks', () => {
         // TODO (debug): Why is this failing?
         // expect(extended).toEqual(expect.objectContaining(recommended));
     });
-
-    it('all rulesets have the desired properties from defaults', () => {
-        [extended, recommended].forEach(ruleset => {
-            expect(ruleset.runOnly.type).toEqual(common.runOnly.type);
-            expect(ruleset.resultTypes).toEqual(common.resultTypes);
-        });
-    });
 });
 
 describe('@sa11y/rules sanity checks with axe', () => {
+    // Rules that have been excluded from running due to being deprecated by axe
+    // or due to their experimental nature
     const excludedRules = [
         'aria-dpub-role-fallback',
         'checkboxgroup',
