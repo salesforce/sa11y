@@ -4,11 +4,10 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-'use strict';
 
+import axe from 'axe-core';
 import { extended } from '../lib/extended';
 import { recommended } from '../lib/recommended';
-import axe from 'axe-core';
 
 /**
  * TODO:

@@ -9,7 +9,7 @@ import { RunOptions } from 'axe-core';
 
 /**
  * AxeConfig is limited to subset of options that we need and use in this library
- * */
+ */
 export interface AxeConfig extends RunOptions {
     runOnly: {
         type: 'rule';
@@ -20,7 +20,9 @@ export interface AxeConfig extends RunOptions {
 
 /**
  * Returns config to be used in axe.run() with given rules
+ *
  * @param rules - List of rules to be used in the config
+ * @returns AxeConfig with formatted rules
  */
 export function getAxeConfig(rules: string[]): AxeConfig {
     return {
