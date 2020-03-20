@@ -20,6 +20,7 @@ export const extended = {
             'css-orientation-lock',
             'frame-tested',
             'identical-links-same-purpose',
+            'label-content-name-mismatch',
             'landmark-banner-is-top-level',
             'landmark-complementary-is-top-level',
             'landmark-contentinfo-is-top-level',

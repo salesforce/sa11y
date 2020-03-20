@@ -43,7 +43,6 @@ describe('@sa11y/rules sanity checks with axe', () => {
         'table-duplicate-name',
         'table-fake-caption',
         'video-description',
-        'label-content-name-mismatch', // TODO (Fix): Include missed rule in one of the rulesets
     ];
     const axeRules = axe.getRules().map(ruleObj => ruleObj.ruleId);
 
