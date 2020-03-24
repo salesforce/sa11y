@@ -1,0 +1,3 @@
+{
+    "ignorePaths": ["node_modules/**", "package.json"]
+}
