@@ -1,7 +1,7 @@
 {
-    "name": "@sa11y/rules",
+    "name": "@sa11y/preset-rules",
     "version": "0.1.0",
-    "description": "Accessibility rule presets ",
+    "description": "Accessibility preset rule configs for axe",
     "license": "BSD-3-Clause",
     "keywords": [
         "accessibility",

@@ -78,6 +78,6 @@
     "exclude": ["**/node_modules", "**/dist", "**/__tests__"],
     "references": [
         // https://www.typescriptlang.org/docs/handbook/project-references.html
-        { "path": "./packages/rules" }
+        { "path": "./packages/preset-rules" }
     ]
 }

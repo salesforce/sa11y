@@ -13,9 +13,9 @@ Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)
 
 This repo contains the following packages
 
-### Preset Accessibility rules
+### [Preset accessibility rules](./packages/preset-rules/README.md)
 
--   provides Recommended, Extended accessibility preset rule sets as axe configuration
+-   Provides Recommended, Extended accessibility preset rule-sets as [axe](https://github.com/dequelabs/axe-core) configuration
 
 ### assertAccessible API (TBD)
 
