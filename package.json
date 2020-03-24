@@ -14,6 +14,7 @@
         "commit": "! git diff --cached --exit-code && git-cz",
         "lint": "eslint .",
         "lint:fix": "yarn lint --fix",
+        "lint:staged": "yarn lint-staged",
         "test": "jest --coverage",
         "build": "tsc --build",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
@@ -33,18 +34,20 @@
     },
     "lint-staged": {
         "**/*.{js,ts}": "eslint --fix",
-        "**/*.{js,ts,json,md}": [
-            "prettier --write",
-            "cspell -- --no-summary"
-        ]
+        "**/*.{js,ts,json,yaml,yml,md}": "prettier --write",
+        "**/*.{js,ts,md}": "cspell -- --no-summary"
     },
     "devDependencies": {
+        "@babel/core": "^7.9.0",
+        "@babel/preset-env": "^7.9.0",
+        "@babel/preset-typescript": "^7.9.0",
         "@commitlint/cli": "^8.3.5",
         "@commitlint/config-conventional": "^8.3.4",
         "@types/jest": "^25.1.4",
         "@typescript-eslint/eslint-plugin": "^2.23.0",
         "@typescript-eslint/parser": "^2.23.0",
         "axe-core": "^3.5.2",
+        "babel-jest": "^25.1.0",
         "commitizen": "^4.0.3",
         "conventional-changelog-cli": "^2.0.31",
         "cspell": "^4.0.55",
