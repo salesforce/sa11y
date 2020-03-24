@@ -8,16 +8,9 @@
         "automation",
         "axe"
     ],
-    "main": "dist/packages/rules/lib/index.js",
-    "types": "dist/packages/rules/lib/index.d.ts",
-    "directories": {
-        "lib": "lib",
-        "test": "__tests__"
-    },
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "files": [
-        "dist/packages/rules/**"
-    ],
-    "scripts": {
-        "test": "jest"
-    }
+        "dist/**/*.js"
+    ]
 }
