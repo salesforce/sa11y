@@ -4,10 +4,6 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-'use strict';
-
-module.exports = rules;
-
-function rules() {
-    // TODO
-}
+module.exports = {
+    presets: [['@babel/preset-env', { targets: { node: 'current' } }], '@babel/preset-typescript'],
+};

@@ -3,10 +3,11 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     parserOptions: {
         tsconfigRootDir: __dirname,
-        project: ['./tsconfig.json'],
+        project: ['./tsconfig.common.json'],
     },
     plugins: [
         '@typescript-eslint',
+        'tsdoc',
         'jest',
         'prettier',
         'notice', // checks for and fixes copyright header in each file
@@ -28,6 +29,7 @@ module.exports = {
                 templateFile: 'license-header.txt',
             },
         ],
+        'tsdoc/syntax': 'warn',
     },
     env: {
         browser: true,

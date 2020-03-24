@@ -25,7 +25,7 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
         -   [Create a pull request](#create-a-pull-request)
             -   [Pull Request Title](#pull-request-title)
         -   [Update the pull request](#update-the-pull-request)
-        -   [<a name="commit"></a> Commit Message Conventions](#commit-message-conventions)
+        -   [Commit Message Conventions](#commit-message-conventions)
             -   [Commit Message Format](#commit-message-format)
             -   [Reverting a commit](#reverting-a-commit)
             -   [Commit Type](#commit-type)
@@ -230,7 +230,7 @@ git push origin ${feature_branch} --force
 
 _note: If more changes are needed as part of the pull request, just keep committing and pushing your feature branch as described above and the pull request will automatically update._
 
-### <a name="commit"></a> Commit Message Conventions
+### Commit Message Conventions
 
 Git commit messages have to be formatted according to a well defined set of rules. This leads to **more
 readable messages** that are easy to follow when looking through the **project history**.

@@ -5,16 +5,17 @@ Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)
 -   [Salesforce Accessibility Automation Libraries](#salesforce-accessibility-automation-libraries)
     -   [Packages](#packages)
         -   [Preset Accessibility rules](#preset-accessibility-rules)
-        -   [assertAccessible API](#assertaccessible-api)
-        -   [Jest integration](#jest-integration)
+        -   [assertAccessible API (TBD)](#assertaccessible-api-tbd)
+        -   [a11y results formatter (TBD)](#a11y-results-formatter-tbd)
+        -   [Jest integration (TBD)](#jest-integration-tbd)
 
 ## Packages
 
 This repo contains the following packages
 
-### Preset Accessibility rules (TBD)
+### [Preset accessibility rules](./packages/preset-rules/README.md)
 
--   provides Recommended, Extended accessibility preset rule sets as axe configuration
+-   Provides Recommended, Extended accessibility preset rule-sets as [axe](https://github.com/dequelabs/axe-core) configuration
 
 ### assertAccessible API (TBD)
 
@@ -26,4 +27,4 @@ This repo contains the following packages
 
 ### Jest integration (TBD)
 
--   integrates the [assertAccessible API](#assertaccessible-api) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
+-   integrates the assertAccessible API with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
