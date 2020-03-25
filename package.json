@@ -5,6 +5,9 @@
     "repository": {
         "url": "git://github.com/salesforce/sa11y.git"
     },
+    "bugs": {
+        "url": "https://github.com/salesforce/sa11y/issues"
+    },
     "license": "BSD-3-Clause",
     "homepage": "https://help.salesforce.com/articleView?id=accessibility_overview.htm&type=5",
     "workspaces": [
