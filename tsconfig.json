@@ -3,6 +3,6 @@
     "files": [
         /* only process references */
     ],
-    "references": [{ "path": "./packages/preset-rules" }],
+    "references": [{ "path": "./packages/preset-rules" }, { "path": "./packages/assert" }],
     "exclude": ["**/node_modules"]
 }
