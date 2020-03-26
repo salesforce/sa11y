@@ -5,12 +5,15 @@
     "license": "BSD-3-Clause",
     "keywords": [
         "accessibility",
-        "automation",
+        "automated testing",
         "axe"
     ],
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
         "dist/**/*.js"
-    ]
+    ],
+    "devDependencies": {
+        "axe-core": "^3.5.2"
+    }
 }
