@@ -15,9 +15,9 @@
     ],
     "scripts": {
         "commit": "! git diff --cached --exit-code && git-cz",
-        "lint": "eslint .",
+        "lint": "eslint . && lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
         "lint:fix": "yarn lint --fix",
-        "lint:staged": "yarn lint-staged",
+        "lint:staged": "lint-staged",
         "update": "yarn upgrade && yarn outdated",
         "test": "jest --coverage",
         "build": "tsc --build",
@@ -68,6 +68,7 @@
         "jest": "^25.1.0",
         "lerna": "^3.20.2",
         "lint-staged": "^10.0.8",
+        "lockfile-lint": "^4.2.2",
         "prettier": "2.0.2",
         "typescript": "^3.8.3"
     },
