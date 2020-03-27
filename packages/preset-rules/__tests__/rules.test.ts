@@ -37,7 +37,7 @@ describe('@sa11y/rules sanity checks with axe', () => {
         'table-fake-caption',
         'video-description',
     ];
-    const axeRules = axe.getRules().map(ruleObj => ruleObj.ruleId);
+    const axeRules = axe.getRules().map((ruleObj) => ruleObj.ruleId);
 
     it('should not contain excluded, deprecated rules', () => {
         expect(extended.runOnly.values).toEqual(expect.not.arrayContaining(excludedRules));
@@ -48,7 +48,7 @@ describe('@sa11y/rules sanity checks with axe', () => {
     });
 
     it('only rules not used from axe are excluded, deprecated rules', () => {
-        const unusedRules = axeRules.filter(rule => !extended.runOnly.values.includes(rule));
+        const unusedRules = axeRules.filter((rule) => !extended.runOnly.values.includes(rule));
         expect(unusedRules.sort()).toEqual(excludedRules.sort());
     });
 });
