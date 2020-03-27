@@ -6,7 +6,7 @@
  */
 
 import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
-import { assertAccessible } from '../src/assert';
+import { assertAccessible, runAxe } from '../src/assert';
 import { extended } from '@sa11y/preset-rules/dist/extended';
 
 // Customize rules specific to jsdom
@@ -22,10 +22,11 @@ jsdomRules.rules = {
  *  - https://github.com/dequelabs/axe-core/blob/develop/doc/examples/jsdom/test/a11y.js
  * @param htmlContent - string HTML content to be rendered using JSDOM
  */
-function setupJSDOM(htmlContent: string): Document {
+function setupJSDOM(htmlContent: string, lang: string = 'en'): Document {
     // const jsdom = new JSDOM(htmlContent);
     // const window = jsdom.window;
 
+    document.documentElement.lang = 'en';
     document.body.innerHTML = htmlContent;
     // TODO (Warn): Fix type warnings related to "global". E.g. https://stackoverflow.com/a/54281738
     // global.window = window;
@@ -45,17 +46,55 @@ function setupJSDOM(htmlContent: string): Document {
 }
 
 describe('assert', () => {
-    it('basic dom', () => {
-        const jsdom = setupJSDOM(`<!DOCTYPE html><p>Hello world</p>`);
-        expect(() => assertAccessible(jsdom, jsdomRules)).not.toThrow();
+    beforeEach(() => {
+        document.body.innerHTML = '';
     });
 
-    it('basic dom with a11y issues', () => {
+    it('dom with no a11y issues', async () => {
+        // const jsdom = setupJSDOM(`<!DOCTYPE html><p>Hello world</p>`);
+        // TODO (cleanup): Move inline html content into test data files
+        // From https://github.com/dequelabs/axe-selenium-java/blob/develop/src/test/resources/test-app.js-->
+        const dom = setupJSDOM(`<!doctype html>
+                                    <html lang="en">
+                                    <head>
+                                        <title>Test Page</title>
+                                    </head>
+                                    <body>
+                                    <div role="main" id="host">
+                                        <h1>This is a test</h1>
+                                        <p>This is a test page with no violations</p>
+                                    </div>
+                                    <div role="contentinfo" id="upside-down"></div>
+                                        <script>
+                                            var shadow = document.getElementById("upside-down").attachShadow({mode: "open"});
+                                            shadow.innerHTML = '<h2 id="shadow">SHADOW DOM</h2><ul><li>Shadow Item 1</li></ul>'
+                                        </script>
+                                    </body>
+                                    </html>`);
+        return await runAxe(dom).then((violations) => {
+            expect(violations).toHaveLength(0);
+        });
+        // expect(() => assertAccessible(jsdom, jsdomRules)).not.toThrow();
+    });
+
+    it.skip('basic dom with a11y issues', () => {
+        expect.assertions(1);
         const jsdom = setupJSDOM(`<html>
                                    <body>
                                      <a href="#"></a>
                                    </body>
                                  </html>`);
         expect(() => assertAccessible(jsdom, jsdomRules)).toThrow();
+    });
+
+    it('run axe', async () => {
+        const jsdom = setupJSDOM(`<html>
+                                   <body>
+                                     <a href="#"></a>
+                                   </body>
+                                 </html>`);
+        return await runAxe(jsdom).then((violations) => {
+            expect(violations.length).toBeGreaterThan(0);
+        });
     });
 });
