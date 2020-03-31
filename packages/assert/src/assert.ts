@@ -5,28 +5,16 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import axe, { ElementContext, Result, RunOptions } from 'axe-core';
+import axe, { ElementContext, RunOptions } from 'axe-core';
 // TODO (Fix): Figure out how to remove 'dist' from import path
 import { extended } from '@sa11y/preset-rules/dist/extended';
 import { AxeConfig } from '@sa11y/preset-rules/dist/axeConfig';
+import { a11yResultsFormatter } from '@sa11y/format';
 
 // Error message prefix for runtime exceptions when running axe
 // TODO (refactor): Should this be exported? Can private variables be imported in tests?
 //  Search for es6 module import version of https://www.npmjs.com/package/rewire
 export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks using axe:';
-
-function a11yResultsFormatter(violations: Result[]): string {
-    return violations
-        .map((violation) => {
-            return violation.nodes
-                .map((node) => {
-                    const selectors = node.target.join(', ');
-                    return `${violation.help} (${violation.id}): ${selectors}\n  - More info: ${violation.helpUrl}`;
-                })
-                .join('\n\n');
-        })
-        .join('\n\n');
-}
 
 /**
  * Checks DOM for accessibility issues and throws an error if violations are found.
