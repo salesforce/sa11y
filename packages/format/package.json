@@ -1,0 +1,19 @@
+{
+    "name": "@sa11y/format",
+    "version": "0.1.0",
+    "description": "Accessibility results reformatter ",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "accessibility",
+        "automated testing",
+        "axe",
+        "results",
+        "format",
+        "template"
+    ],
+    "main": "dist/format.js",
+    "types": "dist/format.d.ts",
+    "files": [
+        "dist/**/*.js"
+    ]
+}
