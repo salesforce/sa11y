@@ -8,13 +8,13 @@
         "automated testing",
         "axe"
     ],
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/assert.js",
+    "types": "dist/assert.d.ts",
     "files": [
         "dist/**/*.js"
     ],
     "dependencies": {
-        "@sa11y/preset-rules": "^0.1.0",
+        "@sa11y/preset-rules": "0.1.1",
         "axe-core": "^3.5.2"
     },
     "devDependencies": {

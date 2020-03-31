@@ -5,56 +5,31 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import axe, { Result, RunOptions } from 'axe-core';
+import axe, { ElementContext, RunOptions } from 'axe-core';
 // TODO (Fix): Figure out how to remove 'dist' from import path
 import { extended } from '@sa11y/preset-rules/dist/extended';
 import { AxeConfig } from '@sa11y/preset-rules/dist/axeConfig';
 
-/**
- * Wrap axe.run() into a Promise
- * @param html - document to be tested
- * @param options - axe run options
- */
-export function runAxe(html = document, options: RunOptions = {}): Promise<Result[]> {
-    return new Promise((resolve, reject) => {
-        axe.run(html, options, (err, results) => {
-            if (err) reject(err);
-            resolve(results.violations);
-        });
-    });
-}
+// Error message prefix for runtime exceptions when running axe
+// TODO (refactor): Should this be exported? Can private variables be imported in tests?
+//  Search for es6 module import version of https://www.npmjs.com/package/rewire
+export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks using axe:';
 
 /**
  * Checks DOM for accessibility issues and throws an error if violations are found.
  * @param dom - DOM to be tested for accessibility
- * @param rules - AxeConfig preset rule to use, defaults to extended
+ * @param rules - A11yConfig preset rule to use, defaults to extended
  * @throws error - with the accessibility issues found
  * */
-export function assertAccessible(dom: Document = document, rules: AxeConfig = extended): void {
-    const axeErrMsgPrefix = 'Error running accessibility checks using axe:';
-    // axe.run(dom as ElementContext, rules as RunOptions)
-    //     .then((result) => {
-    //         const violations = result.violations;
-    //         if (typeof violations === 'undefined') {
-    //             throw new Error(`${axeErrMsgPrefix} no violations returned`);
-    //         }
-    //         if (violations.length > 0) {
-    //             throw new Error(violations.join('\n\n'));
-    //         }
-    //     })
-    //     .catch((e) => {
-    //         throw new Error(`${axeErrMsgPrefix} ${e}`);
-    //     });
-    runAxe(dom, rules as RunOptions)
-        .then((violations) => {
-            if (typeof violations === 'undefined') {
-                throw new Error(`${axeErrMsgPrefix} no violations returned`);
-            }
-            if (violations.length > 0) {
-                throw new Error(violations.join('\n\n'));
-            }
-        })
-        .catch((e) => {
-            throw new Error(`${axeErrMsgPrefix} ${e}`);
-        });
+export async function assertAccessible(dom: Document = document, rules: AxeConfig = extended) {
+    let violations;
+    try {
+        const results = await axe.run(dom as ElementContext, rules as RunOptions);
+        violations = results.violations;
+    } catch (e) {
+        throw new Error(`${axeRuntimeExceptionMsgPrefix} ${e}`);
+    }
+    if (violations.length > 0) {
+        throw new Error(violations.join('\n\n'));
+    }
 }
