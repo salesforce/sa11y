@@ -17,11 +17,11 @@ This repo contains the following packages
 
 -   Provides Recommended, Extended accessibility preset rule-sets as [axe](https://github.com/dequelabs/axe-core) configuration
 
-### assertAccessible API (TBD)
+### [assertAccessible API](./packages/assert/README.md)
 
 -   checks current DOM for accessibility issues and throws an error when a11y issues are found
 
-### a11y results formatter (TBD)
+### [a11y results formatter](./packages/format/README.md)
 
 -   format raw a11y issues JSON output from axe into an easy to consume format by consolidating and cross-referencing
 

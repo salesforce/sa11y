@@ -7,6 +7,12 @@
 
 import { Result } from 'axe-core';
 
+/**
+ * Format accessibility results from axe
+ * @param violations - Result list from axe
+ * */
+// TODO: Add handlebars template for formatting
+// TODO: Add support for different output formats console(colored), plain text, HTML, xUnit
 export function a11yResultsFormatter(violations: Result[]): string {
     return violations
         .map((violation) => {

@@ -8,5 +8,5 @@ Provides assertAccessible API to check DOM for accessibility issues
 import { assertAccessible } from '@sa11y/assert';
 
 // Setup DOM ..
-assertAccessible();
+await assertAccessible();
 ```
