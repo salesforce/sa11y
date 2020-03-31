@@ -66,7 +66,7 @@ describe('assert', () => {
         await assertAccessible(document, jsdomRules).catch((e) => {
             expect(e).toBeDefined();
             expect(e.toString()).not.toContain(axeRuntimeExceptionMsgPrefix);
-            // TODO: Verify presence of a11y issues in output
+            expect(e).toMatchSnapshot();
         });
     });
 });

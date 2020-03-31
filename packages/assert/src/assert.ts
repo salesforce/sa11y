@@ -16,7 +16,16 @@ import { AxeConfig } from '@sa11y/preset-rules/dist/axeConfig';
 export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks using axe:';
 
 function a11yResultsFormatter(violations: Result[]): string {
-    return violations.join('\n\n');
+    return violations
+        .map((violation) => {
+            return violation.nodes
+                .map((node) => {
+                    const selectors = node.target.join(', ');
+                    return `${violation.help} (${violation.id}): ${selectors}\n  - More info: ${violation.helpUrl}`;
+                })
+                .join('\n\n');
+        })
+        .join('\n\n');
 }
 
 /**
