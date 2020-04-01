@@ -15,5 +15,10 @@
     "types": "dist/format.d.ts",
     "files": [
         "dist/**/*.js"
-    ]
+    ],
+    "dependencies": {},
+    "devDependencies": {
+        "axe-core": "^3.5.2",
+        "global-jsdom": "^6.0.0"
+    }
 }
