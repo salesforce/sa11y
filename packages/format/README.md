@@ -1,11 +1,12 @@
 # `format`
 
-> TODO: description
+Format accessibility results from axe
 
 ## Usage
 
 ```
-const format = require('format');
+import { a11yResultsFormatter } from '@sa11y/format';
 
-// TODO: DEMONSTRATE API
+const results = await axe.run();
+console.log(a11yResultsFormatter(results.violations));
 ```

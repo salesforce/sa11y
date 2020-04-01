@@ -1,7 +1,7 @@
 {
     "name": "@sa11y/format",
     "version": "0.1.0",
-    "description": "Accessibility results reformatter ",
+    "description": "Accessibility results re-formatter",
     "license": "BSD-3-Clause",
     "keywords": [
         "accessibility",

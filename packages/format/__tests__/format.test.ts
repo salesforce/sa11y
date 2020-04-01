@@ -6,5 +6,5 @@
  */
 
 describe('format', () => {
-    it.skip('needs tests', () => {});
+    it.todo('move result snapshot matching test from assert test');
 });
