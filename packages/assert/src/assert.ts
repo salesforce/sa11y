@@ -9,7 +9,7 @@ import axe, { ElementContext, RunOptions } from 'axe-core';
 // TODO (Fix): Figure out how to remove 'dist' from import path
 import { extended } from '@sa11y/preset-rules/dist/extended';
 import { AxeConfig } from '@sa11y/preset-rules/dist/axeConfig';
-import { a11yResultsFormatter } from '@sa11y/format';
+import { Formatter, a11yResultsFormatter } from '@sa11y/format';
 
 // Error message prefix for runtime exceptions when running axe
 // TODO (refactor): Should this be exported? Can private variables be imported in tests?
@@ -20,9 +20,14 @@ export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks 
  * Checks DOM for accessibility issues and throws an error if violations are found.
  * @param dom - DOM to be tested for accessibility
  * @param rules - A11yConfig preset rule to use, defaults to extended
+ * @param formatter - Function to format a11y violations
  * @throws error - with the accessibility issues found
  * */
-export async function assertAccessible(dom: Document = document, rules: AxeConfig = extended) {
+export async function assertAccessible(
+    dom: Document = document,
+    rules: AxeConfig = extended,
+    formatter: Formatter = a11yResultsFormatter
+) {
     let violations;
     try {
         const results = await axe.run(dom as ElementContext, rules as RunOptions);
@@ -31,6 +36,7 @@ export async function assertAccessible(dom: Document = document, rules: AxeConfi
         throw new Error(`${axeRuntimeExceptionMsgPrefix} ${e}`);
     }
     if (violations.length > 0) {
-        throw new Error(a11yResultsFormatter(violations));
+        const formattedViolations: string = formatter ? formatter(violations) : JSON.stringify(violations);
+        throw new Error(formattedViolations);
     }
 }

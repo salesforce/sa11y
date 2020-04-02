@@ -8,6 +8,13 @@
 import { Result } from 'axe-core';
 
 /**
+ * Function to format accessibility violations found by axe
+ */
+export interface Formatter {
+    (violations: Result[]): string;
+}
+
+/**
  * Format accessibility results from axe
  * @param violations - Result list from axe
  * */
