@@ -84,6 +84,19 @@ describe('assertAccessible API', () => {
         await assertAccessible(document, jsdomRules); // No error thrown
     });
 
+    it.each([
+        // DOM to test, expected assertions
+        [domWithNoA11yIssues, 0],
+        [domWithA11yIssues, 1],
+    ])(
+        'should use default document, ruleset, formatter when called with no args - expecting %# assertion',
+        async (testDOM: string, expectedAssertions: number) => {
+            expect.assertions(expectedAssertions);
+            document.body.innerHTML = testDOM;
+            await assertAccessible().catch((e) => expect(e).toBeDefined());
+        }
+    );
+
     // eslint-disable-next-line jest/expect-expect
     it('should throw an error with a11y issues found for dom with a11y issues', testDOMWithA11yIssues);
 

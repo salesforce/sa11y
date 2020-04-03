@@ -9,9 +9,7 @@ module.exports = {
     coverageReporters: ['text', 'text-summary', 'html-spa'],
     coverageThreshold: {
         global: {
-            // TODO: Debug why branch coverage is reported low even for 100% code cov
-            //  https://github.com/istanbuljs/istanbuljs/search?q=branch+coverage&type=Issues
-            branches: 0,
+            branches: 80,
             functions: 80,
             lines: 80,
             statements: 80,
