@@ -20,7 +20,7 @@ jobs:
                   node-version: '12.x'
             - run: yarn ci
             - name: Code Coverage Report
-              uses: romeovs/lcov-reporter-action@v0.2.16
+              uses: romeovs/lcov-reporter-action@v0.2.17
               with:
                 github-token: ${{ secrets.GITHUB_TOKEN }}
                 lcov-file: ./coverage/lcov.info
