@@ -2,6 +2,8 @@
 
 Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages).
 
+![.github/workflows/ci.yml](https://github.com/salesforce/sa11y/workflows/.github/workflows/ci.yml/badge.svg)
+
 -   [Salesforce Accessibility Automation Libraries](#salesforce-accessibility-automation-libraries)
     -   [Packages](#packages)
         -   [Preset Accessibility rules](#preset-accessibility-rules)

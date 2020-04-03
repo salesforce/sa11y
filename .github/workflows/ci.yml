@@ -19,8 +19,8 @@ jobs:
               with:
                   node-version: '12.x'
             - run: yarn ci
-            - name: Jest Code Coverage Report
-            - uses: ziishaned/jest-reporter-action@0.1.1
+            - name: Code Coverage Report
+              uses: ziishaned/jest-reporter-action@0.1.1
               with:
                 github-token: ${{ secrets.GITHUB_TOKEN }}
                 test-command: "yarn jest --coverage"
