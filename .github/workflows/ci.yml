@@ -20,8 +20,8 @@ jobs:
                   node-version: '12.x'
             - run: yarn ci
             - name: Code Coverage Report
-              uses: ChristiaanScheermeijer/jest-reporter-action@0.4.0
+              uses: romeovs/lcov-reporter-action@v0.2.16
               with:
                 github-token: ${{ secrets.GITHUB_TOKEN }}
-                test-command: "yarn jest --coverage"
+                lcov-file: ./coverage/lcov.info
 
