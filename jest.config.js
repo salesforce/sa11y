@@ -5,8 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 module.exports = {
-    // Note: Open coverage/index.html for coverage report
-    coverageReporters: ['text', 'text-summary', 'html-spa'],
     coverageThreshold: {
         global: {
             branches: 80,
