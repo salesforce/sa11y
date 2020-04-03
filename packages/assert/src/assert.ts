@@ -20,7 +20,7 @@ export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks 
  * Checks DOM for accessibility issues and throws an error if violations are found.
  * @param dom - DOM to be tested for accessibility
  * @param rules - A11yConfig preset rule to use, defaults to extended
- * @param formatter - Function to format a11y violations
+ * @param formatter - Function to format a11y violations. Passing null will format using JSON stringify.
  * @throws error - with the accessibility issues found
  * */
 export async function assertAccessible(
@@ -36,6 +36,7 @@ export async function assertAccessible(
         throw new Error(`${axeRuntimeExceptionMsgPrefix} ${e}`);
     }
     if (violations.length > 0) {
+        // TODO (improvement): Add run-time type check for Formatter interface ?
         const formattedViolations: string = formatter ? formatter(violations) : JSON.stringify(violations);
         throw new Error(formattedViolations);
     }

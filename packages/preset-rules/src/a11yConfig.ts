@@ -8,7 +8,7 @@
 import { RunOptions } from 'axe-core';
 
 /**
- * A11yConfig contains options to trigger a accessibility run, specifying list of rules to test
+ * A11yConfig defines options to run accessibility checks using axe specifying list of rules to test
  */
 export interface A11yConfig extends RunOptions {
     runOnly: {
