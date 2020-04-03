@@ -8,7 +8,7 @@
 import axe, { ElementContext, RunOptions } from 'axe-core';
 // TODO (Fix): Figure out how to remove 'dist' from import path
 import { extended } from '@sa11y/preset-rules/dist/extended';
-import { AxeConfig } from '@sa11y/preset-rules/dist/axeConfig';
+import { A11yConfig } from '@sa11y/preset-rules/dist/a11yConfig';
 import { Formatter, a11yResultsFormatter } from '@sa11y/format';
 
 // Error message prefix for runtime exceptions when running axe
@@ -25,7 +25,7 @@ export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks 
  * */
 export async function assertAccessible(
     dom: Document = document,
-    rules: AxeConfig = extended,
+    rules: A11yConfig = extended,
     formatter: Formatter = a11yResultsFormatter
 ) {
     let violations;
