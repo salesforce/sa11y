@@ -18,7 +18,8 @@
     ],
     "dependencies": {},
     "devDependencies": {
-        "axe-core": "^3.5.2",
-        "global-jsdom": "^6.0.0"
+        "axe-core": "3.5.3",
+        "global-jsdom": "^6.0.0",
+        "jsdom": "^16.2.2"
     }
 }

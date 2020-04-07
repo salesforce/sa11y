@@ -14,11 +14,12 @@
         "dist/**/*.js"
     ],
     "dependencies": {
-        "@sa11y/preset-rules": "0.1.1",
         "@sa11y/format": "0.1.0",
-        "axe-core": "^3.5.2"
+        "@sa11y/preset-rules": "0.1.1",
+        "axe-core": "3.5.3"
     },
     "devDependencies": {
-        "global-jsdom": "^6.0.0"
+        "global-jsdom": "^6.0.0",
+        "jsdom": "^16.2.2"
     }
 }
