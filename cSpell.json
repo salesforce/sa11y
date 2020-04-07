@@ -3,5 +3,6 @@
     "ignoreWords": [
         "SPDX", // license header
         "tsdoc"
-    ]
+    ],
+    "ignoreRegExpList": ["ruleset"]
 }

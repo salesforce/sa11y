@@ -21,7 +21,7 @@
         "update": "yarn upgrade && yarn outdated",
         "test": "jest --coverage",
         "build": "tsc --build",
-        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
         "ci": "yarn install --frozen-lockfile && yarn build && yarn lint && yarn test",
         "clean:build": "tsc --build --clean",
         "clean:install": "lerna clean"
