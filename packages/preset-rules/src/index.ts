@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { extended } from './extended';
 
-export default extended;
+export { getA11yConfig, A11yConfig } from './a11yConfig';
+export { extended } from './extended';
+export { recommended } from './recommended';

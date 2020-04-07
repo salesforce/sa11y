@@ -6,8 +6,8 @@
  */
 
 import axe from 'axe-core';
-import { extended } from '../src/extended';
-import { recommended } from '../src/recommended';
+import { extended } from '../src';
+import { recommended } from '../src';
 
 /**
  * TODO:

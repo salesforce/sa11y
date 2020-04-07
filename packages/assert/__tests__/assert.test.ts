@@ -7,9 +7,8 @@
 
 import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
 import { assertAccessible, axeRuntimeExceptionMsgPrefix } from '../src/assert';
-// TODO (Fix): Remove "dist" from import path
-import { extended } from '@sa11y/preset-rules/dist/extended';
-import { getA11yConfig } from '@sa11y/preset-rules/dist/a11yConfig';
+import { extended } from '@sa11y/preset-rules';
+import { getA11yConfig } from '@sa11y/preset-rules';
 import { a11yResultsFormatter } from '@sa11y/format';
 
 // Test HTML content

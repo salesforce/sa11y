@@ -6,9 +6,8 @@
  */
 
 import axe, { ElementContext, RunOptions } from 'axe-core';
-// TODO (Fix): Figure out how to remove 'dist' from import path
-import { extended } from '@sa11y/preset-rules/dist/extended';
-import { A11yConfig } from '@sa11y/preset-rules/dist/a11yConfig';
+import { extended } from '@sa11y/preset-rules';
+import { A11yConfig } from '@sa11y/preset-rules';
 import { Formatter, a11yResultsFormatter } from '@sa11y/format';
 
 // Error message prefix for runtime exceptions when running axe
