@@ -69,7 +69,7 @@
         "lerna": "^3.20.2",
         "lint-staged": "^10.0.8",
         "lockfile-lint": "^4.2.2",
-        "prettier": "2.0.2",
+        "prettier": "2.0.4",
         "typescript": "^3.8.3"
     },
     "engines": {
