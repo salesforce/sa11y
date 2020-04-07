@@ -40,7 +40,8 @@
     "lint-staged": {
         "**/*.{js,ts}": "eslint --fix",
         "**/*.{js,ts,json,yaml,yml,md}": "prettier --write",
-        "**/*.{js,ts,md}": "cspell -- --no-summary"
+        "**/*.{js,ts,md}": "cspell -- --no-summary",
+        "yarn.lock": "lockfile-lint --path yarn.lock"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
