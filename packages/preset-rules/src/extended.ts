@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { getAxeConfig } from './axeConfig';
+import { getA11yConfig } from './a11yConfig';
 import { recommended } from './recommended';
 
 const rules = [
@@ -35,4 +35,4 @@ const rules = [
     'region',
 ];
 
-export const extended = getAxeConfig(rules);
+export const extended = getA11yConfig(rules);

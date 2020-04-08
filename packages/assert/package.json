@@ -1,0 +1,25 @@
+{
+    "name": "@sa11y/assert",
+    "version": "0.1.0",
+    "description": "Provides assertAccessible API to check DOM for accessibility issues",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "accessibility",
+        "automated testing",
+        "axe"
+    ],
+    "main": "dist/assert.js",
+    "types": "dist/assert.d.ts",
+    "files": [
+        "dist/**/*.js"
+    ],
+    "dependencies": {
+        "@sa11y/format": "0.1.0",
+        "@sa11y/preset-rules": "0.1.1",
+        "axe-core": "3.5.3"
+    },
+    "devDependencies": {
+        "global-jsdom": "^6.1.0",
+        "jsdom": "^16.2.2"
+    }
+}

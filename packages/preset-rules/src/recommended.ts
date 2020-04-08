@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { getAxeConfig } from './axeConfig';
+import { getA11yConfig } from './a11yConfig';
 
 const rules = [
     'area-alt',
@@ -66,4 +66,4 @@ const rules = [
     'video-caption',
 ];
 
-export const recommended = getAxeConfig(rules);
+export const recommended = getA11yConfig(rules);

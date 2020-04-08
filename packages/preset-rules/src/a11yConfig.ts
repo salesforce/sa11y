@@ -8,9 +8,9 @@
 import { RunOptions } from 'axe-core';
 
 /**
- * AxeConfig is limited to subset of options that we need and use in this library
+ * A11yConfig defines options to run accessibility checks using axe specifying list of rules to test
  */
-export interface AxeConfig extends RunOptions {
+export interface A11yConfig extends RunOptions {
     runOnly: {
         type: 'rule';
         values: string[];
@@ -22,9 +22,9 @@ export interface AxeConfig extends RunOptions {
  * Returns config to be used in axe.run() with given rules
  *
  * @param rules - List of rules to be used in the config
- * @returns AxeConfig with formatted rules
+ * @returns A11yConfig with formatted rules
  */
-export function getAxeConfig(rules: string[]): AxeConfig {
+export function getA11yConfig(rules: string[]): A11yConfig {
     return {
         runOnly: {
             type: 'rule',
