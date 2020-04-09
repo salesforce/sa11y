@@ -14,18 +14,11 @@ import { recommended } from '../src';
  *  - Add benchmark test for individual rules using https://github.com/salesforce/best
  * */
 
-describe('@sa11y/rules sanity checks', () => {
-    it('recommended is a subset of extended', () => {
-        expect(extended.runOnly.values).toEqual(expect.arrayContaining(recommended.runOnly.values));
-        // TODO (debug): Why is this failing?
-        // expect(extended).toEqual(expect.objectContaining(recommended));
-    });
-});
-
-describe('@sa11y/rules sanity checks with axe', () => {
+describe('preset-rules', () => {
     // Rules that have been excluded from running due to being deprecated by axe
     // or due to their experimental nature
     const excludedRules = [
+        /* cSpell:disable */
         'aria-dpub-role-fallback',
         'checkboxgroup',
         'frame-title-unique',
@@ -36,18 +29,25 @@ describe('@sa11y/rules sanity checks with axe', () => {
         'table-duplicate-name',
         'table-fake-caption',
         'video-description',
+        /* cSpell:enable */
     ];
     const axeRules = axe.getRules().map((ruleObj) => ruleObj.ruleId);
+
+    it('recommended ruleset should be a subset of extended', () => {
+        expect(extended.runOnly.values).toEqual(expect.arrayContaining(recommended.runOnly.values));
+        // TODO (debug): Why is this failing?
+        // expect(extended).toEqual(expect.objectContaining(recommended));
+    });
 
     it('should not contain excluded, deprecated rules', () => {
         expect(extended.runOnly.values).toEqual(expect.not.arrayContaining(excludedRules));
     });
 
-    it('all rules are present in axe', () => {
+    it('should match with the rules present in axe', () => {
         expect(axeRules).toEqual(expect.arrayContaining(extended.runOnly.values));
     });
 
-    it('only rules not used from axe are excluded, deprecated rules', () => {
+    it('should not use only the excluded, deprecated rules from axe', () => {
         const unusedRules = axeRules.filter((rule) => !extended.runOnly.values.includes(rule));
         expect(unusedRules.sort()).toEqual(excludedRules.sort());
     });

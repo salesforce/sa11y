@@ -13,8 +13,8 @@ afterEach(() => {
     document.body.innerHTML = ''; // reset dom body
 });
 
-describe('format', () => {
-    it('dom with a11y issues', async () => {
+describe('a11y Results Formatter', () => {
+    it('should format a11y issues as expected', async () => {
         document.body.innerHTML = `<html>
                                     <body>
                                      <a href="#"></a>

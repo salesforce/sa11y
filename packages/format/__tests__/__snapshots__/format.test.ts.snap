@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`format dom with a11y issues 1`] = `
+exports[`a11y Results Formatter should format a11y issues as expected 1`] = `
 "Page must have means to bypass repeated blocks (bypass): html
   - More info: https://dequeuniversity.com/rules/axe/3.5/bypass?application=axeAPI
 
