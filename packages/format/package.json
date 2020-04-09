@@ -3,6 +3,11 @@
     "version": "0.1.0",
     "description": "Accessibility results re-formatter",
     "license": "BSD-3-Clause",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/salesforce/sa11y.git",
+        "directory": "packages/format"
+    },
     "keywords": [
         "accessibility",
         "automated testing",

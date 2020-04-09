@@ -2,14 +2,15 @@
     "name": "root",
     "private": true,
     "description": "Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)",
+    "license": "BSD-3-Clause",
     "repository": {
-        "url": "git://github.com/salesforce/sa11y.git"
+        "type": "git",
+        "url": "https://github.com/salesforce/sa11y.git"
     },
     "bugs": {
         "url": "https://github.com/salesforce/sa11y/issues"
     },
-    "license": "BSD-3-Clause",
-    "homepage": "https://help.salesforce.com/articleView?id=accessibility_overview.htm&type=5",
+    "homepage": "https://github.com/salesforce/sa11y",
     "workspaces": [
         "packages/*"
     ],

@@ -3,6 +3,11 @@
     "version": "0.1.0",
     "description": "Provides assertAccessible API to check DOM for accessibility issues",
     "license": "BSD-3-Clause",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/salesforce/sa11y.git",
+        "directory": "packages/assert"
+    },
     "keywords": [
         "accessibility",
         "automated testing",
