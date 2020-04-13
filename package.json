@@ -16,7 +16,7 @@
     ],
     "scripts": {
         "commit": "! git diff --cached --exit-code && git-cz",
-        "lint": "eslint . && lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
+        "lint": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https && eslint .",
         "lint:fix": "yarn lint --fix",
         "lint:staged": "lint-staged",
         "update": "yarn upgrade; yarn audit; yarn outdated",
