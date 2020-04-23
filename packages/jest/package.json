@@ -13,14 +13,17 @@
         "accessibility",
         "automated testing",
         "axe",
-        "jest"
+        "jest",
+        "matcher"
     ],
     "main": "dist/jest.js",
     "types": "dist/jest.d.ts",
     "files": [
         "dist/**/*.js"
     ],
-    "dependencies": {},
+    "dependencies": {
+        "jest-matcher-utils": "^25.4.0"
+    },
     "peerDependencies": {
         "jest": "^25.3.0"
     },
