@@ -22,7 +22,7 @@
     "dependencies": {
         "@sa11y/format": "0.1.0",
         "@sa11y/preset-rules": "0.1.1",
-        "axe-core": "3.5.3"
+        "axe-core": "^3.5.3"
     },
     "devDependencies": {
         "global-jsdom": "^6.1.0",
