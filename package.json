@@ -15,11 +15,11 @@
         "packages/*"
     ],
     "scripts": {
-        "commit": "! git diff --cached --exit-code && git-cz",
+        "commit": "! git diff --cached --exit-code && lint-staged && git-cz",
         "lint": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https && eslint .",
         "lint:fix": "yarn lint --fix",
         "lint:staged": "lint-staged",
-        "update": "yarn ncu; yarn lerna exec ncu; yarn install; yarn upgrade; yarn audit; yarn outdated",
+        "update": "ncu; lerna exec ncu; yarn install; yarn upgrade; yarn audit; yarn outdated",
         "test": "jest --coverage",
         "build": "tsc --build",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
