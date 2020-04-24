@@ -7,6 +7,9 @@
 
 import { assertAccessible } from '@sa11y/assert';
 import { A11yConfig, extended } from '@sa11y/preset-rules';
+import { matcherHint } from 'jest-matcher-utils';
+
+export const matcherHintMsg = `expected document to have no accessibility violations but found`;
 
 // Type def for custom jest a11y matcher toBeAccessible
 // Ref: https://jestjs.io/docs/en/expect.html#expectextendmatchers
@@ -20,23 +23,23 @@ declare global {
 }
 
 /**
- * Jest expect matcher to check document for accessibility issues
- * @param received - Document to be tested for accessibility
+ * Jest expect matcher to check DOM for accessibility issues
+ * @param dom - Document to be tested for accessibility
  * @param config - A11yConfig to be used to test for accessibility. Defaults to extended.
  */
-export async function toBeAccessible(received: Document = document, config: A11yConfig = extended) {
+export async function toBeAccessible(dom: Document = document, config: A11yConfig = extended) {
     let isAccessible = true;
     let a11yViolations = '';
     try {
-        await assertAccessible(received, config);
+        await assertAccessible(dom, config);
     } catch (e) {
         isAccessible = false;
         a11yViolations = e;
     }
     return {
+        actual: a11yViolations,
         pass: isAccessible,
-        message: (): string => `expected document to have no accessibility violations ${a11yViolations}`,
+        // Display assertion for the report when a test fails
+        message: (): string => matcherHint(`${toBeAccessible.name}: ${matcherHintMsg} ${a11yViolations}`),
     };
 }
-
-expect.extend({ toBeAccessible });

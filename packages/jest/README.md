@@ -1,15 +1,19 @@
 # `jest`
 
-Accessibility helpers for [Jest](https://jestjs.io)
+Accessibility matcher for [Jest](https://jestjs.io)
 
 ## Usage
 
 ```
 import { toBeAccessible } from '@sa11y/jest'
 
-// Setup DOM to be tested for accessibility
-// ...
-
 // Assert that the DOM is accessible
-expect().toBeAccessible()
+it('should be accessible', async () => {
+    // Setup DOM to be tested for accessibility
+    ...
+    // assert that dom is accessible (using EXTENDED preset rules)
+    await expect(document).toBeAccessible();
+    // use RECOMMENDED preset rules
+    await expect(document).toBeAccessible(RECOMMENDED);
+});
 ```

@@ -35,6 +35,6 @@ This repo contains the following packages
 
 -   format raw a11y issues JSON output from axe into an easy to consume format by consolidating and cross-referencing
 
-### Jest integration (TBD)
+### Jest integration(./packages/jest/README.md)
 
--   integrates [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
+-   provides a `toBeAccessible()` accessibility matcher for Jest integrating the [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
