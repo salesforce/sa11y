@@ -6,8 +6,12 @@
  */
 
 import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
-import { toBeAccessible } from '../src/jest';
+import { matcherHintMsg, toBeAccessible } from '../src/jest';
 import { extended, recommended } from '@sa11y/preset-rules';
+
+// TODO (Fix): Error when using "await" with "toBeAccessible": "Unexpected await of a non-Promise (non-"Thenable") value"
+//  Needs to be fixed before release as it would affect usability of the API for users.
+/* eslint-disable @typescript-eslint/await-thenable */
 
 // TODO (de-duplicate): Extract into a common place and reuse across packages
 const domWithA11yIssues = `<html>
@@ -37,24 +41,31 @@ const domWithNoA11yIssues = `<!doctype html>
 
 beforeAll(() => {
     expect.extend({ toBeAccessible });
+    document.documentElement.lang = 'en'; // required for a11y lang check
 });
 
 afterEach(() => {
     document.body.innerHTML = ''; // reset dom body
 });
 
-describe('toBeAccessible Jest API', function () {
-    // TODO (refactor): Sep basic functionality into their own tests from testing default args
-    //  Use https://github.com/dankogai/js-combinatorics
-    document.body.innerHTML = domWithA11yIssues;
-    it.each([document, undefined])('throws no error for dom with no a11y issues: %#', (dom) => {
-        expect(dom).toBeAccessible();
+describe('toBeAccessible Jest a11y matcher', function () {
+    it.each([document, undefined])('should not throw error for dom with no a11y issues (Dom arg: %#)', async (dom) => {
+        document.body.innerHTML = domWithNoA11yIssues;
+        await expect(dom).toBeAccessible();
     });
 
     it.each([extended, recommended, undefined])(
-        'toBeAccessible throws error for dom with a11y issues with config: %#',
-        (config) => {
-            expect(domWithA11yIssues).toBeAccessible(config);
+        'should throw error for dom with a11y issues with config: %#',
+        async (config) => {
+            document.body.innerHTML = domWithA11yIssues;
+            // using the 'not' matcher just for testing, not expecting this to be used out of here
+            await expect(document).not.toBeAccessible(config);
+            // using without the 'not' matcher which should be the primary way the API is used (without error catching)
+            try {
+                await expect(document).toBeAccessible(config);
+            } catch (e) {
+                expect(e.message).toContain(matcherHintMsg);
+            }
         }
     );
 });
