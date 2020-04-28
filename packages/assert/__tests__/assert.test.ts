@@ -7,49 +7,16 @@
 
 import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
 import { assertAccessible, axeRuntimeExceptionMsgPrefix } from '../src/assert';
-import { extended } from '@sa11y/preset-rules';
-import { getA11yConfig } from '@sa11y/preset-rules';
+import { extended, getA11yConfig, recommended } from '@sa11y/preset-rules';
 import { a11yResultsFormatter } from '@sa11y/format';
-
-// Test HTML content
-// TODO (cleanup): Move inline html content into individual test data files, reusable across packages
-const domWithA11yIssues = `<html>
-                            <body>
-                             <a href="#"></a>
-                            </body>
-                           </html>`;
-
-// From https://github.com/dequelabs/axe-selenium-java/blob/develop/src/test/resources/test-app.js-->
-const domWithNoA11yIssues = `<!doctype html>
-                            <html lang="en">
-                            <head>
-                                <title>Test Page</title>
-                            </head>
-                            <body>
-                            <div role="main" id="host">
-                                <h1>This is a test</h1>
-                                <p>This is a test page with no violations</p>
-                            </div>
-                            <div role="contentinfo" id="upside-down"></div> <!-- cSpell:disable-line -->
-                                <script>
-                                    var shadow = document.getElementById("upside-down").attachShadow({mode: "open"});
-                                    shadow.innerHTML = '<h2 id="shadow">SHADOW DOM</h2><ul><li>Shadow Item 1</li></ul>'
-                                </script>
-                            </body>
-                            </html>`;
-
-// Customize rules specific to jsdom
-const jsdomRules = extended;
-jsdomRules.rules = {
-    'color-contrast': { enabled: false }, // Disable color-contrast for jsdom
-};
+import { afterEachCleanup, beforeAllSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
 
 beforeAll(() => {
-    document.documentElement.lang = 'en'; // required for a11y lang check
+    beforeAllSetup();
 });
 
 afterEach(() => {
-    document.body.innerHTML = ''; // reset dom body
+    afterEachCleanup();
 });
 
 /**
@@ -60,7 +27,7 @@ afterEach(() => {
 async function testDOMWithA11yIssues(formatter = a11yResultsFormatter) {
     document.body.innerHTML = domWithA11yIssues;
     expect.assertions(3);
-    await assertAccessible(document, jsdomRules, formatter).catch((e) => {
+    await assertAccessible(document, extended, formatter).catch((e) => {
         expect(e).toBeDefined();
         expect(e.toString()).not.toContain(axeRuntimeExceptionMsgPrefix);
         expect(e).toMatchSnapshot();
@@ -78,10 +45,13 @@ describe('assertAccessible API', () => {
     });
 
     // eslint-disable-next-line jest/expect-expect
-    it('should throw no errors for dom with no a11y issues', async () => {
-        document.body.innerHTML = domWithNoA11yIssues;
-        await assertAccessible(document, jsdomRules); // No error thrown
-    });
+    it.each([recommended, extended])(
+        'should throw no errors for dom with no a11y issues with config %#',
+        async (config) => {
+            document.body.innerHTML = domWithNoA11yIssues;
+            await assertAccessible(document, config); // No error thrown
+        }
+    );
 
     it.each([
         // DOM to test, expected assertions

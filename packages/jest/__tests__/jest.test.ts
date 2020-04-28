@@ -8,56 +8,31 @@
 import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
 import { matcherHintMsg, toBeAccessible, toBeAccessibleWith } from '../src/jest';
 import { extended, recommended } from '@sa11y/preset-rules';
+import {
+    afterEachCleanup,
+    beforeAllSetup,
+    cartesianProduct,
+    domWithA11yIssues,
+    domWithNoA11yIssues,
+} from '@sa11y/test-utils';
 
 // TODO (Fix): Error when using "await" with "toBeAccessible": "Unexpected await of a non-Promise (non-"Thenable") value"
 //  Needs to be fixed before release as it would affect usability of the API for users.
 /* eslint-disable @typescript-eslint/await-thenable */
 
-// TODO (de-duplicate): Extract into a common place and reuse across packages
-const domWithA11yIssues = `<html>
-                            <body>
-                             <a href="#"></a>
-                            </body>
-                           </html>`;
-
-// From https://github.com/dequelabs/axe-selenium-java/blob/develop/src/test/resources/test-app.js-->
-const domWithNoA11yIssues = `<!doctype html>
-                            <html lang="en">
-                            <head>
-                                <title>Test Page</title>
-                            </head>
-                            <body>
-                            <div role="main" id="host">
-                                <h1>This is a test</h1>
-                                <p>This is a test page with no violations</p>
-                            </div>
-                            <div role="contentinfo" id="upside-down"></div> <!-- cSpell:disable-line -->
-                                <script>
-                                    var shadow = document.getElementById("upside-down").attachShadow({mode: "open"});
-                                    shadow.innerHTML = '<h2 id="shadow">SHADOW DOM</h2><ul><li>Shadow Item 1</li></ul>'
-                                </script>
-                            </body>
-                            </html>`;
-
 // Collection of values to be tested passed in as different API parameters
 const a11yConfigParams = [extended, recommended, undefined];
 const domParams = [document, undefined];
-
-// Ref: https://eddmann.com/posts/cartesian-product-in-javascript/
-const flatten = (arr) => [].concat([], ...arr);
-const cartesianProduct = (...sets) =>
-    sets.reduce((acc, set) => flatten(acc.map((x) => set.map((y) => [...x, y]))), [[]]);
-
 const domConfigParams = cartesianProduct(domParams, a11yConfigParams);
 
 beforeAll(() => {
+    beforeAllSetup();
     expect.extend({ toBeAccessible });
     expect.extend({ toBeAccessibleWith });
-    document.documentElement.lang = 'en'; // required for a11y lang check
 });
 
 afterEach(() => {
-    document.body.innerHTML = ''; // reset dom body
+    afterEachCleanup();
 });
 
 describe('toBeAccessible jest a11y matcher', () => {

@@ -3,6 +3,12 @@
     "files": [
         /* only process references */
     ],
-    "references": [{ "path": "./packages/preset-rules" }, { "path": "./packages/assert" }],
+    "references": [
+        { "path": "./packages/preset-rules" },
+        { "path": "./packages/format" },
+        { "path": "./packages/test-utils" },
+        { "path": "./packages/assert" },
+        { "path": "./packages/jest" }
+    ],
     "exclude": ["**/node_modules"]
 }

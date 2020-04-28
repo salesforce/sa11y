@@ -25,6 +25,7 @@
         "axe-core": "^3.5.3"
     },
     "devDependencies": {
+        "@sa11y/test-utils": "0.1.0",
         "global-jsdom": "^6.1.0",
         "jsdom": "^16.2.2"
     }
