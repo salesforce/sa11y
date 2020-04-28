@@ -35,6 +35,10 @@ This repo contains the following packages
 
 -   format raw a11y issues JSON output from axe into an easy to consume format by consolidating and cross-referencing
 
-### Jest integration(./packages/jest/README.md)
+### [Jest integration](./packages/jest/README.md)
 
 -   provides a `toBeAccessible()` accessibility matcher for Jest integrating the [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
+
+### [Test utilities](./packages/test-utils/README.md)
+
+-   Private package providing test utilities for `@sa11y` packages
