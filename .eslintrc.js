@@ -14,6 +14,7 @@ module.exports = {
         'jest',
         'prettier',
         'notice', // checks for and fixes copyright header in each file
+        'markdown',
     ],
     extends: [
         'eslint:recommended',
