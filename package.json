@@ -45,6 +45,7 @@
         "**/*.{js,ts}": "eslint --fix",
         "**/*.{js,ts,json,yaml,yml,md}": "prettier --write",
         "**/*.{js,ts,md}": "cspell -- --no-summary",
+        "**/*.md": "markdown-link-check --quiet --config mdLinkChecker.json",
         "yarn.lock": "lockfile-lint --path yarn.lock"
     },
     "devDependencies": {
@@ -75,6 +76,7 @@
         "lerna": "^3.20.2",
         "lint-staged": "^10.1.7",
         "lockfile-lint": "^4.2.2",
+        "markdown-link-check": "^3.8.1",
         "npm-check-updates": "^4.1.2",
         "prettier": "2.0.5",
         "typescript": "^3.8.3"
