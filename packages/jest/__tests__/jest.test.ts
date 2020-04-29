@@ -16,10 +16,6 @@ import {
     domWithNoA11yIssues,
 } from '@sa11y/test-utils';
 
-// TODO (Fix): Error when using "await" with "toBeAccessible": "Unexpected await of a non-Promise (non-"Thenable") value"
-//  Needs to be fixed before release as it would affect usability of the API for users.
-/* eslint-disable @typescript-eslint/await-thenable */
-
 // Collection of values to be tested passed in as different API parameters
 const a11yConfigParams = [extended, recommended, undefined];
 const domParams = [document, undefined];

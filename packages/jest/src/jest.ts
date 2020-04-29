@@ -17,8 +17,8 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace jest {
         interface Matchers<R> {
-            toBeAccessible(config?: A11yConfig): R;
-            toBeAccessibleWith(config: A11yConfig): R;
+            toBeAccessible(config?: A11yConfig): Promise<CustomMatcherResult>;
+            toBeAccessibleWith(config: A11yConfig): Promise<CustomMatcherResult>;
         }
     }
 }
@@ -49,7 +49,7 @@ export async function toBeAccessible(
 }
 
 /**
- * Jest expect matcher to check DOM for accessibility issues
+ * Jest expect matcher to check DOM for accessibility issues with a `@sa11y/preset-rule`
  * @param receivedDom - DOM to be tested for accessibility
  * @param config - A11yConfig to be used to test for accessibility.
  */
