@@ -4,13 +4,19 @@ Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)
 
 ![CI](https://github.com/salesforce/sa11y/workflows/CI/badge.svg)
 
--   [Salesforce Accessibility Automation Libraries](#salesforce-accessibility-automation-libraries)
-    -   [Docs](#docs)
-    -   [Packages](#packages)
-        -   [Preset accessibility rules](#preset-accessibility-rules)
-        -   [assertAccessible API](#assertaccessible-api)
-        -   [a11y results formatter](#a11y-results-formatter)
-        -   [Jest integration (TBD)](#jest-integration-tbd)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Docs](#docs)
+- [Packages](#packages)
+  - [Preset accessibility rules](#preset-accessibility-rules)
+  - [assertAccessible API](#assertaccessible-api)
+  - [a11y results formatter](#a11y-results-formatter)
+  - [Jest integration](#jest-integration)
+  - [Test utilities](#test-utilities)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Docs
 

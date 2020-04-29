@@ -2,6 +2,8 @@
     "ignorePaths": ["node_modules/**", "package.json"],
     "ignoreWords": [
         "assertAccessible",
+        "doctoc",
+        "CNCF",
         "SPDX", // license header
         "tsdoc"
     ],

@@ -1,5 +1,19 @@
 # Salesforce Open Source Community Code of Conduct
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [About the Code of Conduct](#about-the-code-of-conduct)
+- [Our Pledge](#our-pledge)
+- [Our Standards](#our-standards)
+- [Our Responsibilities](#our-responsibilities)
+- [Scope](#scope)
+- [Enforcement](#enforcement)
+- [Attribution](#attribution)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## About the Code of Conduct
 
 Equality is a core value at Salesforce. We believe a diverse and inclusive
@@ -35,23 +49,23 @@ socioeconomic status, or other similar personal characteristics.
 Examples of behavior that contributes to creating a positive environment
 include:
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy toward other community members
+-   Using welcoming and inclusive language
+-   Being respectful of differing viewpoints and experiences
+-   Gracefully accepting constructive criticism
+-   Focusing on what is best for the community
+-   Showing empathy toward other community members
 
 Examples of unacceptable behavior by participants include:
 
-* The use of sexualized language or imagery and unwelcome sexual attention or
-advances
-* Personal attacks, insulting/derogatory comments, or trolling
-* Public or private harassment
-* Publishing, or threatening to publish, others' private information—such as
-a physical or electronic address—without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-professional setting
-* Advocating for or encouraging any of the above behaviors
+-   The use of sexualized language or imagery and unwelcome sexual attention or
+    advances
+-   Personal attacks, insulting/derogatory comments, or trolling
+-   Public or private harassment
+-   Publishing, or threatening to publish, others' private information—such as
+    a physical or electronic address—without explicit permission
+-   Other conduct which could reasonably be considered inappropriate in a
+    professional setting
+-   Advocating for or encouraging any of the above behaviors
 
 ## Our Responsibilities
 
@@ -98,7 +112,7 @@ It includes adaptions and additions from [Go Community Code of Conduct][golang-c
 
 This Code of Conduct is licensed under the [Creative Commons Attribution 3.0 License][cc-by-3-us].
 
-[contributor-covenant-home]: https://www.contributor-covenant.org (https://www.contributor-covenant.org/)
+[contributor-covenant-home]: https://www.contributor-covenant.org 'https://www.contributor-covenant.org/'
 [golang-coc]: https://golang.org/conduct
 [cncf-coc]: https://github.com/cncf/foundation/blob/master/code-of-conduct.md
 [microsoft-coc]: https://opensource.microsoft.com/codeofconduct/

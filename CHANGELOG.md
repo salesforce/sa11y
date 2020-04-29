@@ -1,3 +1,16 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [(2020-04-07)](#2020-04-07)
+    - [Bug Fixes](#bug-fixes)
+    - [Features](#features)
+- [(2020-03-20)](#2020-03-20)
+    - [Bug Fixes](#bug-fixes-1)
+    - [Features](#features-1)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # (2020-04-07)
 
 ### Bug Fixes
