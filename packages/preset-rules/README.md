@@ -4,9 +4,10 @@ Accessibility preset rule configs for axe
 
 ## Usage
 
-```
+```typescript
 import axe from 'axe-core';
 import { extended } from '@sa11y/preset-rules';
 
 const a11yResults = await axe.run(extended);
+console.log(a11yResults);
 ```

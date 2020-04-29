@@ -6,8 +6,9 @@ Provides assertAccessible API to check DOM for accessibility issues
 
 // TODO(doc): Generate usage docs from code (using JSDOC, TSDOC etc)
 
-```
+```typescript
 import { assertAccessible } from '@sa11y/assert';
+import { extended } from "@sa11y/preset-rules";
 
 // Setup DOM in the state to be tested for accessibility
 ...
