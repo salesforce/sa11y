@@ -47,7 +47,10 @@
             "eslint --fix",
             "cspell -- --no-summary"
         ],
-        "**/*.md": "markdown-link-check --quiet --config mdLinkChecker.json",
+        "**/*.md": [
+            "markdown-link-check --quiet --config mdLinkChecker.json",
+            "doctoc --github"
+        ],
         "yarn.lock": "lockfile-lint --path yarn.lock"
     },
     "devDependencies": {
@@ -65,6 +68,7 @@
         "commitizen": "^4.0.4",
         "conventional-changelog-cli": "^2.0.31",
         "cspell": "^4.0.57",
+        "doctoc": "^1.4.0",
         "eslint": "^6.8.0",
         "eslint-config-prettier": "^6.11.0",
         "eslint-plugin-jest": "^23.8.2",
