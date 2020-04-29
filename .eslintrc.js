@@ -35,6 +35,13 @@ module.exports = {
         ],
         'tsdoc/syntax': 'warn',
     },
+    overrides: [
+        {
+            // Enable the Markdown processor for all .md files.
+            files: ['**/*.md'],
+            processor: 'markdown/markdown',
+        },
+    ],
     env: {
         browser: true,
         node: true,
