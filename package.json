@@ -16,7 +16,9 @@
     ],
     "scripts": {
         "commit": "! git diff --cached --exit-code && lint-staged && git-cz",
-        "lint": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https && eslint .",
+        "lint": "eslint . --ext ts,js,md",
+        "lint:all": "yarn lint && yarn lint:lockfile",
+        "lint:lockfile": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
         "lint:fix": "yarn lint --fix",
         "lint:staged": "lint-staged",
         "lint:watch": "esw --watch --changed --color --ext .js,.ts",
@@ -26,7 +28,7 @@
         "build": "tsc --build",
         "build:watch": "yarn build --watch",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-        "ci": "yarn install --frozen-lockfile && yarn build && yarn lint && yarn test",
+        "ci": "yarn install --frozen-lockfile && yarn build && yarn lint:all && yarn test",
         "clean:build": "tsc --build --clean",
         "clean:install": "lerna clean"
     },
@@ -51,7 +53,7 @@
             "markdown-link-check --quiet --config mdLinkChecker.json",
             "doctoc --github"
         ],
-        "yarn.lock": "lockfile-lint --path yarn.lock"
+        "yarn.lock": "yarn lint:lockfile"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
@@ -71,6 +73,8 @@
         "doctoc": "^1.4.0",
         "eslint": "^6.8.0",
         "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-eslint-comments": "^3.1.2",
+        "eslint-plugin-import": "^2.20.2",
         "eslint-plugin-jest": "^23.8.2",
         "eslint-plugin-license-header": "^0.2.0",
         "eslint-plugin-markdown": "^2.0.0-alpha.0",

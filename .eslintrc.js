@@ -25,6 +25,10 @@ module.exports = {
         'plugin:jest/style',
         'plugin:prettier/recommended',
         'prettier/@typescript-eslint',
+        'plugin:import/typescript',
+        // 'plugin:import/errors', // TODO(Debug): Import resolution errors (on interfaces) even though build is working fine
+        'plugin:import/warnings',
+        'plugin:eslint-comments/recommended',
     ],
     rules: {
         'notice/notice': [
