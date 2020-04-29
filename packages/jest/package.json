@@ -22,10 +22,10 @@
         "dist/**/*.js"
     ],
     "dependencies": {
-        "jest-matcher-utils": "^25.4.0"
+        "jest-matcher-utils": "^25.5.0"
     },
     "peerDependencies": {
-        "jest": "^25.4.0"
+        "jest": "^25.5.0"
     },
     "devDependencies": {
         "@sa11y/test-utils": "0.1.0",
