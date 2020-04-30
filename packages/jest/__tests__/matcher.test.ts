@@ -7,6 +7,7 @@
 
 import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
 import { matcherHintMsg, toBeAccessible, toBeAccessibleWith } from '../src/matcher';
+import { registerA11yMatchers } from '../src';
 import { extended, recommended } from '@sa11y/preset-rules';
 import {
     afterEachCleanup,
@@ -23,12 +24,19 @@ const domConfigParams = cartesianProduct(domParams, a11yConfigParams);
 
 beforeAll(() => {
     beforeAllSetup();
-    expect.extend({ toBeAccessible });
-    expect.extend({ toBeAccessibleWith });
+    registerA11yMatchers();
 });
 
 afterEach(() => {
     afterEachCleanup();
+});
+
+describe('a11y matchers', () => {
+    it('should be extendable with expect', () => {
+        // Mostly here for code cov as it doesn't register correctly with just  registerA11yMatchers()
+        expect.extend({ toBeAccessible });
+        expect.extend({ toBeAccessibleWith });
+    });
 });
 
 describe('toBeAccessible jest a11y matcher', () => {

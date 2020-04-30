@@ -11,7 +11,7 @@ import { matcherHint } from 'jest-matcher-utils';
 
 export const matcherHintMsg = `expected document to have no accessibility violations but found following issues: `;
 
-// Type def for custom jest a11y matcher toBeAccessible
+// Type def for custom jest a11y matchers
 // Ref: https://jestjs.io/docs/en/expect.html#expectextendmatchers
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
