@@ -5,12 +5,12 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { toBeAccessible, toBeAccessibleWith } from '..';
+import { toBeAccessible, toBeAccessibleWith } from './matcher';
 
 /**
  * Register accessibility helpers toBeAccessible as jest matchers
  */
-export function registerA11yMatchers() {
+export function registerA11yMatchers(): void {
     // Ref: https://github.com/jest-community/jest-extended
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore error TS2339: Property 'expect' does not exist on type 'Global'.
