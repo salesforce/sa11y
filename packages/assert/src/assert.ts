@@ -5,10 +5,10 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import axe, { ElementContext, RunOptions } from 'axe-core';
-import { extended } from '@sa11y/preset-rules';
-import { A11yConfig } from '@sa11y/preset-rules';
-import { Formatter, a11yResultsFormatter } from '@sa11y/format';
+import * as axe from 'axe-core';
+import { ElementContext, RunOptions } from 'axe-core';
+import { A11yConfig, extended } from '@sa11y/preset-rules';
+import { a11yResultsFormatter, Formatter } from '@sa11y/format';
 
 // Error message prefix for runtime exceptions when running axe
 // TODO (refactor): Should this be exported? Can private variables be imported in tests?

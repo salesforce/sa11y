@@ -26,10 +26,18 @@ module.exports = {
         'plugin:prettier/recommended',
         'prettier/@typescript-eslint',
         'plugin:import/typescript',
-        // 'plugin:import/errors', // TODO(Debug): Import resolution errors (on interfaces) even though build is working fine
+        'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:eslint-comments/recommended',
     ],
+    settings: {
+        'import/resolver': {
+            // Makes plugin:import work with Typescript interfaces etc
+            typescript: {
+                alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code
+            },
+        },
+    },
     rules: {
         'notice/notice': [
             'error',

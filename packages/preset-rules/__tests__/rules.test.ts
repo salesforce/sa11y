@@ -5,9 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import axe from 'axe-core';
-import { extended } from '../src';
-import { recommended } from '../src';
+import * as axe from 'axe-core';
+import { extended, recommended } from '../src';
 
 /**
  * TODO:

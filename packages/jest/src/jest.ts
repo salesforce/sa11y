@@ -6,7 +6,7 @@
  */
 
 import { assertAccessible } from '@sa11y/assert';
-import { A11yConfig, extended } from '@sa11y/preset-rules';
+import { extended, A11yConfig } from '@sa11y/preset-rules';
 import { matcherHint } from 'jest-matcher-utils';
 
 export const matcherHintMsg = `expected document to have no accessibility violations but found following issues: `;
