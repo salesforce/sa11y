@@ -6,6 +6,7 @@
  */
 
 import { toBeAccessible, toBeAccessibleWith } from './matcher';
+import { extended, recommended } from '@sa11y/preset-rules';
 
 /**
  * Register accessibility helpers toBeAccessible as jest matchers
@@ -27,4 +28,16 @@ export function registerA11yMatchers(): void {
                 '\nSee https://github.com/salesforce/sa11y/blob/master/packages/jest/README.md for help.'
         );
     }
+}
+
+/**
+ * Customize sa11y preset rules specific to JSDOM
+ */
+export function fixA11yConfig(): void {
+    [extended, recommended].forEach(
+        (config) =>
+            (config.rules = {
+                'color-contrast': { enabled: false }, // Disable color-contrast for jsdom
+            })
+    );
 }
