@@ -25,7 +25,7 @@
         "jest-matcher-utils": "^25.5.0"
     },
     "peerDependencies": {
-        "jest": "^25.5.0"
+        "jest": "^25.5.2"
     },
     "devDependencies": {
         "@sa11y/test-utils": "0.1.0",
