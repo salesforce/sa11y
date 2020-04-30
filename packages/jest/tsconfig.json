@@ -4,5 +4,6 @@
         "rootDir": "src",
         "outDir": "dist"
     },
-    "include": ["src"]
+    "include": ["src"],
+    "references": [{ "path": "../preset-rules" }, { "path": "../assert" }, { "path": "../test-utils" }]
 }
