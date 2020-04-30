@@ -4,28 +4,22 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { afterEachCleanup, beforeAllSetup, cartesianProduct } from '../src';
-import { extended, recommended } from '@sa11y/preset-rules';
+import { beforeEachSetup, cartesianProduct } from '../src';
 
 const testDOMCleanupContent = 'foo';
 
 beforeAll(() => {
-    beforeAllSetup();
     // Populate DOM to test cleanup after each test
     document.body.innerHTML = testDOMCleanupContent;
 });
 
-afterEach(() => {
-    afterEachCleanup();
+beforeEach(() => {
+    beforeEachSetup();
 });
 
 describe('test utils jest setup', () => {
     it('should setup jsdom as expected', () => {
         expect(document.documentElement.lang).toBe('en');
-    });
-
-    it.each([extended, recommended])('should customize preset-rules as expected', (config) => {
-        expect(config.rules['color-contrast'].enabled).toBe(false);
     });
 
     it('should cleanup document', () => {

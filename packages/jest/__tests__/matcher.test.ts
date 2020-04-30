@@ -5,17 +5,10 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
 import { matcherHintMsg, toBeAccessible, toBeAccessibleWith } from '../src/matcher';
-import { registerA11yMatchers } from '../src';
+import { fixA11yConfig, registerA11yMatchers } from '../src';
 import { extended, recommended } from '@sa11y/preset-rules';
-import {
-    afterEachCleanup,
-    beforeAllSetup,
-    cartesianProduct,
-    domWithA11yIssues,
-    domWithNoA11yIssues,
-} from '@sa11y/test-utils';
+import { beforeEachSetup, cartesianProduct, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
 
 // Collection of values to be tested passed in as different API parameters
 const a11yConfigParams = [extended, recommended, undefined];
@@ -23,12 +16,12 @@ const domParams = [document, undefined];
 const domConfigParams = cartesianProduct(domParams, a11yConfigParams);
 
 beforeAll(() => {
-    beforeAllSetup();
     registerA11yMatchers();
+    fixA11yConfig();
 });
 
-afterEach(() => {
-    afterEachCleanup();
+beforeEach(() => {
+    beforeEachSetup();
 });
 
 describe('a11y matchers', () => {

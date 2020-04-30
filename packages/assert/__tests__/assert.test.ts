@@ -9,14 +9,10 @@ import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blo
 import { assertAccessible, axeRuntimeExceptionMsgPrefix } from '../src/assert';
 import { extended, getA11yConfig, recommended } from '@sa11y/preset-rules';
 import { a11yResultsFormatter } from '@sa11y/format';
-import { afterEachCleanup, beforeAllSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
+import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
 
-beforeAll(() => {
-    beforeAllSetup();
-});
-
-afterEach(() => {
-    afterEachCleanup();
+beforeEach(() => {
+    beforeEachSetup();
 });
 
 /**

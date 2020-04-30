@@ -13,21 +13,19 @@ Private package providing test utilities for @sa11y packages
 
 ```typescript
 import {
-    afterEachCleanup,
-    beforeAllSetup,
+    beforeEachSetup,
     domWithA11yIssues,
     domWithNoA11yIssues,
 } from '@sa11y/test-utils';
 
-import { toBeAccessible } from '@sa11y/jest';
+import { registerA11yMatchers } from '@sa11y/jest'; import {beforeEach} from "@jest/globals";
 
 beforeAll(() => {
-    beforeAllSetup();
-    expect.extend({toBeAccessible});
+    registerA11yMatchers();
 });
 
-afterEach(() => {
-    afterEachCleanup();
+beforeEach(() => {
+    beforeEachSetup();
 });
 
 describe('...', () => {

@@ -6,5 +6,4 @@
  */
 
 export { domWithA11yIssues, domWithNoA11yIssues } from './test-data';
-export { cartesianProduct } from './utils';
-export { beforeAllSetup, afterEachCleanup } from './jest-setup';
+export { beforeEachSetup, cartesianProduct } from './utils';

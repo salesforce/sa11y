@@ -14,3 +14,11 @@ export function cartesianProduct(...sets: Array<any>): Array<any> {
     const flatten = (arr: Array<any>) => [].concat([], ...arr);
     return sets.reduce((acc, set) => flatten(acc.map((x: any) => set.map((y: any) => [...x, y]))), [[]]);
 }
+
+/**
+ * Common Jest setup that sets up JSDOM as required for the tests
+ */
+export function beforeEachSetup(): void {
+    document.documentElement.lang = 'en'; // required for a11y lang check
+    document.body.innerHTML = ''; // reset body content
+}
