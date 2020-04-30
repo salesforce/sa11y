@@ -6,7 +6,7 @@
  */
 
 import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
-import { matcherHintMsg, toBeAccessible, toBeAccessibleWith } from '../src/jest';
+import { matcherHintMsg, toBeAccessible, toBeAccessibleWith } from '../src/matcher';
 import { extended, recommended } from '@sa11y/preset-rules';
 import {
     afterEachCleanup,
