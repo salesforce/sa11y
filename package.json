@@ -26,7 +26,7 @@
         "test": "jest --coverage",
         "test:watch": "yarn test --watch",
         "build": "tsc --build",
-        "build:clean": "yarn build --clean",
+        "build:clean": "yarn build --clean; yarn build",
         "build:watch": "yarn build --watch",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
         "ci": "yarn install --frozen-lockfile && yarn build && yarn lint:all && yarn test",
@@ -40,7 +40,8 @@
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged",
-            "commit-msg": "commitlint -e $GIT_PARAMS"
+            "commit-msg": "commitlint -e $GIT_PARAMS",
+            "pre-push": "yarn build:clean && yarn test"
         }
     },
     "lint-staged": {

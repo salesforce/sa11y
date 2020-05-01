@@ -1,7 +1,7 @@
 {
     "ignorePatterns": [
         {
-            "TODO": "REMOVE after package is published",
+            "TODO": "REMOVE after repository is made public",
             "pattern": "^https://github.com/salesforce/sa11y"
         }
     ]
