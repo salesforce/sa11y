@@ -8,6 +8,7 @@
 import { assertAccessible } from '@sa11y/assert';
 import { extended, A11yConfig } from '@sa11y/preset-rules';
 import { matcherHint } from 'jest-matcher-utils';
+import { fixA11yConfig } from './setup';
 
 export const matcherHintMsg = `expected document to have no accessibility violations but found following issues: `;
 
@@ -34,6 +35,8 @@ export async function toBeAccessible(
 ): Promise<jest.CustomMatcherResult> {
     let isAccessible = true;
     let a11yViolations = '';
+
+    fixA11yConfig(config);
 
     try {
         await assertAccessible(receivedDom, config);

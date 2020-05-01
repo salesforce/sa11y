@@ -14,8 +14,8 @@ describe('jest setup', () => {
         expect(expect[matcherName]).toBeDefined();
     });
 
-    fixA11yConfig();
     it.each([extended, recommended])('should customize preset-rules as expected', (config) => {
+        fixA11yConfig(config);
         expect(config.rules['color-contrast'].enabled).toBe(false);
     });
 });

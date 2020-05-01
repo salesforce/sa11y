@@ -6,7 +6,7 @@
  */
 
 import { toBeAccessible, toBeAccessibleWith } from './matcher';
-import { extended, recommended } from '@sa11y/preset-rules';
+import { A11yConfig } from '@sa11y/preset-rules';
 
 /**
  * Register accessibility helpers toBeAccessible as jest matchers
@@ -33,11 +33,9 @@ export function registerA11yMatchers(): void {
 /**
  * Customize sa11y preset rules specific to JSDOM
  */
-export function fixA11yConfig(): void {
-    [extended, recommended].forEach(
-        (config) =>
-            (config.rules = {
-                'color-contrast': { enabled: false }, // Disable color-contrast for jsdom
-            })
-    );
+export function fixA11yConfig(config: A11yConfig): void {
+    // TODO (refactor): Make immutable
+    config.rules = {
+        'color-contrast': { enabled: false }, // Disable color-contrast
+    };
 }

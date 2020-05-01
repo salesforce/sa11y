@@ -6,7 +6,7 @@
  */
 
 import { matcherHintMsg, toBeAccessible, toBeAccessibleWith } from '../src/matcher';
-import { fixA11yConfig, registerA11yMatchers } from '../src';
+import { registerA11yMatchers } from '../src';
 import { extended, recommended } from '@sa11y/preset-rules';
 import { beforeEachSetup, cartesianProduct, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
 
@@ -17,7 +17,6 @@ const domConfigParams = cartesianProduct(domParams, a11yConfigParams);
 
 beforeAll(() => {
     registerA11yMatchers();
-    fixA11yConfig();
 });
 
 beforeEach(() => {
