@@ -25,11 +25,11 @@ export interface A11yConfig extends RunOptions {
  * @returns A11yConfig with formatted rules
  */
 export function getA11yConfig(rules: string[]): A11yConfig {
-    return {
+    return Object.freeze({
         runOnly: {
             type: 'rule',
             values: rules,
         },
         resultTypes: ['violations'],
-    };
+    });
 }

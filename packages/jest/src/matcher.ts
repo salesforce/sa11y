@@ -36,10 +36,8 @@ export async function toBeAccessible(
     let isAccessible = true;
     let a11yViolations = '';
 
-    fixA11yConfig(config);
-
     try {
-        await assertAccessible(receivedDom, config);
+        await assertAccessible(receivedDom, fixA11yConfig(config));
     } catch (e) {
         isAccessible = false;
         a11yViolations = e;

@@ -33,9 +33,11 @@ export function registerA11yMatchers(): void {
 /**
  * Customize sa11y preset rules specific to JSDOM
  */
-export function fixA11yConfig(config: A11yConfig): void {
-    // TODO (refactor): Make immutable
-    config.rules = {
-        'color-contrast': { enabled: false }, // Disable color-contrast
+export function fixA11yConfig(config: A11yConfig): A11yConfig {
+    return {
+        ...config,
+        rules: {
+            'color-contrast': { enabled: false }, // Disable color-contrast
+        },
     };
 }
