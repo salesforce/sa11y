@@ -9,10 +9,12 @@
  * Cartesian product of arrays
  * Ref: https://eddmann.com/posts/cartesian-product-in-javascript/
  */
+// TODO(types): Fix types for the cartesianProduct function - from any to generics
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function cartesianProduct(...sets: Array<any>): Array<any> {
-    // TODO(types): Fix types for the cartesianProduct function - from any to generics
-    const flatten = (arr: Array<any>) => [].concat([], ...arr);
+    const flatten = (arr: Array<any>): Array<any> => [].concat([], ...arr);
     return sets.reduce((acc, set) => flatten(acc.map((x: any) => set.map((y: any) => [...x, y]))), [[]]);
+    /* eslint-enable @typescript-eslint/no-explicit-any */
 }
 
 /**

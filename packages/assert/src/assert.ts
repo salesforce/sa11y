@@ -20,8 +20,9 @@ export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks 
  * @param dom - DOM to be tested for accessibility
  * @param rules - A11yConfig preset rule to use, defaults to extended
  * @param formatter - Function to format a11y violations. Passing null will format using JSON stringify.
- * @throws error - with the accessibility issues found
+ * @throws error - with the accessibility issues found, does not return any value
  * */
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export async function assertAccessible(
     dom: Document = document,
     rules: A11yConfig = extended,

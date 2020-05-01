@@ -37,6 +37,9 @@ export async function toBeAccessible(
     let a11yViolations = '';
 
     try {
+        // TODO (feat): There might be a need to test selected element(s) in a DOM.
+        //  If we need that we could add the ability to pass in CSS selector(s).
+        //  Approach of jest-axe lib to store/restore DOM might not be efficient and have potential side effects.
         await assertAccessible(receivedDom, fixA11yConfig(config));
     } catch (e) {
         isAccessible = false;

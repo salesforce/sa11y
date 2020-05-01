@@ -37,7 +37,10 @@ export function fixA11yConfig(config: A11yConfig): A11yConfig {
     return {
         ...config,
         rules: {
-            'color-contrast': { enabled: false }, // Disable color-contrast
+            // Disable color-contrast as it is doesn't work for JSDOM and might affect performance
+            //  https://github.com/dequelabs/axe-core/issues/595
+            //  https://github.com/dequelabs/axe-core/blob/develop/doc/examples/jsdom/test/a11y.js
+            'color-contrast': { enabled: false },
         },
     };
 }
