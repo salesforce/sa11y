@@ -25,11 +25,13 @@ export interface A11yConfig extends RunOptions {
  * @returns A11yConfig with formatted rules
  */
 export function getA11yConfig(rules: string[]): A11yConfig {
-    return Object.freeze({
+    // TODO (Debug): Adding Object.freeze() results in TypeError: Cannot add property reporter, object is not extensible
+    //  Even when no local modifications are made. Maybe axe.run() itself is modifying the config object.
+    return {
         runOnly: {
             type: 'rule',
             values: rules,
         },
         resultTypes: ['violations'],
-    });
+    };
 }
