@@ -2,39 +2,58 @@
 
 We want to encourage the developer community to contribute to Sa11y. This guide has instructions to install, build, test and contribute to the framework. Adapted from [salesforce/lwc](https://github.com/salesforce/lwc/blob/master/CONTRIBUTING.md)
 
--   [Contributing Guidelines](#contributing-guidelines)
-    -   [Requirements](#requirements)
-    -   [Installation](#installation)
-        -   [1) Download the repository](#1-download-the-repository)
-        -   [2) Install Dependencies](#2-install-dependencies)
-    -   [Building](#building)
-    -   [Testing](#testing)
-        -   [Unit Testing](#unit-testing)
-        -   [Integration Testing](#integration-testing)
-    -   [Editor Configurations](#editor-configurations)
-        -   [Types](#types)
-        -   [ESLint](#eslint)
-    -   [Git Workflow](#git-workflow)
-        -   [Fork the repo](#fork-the-repo)
-        -   [Create a feature branch](#create-a-feature-branch)
-        -   [Make your changes](#make-your-changes)
-        -   [Rebase](#rebase)
-        -   [Check your submission](#check-your-submission)
-            -   [Lint your changes](#lint-your-changes)
-            -   [Run tests](#run-tests)
-        -   [Create a pull request](#create-a-pull-request)
-            -   [Pull Request Title](#pull-request-title)
-        -   [Update the pull request](#update-the-pull-request)
-        -   [Commit Message Conventions](#commit-message-conventions)
-            -   [Commit Message Format](#commit-message-format)
-            -   [Reverting a commit](#reverting-a-commit)
-            -   [Commit Type](#commit-type)
-            -   [Commit Scope](#commit-scope)
-            -   [Commit Subject](#commit-subject)
-            -   [Commit Body](#commit-body)
-            -   [Commit Footer](#commit-footer)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Quick start](#quick-start)
+- [Requirements](#requirements)
+- [Installation](#installation)
+  - [1) Download the repository](#1-download-the-repository)
+  - [2) Install Dependencies](#2-install-dependencies)
+- [Building](#building)
+- [Testing](#testing)
+  - [Unit Testing](#unit-testing)
+  - [Integration Testing](#integration-testing)
+- [Editor Configurations](#editor-configurations)
+  - [Types](#types)
+  - [ESLint](#eslint)
+- [Git Workflow](#git-workflow)
+  - [Fork the repo](#fork-the-repo)
+  - [Create a feature branch](#create-a-feature-branch)
+  - [Make your changes](#make-your-changes)
+  - [Rebase](#rebase)
+  - [Check your submission](#check-your-submission)
+    - [Lint your changes](#lint-your-changes)
+    - [Run tests](#run-tests)
+  - [Create a pull request](#create-a-pull-request)
+    - [Pull Request Title](#pull-request-title)
+  - [Update the pull request](#update-the-pull-request)
+  - [Commit Message Conventions](#commit-message-conventions)
+    - [Commit Message Format](#commit-message-format)
+    - [Reverting a commit](#reverting-a-commit)
+    - [Commit Type](#commit-type)
+    - [Commit Scope](#commit-scope)
+    - [Commit Subject](#commit-subject)
+    - [Commit Body](#commit-body)
+    - [Commit Footer](#commit-footer)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 Before you start, it helps to be familiar with [Web Accessibility](https://trailhead.salesforce.com/en/content/learn/trails/get-started-with-web-accessibility)
+
+## Quick start
+
+1. `yarn install` to install dependencies
+2. Make changes while building, testing and linting the changed files
+
+-   `yarn build:watch`
+-   `yarn test:watch`
+-   `yarn lint:watch`
+
+3. Update changelog with `yarn changelog`
+4. Stage changes in git and do `yarn commit` to check staged changes and commit them with a formatted commit message
+5. Push changes to feature branch
 
 ## Requirements
 
@@ -53,7 +72,7 @@ git clone git@github.com:salesforce/sa11y.git
 
 ### 2) Install Dependencies
 
-_We use [yarn](https://yarnpkg.com/) because it is significantly faster than npm for our use case. See this command [cheatsheet](https://yarnpkg.com/lang/en/docs/migrating-from-npm/)._
+_We use [yarn](https://yarnpkg.com/) because it is significantly faster than npm for our use case. See this command [cheat-sheet](https://yarnpkg.com/lang/en/docs/migrating-from-npm/)._
 
 ```bash
 yarn install
@@ -63,8 +82,11 @@ If this fails with an error about _UNABLE_TO_GET_ISSUER_CERT_LOCALLY_, _Error: u
 
 ## Building
 
+When developing typescript compiler can be invoked using the `build` target.
+With `:watch` the compiler would watch for changes and incrementally compile changed sources as required.
+
 ```bash
-yarn build
+yarn build[:watch]
 ```
 
 ## Testing
@@ -80,7 +102,7 @@ yarn test
 Additionally, the testing can be started in 'watch' mode which allows for automatic test re-runs on save:
 
 ```bash
-yarn test --watch
+yarn test:watch
 ```
 
 To execute a particular test, use the following command:
