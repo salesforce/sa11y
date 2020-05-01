@@ -26,10 +26,10 @@
         "test": "jest --coverage",
         "test:watch": "yarn test --watch",
         "build": "tsc --build",
+        "build:clean": "yarn build --clean",
         "build:watch": "yarn build --watch",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
         "ci": "yarn install --frozen-lockfile && yarn build && yarn lint:all && yarn test",
-        "clean:build": "tsc --build --clean",
         "clean:install": "lerna clean"
     },
     "config": {
