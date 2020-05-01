@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/format",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Accessibility results re-formatter",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/salesforce/sa11y/blob/master/packages/format/README.md",
@@ -22,7 +22,6 @@
     "files": [
         "dist/**/*.js"
     ],
-    "dependencies": {},
     "devDependencies": {
         "axe-core": "^3.5.3",
         "global-jsdom": "^6.1.0",
