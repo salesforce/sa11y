@@ -8,7 +8,7 @@
 import { assertAccessible } from '@sa11y/assert';
 import { extended, A11yConfig } from '@sa11y/preset-rules';
 import { matcherHint } from 'jest-matcher-utils';
-import { fixA11yConfig } from './setup';
+import { adaptA11yConfig } from './setup';
 
 export const matcherHintMsg = `expected document to have no accessibility violations but found following issues: `;
 
@@ -40,7 +40,7 @@ export async function toBeAccessible(
         // TODO (feat): There might be a need to test selected element(s) in a DOM.
         //  If we need that we could add the ability to pass in CSS selector(s).
         //  Approach of jest-axe lib to store/restore DOM might not be efficient and have potential side effects.
-        await assertAccessible(receivedDom, fixA11yConfig(config));
+        await assertAccessible(receivedDom, adaptA11yConfig(config));
     } catch (e) {
         isAccessible = false;
         a11yViolations = e;

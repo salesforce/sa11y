@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { fixA11yConfig, registerA11yMatchers } from '../src';
+import { adaptA11yConfig, registerA11yMatchers } from '../src';
 import { extended, recommended } from '@sa11y/preset-rules';
 
 describe('jest setup', () => {
@@ -16,6 +16,6 @@ describe('jest setup', () => {
 
     it.each([extended, recommended])('should customize preset-rules as expected', (config) => {
         expect(config.rules).toBeUndefined();
-        expect(fixA11yConfig(config).rules['color-contrast'].enabled).toBe(false);
+        expect(adaptA11yConfig(config).rules['color-contrast'].enabled).toBe(false);
     });
 });

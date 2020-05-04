@@ -33,7 +33,7 @@ export function registerA11yMatchers(): void {
 /**
  * Customize sa11y preset rules specific to JSDOM
  */
-export function fixA11yConfig(config: A11yConfig): A11yConfig {
+export function adaptA11yConfig(config: A11yConfig): A11yConfig {
     return {
         ...config,
         rules: {
