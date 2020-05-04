@@ -20,8 +20,6 @@ export function registerA11yMatchers(): void {
         jestExpect.extend({ toBeAccessible });
         jestExpect.extend({ toBeAccessibleWith });
     } else {
-        // Don't expect to run into this situation under normal circumstance. Not sure how to test for it easily either.
-        /* istanbul ignore next */
         throw new Error(
             "Unable to find Jest's global expect." +
                 '\nPlease check you have added @sa11y/jest correctly to your jest configuration.' +
