@@ -7,13 +7,42 @@ Accessibility matcher for [Jest](https://jestjs.io)
 
 
 - [Setup](#setup)
+  - [Automatic](#automatic)
+  - [Manual](#manual)
 - [Usage](#usage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Setup
 
--   TODO: Based on https://github.com/jest-community/jest-extended#setup
+The accessibility matcher helper APIs need to be registered with Jest before they can be used in tests.
+
+### Automatic
+
+Modify Jest config to add the required setup for accessibility matchers.
+
+In the `jest.config.js` at the root of your project, add
+
+```javascript
+const { jestConfig } = require('@sa11y/jest');
+
+module.exports = {
+    ...jestConfig,
+    // Your config ..
+};
+```
+
+### Manual
+
+Invoke `registerA11yMatchers` before using the accessibility matchers in the tests.
+
+```typescript
+import { registerA11yMatchers } from '@sa11y/jest';
+
+beforeAll(() => {
+    registerA11yMatchers();
+});
+```
 
 ## Usage
 

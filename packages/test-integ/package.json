@@ -1,0 +1,16 @@
+{
+    "name": "@sa11y/test-integ",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Private package for integration testing @sa11y packages",
+    "license": "BSD-3-Clause",
+    "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/test-integ#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/salesforce/sa11y.git",
+        "directory": "packages/test-integ"
+    },
+    "devDependencies": {
+        "@sa11y/jest": "0.1.0"
+    }
+}

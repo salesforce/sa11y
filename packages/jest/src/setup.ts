@@ -45,3 +45,6 @@ export function adaptA11yConfig(config: A11yConfig): A11yConfig {
         },
     };
 }
+
+// When this file is used as part of Jest setup with setupFilesAfterEnv
+registerA11yMatchers();

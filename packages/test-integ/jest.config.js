@@ -5,9 +5,9 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-export { toBeAccessible } from './matcher';
-export { adaptA11yConfig, registerA11yMatchers } from './setup';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { jestConfig } = require('@sa11y/jest');
 
-export const jestConfig = {
-    setupFilesAfterEnv: [require.resolve('./setup')],
+module.exports = {
+    ...jestConfig,
 };
