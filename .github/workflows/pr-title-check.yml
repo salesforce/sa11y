@@ -9,4 +9,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: '12.x'
+            - run: yarn ci:build
             - uses: JulienKode/pull-request-name-linter-action@v0.1.2

@@ -29,7 +29,8 @@
         "build:clean": "yarn build --clean; yarn build",
         "build:watch": "yarn build --watch",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-        "ci": "yarn install --frozen-lockfile && yarn build && yarn lint:all && yarn test",
+        "ci:build": "yarn install --frozen-lockfile && yarn build",
+        "ci:test": "yarn lint:all && yarn test",
         "clean:install": "lerna clean"
     },
     "config": {

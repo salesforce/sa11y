@@ -18,4 +18,6 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: '12.x'
-            - run: yarn ci
+            - run: |
+                  yarn ci:build
+                  yarn ci:test

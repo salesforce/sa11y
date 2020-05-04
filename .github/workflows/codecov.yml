@@ -15,7 +15,9 @@ jobs:
                   node-version: '12.x'
 
             - name: Collect Code Coverage
-              run: yarn test
+              run: |
+                  yarn ci:build
+                  yarn test
 
             - name: Code Coverage Report
               uses: slavcodev/coverage-monitor-action@1.1.0
