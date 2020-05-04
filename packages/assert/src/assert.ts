@@ -6,7 +6,6 @@
  */
 
 import * as axe from 'axe-core';
-import { ElementContext, RunOptions } from 'axe-core';
 import { A11yConfig, extended } from '@sa11y/preset-rules';
 import { a11yResultsFormatter, Formatter } from '@sa11y/format';
 
@@ -30,7 +29,7 @@ export async function assertAccessible(
 ) {
     let violations;
     try {
-        const results = await axe.run(dom as ElementContext, rules as RunOptions);
+        const results = await axe.run(dom as axe.ElementContext, rules as axe.RunOptions);
         violations = results.violations;
     } catch (e) {
         throw new Error(`${axeRuntimeExceptionMsgPrefix} ${e}`);

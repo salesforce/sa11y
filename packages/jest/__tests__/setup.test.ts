@@ -10,11 +10,11 @@ import { extended, recommended } from '@sa11y/preset-rules';
 
 describe('jest setup', () => {
     registerA11yMatchers();
-    it.each(['toBeAccessible', 'toBeAccessibleWith'])('should defined %s matcher on expect object', (matcherName) => {
-        expect(expect[matcherName]).toBeDefined();
+    it('should define matcher on expect object', () => {
+        expect(expect['toBeAccessible']).toBeDefined();
     });
 
-    it.each([extended, recommended])('should customize preset-rules as expected', (config) => {
+    it.each([extended, recommended])('should customize %s preset-rule as expected', (config) => {
         expect(config.rules).toBeUndefined();
         expect(adaptA11yConfig(config).rules['color-contrast'].enabled).toBe(false);
     });

@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { toBeAccessible, toBeAccessibleWith } from './matcher';
+import { toBeAccessible } from './matcher';
 import { A11yConfig } from '@sa11y/preset-rules';
 
 /**
@@ -18,7 +18,6 @@ export function registerA11yMatchers(): void {
     const jestExpect = global.expect;
     if (jestExpect !== undefined) {
         jestExpect.extend({ toBeAccessible });
-        jestExpect.extend({ toBeAccessibleWith });
     } else {
         throw new Error(
             "Unable to find Jest's global expect." +
@@ -32,6 +31,10 @@ export function registerA11yMatchers(): void {
  * Customize sa11y preset rules specific to JSDOM
  */
 export function adaptA11yConfig(config: A11yConfig): A11yConfig {
+    // TODO: Is it worth checking if we are running in jsdom before modifying config ?
+    //  Ref: https://github.com/jsdom/jsdom/issues/1537#issuecomment-229405327
+    // const runningInJSDOM = navigator.userAgent.includes('Node.js') || navigator.userAgent.includes('jsdom');
+    // if (!runningInJSDOM) return config;
     return {
         ...config,
         rules: {

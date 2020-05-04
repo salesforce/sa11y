@@ -19,14 +19,13 @@ declare global {
     namespace jest {
         interface Matchers<R> {
             toBeAccessible(config?: A11yConfig): Promise<CustomMatcherResult>;
-            toBeAccessibleWith(config: A11yConfig): Promise<CustomMatcherResult>;
         }
     }
 }
 
 /**
  * Jest expect matcher to check DOM for accessibility issues
- * @param receivedDom - DOM to be tested for accessibility
+ * @param receivedDom - DOM to be tested for accessibility. Defaults to current DOM.
  * @param config - A11yConfig to be used to test for accessibility. Defaults to extended.
  */
 export async function toBeAccessible(
@@ -50,16 +49,4 @@ export async function toBeAccessible(
         // Display assertion for the report when a test fails
         message: (): string => matcherHint(`${toBeAccessible.name}: ${matcherHintMsg} \n\n ${a11yViolations}`),
     };
-}
-
-/**
- * Jest expect matcher to check DOM for accessibility issues with a `@sa11y/preset-rule`
- * @param receivedDom - DOM to be tested for accessibility
- * @param config - A11yConfig to be used to test for accessibility.
- */
-export function toBeAccessibleWith(
-    receivedDom: Document = document,
-    config: A11yConfig
-): Promise<jest.CustomMatcherResult> {
-    return toBeAccessible(receivedDom, config);
 }

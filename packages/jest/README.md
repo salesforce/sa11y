@@ -34,6 +34,6 @@ it('should be accessible', async () => {
     await expect(document).toBeAccessible();
 
     // use recommended preset-rule
-    await expect(document).toBeAccessibleWith(recommended);
+    await expect(document).toBeAccessible(recommended);
 });
 ```

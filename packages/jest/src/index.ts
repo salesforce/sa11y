@@ -5,5 +5,5 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-export { toBeAccessible, toBeAccessibleWith } from './matcher';
+export { toBeAccessible } from './matcher';
 export { adaptA11yConfig, registerA11yMatchers } from './setup';
