@@ -1,4 +1,4 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# This workflow will do a clean install of node dependencies, build the source code and run tests
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: CI
@@ -19,9 +19,3 @@ jobs:
               with:
                   node-version: '12.x'
             - run: yarn ci
-            - name: Code Coverage Report
-              uses: romeovs/lcov-reporter-action@v0.2.17
-              with:
-                github-token: ${{ secrets.GITHUB_TOKEN }}
-                lcov-file: ./coverage/lcov.info
-
