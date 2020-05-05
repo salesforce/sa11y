@@ -6,7 +6,7 @@
  */
 
 export { toBeAccessible } from './matcher';
-export { adaptA11yConfig, registerA11yMatchers } from './setup';
+export { registerA11yMatchers } from './setup';
 
 export const jestConfig = {
     setupFilesAfterEnv: [require.resolve('./setup')],

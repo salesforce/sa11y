@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { adaptA11yConfig, registerA11yMatchers } from '../src';
+import { adaptA11yConfig, registerA11yMatchers } from '../src/setup';
 import { extended, recommended } from '@sa11y/preset-rules';
 
 describe('jest setup', () => {
