@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { assertAccessible } from '@sa11y/assert';
+import { assertAccessible, a11yCheckableContext } from '@sa11y/assert';
 import { extended, A11yConfig } from '@sa11y/preset-rules';
 import { matcherHint } from 'jest-matcher-utils';
 import { adaptA11yConfig } from './setup';
@@ -25,21 +25,18 @@ declare global {
 
 /**
  * Jest expect matcher to check DOM for accessibility issues
- * @param receivedDom - DOM to be tested for accessibility. Defaults to current DOM.
+ * @param received - DOM or HTML Element to be tested for accessibility. Defaults to current DOM.
  * @param config - A11yConfig to be used to test for accessibility. Defaults to extended.
  */
 export async function toBeAccessible(
-    receivedDom: Document = document,
+    received: a11yCheckableContext = document,
     config: A11yConfig = extended
 ): Promise<jest.CustomMatcherResult> {
     let isAccessible = true;
     let a11yViolations = '';
 
     try {
-        // TODO (feat): There might be a need to test selected element(s) in a DOM.
-        //  If we need that we could add the ability to pass in CSS selector(s).
-        //  Approach of jest-axe lib to store/restore DOM might not be efficient and have potential side effects.
-        await assertAccessible(receivedDom, adaptA11yConfig(config));
+        await assertAccessible(received, adaptA11yConfig(config));
     } catch (e) {
         isAccessible = false;
         a11yViolations = e;

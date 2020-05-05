@@ -18,7 +18,7 @@ import {
     domWithNoA11yIssues,
 } from '@sa11y/test-utils';
 
-import { registerA11yMatchers } from '@sa11y/jest'; import {beforeEach} from "@jest/globals";
+import { registerA11yMatchers } from '@sa11y/jest';
 
 beforeAll(() => {
     registerA11yMatchers();

@@ -12,6 +12,7 @@ export const domWithA11yIssues = `<html>
                             </body>
                            </html>`;
 
+export const shadowDomID = 'upside-down';
 // DOM containing a11y issues
 // From https://github.com/dequelabs/axe-selenium-java/blob/develop/src/test/resources/test-app.js-->
 export const domWithNoA11yIssues = `<!doctype html>
@@ -24,7 +25,7 @@ export const domWithNoA11yIssues = `<!doctype html>
                                 <h1>This is a test</h1>
                                 <p>This is a test page with no violations</p>
                             </div>
-                            <div role="contentinfo" id="upside-down"></div> <!-- cSpell:disable-line -->
+                            <div role="contentinfo" id=${shadowDomID}></div> <!-- cSpell:disable-line -->
                                 <script>
                                     var shadow = document.getElementById("upside-down").attachShadow({mode: "open"});
                                     shadow.innerHTML = '<h2 id="shadow">SHADOW DOM</h2><ul><li>Shadow Item 1</li></ul>'

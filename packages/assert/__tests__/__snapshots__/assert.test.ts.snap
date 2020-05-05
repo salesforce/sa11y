@@ -35,3 +35,25 @@ Links must have discernible text (link-name): a
 Page must contain a level-one heading (page-has-heading-one): html
   - More info: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one?application=axeAPI]
 `;
+
+exports[`assertAccessible API should throw error with HTML element with a11y issues 1`] = `
+[Error: Links must have discernible text (link-name): a
+  - More info: https://dequeuniversity.com/rules/axe/3.5/link-name?application=axeAPI]
+`;
+
+exports[`assertAccessible API should use default document, ruleset, formatter when called with no args - expecting 1 assertion 1`] = `
+[Error: Page must have means to bypass repeated blocks (bypass): html
+  - More info: https://dequeuniversity.com/rules/axe/3.5/bypass?application=axeAPI
+
+Documents must have <title> element to aid in navigation (document-title): html
+  - More info: https://dequeuniversity.com/rules/axe/3.5/document-title?application=axeAPI
+
+Document must have one main landmark (landmark-one-main): html
+  - More info: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main?application=axeAPI
+
+Links must have discernible text (link-name): a
+  - More info: https://dequeuniversity.com/rules/axe/3.5/link-name?application=axeAPI
+
+Page must contain a level-one heading (page-has-heading-one): html
+  - More info: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one?application=axeAPI]
+`;

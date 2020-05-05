@@ -26,6 +26,10 @@ import { recommended } from '@sa11y/preset-rules';
 //  - a11yResultsFormatter from @sa11y/format
 await assertAccessible();
 
+// Can be used to test accessibility of a specific HTML element
+const elem = document.getElementById('foo');
+await assertAccessible(elem);
+
 // Can be overridden to use custom dom, ruleset or formatter
 //  - Specifying null for formatter will result in using JSON stringify
 await assertAccessible(document, recommended, null);
