@@ -16,7 +16,7 @@
         "jest",
         "matcher"
     ],
-    "main": "dist/jest.js",
+    "main": "dist/index.js",
     "types": "dist/jest.d.ts",
     "files": [
         "dist/**/*.js"
