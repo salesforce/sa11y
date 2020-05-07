@@ -3,7 +3,7 @@
     "version": "0.1.1",
     "description": "Accessibility results re-formatter",
     "license": "BSD-3-Clause",
-    "homepage": "https://github.com/salesforce/sa11y/blob/master/packages/format/README.md",
+    "homepage": "https://github.com/salesforce/sa11y/blob/master/packages/format#readme",
     "repository": {
         "type": "git",
         "url": "https://github.com/salesforce/sa11y.git",

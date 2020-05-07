@@ -7,8 +7,8 @@ Accessibility matcher for [Jest](https://jestjs.io)
 
 
 - [Setup](#setup)
-  - [Automatic](#automatic)
-  - [Manual](#manual)
+  - [Project level](#project-level)
+  - [Test module level](#test-module-level)
 - [Usage](#usage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -17,26 +17,32 @@ Accessibility matcher for [Jest](https://jestjs.io)
 
 The accessibility matcher helper APIs need to be registered with Jest before they can be used in tests.
 
-### Automatic
+### Project level
 
-Modify Jest config to add the required setup for accessibility matchers.
+You can set up the a11y matchers once at the project level to make it available to all the Jest tests in the project.
+For an example look at the [Integration tests](../test-integration/README.md).
 
-In the `jest.config.js` at the root of your project, add
+-   Add a Jest setup file (e.g. `jest-setup.js`) and add the following code that registers the a11y matchers
 
 ```javascript
-const { jestConfig } = require('@sa11y/jest');
+const { registerA11yMatchers } = require('@sa11y/jest');
+registerA11yMatchers();
+```
 
+-   Add/Modify Jest config at project root to invoke the Jest setup file as setup above.
+    In the `jest.config.js` at the root of your project, add:
+
+```javascript
 module.exports = {
-    ...jestConfig,
-    // Your config ..
+    setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
 };
 ```
 
-### Manual
+### Test module level
 
-Invoke `registerA11yMatchers` before using the accessibility matchers in the tests.
+Invoke `registerA11yMatchers` before using the accessibility matchers in the tests e.g.
 
-```typescript
+```javascript
 import { registerA11yMatchers } from '@sa11y/jest';
 
 beforeAll(() => {
@@ -46,10 +52,9 @@ beforeAll(() => {
 
 ## Usage
 
-```typescript
+```javascript
 import { recommended } from '@sa11y/preset-rules';
-import { registerA11yMatchers } from "@sa11y/jest";
-
+import { registerA11yMatchers } from '@sa11y/jest';
 
 beforeAll(() => {
     registerA11yMatchers();
@@ -57,7 +62,7 @@ beforeAll(() => {
 
 it('should be accessible', async () => {
     // Setup DOM to be tested for accessibility
-    ...
+    //...
 
     // assert that DOM is accessible (using extended preset-rule)
     await expect(document).toBeAccessible();
