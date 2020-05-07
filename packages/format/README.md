@@ -5,13 +5,14 @@ Format accessibility results from axe
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
--   [Usage](#usage)
+
+- [Usage](#usage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Usage
 
-```typescript
+```javascript
 import axe from 'axe-core';
 import { a11yResultsFormatter } from '@sa11y/format';
 
