@@ -2,10 +2,10 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [`test-integ`](#test-integ)
+- [`Integration tests`](#integration-tests)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# `test-integ`
+# `Integration tests`
 
 Private package for integration testing @sa11y packages
