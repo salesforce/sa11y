@@ -13,4 +13,8 @@ module.exports = {
             statements: 80,
         },
     },
+    // Exclude integration tests from this config as it has its own config
+    testPathIgnorePatterns: ['<rootDir>/packages/test-integ'],
+    // Direct Jest read the jest config file from integration tests
+    projects: ['<rootDir>', '<rootDir>/packages/test-integ'],
 };

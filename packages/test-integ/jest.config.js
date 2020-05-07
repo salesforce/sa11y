@@ -5,9 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { jestConfig } = require('@sa11y/jest');
-
 module.exports = {
-    ...jestConfig,
+    setupFilesAfterEnv: ['./jest-setup.js'],
 };

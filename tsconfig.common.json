@@ -8,7 +8,7 @@
         "strict": true,
         "noEmitOnError": true,
         "noUnusedLocals": true,
-        "module": "ESNext",
+        "module": "commonjs",
         "moduleResolution": "node",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true

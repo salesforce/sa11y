@@ -6,8 +6,8 @@
  */
 
 describe('integration test @sa11y/jest', () => {
-    it.skip('should have a11y matchers working with setup in jest.config.js', () => {
-        // TODO(Fix) : Fails with TypeError: expect(...).toBeAccessible is not a function
+    it('should have a11y matchers working with setup in jest.config.js', () => {
+        expect(expect.toBeAccessible).toBeDefined();
         expect(document).toBeAccessible();
     });
 });
