@@ -5,9 +5,10 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+export const domWithA11yIssuesBodyID = 'dom-with-issues';
 // DOM with no a11y issues
 export const domWithA11yIssues = `<html>
-                            <body>
+                            <body id=${domWithA11yIssuesBodyID}>
                              <a href="#"></a>
                             </body>
                            </html>`;

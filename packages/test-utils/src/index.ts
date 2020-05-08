@@ -5,5 +5,5 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-export { domWithA11yIssues, domWithNoA11yIssues, shadowDomID } from './test-data';
+export { domWithA11yIssues, domWithNoA11yIssues, shadowDomID, domWithA11yIssuesBodyID } from './test-data';
 export { beforeEachSetup, cartesianProduct } from './utils';

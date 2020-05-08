@@ -5,9 +5,14 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import { beforeEachSetup, domWithNoA11yIssues } from '@sa11y/test-utils';
+
+beforeEach(beforeEachSetup);
+
 describe('integration test @sa11y/jest', () => {
-    it('should have a11y matchers working with setup in jest.config.js', () => {
+    it('should have a11y matchers working with setup in jest.config.js', async () => {
+        document.body.innerHTML = domWithNoA11yIssues;
         expect(expect.toBeAccessible).toBeDefined();
-        expect(document).toBeAccessible();
+        await expect(document).toBeAccessible();
     });
 });

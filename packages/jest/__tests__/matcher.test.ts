@@ -8,7 +8,14 @@
 import { matcherHintMsg, toBeAccessible } from '../src/matcher';
 import { registerA11yMatchers } from '../src';
 import { extended, recommended } from '@sa11y/preset-rules';
-import { beforeEachSetup, cartesianProduct, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
+import {
+    beforeEachSetup,
+    cartesianProduct,
+    domWithA11yIssues,
+    domWithNoA11yIssues,
+    domWithA11yIssuesBodyID,
+    shadowDomID,
+} from '@sa11y/test-utils';
 
 // Collection of values to be tested passed in as different API parameters
 const a11yConfigParams = [extended, recommended, undefined];
@@ -25,7 +32,7 @@ beforeEach(() => {
 
 describe('a11y matchers', () => {
     it('should be extendable with expect', () => {
-        // Mostly here for code cov as it doesn't register correctly with just  registerA11yMatchers()
+        // Mostly here for code cov as it doesn't register correctly with just registerA11yMatchers()
         expect.extend({ toBeAccessible });
     });
 });
@@ -44,6 +51,22 @@ describe('toBeAccessible jest a11y matcher', () => {
         // using without the 'not' matcher which should be the primary way the API is used (without error catching)
         try {
             await expect(document).toBeAccessible(config);
+        } catch (e) {
+            expect(e.message).toContain(matcherHintMsg);
+        }
+    });
+
+    it.each([
+        // dom with no issues won't result in error thrown and hence will have 1 less assertion
+        [shadowDomID, domWithNoA11yIssues, 2],
+        [domWithA11yIssuesBodyID, domWithA11yIssues, 3],
+    ])('should be able to check a11y of a HTML element: %#', async (id: string, dom: string, numAssertions: number) => {
+        expect.assertions(numAssertions);
+        document.body.innerHTML = dom;
+        const elem = document.getElementById(id);
+        expect(elem).toBeDefined();
+        try {
+            await expect(elem).toBeAccessible();
         } catch (e) {
             expect(e.message).toContain(matcherHintMsg);
         }

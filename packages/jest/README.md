@@ -52,6 +52,12 @@ beforeAll(() => {
 
 ## Usage
 
+-   **WARNING**: `toBeAccessible` **must** be invoked with `await` or the equivalent supported async method in your env.
+    -   Not invoking it async would result in incorrect results
+    -   e.g. no assertions even when page is not accessible
+-   `toBeAccessible` jest matcher can be invoked on a `document` (JSDOM) or an HTML element
+    to check for accessibility
+
 ```javascript
 import { recommended } from '@sa11y/preset-rules';
 import { registerA11yMatchers } from '@sa11y/jest';
@@ -66,6 +72,10 @@ it('should be accessible', async () => {
 
     // assert that DOM is accessible (using extended preset-rule)
     await expect(document).toBeAccessible();
+
+    // Can be used to test accessibility of a specific HTML element
+    const elem = document.getElementById('foo');
+    await expect(elem).toBeAccessible();
 
     // use recommended preset-rule
     await expect(document).toBeAccessible(recommended);

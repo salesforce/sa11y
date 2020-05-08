@@ -35,6 +35,7 @@ export async function toBeAccessible(
     let isAccessible = true;
     let a11yViolations = '';
 
+    // TODO (Improvement): Can we detect if this is invoked async and error if not ?
     try {
         await assertAccessible(received, adaptA11yConfig(config));
     } catch (e) {
