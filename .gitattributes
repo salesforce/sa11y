@@ -7,3 +7,5 @@
 yarn.lock linguist-generated=true
 # generated JS files
 dist/* linguist-generated=true
+# jest snapshots
+*.test.ts.snap linguist-generated=true

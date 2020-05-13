@@ -1,3 +1,33 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [(2020-05-07)](#2020-05-07)
+    - [Bug Fixes](#bug-fixes)
+    - [Features](#features)
+- [(2020-04-07)](#2020-04-07)
+    - [Bug Fixes](#bug-fixes-1)
+    - [Features](#features-1)
+- [(2020-03-20)](#2020-03-20)
+    - [Bug Fixes](#bug-fixes-2)
+    - [Features](#features-2)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# (2020-05-07)
+
+### Bug Fixes
+
+-   **preset-rules:** revert object freeze on a11y config object ([9ad3ee0](https://github.com/salesforce/sa11y/commit/9ad3ee084c31e4bff75b2935052764f52fa15897))
+
+### Features
+
+-   **assert:** add assert accessible api ([#7](https://github.com/salesforce/sa11y/issues/7)) ([1294f76](https://github.com/salesforce/sa11y/commit/1294f76a153024045e66d7949b91becf44493e4b))
+-   **jest:** add basic scaffolding for jest integration ([483291c](https://github.com/salesforce/sa11y/commit/483291cc5b25a194f232e817b66f0c032d013891))
+-   **jest:** add scaffolding for jest expect matcher ([51ec35d](https://github.com/salesforce/sa11y/commit/51ec35dd1867bf2467cf1fe5f3ffbb8adc880e7c))
+-   **jest:** add toBeAccessibleWith jest a11y matcher for use with config ([ecbfbf9](https://github.com/salesforce/sa11y/commit/ecbfbf9f1a5c8e148be3e0d3b7c523ac192e46df))
+-   **test-utils:** add a test utilities package ([2a1c1bf](https://github.com/salesforce/sa11y/commit/2a1c1bfe392be706af3fd2e2d7dd53cbf6e5d2b9))
+
 # (2020-04-07)
 
 ### Bug Fixes

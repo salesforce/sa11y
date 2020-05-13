@@ -14,6 +14,7 @@ module.exports = {
         'jest',
         'prettier',
         'notice', // checks for and fixes copyright header in each file
+        'markdown',
     ],
     extends: [
         'eslint:recommended',
@@ -24,7 +25,19 @@ module.exports = {
         'plugin:jest/style',
         'plugin:prettier/recommended',
         'prettier/@typescript-eslint',
+        'plugin:import/typescript',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:eslint-comments/recommended',
     ],
+    settings: {
+        'import/resolver': {
+            // Makes plugin:import work with Typescript interfaces etc
+            typescript: {
+                alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code
+            },
+        },
+    },
     rules: {
         'notice/notice': [
             'error',
@@ -34,6 +47,13 @@ module.exports = {
         ],
         'tsdoc/syntax': 'warn',
     },
+    overrides: [
+        {
+            // Enable the Markdown processor for all .md files.
+            files: ['**/*.md'],
+            processor: 'markdown/markdown',
+        },
+    ],
     env: {
         browser: true,
         node: true,

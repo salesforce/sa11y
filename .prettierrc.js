@@ -3,4 +3,10 @@ module.exports = {
     printWidth: 120,
     singleQuote: true,
     trailingComma: 'es5',
+    overrides: [
+        {
+            files: '*.md',
+            tabWidth: 2, // To accommodate doctoc formatting (no override for tab width in doctoc)
+        },
+    ],
 };

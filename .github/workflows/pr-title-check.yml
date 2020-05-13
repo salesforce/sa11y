@@ -1,0 +1,17 @@
+name: PR Title Linter
+
+on:
+    pull_request:
+        types: ['opened', 'edited', 'reopened', 'synchronize']
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: '12.x'
+            - name: Install Dependencies
+              run: npm install @commitlint/config-conventional
+            - uses: JulienKode/pull-request-name-linter-action@v0.1.2

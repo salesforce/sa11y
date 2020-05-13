@@ -1,8 +1,14 @@
 {
     "name": "@sa11y/preset-rules",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Accessibility preset rule configs for axe",
     "license": "BSD-3-Clause",
+    "homepage": "https://github.com/salesforce/sa11y/blob/master/packages/preset-rules#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/salesforce/sa11y.git",
+        "directory": "packages/preset-rules"
+    },
     "keywords": [
         "accessibility",
         "automated testing",
@@ -14,6 +20,6 @@
         "dist/**/*.js"
     ],
     "devDependencies": {
-        "axe-core": "3.5.3"
+        "axe-core": "^3.5.3"
     }
 }

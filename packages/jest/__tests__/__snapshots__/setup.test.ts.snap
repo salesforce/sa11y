@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`jest setup should throw error when global expect is undefined 1`] = `
+"Unable to find Jest's global expect.
+Please check you have added @sa11y/jest correctly to your jest configuration.
+See https://github.com/salesforce/sa11y/blob/master/packages/jest/README.md for help."
+`;

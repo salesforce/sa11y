@@ -7,50 +7,22 @@
 
 import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
 import { assertAccessible, axeRuntimeExceptionMsgPrefix } from '../src/assert';
-import { extended } from '@sa11y/preset-rules';
-import { getA11yConfig } from '@sa11y/preset-rules';
+import { extended, getA11yConfig, recommended } from '@sa11y/preset-rules';
 import { a11yResultsFormatter } from '@sa11y/format';
+import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues, shadowDomID } from '@sa11y/test-utils';
 
-// Test HTML content
-// TODO (cleanup): Move inline html content into individual test data files, reusable across packages
-const domWithA11yIssues = `<html>
-                            <body>
-                             <a href="#"></a>
-                            </body>
-                           </html>`;
-
-// From https://github.com/dequelabs/axe-selenium-java/blob/develop/src/test/resources/test-app.js-->
-const domWithNoA11yIssues = `<!doctype html>
-                            <html lang="en">
-                            <head>
-                                <title>Test Page</title>
-                            </head>
-                            <body>
-                            <div role="main" id="host">
-                                <h1>This is a test</h1>
-                                <p>This is a test page with no violations</p>
-                            </div>
-                            <div role="contentinfo" id="upside-down"></div> <!-- cSpell:disable-line -->
-                                <script>
-                                    var shadow = document.getElementById("upside-down").attachShadow({mode: "open"});
-                                    shadow.innerHTML = '<h2 id="shadow">SHADOW DOM</h2><ul><li>Shadow Item 1</li></ul>'
-                                </script>
-                            </body>
-                            </html>`;
-
-// Customize rules specific to jsdom
-const jsdomRules = extended;
-jsdomRules.rules = {
-    'color-contrast': { enabled: false }, // Disable color-contrast for jsdom
-};
-
-beforeAll(() => {
-    document.documentElement.lang = 'en'; // required for a11y lang check
+beforeEach(() => {
+    beforeEachSetup();
 });
 
-afterEach(() => {
-    document.body.innerHTML = ''; // reset dom body
-});
+/**
+ * Test util to check if given error is an a11y error
+ */
+function checkA11yError(e: Error): void {
+    expect(e).toBeDefined();
+    expect(e.toString()).not.toContain(axeRuntimeExceptionMsgPrefix);
+    expect(e).toMatchSnapshot();
+}
 
 /**
  * Test util to test DOM with a11y issues
@@ -60,10 +32,8 @@ afterEach(() => {
 async function testDOMWithA11yIssues(formatter = a11yResultsFormatter) {
     document.body.innerHTML = domWithA11yIssues;
     expect.assertions(3);
-    await assertAccessible(document, jsdomRules, formatter).catch((e) => {
-        expect(e).toBeDefined();
-        expect(e.toString()).not.toContain(axeRuntimeExceptionMsgPrefix);
-        expect(e).toMatchSnapshot();
+    await assertAccessible(document, extended, formatter).catch((e) => {
+        checkA11yError(e);
     });
 }
 
@@ -78,26 +48,46 @@ describe('assertAccessible API', () => {
     });
 
     // eslint-disable-next-line jest/expect-expect
-    it('should throw no errors for dom with no a11y issues', async () => {
-        document.body.innerHTML = domWithNoA11yIssues;
-        await assertAccessible(document, jsdomRules); // No error thrown
-    });
+    it.each([recommended, extended])(
+        'should throw no errors for dom with no a11y issues with config %#',
+        async (config) => {
+            document.body.innerHTML = domWithNoA11yIssues;
+            await assertAccessible(document, config); // No error thrown
+        }
+    );
 
     it.each([
         // DOM to test, expected assertions
         [domWithNoA11yIssues, 0],
-        [domWithA11yIssues, 1],
+        [domWithA11yIssues, 3],
     ])(
         'should use default document, ruleset, formatter when called with no args - expecting %# assertion',
         async (testDOM: string, expectedAssertions: number) => {
             expect.assertions(expectedAssertions);
             document.body.innerHTML = testDOM;
-            await assertAccessible().catch((e) => expect(e).toBeDefined());
+            await assertAccessible().catch((e) => checkA11yError(e));
         }
     );
 
     // eslint-disable-next-line jest/expect-expect
     it('should throw an error with a11y issues found for dom with a11y issues', testDOMWithA11yIssues);
+
+    it('should not throw error with HTML element with no a11y issues', async () => {
+        document.body.innerHTML = domWithNoA11yIssues;
+        const elem = document.getElementById(shadowDomID);
+        expect(elem).toBeDefined();
+        await assertAccessible(elem); // No error thrown
+    });
+
+    it('should throw error with HTML element with a11y issues', async () => {
+        expect.assertions(5);
+        document.body.innerHTML = domWithA11yIssues;
+        const elements = document.getElementsByTagName('body');
+        expect(elements).toHaveLength(1);
+        const elem = elements[0];
+        expect(elem).toBeDefined();
+        await assertAccessible(elem).catch((e) => checkA11yError(e));
+    });
 
     it.each([a11yResultsFormatter, null])('should format a11y issues using specified formatter: %#', (formatter) =>
         testDOMWithA11yIssues(formatter)

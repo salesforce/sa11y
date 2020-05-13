@@ -1,8 +1,5 @@
 {
     "ignorePaths": ["node_modules/**", "package.json"],
-    "ignoreWords": [
-        "SPDX", // license header
-        "tsdoc"
-    ],
+    "ignoreWords": ["assertAccessible", "doctoc", "CNCF", "SPDX", "tsdoc"],
     "ignoreRegExpList": ["ruleset"]
 }

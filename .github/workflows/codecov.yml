@@ -1,0 +1,29 @@
+name: Code coverage
+
+on:
+    pull_request:
+        types: ['opened', 'edited', 'reopened', 'synchronize']
+
+jobs:
+    codecov:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: '12.x'
+
+            - name: Collect Code Coverage
+              run: |
+                  yarn ci:build
+                  yarn test
+
+            - name: Code Coverage Report
+              uses: slavcodev/coverage-monitor-action@1.1.0
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  clover_file: './coverage/clover.xml'
+                  # replace mode removes existing comment and adds a new one at the end
+                  # update mode tries to find existing code cov comment and update it.
+                  comment_mode: 'update'

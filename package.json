@@ -2,28 +2,35 @@
     "name": "root",
     "private": true,
     "description": "Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)",
+    "license": "BSD-3-Clause",
     "repository": {
-        "url": "git://github.com/salesforce/sa11y.git"
+        "type": "git",
+        "url": "https://github.com/salesforce/sa11y.git"
     },
     "bugs": {
         "url": "https://github.com/salesforce/sa11y/issues"
     },
-    "license": "BSD-3-Clause",
-    "homepage": "https://help.salesforce.com/articleView?id=accessibility_overview.htm&type=5",
+    "homepage": "https://github.com/salesforce/sa11y",
     "workspaces": [
         "packages/*"
     ],
     "scripts": {
-        "commit": "! git diff --cached --exit-code && git-cz",
-        "lint": "eslint . && lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
+        "commit": "! git diff --cached --exit-code && lint-staged && git-cz",
+        "lint": "eslint . --ext ts,js,md",
+        "lint:all": "yarn lint && yarn lint:lockfile",
+        "lint:lockfile": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
         "lint:fix": "yarn lint --fix",
         "lint:staged": "lint-staged",
-        "update": "yarn upgrade; yarn audit; yarn outdated",
+        "lint:watch": "esw --watch --changed --color --ext .js,.ts",
+        "update": "ncu; lerna exec ncu; yarn install; yarn upgrade; yarn audit; yarn outdated",
         "test": "jest --coverage",
+        "test:watch": "yarn test --watch",
         "build": "tsc --build",
+        "build:clean": "yarn build --clean && lerna exec ts-cleaner && yarn build",
+        "build:watch": "yarn build --watch",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-        "ci": "yarn install --frozen-lockfile && yarn build && yarn lint && yarn test",
-        "clean:build": "tsc --build --clean",
+        "ci:build": "yarn install --frozen-lockfile && yarn build",
+        "ci:test": "yarn lint:all && yarn test",
         "clean:install": "lerna clean"
     },
     "config": {
@@ -34,43 +41,59 @@
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged",
-            "commit-msg": "commitlint -e $GIT_PARAMS"
+            "commit-msg": "commitlint -e $GIT_PARAMS",
+            "pre-push": "yarn build:clean && yarn test"
         }
     },
     "lint-staged": {
-        "**/*.{js,ts}": "eslint --fix",
         "**/*.{js,ts,json,yaml,yml,md}": "prettier --write",
-        "**/*.{js,ts,md}": "cspell -- --no-summary",
-        "yarn.lock": "lockfile-lint --path yarn.lock"
+        "**/*.{js,ts,md}": [
+            "eslint --fix",
+            "cspell -- --no-summary"
+        ],
+        "**/*.md": [
+            "markdown-link-check --quiet --config mdLinkChecker.json",
+            "doctoc --github"
+        ],
+        "yarn.lock": "yarn lint:lockfile"
     },
     "devDependencies": {
-        "@babel/core": "^7.9.0",
-        "@babel/preset-env": "^7.9.0",
+        "@babel/core": "^7.9.6",
+        "@babel/preset-env": "^7.9.6",
         "@babel/preset-typescript": "^7.9.0",
         "@commitlint/cli": "^8.3.5",
         "@commitlint/config-conventional": "^8.3.4",
-        "@types/jest": "^25.1.4",
-        "@types/jsdom": "^16.1.1",
+        "@types/jest": "^25.2.1",
+        "@types/jsdom": "^16.2.1",
         "@types/node": "^12.12.31",
-        "@typescript-eslint/eslint-plugin": "^2.23.0",
-        "@typescript-eslint/parser": "^2.23.0",
-        "babel-jest": "^25.1.0",
+        "@typescript-eslint/eslint-plugin": "^2.30.0",
+        "@typescript-eslint/parser": "^2.30.0",
+        "babel-jest": "^25.5.1",
         "commitizen": "^4.0.4",
         "conventional-changelog-cli": "^2.0.31",
-        "cspell": "^4.0.55",
+        "cspell": "^4.0.57",
+        "doctoc": "^1.4.0",
         "eslint": "^6.8.0",
-        "eslint-config-prettier": "^6.10.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-import-resolver-typescript": "^2.0.0",
+        "eslint-plugin-eslint-comments": "^3.1.2",
+        "eslint-plugin-import": "^2.20.2",
         "eslint-plugin-jest": "^23.8.2",
         "eslint-plugin-license-header": "^0.2.0",
-        "eslint-plugin-notice": "^0.8.9",
-        "eslint-plugin-prettier": "^3.1.2",
-        "eslint-plugin-tsdoc": "^0.2.3",
-        "husky": "^4.2.3",
-        "jest": "^25.1.0",
+        "eslint-plugin-markdown": "^2.0.0-alpha.0",
+        "eslint-plugin-notice": "^0.9.10",
+        "eslint-plugin-prettier": "^3.1.3",
+        "eslint-plugin-tsdoc": "^0.2.4",
+        "eslint-watch": "^6.0.1",
+        "husky": "^4.2.5",
+        "jest": "^25.5.2",
         "lerna": "^3.20.2",
-        "lint-staged": "^10.0.8",
+        "lint-staged": "^10.2.0",
         "lockfile-lint": "^4.2.2",
-        "prettier": "2.0.4",
+        "markdown-link-check": "^3.8.1",
+        "npm-check-updates": "^4.1.2",
+        "prettier": "2.0.5",
+        "ts-cleaner": "^1.0.5",
         "typescript": "^3.8.3"
     },
     "engines": {

@@ -1,0 +1,35 @@
+{
+    "name": "@sa11y/jest",
+    "version": "0.1.0",
+    "description": "Accessibility testing libraries integration with Jest",
+    "license": "BSD-3-Clause",
+    "homepage": "https://github.com/salesforce/sa11y/blob/master/packages/jest#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/salesforce/sa11y.git",
+        "directory": "packages/jest"
+    },
+    "keywords": [
+        "accessibility",
+        "automated testing",
+        "axe",
+        "jest",
+        "matcher"
+    ],
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/**/*.js"
+    ],
+    "dependencies": {
+        "@sa11y/assert": "0.1.1",
+        "@sa11y/preset-rules": "0.1.2",
+        "jest-matcher-utils": "^25.5.0"
+    },
+    "peerDependencies": {
+        "jest": "^25.5.2"
+    },
+    "devDependencies": {
+        "@sa11y/test-utils": "0.1.0"
+    }
+}
