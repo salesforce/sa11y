@@ -24,10 +24,10 @@
     "dependencies": {
         "@sa11y/assert": "0.1.1",
         "@sa11y/preset-rules": "0.1.2",
-        "jest-matcher-utils": "^25.5.0"
+        "jest-matcher-utils": "^26.0.1"
     },
     "peerDependencies": {
-        "jest": "^25.5.2"
+        "jest": "^26.0.1"
     },
     "devDependencies": {
         "@sa11y/test-utils": "0.1.0"
