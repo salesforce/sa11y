@@ -2,7 +2,7 @@
 
 Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages).
 
-![Build](https://github.com/salesforce/sa11y/workflows/Lint,%20Test/badge.svg) ![Code coverage](https://github.com/salesforce/sa11y/workflows/Code%20coverage/badge.svg)
+![Build](https://github.com/salesforce/sa11y/workflows/Build/badge.svg) ![Code coverage](https://github.com/salesforce/sa11y/workflows/Code%20coverage/badge.svg)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
