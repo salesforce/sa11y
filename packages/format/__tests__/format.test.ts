@@ -8,18 +8,13 @@
 import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
 import * as axe from 'axe-core';
 import { a11yResultsFormatter } from '..';
+import { beforeEachSetup, domWithA11yIssues } from '@sa11y/test-utils';
 
-afterEach(() => {
-    document.body.innerHTML = ''; // reset dom body
-});
+beforeEach(beforeEachSetup);
 
 describe('a11y Results Formatter', () => {
     it('should format a11y issues as expected', async () => {
-        document.body.innerHTML = `<html>
-                                    <body>
-                                     <a href="#"></a>
-                                    </body>
-                                   </html>`;
+        document.body.innerHTML = domWithA11yIssues;
         await axe.run(document).then((results) => {
             expect(results).toBeDefined();
             expect(a11yResultsFormatter(results.violations)).toMatchSnapshot();

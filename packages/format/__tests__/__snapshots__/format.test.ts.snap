@@ -7,9 +7,6 @@ exports[`a11y Results Formatter should format a11y issues as expected 1`] = `
 Documents must have <title> element to aid in navigation (document-title): html
   - More info: https://dequeuniversity.com/rules/axe/3.5/document-title?application=axeAPI
 
-<html> element must have a lang attribute (html-has-lang): html
-  - More info: https://dequeuniversity.com/rules/axe/3.5/html-has-lang?application=axeAPI
-
 Document must have one main landmark (landmark-one-main): html
   - More info: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main?application=axeAPI
 
