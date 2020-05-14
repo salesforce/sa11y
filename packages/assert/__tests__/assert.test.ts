@@ -5,7 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
 import { assertAccessible, axeRuntimeExceptionMsgPrefix } from '../src/assert';
 import { extended, getA11yConfig, recommended } from '@sa11y/preset-rules';
 import { a11yResultsFormatter } from '@sa11y/format';
