@@ -1,4 +1,4 @@
 {
     "compilerOptions": { "strict": true },
-    "include": ["*.js", "./packages/**/*.ts", "./packages/test-integration/**/*.js"]
+    "include": ["**.js", "./packages/**/*.ts", "./packages/test-integration/**/*.js"]
 }
