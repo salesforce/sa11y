@@ -26,12 +26,12 @@
         "test": "jest --coverage",
         "test:watch": "yarn test --watch",
         "build": "tsc --build",
-        "build:clean": "yarn build --clean && lerna exec ts-cleaner && yarn build",
+        "build:clean": "yarn build --clean && rimraf packages/**/dist && yarn build",
         "build:watch": "yarn build --watch",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
         "ci:build": "yarn install --frozen-lockfile && yarn build",
         "ci:test": "yarn lint:all && yarn test",
-        "clean:install": "lerna clean"
+        "clean:install": "lerna clean --yes"
     },
     "config": {
         "commitizen": {
@@ -93,7 +93,7 @@
         "markdown-link-check": "^3.8.1",
         "npm-check-updates": "^5.0.0",
         "prettier": "2.0.5",
-        "ts-cleaner": "^1.0.5",
+        "rimraf": "^3.0.2",
         "typescript": "^3.9.2"
     },
     "engines": {
