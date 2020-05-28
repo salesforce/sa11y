@@ -8,20 +8,17 @@
 import { assertAccessible, axeRuntimeExceptionMsgPrefix } from '../src/assert';
 import { extended, getA11yConfig, recommended } from '@sa11y/preset-rules';
 import { a11yResultsFormatter } from '@sa11y/format';
-import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues, shadowDomID } from '@sa11y/test-utils';
+import {
+    beforeEachSetup,
+    checkA11yError,
+    domWithA11yIssues,
+    domWithNoA11yIssues,
+    shadowDomID,
+} from '@sa11y/test-utils';
 
 beforeEach(() => {
     beforeEachSetup();
 });
-
-/**
- * Test util to check if given error is an a11y error
- */
-function checkA11yError(e: Error): void {
-    expect(e).toBeDefined();
-    expect(e.toString()).not.toContain(axeRuntimeExceptionMsgPrefix);
-    expect(e).toMatchSnapshot();
-}
 
 /**
  * Test util to test DOM with a11y issues

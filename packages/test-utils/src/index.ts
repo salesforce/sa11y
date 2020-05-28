@@ -6,4 +6,4 @@
  */
 
 export { domWithA11yIssues, domWithNoA11yIssues, shadowDomID, domWithA11yIssuesBodyID } from './test-data';
-export { beforeEachSetup, cartesianProduct } from './utils';
+export { beforeEachSetup, cartesianProduct, checkA11yError } from './utils';
