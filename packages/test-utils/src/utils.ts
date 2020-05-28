@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { axeRuntimeExceptionMsgPrefix } from '@sa11y/assert';
+import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
 /**
  * Cartesian product of arrays

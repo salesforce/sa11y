@@ -5,8 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { beforeEachSetup, cartesianProduct, checkA11yError } from '../src';
-import { axeRuntimeExceptionMsgPrefix } from '@sa11y/assert';
-
+import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 const testDOMCleanupContent = 'foo';
 
 beforeAll(() => {

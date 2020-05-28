@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { assertAccessible, axeRuntimeExceptionMsgPrefix } from '../src/assert';
+import { assertAccessible } from '../src/assert';
 import { extended, getA11yConfig, recommended } from '@sa11y/preset-rules';
 import { a11yResultsFormatter } from '@sa11y/format';
 import {
@@ -15,6 +15,7 @@ import {
     domWithNoA11yIssues,
     shadowDomID,
 } from '@sa11y/test-utils';
+import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
 beforeEach(() => {
     beforeEachSetup();

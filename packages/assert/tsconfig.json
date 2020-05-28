@@ -5,5 +5,10 @@
         "outDir": "dist"
     },
     "include": ["src"],
-    "references": [{ "path": "../preset-rules" }, { "path": "../format" }, { "path": "../test-utils" }]
+    "references": [
+        { "path": "../preset-rules" },
+        { "path": "../format" },
+        { "path": "../test-utils" },
+        { "path": "../common" }
+    ]
 }

@@ -8,11 +8,7 @@
 import * as axe from 'axe-core';
 import { A11yConfig, extended } from '@sa11y/preset-rules';
 import { a11yResultsFormatter, Formatter } from '@sa11y/format';
-
-// Error message prefix for runtime exceptions when running axe
-// TODO (refactor): Should this be exported? Can private variables be imported in tests?
-//  Search for es6 module import version of https://www.npmjs.com/package/rewire
-export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks using axe:';
+import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
 /**
  * Type def for context that can be checked for accessibility.
