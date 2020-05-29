@@ -24,7 +24,7 @@
     ],
     "devDependencies": {
         "@sa11y/test-utils": "0.1.0",
-        "axe-core": "^3.5.3",
+        "axe-core": "^3.5.4",
         "jest-matcher-utils": "26.0.1"
     }
 }
