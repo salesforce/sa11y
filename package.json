@@ -42,7 +42,7 @@
         "hooks": {
             "pre-commit": "lint-staged",
             "commit-msg": "commitlint -e $GIT_PARAMS",
-            "pre-push": "yarn build:clean && yarn test"
+            "pre-push": "yarn build:clean && yarn ci:test"
         }
     },
     "lint-staged": {
