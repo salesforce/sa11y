@@ -16,7 +16,7 @@ jobs:
 
             - name: Collect Code Coverage
               run: |
-                  yarn ci:build
+                  yarn build:ci
                   yarn test
 
             - name: Code Coverage Report

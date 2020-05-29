@@ -16,13 +16,12 @@
     ],
     "scripts": {
         "build": "tsc --build",
+        "build:ci": "yarn install --frozen-lockfile && yarn build",
         "build:clean": "yarn build --clean && rimraf packages/**/dist && yarn install && yarn build",
         "build:watch": "yarn build --watch",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-        "ci:build": "yarn install --frozen-lockfile && yarn build",
-        "ci:test": "yarn lint:all && yarn test",
-        "clean:install": "lerna clean --yes; yarn install",
         "commit": "! git diff --cached --exit-code && lint-staged && git-cz",
+        "install:clean": "lerna clean --yes; yarn install",
         "lint": "eslint . --ext ts,js,md",
         "lint:all": "yarn lint && yarn lint:lockfile",
         "lint:fix": "yarn lint --fix",
@@ -30,6 +29,7 @@
         "lint:staged": "lint-staged",
         "lint:watch": "esw --watch --changed --color --ext .js,.ts",
         "test": "jest --coverage",
+        "test:ci": "yarn lint:all && yarn test",
         "test:watch": "yarn test --watch",
         "update": "ncu; lerna exec ncu; yarn install; yarn upgrade; yarn audit; yarn outdated"
     },
@@ -42,7 +42,7 @@
         "hooks": {
             "pre-commit": "lint-staged",
             "commit-msg": "commitlint -e $GIT_PARAMS",
-            "pre-push": "yarn build:clean && yarn ci:test"
+            "pre-push": "yarn build:clean && yarn test:ci"
         }
     },
     "lint-staged": {
