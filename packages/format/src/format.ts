@@ -6,6 +6,7 @@
  */
 
 import { Result } from 'axe-core';
+import { printReceived } from 'jest-matcher-utils';
 
 /**
  * Formatter defines the function signature to format accessibility violations found by axe
@@ -26,7 +27,12 @@ export function a11yResultsFormatter(violations: Result[]): string {
             return violation.nodes
                 .map((node) => {
                     const selectors = node.target.join(', ');
-                    return `${violation.help} (${violation.id}): ${selectors}\n  - More info: ${violation.helpUrl}`;
+                    const helpURL = violation.helpUrl.split('?')[0];
+                    return (
+                        // TODO: Create a formatter specifically for Jest using printReceived etc?
+                        printReceived(`⭕ (${violation.id}) ${violation.help}: ${selectors}`) +
+                        `\n\t🔗 Help URL: ${helpURL}`
+                    );
                 })
                 .join('\n\n');
         })

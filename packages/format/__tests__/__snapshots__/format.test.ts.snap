@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`a11y Results Formatter should format a11y issues as expected 1`] = `
-"Page must have means to bypass repeated blocks (bypass): html
-  - More info: https://dequeuniversity.com/rules/axe/3.5/bypass?application=axeAPI
+"[31m\\"⭕ (bypass) Page must have means to bypass repeated blocks: html\\"[39m
+	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass
 
-Documents must have <title> element to aid in navigation (document-title): html
-  - More info: https://dequeuniversity.com/rules/axe/3.5/document-title?application=axeAPI
+[31m\\"⭕ (document-title) Documents must have <title> element to aid in navigation: html\\"[39m
+	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
 
-Document must have one main landmark (landmark-one-main): html
-  - More info: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main?application=axeAPI
+[31m\\"⭕ (landmark-one-main) Document must have one main landmark: html\\"[39m
+	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
 
-Links must have discernible text (link-name): a
-  - More info: https://dequeuniversity.com/rules/axe/3.5/link-name?application=axeAPI
+[31m\\"⭕ (link-name) Links must have discernible text: a\\"[39m
+	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
 
-Page must contain a level-one heading (page-has-heading-one): html
-  - More info: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one?application=axeAPI"
+[31m\\"⭕ (page-has-heading-one) Page must contain a level-one heading: html\\"[39m
+	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
 `;
