@@ -5,8 +5,9 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { assertAccessible, a11yCheckableContext } from '@sa11y/assert';
-import { extended, A11yConfig } from '@sa11y/preset-rules';
+import { a11yCheckableContext, assertAccessible } from '@sa11y/assert';
+import { getNumIssues } from '@sa11y/format';
+import { A11yConfig, extended } from '@sa11y/preset-rules';
 import { matcherHint } from 'jest-matcher-utils';
 import { adaptA11yConfig } from './setup';
 
@@ -44,8 +45,7 @@ export async function toBeAccessible(
         a11yViolations = e;
     }
 
-    const numA11yIssues = a11yViolations.toString().split('⭕').length - 1;
-    const receivedMsg = `${numA11yIssues} issues`;
+    const receivedMsg = `${getNumIssues(a11yViolations)} issues`;
 
     return {
         pass: isAccessible,

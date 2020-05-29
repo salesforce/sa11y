@@ -8,11 +8,24 @@
 import { Result } from 'axe-core';
 import { printReceived } from 'jest-matcher-utils';
 
+const a11yViolationIndicator = '⭕';
+const helpUrlIndicator = '🔗';
+
 /**
  * Formatter defines the function signature to format accessibility violations found by axe
  */
 export interface Formatter {
     (violations: Result[]): string;
+}
+
+/**
+ * Get num of a11y issues from a11y violations error object
+ * @param a11yViolations
+ */
+export function getNumIssues(a11yViolations: string) {
+    // TODO (Refactor): Operate on Result[] instead of the error object
+    // TODO (Refactor): Construct a custom error object for a11y violations
+    return a11yViolations.toString().split(a11yViolationIndicator).length - 1;
 }
 
 /**
@@ -30,8 +43,8 @@ export function a11yResultsFormatter(violations: Result[]): string {
                     const helpURL = violation.helpUrl.split('?')[0];
                     return (
                         // TODO: Create a formatter specifically for Jest using printReceived etc?
-                        printReceived(`⭕ (${violation.id}) ${violation.help}: ${selectors}`) +
-                        `\n\t🔗 Help URL: ${helpURL}`
+                        printReceived(`${a11yViolationIndicator} (${violation.id}) ${violation.help}: ${selectors}`) +
+                        `\n\t${helpUrlIndicator} Help URL: ${helpURL}`
                     );
                 })
                 .join('\n\n');
