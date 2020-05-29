@@ -29,7 +29,7 @@
         "lint:staged": "lint-staged",
         "lint:watch": "esw --watch --changed --color --ext .js,.ts",
         "test": "jest --coverage",
-        "test:ci": "yarn lint:all && yarn test --updateSnapshot",
+        "test:ci": "yarn lint:all && yarn test --ci",
         "test:watch": "yarn test --watch",
         "update": "ncu; lerna exec ncu; yarn install; yarn upgrade; yarn audit; yarn outdated"
     },
