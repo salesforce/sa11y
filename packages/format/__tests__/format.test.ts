@@ -15,7 +15,7 @@ describe('a11y Results Formatter', () => {
     it('should format a11y issues as expected', async () => {
         document.body.innerHTML = domWithA11yIssues;
         await axe.run(document).then((results) => {
-            expect(results).toBeDefined();
+            expect(results).toBeTruthy();
             expect(a11yResultsFormatter(results.violations)).toMatchSnapshot();
         });
     });

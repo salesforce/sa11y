@@ -31,7 +31,7 @@ export function beforeEachSetup(): void {
  * Check if given error is an a11y error and not an axe runtime exception
  */
 export function checkA11yError(e: Error): void {
-    expect(e).toBeDefined();
+    expect(e).toBeTruthy();
     expect(e.toString()).not.toContain(axeRuntimeExceptionMsgPrefix);
     expect(e).toMatchSnapshot();
 }

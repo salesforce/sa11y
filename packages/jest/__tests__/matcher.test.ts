@@ -5,12 +5,12 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { matcherHintMsg, toBeAccessible } from '../src/matcher';
-import { registerA11yMatchers } from '../src';
+import { toBeAccessible, registerA11yMatchers } from '../src';
 import { extended, recommended } from '@sa11y/preset-rules';
 import {
     beforeEachSetup,
     cartesianProduct,
+    checkA11yError,
     domWithA11yIssues,
     domWithNoA11yIssues,
     domWithA11yIssuesBodyID,
@@ -45,30 +45,30 @@ describe('toBeAccessible jest a11y matcher', () => {
 
     it.each(a11yConfigParams)('should throw error for dom with a11y issues with config: %#', async (config) => {
         document.body.innerHTML = domWithA11yIssues;
-        expect.assertions(3);
+        expect.assertions(5);
         // using the 'not' matcher just for testing, not expecting this to be used out of the unit testing context
         await expect(document).not.toBeAccessible(config);
         // using without the 'not' matcher which should be the primary way the API is used (without error catching)
         try {
             await expect(document).toBeAccessible(config);
         } catch (e) {
-            expect(e.message).toContain(matcherHintMsg);
+            checkA11yError(e);
         }
     });
 
     it.each([
-        // dom with no issues won't result in error thrown and hence will have 1 less assertion
+        // dom with no issues won't result in error thrown and hence will have less assertions
         [shadowDomID, domWithNoA11yIssues, 2],
-        [domWithA11yIssuesBodyID, domWithA11yIssues, 3],
-    ])('should be able to check a11y of a HTML element: %#', async (id: string, dom: string, numAssertions: number) => {
+        [domWithA11yIssuesBodyID, domWithA11yIssues, 5],
+    ])('should be able to check a11y of a HTML element: %s', async (id: string, dom: string, numAssertions: number) => {
         expect.assertions(numAssertions);
         document.body.innerHTML = dom;
         const elem = document.getElementById(id);
-        expect(elem).toBeDefined();
+        expect(elem).toBeTruthy();
         try {
             await expect(elem).toBeAccessible();
         } catch (e) {
-            expect(e.message).toContain(matcherHintMsg);
+            checkA11yError(e);
         }
     });
 });

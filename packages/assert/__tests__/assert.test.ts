@@ -39,7 +39,7 @@ describe('assertAccessible API', () => {
         const errConfig = getA11yConfig(['non-existent-rule']);
         expect.assertions(2);
         await assertAccessible(document, errConfig).catch((e) => {
-            expect(e).toBeDefined();
+            expect(e).toBeTruthy();
             expect(e.toString()).toContain(axeRuntimeExceptionMsgPrefix);
         });
     });
@@ -72,7 +72,7 @@ describe('assertAccessible API', () => {
     it('should not throw error with HTML element with no a11y issues', async () => {
         document.body.innerHTML = domWithNoA11yIssues;
         const elem = document.getElementById(shadowDomID);
-        expect(elem).toBeDefined();
+        expect(elem).toBeTruthy();
         await assertAccessible(elem); // No error thrown
     });
 
@@ -82,7 +82,7 @@ describe('assertAccessible API', () => {
         const elements = document.getElementsByTagName('body');
         expect(elements).toHaveLength(1);
         const elem = elements[0];
-        expect(elem).toBeDefined();
+        expect(elem).toBeTruthy();
         await assertAccessible(elem).catch((e) => checkA11yError(e));
     });
 
