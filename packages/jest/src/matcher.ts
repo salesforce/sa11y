@@ -12,7 +12,7 @@ import { matcherHint } from 'jest-matcher-utils';
 import { adaptA11yConfig } from './setup';
 
 const matcherHintMsg = `expected document to have no accessibility violations but found`;
-const expectedMsg = `0 issues`;
+// const expectedMsg = `0 issues`;
 
 // Type def for custom jest a11y matchers
 // Ref: https://jestjs.io/docs/en/expect.html#expectextendmatchers
@@ -51,10 +51,6 @@ export async function toBeAccessible(
         pass: isAccessible,
         // Display assertion for the report when a test fails
         message: (): string =>
-            matcherHint(
-                `${toBeAccessible.name}: ${matcherHintMsg} ${receivedMsg}: \n\n ${a11yViolations}`,
-                receivedMsg,
-                expectedMsg
-            ),
+            matcherHint(`${toBeAccessible.name}: ${matcherHintMsg} ${receivedMsg}: \n\n ${a11yViolations}`),
     };
 }

@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`toBeAccessible jest a11y matcher should be able to check a11y of a HTML element: dom-with-issues 1`] = `
-[Error: [2mexpect([22m[31m1 issues[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 1 issues: [22m
+[Error: [2mexpect([22m[31mreceived[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 1 issues: [22m
 [2m[22m
 [2m Error: * (link-name) Links must have discernible text: a[22m
-[2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name([22m[32m0 issues[39m[2m)[22m]
+[2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name([22m[32mexpected[39m[2m)[22m]
 `;
 
 exports[`toBeAccessible jest a11y matcher should throw error for dom with a11y issues with config: 0 1`] = `
-[Error: [2mexpect([22m[31m5 issues[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 5 issues: [22m
+[Error: [2mexpect([22m[31mreceived[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 5 issues: [22m
 [2m[22m
 [2m Error: * (bypass) Page must have means to bypass repeated blocks: html[22m
 [2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass[22m
@@ -23,11 +23,11 @@ exports[`toBeAccessible jest a11y matcher should throw error for dom with a11y i
 [2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name[22m
 [2m[22m
 [2m* (page-has-heading-one) Page must contain a level-one heading: html[22m
-[2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one([22m[32m0 issues[39m[2m)[22m]
+[2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one([22m[32mexpected[39m[2m)[22m]
 `;
 
 exports[`toBeAccessible jest a11y matcher should throw error for dom with a11y issues with config: 1 1`] = `
-[Error: [2mexpect([22m[31m4 issues[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 4 issues: [22m
+[Error: [2mexpect([22m[31mreceived[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 4 issues: [22m
 [2m[22m
 [2m Error: * (bypass) Page must have means to bypass repeated blocks: html[22m
 [2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass[22m
@@ -39,11 +39,11 @@ exports[`toBeAccessible jest a11y matcher should throw error for dom with a11y i
 [2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name[22m
 [2m[22m
 [2m* (page-has-heading-one) Page must contain a level-one heading: html[22m
-[2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one([22m[32m0 issues[39m[2m)[22m]
+[2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one([22m[32mexpected[39m[2m)[22m]
 `;
 
 exports[`toBeAccessible jest a11y matcher should throw error for dom with a11y issues with config: 2 1`] = `
-[Error: [2mexpect([22m[31m5 issues[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 5 issues: [22m
+[Error: [2mexpect([22m[31mreceived[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 5 issues: [22m
 [2m[22m
 [2m Error: * (bypass) Page must have means to bypass repeated blocks: html[22m
 [2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass[22m
@@ -58,5 +58,5 @@ exports[`toBeAccessible jest a11y matcher should throw error for dom with a11y i
 [2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name[22m
 [2m[22m
 [2m* (page-has-heading-one) Page must contain a level-one heading: html[22m
-[2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one([22m[32m0 issues[39m[2m)[22m]
+[2m	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one([22m[32mexpected[39m[2m)[22m]
 `;
