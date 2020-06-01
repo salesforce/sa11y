@@ -17,7 +17,7 @@ jobs:
             - name: Collect Code Coverage
               run: |
                   yarn build:ci
-                  yarn test
+                  yarn test:ci
 
             - name: Code Coverage Report
               uses: slavcodev/coverage-monitor-action@1.1.0
