@@ -10,6 +10,8 @@ jobs:
             - checkout
             - run: yarn build:ci
             - run: yarn test:ci
+            - store_artifacts:
+                  path: coverage
 workflows:
     build-and-test:
         jobs:
