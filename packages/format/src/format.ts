@@ -6,7 +6,7 @@
  */
 
 import { Result } from 'axe-core';
-// import { printReceived } from 'jest-matcher-utils';
+import { printReceived } from 'jest-matcher-utils';
 
 const a11yViolationIndicator = '⭕';
 const helpUrlIndicator = '🔗';
@@ -43,7 +43,7 @@ export function a11yResultsFormatter(violations: Result[]): string {
                     const helpURL = violation.helpUrl.split('?')[0];
                     return (
                         // TODO: Create a formatter specifically for Jest using printReceived etc?
-                        `${a11yViolationIndicator} (${violation.id}) ${violation.help}: ${selectors}` +
+                        printReceived(`${a11yViolationIndicator} (${violation.id}) ${violation.help}: ${selectors}`) +
                         `\n\t${helpUrlIndicator} Help URL: ${helpURL}`
                     );
                 })
