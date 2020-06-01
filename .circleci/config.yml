@@ -5,11 +5,9 @@ jobs:
     build-and-test:
         executor:
             name: node/default
-            tag: '12'
+            tag: 'lts'
         steps:
             - checkout
-            - node/install-packages:
-                  pkg-manager: yarn
             - run: yarn build:ci
             - run: yarn test:ci
 workflows:
