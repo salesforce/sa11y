@@ -8,8 +8,8 @@
 import { Result } from 'axe-core';
 // import { printReceived } from 'jest-matcher-utils';
 
-const a11yViolationIndicator = '*';
-const helpUrlIndicator = '-';
+const a11yViolationIndicator = '⭕';
+const helpUrlIndicator = '🔗';
 
 /**
  * Formatter defines the function signature to format accessibility violations found by axe
