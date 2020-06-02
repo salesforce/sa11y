@@ -22,8 +22,6 @@ export interface Highlighter {
     (text: string): string;
 }
 
-const DefaultHighlighter = (text: string): string => text;
-
 /**
  * Optional parameters used while formatting a11y issues
  */
@@ -33,6 +31,8 @@ export interface Options {
     formatter?: Formatter;
     highlighter?: Highlighter;
 }
+
+const DefaultHighlighter = (text: string): string => text;
 
 /**
  * Default options to be used while formatting a11y issues
@@ -53,24 +53,28 @@ export class A11yError extends Error {
         this.name = A11yError.name;
     }
 
-    get length(): number {
-        return this.violations.length;
+    get message(): string {
+        // TODO (debug): Why is this not used (in code cov) even when A11yError.message is called ?
+        //  Looks like the super().message is invoked
+        /* istanbul ignore next */
+        return this.format();
     }
 
-    get message(): string {
-        return this.format();
+    get length(): number {
+        return this.violations.length;
     }
 
     /**
      * Format a11y violations into a readable format highlighting important information to help fixing the issue.
      * @param options - Options used for formatting a11y issues.
      */
-    format(options?: Options): string {
+    format(options: Options = {}): string {
         options = { ...DefaultOptions, ...options };
         if (options.formatter) {
             return options.formatter(this.violations);
         }
 
+        // Note: Workaround for "TS2722: Cannot invoke an object which is possibly 'undefined'."
         const highlighter = options.highlighter || DefaultHighlighter;
 
         return this.violations
@@ -81,8 +85,8 @@ export class A11yError extends Error {
                         const helpURL = violation.helpUrl.split('?')[0];
                         return (
                             highlighter(
-                                `${options?.a11yViolationIndicator} (${violation.id}) ${violation.help}: ${selectors}`
-                            ) + `\n\t${options?.helpUrlIndicator} Help URL: ${helpURL}`
+                                `${options.a11yViolationIndicator} (${violation.id}) ${violation.help}: ${selectors}`
+                            ) + `\n\t${options.helpUrlIndicator} Help URL: ${helpURL}`
                         );
                     })
                     .join('\n\n');
