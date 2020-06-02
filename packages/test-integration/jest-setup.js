@@ -8,6 +8,6 @@
 // Since this is not a typescript project, disabling typescript eslint warning
 // TODO (lint): using 'exclude: ["./packages/test-integration/**/*.js"]' in tsconfig.eslint.json doesn't work
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { registerA11yMatchers } = require('@sa11y/jest');
+const { registerSa11yMatcher } = require('@sa11y/jest');
 
-registerA11yMatchers();
+registerSa11yMatcher();

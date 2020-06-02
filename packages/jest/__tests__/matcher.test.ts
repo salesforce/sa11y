@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { toBeAccessible, registerA11yMatchers } from '../src';
+import { toBeAccessible, registerSa11yMatcher } from '../src';
 import { extended, recommended } from '@sa11y/preset-rules';
 import {
     beforeEachSetup,
@@ -23,7 +23,7 @@ const domParams = [document, undefined];
 const domConfigParams = cartesianProduct(domParams, a11yConfigParams);
 
 beforeAll(() => {
-    registerA11yMatchers();
+    registerSa11yMatcher();
 });
 
 beforeEach(() => {
@@ -32,7 +32,7 @@ beforeEach(() => {
 
 describe('a11y matchers', () => {
     it('should be extendable with expect', () => {
-        // Mostly here for code cov as it doesn't register correctly with just registerA11yMatchers()
+        // Mostly here for code cov as it doesn't register correctly with just registerSa11yMatcher()
         expect.extend({ toBeAccessible });
     });
 });

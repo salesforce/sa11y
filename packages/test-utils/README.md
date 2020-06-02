@@ -15,10 +15,10 @@ Private package providing test utilities for @sa11y packages
 ```javascript
 import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
 
-import { registerA11yMatchers } from '@sa11y/jest';
+import { registerSa11yMatcher } from '@sa11y/jest';
 
 beforeAll(() => {
-    registerA11yMatchers();
+    registerSa11yMatcher();
 });
 
 beforeEach(() => {
