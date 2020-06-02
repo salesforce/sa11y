@@ -16,11 +16,11 @@ exports[`toBeAccessible jest a11y matcher should throw error for dom with a11y i
 [2m[31m\\"⭕ (document-title) Documents must have <title> element to aid in navigation: html\\"[39m[22m
 [2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title[22m
 [2m[22m
-[2m[31m\\"⭕ (landmark-one-main) Document must have one main landmark: html\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main[22m
-[2m[22m
 [2m[31m\\"⭕ (link-name) Links must have discernible text: a\\"[39m[22m
 [2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name[22m
+[2m[22m
+[2m[31m\\"⭕ (landmark-one-main) Document must have one main landmark: html\\"[39m[22m
+[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main[22m
 [2m[22m
 [2m[31m\\"⭕ (page-has-heading-one) Page must contain a level-one heading: html\\"[39m[22m
 [2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one([22m[32m0 issues[39m[2m)[22m"
@@ -51,11 +51,11 @@ exports[`toBeAccessible jest a11y matcher should throw error for dom with a11y i
 [2m[31m\\"⭕ (document-title) Documents must have <title> element to aid in navigation: html\\"[39m[22m
 [2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title[22m
 [2m[22m
-[2m[31m\\"⭕ (landmark-one-main) Document must have one main landmark: html\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main[22m
-[2m[22m
 [2m[31m\\"⭕ (link-name) Links must have discernible text: a\\"[39m[22m
 [2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name[22m
+[2m[22m
+[2m[31m\\"⭕ (landmark-one-main) Document must have one main landmark: html\\"[39m[22m
+[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main[22m
 [2m[22m
 [2m[31m\\"⭕ (page-has-heading-one) Page must contain a level-one heading: html\\"[39m[22m
 [2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one([22m[32m0 issues[39m[2m)[22m"

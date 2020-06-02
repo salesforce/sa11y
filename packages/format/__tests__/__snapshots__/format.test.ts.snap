@@ -7,11 +7,11 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 * (document-title) Documents must have <title> element to aid in navigation: html
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
 
-* (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
-
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+
+* (landmark-one-main) Document must have one main landmark: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
@@ -36,11 +36,11 @@ exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 * (document-title) Documents must have <title> element to aid in navigation: html
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
 
-* (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
-
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+
+* (landmark-one-main) Document must have one main landmark: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
@@ -53,11 +53,11 @@ exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 * (document-title) Documents must have <title> element to aid in navigation: html
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
 
-* (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
-
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+
+* (landmark-one-main) Document must have one main landmark: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
@@ -70,11 +70,11 @@ exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 * (document-title) Documents must have <title> element to aid in navigation: html
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
 
-* (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
-
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+
+* (landmark-one-main) Document must have one main landmark: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
@@ -87,11 +87,11 @@ exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 * (document-title) Documents must have <title> element to aid in navigation: html
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
 
-* (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
-
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+
+* (landmark-one-main) Document must have one main landmark: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"

@@ -44,6 +44,28 @@ const DefaultOptions: Options = {
     highlighter: DefaultHighlighter,
 };
 
+const defaultImpact = 'minor'; // if impact is undefined
+// Helper object to sort violations by impact order
+const impactOrder = {
+    critical: 1,
+    serious: 2,
+    moderate: 3,
+    minor: 4,
+};
+
+/**
+ * Sorts give a11y results from axe in order of impact
+ */
+export function sortViolations(violations: Result[]): void {
+    violations.sort((a, b) => {
+        const aImpact = impactOrder[a.impact || defaultImpact];
+        const bImpact = impactOrder[b.impact || defaultImpact];
+        if (aImpact < bImpact) return -1;
+        if (aImpact > bImpact) return 1;
+        return 0;
+    });
+}
+
 /**
  *  Custom error object to represent a11y violations
  */
@@ -77,12 +99,16 @@ export class A11yError extends Error {
         // Note: Workaround for "TS2722: Cannot invoke an object which is possibly 'undefined'."
         const highlighter = options.highlighter || DefaultHighlighter;
 
+        sortViolations(this.violations);
         return this.violations
             .map((violation) => {
                 return violation.nodes
                     .map((node) => {
                         const selectors = node.target.join(', ');
                         const helpURL = violation.helpUrl.split('?')[0];
+                        // TODO : Add wcag level or best practice tag to output ?
+                        // const criteria = violation.tags.filter((tag) => tag.startsWith('wcag2a') || tag.startsWith('best'));
+
                         return (
                             highlighter(
                                 `${options.a11yViolationIndicator} (${violation.id}) ${violation.help}: ${selectors}`

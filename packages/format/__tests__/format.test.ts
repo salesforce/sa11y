@@ -7,7 +7,7 @@
 
 import * as axe from 'axe-core';
 import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
-import { A11yError, Options } from '..';
+import { A11yError, Options, sortViolations } from '..';
 
 async function getA11yError(dom: string): Promise<A11yError> {
     document.body.innerHTML = dom;
@@ -34,4 +34,22 @@ describe('a11y Results Formatter', () => {
             expect((await getA11yError(domWithA11yIssues)).format(formatOptions)).toMatchSnapshot();
         }
     );
+
+    it('should sort a11y issues by impact', () => {
+        const a11yIssues = [
+            { impact: undefined },
+            { impact: undefined },
+            { impact: 'moderate' },
+            { impact: 'minor' },
+            { impact: 'critical' },
+            { impact: 'critical' },
+        ];
+        sortViolations(a11yIssues as axe.Result[]);
+        expect(a11yIssues[0].impact).toEqual('critical');
+        expect(a11yIssues[1].impact).toEqual('critical');
+        expect(a11yIssues[2].impact).toEqual('moderate');
+        expect(a11yIssues[3].impact).toBeUndefined(); // Sort by "defaultImpact"
+        expect(a11yIssues[4].impact).toBeUndefined();
+        expect(a11yIssues[5].impact).toEqual('minor');
+    });
 });
