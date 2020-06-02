@@ -21,6 +21,7 @@ Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)
   - [Internal packages](#internal-packages)
     - [Test utilities](#test-utilities)
     - [Integration Tests](#integration-tests)
+    - [Common](#common)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -70,3 +71,7 @@ This repo contains the following packages
 #### [Integration Tests](packages/test-integration/README.md)
 
 -   Private package providing integration tests for `@sa11y` packages
+
+#### [Common](packages/common/README.md)
+
+-   Common utilities, constants, error messages for `@sa11y` packages

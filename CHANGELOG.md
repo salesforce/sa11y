@@ -2,25 +2,33 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [(2020-05-29)](#2020-05-29)
+- [(2020-06-02)](#2020-06-02)
     - [Features](#features)
+- [(2020-05-29)](#2020-05-29)
+    - [Features](#features-1)
 - [(2020-05-07)](#2020-05-07)
     - [Bug Fixes](#bug-fixes)
-    - [Features](#features-1)
+    - [Features](#features-2)
 - [(2020-04-07)](#2020-04-07)
     - [Bug Fixes](#bug-fixes-1)
-    - [Features](#features-2)
+    - [Features](#features-3)
 - [(2020-03-20)](#2020-03-20)
     - [Bug Fixes](#bug-fixes-2)
-    - [Features](#features-3)
+    - [Features](#features-4)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# (2020-06-02)
+
+### Features
+
+-   **format:** add num of issues, unicode chars, jest matcher helper ([757020a](https://github.com/salesforce/sa11y/commit/757020a574ac366bd89e104afa33fa90d1ef0299))
+-   **format:** sort a11y issues by impact ([6ce6620](https://github.com/salesforce/sa11y/commit/6ce66201ef77a8eda3a5c7fc3eab6b7cb8b68443))
 
 # (2020-05-29)
 
 ### Features
 
--   **format:** add num of issues, unicode chars, jest matcher helper ([757020a](https://github.com/salesforce/sa11y/commit/757020a574ac366bd89e104afa33fa90d1ef0299))
 -   **jest:** add jest accessibility matcher ([#9](https://github.com/salesforce/sa11y/issues/9)) ([fd586d1](https://github.com/salesforce/sa11y/commit/fd586d17aff340974f9b045f8af4fa202354fcc6))
 
 # (2020-05-07)
