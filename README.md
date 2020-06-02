@@ -2,7 +2,11 @@
 
 Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages).
 
-![Build](https://github.com/salesforce/sa11y/workflows/Lint,%20Test/badge.svg) ![Code coverage](https://github.com/salesforce/sa11y/workflows/Code%20coverage/badge.svg)
+[![Build](https://circleci.com/gh/salesforce/sa11y.svg?style=svg&circle-token=0e28763afb8e2d0f1293f08a112e8b5e387b324a)](https://app.circleci.com/pipelines/github/salesforce/sa11y?branch=master)
+
+<!-- Temp disabling code cov badge due to https://github.com/salesforce/sa11y/issues/14
+     Re-enable with a code cov service that works with CircleCi -->
+<!-- ![Code coverage](https://github.com/salesforce/sa11y/workflows/Code%20coverage/badge.svg) -->
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -17,6 +21,7 @@ Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)
   - [Internal packages](#internal-packages)
     - [Test utilities](#test-utilities)
     - [Integration Tests](#integration-tests)
+    - [Common](#common)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -66,3 +71,7 @@ This repo contains the following packages
 #### [Integration Tests](packages/test-integration/README.md)
 
 -   Private package providing integration tests for `@sa11y` packages
+
+#### [Common](packages/common/README.md)
+
+-   Common utilities, constants, error messages for `@sa11y` packages

@@ -8,8 +8,10 @@
 export const domWithA11yIssuesBodyID = 'dom-with-issues';
 // DOM with no a11y issues
 export const domWithA11yIssues = `<html>
-                            <body id=${domWithA11yIssuesBodyID}>
-                             <a href="#"></a>
+                            <body>
+                             <div id="${domWithA11yIssuesBodyID}">
+                                <a href="#"></a>
+                             </div>
                             </body>
                            </html>`;
 
@@ -28,7 +30,7 @@ export const domWithNoA11yIssues = `<!doctype html>
                             </div>
                             <div role="contentinfo" id=${shadowDomID}></div> <!-- cSpell:disable-line -->
                                 <script>
-                                    var shadow = document.getElementById("upside-down").attachShadow({mode: "open"});
+                                    const shadow = document.getElementById("upside-down").attachShadow({mode: "open"});
                                     shadow.innerHTML = '<h2 id="shadow">SHADOW DOM</h2><ul><li>Shadow Item 1</li></ul>'
                                 </script>
                             </body>

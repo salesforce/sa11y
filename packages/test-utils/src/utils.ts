@@ -5,6 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
+
 /**
  * Cartesian product of arrays
  * Ref: https://eddmann.com/posts/cartesian-product-in-javascript/
@@ -23,4 +25,13 @@ export function cartesianProduct(...sets: Array<any>): Array<any> {
 export function beforeEachSetup(): void {
     document.documentElement.lang = 'en'; // required for a11y lang check
     document.body.innerHTML = ''; // reset body content
+}
+
+/**
+ * Check if given error is an a11y error and not an axe runtime exception
+ */
+export function checkA11yError(e: Error): void {
+    expect(e).toBeTruthy();
+    expect(e.message).not.toContain(axeRuntimeExceptionMsgPrefix);
+    expect(e.message).toMatchSnapshot();
 }

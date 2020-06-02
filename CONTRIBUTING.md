@@ -26,6 +26,7 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
   - [Check your submission](#check-your-submission)
     - [Lint your changes](#lint-your-changes)
     - [Run tests](#run-tests)
+    - [Test CI config](#test-ci-config)
   - [Create a pull request](#create-a-pull-request)
     - [Pull Request Title](#pull-request-title)
   - [Update the pull request](#update-the-pull-request)
@@ -220,6 +221,13 @@ the ones related to the files you make changes to!
 
 Test your change by running the unit tests and integration tests. Instructions [here](#testing).
 
+#### Test CI config
+
+**Optionally** test any changes to CI config locally by [using the CircleCI local CLI](https://circleci.com/docs/2.0/local-cli/)
+
+-   `circleci config validate`
+-   `circleci local execute --job build_and_test`
+
 ### Create a pull request
 
 If you've never created a pull request before, follow [these
@@ -234,7 +242,7 @@ ex:
 commit-type(optional scope): commit description. ( NOTE: space between column and the message )
 
 Types: build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test, proposal.
-Scope: The scope should be the name of the npm package affected (rules, assertAccessible, jest-integration, formatter etc.)
+Scope: The scope should be the name of the npm package affected (preset-rules, assert, jest, format etc.)
 ```
 
 ### Update the pull request

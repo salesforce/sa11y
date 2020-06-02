@@ -5,34 +5,29 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import 'global-jsdom/lib/register'; // https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#required-globals
-import { assertAccessible, axeRuntimeExceptionMsgPrefix } from '../src/assert';
+import { assertAccessible } from '../src/assert';
 import { extended, getA11yConfig, recommended } from '@sa11y/preset-rules';
-import { a11yResultsFormatter } from '@sa11y/format';
-import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues, shadowDomID } from '@sa11y/test-utils';
+import {
+    beforeEachSetup,
+    checkA11yError,
+    domWithA11yIssues,
+    domWithNoA11yIssues,
+    shadowDomID,
+} from '@sa11y/test-utils';
+import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
 beforeEach(() => {
     beforeEachSetup();
 });
 
 /**
- * Test util to check if given error is an a11y error
- */
-function checkA11yError(e: Error): void {
-    expect(e).toBeDefined();
-    expect(e.toString()).not.toContain(axeRuntimeExceptionMsgPrefix);
-    expect(e).toMatchSnapshot();
-}
-
-/**
  * Test util to test DOM with a11y issues
- * @param formatter - a11y results formatter
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-async function testDOMWithA11yIssues(formatter = a11yResultsFormatter) {
+async function testDOMWithA11yIssues() {
     document.body.innerHTML = domWithA11yIssues;
     expect.assertions(3);
-    await assertAccessible(document, extended, formatter).catch((e) => {
+    await assertAccessible(document, extended).catch((e) => {
         checkA11yError(e);
     });
 }
@@ -42,7 +37,7 @@ describe('assertAccessible API', () => {
         const errConfig = getA11yConfig(['non-existent-rule']);
         expect.assertions(2);
         await assertAccessible(document, errConfig).catch((e) => {
-            expect(e).toBeDefined();
+            expect(e).toBeTruthy();
             expect(e.toString()).toContain(axeRuntimeExceptionMsgPrefix);
         });
     });
@@ -75,7 +70,7 @@ describe('assertAccessible API', () => {
     it('should not throw error with HTML element with no a11y issues', async () => {
         document.body.innerHTML = domWithNoA11yIssues;
         const elem = document.getElementById(shadowDomID);
-        expect(elem).toBeDefined();
+        expect(elem).toBeTruthy();
         await assertAccessible(elem); // No error thrown
     });
 
@@ -85,11 +80,7 @@ describe('assertAccessible API', () => {
         const elements = document.getElementsByTagName('body');
         expect(elements).toHaveLength(1);
         const elem = elements[0];
-        expect(elem).toBeDefined();
+        expect(elem).toBeTruthy();
         await assertAccessible(elem).catch((e) => checkA11yError(e));
     });
-
-    it.each([a11yResultsFormatter, null])('should format a11y issues using specified formatter: %#', (formatter) =>
-        testDOMWithA11yIssues(formatter)
-    );
 });

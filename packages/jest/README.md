@@ -25,8 +25,8 @@ For an example look at the [Integration tests](../test-integration/README.md).
 -   Add a Jest setup file (e.g. `jest-setup.js`) and add the following code that registers the a11y matchers
 
 ```javascript
-const { registerA11yMatchers } = require('@sa11y/jest');
-registerA11yMatchers();
+const { registerSa11yMatcher } = require('@sa11y/jest');
+registerSa11yMatcher();
 ```
 
 -   Add/Modify Jest config at project root to invoke the Jest setup file as setup above.
@@ -40,13 +40,13 @@ module.exports = {
 
 ### Test module level
 
-Invoke `registerA11yMatchers` before using the accessibility matchers in the tests e.g.
+Invoke `registerSa11yMatcher` before using the accessibility matchers in the tests e.g.
 
 ```javascript
-import { registerA11yMatchers } from '@sa11y/jest';
+import { registerSa11yMatcher } from '@sa11y/jest';
 
 beforeAll(() => {
-    registerA11yMatchers();
+    registerSa11yMatcher();
 });
 ```
 
@@ -60,10 +60,10 @@ beforeAll(() => {
 
 ```javascript
 import { recommended } from '@sa11y/preset-rules';
-import { registerA11yMatchers } from '@sa11y/jest';
+import { registerSa11yMatcher } from '@sa11y/jest';
 
 beforeAll(() => {
-    registerA11yMatchers();
+    registerSa11yMatcher();
 });
 
 it('should be accessible', async () => {

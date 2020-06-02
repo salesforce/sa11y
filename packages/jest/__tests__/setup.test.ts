@@ -5,11 +5,11 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { adaptA11yConfig, registerA11yMatchers } from '../src/setup';
+import { adaptA11yConfig, registerSa11yMatcher } from '../src/setup';
 import { extended, recommended } from '@sa11y/preset-rules';
 
 describe('jest setup', () => {
-    registerA11yMatchers();
+    registerSa11yMatcher();
     it('should define matcher on expect object', () => {
         expect(expect['toBeAccessible']).toBeDefined();
     });
@@ -24,11 +24,11 @@ describe('jest setup', () => {
         // @ts-ignore error TS2339: Property 'expect' does not exist on type 'Global'.
         const globalExpect = global.expect;
         expect(globalExpect).toBeDefined();
-        expect(registerA11yMatchers).not.toThrow();
+        expect(registerSa11yMatcher).not.toThrow();
         try {
             // @ts-ignore error TS2339: Property 'expect' does not exist on type 'Global'.
             global.expect = undefined;
-            globalExpect(registerA11yMatchers).toThrowErrorMatchingSnapshot();
+            globalExpect(registerSa11yMatcher).toThrowErrorMatchingSnapshot();
         } finally {
             // @ts-ignore error TS2339: Property 'expect' does not exist on type 'Global'.
             global.expect = globalExpect;

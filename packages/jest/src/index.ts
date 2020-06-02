@@ -6,4 +6,4 @@
  */
 
 export { toBeAccessible } from './matcher';
-export { registerA11yMatchers } from './setup';
+export { registerSa11yMatcher } from './setup';

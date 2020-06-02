@@ -1,0 +1,17 @@
+{
+    "name": "@sa11y/common",
+    "version": "0.1.0",
+    "description": "Common utilities, constants, error messages for @sa11y",
+    "license": "BSD-3-Clause",
+    "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/common#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/salesforce/sa11y.git",
+        "directory": "packages/common"
+    },
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/**/*.js"
+    ]
+}

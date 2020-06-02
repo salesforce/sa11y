@@ -503,3 +503,18 @@ Array [
   ],
 ]
 `;
+
+exports[`test utils check a11y error should check for axe run time exception 1`] = `
+"[2mexpect([22m[31mreceived[39m[2m).[22mnot[2m.[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+Expected substring: not [32m\\"Error running accessibility checks using axe:\\"[39m
+Received string:        [31m\\"[7mError running accessibility checks using axe:[27m\\"[39m"
+`;
+
+exports[`test utils check a11y error should check for error to be defined 1`] = `
+"[2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+Received: [31mundefined[39m"
+`;
+
+exports[`test utils check a11y error should check for error to match snapshot 1`] = `"foo"`;

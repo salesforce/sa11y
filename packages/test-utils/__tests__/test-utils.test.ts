@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { beforeEachSetup, cartesianProduct } from '../src';
-
+import { beforeEachSetup, cartesianProduct, checkA11yError } from '../src';
+import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 const testDOMCleanupContent = 'foo';
 
 beforeAll(() => {
@@ -36,5 +36,22 @@ describe('test utils cartesian product', () => {
         expect(cartesianProduct(alphabetArr, numArr)).toMatchSnapshot();
         expect(cartesianProduct(numArr, numArr)).toMatchSnapshot();
         expect(cartesianProduct(alphabetArr, alphabetArr)).toMatchSnapshot();
+    });
+});
+
+describe('test utils check a11y error', () => {
+    it('should check for error to be defined', () => {
+        expect.assertions(2);
+        expect(() => checkA11yError(undefined)).toThrowErrorMatchingSnapshot();
+    });
+
+    it('should check for axe run time exception', () => {
+        expect.assertions(3);
+        expect(() => checkA11yError(new Error(axeRuntimeExceptionMsgPrefix))).toThrowErrorMatchingSnapshot();
+    });
+
+    it('should check for error to match snapshot', () => {
+        expect.assertions(4);
+        expect(() => checkA11yError(new Error('foo'))).not.toThrow();
     });
 });
