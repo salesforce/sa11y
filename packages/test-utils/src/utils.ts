@@ -32,6 +32,6 @@ export function beforeEachSetup(): void {
  */
 export function checkA11yError(e: Error): void {
     expect(e).toBeTruthy();
-    expect(e.toString()).not.toContain(axeRuntimeExceptionMsgPrefix);
-    expect(e).toMatchSnapshot();
+    expect(e.message).not.toContain(axeRuntimeExceptionMsgPrefix);
+    expect(e.message).toMatchSnapshot();
 }

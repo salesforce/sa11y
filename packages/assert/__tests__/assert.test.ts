@@ -7,7 +7,6 @@
 
 import { assertAccessible } from '../src/assert';
 import { extended, getA11yConfig, recommended } from '@sa11y/preset-rules';
-import { a11yResultsFormatter } from '@sa11y/format';
 import {
     beforeEachSetup,
     checkA11yError,
@@ -23,13 +22,12 @@ beforeEach(() => {
 
 /**
  * Test util to test DOM with a11y issues
- * @param formatter - a11y results formatter
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-async function testDOMWithA11yIssues(formatter = a11yResultsFormatter) {
+async function testDOMWithA11yIssues() {
     document.body.innerHTML = domWithA11yIssues;
     expect.assertions(3);
-    await assertAccessible(document, extended, formatter).catch((e) => {
+    await assertAccessible(document, extended).catch((e) => {
         checkA11yError(e);
     });
 }
@@ -85,8 +83,4 @@ describe('assertAccessible API', () => {
         expect(elem).toBeTruthy();
         await assertAccessible(elem).catch((e) => checkA11yError(e));
     });
-
-    it.each([a11yResultsFormatter, null])('should format a11y issues using specified formatter: %#', (formatter) =>
-        testDOMWithA11yIssues(formatter)
-    );
 });

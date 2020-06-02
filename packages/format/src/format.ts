@@ -6,48 +6,87 @@
  */
 
 import { Result } from 'axe-core';
-import { printReceived } from 'jest-matcher-utils';
-
-const a11yViolationIndicator = '⭕';
-const helpUrlIndicator = '🔗';
 
 /**
- * Formatter defines the function signature to format accessibility violations found by axe
+ * Custom formatter to format a11y violations found by axe
+ * Use `JSON.stringify` to return violations without formatting
  */
 export interface Formatter {
     (violations: Result[]): string;
 }
 
 /**
- * Get num of a11y issues from a11y violations error object
- * @param a11yViolations - error thrown from `@sa11y/assert` containing a11y violations
+ * Highlights the import part of the error message
  */
-export function getNumIssues(a11yViolations: string): number {
-    // TODO (Refactor): Operate on Result[] instead of the error object
-    // TODO (Refactor): Construct a custom error object for a11y violations
-    return a11yViolations.toString().split(a11yViolationIndicator).length - 1;
+export interface Highlighter {
+    (text: string): string;
+}
+
+const DefaultHighlighter = (text: string): string => text;
+
+/**
+ * Optional parameters used while formatting a11y issues
+ */
+export interface Options {
+    a11yViolationIndicator?: string;
+    helpUrlIndicator?: string;
+    formatter?: Formatter;
+    highlighter?: Highlighter;
 }
 
 /**
- * Format accessibility results from axe
- * @param violations - Result list from axe
- * */
-// TODO: Add handlebars template for formatting
-// TODO: Add support for different output formats console(colored), plain text, HTML, xUnit
-export function a11yResultsFormatter(violations: Result[]): string {
-    return violations
-        .map((violation) => {
-            return violation.nodes
-                .map((node) => {
-                    const selectors = node.target.join(', ');
-                    const helpURL = violation.helpUrl.split('?')[0];
-                    return (
-                        // TODO: Create a formatter specifically for Jest using printReceived etc?
-                        printReceived(`${a11yViolationIndicator} (${violation.id}) ${violation.help}: ${selectors}`) +
-                        `\n\t${helpUrlIndicator} Help URL: ${helpURL}`
-                    );
-                })
-                .join('\n\n');
-        })
-        .join('\n\n');
+ * Default options to be used while formatting a11y issues
+ */
+const DefaultOptions: Options = {
+    a11yViolationIndicator: '*',
+    helpUrlIndicator: '-',
+    formatter: undefined,
+    highlighter: DefaultHighlighter,
+};
+
+/**
+ *  Custom error object to represent a11y violations
+ */
+export class A11yError extends Error {
+    constructor(readonly violations: Result[]) {
+        super(`${violations.length} accessibility issues found`);
+        this.name = A11yError.name;
+    }
+
+    get length(): number {
+        return this.violations.length;
+    }
+
+    get message(): string {
+        return this.format();
+    }
+
+    /**
+     * Format a11y violations into a readable format highlighting important information to help fixing the issue.
+     * @param options - Options used for formatting a11y issues.
+     */
+    format(options?: Options): string {
+        options = { ...DefaultOptions, ...options };
+        if (options.formatter) {
+            return options.formatter(this.violations);
+        }
+
+        const highlighter = options.highlighter || DefaultHighlighter;
+
+        return this.violations
+            .map((violation) => {
+                return violation.nodes
+                    .map((node) => {
+                        const selectors = node.target.join(', ');
+                        const helpURL = violation.helpUrl.split('?')[0];
+                        return (
+                            highlighter(
+                                `${options?.a11yViolationIndicator} (${violation.id}) ${violation.help}: ${selectors}`
+                            ) + `\n\t${options?.helpUrlIndicator} Help URL: ${helpURL}`
+                        );
+                    })
+                    .join('\n\n');
+            })
+            .join('\n\n');
+    }
 }

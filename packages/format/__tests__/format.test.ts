@@ -6,17 +6,19 @@
  */
 
 import * as axe from 'axe-core';
-import { a11yResultsFormatter } from '..';
-import { beforeEachSetup, domWithA11yIssues } from '@sa11y/test-utils';
+import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
+import { A11yError } from '..';
 
 beforeEach(beforeEachSetup);
 
 describe('a11y Results Formatter', () => {
-    it('should format a11y issues as expected', async () => {
-        document.body.innerHTML = domWithA11yIssues;
-        await axe.run(document).then((results) => {
-            expect(results).toBeTruthy();
-            expect(a11yResultsFormatter(results.violations)).toMatchSnapshot();
-        });
-    });
+    it.each([domWithA11yIssues, domWithNoA11yIssues])(
+        'should format a11y issues as expected with default options for dom %#',
+        async (dom) => {
+            document.body.innerHTML = dom;
+            const violations = await axe.run(document).then((results) => results.violations);
+            const a11yError = new A11yError(violations);
+            expect(a11yError.format()).toMatchSnapshot();
+        }
+    );
 });
