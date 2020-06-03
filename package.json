@@ -28,6 +28,8 @@
         "lint:lockfile": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
         "lint:staged": "lint-staged",
         "lint:watch": "esw --watch --changed --color --ext .js,.ts",
+        "pkg:list": "lerna list --long --all --toposort",
+        "pkg:deps": "yarn pkg:list --graph",
         "release:publish": "yarn lerna publish from-package",
         "release:version": "yarn lerna version --conventional-prerelease --no-push --no-git-tag-version",
         "test": "jest --coverage",
