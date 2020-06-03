@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/test-utils",
-    "version": "0.1.1",
+    "version": "0.1.1-alpha",
     "private": true,
     "description": "Private package providing test utilities for @sa11y packages",
     "license": "BSD-3-Clause",
@@ -16,6 +16,6 @@
         "dist/**/*.js"
     ],
     "dependencies": {
-        "@sa11y/common": "0.1.0"
+        "@sa11y/common": "0.1.0-alpha"
     }
 }
