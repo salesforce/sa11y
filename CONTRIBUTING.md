@@ -14,7 +14,8 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
 - [Building](#building)
 - [Testing](#testing)
   - [Unit Testing](#unit-testing)
-  - [Integration Testing](#integration-testing)
+- [Release](#release)
+    - [Use local npm registry for testing](#use-local-npm-registry-for-testing)
 - [Editor Configurations](#editor-configurations)
   - [Types](#types)
   - [ESLint](#eslint)
@@ -121,9 +122,27 @@ If you want to debug these tests, you can do as follows:
 
 Your test should now be running in the Chrome debugger. You get your handy console to poke around all sorts of stuff! Now simply hit "Enter" in the terminal running your Jest process anytime you want to re-run your currently selected specs. You'll be dropped right back into the Chrome debugger.
 
-### Integration Testing
+## Release
 
-TBD
+-   Create a `release` branch from `master`
+-   Cleanup `CHANGELOG` to remove references to squashed commits and replace them with references to corresponding PRs where possible
+-   `yarn release:version` to bump versions
+-   To publish packages to npm
+    -   `npm login`
+    -   `yarn release:publish`
+-   Commit changes to versions, changelog
+-   Push the `release` branch and create a pull request against `master`
+    -   with PR title of the format `chore(release): ...`
+-   Use `GH_TOKEN=<token> yarn release:semantic` to create a release in github
+    -   where `GH_TOKEN` is the [Github personal access token](https://github.com/semantic-release/github#github-authentication) created with `repo` permission
+    -   Update release notes to reflect Changelog
+    -   Add `--dry-run --debug` to simulate
+
+#### Use local npm registry for testing
+
+-   Use [verdaccio](https://github.com/verdaccio/verdaccio) to spin-up a local npm registry
+-   Packages can be published to it by overriding the `registry` option
+    -   e.g. `yarn release:publish --registry http://localhost:4873/`
 
 ## Editor Configurations
 
