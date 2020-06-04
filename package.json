@@ -43,9 +43,10 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged",
             "commit-msg": "commitlint -e $GIT_PARAMS",
-            "pre-push": "yarn build:clean && yarn test:ci"
+            "pre-commit": "lint-staged",
+            "pre-push": "yarn build:clean && yarn test:ci",
+            "post-checkout": "yarn install"
         }
     },
     "lint-staged": {
