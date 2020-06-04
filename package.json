@@ -30,7 +30,7 @@
         "lint:watch": "esw --watch --changed --color --ext .js,.ts",
         "pkg:list": "lerna list --long --all --toposort",
         "pkg:deps": "yarn pkg:list --graph",
-        "release": "semantic-release",
+        "release:semantic": "semantic-release",
         "test": "jest --coverage",
         "test:ci": "yarn lint:all && yarn test --ci",
         "test:watch": "yarn test --watch",
