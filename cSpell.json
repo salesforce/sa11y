@@ -1,5 +1,7 @@
 {
     "ignorePaths": ["node_modules/**", "package.json"],
     "ignoreWords": ["assertAccessible", "circleci", "CNCF", "doctoc", "SPDX", "tsdoc", "wcag"],
-    "ignoreRegExpList": ["ruleset"]
+    "ignoreRegExpList": ["ruleset"],
+    "flagWords": ["master-slave", "slave", "blacklist", "whitelist"],
+    "allowCompoundWords": true
 }
