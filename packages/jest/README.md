@@ -87,7 +87,8 @@ it('should be accessible', async () => {
     const elem = document.getElementById('foo');
     await expect(elem).toBeAccessible();
 
-    // use recommended preset-rule
+    // If you have any a11y issues from the default extended preset-rule that you can't fix for now,
+    //  you can use the recommended preset-rule
     await expect(document).toBeAccessible(recommended);
 });
 ```
