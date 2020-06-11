@@ -80,7 +80,8 @@ _We use [yarn](https://yarnpkg.com/) because it is significantly faster than npm
 yarn install
 ```
 
-If this fails with an error about _UNABLE_TO_GET_ISSUER_CERT_LOCALLY_, _Error: unable to get local issuer certificate_, or a registry communication issue then re-verify that step 2 was successful.
+-   Have to do this every time there are changes to `package.json` from external sources e.g. after switching branches or after merging/rebasing
+-   If this fails with an error about _UNABLE_TO_GET_ISSUER_CERT_LOCALLY_, _Error: unable to get local issuer certificate_, or a registry communication issue then re-verify that step 2 was successful.
 
 ## Building
 
