@@ -14,7 +14,8 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
 - [Building](#building)
 - [Testing](#testing)
   - [Unit Testing](#unit-testing)
-  - [Integration Testing](#integration-testing)
+- [Release](#release)
+    - [Use local npm registry for testing](#use-local-npm-registry-for-testing)
 - [Editor Configurations](#editor-configurations)
   - [Types](#types)
   - [ESLint](#eslint)
@@ -112,18 +113,38 @@ To execute a particular test, use the following command:
 yarn test <path_to_test>
 ```
 
-If you want to debug these tests, you can do as follow:
+If you want to debug these tests, you can do as follows:
 
 1. First, insert a new line in your test where you think it might be failing and type `debugger`. This will serve as a break point for the debugger to stop at.
 2. Open up Chrome and type in the address bar: `chrome://inspect`
 3. Click on "Open dedicated DevTools for Node"
 4. In your terminal, type the following command: `yarn test:debug <path_to_test>`
 
-Your test should now be running in the Chrome debugger. And you get your handy console to poke around all sorts of stuff! Now simply hit Enter in the terminal running your Jest process anytime you want to re-run your currently selected specs. You'll be dropped right back into the Chrome debugger.
+Your test should now be running in the Chrome debugger. You get your handy console to poke around all sorts of stuff! Now simply hit "Enter" in the terminal running your Jest process anytime you want to re-run your currently selected specs. You'll be dropped right back into the Chrome debugger.
 
-### Integration Testing
+## Release
 
-TBD
+-   Cleanup `CHANGELOG` to remove references to squashed commits and replace them with references to corresponding PRs where possible
+-   `yarn release:version` to bump versions
+-   To publish packages to npm
+    -   `npm login`
+    -   `yarn release:publish`
+-   Use `GH_TOKEN=<token> yarn release:semantic` to create a release in github
+    -   where `GH_TOKEN` is the [Github personal access token](https://github.com/semantic-release/github#github-authentication) created with `repo` permission
+    -   Update release notes to reflect Changelog
+    -   Add `--dry-run --debug` to simulate
+-   If you couldn't make these changes in the last PR that went into master, you can make a separate PR for release
+    -   Create a `release` branch from `master`
+    -   Commit changes to versions, changelog
+        -   Changes should be limited to non-source code changes (docs, config)
+    -   Push the `release` branch and create a pull request against `master`
+        -   with PR title of the format `chore(release): ...`
+
+#### Use local npm registry for testing
+
+-   Use [verdaccio](https://github.com/verdaccio/verdaccio) to spin-up a local npm registry
+-   Packages can be published to it by overriding the `registry` option
+    -   e.g. `yarn release:publish --registry http://localhost:4873/`
 
 ## Editor Configurations
 

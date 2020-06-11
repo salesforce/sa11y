@@ -3,5 +3,11 @@
     "version": "independent",
     "exact": true,
     "npmClient": "yarn",
-    "useWorkspaces": true
+    "useWorkspaces": true,
+    "command": {
+        "version": {
+            "allowBranch": "release",
+            "message": "chore(release): bump versions"
+        }
+    }
 }
