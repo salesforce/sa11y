@@ -1,5 +1,5 @@
 {
     "ignorePaths": ["node_modules/**", "package.json"],
-    "ignoreWords": ["assertAccessible", "circleci", "CNCF", "doctoc", "SPDX", "tsdoc", "wcag"],
+    "ignoreWords": ["assertAccessible", "circleci", "CNCF", "doctoc", "SPDX", "tsdoc", "wcag", "wdio"],
     "ignoreRegExpList": ["ruleset"]
 }

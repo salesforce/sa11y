@@ -8,7 +8,8 @@
         { "path": "./packages/format" },
         { "path": "./packages/test-utils" },
         { "path": "./packages/assert" },
-        { "path": "./packages/jest" }
+        { "path": "./packages/jest" },
+        { "path": "./packages/wdio" }
     ],
     "exclude": ["**/node_modules"]
 }
