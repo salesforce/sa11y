@@ -2,7 +2,8 @@
     "extends": "../../tsconfig.common.json",
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "dist"
+        "outDir": "dist",
+        "types": ["node", "@wdio/sync", "@wdio/mocha-framework"]
     },
     "include": ["src"],
     "references": []
