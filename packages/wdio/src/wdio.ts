@@ -13,6 +13,10 @@ import { BrowserObject } from 'webdriverio';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export async function assertAccessible(driver: BrowserObject = browser, rules: A11yConfig = extended) {
+    // TODO (feat): Add as custom command https://webdriver.io/docs/customcommands.html
+    // TODO (refactor): Re-eval sync/async mode https://webdriver.io/docs/sync-vs-async.html
+    // TODO (refactor): Re-eval dependencies and check each one if it is necessary
+    //  - Move from dev dep to dep or peer dep
     // TODO (deduplicate): with @sa11y/assert
     let violations;
     try {

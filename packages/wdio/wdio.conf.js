@@ -144,6 +144,8 @@ exports.config = {
         ui: 'bdd',
         timeout: 60000,
     },
+    /* eslint-disable tsdoc/syntax */
+    // The "@param" lines in "Hooks" section trigger false tsdoc failures
     //
     // =====
     // Hooks
@@ -272,4 +274,5 @@ exports.config = {
      */
     //onReload: function(oldSessionId, newSessionId) {
     //}
+    /* eslint-enable tsdoc/syntax */
 };
