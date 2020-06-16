@@ -7,6 +7,7 @@
 
 import * as axe from 'axe-core';
 import { extended } from '@sa11y/preset-rules';
+import { assertAccessible } from '../src/wdio';
 
 // TODO (deduplicate): with test-utils -> test-data
 const noA11yIssuesHtml = `file:///${__dirname}/__data__/noA11yIssues.html`;
@@ -17,34 +18,32 @@ const a11yIssuesHtml = `file:///${__dirname}/__data__/a11yIssues.html`;
 // eslint-disable-next-line import/namespace
 const axeVersion = axe.version;
 
-function getViolations(htmlFilePath: string): axe.Result[] {
-    browser.url(htmlFilePath);
+async function getViolations(htmlFilePath: string): Promise<axe.Result[]> {
+    await browser.url(htmlFilePath);
 
     // inject the script
-    browser.execute(axe.source);
+    await browser.execute(axe.source);
 
     // run inside browser and get results
     const options = extended;
     // run inside browser and get results
-    const results = browser.executeAsync((options, done) => {
-        /* eslint-disable no-undef */
+    const results = await browser.executeAsync((options, done) => {
         axe.run(document, options, function (err: Error, results: axe.AxeResults) {
             if (err) throw err;
             done(results);
         });
     }, options);
-    /* eslint-enable no-undef */
 
     return results.violations;
 }
 
 describe('integration test axe with WebdriverIO', () => {
-    it('loads test page', () => {
+    it('should load test page', () => {
         browser.url(noA11yIssuesHtml);
         expect(browser).toHaveTitle('Test Page');
     });
 
-    it('injects axe', () => {
+    it('should inject axe', () => {
         browser.url(noA11yIssuesHtml);
 
         // inject axe
@@ -63,8 +62,16 @@ describe('integration test axe with WebdriverIO', () => {
         expect(version).toBe(axeVersion);
     });
 
-    it('gets violations', () => {
-        expect(getViolations(noA11yIssuesHtml)).toHaveLength(0);
-        expect(getViolations(a11yIssuesHtml)).toHaveLength(6);
+    it('should get violations', async () => {
+        expect(await getViolations(noA11yIssuesHtml)).toHaveLength(0);
+        expect(await getViolations(a11yIssuesHtml)).toHaveLength(6);
+    });
+});
+
+describe('integration test @sa11y/wdio with WebdriverIO', function () {
+    it('should throw no error for html with no a11y issues', async () => {
+        expect.assertions(1);
+        await browser.url(noA11yIssuesHtml);
+        await assertAccessible().catch((e) => expect(e).toBeUndefined());
     });
 });

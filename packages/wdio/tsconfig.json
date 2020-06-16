@@ -7,5 +7,5 @@
         "noEmitOnError": false
     },
     "include": ["src"],
-    "references": [{ "path": "../preset-rules" }]
+    "references": [{ "path": "../preset-rules" }, { "path": "../format" }, { "path": "../common" }]
 }
