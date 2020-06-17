@@ -27,7 +27,6 @@ async function getViolations(htmlFilePath: string): Promise<axe.Result[]> {
     // inject the script
     await browser.execute(axe.source);
 
-    // run inside browser and get results
     const options = extended;
     // run inside browser and get results
     const results = await browser.executeAsync((options, done) => {
