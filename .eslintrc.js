@@ -65,10 +65,5 @@ module.exports = {
         browser: true,
         node: true,
     },
-    globals: {
-        browser: false,
-        $: false,
-        $$: false,
-    },
     ignorePatterns: ['node_modules', 'dist', 'coverage'],
 };
