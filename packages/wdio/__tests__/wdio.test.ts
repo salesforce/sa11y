@@ -43,7 +43,7 @@ async function getViolations(htmlFilePath: string): Promise<axe.Result[]> {
 describe('integration test axe with WebdriverIO', () => {
     it('should load test page', () => {
         browser.url(noA11yIssuesHtml);
-        expect(browser).toHaveTitle('Test Page');
+        expect(browser.getTitle()).toBe('Test Page');
     });
 
     it('should inject axe', () => {

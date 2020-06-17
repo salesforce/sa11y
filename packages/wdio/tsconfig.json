@@ -3,7 +3,6 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist",
-        "types": ["node", "@wdio/sync", "@wdio/mocha-framework"],
         "noEmitOnError": false
     },
     "include": ["src"],

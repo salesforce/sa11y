@@ -24,7 +24,6 @@
         "test": "wdio run wdio.conf.js"
     },
     "devDependencies": {
-        "@types/mocha": "7.0.2",
         "@types/webdriverio": "5.0.0",
         "@wdio/cli": "6.1.17",
         "@wdio/local-runner": "^6.1.17",
