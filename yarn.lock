@@ -2506,7 +2506,7 @@
     loglevel-plugin-prefix "^0.8.4"
     strip-ansi "^6.0.0"
 
-"@wdio/mocha-framework@6.1.17", "@wdio/mocha-framework@^6.1.17":
+"@wdio/mocha-framework@6.1.17":
   version "6.1.17"
   resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-6.1.17.tgz#4a29821f08873a059fa84d818773074af346ac87"
   integrity sha512-ldrGcDezHuSy3PK7kQlEszt1bs5humCjMx3fsUq6pyO0A1BUnIYckQ8WDhL/JFZzAX+gX60J7D7jO5o+bI+HRA==
@@ -2558,7 +2558,7 @@
     easy-table "^1.1.1"
     pretty-ms "^7.0.0"
 
-"@wdio/sync@6.1.14", "@wdio/sync@^6.1.14":
+"@wdio/sync@6.1.14":
   version "6.1.14"
   resolved "https://registry.yarnpkg.com/@wdio/sync/-/sync-6.1.14.tgz#8c60564cc05aff455a11f360e817e309d4d154b6"
   integrity sha512-94K0kQdrOU0aMlJ2Xsd4tWr4tPpmCFp612Ml5+ecQh4C4XD07ocfsvGs+mwI7cfF1sO6g/Hoc+XTY2D+/8En3w==
@@ -11994,7 +11994,7 @@ webdriver@6.1.17:
     got "^11.0.2"
     lodash.merge "^4.6.1"
 
-webdriverio@*, webdriverio@6.1.17, webdriverio@^6.1.17:
+webdriverio@*, webdriverio@6.1.17:
   version "6.1.17"
   resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-6.1.17.tgz#83ae162299511c2ff06334d64a045d0014c1a8ce"
   integrity sha512-mkV7FRjloyFI45BzZUGU8kAfrJCZluif7iC2Xsq9dx8qMyG/k7jUaE+IyDYP0i39hwswSAzGqDj1iGIifkK17Q==
