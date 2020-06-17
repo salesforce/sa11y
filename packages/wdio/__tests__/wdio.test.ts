@@ -10,6 +10,7 @@ import { extended } from '@sa11y/preset-rules';
 import { assertAccessible } from '../src/wdio';
 import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
+// TODO (chore): setup browser tools with chrome driver in circle ci
 // TODO (deduplicate): with test-utils -> test-data
 const noA11yIssuesHtml = `file:///${__dirname}/__data__/noA11yIssues.html`;
 const a11yIssuesHtml = `file:///${__dirname}/__data__/a11yIssues.html`;
