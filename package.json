@@ -23,15 +23,22 @@
         "commit": "! git diff --cached --exit-code && lint-staged && git-cz",
         "install:clean": "lerna clean --yes; yarn install",
         "lint": "eslint . --ext ts,js,md",
-        "lint:all": "yarn lint && yarn lint:lockfile",
+        "lint:all": "yarn lint && yarn lint:lockfile && yarn lint:deps",
+        "lint:deps": "lerna exec depcheck",
         "lint:fix": "yarn lint --fix",
         "lint:lockfile": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
         "lint:staged": "lint-staged",
         "lint:watch": "esw --watch --changed --color --ext .js,.ts",
+        "pkg:list": "lerna list --long --all --toposort",
+        "pkg:deps": "yarn pkg:list --graph",
+        "release:publish": "yarn lerna publish from-package",
+        "release:version": "yarn lerna version --conventional-prerelease --no-push --no-git-tag-version",
+        "release:semantic": "semantic-release",
         "test": "jest --coverage",
-        "test:wdio": "yarn workspace @sa11y/wdio test",
         "test:ci": "yarn lint:all && yarn test --ci && yarn test:wdio",
+        "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "yarn test --watch",
+        "test:wdio": "yarn workspace @sa11y/wdio test",
         "update": "ncu; lerna exec ncu; yarn install; yarn upgrade; yarn audit; yarn outdated"
     },
     "config": {
@@ -41,9 +48,10 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged",
             "commit-msg": "commitlint -e $GIT_PARAMS",
-            "pre-push": "yarn build:clean && yarn test:ci"
+            "pre-commit": "lint-staged",
+            "pre-push": "yarn build:clean && yarn test:ci",
+            "post-checkout": "yarn install"
         }
     },
     "lint-staged": {
@@ -64,6 +72,9 @@
         "@babel/preset-typescript": "^7.9.0",
         "@commitlint/cli": "^8.3.5",
         "@commitlint/config-conventional": "^8.3.4",
+        "@semantic-release/changelog": "^5.0.1",
+        "@semantic-release/git": "^9.0.0",
+        "@semantic-release/github": "^7.0.7",
         "@types/jest": "^25.2.2",
         "@types/node": "^12.12.31",
         "@typescript-eslint/eslint-plugin": "^2.33.0",
@@ -72,6 +83,7 @@
         "commitizen": "^4.1.2",
         "conventional-changelog-cli": "^2.0.34",
         "cspell": "^4.0.61",
+        "depcheck": "^0.9.2",
         "doctoc": "^1.4.0",
         "eslint": "^7.0.0",
         "eslint-config-prettier": "^6.11.0",
@@ -94,6 +106,7 @@
         "npm-check-updates": "^5.0.0",
         "prettier": "2.0.5",
         "rimraf": "^3.0.2",
+        "semantic-release": "^17.0.8",
         "typescript": "^3.9.2"
     },
     "engines": {
