@@ -1,4 +1,4 @@
-# `format`
+# `@sa11y/format`
 
 Format accessibility results from axe
 

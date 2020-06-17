@@ -1,4 +1,4 @@
-# `assert`
+# `@sa11y/assert`
 
 Provides assertAccessible API to check DOM for accessibility issues
 

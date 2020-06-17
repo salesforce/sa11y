@@ -8,10 +8,10 @@ Accessibility preset rule configs for axe
 
 - [Usage](#usage)
 - [Ruleset Mapping](#ruleset-mapping)
-	- [WCAG 2.0 Level A & AA Rules](#wcag-20-level-a--aa-rules)
-	- [WCAG 2.1 Level A & AA Rules](#wcag-21-level-a--aa-rules)
-	- [Best Practices Rules](#best-practices-rules)
-	- [Experimental Rules](#experimental-rules)
+  - [WCAG 2.0 Level A & AA Rules](#wcag-20-level-a--aa-rules)
+  - [WCAG 2.1 Level A & AA Rules](#wcag-21-level-a--aa-rules)
+  - [Best Practices Rules](#best-practices-rules)
+  - [Experimental Rules](#experimental-rules)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -29,7 +29,7 @@ console.log(a11yResults);
 
 @sa11y/preset-rules provides two pre-configured rulesets curated from axe: Recommended and Extended.
 
-Below is the full set of rules from [axe's rule descriptions](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md) and their current mapping to the Recommended and Extended rulesets in @sa11y/preset-rules.
+Below is the full set of rules from [axe rule descriptions](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md) and their current mapping to the Recommended and Extended rulesets in @sa11y/preset-rules.
 
 
 ### WCAG 2.0 Level A & AA Rules

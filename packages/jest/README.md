@@ -1,4 +1,4 @@
-# `jest`
+# `@sa11y/jest`
 
 Accessibility matcher for [Jest](https://jestjs.io)
 
@@ -6,6 +6,7 @@ Accessibility matcher for [Jest](https://jestjs.io)
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [Overview](#overview)
 - [Install](#install)
 - [Setup](#setup)
   - [Project level](#project-level)
@@ -14,7 +15,8 @@ Accessibility matcher for [Jest](https://jestjs.io)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-##Overview
+## Overview
+
 The `toBeAccessible()` API from this library can be used in Jest unit tests to test HTML elements or DOM for accessibility.
 
 ## Install
