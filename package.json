@@ -35,7 +35,6 @@
         "release:version": "yarn lerna version --conventional-prerelease --no-push --no-git-tag-version",
         "release:semantic": "semantic-release",
         "test": "jest --coverage",
-        "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:ci": "yarn lint:all && yarn test --ci && yarn test:wdio",
         "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "yarn test --watch",
