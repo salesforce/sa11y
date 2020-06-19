@@ -3243,7 +3243,7 @@ aws4@^1.8.0:
 
 axe-core@3.5.5:
   version "3.5.5"
-  resolved "https://nexus.soma.salesforce.com/nexus/content/groups/npm-all/axe-core/-/axe-core-3.5.5.tgz#84315073b53fa3c0c51676c588d59da09a192227"
+  resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.5.5.tgz#84315073b53fa3c0c51676c588d59da09a192227"
   integrity sha512-5P0QZ6J5xGikH780pghEdbEKijCTrruK9KxtPZCFWUpef0f6GipO+xEZ5GKCb020mmqgbiNO6TcA55CriL784Q==
 
 axios@^0.19.2:
