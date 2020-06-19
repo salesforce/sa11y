@@ -125,15 +125,17 @@ Your test should now be running in the Chrome debugger. You get your handy conso
 
 ## Release
 
--   Cleanup `CHANGELOG` to remove references to squashed commits and replace them with references to corresponding PRs where possible
+-   Generate Changelog
+    -   `yarn changelog`
+    -   Cleanup `CHANGELOG` to remove references to squashed commits and replace them with references to corresponding PRs where possible
 -   `yarn release:version` to bump versions
 -   To publish packages to npm
     -   `npm login`
     -   `yarn release:publish`
--   Use `GH_TOKEN=<token> yarn release:semantic` to create a release in github
-    -   where `GH_TOKEN` is the [Github personal access token](https://github.com/semantic-release/github#github-authentication) created with `repo` permission
-    -   Update release notes to reflect Changelog
-    -   Add `--dry-run --debug` to simulate
+-   Create a release in github
+    -   Bump `version` in root `package.json` to reflect the changes to the packages since last release
+        -   Use that root `version` for the github release
+    -   Add release notes to reflect Changelog since last release
 -   If you couldn't make these changes in the last PR that went into master, you can make a separate PR for release
     -   Create a `release` branch from `master`
     -   Commit changes to versions, changelog
