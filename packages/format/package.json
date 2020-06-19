@@ -22,8 +22,10 @@
     "files": [
         "dist/**/*.js"
     ],
+    "dependencies": {
+        "axe-core": "3.5.5"
+    },
     "devDependencies": {
-        "@sa11y/test-utils": "0.1.1-alpha",
-        "axe-core": "^3.5.4"
+        "@sa11y/test-utils": "0.1.1-alpha"
     }
 }

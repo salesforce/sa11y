@@ -20,6 +20,6 @@
         "dist/**/*.js"
     ],
     "devDependencies": {
-        "axe-core": "^3.5.4"
+        "axe-core": "3.5.5"
     }
 }
