@@ -21,7 +21,8 @@
         "dist/**/*.js"
     ],
     "scripts": {
-        "test": "wdio run wdio.conf.js"
+        "test": "wdio run wdio.conf.js",
+        "test:watch": "yarn test --watch"
     },
     "dependencies": {
         "@sa11y/common": "0.1.0-alpha",

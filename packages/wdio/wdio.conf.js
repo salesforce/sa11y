@@ -27,10 +27,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: ['__tests__/**/*.ts'],
-    // Patterns to exclude.
-    exclude: [
-        // 'path/to/excluded/files'
-    ],
+    filesToWatch: ['./src/**/*.ts'],
     //
     // ============
     // Capabilities
