@@ -31,6 +31,7 @@
         "jest": "^26.0.1"
     },
     "devDependencies": {
+        "@sa11y/common": "0.1.0-alpha",
         "@sa11y/test-utils": "0.1.1-alpha"
     }
 }
