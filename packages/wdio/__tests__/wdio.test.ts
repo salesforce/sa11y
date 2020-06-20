@@ -10,7 +10,6 @@ import { extended } from '@sa11y/preset-rules';
 import { assertAccessible } from '../src/wdio';
 import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
-// TODO (chore): setup browser tools with chrome driver in circle ci
 // TODO (deduplicate): with test-utils -> test-data
 const noA11yIssuesHtml = `file:///${__dirname}/__data__/noA11yIssues.html`;
 const a11yIssuesHtml = `file:///${__dirname}/__data__/a11yIssues.html`;
@@ -78,11 +77,11 @@ describe('integration test @sa11y/wdio with WebdriverIO', function () {
     });
 
     it('should throw error for html with a11y issues', async () => {
-        expect.assertions(1);
+        // TODO (debug): setting expected number of assertions doesn't seem to be working correctly in mocha
+        expect.assertions(100);
         await browser.url(a11yIssuesHtml);
         await assertAccessible().catch((e) => {
             // TODO (test): Add this test to @sa11y/test-integration package
-            // TODO (refactor): Explore if snapshot feature is available as a package (for mocha) without jest
             expect(e).toBeDefined();
             expect(e.toString()).not.toContain(axeRuntimeExceptionMsgPrefix);
             expect(e.toString()).toContain(`${numA11yIssues} accessibility issues found`);
