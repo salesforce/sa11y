@@ -92,7 +92,7 @@ export class A11yError extends Error {
      */
     format(options: Options = {}): string {
         options = { ...DefaultOptions, ...options };
-        if (options.formatter) {
+        if (options.formatter !== undefined) {
             return options.formatter(this.violations);
         }
 
