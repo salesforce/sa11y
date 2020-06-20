@@ -47,9 +47,10 @@ describe('toBeAccessible jest a11y matcher', () => {
 
     it.each(a11yConfigParams)('should throw error for dom with a11y issues with config: %#', async (config) => {
         document.body.innerHTML = domWithA11yIssues;
-        expect.assertions(5);
+        expect.assertions(6);
         // using the 'not' matcher just for testing, not expecting this to be used out of the unit testing context
         await expect(document).not.toBeAccessible(config);
+        await expect(document.getElementById(domWithA11yIssuesBodyID)).not.toBeAccessible();
         // using without the 'not' matcher which should be the primary way the API is used (without error catching)
         await expect(document)
             .toBeAccessible(config)

@@ -40,7 +40,10 @@ export async function toBeAccessible(
     config: A11yConfig = extended
 ): Promise<jest.CustomMatcherResult> {
     let isAccessible = true;
-    let a11yError: A11yError;
+    // a11yError can be 'undefined' when used with `not` matcher and there is no error
+    // TODO (refactor): Is there a better way to handle this?
+    //  Is it worth handling the `not` matcher for toBeAccessible which is not expected to be used outside tests in this lib
+    let a11yError: A11yError | undefined;
     let receivedMsg = expectedMsg;
 
     // TODO (Improvement): Can we detect if this is invoked async and error if not ?
@@ -60,8 +63,8 @@ export async function toBeAccessible(
         pass: isAccessible,
         message: (): string =>
             matcherHint(
-                `${toBeAccessible.name}: ${matcherHintMsg} ${receivedMsg}: \n\n ${a11yError.format(FormatOptions)}`,
-                `${a11yError.length} issues`,
+                `${toBeAccessible.name}: ${matcherHintMsg} ${receivedMsg}: \n\n ${a11yError?.format(FormatOptions)}`,
+                `${a11yError?.length} issues`,
                 expectedMsg
             ),
     };
