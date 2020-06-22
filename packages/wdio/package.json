@@ -31,13 +31,13 @@
         "axe-core": "3.5.5"
     },
     "peerDependencies": {
-        "webdriverio": "6.1.17"
+        "webdriverio": "6.1.20"
     },
     "devDependencies": {
         "@types/webdriverio": "5.0.0",
-        "@wdio/cli": "6.1.17",
-        "@wdio/local-runner": "^6.1.17",
-        "@wdio/mocha-framework": "6.1.17",
+        "@wdio/cli": "6.1.20",
+        "@wdio/local-runner": "^6.1.20",
+        "@wdio/mocha-framework": "6.1.19",
         "@wdio/spec-reporter": "^6.1.14",
         "@wdio/sync": "6.1.14",
         "chromedriver": "^83.0.0",
