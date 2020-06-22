@@ -36,10 +36,11 @@
         "release:version": "yarn lerna version --conventional-prerelease --no-push --no-git-tag-version",
         "test": "jest --coverage",
         "test:ci": "yarn lint:all && yarn test --ci && yarn test:wdio",
+        "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "yarn test --watch",
         "test:wdio": "yarn workspace @sa11y/wdio test",
-        "update": "ncu; lerna exec ncu; yarn install; yarn upgrade; yarn audit; yarn outdated"
+        "update": "ncu; lerna exec ncu --filter axe-core --removeRange; lerna exec ncu --reject axe-core; yarn install; yarn upgrade; yarn audit; yarn outdated"
     },
     "config": {
         "commitizen": {
@@ -50,7 +51,7 @@
         "hooks": {
             "commit-msg": "commitlint -e $GIT_PARAMS",
             "pre-commit": "lint-staged",
-            "pre-push": "yarn build:clean && yarn test:ci",
+            "pre-push": "yarn test:clean",
             "post-checkout": "yarn install"
         }
     },
