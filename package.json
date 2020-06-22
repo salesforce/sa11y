@@ -1,5 +1,5 @@
 {
-    "name": "root",
+    "name": "sa11y-monorepo",
     "version": "0.1.0-alpha",
     "private": true,
     "description": "Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)",
@@ -40,7 +40,7 @@
         "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "yarn test --watch",
         "test:wdio": "yarn workspace @sa11y/wdio test",
-        "update": "ncu; lerna exec ncu --filter axe-core --removeRange; lerna exec ncu --reject axe-core; yarn install; yarn upgrade; yarn audit; yarn outdated"
+        "update": "yarn audit; yarn upgrade-interactive --latest && yarn test:clean"
     },
     "config": {
         "commitizen": {
@@ -89,7 +89,6 @@
         "lint-staged": "^10.2.2",
         "lockfile-lint": "^4.3.4",
         "markdown-link-check": "^3.8.1",
-        "npm-check-updates": "^5.0.0",
         "prettier": "^2.0.5",
         "rimraf": "^3.0.2",
         "typescript": "^3.9.2"
