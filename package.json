@@ -33,7 +33,7 @@
         "pkg:list": "lerna list --long --all --toposort",
         "pkg:deps": "yarn pkg:list --graph",
         "release:publish": "yarn lerna publish from-package",
-        "release:version": "yarn lerna version --conventional-prerelease --no-push --no-git-tag-version",
+        "release:version": "yarn lerna version --conventional-commits --no-push --no-git-tag-version",
         "test": "jest --coverage",
         "test:ci": "yarn lint:all && yarn test --ci && yarn test:wdio",
         "test:clean": "yarn build:clean && yarn test:ci",
