@@ -53,7 +53,7 @@ Before you start, it helps to be familiar with [Web Accessibility](https://trail
 -   `yarn test:watch`
 -   `yarn lint:watch`
 
-3. Update changelog with `yarn changelog`
+3. Update changelog with `yarn release:changelog`
 4. Stage changes in git and do `yarn commit` to check staged changes and commit them with a formatted commit message
 5. Push changes to feature branch
 
@@ -126,9 +126,10 @@ Your test should now be running in the Chrome debugger. You get your handy conso
 ## Release
 
 -   Generate Changelog
-    -   `yarn changelog`
+    -   `yarn release:changelog`
     -   Cleanup `CHANGELOG` to remove references to squashed commits and replace them with references to corresponding PRs where possible
--   `yarn release:version` to bump versions
+-   `yarn release:version` to bump versions interactively
+    -   `yarn release:version:auto` to automatically determine version bump based on commits
 -   To publish packages to npm
     -   `npm login`
     -   `yarn release:publish`
