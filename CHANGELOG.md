@@ -1,22 +1,38 @@
+# Changelog
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [(2020-06-02)](#2020-06-02)
+- [(2020-06-25)](#2020-06-25)
     - [Features](#features)
-- [(2020-05-29)](#2020-05-29)
-    - [Features](#features-1)
-- [(2020-05-07)](#2020-05-07)
     - [Bug Fixes](#bug-fixes)
+- [(2020-06-02)](#2020-06-02)
+    - [Features](#features-1)
+- [(2020-05-29)](#2020-05-29)
     - [Features](#features-2)
-- [(2020-04-07)](#2020-04-07)
+- [(2020-05-07)](#2020-05-07)
     - [Bug Fixes](#bug-fixes-1)
     - [Features](#features-3)
-- [(2020-03-20)](#2020-03-20)
+- [(2020-04-07)](#2020-04-07)
     - [Bug Fixes](#bug-fixes-2)
     - [Features](#features-4)
+- [(2020-03-20)](#2020-03-20)
+    - [Bug Fixes](#bug-fixes-3)
+    - [Features](#features-5)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# (2020-06-25)
+
+### Features
+
+-   **wdio:** add assert accessible API for WDIO ([#21](https://github.com/salesforce/sa11y/pull/21))
+
+### Bug Fixes
+
+-   **format:** check explicitly for undefined to allow custom formatter ([#21](https://github.com/salesforce/sa11y/pull/21))
+-   **jest:** fix a11y error being undefined when used with not matcher ([#21](https://github.com/salesforce/sa11y/pull/21)), closes [#18](https://github.com/salesforce/sa11y/issues/18)
 
 # (2020-06-02)
 
