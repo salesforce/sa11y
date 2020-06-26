@@ -73,19 +73,14 @@ export class A11yError extends Error {
     constructor(readonly violations: Result[]) {
         super(`${violations.length} accessibility issues found`);
         this.name = A11yError.name;
+        // TODO (refactor): Is there a way to de-dup the error summary passed to constructor ?
+        this.message = `${violations.length} accessibility issues found\n ${this.format()}`;
     }
 
     static checkAndThrow(violations: Result[]): void {
         if (violations.length > 0) {
             throw new A11yError(violations);
         }
-    }
-
-    get message(): string {
-        // TODO (debug): Why is this not used (in code cov) even when A11yError.message is called ?
-        //  Looks like the super().message is invoked
-        /* istanbul ignore next */
-        return this.format();
     }
 
     get length(): number {
