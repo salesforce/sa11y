@@ -35,4 +35,4 @@ const rules = [
     'region',
 ];
 
-export const extended = getA11yConfig(rules);
+export const recommended = getA11yConfig(rules);

@@ -6,7 +6,7 @@
  */
 
 import { registerSa11yMatcher, toBeAccessible } from '../src';
-import { base, extended, getA11yConfig } from '@sa11y/preset-rules';
+import { base, recommended, getA11yConfig } from '@sa11y/preset-rules';
 import {
     beforeEachSetup,
     cartesianProduct,
@@ -20,7 +20,7 @@ import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 import { A11yError } from '@sa11y/format';
 
 // Collection of values to be tested passed in as different API parameters
-const a11yConfigParams = [extended, base, undefined];
+const a11yConfigParams = [recommended, base, undefined];
 const domParams = [document, undefined];
 const domConfigParams = cartesianProduct(domParams, a11yConfigParams);
 

@@ -9,7 +9,7 @@ import { matcherHint, printReceived } from 'jest-matcher-utils';
 import { adaptA11yConfig } from './setup';
 import { a11yCheckableContext, assertAccessible } from '@sa11y/assert';
 import { A11yError, Options } from '@sa11y/format';
-import { A11yConfig, extended } from '@sa11y/preset-rules';
+import { A11yConfig, recommended } from '@sa11y/preset-rules';
 
 // Type def for custom jest a11y matchers
 // Ref: https://jestjs.io/docs/en/expect.html#expectextendmatchers
@@ -33,11 +33,11 @@ const FormatOptions: Options = {
 /**
  * Jest expect matcher to check DOM for accessibility issues
  * @param received - DOM or HTML Element to be tested for accessibility. Defaults to current DOM.
- * @param config - A11yConfig to be used to test for accessibility. Defaults to extended.
+ * @param config - A11yConfig to be used to test for accessibility. Defaults to recommended.
  */
 export async function toBeAccessible(
     received: a11yCheckableContext = document,
-    config: A11yConfig = extended
+    config: A11yConfig = recommended
 ): Promise<jest.CustomMatcherResult> {
     let isAccessible = true;
     // a11yError can be 'undefined' when used with `not` matcher and there is no error

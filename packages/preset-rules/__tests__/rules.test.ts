@@ -6,7 +6,7 @@
  */
 
 import * as axe from 'axe-core';
-import { extended, base } from '../src';
+import { recommended, base } from '../src';
 
 /**
  * TODO:
@@ -32,22 +32,22 @@ describe('preset-rules', () => {
     ];
     const axeRules = axe.getRules().map((ruleObj) => ruleObj.ruleId);
 
-    it('base ruleset should be a subset of extended', () => {
-        expect(extended.runOnly.values).toEqual(expect.arrayContaining(base.runOnly.values));
+    it('base ruleset should be a subset of recommended', () => {
+        expect(recommended.runOnly.values).toEqual(expect.arrayContaining(base.runOnly.values));
         // TODO (debug): Why is this failing?
-        // expect(extended).toEqual(expect.objectContaining(base));
+        // expect(recommended).toEqual(expect.objectContaining(base));
     });
 
     it('should not contain excluded, deprecated rules', () => {
-        expect(extended.runOnly.values).toEqual(expect.not.arrayContaining(excludedRules));
+        expect(recommended.runOnly.values).toEqual(expect.not.arrayContaining(excludedRules));
     });
 
     it('should match with the rules present in axe', () => {
-        expect(axeRules).toEqual(expect.arrayContaining(extended.runOnly.values));
+        expect(axeRules).toEqual(expect.arrayContaining(recommended.runOnly.values));
     });
 
     it('should not use only the excluded, deprecated rules from axe', () => {
-        const unusedRules = axeRules.filter((rule) => !extended.runOnly.values.includes(rule));
+        const unusedRules = axeRules.filter((rule) => !recommended.runOnly.values.includes(rule));
         expect(unusedRules.sort()).toEqual(excludedRules.sort());
     });
 });

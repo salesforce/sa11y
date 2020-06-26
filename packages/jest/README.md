@@ -82,7 +82,7 @@ it('should be accessible', async () => {
     // Setup DOM to be tested for accessibility
     //...
 
-    // assert that DOM is accessible (using extended preset-rule)
+    // assert that DOM is accessible (using recommended preset-rule)
     await expect(document).toBeAccessible();
 
     // Can be used to test accessibility of a specific HTML element

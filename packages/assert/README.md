@@ -21,7 +21,7 @@ import { recommended } from '@sa11y/preset-rules';
 // Assert that the current dom has no a11y issues
 // Defaults to using
 //  - default document context e.g. JSDOM in Jest
-//  - extended ruleset from @sa11y/preset-rules and
+//  - recommended ruleset from @sa11y/preset-rules and
 //  - a11yResultsFormatter from @sa11y/format
 await assertAccessible();
 
