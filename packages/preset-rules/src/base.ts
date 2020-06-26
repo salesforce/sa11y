@@ -66,4 +66,4 @@ const rules = [
     'video-caption',
 ];
 
-export const recommended = getA11yConfig(rules);
+export const base = getA11yConfig(rules);

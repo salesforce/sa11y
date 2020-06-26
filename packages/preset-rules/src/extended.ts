@@ -6,10 +6,10 @@
  */
 
 import { getA11yConfig } from './a11yConfig';
-import { recommended } from './recommended';
+import { base } from './base';
 
 const rules = [
-    ...recommended.runOnly.values,
+    ...base.runOnly.values,
     'accesskeys',
     'aria-allowed-role',
     'avoid-inline-spacing',

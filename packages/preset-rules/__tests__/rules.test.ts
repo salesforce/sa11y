@@ -6,7 +6,7 @@
  */
 
 import * as axe from 'axe-core';
-import { extended, recommended } from '../src';
+import { extended, base } from '../src';
 
 /**
  * TODO:
@@ -32,10 +32,10 @@ describe('preset-rules', () => {
     ];
     const axeRules = axe.getRules().map((ruleObj) => ruleObj.ruleId);
 
-    it('recommended ruleset should be a subset of extended', () => {
-        expect(extended.runOnly.values).toEqual(expect.arrayContaining(recommended.runOnly.values));
+    it('base ruleset should be a subset of extended', () => {
+        expect(extended.runOnly.values).toEqual(expect.arrayContaining(base.runOnly.values));
         // TODO (debug): Why is this failing?
-        // expect(extended).toEqual(expect.objectContaining(recommended));
+        // expect(extended).toEqual(expect.objectContaining(base));
     });
 
     it('should not contain excluded, deprecated rules', () => {

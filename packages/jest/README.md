@@ -71,7 +71,7 @@ beforeAll(() => {
 -   `toBeAccessible` can either be invoked on the entire `document` (JSDOM) or on a specific HTML element to check for accessibility
 
 ```javascript
-import { recommended } from '@sa11y/preset-rules';
+import { base } from '@sa11y/preset-rules';
 import { registerSa11yMatcher } from '@sa11y/jest';
 
 beforeAll(() => {
@@ -89,8 +89,8 @@ it('should be accessible', async () => {
     const elem = document.getElementById('foo');
     await expect(elem).toBeAccessible();
 
-    // If you have any a11y issues from the default extended preset-rule that you can't fix for now,
-    //  you can use the recommended preset-rule
-    await expect(document).toBeAccessible(recommended);
+    // If you have any a11y issues from the default recommended preset-rule
+    //  that you can't fix for now, you can use the base preset-rule
+    await expect(document).toBeAccessible(base);
 });
 ```
