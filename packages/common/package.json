@@ -13,5 +13,8 @@
     "types": "dist/index.d.ts",
     "files": [
         "dist/**/*.js"
-    ]
+    ],
+    "dependencies": {
+        "axe-core": "3.5.5"
+    }
 }
