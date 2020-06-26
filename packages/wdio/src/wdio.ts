@@ -47,6 +47,9 @@ export async function loadAxe(driver: BrowserObject): Promise<void> {
     }
 }
 
+/**
+ * Load and run axe in given WDIO instance and return the accessibility violations found.
+ */
 export async function runAxe(driver: BrowserObject, rules: A11yConfig = extended): Promise<axe.Result[]> {
     await loadAxe(driver);
 
@@ -59,14 +62,15 @@ export async function runAxe(driver: BrowserObject, rules: A11yConfig = extended
     }, rules);
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export async function assertAccessible(driver: BrowserObject = browser, rules: A11yConfig = extended) {
+/**
+ * Verify that the currently loaded page in the browser is accessible.
+ * Throw an error with the accessibility issues found if it is not accessible.
+ * @param driver - WDIO instance navigated to page to be checked
+ * @param rules - a11y preset-rules to be used for checking accessibility
+ */
+export async function assertAccessible(driver: BrowserObject = browser, rules: A11yConfig = extended): Promise<void> {
     // TODO (feat): Add as custom commands to both browser for page level and elem
     //      https://webdriver.io/docs/customcommands.html
-    // TODO (refactor): Re-eval sync/async mode https://webdriver.io/docs/sync-vs-async.html
-    // TODO (refactor): Re-eval dependencies and check each one if it is necessary
-    //  - Move from dev dep to dep or peer dep
     const violations = await getViolations(() => runAxe(driver, rules));
-
     A11yError.checkAndThrow(violations);
 }

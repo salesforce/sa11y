@@ -23,15 +23,15 @@ async function getViolationsHtml(htmlFilePath: string): Promise<axe.Result[]> {
 }
 
 describe('integration test axe with WebdriverIO', () => {
-    it('should load test page', () => {
-        browser.url(noA11yIssuesHtml);
-        expect(browser.getTitle()).toBe('Test Page');
+    it('should load test page', async () => {
+        await browser.url(noA11yIssuesHtml);
+        expect(await browser.getTitle()).toBe('Test Page');
     });
 
     it('should inject axe', async () => {
         await browser.url(noA11yIssuesHtml);
 
-        // Before loading axe, get version should return undefined
+        // Before loading axe, get version should not be defined
         expect(await getAxeVersion(browser)).toBeFalsy();
         expect(axe.source.length).toBeGreaterThan(0);
         await loadAxe(browser);
@@ -55,10 +55,10 @@ describe('integration test @sa11y/wdio with WebdriverIO', function () {
 
     it('should throw error for html with a11y issues', async () => {
         // TODO (debug): setting expected number of assertions doesn't seem to be working correctly in mocha
-        expect.assertions(100);
+        // expect.assertions(100); // still passes ???
         await browser.url(a11yIssuesHtml);
         await assertAccessible().catch((e) => {
-            // TODO (test): Add this test to @sa11y/test-integration package
+            // TODO (test): Add this test to @sa11y/test-integration package ?
             expect(e).toBeDefined();
             expect(e.toString()).not.toContain(axeRuntimeExceptionMsgPrefix);
             expect(e.toString()).toContain(`${numA11yIssues} accessibility issues found`);
