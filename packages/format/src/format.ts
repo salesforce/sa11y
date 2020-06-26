@@ -75,6 +75,12 @@ export class A11yError extends Error {
         this.name = A11yError.name;
     }
 
+    static checkAndThrow(violations: Result[]): void {
+        if (violations.length > 0) {
+            throw new A11yError(violations);
+        }
+    }
+
     get message(): string {
         // TODO (debug): Why is this not used (in code cov) even when A11yError.message is called ?
         //  Looks like the super().message is invoked

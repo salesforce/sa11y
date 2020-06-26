@@ -52,4 +52,14 @@ describe('a11y Results Formatter', () => {
         expect(a11yIssues[4].impact).toBeUndefined();
         expect(a11yIssues[5].impact).toEqual('minor');
     });
+
+    it('should throw error when violations are present', async () => {
+        const a11yError = await getA11yError(domWithA11yIssues);
+        expect(() => A11yError.checkAndThrow(a11yError.violations)).toThrowErrorMatchingSnapshot();
+    });
+
+    it('should not throw error when no violations are present', async () => {
+        const a11yError = await getA11yError(domWithNoA11yIssues);
+        expect(() => A11yError.checkAndThrow(a11yError.violations)).not.toThrow();
+    });
 });

@@ -6,36 +6,20 @@
  */
 
 import * as axe from 'axe-core';
-import { extended } from '@sa11y/preset-rules';
-import { assertAccessible } from '../src/wdio';
+import { assertAccessible, axeVersion, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
 import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
 // TODO (deduplicate): with test-utils -> test-data
 const noA11yIssuesHtml = `file:///${__dirname}/__data__/noA11yIssues.html`;
 const a11yIssuesHtml = `file:///${__dirname}/__data__/a11yIssues.html`;
 const numA11yIssues = 6;
-// TODO (refactor): Find a way to declare version into axe namespace
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-// eslint-disable-next-line import/namespace
-const axeVersion = axe.version;
 
-async function getViolations(htmlFilePath: string): Promise<axe.Result[]> {
+/**
+ * Test util function to get violations from given html file
+ */
+async function getViolationsHtml(htmlFilePath: string): Promise<axe.Result[]> {
     await browser.url(htmlFilePath);
-
-    // inject the script
-    await browser.execute(axe.source);
-
-    const options = extended;
-    // run inside browser and get results
-    const results = await browser.executeAsync((options, done) => {
-        axe.run(document, options, function (err: Error, results: axe.AxeResults) {
-            if (err) throw err;
-            done(results);
-        });
-    }, options);
-
-    return results.violations;
+    return runAxe(browser);
 }
 
 describe('integration test axe with WebdriverIO', () => {
@@ -44,28 +28,21 @@ describe('integration test axe with WebdriverIO', () => {
         expect(browser.getTitle()).toBe('Test Page');
     });
 
-    it('should inject axe', () => {
-        browser.url(noA11yIssuesHtml);
+    it('should inject axe', async () => {
+        await browser.url(noA11yIssuesHtml);
 
-        // inject axe
+        // Before loading axe, get version should return undefined
+        expect(await getAxeVersion(browser)).toBeFalsy();
         expect(axe.source.length).toBeGreaterThan(0);
-        browser.execute(axe.source);
+        await loadAxe(browser);
 
-        // run inside browser and get version
-        const version = browser.executeAsync((done) => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
-            // eslint-disable-next-line import/namespace
-            done(axe.version);
-        });
-
-        // verify the version of axe injected into DOM
-        expect(version).toBe(axeVersion);
+        // After loading axe, get version should work as expected
+        expect(await getAxeVersion(browser)).toBe(axeVersion);
     });
 
     it('should get violations', async () => {
-        expect(await getViolations(noA11yIssuesHtml)).toHaveLength(0);
-        expect(await getViolations(a11yIssuesHtml)).toHaveLength(numA11yIssues);
+        expect(await getViolationsHtml(noA11yIssuesHtml)).toHaveLength(0);
+        expect(await getViolationsHtml(a11yIssuesHtml)).toHaveLength(numA11yIssues);
     });
 });
 

@@ -96,3 +96,5 @@ exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 * (page-has-heading-one) Page must contain a level-one heading: html
 	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
 `;
+
+exports[`a11y Results Formatter should throw error when violations are present 1`] = `"5 accessibility issues found"`;
