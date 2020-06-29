@@ -19,7 +19,7 @@
     "files": [
         "dist/**/*.js"
     ],
-    "devDependencies": {
+    "dependencies": {
         "axe-core": "3.5.5"
     }
 }

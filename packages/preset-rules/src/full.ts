@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+import { getA11yConfig } from './a11yConfig';
+import * as axe from 'axe-core';
 
-export { getA11yConfig, A11yConfig } from './a11yConfig';
-export { recommended } from './recommended';
-export { base } from './base';
-export { full } from './full';
+export const full = getA11yConfig(axe.getRules().map((ruleObj) => ruleObj.ruleId));

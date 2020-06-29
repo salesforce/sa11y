@@ -62,9 +62,9 @@ This repo contains the following packages
 
 ### [Preset accessibility rules](./packages/preset-rules/README.md)
 
--   Provides Base, Recommended accessibility preset rules as [axe](https://github.com/dequelabs/axe-core) configuration
+-   Provides Base, Recommended, Full accessibility preset rules as [axe](https://github.com/dequelabs/axe-core) configuration
 -   The Recommended preset rule is used by default in the Jest a11y matcher and assert Accessible APIs
-    -   The APIs can be overridden to use the Base ruleset if necessary
+    -   The APIs can be overridden to use the Base or Full ruleset as necessary
 
 ### Internal packages
 

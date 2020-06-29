@@ -27,9 +27,10 @@ console.log(a11yResults);
 
 ## Ruleset Mapping
 
-@sa11y/preset-rules provides two pre-configured rulesets curated from axe: Base and Recommended.
+@sa11y/preset-rules provides two pre-configured rulesets curated from axe: Base, Recommended and Full.
 
-Below is the full set of rules from [axe rule descriptions](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md) and their current mapping to the Base and Recommended rulesets in @sa11y/preset-rules.
+-   Below is the full set of rules from [axe rule descriptions](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md) and their current mapping to the Base and Recommended rulesets in @sa11y/preset-rules.
+-   Full ruleset would be all rules that are enabled by default in axe.
 
 ### WCAG 2.0 Level A & AA Rules
 
