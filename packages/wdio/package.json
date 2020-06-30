@@ -25,9 +25,9 @@
         "test:watch": "yarn test --watch"
     },
     "dependencies": {
-        "@sa11y/common": "0.1.0-alpha",
-        "@sa11y/format": "0.2.0-alpha",
-        "@sa11y/preset-rules": "0.1.3-alpha",
+        "@sa11y/common": "0.2.0-beta.0",
+        "@sa11y/format": "0.2.1-beta.0",
+        "@sa11y/preset-rules": "0.2.0-beta.0",
         "axe-core": "3.5.5"
     },
     "peerDependencies": {
