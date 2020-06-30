@@ -8,10 +8,8 @@
 import * as axe from 'axe-core';
 import { assertAccessible, axeVersion, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
 import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
+import { htmlFileWithA11yIssues, htmlFileWithNoA11yIssues } from '@sa11y/test-utils';
 
-// TODO (deduplicate): with test-utils -> test-data
-const noA11yIssuesHtml = `file:///${__dirname}/__data__/noA11yIssues.html`;
-const a11yIssuesHtml = `file:///${__dirname}/__data__/a11yIssues.html`;
 const numA11yIssues = 6;
 
 /**
@@ -24,12 +22,12 @@ async function getViolationsHtml(htmlFilePath: string): Promise<axe.Result[]> {
 
 describe('integration test axe with WebdriverIO', () => {
     it('should load test page', async () => {
-        await browser.url(noA11yIssuesHtml);
+        await browser.url(htmlFileWithNoA11yIssues);
         expect(await browser.getTitle()).toBe('Test Page');
     });
 
     it('should inject axe', async () => {
-        await browser.url(noA11yIssuesHtml);
+        await browser.url(htmlFileWithNoA11yIssues);
 
         // Before loading axe, get version should not be defined
         expect(await getAxeVersion(browser)).toBeFalsy();
@@ -41,22 +39,22 @@ describe('integration test axe with WebdriverIO', () => {
     });
 
     it('should get violations', async () => {
-        expect(await getViolationsHtml(noA11yIssuesHtml)).toHaveLength(0);
-        expect(await getViolationsHtml(a11yIssuesHtml)).toHaveLength(numA11yIssues);
+        expect(await getViolationsHtml(htmlFileWithNoA11yIssues)).toHaveLength(0);
+        expect(await getViolationsHtml(htmlFileWithA11yIssues)).toHaveLength(numA11yIssues);
     });
 });
 
 describe('integration test @sa11y/wdio with WebdriverIO', function () {
     it('should throw no error for html with no a11y issues', async () => {
         expect.assertions(1);
-        await browser.url(noA11yIssuesHtml);
+        await browser.url(htmlFileWithNoA11yIssues);
         await assertAccessible().catch((e) => expect(e).toBeUndefined());
     });
 
     it('should throw error for html with a11y issues', async () => {
         // TODO (debug): setting expected number of assertions doesn't seem to be working correctly in mocha
         // expect.assertions(100); // still passes ???
-        await browser.url(a11yIssuesHtml);
+        await browser.url(htmlFileWithA11yIssues);
         await assertAccessible().catch((e) => {
             // TODO (test): Add this test to @sa11y/test-integration package ?
             expect(e).toBeDefined();

@@ -6,5 +6,10 @@
         "noEmitOnError": false
     },
     "include": ["src"],
-    "references": [{ "path": "../preset-rules" }, { "path": "../format" }, { "path": "../common" }]
+    "references": [
+        { "path": "../preset-rules" },
+        { "path": "../format" },
+        { "path": "../common" },
+        { "path": "../test-utils" }
+    ]
 }
