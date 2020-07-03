@@ -8,10 +8,10 @@
         "strict": true,
         "noEmitOnError": true,
         "noUnusedLocals": true,
-        "module": "commonjs",
+        "module": "es2015",
         "moduleResolution": "node",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true
     },
-    "exclude": ["*/dist", "**/__tests__"]
+    "exclude": ["**/dist", "**/__tests__"]
 }
