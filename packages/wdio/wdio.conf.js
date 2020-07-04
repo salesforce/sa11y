@@ -140,6 +140,8 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         // TypeScript setup
+        // TODO (refactor): Can we reuse babel instead https://webdriver.io/docs/babel.html
+        //  https://github.com/webdriverio/webdriverio/issues/5588
         require: ['ts-node/register'],
         ui: 'bdd',
         timeout: 60000,
