@@ -11,30 +11,25 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import sizes from 'rollup-plugin-sizes';
 import { terser } from 'rollup-plugin-terser';
-// TODO (refactor): reuse entry-points from package json
-// import pkg from './package.json';
+import pkg from './package.json';
 
-// TODO (debug): Warning (!) `this` has been rewritten to `undefined` in axe.js
 export default {
-    // TODO (refactor): Move this rollup config file to package/assert ?
-    input: 'packages/assert/src/assert.ts',
+    input: 'src/assert.ts',
     output: {
-        // TODO (refactor): add "browser" entry point in package.json and use "pkg.browser"
-        file: 'sa11y.min.js',
-        format: 'iife', // Should this be 'iife' for browser ?
+        // TODO (refactor): add "pkg.module" https://github.com/rollup/rollup/wiki/pkg.module
+        file: pkg.browser,
+        format: 'iife',
         name: 'sa11y',
     },
     plugins: [
         progress({ clearLine: false }),
         resolve(),
-        commonjs(), // TODO (debug): Why do we need CJS transformation even when tsconfig has "module": "es2015" ?
-        // TODO (Fix): override to use different module in rollup config than tsconfig
+        commonjs(), // TODO (debug): Why do we need commonjs transformation even when tsconfig has "module": "es2015" ?
         typescript({
-            tsconfig: 'packages/assert/tsconfig.json',
+            // Note: "commonjs" module is currently required for wdio tests
             tsconfigOverride: { compilerOptions: { module: 'es2015' } },
-            useTsconfigDeclarationDir: true,
         }),
         sizes({ details: true }),
-        terser(),
+        terser(), // Note: Comment to get un-minified file for debugging etc
     ],
 };
