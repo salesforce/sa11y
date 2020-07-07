@@ -5,6 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-export * from '@sa11y/preset-rules';
-export * from '@sa11y/format';
-export * from '@sa11y/assert';
+export { base, recommended, full } from '@sa11y/preset-rules';
+export { sortViolations } from '@sa11y/format';
+export { assertAccessible } from '@sa11y/assert';

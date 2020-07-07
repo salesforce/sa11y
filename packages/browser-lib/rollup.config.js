@@ -11,7 +11,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import sizes from 'rollup-plugin-sizes';
 import { terser } from 'rollup-plugin-terser';
-import pkg from '@sa11y/assert/package.json';
+import pkg from './package.json';
 
 export default {
     input: 'src/index.ts',
@@ -25,7 +25,7 @@ export default {
         progress({ clearLine: false }),
         resolve(),
         commonjs(), // TODO (debug): Why do we need commonjs transformation even when tsconfig has "module": "es2015" ?
-        typescript(),
+        typescript(), // TODO (refactor): Re-eval all compiler options for this project https://www.typescriptlang.org/docs/handbook/compiler-options.html
         sizes({ details: true }),
         terser(), // Note: Comment to get un-minified file for debugging etc
     ],
