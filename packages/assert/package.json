@@ -15,14 +15,10 @@
         "axe"
     ],
     "main": "dist/assert.js",
-    "browser": "dist/sa11y.min.js",
     "types": "dist/assert.d.ts",
     "files": [
         "dist/**/*.js"
     ],
-    "scripts": {
-        "build:browser": "rollup -c"
-    },
     "dependencies": {
         "@sa11y/common": "0.2.0-beta.0",
         "@sa11y/format": "0.2.1-beta.0",

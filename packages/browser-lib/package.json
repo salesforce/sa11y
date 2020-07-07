@@ -17,7 +17,7 @@
         "Webdriver",
         "axe"
     ],
-    "main": "dist/sa11y.min.js",
+    "browser": "dist/sa11y.min.js",
     "files": [
         "dist/**/*.js"
     ],

@@ -11,12 +11,12 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import sizes from 'rollup-plugin-sizes';
 import { terser } from 'rollup-plugin-terser';
-import pkg from './package.json';
+import pkg from '@sa11y/assert/package.json';
 
 export default {
-    input: 'src/assert.ts',
+    input: 'src/index.ts',
     output: {
-        // TODO (refactor): add "pkg.module" https://github.com/rollup/rollup/wiki/pkg.module
+        // TODO (refactor): add "pkg.module" https://github.com/rollup/rollup/wiki/pkg.module ?
         file: pkg.browser,
         format: 'iife',
         name: 'sa11y',
@@ -25,10 +25,7 @@ export default {
         progress({ clearLine: false }),
         resolve(),
         commonjs(), // TODO (debug): Why do we need commonjs transformation even when tsconfig has "module": "es2015" ?
-        typescript({
-            // Note: "commonjs" module is currently required for wdio tests
-            tsconfigOverride: { compilerOptions: { module: 'es2015' } },
-        }),
+        typescript(),
         sizes({ details: true }),
         terser(), // Note: Comment to get un-minified file for debugging etc
     ],

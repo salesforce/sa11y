@@ -1,0 +1,12 @@
+{
+    "extends": "../../tsconfig.common.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "module": "es2015",
+        "declaration": false,
+        "composite": false
+    },
+    "include": ["src"],
+    "references": [{ "path": "../preset-rules" }, { "path": "../format" }, { "path": "../assert" }]
+}
