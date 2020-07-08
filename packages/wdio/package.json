@@ -24,7 +24,8 @@
         "dist/**/*.js"
     ],
     "scripts": {
-        "test": "wdio run wdio.conf.js",
+        "test": "wdio run ../../wdio.conf.js",
+        "test:debug": "DEBUG=true yarn test",
         "test:watch": "yarn test --watch"
     },
     "dependencies": {

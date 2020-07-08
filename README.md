@@ -19,6 +19,7 @@ Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)
   - [assertAccessible API](#assertaccessible-api)
   - [a11y results formatter](#a11y-results-formatter)
   - [Preset accessibility rules](#preset-accessibility-rules)
+  - [Bundled lib for testing in browser](#bundled-lib-for-testing-in-browser)
   - [Internal packages](#internal-packages)
     - [Test utilities](#test-utilities)
     - [Integration Tests](#integration-tests)
@@ -65,6 +66,10 @@ This repo contains the following packages
 -   Provides Base, Recommended, Full accessibility preset rules as [axe](https://github.com/dequelabs/axe-core) configuration
 -   The Recommended preset rule is used by default in the Jest a11y matcher and assert Accessible APIs
     -   The APIs can be overridden to use the Base or Full ruleset as necessary
+
+### [Bundled lib for testing in browser](./packages/browser-lib/README.md)
+
+-   Provides a bundled and minified version of selected `@sa11y` libraries to be injected into a browser (using webdriver) and executed from integration testing workflows.
 
 ### Internal packages
 

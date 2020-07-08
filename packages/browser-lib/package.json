@@ -23,7 +23,10 @@
     ],
     "scripts": {
         "build": "rollup -c",
-        "build:watch": "yarn build --watch"
+        "build:watch": "yarn build --watch",
+        "test": "wdio run ../../wdio.conf.js",
+        "test:debug": "DEBUG=true yarn test",
+        "test:watch": "yarn test --watch"
     },
     "bugs": {
         "url": "https://github.com/salesforce/sa11y/issues"
@@ -40,6 +43,13 @@
         "rollup-plugin-progress": "^1.1.2",
         "rollup-plugin-sizes": "^1.0.2",
         "rollup-plugin-terser": "^6.1.0",
-        "rollup-plugin-typescript2": "^0.27.1"
+        "rollup-plugin-typescript2": "^0.27.1",
+        "@wdio/cli": "^6.1.17",
+        "@wdio/local-runner": "^6.1.17",
+        "@wdio/mocha-framework": "^6.1.17",
+        "@wdio/spec-reporter": "^6.1.14",
+        "chromedriver": "^83.0.0",
+        "ts-node": "^8.10.2",
+        "wdio-chromedriver-service": "^6.0.3"
     }
 }
