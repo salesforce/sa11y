@@ -21,16 +21,12 @@ export const axeVersion: string | undefined = axe.version;
  * Return version of axe injected into browser
  */
 export async function getAxeVersion(driver: BrowserObject): Promise<typeof axeVersion> {
-    return driver.executeAsync((done) => {
-        if (typeof axe !== 'undefined') {
-            // TODO (refactor): Find a way to declare version into axe namespace
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
-            // eslint-disable-next-line import/namespace
-            done(axe.version);
-        } else {
-            done(undefined);
-        }
+    return driver.execute(() => {
+        // TODO (refactor): Find a way to declare version into axe namespace
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        // eslint-disable-next-line import/namespace
+        return typeof axe === 'object' ? axe.version : undefined;
     });
 }
 
@@ -68,6 +64,8 @@ export async function runAxe(driver: BrowserObject, rules: A11yConfig = recommen
  * @param driver - WDIO instance navigated to page to be checked
  * @param rules - a11y preset-rules to be used for checking accessibility
  */
+// TODO (test) : Will this work in sync mode? Test it out.
+//  https://github.com/salesforce/sa11y/pull/21/files/95bba31f632760585affaaf2b883b654259262f0#r451809083
 export async function assertAccessible(
     driver: BrowserObject = browser,
     rules: A11yConfig = recommended
