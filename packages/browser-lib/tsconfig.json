@@ -3,7 +3,8 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist",
-        "module": "es2015",
+        "types": ["node", "webdriverio", "@wdio/mocha-framework"],
+        "noEmitOnError": false,
         "declaration": false,
         "composite": false
     },

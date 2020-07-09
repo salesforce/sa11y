@@ -5,6 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+const browserLibTestPath = '<rootDir>/packages/browser-lib';
 const integrationTestPath = '<rootDir>/packages/test-integration';
 const wdioTestPath = '<rootDir>/packages/wdio';
 
@@ -18,7 +19,7 @@ module.exports = {
         },
     },
     // Exclude integration tests from being run with config as it has its own config and setup
-    testPathIgnorePatterns: [integrationTestPath, wdioTestPath],
+    testPathIgnorePatterns: [browserLibTestPath, integrationTestPath, wdioTestPath],
     // Direct Jest to read the jest config file from integration tests
     projects: ['<rootDir>', integrationTestPath],
 };

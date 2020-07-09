@@ -70,7 +70,7 @@ exports.config = {
             // excludeDriverLogs: ['bugreport', 'server'],
         },
     ],
-    // Node arguments to specify when launching child processes
+    // Additional list of node arguments to use when starting child processes
     execArgv: debug ? ['--inspect'] : [],
     //
     // ===================

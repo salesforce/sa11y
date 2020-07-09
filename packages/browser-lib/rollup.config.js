@@ -20,13 +20,16 @@ export default {
         file: pkg.browser,
         format: 'iife',
         name: 'sa11y',
+        preferConst: true,
     },
     plugins: [
         progress({ clearLine: false }),
         resolve(),
-        commonjs(), // TODO (debug): Why do we need commonjs transformation even when tsconfig has "module": "es2015" ?
-        typescript(), // TODO (refactor): Re-eval all compiler options for this project https://www.typescriptlang.org/docs/handbook/compiler-options.html
-        sizes({ details: true }),
+        commonjs(),
+        typescript({ tsconfigOverride: { compilerOptions: { module: 'es2015' } } }),
+        // TODO (debug): Get version injection to work https://github.com/djhouseknecht/rollup-plugin-version-injector/issues/4
+        // versionInjector({ logLevel: 'debug' }),
         terser(), // Note: Comment to get un-minified file for debugging etc
+        sizes({ details: true }),
     ],
 };
