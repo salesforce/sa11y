@@ -31,7 +31,7 @@
         "axe-core": "3.5.5"
     },
     "peerDependencies": {
-        "webdriverio": "^6.1.17"
+        "webdriverio": ">=6.0.0"
     },
     "devDependencies": {
         "@sa11y/test-utils": "0.2.0-beta.0",
