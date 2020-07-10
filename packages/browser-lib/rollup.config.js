@@ -13,22 +13,25 @@ import sizes from 'rollup-plugin-sizes';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
+const globalName = '__SA11Y__';
+const namespace = 'sa11y';
+
 export default {
     input: 'src/index.ts',
     output: {
-        // TODO (refactor): add "pkg.module" https://github.com/rollup/rollup/wiki/pkg.module ?
         file: pkg.browser,
         format: 'iife',
-        name: 'sa11y',
+        name: globalName,
         preferConst: true,
+        // Note: Following is required for the object to get declared in browser using webdriver
+        banner: `typeof ${namespace} === "undefined" && (${namespace} = {});`,
+        footer: `Object.assign(${namespace}, ${globalName}); sa11y.version = '${pkg.version}';`,
     },
     plugins: [
         progress({ clearLine: false }),
         resolve(),
         commonjs(),
         typescript({ tsconfigOverride: { compilerOptions: { module: 'es2015' } } }),
-        // TODO (debug): Get version injection to work https://github.com/djhouseknecht/rollup-plugin-version-injector/issues/4
-        // versionInjector({ logLevel: 'debug' }),
         terser(), // Note: Comment to get un-minified file for debugging etc
         sizes({ details: true }),
     ],
