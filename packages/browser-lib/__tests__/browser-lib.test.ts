@@ -8,19 +8,26 @@
 import fs from 'fs';
 import path from 'path';
 
+async function isSa11yLoaded(): Promise<string | boolean> {
+    return await driver.execute(() => {
+        // TODO (refactor): Find a way to declare sa11y namespace
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        // eslint-disable-next-line import/namespace
+        return typeof sa11y === 'object' ? sa11y.version : false;
+    });
+}
+
 describe('@sa11y/browser-lib', () => {
     it('should inject minified js', async () => {
         const sa11yMinJsPath = path.resolve(__dirname, '../dist/sa11y.min.js');
         const sa11yMinJs = fs.readFileSync(sa11yMinJsPath).toString();
         expect(sa11yMinJs.length).toBeGreaterThan(0);
 
+        // Before injecting sa11y min js it should not be defined
+        expect(await isSa11yLoaded()).toBe(false);
         await browser.execute(sa11yMinJs);
-        const loaded = await driver.executeAsync((done) => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
-            // eslint-disable-next-line import/namespace
-            done(typeof sa11y === 'object');
-        });
-        expect(loaded).toBe(true);
+        // After injecting it should be defined
+        expect(await isSa11yLoaded()).toBeTruthy();
     });
 });
