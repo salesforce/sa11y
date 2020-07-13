@@ -7,8 +7,9 @@
 
 import * as axe from 'axe-core';
 import { assertAccessible, axeVersion, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
-import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 import { htmlFileWithA11yIssues, htmlFileWithNoA11yIssues } from '@sa11y/test-utils';
+import { A11yError } from '@sa11y/format';
+import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
 const numA11yIssues = 6;
 
@@ -18,6 +19,34 @@ const numA11yIssues = 6;
 async function getViolationsHtml(htmlFilePath: string): Promise<axe.Result[]> {
     await browser.url(htmlFilePath);
     return runAxe(browser);
+}
+
+async function checkA11yError(expectNumA11yIssues = 0): Promise<void> {
+    // TODO (debug): setting expected number of assertions doesn't seem to be working correctly in mocha
+    //  https://webdriver.io/docs/assertion.html
+    //  Check mocha docs: https://mochajs.org/#assertions
+    //  Checkout Jasmine ? https://webdriver.io/docs/frameworks.html
+    expect.assertions(100); // still passes ???
+
+    // TODO (debug): Not able to get the expect().toThrow() to work - hence using the longer try.. catch alternative
+    // expect(async () => await assertAccessible()).toThrow();
+    let err: Error = new Error();
+    try {
+        await assertAccessible();
+    } catch (e) {
+        err = e;
+    }
+
+    expect(err).toBeTruthy();
+    expect(err.message).not.toContain(axeRuntimeExceptionMsgPrefix);
+
+    if (expectNumA11yIssues > 0) {
+        expect(err).not.toStrictEqual(new Error());
+        expect(err.toString()).toContain(`${expectNumA11yIssues} ${A11yError.errMsgHeader}`);
+    } else {
+        expect(err).toStrictEqual(new Error());
+        expect(err.toString()).not.toContain(A11yError.errMsgHeader);
+    }
 }
 
 describe('integration test axe with WebdriverIO', () => {
@@ -45,21 +74,17 @@ describe('integration test axe with WebdriverIO', () => {
 });
 
 describe('integration test @sa11y/wdio with WebdriverIO', function () {
+    // Note: "expect"s are in the helper method "checkA11yError"
+    // eslint-disable-next-line jest/expect-expect
     it('should throw no error for html with no a11y issues', async () => {
-        expect.assertions(1);
         await browser.url(htmlFileWithNoA11yIssues);
-        await assertAccessible().catch((e) => expect(e).toBeUndefined());
+        await checkA11yError(0);
     });
 
+    // Note: "expect"s are in the helper method "checkA11yError"
+    // eslint-disable-next-line jest/expect-expect
     it('should throw error for html with a11y issues', async () => {
-        // TODO (debug): setting expected number of assertions doesn't seem to be working correctly in mocha
-        // expect.assertions(100); // still passes ???
         await browser.url(htmlFileWithA11yIssues);
-        await assertAccessible().catch((e) => {
-            // TODO (test): Add this test to @sa11y/test-integration package ?
-            expect(e).toBeDefined();
-            expect(e.toString()).not.toContain(axeRuntimeExceptionMsgPrefix);
-            expect(e.toString()).toContain(`${numA11yIssues} accessibility issues found`);
-        });
+        await checkA11yError(numA11yIssues);
     });
 });
