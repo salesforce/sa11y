@@ -67,7 +67,12 @@
         "@types/node": "^14.0.23",
         "@typescript-eslint/eslint-plugin": "^2.33.0",
         "@typescript-eslint/parser": "^2.33.0",
+        "@wdio/cli": "^6.2.0",
+        "@wdio/local-runner": "^6.2.0",
+        "@wdio/mocha-framework": "^6.2.0",
+        "@wdio/spec-reporter": "^6.1.23",
         "babel-jest": "^26.1.0",
+        "chromedriver": "^83.0.1",
         "commitizen": "^4.1.2",
         "conventional-changelog-cli": "^2.0.34",
         "cspell": "^4.0.61",
@@ -93,8 +98,11 @@
         "markdown-link-check": "^3.8.1",
         "prettier": "^2.0.5",
         "rimraf": "^3.0.2",
+        "ts-node": "^8.10.2",
         "tslib": "^2.0.0",
-        "typescript": "^3.9.6"
+        "typescript": "^3.9.6",
+        "wdio-chromedriver-service": "^6.0.3",
+        "webdriverio": "^6.2.0"
     },
     "engines": {
         "node": "^10 || ^12"
