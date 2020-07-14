@@ -73,18 +73,26 @@ describe('integration test axe with WebdriverIO', () => {
     });
 });
 
-describe('integration test @sa11y/wdio with WebdriverIO', function () {
+describe('integration test @sa11y/wdio with WebdriverIO', () => {
     // Note: "expect"s are in the helper method "checkA11yError"
-    // eslint-disable-next-line jest/expect-expect
+    /* eslint-disable jest/expect-expect */
     it('should throw no error for html with no a11y issues', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
         await checkA11yError(0);
     });
 
-    // Note: "expect"s are in the helper method "checkA11yError"
-    // eslint-disable-next-line jest/expect-expect
     it('should throw error for html with a11y issues', async () => {
         await browser.url(htmlFileWithA11yIssues);
         await checkA11yError(numA11yIssues);
     });
+
+    // Skipped till there is a solution to https://github.com/webdriverio/webdriverio/issues/5597
+    it.skip('should work in sync mode as well', () => {
+        const sync = require('@wdio/sync').default;
+        return sync(() => {
+            browser.url(htmlFileWithA11yIssues);
+            checkA11yError(numA11yIssues);
+        });
+    });
+    /* eslint-enable jest/expect-expect */
 });

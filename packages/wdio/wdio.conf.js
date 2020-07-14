@@ -146,6 +146,8 @@ exports.config = {
         ui: 'bdd',
         timeout: 60000,
     },
+
+    execArgv: ['--unhandled-rejections=strict', '--trace-warnings'],
     /* eslint-disable tsdoc/syntax */
     // The "@param" lines in "Hooks" section trigger false tsdoc failures
     //
