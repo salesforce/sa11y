@@ -9,13 +9,7 @@ import * as axe from 'axe-core';
 import { BrowserObject } from 'webdriverio';
 import { A11yConfig, recommended } from '@sa11y/preset-rules';
 import { A11yError } from '@sa11y/format';
-import { getViolations } from '@sa11y/common';
-
-// TODO (refactor): Find a way to declare version into axe namespace
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-// eslint-disable-next-line import/namespace
-export const axeVersion: string | undefined = axe.version;
+import { getViolations, axeVersion } from '@sa11y/common';
 
 /**
  * Return version of axe injected into browser
@@ -23,7 +17,7 @@ export const axeVersion: string | undefined = axe.version;
 export async function getAxeVersion(driver: BrowserObject): Promise<typeof axeVersion> {
     return driver.executeAsync((done) => {
         if (typeof axe !== 'undefined') {
-            // TODO (refactor): Find a way to declare version into axe namespace
+            // TODO (refactor): Deduplicate with @sa11y/common/axeVersion
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
             // eslint-disable-next-line import/namespace

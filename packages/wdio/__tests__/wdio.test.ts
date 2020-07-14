@@ -6,8 +6,8 @@
  */
 
 import * as axe from 'axe-core';
-import { assertAccessible, axeVersion, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
-import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
+import { assertAccessible, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
+import { axeRuntimeExceptionMsgPrefix, axeVersion } from '@sa11y/common';
 import { htmlFileWithA11yIssues, htmlFileWithNoA11yIssues } from '@sa11y/test-utils';
 
 const numA11yIssues = 6;
