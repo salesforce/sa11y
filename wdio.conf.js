@@ -29,6 +29,7 @@ exports.config = {
     // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
+    // Note: Paths below are relative to the specific package dir from which wdio cli is executed
     specs: ['__tests__/**/*.ts'],
     filesToWatch: ['src/**/*.ts'],
     //

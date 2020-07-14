@@ -3,7 +3,7 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist",
-        "types": ["node", "webdriverio", "@wdio/mocha-framework"],
+        "types": ["webdriverio", "jest"],
         "noEmitOnError": false,
         "declaration": false,
         "composite": false

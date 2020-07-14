@@ -41,7 +41,7 @@
         "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "yarn test --watch",
-        "test:wdio": "yarn workspace @sa11y/wdio test",
+        "test:wdio": "yarn workspace @sa11y/wdio test; yarn workspace @sa11y/browser-lib test ",
         "update": "yarn audit; yarn upgrade-interactive --latest && yarn test:clean"
     },
     "config": {

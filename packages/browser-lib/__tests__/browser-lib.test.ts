@@ -9,7 +9,7 @@ import fs from 'fs';
 import path from 'path';
 
 async function isSa11yLoaded(): Promise<string | boolean> {
-    return await driver.execute(() => {
+    return await browser.execute(() => {
         // TODO (refactor): Find a way to declare sa11y namespace
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
