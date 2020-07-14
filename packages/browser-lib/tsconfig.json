@@ -9,5 +9,10 @@
         "composite": false
     },
     "include": ["src"],
-    "references": [{ "path": "../preset-rules" }, { "path": "../format" }, { "path": "../assert" }]
+    "references": [
+        { "path": "../preset-rules" },
+        { "path": "../format" },
+        { "path": "../assert" },
+        { "path": "../common" }
+    ]
 }

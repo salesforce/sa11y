@@ -7,15 +7,18 @@
 
 import fs from 'fs';
 import path from 'path';
+import { nameSpace } from '../src';
+import { axeVersion } from '@sa11y/common';
 
-async function isSa11yLoaded(): Promise<string | boolean> {
-    return await browser.execute(() => {
-        // TODO (refactor): Find a way to declare sa11y namespace
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        // eslint-disable-next-line import/namespace
-        return typeof sa11y === 'object' ? sa11y.version : false;
-    });
+type objectWithVersion = {
+    version: string;
+};
+
+async function isLoaded(objName: string): Promise<string | boolean> {
+    return await browser.execute((objName) => {
+        const obj: objectWithVersion = (window as { [key: string]: any })[objName];
+        return typeof obj === 'object' ? obj.version : false;
+    }, objName);
 }
 
 describe('@sa11y/browser-lib', () => {
@@ -24,10 +27,12 @@ describe('@sa11y/browser-lib', () => {
         const sa11yMinJs = fs.readFileSync(sa11yMinJsPath).toString();
         expect(sa11yMinJs.length).toBeGreaterThan(0);
 
-        // Before injecting sa11y min js it should not be defined
-        expect(await isSa11yLoaded()).toBe(false);
+        // Before injecting sa11y min js neither sa11y nor axe should not be defined
+        expect(await isLoaded(nameSpace)).toBe(false);
+        expect(await isLoaded('axe')).toBe(false);
         await browser.execute(sa11yMinJs);
-        // After injecting it should be defined
-        expect(await isSa11yLoaded()).toBeTruthy();
+        // After injecting sa11y and axe should be defined
+        expect(await isLoaded(nameSpace)).toBeTruthy();
+        expect(await isLoaded('axe')).toEqual(axeVersion);
     });
 });

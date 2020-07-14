@@ -25,7 +25,7 @@ export default {
         preferConst: true,
         // Note: Following is required for the object to get declared in browser using webdriver
         banner: `typeof ${namespace} === "undefined" && (${namespace} = {});`,
-        footer: `Object.assign(${namespace}, ${globalName}); sa11y.version = '${pkg.version}';`,
+        footer: `Object.assign(${namespace}, ${globalName}); ${namespace}.version = '${pkg.version}';`,
     },
     plugins: [
         progress({ clearLine: false }),
