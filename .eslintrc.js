@@ -53,6 +53,7 @@ module.exports = {
             },
         ],
         'tsdoc/syntax': 'warn',
+        'prefer-arrow-callback': 'warn',
     },
     overrides: [
         {
