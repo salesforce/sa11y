@@ -44,7 +44,7 @@ describe('integration test axe with WebdriverIO', () => {
     });
 });
 
-describe('integration test @sa11y/wdio with WebdriverIO', function () {
+describe('integration test @sa11y/wdio with WebdriverIO', () => {
     it('should throw no error for html with no a11y issues', async () => {
         expect.assertions(1);
         await browser.url(htmlFileWithNoA11yIssues);

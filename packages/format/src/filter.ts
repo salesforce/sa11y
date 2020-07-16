@@ -20,17 +20,19 @@ export interface Filter {
 // type ruleID = typeof ruleIDs[number];
 type ruleID = string;
 type cssSelectors = string[];
+
 /**
  * Exception list of map of rule to corresponding css targets that needs to be filtered from a11y results.
  */
-type exception = Record<ruleID, cssSelectors>;
+type exceptionList = Record<ruleID, cssSelectors>;
 
-export function exceptionListFilter(violations: Result[], exceptionList: exception[]): Result[] {
-    return violations.filter((violation) =>
-        Object.keys(exceptionList).includes(violation.id)
+export function exceptionListFilter(violations: Result[], exceptionList: exceptionList = {}): Result[] {
+    return violations.filter((violation) => {
+        const ruleID = violation.id;
+        return Object.keys(exceptionList).includes(ruleID)
             ? violation.nodes.filter((result) =>
-                  result.target.filter((cssSelector) => exceptionList[violation.id].includes(cssSelector))
+                  result.target.filter((cssSelector) => exceptionList.ruleID.includes(cssSelector))
               )
-            : true
-    );
+            : true;
+    });
 }
