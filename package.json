@@ -53,7 +53,7 @@
             "commit-msg": "commitlint -e $GIT_PARAMS",
             "pre-commit": "lint-staged",
             "pre-push": "yarn test:clean",
-            "post-checkout": "yarn install"
+            "post-checkout": "yarn install && yarn build"
         }
     },
     "devDependencies": {
