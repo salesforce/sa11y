@@ -75,7 +75,7 @@ git clone git@github.com:salesforce/sa11y.git
 
 ### 2) Install Dependencies
 
-_We use [yarn](https://yarnpkg.com/) because it is significantly faster than npm for our use case. See this command [cheat-sheet](https://yarnpkg.com/lang/en/docs/migrating-from-npm/)._
+_We use [yarn](https://yarnpkg.com/)]. See this [CLI commands comparison cheat-sheet](https://yarnpkg.com/lang/en/docs/migrating-from-npm/) if you are used to npm._
 
 ```bash
 yarn install
