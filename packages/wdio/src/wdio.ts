@@ -83,6 +83,7 @@ export async function assertAccessible(
  * @param rules - a11y preset-rules to be used for checking accessibility
  */
 export function assertAccessibleSync(driver: BrowserObject = browser, rules: A11yConfig = recommended): void {
+    // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
     driver.call(async () => {
         await assertAccessible(driver, rules);
     });
