@@ -47,7 +47,7 @@ This repo contains the following packages
 
 ### [WDIO integration](./packages/wdio/README.MD)
 
--   Provides a `assertAccessible()` API that can be used with [WebdriverIO](https://webdriver.io/) to check accessibility of web pages rendered in browsers
+-   Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used with [WebdriverIO](https://webdriver.io/) to check accessibility of web pages rendered in browsers
 
 ### [assertAccessible API](./packages/assert/README.md)
 

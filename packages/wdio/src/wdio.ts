@@ -61,11 +61,10 @@ export async function runAxe(driver: BrowserObject, rules: A11yConfig = recommen
 /**
  * Verify that the currently loaded page in the browser is accessible.
  * Throw an error with the accessibility issues found if it is not accessible.
- * @param driver - WDIO instance navigated to page to be checked
+ * Asynchronous version of {@link assertAccessibleSync}
+ * @param driver - WDIO browser instance navigated to page to be checked
  * @param rules - a11y preset-rules to be used for checking accessibility
  */
-// TODO (test) : Will this work in sync mode? Test it out.
-//  https://github.com/salesforce/sa11y/pull/21/files/95bba31f632760585affaaf2b883b654259262f0#r451809083
 export async function assertAccessible(
     driver: BrowserObject = browser,
     rules: A11yConfig = recommended
@@ -74,4 +73,17 @@ export async function assertAccessible(
     //      https://webdriver.io/docs/customcommands.html
     const violations = await getViolations(() => runAxe(driver, rules));
     A11yError.checkAndThrow(violations);
+}
+
+/**
+ * Verify that the currently loaded page in the browser is accessible.
+ * Throw an error with the accessibility issues found if it is not accessible.
+ * Synchronous version of {@link assertAccessible}
+ * @param driver - WDIO browser instance navigated to page to be checked
+ * @param rules - a11y preset-rules to be used for checking accessibility
+ */
+export function assertAccessibleSync(driver: BrowserObject = browser, rules: A11yConfig = recommended): void {
+    driver.call(async () => {
+        await assertAccessible(driver, rules);
+    });
 }

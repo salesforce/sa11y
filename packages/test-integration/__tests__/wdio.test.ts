@@ -6,7 +6,7 @@
  */
 
 import { BrowserObject, remote } from 'webdriverio';
-import { assertAccessible } from '@sa11y/wdio';
+import { assertAccessibleSync } from '@sa11y/wdio';
 import { htmlFileWithA11yIssues, htmlFileWithNoA11yIssues } from '@sa11y/test-utils';
 
 const sync = require('@wdio/sync').default;
@@ -44,11 +44,7 @@ describe('integration test @sa11y/wdio in sync mode', () => {
         expect(browser).toBeTruthy();
         return sync(() => {
             browser.url(htmlFileWithA11yIssues);
-            // TODO (debug): Workaround till there is a solution to https://github.com/webdriverio/webdriverio/issues/5597
-            // expect(() => assertAccessible(browser)).toThrowErrorMatchingSnapshot();
-            expect(() => {
-                browser.call(async () => await assertAccessible(browser));
-            }).toThrowErrorMatchingSnapshot();
+            expect(() => assertAccessibleSync(browser)).toThrowErrorMatchingSnapshot();
         });
     });
 
@@ -56,11 +52,7 @@ describe('integration test @sa11y/wdio in sync mode', () => {
         expect(browser).toBeTruthy();
         return sync(() => {
             browser.url(htmlFileWithNoA11yIssues);
-            // TODO (debug): Workaround till there is a solution to https://github.com/webdriverio/webdriverio/issues/5597
-            // expect(() => assertAccessible(browser)).not.toThrow();
-            expect(() => {
-                browser.call(async () => await assertAccessible(browser));
-            }).not.toThrow();
+            expect(() => assertAccessibleSync(browser)).not.toThrow();
         });
     });
 });
