@@ -17,9 +17,9 @@
     ],
     "scripts": {
         "build": "tsc --build",
-        "build:browser": "yarn build && yarn workspace @sa11y/browser-lib build",
-        "build:ci": "yarn install --frozen-lockfile && yarn build",
-        "build:clean": "yarn build --clean && rimraf packages/**/dist && yarn install && yarn build",
+        "build:browser": "yarn workspace @sa11y/browser-lib build",
+        "build:ci": "yarn install --frozen-lockfile && yarn build && yarn build:browser",
+        "build:clean": "yarn build --clean && rimraf packages/**/dist && yarn build:ci",
         "build:watch": "yarn build --watch",
         "commit": "! git diff --cached --exit-code && lint-staged && git-cz",
         "install:clean": "lerna clean --yes; yarn install",
@@ -54,7 +54,7 @@
             "commit-msg": "commitlint -e $GIT_PARAMS",
             "pre-commit": "lint-staged",
             "pre-push": "yarn test:clean",
-            "post-checkout": "yarn install"
+            "post-checkout": "yarn build:ci"
         }
     },
     "devDependencies": {
