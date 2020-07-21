@@ -21,8 +21,7 @@ describe('a11y results filter', () => {
         expect(violations).toMatchSnapshot();
     });
 
-    // TODO (debug): returns an empty list because it doesn't enter into the loop with an empty exception list
-    it.skip('should not filter results for default empty exception list', () => {
+    it('should not filter results for default empty exception list', () => {
         expect(exceptionListFilter(violations)).toStrictEqual(violations);
     });
 
@@ -30,10 +29,7 @@ describe('a11y results filter', () => {
         expect(exceptionListFilter([])).toStrictEqual([]);
     });
 
-    // TODO (debug): adding an empty exception list to the cases "{}" causes failure,
-    //  probably due to the same reason as the above skipped test
-    // it.each([{ nonExistingRule: ['foo', 'bar'] }, { bypass: ['html5'] }, { bypassFoo: ['html'] }, {}])(
-    it.each([{ nonExistingRule: ['foo', 'bar'] }, { bypass: ['html5'] }, { bypassFoo: ['html'] }])(
+    it.each([{ nonExistingRule: ['foo', 'bar'] }, { bypass: ['html5'] }, { bypassFoo: ['html'] }, {}])(
         'should not filter results for non-matching exception list %#',
         (exceptionList) => {
             expect(exceptionListFilter(violations, exceptionList)).toStrictEqual(violations);
