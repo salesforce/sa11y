@@ -27,12 +27,32 @@ type cssSelectors = string[];
 type exceptionList = Record<ruleID, cssSelectors>;
 
 export function exceptionListFilter(violations: Result[], exceptionList: exceptionList = {}): Result[] {
-    return violations.filter((violation) => {
-        const ruleID = violation.id;
-        return Object.keys(exceptionList).includes(ruleID)
-            ? violation.nodes.filter((result) =>
-                  result.target.filter((cssSelector) => exceptionList.ruleID.includes(cssSelector))
-              )
-            : true;
-    });
+    // TODO (refactor): Use map, filter instead of for loops? without compromising readability/debugging-ability
+    // return violations.filter((violation) =>
+    //     Object.keys(exceptionList).includes(violation.id)
+    //         ? !violation.nodes.filter(
+    //               (result) => !result.target.filter((cssSelector) => !exceptionList[violation.id].includes(cssSelector))
+    //           )
+    //         : true
+    // );
+
+    const filteredViolations: Result[] = [];
+
+    for (const violation of violations) {
+        for (const [ruleID, cssSelectors] of Object.entries(exceptionList)) {
+            if (violation.id !== ruleID) {
+                filteredViolations.push(violation);
+            } else {
+                for (const result of violation.nodes) {
+                    const filteredResults = result.target.filter((cssSelector) => !cssSelectors.includes(cssSelector));
+                    // debugger;
+                    if (filteredResults.length > 0) {
+                        filteredViolations.push(violation);
+                    }
+                }
+            }
+        }
+    }
+
+    return filteredViolations;
 }
