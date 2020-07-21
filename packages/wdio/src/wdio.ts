@@ -49,7 +49,7 @@ export async function runAxe(driver: BrowserObject, rules: A11yConfig = recommen
 
     // run axe inside browser and return violations
     return await driver.executeAsync((rules, done) => {
-        axe.run(document, rules, function (err: Error, results: axe.AxeResults) {
+        axe.run(document, rules, (err: Error, results: axe.AxeResults) => {
             if (err) throw err;
             done(results.violations);
         });

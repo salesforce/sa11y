@@ -28,6 +28,7 @@ type exceptionList = Record<ruleID, cssSelectors>;
 
 export function exceptionListFilter(violations: Result[], exceptionList: exceptionList = {}): Result[] {
     // TODO (refactor): Use map, filter instead of for loops? without compromising readability/debugging-ability
+    //  is map/filter more performant? without having to create an intermediary results ourselves?
     // return violations.filter((violation) =>
     //     Object.keys(exceptionList).includes(violation.id)
     //         ? !violation.nodes.filter(
@@ -45,7 +46,6 @@ export function exceptionListFilter(violations: Result[], exceptionList: excepti
             } else {
                 for (const result of violation.nodes) {
                     const filteredResults = result.target.filter((cssSelector) => !cssSelectors.includes(cssSelector));
-                    // debugger;
                     if (filteredResults.length > 0) {
                         filteredViolations.push(violation);
                     }

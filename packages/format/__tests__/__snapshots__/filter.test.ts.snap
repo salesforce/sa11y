@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`a11y results filter should be setup with violations for test 1`] = `
+exports[`a11y results filter should be setup with violations that can be reused across tests 1`] = `
 Array [
   Object {
     "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
