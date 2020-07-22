@@ -7,7 +7,7 @@
 
 import * as axe from 'axe-core';
 import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
-import { A11yError, Options, sortViolations } from '..';
+import { A11yError, Options, sortViolations } from '../src/format';
 
 async function getA11yError(dom: string): Promise<A11yError> {
     document.body.innerHTML = dom;
