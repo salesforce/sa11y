@@ -29,17 +29,27 @@ describe('a11y results filter', () => {
         expect(exceptionListFilter([])).toStrictEqual([]);
     });
 
-    it.each([{ nonExistingRule: ['foo', 'bar'] }, { bypass: ['html5'] }, { bypassFoo: ['html'] }, {}])(
-        'should not filter results for non-matching exception list %#',
-        (exceptionList) => {
-            expect(exceptionListFilter(violations, exceptionList)).toStrictEqual(violations);
-        }
-    );
+    it.each([
+        {},
+        { nonExistingRule: ['foo', 'bar'] },
+        { bypass: ['html5'] },
+        { bypassFoo: ['html'] },
+        { 'link-name': ['html'] },
+        { 'document-title': ['a'], 'link-name': ['html'], bypass: ['a'] },
+    ])('should not filter results for non-matching exception list %#', (exceptionList) => {
+        expect(exceptionListFilter(violations, exceptionList)).toStrictEqual(violations);
+    });
 
-    it('should filter results for matching exception list', () => {
-        const filteredViolations = exceptionListFilter(violations, { bypass: ['html'] });
+    it.each([
+        { bypass: ['html'] },
+        { 'document-title': ['html'] },
+        { 'link-name': ['a'] },
+        { 'document-title': ['html'], 'link-name': ['a'], bypass: ['html'] },
+    ])('should filter results for matching exception list %#', (exceptionList) => {
+        const filteredViolations = exceptionListFilter(violations, exceptionList);
         expect(filteredViolations).not.toStrictEqual(violations);
-        expect(filteredViolations.map((violation) => violation.id)).not.toContain('bypass');
+        const filteredRuleIDs = filteredViolations.map((violation) => violation.id);
+        expect(filteredRuleIDs).not.toContain(Object.keys(exceptionList));
         expect(filteredViolations).toMatchSnapshot();
     });
 });

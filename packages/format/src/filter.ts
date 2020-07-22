@@ -24,7 +24,7 @@ type cssSelectors = string[];
 /**
  * Exception list of map of rule to corresponding css targets that needs to be filtered from a11y results.
  */
-type exceptionList = Record<ruleID, cssSelectors>;
+export type exceptionList = Record<ruleID, cssSelectors>;
 
 /**
  * Filter a11y violations from axe based on given {@link exceptionList}
@@ -32,31 +32,21 @@ type exceptionList = Record<ruleID, cssSelectors>;
  * @param exceptionList - {@link exceptionList} of map of rule to corresponding css targets that needs to be filtered from a11y results
  */
 export function exceptionListFilter(violations: Result[], exceptionList: exceptionList = {}): Result[] {
-    // TODO (refactor): Use map, filter instead of for loops? without compromising readability/debugging-ability
-    //  is map/filter more performant? without having to create an intermediary results ourselves?
-    // return violations.filter((violation) =>
-    //     Object.keys(exceptionList).includes(violation.id)
-    //         ? violation.nodes.filter(
-    //               (result) => !result.target.filter((cssSelector) => !exceptionList[violation.id].includes(cssSelector))
-    //           ).length > 0
-    //         : true
-    // );
-
-    // TODO (refactor): Is there a better way to deal with this condition within the flow of the loop below?
-    if (!(Object.entries(exceptionList).length > 0)) return violations;
+    const exceptionRules = Object.keys(exceptionList);
+    if (exceptionRules.length === 0) return violations;
 
     const filteredViolations: Result[] = [];
 
     for (const violation of violations) {
-        for (const [ruleID, cssSelectors] of Object.entries(exceptionList)) {
-            if (violation.id !== ruleID) {
-                filteredViolations.push(violation);
-            } else {
-                for (const result of violation.nodes) {
-                    const filteredResults = result.target.filter((cssSelector) => !cssSelectors.includes(cssSelector));
-                    if (filteredResults.length > 0) {
-                        filteredViolations.push(violation);
-                    }
+        if (!exceptionRules.includes(violation.id)) {
+            filteredViolations.push(violation);
+        } else {
+            for (const result of violation.nodes) {
+                const filteredResults = result.target.filter(
+                    (cssSelector) => !exceptionList[violation.id].includes(cssSelector)
+                );
+                if (filteredResults.length > 0) {
+                    filteredViolations.push(violation);
                 }
             }
         }
