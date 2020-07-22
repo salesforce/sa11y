@@ -40,9 +40,9 @@
         "@rollup/plugin-commonjs": "^14.0.0",
         "@rollup/plugin-node-resolve": "^8.4.0",
         "@sa11y/common": "0.2.0-beta.0",
-        "rollup": "^2.22.1",
+        "rollup": "^2.22.2",
         "rollup-plugin-progress": "^1.1.2",
-        "rollup-plugin-sizes": "^1.0.2",
+        "rollup-plugin-sizes": "^1.0.3",
         "rollup-plugin-terser": "^6.1.0",
         "rollup-plugin-typescript2": "^0.27.1"
     }

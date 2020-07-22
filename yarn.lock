@@ -10256,10 +10256,10 @@ rollup-plugin-progress@^1.1.2:
   dependencies:
     chalk "^2.4.2"
 
-rollup-plugin-sizes@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-sizes/-/rollup-plugin-sizes-1.0.2.tgz#098dc4ae9f7308d236e4f0b0b19cef7256315feb"
-  integrity sha512-DqQS74SEvWPpnvYM5PyRqapzbjUha/CvWb5+bLy7nG/gqainMVyzmdE0/OYdTJw+icvhZiShCvwqQ8blfUnhVw==
+rollup-plugin-sizes@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-sizes/-/rollup-plugin-sizes-1.0.3.tgz#a64ecb7d8c4e6ec7957314d72ec22a6d2f733771"
+  integrity sha512-4s/uOW3CykN4kMZrrvYngA309qTd4Hb18kplErDAtOUXUK7PrFAa3g7s2H5nW9hWZy7sNUkPMkH85klwacq19A==
   dependencies:
     filesize "^6.0.1"
     module-details-from-path "^1.0.3"
@@ -10285,10 +10285,10 @@ rollup-plugin-typescript2@^0.27.1:
     resolve "1.15.1"
     tslib "1.11.2"
 
-rollup@^2.22.1:
-  version "2.22.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.22.1.tgz#8700522aa5feb12c6bd51810df8a276699d136b1"
-  integrity sha512-K9AUQUCJkVqC+A7uUDacfhmpEeAjc2uOmSpvGI5xaYsm8pXgy4ZWEM8wHPfKj11xvCwFZppkRDo8a0RESJXCnw==
+rollup@^2.22.2:
+  version "2.22.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.22.2.tgz#94d51fc8c30a2e545d1ff6358cc4fa14131332ee"
+  integrity sha512-2a4Mch4f0W2lEvkPuxtz0GfrtfgLj9bdd/oC9L3LozGOCnmLqO7ivMfKbCJoRgqWIU2UqAcbxRFSwmIKx+uStA==
   optionalDependencies:
     fsevents "~2.1.2"
 
