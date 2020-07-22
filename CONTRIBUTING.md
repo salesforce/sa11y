@@ -117,10 +117,11 @@ yarn test <path_to_test>
 
 If you want to debug these tests, you can do as follows:
 
-1. First, insert a new line in your test where you think it might be failing and type `debugger`. This will serve as a break point for the debugger to stop at.
-2. Open up Chrome and type in the address bar: `chrome://inspect`
-3. Click on "Open dedicated DevTools for Node"
-4. In your terminal, type the following command: `yarn test:debug <path_to_test>`
+1. First, insert a new line in your code where you think it might be failing and type `debugger`. This will serve as a break point for the debugger to stop at.
+2. Optionally run only a specific test by using `it.only(..)`
+3. Open up Chrome and type in the address bar: `chrome://inspect`
+4. Click on "Open dedicated DevTools for Node"
+5. In your terminal, type the following command: `yarn test:debug <path_to_test>`
 
 Your test should now be running in the Chrome debugger. You get your handy console to poke around all sorts of stuff! Now simply hit "Enter" in the terminal running your Jest process anytime you want to re-run your currently selected specs. You'll be dropped right back into the Chrome debugger.
 
