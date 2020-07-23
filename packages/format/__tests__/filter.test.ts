@@ -13,7 +13,7 @@ let violations;
 
 beforeAll(async () => {
     document.body.innerHTML = domWithA11yIssues;
-    violations = await axe.run(document).then((results) => results.violations);
+    violations = Object.freeze(await axe.run(document).then((results) => results.violations));
 });
 
 describe('a11y results filter', () => {
