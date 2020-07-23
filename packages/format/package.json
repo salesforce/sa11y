@@ -17,8 +17,8 @@
         "format",
         "template"
     ],
-    "main": "dist/format.js",
-    "types": "dist/format.d.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "files": [
         "dist/**/*.js"
     ],
