@@ -8,7 +8,8 @@
 module.exports = {
     '**/*.{js,ts,json,yaml,yml,md}': 'prettier --write',
     '**/*.{js,ts,md}': ['eslint --fix', 'cspell -- --no-summary'],
-    '**/*.md': ['markdown-link-check --quiet --config mdLinkChecker.json', 'doctoc --github'],
+    '**/*.md': ['markdown-link-check --quiet', 'doctoc --github'],
     'yarn.lock': 'yarn lint:lockfile',
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     'package.json': () => 'yarn install',
 };
