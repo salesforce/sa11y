@@ -6,5 +6,6 @@
  */
 
 export { getA11yConfig, A11yConfig } from './a11yConfig';
-export { extended } from './extended';
 export { recommended } from './recommended';
+export { base } from './base';
+export { full } from './full';

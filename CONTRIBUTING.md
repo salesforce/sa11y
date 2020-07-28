@@ -53,7 +53,7 @@ Before you start, it helps to be familiar with [Web Accessibility](https://trail
 -   `yarn test:watch`
 -   `yarn lint:watch`
 
-3. Update changelog with `yarn changelog`
+3. Update changelog with `yarn release:changelog`
 4. Stage changes in git and do `yarn commit` to check staged changes and commit them with a formatted commit message
 5. Push changes to feature branch
 
@@ -80,7 +80,8 @@ _We use [yarn](https://yarnpkg.com/) because it is significantly faster than npm
 yarn install
 ```
 
-If this fails with an error about _UNABLE_TO_GET_ISSUER_CERT_LOCALLY_, _Error: unable to get local issuer certificate_, or a registry communication issue then re-verify that step 2 was successful.
+-   Have to do this every time there are changes to `package.json` from external sources e.g. after switching branches or after merging/rebasing
+-   If this fails with an error about _UNABLE_TO_GET_ISSUER_CERT_LOCALLY_, _Error: unable to get local issuer certificate_, or a registry communication issue then re-verify that step 2 was successful.
 
 ## Building
 
@@ -124,15 +125,18 @@ Your test should now be running in the Chrome debugger. You get your handy conso
 
 ## Release
 
--   Cleanup `CHANGELOG` to remove references to squashed commits and replace them with references to corresponding PRs where possible
--   `yarn release:version` to bump versions
+-   Generate Changelog
+    -   `yarn release:changelog`
+    -   Cleanup `CHANGELOG` to remove references to squashed commits and replace them with references to corresponding PRs where possible
+-   `yarn release:version` to bump versions interactively
+    -   `yarn release:version:auto` to automatically determine version bump based on commits
 -   To publish packages to npm
     -   `npm login`
     -   `yarn release:publish`
--   Use `GH_TOKEN=<token> yarn release:semantic` to create a release in github
-    -   where `GH_TOKEN` is the [Github personal access token](https://github.com/semantic-release/github#github-authentication) created with `repo` permission
-    -   Update release notes to reflect Changelog
-    -   Add `--dry-run --debug` to simulate
+-   Create a release in github
+    -   Bump `version` in root `package.json` to reflect the changes to the packages since last release
+        -   Use that root `version` for the github release
+    -   Add release notes to reflect Changelog since last release
 -   If you couldn't make these changes in the last PR that went into master, you can make a separate PR for release
     -   Create a `release` branch from `master`
     -   Commit changes to versions, changelog

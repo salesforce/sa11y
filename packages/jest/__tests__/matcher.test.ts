@@ -5,20 +5,22 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { toBeAccessible, registerSa11yMatcher } from '../src';
-import { extended, recommended } from '@sa11y/preset-rules';
+import { registerSa11yMatcher, toBeAccessible } from '../src';
+import { base, recommended, getA11yConfig } from '@sa11y/preset-rules';
 import {
     beforeEachSetup,
     cartesianProduct,
     checkA11yError,
     domWithA11yIssues,
-    domWithNoA11yIssues,
     domWithA11yIssuesBodyID,
+    domWithNoA11yIssues,
     shadowDomID,
 } from '@sa11y/test-utils';
+import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
+import { A11yError } from '@sa11y/format';
 
 // Collection of values to be tested passed in as different API parameters
-const a11yConfigParams = [extended, recommended, undefined];
+const a11yConfigParams = [recommended, base, undefined];
 const domParams = [document, undefined];
 const domConfigParams = cartesianProduct(domParams, a11yConfigParams);
 
@@ -45,15 +47,14 @@ describe('toBeAccessible jest a11y matcher', () => {
 
     it.each(a11yConfigParams)('should throw error for dom with a11y issues with config: %#', async (config) => {
         document.body.innerHTML = domWithA11yIssues;
-        expect.assertions(5);
+        expect.assertions(6);
         // using the 'not' matcher just for testing, not expecting this to be used out of the unit testing context
         await expect(document).not.toBeAccessible(config);
+        await expect(document.getElementById(domWithA11yIssuesBodyID)).not.toBeAccessible();
         // using without the 'not' matcher which should be the primary way the API is used (without error catching)
-        try {
-            await expect(document).toBeAccessible(config);
-        } catch (e) {
-            checkA11yError(e);
-        }
+        await expect(document)
+            .toBeAccessible(config)
+            .catch((e) => checkA11yError(e));
     });
 
     it.each([
@@ -65,10 +66,22 @@ describe('toBeAccessible jest a11y matcher', () => {
         document.body.innerHTML = dom;
         const elem = document.getElementById(id);
         expect(elem).toBeTruthy();
-        try {
-            await expect(elem).toBeAccessible();
-        } catch (e) {
-            checkA11yError(e);
-        }
+        await expect(elem)
+            .toBeAccessible()
+            .catch((e) => checkA11yError(e));
+    });
+
+    it('should throw non A11yError for non a11y issues', async () => {
+        expect.assertions(3);
+        const errConfig = getA11yConfig(['non-existent-rule']);
+        await expect(document)
+            .toBeAccessible(errConfig)
+            .catch((e) => {
+                expect(e).toBeTruthy();
+                // TODO (test): add a test to check that A11yError is thrown in normal circumstance
+                //  Jest seems to wrap all errors in expect with JestAssertionError
+                expect(e).not.toBeInstanceOf(A11yError);
+                expect(e.toString()).toContain(axeRuntimeExceptionMsgPrefix);
+            });
     });
 });

@@ -6,6 +6,7 @@
  */
 
 const integrationTestPath = '<rootDir>/packages/test-integration';
+const wdioTestPath = '<rootDir>/packages/wdio';
 
 module.exports = {
     coverageThreshold: {
@@ -17,7 +18,7 @@ module.exports = {
         },
     },
     // Exclude integration tests from being run with config as it has its own config and setup
-    testPathIgnorePatterns: [integrationTestPath],
+    testPathIgnorePatterns: [integrationTestPath, wdioTestPath],
     // Direct Jest to read the jest config file from integration tests
     projects: ['<rootDir>', integrationTestPath],
 };

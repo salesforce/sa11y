@@ -6,7 +6,7 @@
  */
 
 import { assertAccessible } from '../src/assert';
-import { extended, getA11yConfig, recommended } from '@sa11y/preset-rules';
+import { recommended, getA11yConfig, base } from '@sa11y/preset-rules';
 import {
     beforeEachSetup,
     checkA11yError,
@@ -27,7 +27,7 @@ beforeEach(() => {
 async function testDOMWithA11yIssues() {
     document.body.innerHTML = domWithA11yIssues;
     expect.assertions(3);
-    await assertAccessible(document, extended).catch((e) => {
+    await assertAccessible(document, recommended).catch((e) => {
         checkA11yError(e);
     });
 }
@@ -43,7 +43,7 @@ describe('assertAccessible API', () => {
     });
 
     // eslint-disable-next-line jest/expect-expect
-    it.each([recommended, extended])(
+    it.each([base, recommended])(
         'should throw no errors for dom with no a11y issues with config %#',
         async (config) => {
             document.body.innerHTML = domWithNoA11yIssues;

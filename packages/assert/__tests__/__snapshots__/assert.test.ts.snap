@@ -1,7 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`assertAccessible API should throw an error with a11y issues found for dom with a11y issues 1`] = `"5 accessibility issues found"`;
+exports[`assertAccessible API should throw an error with a11y issues found for dom with a11y issues 1`] = `
+"5 accessibility issues found
+ * (bypass) Page must have means to bypass repeated blocks: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass
 
-exports[`assertAccessible API should throw error with HTML element with a11y issues 1`] = `"1 accessibility issues found"`;
+* (document-title) Documents must have <title> element to aid in navigation: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
 
-exports[`assertAccessible API should use default document, ruleset, formatter when called with no args - expecting 1 assertion 1`] = `"5 accessibility issues found"`;
+* (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+
+* (landmark-one-main) Document must have one main landmark: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
+
+* (page-has-heading-one) Page must contain a level-one heading: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
+`;
+
+exports[`assertAccessible API should throw error with HTML element with a11y issues 1`] = `
+"1 accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name"
+`;
+
+exports[`assertAccessible API should use default document, ruleset, formatter when called with no args - expecting 1 assertion 1`] = `
+"5 accessibility issues found
+ * (bypass) Page must have means to bypass repeated blocks: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass
+
+* (document-title) Documents must have <title> element to aid in navigation: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
+
+* (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+
+* (landmark-one-main) Document must have one main landmark: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
+
+* (page-has-heading-one) Page must contain a level-one heading: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
+`;

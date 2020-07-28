@@ -5,8 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import * as axe from 'axe-core';
-import { extended, recommended } from '../src';
+import { base, full, recommended } from '../src';
 
 /**
  * TODO:
@@ -30,24 +29,24 @@ describe('preset-rules', () => {
         'video-description',
         /* cSpell:enable */
     ];
-    const axeRules = axe.getRules().map((ruleObj) => ruleObj.ruleId);
 
-    it('recommended ruleset should be a subset of extended', () => {
-        expect(extended.runOnly.values).toEqual(expect.arrayContaining(recommended.runOnly.values));
-        // TODO (debug): Why is this failing?
-        // expect(extended).toEqual(expect.objectContaining(recommended));
+    it('should match ruleset hierarchy full -> recommended', () => {
+        expect(full.runOnly.values).not.toEqual(recommended.runOnly.values);
+        expect(full.runOnly.values).toEqual(expect.arrayContaining(recommended.runOnly.values));
+    });
+
+    it('should match ruleset hierarchy recommended -> base', () => {
+        expect(recommended.runOnly.values).not.toEqual(base.runOnly.values);
+        expect(recommended.runOnly.values).toEqual(expect.arrayContaining(base.runOnly.values));
     });
 
     it('should not contain excluded, deprecated rules', () => {
-        expect(extended.runOnly.values).toEqual(expect.not.arrayContaining(excludedRules));
-    });
-
-    it('should match with the rules present in axe', () => {
-        expect(axeRules).toEqual(expect.arrayContaining(extended.runOnly.values));
+        expect(recommended.runOnly.values).toEqual(expect.not.arrayContaining(excludedRules));
     });
 
     it('should not use only the excluded, deprecated rules from axe', () => {
-        const unusedRules = axeRules.filter((rule) => !extended.runOnly.values.includes(rule));
+        expect(full.runOnly.values).toEqual(expect.arrayContaining(excludedRules));
+        const unusedRules = full.runOnly.values.filter((rule) => !recommended.runOnly.values.includes(rule));
         expect(unusedRules.sort()).toEqual(excludedRules.sort());
     });
 });

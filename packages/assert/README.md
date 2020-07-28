@@ -1,4 +1,4 @@
-# `assert`
+# `@sa11y/assert`
 
 Provides assertAccessible API to check DOM for accessibility issues
 
@@ -14,14 +14,14 @@ Provides assertAccessible API to check DOM for accessibility issues
 
 ```javascript
 import { assertAccessible } from '@sa11y/assert';
-import { recommended } from '@sa11y/preset-rules';
+import { full } from '@sa11y/preset-rules';
 
 // Setup DOM in the state to be tested for accessibility
 // ...
 // Assert that the current dom has no a11y issues
 // Defaults to using
 //  - default document context e.g. JSDOM in Jest
-//  - extended ruleset from @sa11y/preset-rules and
+//  - recommended ruleset from @sa11y/preset-rules and
 //  - a11yResultsFormatter from @sa11y/format
 await assertAccessible();
 
@@ -31,5 +31,5 @@ await assertAccessible(elem);
 
 // Can be overridden to use custom dom, ruleset or formatter
 //  - Specifying null for formatter will result in using JSON stringify
-await assertAccessible(document, recommended, null);
+await assertAccessible(document, full, null);
 ```

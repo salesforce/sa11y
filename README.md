@@ -15,6 +15,7 @@ Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)
 - [Docs](#docs)
 - [Packages](#packages)
   - [Jest integration](#jest-integration)
+  - [WDIO integration](#wdio-integration)
   - [assertAccessible API](#assertaccessible-api)
   - [a11y results formatter](#a11y-results-formatter)
   - [Preset accessibility rules](#preset-accessibility-rules)
@@ -44,11 +45,14 @@ This repo contains the following packages
     -   integrates the [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
 -   If you are looking to add accessibility testing to your Jest tests use this package
 
+### [WDIO integration](./packages/wdio/README.MD)
+
+-   Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used with [WebdriverIO](https://webdriver.io/) to check accessibility of web pages rendered in browsers
+
 ### [assertAccessible API](./packages/assert/README.md)
 
 -   Checks DOM or HTML Element for accessibility issues and throws an error if a11y issues are found
--   If you are looking to add accessibility testing to your Javascript unit tests and _not_ using Jest,
-    use this package
+-   If you are looking to add accessibility testing to your Javascript unit tests and _not_ using Jest, use this package
 
 ### [a11y results formatter](./packages/format/README.md)
 
@@ -58,9 +62,9 @@ This repo contains the following packages
 
 ### [Preset accessibility rules](./packages/preset-rules/README.md)
 
--   Provides Recommended, Extended accessibility preset rules as [axe](https://github.com/dequelabs/axe-core) configuration
--   The Extended preset rule is used by default in the Jest a11y matcher and assert Accessible API
-    -   Both APIs can be overridden to use the Recommended ruleset
+-   Provides Base, Recommended, Full accessibility preset rules as [axe](https://github.com/dequelabs/axe-core) configuration
+-   The Recommended preset rule is used by default in the Jest a11y matcher and assert Accessible APIs
+    -   The APIs can be overridden to use the Base or Full ruleset as necessary
 
 ### Internal packages
 
