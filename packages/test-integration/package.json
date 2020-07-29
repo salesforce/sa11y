@@ -7,7 +7,7 @@
     "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/test-integ#readme",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/salesforce/sa11y.git",
+        "url": "https://github.com/salesforce/sa11y.git",
         "directory": "packages/test-integration"
     },
     "devDependencies": {

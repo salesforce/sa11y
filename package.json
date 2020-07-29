@@ -34,7 +34,7 @@
         "release:changelog": "conventional-changelog --infile CHANGELOG.md --same-file --preset angular --output-unreleased",
         "release:version": "yarn lerna version --no-push --no-git-tag-version",
         "release:version:auto": "yarn release:version --conventional-commits --no-changelog",
-        "release:publish": "yarn lerna publish from-package",
+        "release:publish": "yarn test:clean && yarn lerna publish from-package",
         "test": "jest --coverage",
         "test:ci": "yarn lint:all && yarn test --ci && yarn test:wdio",
         "test:clean": "yarn build:clean && yarn test:ci",

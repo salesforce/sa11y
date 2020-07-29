@@ -2,7 +2,7 @@
 
 Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages).
 
-[![Build](https://circleci.com/gh/salesforce/sa11y.svg?style=svg&circle-token=0e28763afb8e2d0f1293f08a112e8b5e387b324a)](https://app.circleci.com/pipelines/github/salesforce/sa11y?branch=master)
+[![Build](https://circleci.com/gh/salesforce/sa11y.svg?style=svg)](https://app.circleci.com/pipelines/github/salesforce/sa11y?branch=master)
 
 <!-- Temp disabling code cov badge due to https://github.com/salesforce/sa11y/issues/14
      Re-enable with a code cov service that works with CircleCi -->
