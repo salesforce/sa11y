@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-We want to encourage the developer community to contribute to Sa11y. This guide has instructions to install, build, test and contribute to the framework. Adapted from [salesforce/lwc](https://github.com/salesforce/lwc/blob/master/CONTRIBUTING.md)
+We want to encourage the developer community to contribute to Sa11y. This guide has instructions to install, build, test and contribute to the framework. Adapted from [salesforce/lwc](https://github.com/salesforce/lwc/blob/master/CONTRIBUTING.md).
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -31,7 +31,8 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
   - [Create a pull request](#create-a-pull-request)
     - [Pull Request Title](#pull-request-title)
   - [Update the pull request](#update-the-pull-request)
-  - [Commit Message Conventions](#commit-message-conventions)
+  - [Commit](#commit)
+    - [Commit Message Conventions](#commit-message-conventions)
     - [Commit Message Format](#commit-message-format)
     - [Reverting a commit](#reverting-a-commit)
     - [Commit Type](#commit-type)
@@ -102,7 +103,7 @@ When developing, utilize [jest](https://jestjs.io/en/) unit testing to provide t
 yarn test
 ```
 
-Additionally, the testing can be started in 'watch' mode which allows for automatic test re-runs on save:
+Additionally, the testing can be started in `watch` mode which allows for automatic test re-runs on a save:
 
 ```bash
 yarn test:watch
@@ -256,7 +257,7 @@ Test your change by running the unit tests and integration tests. Instructions [
 ### Create a pull request
 
 If you've never created a pull request before, follow [these
-instructions][creating-a-pull-request]. Pull request samples can be found [here](https://github.com/salesforce/sa11y/pulls)
+instructions][creating-a-pull-request]. Pull request samples can be found [here](https://github.com/salesforce/sa11y/pulls).
 
 #### Pull Request Title
 
@@ -283,17 +284,18 @@ git push origin ${feature_branch}
 git push origin ${feature_branch} --force
 ```
 
-_note: If more changes are needed as part of the pull request, just keep committing and pushing your feature branch as described above and the pull request will automatically update._
+_note: If more changes are needed as part of the pull request, just keep committing and pushing your feature branch as described above, and the pull request will automatically update._
 
-### Commit Message Conventions
+### Commit
 
-Git commit messages have to be formatted according to a well defined set of rules. This leads to **more
+#### Commit Message Conventions
+
+Git commit messages have to be formatted according to a well-defined set of rules. This leads to **more
 readable messages** that are easy to follow when looking through the **project history**.
 
 #### Commit Message Format
 
-Each commit message consists of a **header**, a **body** and a **footer**. The header has a special
-format that includes a **type**, a **scope** and a **subject**:
+Each commit message consists of a **header**, a **body** and a **footer**. The header has a special format that includes a **type**, a **scope**, and a **subject**:
 
 ```
 <type>(<scope>): <subject>
@@ -303,7 +305,7 @@ format that includes a **type**, a **scope** and a **subject**:
 <footer>
 ```
 
-The **header** is mandatory and the **scope** of the header is optional.
+The **header** is mandatory, and the **scope** of the header is optional.
 
 Any line of the commit message cannot be longer 100 characters! This allows the message to be easier
 to read on GitHub as well as in various git tools.
