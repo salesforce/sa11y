@@ -23,6 +23,7 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
   - [Fork the repo](#fork-the-repo)
   - [Create a feature branch](#create-a-feature-branch)
   - [Make your changes](#make-your-changes)
+    - [Media files](#media-files)
   - [Rebase](#rebase)
   - [Check your submission](#check-your-submission)
     - [Lint your changes](#lint-your-changes)
@@ -213,6 +214,10 @@ NOTE: optional use of _yarn commit_ command triggers interactive semantic commit
 The above commands will commit the files into your feature branch. You can keep
 pushing new changes into the same branch until you are ready to create a pull
 request.
+
+#### Media files
+
+Media files such as screenshots, images and demo videos are uploaded into a separate `media` branch. The uploaded files are then linked/referenced from the `media` branch to the other branches. This helps [manage the binary assets separately](https://gist.github.com/joncardasis/e6494afd538a400722545163eb2e1fa5) without bloating the history/size of the main repo.
 
 ### Rebase
 

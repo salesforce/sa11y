@@ -39,11 +39,21 @@ Salesforce Automated Accessibility Testing Libraries and Tools ([@sa11y packages
 
 This repo contains packages for automated accessibility testing used by teams in Salesforce. However, they are not specific to Salesforce and can be used to test any UI [supported by axe-core](https://github.com/dequelabs/axe-core#supported-browsers) for accessibility.
 
+![Embroidery that says "Don't talk to me until I've had coffee and you've run axe" in a hoop](https://github.com/salesforce/sa11y/blob/media/axe_embroidery.jpeg?raw=true)
+
+<!-- cSpell:disable -->
+
+(Image courtesy: [@shleewhite](https://github.com/shleewhite), [@jorycunningham](https://github.com/jorycunningham))
+
+<!-- cSpell:enable -->
+
 ### [Jest integration](./packages/jest/README.md)
 
 -   Provides a `toBeAccessible()` accessibility matcher for Jest
     -   integrates the [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
 -   If you are looking to add accessibility testing to your Jest tests use this package
+
+![Screenshot showing Sa11y Jest API usage and a11y errors showing up in VSCode](https://github.com/salesforce/sa11y/blob/media/screenshot/jest.png?raw=true)
 
 ### [WDIO integration](./packages/wdio/README.md)
 
