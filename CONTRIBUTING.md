@@ -24,6 +24,7 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
   - [Create a feature branch](#create-a-feature-branch)
   - [Make your changes](#make-your-changes)
     - [Media files](#media-files)
+      - [Update dependency graph](#update-dependency-graph)
   - [Rebase](#rebase)
   - [Check your submission](#check-your-submission)
     - [Lint your changes](#lint-your-changes)
@@ -218,6 +219,11 @@ request.
 #### Media files
 
 Media files such as screenshots, images and demo videos are uploaded into a separate `media` branch. The uploaded files are then linked/referenced from the `media` branch to the other branches. This helps [manage the binary assets separately](https://gist.github.com/joncardasis/e6494afd538a400722545163eb2e1fa5) without bloating the history/size of the main repo.
+
+##### Update dependency graph
+
+-   Generate dependency graph using `yarn pkg:depgraph`
+-   Copy the generated file over to the `media` branch
 
 ### Rebase
 
