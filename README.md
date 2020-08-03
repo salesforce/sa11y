@@ -23,6 +23,8 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
     - [Test utilities](#test-utilities)
     - [Integration Tests](#integration-tests)
     - [Common](#common)
+  - [Dependency graph](#dependency-graph)
+  - [Epilogue](#epilogue)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -84,11 +86,21 @@ This repo contains the following packages for automated accessibility testing:
 
 -   Common utilities, constants, error messages for `@sa11y` packages
 
+### Dependency graph
+
+![Dependency graph of sa11y packages](https://github.com/salesforce/sa11y/blob/media/architecture/sa11y_dependency_graph.svg?raw=true)
+
 ---
 
-![Embroidery that says "Don't talk to me until I've had coffee and you've run axe" in a hoop](https://github.com/salesforce/sa11y/blob/media/axe_embroidery.jpeg?raw=true)
+### Epilogue
+
+A wise person once said…
 
 <!-- cSpell:disable -->
+
+_"Don't talk to me until I've had coffee and you've run axe"_
+
+![Embroidery that says "Don't talk to me until I've had coffee and you've run axe" in a hoop](https://github.com/salesforce/sa11y/blob/media/axe_embroidery.jpeg?raw=true)
 
 (Image courtesy: [@shleewhite](https://github.com/shleewhite), [@jorycunningham](https://github.com/jorycunningham))
 
