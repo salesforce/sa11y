@@ -1,6 +1,6 @@
 # Salesforce Accessibility Automation Libraries
 
-Salesforce Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://www.npmjs.com/org/sa11y)) based on [axe-core][axe]
+Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://www.npmjs.com/org/sa11y)) based on [axe-core][axe] providing support for [Jest](#jest-integration) unit tests, [WebdriverIO](#wdio-integration) component/integration tests used by teams in Salesforce. However, they are not specific to Salesforce and can be used to test any UI [supported by axe-core](https://github.com/dequelabs/axe-core#supported-browsers) for accessibility. These libraries are designed to be flexible, customizable and reusable to support automated accessibility testing in different testing workflows from unit to integration tests.
 
 [![Build](https://circleci.com/gh/salesforce/sa11y.svg?style=svg)](https://app.circleci.com/pipelines/github/salesforce/sa11y?branch=master)
 
@@ -37,15 +37,7 @@ Salesforce Automated Accessibility Testing Libraries and Tools ([@sa11y packages
 
 ## Packages
 
-This repo contains packages for automated accessibility testing used by teams in Salesforce. However, they are not specific to Salesforce and can be used to test any UI [supported by axe-core](https://github.com/dequelabs/axe-core#supported-browsers) for accessibility.
-
-![Embroidery that says "Don't talk to me until I've had coffee and you've run axe" in a hoop](https://github.com/salesforce/sa11y/blob/media/axe_embroidery.jpeg?raw=true)
-
-<!-- cSpell:disable -->
-
-(Image courtesy: [@shleewhite](https://github.com/shleewhite), [@jorycunningham](https://github.com/jorycunningham))
-
-<!-- cSpell:enable -->
+This repo contains the following packages for automated accessibility testing:
 
 ### [Jest integration](./packages/jest/README.md)
 
@@ -89,5 +81,15 @@ This repo contains packages for automated accessibility testing used by teams in
 #### [Common](./packages/common/README.md)
 
 -   Common utilities, constants, error messages for `@sa11y` packages
+
+---
+
+![Embroidery that says "Don't talk to me until I've had coffee and you've run axe" in a hoop](https://github.com/salesforce/sa11y/blob/media/axe_embroidery.jpeg?raw=true)
+
+<!-- cSpell:disable -->
+
+(Image courtesy: [@shleewhite](https://github.com/shleewhite), [@jorycunningham](https://github.com/jorycunningham))
+
+<!-- cSpell:enable -->
 
 [axe]: https://github.com/dequelabs/axe-core
