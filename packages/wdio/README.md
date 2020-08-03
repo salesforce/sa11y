@@ -33,6 +33,8 @@ describe('demonstrate usage of @sa11y/wdio', () => {
 });
 ```
 
+![Screenshot showing a11y errors showing up in terminal for a test using Sa11y WDIO](https://github.com/salesforce/sa11y/blob/media/screenshot/wdio.png?raw=true)
+
 ## Reference
 
 -   [Sync mode vs async · WebdriverIO](https://webdriver.io/docs/sync-vs-async.html)

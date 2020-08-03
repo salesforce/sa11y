@@ -51,6 +51,8 @@ This repo contains the following packages for automated accessibility testing:
 
 -   Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used with [WebdriverIO](https://webdriver.io/) to check accessibility of web pages rendered in browsers
 
+![Screenshot showing a11y errors showing up in terminal for a test using Sa11y WDIO](https://github.com/salesforce/sa11y/blob/media/screenshot/wdio.png?raw=true)
+
 ### [assertAccessible API](./packages/assert/README.md)
 
 -   Checks DOM or HTML Element for accessibility issues and throws an error if a11y issues are found
