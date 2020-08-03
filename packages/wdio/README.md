@@ -33,7 +33,7 @@ describe('demonstrate usage of @sa11y/wdio', () => {
 });
 ```
 
-![Screenshot showing a11y errors showing up in terminal for a test using Sa11y WDIO](https://github.com/salesforce/sa11y/blob/media/screenshot/wdio.png?raw=true)
+![Screenshot showing a11y errors from a test using Sa11y WDIO in a terminal](https://github.com/salesforce/sa11y/blob/media/screenshot/wdio.png?raw=true)
 
 ## Reference
 
