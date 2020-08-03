@@ -28,8 +28,8 @@ Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)
 
 ## Docs
 
--   [Developer Guidelines](./CONTRIBUTING.md)
-    -   If you are a developer looking to use the library or to contribute, refer to [Quick start](./CONTRIBUTING.md#quick-start) instructions to get started 
+-   [Contributor Guidelines](./CONTRIBUTING.md)
+    -   If you are a developer looking to contribute, refer to [Quick start](./CONTRIBUTING.md#quick-start) instructions to get started 
 -   [Code of Conduct](./CODE_OF_CONDUCT.md)
 -   [Changelog](./CHANGELOG.md)
 -   [LICENSE](./LICENSE.txt)
