@@ -260,10 +260,10 @@ Test your change by running the unit tests and integration tests. Instructions [
 
 #### Test CI config
 
-**Optionally** test any changes to CI config locally by [using the CircleCI local CLI](https://circleci.com/docs/2.0/local-cli/)
+**Optionally** test any changes to CI config locally by using [the CircleCI local CLI](https://circleci.com/docs/2.0/local-cli/)
 
 -   `circleci config validate`
--   `circleci local execute --job build_and_test`
+-   `circleci local execute --job build-and-test`
 
 ### Create a pull request
 
