@@ -23,7 +23,7 @@
         "dist/**/*.js"
     ],
     "dependencies": {
-        "axe-core": "3.5.5"
+        "axe-core": "4.0.1"
     },
     "devDependencies": {
         "@sa11y/test-utils": "0.2.0-beta.0"
