@@ -15,7 +15,7 @@
         "dist/**/*.js"
     ],
     "dependencies": {
-        "axe-core": "3.5.5"
+        "axe-core": "4.0.1"
     },
     "publishConfig": {
         "access": "public"
