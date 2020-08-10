@@ -93,7 +93,6 @@
         "eslint-plugin-prettier": "^3.1.4",
         "eslint-plugin-tsdoc": "^0.2.6",
         "eslint-watch": "^7.0.0",
-        "graphviz-cli": "^1.0.0",
         "husky": "^4.2.5",
         "jest": "^26.4.0",
         "lerna": "^3.21.0",
