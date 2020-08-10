@@ -32,7 +32,7 @@
         "lint:watch": "esw --watch --changed --color --ext .js,.ts",
         "pkg:list": "lerna list --long --all --toposort",
         "pkg:deps": "yarn pkg:list --graph",
-        "pkg:depgraph": "yarn package-dependency-graph --dot sa11y_dependency_graph.dot; graphviz -Tsvg sa11y_dependency_graph.dot > sa11y_dependency_graph.svg; rm sa11y_dependency_graph.dot",
+        "pkg:depgraph": "yarn package-dependency-graph --graphviz --svg sa11y_dependency_graph.svg",
         "release:changelog": "conventional-changelog --infile CHANGELOG.md --same-file --preset angular --output-unreleased",
         "release:version": "yarn lerna version --no-push --no-git-tag-version",
         "release:version:auto": "yarn release:version --conventional-commits --no-changelog",
