@@ -1,8 +1,8 @@
 # Salesforce Accessibility Automation Libraries
 
-Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages).
+Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://www.npmjs.com/org/sa11y)) based on [axe-core][axe] providing support for [Jest](#jest-integration) unit tests, [WebdriverIO](#wdio-integration) component/integration tests used by teams in Salesforce. However, they are not specific to Salesforce and can be used to test any UI [supported by axe-core](https://github.com/dequelabs/axe-core#supported-browsers) for accessibility. These libraries are designed to be flexible, customizable and reusable to support automated accessibility testing in different testing workflows from unit to integration tests.
 
-[![Build](https://circleci.com/gh/salesforce/sa11y.svg?style=svg&circle-token=0e28763afb8e2d0f1293f08a112e8b5e387b324a)](https://app.circleci.com/pipelines/github/salesforce/sa11y?branch=master)
+[![Build](https://circleci.com/gh/salesforce/sa11y.svg?style=svg)](https://app.circleci.com/pipelines/github/salesforce/sa11y?branch=master)
 
 <!-- Temp disabling code cov badge due to https://github.com/salesforce/sa11y/issues/14
      Re-enable with a code cov service that works with CircleCi -->
@@ -24,6 +24,8 @@ Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)
     - [Test utilities](#test-utilities)
     - [Integration Tests](#integration-tests)
     - [Common](#common)
+  - [Dependency graph](#dependency-graph)
+  - [Epilogue](#epilogue)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -38,7 +40,7 @@ Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)
 
 ## Packages
 
-This repo contains the following packages
+This repo contains the following packages for automated accessibility testing:
 
 ### [Jest integration](./packages/jest/README.md)
 
@@ -46,9 +48,13 @@ This repo contains the following packages
     -   integrates the [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
 -   If you are looking to add accessibility testing to your Jest tests use this package
 
-### [WDIO integration](./packages/wdio/README.MD)
+![Screenshot showing Sa11y Jest API usage and a11y errors showing up in VSCode](https://github.com/salesforce/sa11y/blob/media/screenshot/jest.png?raw=true)
 
--   Provides a `assertAccessible()` API that can be used with [WebdriverIO](https://webdriver.io/) to check accessibility of web pages rendered in browsers
+### [WDIO integration](./packages/wdio/README.md)
+
+-   Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used with [WebdriverIO](https://webdriver.io/) to check accessibility of web pages rendered in browsers
+
+![Screenshot showing a11y errors from a test using Sa11y WDIO in a terminal](https://github.com/salesforce/sa11y/blob/media/screenshot/wdio.png?raw=true)
 
 ### [assertAccessible API](./packages/assert/README.md)
 
@@ -57,13 +63,13 @@ This repo contains the following packages
 
 ### [a11y results formatter](./packages/format/README.md)
 
--   Formats raw JSON output of a11y issues from axe into an easy to consume format by consolidating and cross-referencing
+-   Formats raw JSON output of a11y issues from [axe] into an easy to consume format by consolidating and cross-referencing
 -   Used by assert Accessible API and Jest a11y matcher
 -   If you are using axe directly and want to format the results from `axe.run` use this package
 
 ### [Preset accessibility rules](./packages/preset-rules/README.md)
 
--   Provides Base, Recommended, Full accessibility preset rules as [axe](https://github.com/dequelabs/axe-core) configuration
+-   Provides Base, Recommended, Full accessibility preset rules as [axe] configuration
 -   The Recommended preset rule is used by default in the Jest a11y matcher and assert Accessible APIs
     -   The APIs can be overridden to use the Base or Full ruleset as necessary
 
@@ -77,10 +83,32 @@ This repo contains the following packages
 
 -   Private package providing test utilities for `@sa11y` packages
 
-#### [Integration Tests](packages/test-integration/README.md)
+#### [Integration Tests](./packages/test-integration/README.md)
 
 -   Private package providing integration tests for `@sa11y` packages
 
-#### [Common](packages/common/README.md)
+#### [Common](./packages/common/README.md)
 
 -   Common utilities, constants, error messages for `@sa11y` packages
+
+### Dependency graph
+
+![Dependency graph of sa11y packages](https://github.com/salesforce/sa11y/blob/media/architecture/sa11y_dependency_graph.svg?raw=true)
+
+---
+
+### Epilogue
+
+A wise person once said…
+
+<!-- cSpell:disable -->
+
+_"Don't talk to me until I've had coffee and you've run axe"_
+
+![Embroidery that says "Don't talk to me until I've had coffee and you've run axe" in a hoop](https://github.com/salesforce/sa11y/blob/media/axe_embroidery.jpeg?raw=true)
+
+(Image courtesy: [@shleewhite](https://github.com/shleewhite), [@jorycunningham](https://github.com/jorycunningham))
+
+<!-- cSpell:enable -->
+
+[axe]: https://github.com/dequelabs/axe-core

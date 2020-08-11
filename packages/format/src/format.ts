@@ -70,11 +70,12 @@ export function sortViolations(violations: Result[]): void {
  *  Custom error object to represent a11y violations
  */
 export class A11yError extends Error {
+    static readonly errMsgHeader = 'accessibility issues found';
+
     constructor(readonly violations: Result[]) {
-        super(`${violations.length} accessibility issues found`);
+        super(`${violations.length} ${A11yError.errMsgHeader}`);
         this.name = A11yError.name;
-        // TODO (refactor): Is there a way to de-dup the error summary passed to constructor ?
-        this.message = `${violations.length} accessibility issues found\n ${this.format()}`;
+        this.message = `${violations.length} ${A11yError.errMsgHeader}\n ${this.format()}`;
     }
 
     static checkAndThrow(violations: Result[]): void {
