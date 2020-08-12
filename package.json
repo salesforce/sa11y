@@ -17,8 +17,8 @@
     ],
     "scripts": {
         "build": "tsc --build",
-        "build:browser": "yarn workspace @sa11y/browser-lib build",
-        "build:ci": "yarn install --frozen-lockfile && yarn build && yarn build:browser",
+        "build:minjs": "yarn workspace @sa11y/browser-lib build",
+        "build:ci": "yarn install --frozen-lockfile && yarn build && yarn build:minjs",
         "build:clean": "yarn build --clean && rimraf packages/**/dist && yarn build:ci",
         "build:watch": "yarn build --watch",
         "commit": "! git diff --cached --exit-code && lint-staged && git-cz",
