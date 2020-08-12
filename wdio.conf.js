@@ -8,9 +8,6 @@
 /* cSpell:disable */
 // Disable spell check for this file as there are a lot of config keys that are specific to this file that fail spell check
 
-// Ref: https://webdriver.io/docs/debugging.html
-const debug = process.env.DEBUG;
-
 exports.config = {
     //
     // ====================
@@ -29,9 +26,8 @@ exports.config = {
     // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
-    // Note: Paths below are relative to the specific package dir from which wdio cli is executed
     specs: ['__tests__/**/*.ts'],
-    filesToWatch: ['src/**/*.ts'],
+    filesToWatch: ['./src/**/*.ts'],
     //
     // ============
     // Capabilities
@@ -48,7 +44,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: debug ? 1 : 10,
+    maxInstances: 10,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -59,11 +55,11 @@ exports.config = {
             // maxInstances can get overwritten per capability. So if you have an in-house Selenium
             // grid with only 5 firefox instances available you can make sure that not more than
             // 5 instances get started at a time.
-            maxInstances: debug ? 1 : 5,
+            maxInstances: 5,
             browserName: 'chrome',
             'goog:chromeOptions': {
                 // https://developers.google.com/web/updates/2017/04/headless-chrome)
-                args: debug ? [] : ['--headless', '--disable-gpu'],
+                args: ['--headless', '--disable-gpu'],
             },
             // If outputDir is provided WebdriverIO can capture driver session logs
             // it is possible to configure which logTypes to include/exclude.
@@ -71,8 +67,6 @@ exports.config = {
             // excludeDriverLogs: ['bugreport', 'server'],
         },
     ],
-    // Additional list of node arguments to use when starting child processes
-    execArgv: debug ? ['--inspect'] : [],
     //
     // ===================
     // Test Configurations
@@ -80,7 +74,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: debug ? 'debug' : 'error',
+    logLevel: 'error',
     //
     // Set specific log levels per logger
     // loggers:
@@ -96,10 +90,9 @@ exports.config = {
     //     '@wdio/applitools-service': 'info'
     // },
     //
-    outputDir: debug ? '/tmp/wdio/' : '',
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
-    bail: debug ? 1 : 0,
+    bail: 0,
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
@@ -147,10 +140,14 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         // TypeScript setup
+        // TODO (refactor): Can we reuse babel instead https://webdriver.io/docs/babel.html
+        //  https://github.com/webdriverio/webdriverio/issues/5588
         require: ['ts-node/register'],
         ui: 'bdd',
-        timeout: debug ? 600000000 : 60000,
+        timeout: 60000,
     },
+
+    execArgv: ['--unhandled-rejections=strict', '--trace-warnings'],
     /* eslint-disable tsdoc/syntax */
     // The "@param" lines in "Hooks" section trigger false tsdoc failures
     //
