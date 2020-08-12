@@ -12,9 +12,9 @@ import typescript from 'rollup-plugin-typescript2';
 import sizes from 'rollup-plugin-sizes';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
+import { nameSpace } from './src/index.ts';
 
 const globalName = '__SA11Y__';
-const namespace = 'sa11y';
 
 export default {
     input: 'src/index.ts',
@@ -24,8 +24,8 @@ export default {
         name: globalName,
         preferConst: true,
         // Note: Following is required for the object to get declared in browser using webdriver
-        banner: `typeof ${namespace} === "undefined" && (${namespace} = {});`,
-        footer: `Object.assign(${namespace}, ${globalName}); ${namespace}.version = '${pkg.version}';`,
+        banner: `typeof ${nameSpace} === "undefined" && (${nameSpace} = {});`,
+        footer: `Object.assign(${nameSpace}, ${globalName}); ${nameSpace}.version = '${pkg.version}';`,
     },
     plugins: [
         progress({ clearLine: false }),
