@@ -4,27 +4,35 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [(2020-06-25)](#2020-06-25)
+- [0.3.0-beta (2020-08-12)](#030-beta-2020-08-12)
     - [Features](#features)
+- [0.2.0-beta (2020-06-25)](#020-beta-2020-06-25)
+    - [Features](#features-1)
     - [Bug Fixes](#bug-fixes)
     - [BREAKING CHANGES](#breaking-changes)
 - [(2020-06-02) v0.1.0-alpha](#2020-06-02-v010-alpha)
-    - [Features](#features-1)
-- [(2020-05-29)](#2020-05-29)
     - [Features](#features-2)
+- [(2020-05-29)](#2020-05-29)
+    - [Features](#features-3)
 - [(2020-05-07)](#2020-05-07)
     - [Bug Fixes](#bug-fixes-1)
-    - [Features](#features-3)
+    - [Features](#features-4)
 - [(2020-04-07)](#2020-04-07)
     - [Bug Fixes](#bug-fixes-2)
-    - [Features](#features-4)
+    - [Features](#features-5)
 - [(2020-03-20)](#2020-03-20)
     - [Bug Fixes](#bug-fixes-3)
-    - [Features](#features-5)
+    - [Features](#features-6)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# (2020-06-25)
+# 0.3.0-beta (2020-08-12)
+
+### Features
+
+-   **browser-lib:** add a new package for producing bundled minified version of sa11y ([#32](https://github.com/salesforce/sa11y/pull/32))
+
+# [0.2.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.2.0-beta) (2020-06-25)
 
 ### Features
 
