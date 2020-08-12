@@ -14,25 +14,30 @@ type objectWithVersion = {
     version: string;
 };
 
-async function isLoaded(objName: string): Promise<string | boolean> {
-    return await browser.execute((objName) => {
+/**
+ * Test util function to check if given object with 'version' property is loaded in browser.
+ * @returns value of given object's 'version' property if available, false otherwise.
+ */
+function isLoaded(objName: string): Promise<string | boolean> {
+    return browser.execute((objName) => {
         const obj: objectWithVersion = (window as { [key: string]: any })[objName];
         return typeof obj === 'object' ? obj.version : false;
     }, objName);
 }
 
 describe('@sa11y/browser-lib', () => {
-    it('should inject minified js', async () => {
+    it('should inject minified js', () => {
         const sa11yMinJsPath = path.resolve(__dirname, '../dist/sa11y.min.js');
         const sa11yMinJs = fs.readFileSync(sa11yMinJsPath).toString();
         expect(sa11yMinJs.length).toBeGreaterThan(0);
 
         // Before injecting sa11y min js neither sa11y nor axe should not be defined
-        expect(await isLoaded(nameSpace)).toBe(false);
-        expect(await isLoaded('axe')).toBe(false);
-        await browser.execute(sa11yMinJs);
+        expect(isLoaded(nameSpace)).toBe(false);
+        expect(isLoaded('axe')).toBe(false);
+        browser.execute(sa11yMinJs);
         // After injecting sa11y and axe should be defined
-        expect(await isLoaded(nameSpace)).toBeTruthy();
-        expect(await isLoaded('axe')).toEqual(axeVersion);
+        // TODO (refactor): Get sa11y version dynamically (from package.json)
+        expect(isLoaded(nameSpace)).toEqual('0.1.0-alpha');
+        expect(isLoaded('axe')).toEqual(axeVersion);
     });
 });
