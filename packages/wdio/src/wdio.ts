@@ -11,10 +11,6 @@ import { A11yConfig, recommended } from '@sa11y/preset-rules';
 import { A11yError } from '@sa11y/format';
 import { getViolations } from '@sa11y/common';
 
-// TODO (refactor): Find a way to declare version into axe namespace
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-// eslint-disable-next-line import/namespace
 export const axeVersion: string | undefined = axe.version;
 
 /**
@@ -22,10 +18,6 @@ export const axeVersion: string | undefined = axe.version;
  */
 export async function getAxeVersion(driver: BrowserObject): Promise<typeof axeVersion> {
     return driver.execute(() => {
-        // TODO (refactor): Find a way to declare version into axe namespace
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        // eslint-disable-next-line import/namespace
         return typeof axe === 'object' ? axe.version : undefined;
     });
 }
