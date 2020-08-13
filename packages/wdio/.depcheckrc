@@ -1,1 +1,1 @@
-ignores: ["@wdio/local-runner", "@wdio/mocha-framework", "@wdio/spec-reporter", "@wdio/sync", "chromedriver", "ts-node", "wdio-chromedriver-service"]
+ignores: ["@wdio/sync"]

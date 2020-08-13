@@ -9,5 +9,4 @@ export { base, recommended, full } from '@sa11y/preset-rules';
 export { exceptionListFilter } from '@sa11y/format';
 export { assertAccessible } from '@sa11y/assert';
 
-// TODO (refactor): Reuse value in rollup config
 export const nameSpace = 'sa11y';

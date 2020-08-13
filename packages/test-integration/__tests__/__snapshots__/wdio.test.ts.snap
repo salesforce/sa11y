@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`integration test @sa11y/wdio in sync mode should throw error for html with a11y issues 1`] = `
+"6 accessibility issues found
+ * (bypass) Page must have means to bypass repeated blocks: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass
+
+* (document-title) Documents must have <title> element to aid in navigation: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
+
+* (html-has-lang) <html> element must have a lang attribute: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/html-has-lang
+
+* (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+
+* (landmark-one-main) Document must have one main landmark: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
+
+* (page-has-heading-one) Page must contain a level-one heading: html
+	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
+`;

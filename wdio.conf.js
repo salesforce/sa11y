@@ -72,7 +72,7 @@ exports.config = {
         },
     ],
     // Additional list of node arguments to use when starting child processes
-    execArgv: debug ? ['--inspect'] : [],
+    execArgv: debug ? ['--inspect', '--trace-warnings'] : ['--unhandled-rejections=strict'],
     //
     // ===================
     // Test Configurations
@@ -147,6 +147,8 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         // TypeScript setup
+        // TODO (refactor): Can we reuse babel instead https://webdriver.io/docs/babel.html
+        //  https://github.com/webdriverio/webdriverio/issues/5588
         require: ['ts-node/register'],
         ui: 'bdd',
         timeout: debug ? 600000000 : 60000,

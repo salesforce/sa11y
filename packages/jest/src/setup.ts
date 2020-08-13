@@ -22,7 +22,7 @@ export function registerSa11yMatcher(): void {
         throw new Error(
             "Unable to find Jest's global expect." +
                 '\nPlease check you have added @sa11y/jest correctly to your jest configuration.' +
-                '\nSee https://github.com/salesforce/sa11y/tree/master/packages/jest/README.md for help.'
+                '\nSee https://github.com/salesforce/sa11y/tree/master/packages/jest#readme for help.'
         );
     }
 }

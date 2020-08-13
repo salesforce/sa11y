@@ -9,22 +9,24 @@ import * as axe from 'axe-core';
 import { BrowserObject } from 'webdriverio';
 import { A11yConfig, recommended } from '@sa11y/preset-rules';
 import { A11yError } from '@sa11y/format';
-import { getViolations, axeVersion } from '@sa11y/common';
+import { getViolations } from '@sa11y/common';
+
+// TODO (refactor): Find a way to declare version into axe namespace
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+// eslint-disable-next-line import/namespace
+export const axeVersion: string | undefined = axe.version;
 
 /**
  * Return version of axe injected into browser
  */
 export async function getAxeVersion(driver: BrowserObject): Promise<typeof axeVersion> {
-    return driver.executeAsync((done) => {
-        if (typeof axe !== 'undefined') {
-            // TODO (refactor): Deduplicate with @sa11y/common/axeVersion
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
-            // eslint-disable-next-line import/namespace
-            done(axe.version);
-        } else {
-            done(undefined);
-        }
+    return driver.execute(() => {
+        // TODO (refactor): Find a way to declare version into axe namespace
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        // eslint-disable-next-line import/namespace
+        return typeof axe === 'object' ? axe.version : undefined;
     });
 }
 
@@ -59,7 +61,8 @@ export async function runAxe(driver: BrowserObject, rules: A11yConfig = recommen
 /**
  * Verify that the currently loaded page in the browser is accessible.
  * Throw an error with the accessibility issues found if it is not accessible.
- * @param driver - WDIO instance navigated to page to be checked
+ * Asynchronous version of {@link assertAccessibleSync}
+ * @param driver - WDIO browser instance navigated to page to be checked
  * @param rules - a11y preset-rules to be used for checking accessibility
  */
 export async function assertAccessible(
@@ -70,4 +73,18 @@ export async function assertAccessible(
     //      https://webdriver.io/docs/customcommands.html
     const violations = await getViolations(() => runAxe(driver, rules));
     A11yError.checkAndThrow(violations);
+}
+
+/**
+ * Verify that the currently loaded page in the browser is accessible.
+ * Throw an error with the accessibility issues found if it is not accessible.
+ * Synchronous version of {@link assertAccessible}
+ * @param driver - WDIO browser instance navigated to page to be checked
+ * @param rules - a11y preset-rules to be used for checking accessibility
+ */
+export function assertAccessibleSync(driver: BrowserObject = browser, rules: A11yConfig = recommended): void {
+    // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
+    driver.call(async () => {
+        await assertAccessible(driver, rules);
+    });
 }
