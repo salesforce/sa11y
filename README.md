@@ -88,7 +88,7 @@ This repo contains the following packages for automated accessibility testing:
 
 ### Dependency graph
 
-![Dependency graph of sa11y packages](https://github.com/salesforce/sa11y/blob/media/architecture/sa11y_dependency_graph.svg?raw=true)
+![Dependency graph of sa11y packages](docs/sa11y_dependency_graph.svg)
 
 ---
 
