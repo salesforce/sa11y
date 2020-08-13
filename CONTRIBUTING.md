@@ -224,7 +224,6 @@ Media files such as screenshots, images and demo videos are uploaded into a sepa
 
 -   Generate dependency graph using `yarn pkg:depgraph`
     -   Check if dependency graph needs to be updated using `yarn lint:depgraph`
--   Copy the generated file over to the `media` branch
 
 ### Rebase
 
