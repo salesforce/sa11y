@@ -2,7 +2,8 @@
 
 Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://www.npmjs.com/org/sa11y)) based on [axe-core][axe] providing support for [Jest](#jest-integration) unit tests, [WebdriverIO](#wdio-integration) component/integration tests used by teams in Salesforce. However, they are not specific to Salesforce and can be used to test any UI [supported by axe-core](https://github.com/dequelabs/axe-core#supported-browsers) for accessibility. These libraries are designed to be flexible, customizable and reusable to support automated accessibility testing in different testing workflows from unit to integration tests.
 
-[![Build](https://circleci.com/gh/salesforce/sa11y.svg?style=svg)](https://app.circleci.com/pipelines/github/salesforce/sa11y?branch=master)
+[![Build Status](https://circleci.com/gh/salesforce/sa11y.svg?style=svg)](https://app.circleci.com/pipelines/github/salesforce/sa11y?branch=master)
+[![Code Coverage](https://codecov.io/gh/salesforce/sa11y/branch/master/graph/badge.svg)](https://codecov.io/gh/salesforce/sa11y)
 
 <!-- Temp disabling code cov badge due to https://github.com/salesforce/sa11y/issues/14
      Re-enable with a code cov service that works with CircleCi -->
