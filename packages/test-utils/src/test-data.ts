@@ -13,6 +13,7 @@ export const domWithA11yIssuesBodyID = 'dom-with-issues';
 const fileWithA11yIssues = path.resolve(__dirname, '../__data__/a11yIssues.html');
 export const htmlFileWithA11yIssues = 'file:///' + fileWithA11yIssues;
 export const domWithA11yIssues = fs.readFileSync(fileWithA11yIssues).toString();
+export const a11yIssuesCount = 6;
 
 // DOM containing no a11y issues
 export const shadowDomID = 'upside-down';

@@ -10,6 +10,7 @@ export {
     domWithNoA11yIssues,
     htmlFileWithNoA11yIssues,
     htmlFileWithA11yIssues,
+    a11yIssuesCount,
     shadowDomID,
     domWithA11yIssuesBodyID,
 } from './test-data';

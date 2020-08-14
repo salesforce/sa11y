@@ -7,13 +7,11 @@
 
 import * as axe from 'axe-core';
 import { assertAccessible, assertAccessibleSync, axeVersion, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
-import { htmlFileWithA11yIssues, htmlFileWithNoA11yIssues } from '@sa11y/test-utils';
+import { a11yIssuesCount, htmlFileWithA11yIssues, htmlFileWithNoA11yIssues } from '@sa11y/test-utils';
 import { A11yError } from '@sa11y/format';
 import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
 const sync = require('@wdio/sync').default;
-
-const numA11yIssues = 6;
 
 /**
  * Test util function to get violations from given html file
@@ -87,7 +85,7 @@ describe('integration test axe with WebdriverIO', () => {
 
     it('should get violations', async () => {
         expect(await getViolationsHtml(htmlFileWithNoA11yIssues)).toHaveLength(0);
-        expect(await getViolationsHtml(htmlFileWithA11yIssues)).toHaveLength(numA11yIssues);
+        expect(await getViolationsHtml(htmlFileWithA11yIssues)).toHaveLength(a11yIssuesCount);
     });
 });
 
@@ -101,7 +99,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
 
     it('should throw error for html with a11y issues', async () => {
         await browser.url(htmlFileWithA11yIssues);
-        await checkAccessible(numA11yIssues);
+        await checkAccessible(a11yIssuesCount);
     });
     /* eslint-enable jest/expect-expect */
 
@@ -117,7 +115,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         return sync(() => {
             browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync()).toThrow();
-            checkAccessibleSync(numA11yIssues);
+            checkAccessibleSync(a11yIssuesCount);
         });
     });
 });
