@@ -7,7 +7,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { nameSpace } from '../src';
+import { namespace } from '../src';
 import { axeVersion } from '@sa11y/common';
 
 type objectWithVersion = {
@@ -32,12 +32,12 @@ describe('@sa11y/browser-lib', () => {
         expect(sa11yMinJs.length).toBeGreaterThan(0);
 
         // Before injecting sa11y min js neither sa11y nor axe should not be defined
-        expect(isLoaded(nameSpace)).toBe(false);
+        expect(isLoaded(namespace)).toBe(false);
         expect(isLoaded('axe')).toBe(false);
         browser.execute(sa11yMinJs);
         // After injecting sa11y and axe should be defined
         // TODO (refactor): Get sa11y version dynamically (from package.json)
-        expect(isLoaded(nameSpace)).toEqual('0.1.0-alpha');
+        expect(isLoaded(namespace)).toEqual('0.1.0-alpha');
         expect(isLoaded('axe')).toEqual(axeVersion);
     });
 });
