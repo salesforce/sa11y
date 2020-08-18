@@ -1,6 +1,6 @@
 # `@sa11y/browser-lib`
 
-Provides a minified version of selected `@sa11y` libraries to be injected into a browser (using webdriver) and executed from integration testing workflows. This allows for reuse of the `@sa11y` libraries across unit and integration testing workflows.
+Provides a minified version of selected `@sa11y` libraries to be injected into a browser (using webdriver) and executed from integration testing workflows with non-WebdriverIO frameworks such as [Selenium Java](https://www.selenium.dev/selenium/docs/api/java/) where the [`@sa11y/wdio`](./packages/wdio/README.md) package cannot be used. This allows for reuse of the `@sa11y` libraries across unit and integration testing workflows.
 
 Code in this package should be limited only to wrappers required to facilitate execution in browser environment. All primary code should be added to `@sa11y` libraries.
 
