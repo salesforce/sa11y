@@ -24,6 +24,7 @@
     ],
     "scripts": {
         "build": "rollup -c",
+        "build:debug": "DEBUG=true yarn build",
         "build:watch": "yarn build --watch",
         "test": "wdio run ../../wdio.conf.js",
         "test:debug": "DEBUG=true yarn test",
