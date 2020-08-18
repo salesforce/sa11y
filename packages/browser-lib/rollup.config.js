@@ -16,23 +16,36 @@ import { namespace } from './src/index.ts';
 
 const globalName = '__SA11Y__';
 
-export default {
-    input: 'src/index.ts',
-    output: {
-        file: pkg.browser,
-        format: 'iife',
-        name: globalName,
-        preferConst: true,
-        // Note: Following is required for the object to get declared in browser using webdriver
-        banner: `typeof ${namespace} === "undefined" && (${namespace} = {});`,
-        footer: `Object.assign(${namespace}, ${globalName}); ${namespace}.version = '${pkg.version}';`,
-    },
-    plugins: [
-        progress({ clearLine: false }),
-        resolve(),
-        commonjs(),
-        typescript({ tsconfigOverride: { compilerOptions: { module: 'es2015' } } }),
-        terser(), // Note: Comment to get un-minified file for debugging etc
-        sizes({ details: true }),
-    ],
-};
+function getConfig(minified = false) {
+    const debug = !!process.env.DEBUG;
+
+    return {
+        input: 'src/index.ts',
+        output: {
+            file: minified ? `dist/${namespace}.min.js` : `dist/${namespace}.js`,
+            format: 'iife',
+            name: globalName,
+            preferConst: true,
+            // Note: Following is required for the object to get declared in browser using webdriver
+            banner: `typeof ${namespace} === "undefined" && (${namespace} = {});`,
+            footer: `Object.assign(${namespace}, ${globalName}); ${namespace}.version = '${pkg.version}';`,
+        },
+        plugins: [
+            debug ? progress({ clearLine: false }) : {},
+            resolve(),
+            commonjs(),
+            typescript({
+                tsconfigOverride: { compilerOptions: { module: 'es2015' } },
+                verbosity: debug ? 3 : 1,
+            }),
+            minified ? terser() : {},
+            sizes({ details: debug }),
+        ],
+    };
+}
+
+export default [
+    // Produce both minified and un-minified files
+    getConfig(false),
+    getConfig(true),
+];
