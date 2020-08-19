@@ -5,4 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-export { axeRuntimeExceptionMsgPrefix, axeVersion, getViolations } from './axe';
+export { base, recommended, full } from '@sa11y/preset-rules';
+export { sortViolations } from '@sa11y/format';
+export { assertAccessible } from '@sa11y/assert';
+
+export const namespace = 'sa11y';

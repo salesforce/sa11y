@@ -1,0 +1,18 @@
+{
+    "extends": "../../tsconfig.common.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "types": ["webdriverio", "jest"],
+        "noEmitOnError": false,
+        "declaration": false,
+        "composite": false
+    },
+    "include": ["src"],
+    "references": [
+        { "path": "../preset-rules" },
+        { "path": "../format" },
+        { "path": "../assert" },
+        { "path": "../common" }
+    ]
+}

@@ -11,9 +11,11 @@
     },
     "keywords": [
         "accessibility",
-        "automated testing",
+        "automated test",
+        "integration test",
         "Webdriver",
-        "WebdriverIO"
+        "WebdriverIO",
+        "axe"
     ],
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -21,7 +23,8 @@
         "dist/**/*.js"
     ],
     "scripts": {
-        "test": "wdio run wdio.conf.js",
+        "test": "wdio run ../../wdio.conf.js",
+        "test:debug": "DEBUG=true yarn test",
         "test:watch": "yarn test --watch"
     },
     "dependencies": {

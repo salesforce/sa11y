@@ -13,5 +13,5 @@
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true
     },
-    "exclude": ["*/dist", "**/__tests__"]
+    "exclude": ["**/dist", "**/__tests__"]
 }

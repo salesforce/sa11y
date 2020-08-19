@@ -14,6 +14,7 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
 - [Building](#building)
 - [Testing](#testing)
   - [Unit Testing](#unit-testing)
+  - [Integration Testing](#integration-testing)
 - [Release](#release)
     - [Use local npm registry for testing](#use-local-npm-registry-for-testing)
 - [Editor Configurations](#editor-configurations)
@@ -125,6 +126,14 @@ If you want to debug these tests, you can do as follows:
 4. In your terminal, type the following command: `yarn test:debug <path_to_test>`
 
 Your test should now be running in the Chrome debugger. You get your handy console to poke around all sorts of stuff! Now simply hit "Enter" in the terminal running your Jest process anytime you want to re-run your currently selected specs. You'll be dropped right back into the Chrome debugger.
+
+### Integration Testing
+
+-   Integration tests are available for certain packages executed using [WebdriverIO](https://webdriver.io/)
+-   To [debug WebdriverIO tests](https://webdriver.io/docs/api/browser/debug.html)
+    -   Add `await browser.debug();` to introduce a breakpoint
+    -   Run test using `yarn test:debug` or `DEBUG=true yarn test`
+        -   To apply different configuration settings to aid debugging (e.g. disable headless, increase timeouts, increase logging)
 
 ## Release
 
@@ -256,7 +265,9 @@ the ones related to the files you make changes to!
 
 #### Run tests
 
-Test your change by running the unit tests and integration tests. Instructions [here](#testing).
+Test your change by running [the unit tests and integration tests](#testing).
+
+-   `yarn test`
 
 #### Test CI config
 
