@@ -4,13 +4,15 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [0.3.0-beta (2020-08-12)](#030-beta-2020-08-12)
+- [0.3.1-beta](#031-beta)
+    - [Refactor](#refactor)
+- [0.3.0-beta (2020-08-19)](#030-beta-2020-08-19)
     - [Features](#features)
 - [0.2.0-beta (2020-06-25)](#020-beta-2020-06-25)
     - [Features](#features-1)
     - [Bug Fixes](#bug-fixes)
     - [BREAKING CHANGES](#breaking-changes)
-- [(2020-06-02) v0.1.0-alpha](#2020-06-02-v010-alpha)
+- [v0.1.0-alpha (2020-06-02)](#v010-alpha-2020-06-02)
     - [Features](#features-2)
 - [(2020-05-29)](#2020-05-29)
     - [Features](#features-3)
@@ -26,7 +28,13 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# 0.3.0-beta (2020-08-12)
+# [0.3.1-beta](2020-08-19)
+
+### Refactor
+
+-   chore: update to the latest major release of axe
+
+# [0.3.0-beta](https://github.com/salesforce/sa11y/tree/v0.3.0-beta) (2020-08-19)
 
 ### Features
 
@@ -57,7 +65,7 @@
         -   If you are using the `recommended` preset-rule rename it to `base`
         -   If you are using the `extended` preset-rule rename it to `recommended`
 
-# (2020-06-02) [v0.1.0-alpha](https://github.com/salesforce/sa11y/releases/tag/v0.1.0-alpha)
+# [v0.1.0-alpha](https://github.com/salesforce/sa11y/releases/tag/v0.1.0-alpha) (2020-06-02)
 
 ### Features
 
