@@ -38,16 +38,30 @@ export async function loadAxe(driver: BrowserObject): Promise<void> {
 /**
  * Load and run axe in given WDIO instance and return the accessibility violations found.
  */
-export async function runAxe(driver: BrowserObject, rules: A11yConfig = recommended): Promise<axe.Result[]> {
+export async function runAxe(
+    driver: BrowserObject,
+    context = 'html',
+    rules: A11yConfig = recommended
+): Promise<axe.Result[]> {
+    // Verify that the element to be checked for a11y exists to get faster and better err msg from WDIO.
+    await (await driver.$(context)).waitForExist();
+
     await loadAxe(driver);
 
     // run axe inside browser and return violations
-    return await driver.executeAsync((rules, done) => {
-        axe.run(document, rules, function (err: Error, results: axe.AxeResults) {
-            if (err) throw err;
-            done(results.violations);
-        });
-    }, rules);
+    return await driver.executeAsync(
+        (context, rules, done) => {
+            axe.run((context || document) as axe.ElementContext, rules as axe.RunOptions, function (
+                err: Error,
+                results: axe.AxeResults
+            ) {
+                if (err) throw err;
+                done(results.violations);
+            });
+        },
+        context,
+        rules
+    );
 }
 
 /**
@@ -55,28 +69,33 @@ export async function runAxe(driver: BrowserObject, rules: A11yConfig = recommen
  * Throw an error with the accessibility issues found if it is not accessible.
  * Asynchronous version of {@link assertAccessibleSync}
  * @param driver - WDIO browser instance navigated to page to be checked
+ * @param context - CSS selector of element(s) to check for accessibility, defaults to the entire document
  * @param rules - a11y preset-rules to be used for checking accessibility
  */
 export async function assertAccessible(
     driver: BrowserObject = browser,
+    context = 'html',
     rules: A11yConfig = recommended
 ): Promise<void> {
-    // TODO (feat): Add as custom commands to both browser for page level and elem
-    //      https://webdriver.io/docs/customcommands.html
-    const violations = await getViolations(() => runAxe(driver, rules));
+    const violations = await getViolations(() => runAxe(driver, context, rules));
     A11yError.checkAndThrow(violations);
 }
 
 /**
  * Verify that the currently loaded page in the browser is accessible.
  * Throw an error with the accessibility issues found if it is not accessible.
- * Synchronous version of {@link assertAccessible}
+ * Synchronous version of {@link assertAccessible} to be used with `@wdio/sync` package.
  * @param driver - WDIO browser instance navigated to page to be checked
+ * @param context - CSS selector of element(s) to check for accessibility, defaults to the entire document
  * @param rules - a11y preset-rules to be used for checking accessibility
  */
-export function assertAccessibleSync(driver: BrowserObject = browser, rules: A11yConfig = recommended): void {
+export function assertAccessibleSync(
+    driver: BrowserObject = browser,
+    context = 'html',
+    rules: A11yConfig = recommended
+): void {
     // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
     driver.call(async () => {
-        await assertAccessible(driver, rules);
+        await assertAccessible(driver, context, rules);
     });
 }
