@@ -21,7 +21,8 @@
         "build:clean": "tsc --build --clean && rimraf packages/**/dist && yarn build:ci",
         "build:watch": "tsc --build --watch",
         "commit": "! git diff --cached --exit-code && lint-staged && git-cz",
-        "install:clean": "lerna clean --yes; yarn install",
+        "install:clean": "lerna clean --yes && rm -f yarn.lock && yarn install",
+        "install:update": "yarn audit; yarn upgrade-interactive --latest && yarn install:clean && yarn test:clean",
         "lint": "eslint . --ext ts,js,md",
         "lint:all": "yarn lint && yarn lint:lockfile && yarn lint:deps && yarn lint:depgraph",
         "lint:deps": "lerna exec depcheck",
@@ -42,8 +43,7 @@
         "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "yarn test --watch",
-        "test:wdio": "yarn workspace @sa11y/wdio test; yarn workspace @sa11y/browser-lib test ",
-        "update": "yarn audit; yarn upgrade-interactive --latest && yarn test:clean"
+        "test:wdio": "yarn workspace @sa11y/wdio test; yarn workspace @sa11y/browser-lib test"
     },
     "config": {
         "commitizen": {
