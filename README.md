@@ -4,10 +4,11 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
 
 [![Build Status](https://circleci.com/gh/salesforce/sa11y.svg?style=svg)](https://app.circleci.com/pipelines/github/salesforce/sa11y?branch=master)
 [![Code Coverage](https://codecov.io/gh/salesforce/sa11y/branch/master/graph/badge.svg)](https://codecov.io/gh/salesforce/sa11y)
+[![License](https://img.shields.io/npm/l/@sa11y/common)](./LICENSE.txt)
+[![NPM downloads per month of @sa11y/common package](https://img.shields.io/npm/dm/@sa11y/common)](https://www.npmjs.com/org/sa11y)
 
-<!-- Temp disabling code cov badge due to https://github.com/salesforce/sa11y/issues/14
-     Re-enable with a code cov service that works with CircleCi -->
-<!-- ![Code coverage](https://github.com/salesforce/sa11y/workflows/Code%20coverage/badge.svg) -->
+<!-- Temp disable until the complete workflow with https://snyk.io can be figured out -->
+<!-- [![Known Vulnerabilities](https://snyk.io/test/github/salesforce/sa11y/badge.svg?targetFile=package.json)](https://snyk.io/test/github/salesforce/sa11y?targetFile=package.json) -->
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -15,11 +16,11 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
 
 - [Docs](#docs)
 - [Packages](#packages)
-  - [Jest integration](#jest-integration)
-  - [WDIO integration](#wdio-integration)
-  - [assertAccessible API](#assertaccessible-api)
-  - [a11y results formatter](#a11y-results-formatter)
-  - [Preset accessibility rules](#preset-accessibility-rules)
+  - [Jest integration *](#jest-integration-)
+  - [WDIO integration *](#wdio-integration-)
+  - [assertAccessible API *](#assertaccessible-api-)
+  - [a11y results formatter *](#a11y-results-formatter-)
+  - [Preset accessibility rules *](#preset-accessibility-rules-)
   - [Minified bundle for testing in browser](#minified-bundle-for-testing-in-browser)
   - [Internal packages](#internal-packages)
     - [Test utilities](#test-utilities)
@@ -43,7 +44,7 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
 
 This repo contains the following packages for automated accessibility testing:
 
-### [Jest integration](./packages/jest/README.md)
+### [Jest integration](./packages/jest/README.md) ![published npm version of @sa11y/jest](https://img.shields.io/npm/v/@sa11y/jest)
 
 -   Provides a `toBeAccessible()` accessibility matcher for Jest
     -   integrates the [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
@@ -51,24 +52,24 @@ This repo contains the following packages for automated accessibility testing:
 
 ![Screenshot showing Sa11y Jest API usage and a11y errors showing up in VSCode](https://github.com/salesforce/sa11y/blob/media/screenshot/jest.png?raw=true)
 
-### [WDIO integration](./packages/wdio/README.md)
+### [WDIO integration](./packages/wdio/README.md) ![published npm version of @sa11y/wdio](https://img.shields.io/npm/v/@sa11y/wdio)
 
 -   Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used with [WebdriverIO](https://webdriver.io/) to check accessibility of web pages rendered in browsers
 
 ![Screenshot showing a11y errors from a test using Sa11y WDIO in a terminal](https://github.com/salesforce/sa11y/blob/media/screenshot/wdio.png?raw=true)
 
-### [assertAccessible API](./packages/assert/README.md)
+### [assertAccessible API](./packages/assert/README.md) ![published npm version of @sa11y/assert](https://img.shields.io/npm/v/@sa11y/assert)
 
 -   Checks DOM or HTML Element for accessibility issues and throws an error if a11y issues are found
 -   If you are looking to add accessibility testing to your Javascript unit tests and _not_ using Jest, use this package
 
-### [a11y results formatter](./packages/format/README.md)
+### [a11y results formatter](./packages/format/README.md) ![published npm version of @sa11y/format](https://img.shields.io/npm/v/@sa11y/format)
 
 -   Formats raw JSON output of a11y issues from [axe] into an easy to consume format by consolidating and cross-referencing
 -   Used by assert Accessible API and Jest a11y matcher
 -   If you are using axe directly and want to format the results from `axe.run` use this package
 
-### [Preset accessibility rules](./packages/preset-rules/README.md)
+### [Preset accessibility rules](./packages/preset-rules/README.md) ![published npm version of @sa11y/preset-rules](https://img.shields.io/npm/v/@sa11y/preset-rules)
 
 -   Provides Base, Recommended, Full accessibility preset rules as [axe] configuration
 -   The Recommended preset rule is used by default in the Jest a11y matcher and assert Accessible APIs
