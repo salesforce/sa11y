@@ -24,12 +24,13 @@
         "install:clean": "lerna clean --yes && rm -f yarn.lock && yarn install",
         "install:update": "yarn audit; yarn upgrade-interactive --latest && yarn install:clean && yarn test:clean",
         "lint": "eslint . --ext ts,js,md",
-        "lint:all": "yarn lint && yarn lint:lockfile && yarn lint:deps && yarn lint:depgraph",
+        "lint:all": "yarn lint && yarn lint:lockfile && yarn lint:version && yarn lint:deps && yarn lint:depgraph",
         "lint:deps": "lerna exec depcheck",
         "lint:depgraph": "yarn pkg:depgraph; git diff --quiet docs/sa11y_dependency_graph.svg || echo 'Dependency graph needs to be updated!'",
         "lint:fix": "yarn lint --fix",
         "lint:lockfile": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
         "lint:staged": "lint-staged",
+        "lint:version": "sh -c \"$npm_package_config_cmd_version_check\" && yarn lerna exec --since master $npm_package_config_cmd_version_check",
         "lint:watch": "esw --watch --changed --color --ext .js,.ts",
         "pkg:list": "lerna list --long --all --toposort",
         "pkg:deps": "yarn pkg:list --graph",
@@ -48,7 +49,8 @@
     "config": {
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
-        }
+        },
+        "cmd_version_check": "echo 'checking for updated version in package.json'; git diff master package.json | grep '\"version\":'"
     },
     "husky": {
         "hooks": {
