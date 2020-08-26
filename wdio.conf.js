@@ -9,7 +9,7 @@
 // Disable spell check for this file as there are a lot of config keys that are specific to this file that fail spell check
 
 // Ref: https://webdriver.io/docs/debugging.html
-const debug = process.env.DEBUG;
+const debug = !!process.env.DEBUG;
 
 exports.config = {
     //
