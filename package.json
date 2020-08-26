@@ -30,7 +30,7 @@
         "lint:fix": "yarn lint --fix",
         "lint:lockfile": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
         "lint:staged": "lint-staged",
-        "lint:version": "sh -c \"$npm_package_config_cmd_version_check\" && yarn lerna exec --since master $npm_package_config_cmd_version_check",
+        "lint:version": "vertioner && yarn lerna exec --since master vertioner",
         "lint:watch": "esw --watch --changed --color --ext .js,.ts",
         "pkg:changed": "echo 'Packages that have changed from master:'; yarn pkg:list --loglevel error --since master",
         "pkg:list": "lerna list --long --all --toposort",
@@ -50,8 +50,7 @@
     "config": {
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
-        },
-        "cmd_version_check": "echo 'checking for updated version in package.json'; git diff master package.json | grep '\"version\":'"
+        }
     },
     "husky": {
         "hooks": {
@@ -108,6 +107,7 @@
         "rimraf": "^3.0.2",
         "ts-node": "^9.0.0",
         "typescript": "^3.9.7",
+        "vertioner": "^1.0.4",
         "wdio-chromedriver-service": "^6.0.3",
         "webdriverio": "^6.4.2"
     },
