@@ -9,11 +9,6 @@ import * as axe from 'axe-core';
 
 export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks using axe:';
 
-// TODO (refactor): Find a way to declare version into axe namespace
-// axe.version doesn't exist in typedef https://github.com/dequelabs/axe-core/issues/2378
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-// eslint-disable-next-line import/namespace
 export const axeVersion: string | undefined = axe.version;
 
 /**

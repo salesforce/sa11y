@@ -20,7 +20,7 @@ describe('jest setup', () => {
     });
 
     it('should throw error when global expect is undefined', () => {
-        /* eslint-disable @typescript-eslint/ban-ts-ignore */
+        /* eslint-disable @typescript-eslint/ban-ts-comment */
         // @ts-ignore error TS2339: Property 'expect' does not exist on type 'Global'.
         const globalExpect = global.expect;
         expect(globalExpect).toBeDefined();
@@ -33,6 +33,6 @@ describe('jest setup', () => {
             // @ts-ignore error TS2339: Property 'expect' does not exist on type 'Global'.
             global.expect = globalExpect;
         }
-        /* eslint-enable @typescript-eslint/ban-ts-ignore */
+        /* eslint-enable @typescript-eslint/ban-ts-comment */
     });
 });

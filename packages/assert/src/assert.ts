@@ -23,7 +23,10 @@ export type a11yCheckableContext = Document | HTMLElement;
  * @throws error - with the accessibility issues found, does not return any value
  * */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export async function assertAccessible(context: a11yCheckableContext = document, rules: A11yConfig = recommended) {
+export async function assertAccessible(
+    context: a11yCheckableContext = document,
+    rules: A11yConfig = recommended
+): never {
     const violations = await getViolations(async () => {
         const results = await axe.run(context as axe.ElementContext, rules as axe.RunOptions);
         return results.violations;

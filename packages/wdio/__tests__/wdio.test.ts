@@ -11,7 +11,7 @@ import { htmlFileWithA11yIssues, htmlFileWithNoA11yIssues } from '@sa11y/test-ut
 import { A11yError } from '@sa11y/format';
 import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
-const sync = require('@wdio/sync').default;
+import * as sync from '@wdio/sync';
 
 const numA11yIssues = 6;
 
@@ -106,7 +106,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
     /* eslint-enable jest/expect-expect */
 
     it('should throw no error for html with no a11y issues in sync mode', () => {
-        return sync(() => {
+        return sync.default(() => {
             browser.url(htmlFileWithNoA11yIssues);
             expect(() => assertAccessibleSync()).not.toThrow();
             checkAccessibleSync(0);
@@ -114,7 +114,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
     });
 
     it('should throw error for html with a11y issues in sync mode', () => {
-        return sync(() => {
+        return sync.default(() => {
             browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync()).toThrow();
             checkAccessibleSync(numA11yIssues);

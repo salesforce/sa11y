@@ -13,7 +13,7 @@ import { A11yConfig } from '@sa11y/preset-rules';
  */
 export function registerSa11yMatcher(): void {
     // Ref: https://github.com/jest-community/jest-extended
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore error TS2339: Property 'expect' does not exist on type 'Global'.
     const jestExpect = global.expect;
     if (jestExpect !== undefined) {
