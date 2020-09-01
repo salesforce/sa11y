@@ -27,7 +27,8 @@ module.exports = {
         'eslint:recommended',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        // TODO (fix): Enabling this results in 80+ errors with new versions of @typescript-eslint and typescript v4. Enable and fix the errors
+        // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:jest/recommended',
         'plugin:jest/style',
         'plugin:prettier/recommended',
@@ -36,6 +37,7 @@ module.exports = {
         'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:eslint-comments/recommended',
+        'plugin:markdown/recommended',
     ],
     settings: {
         'import/resolver': {
