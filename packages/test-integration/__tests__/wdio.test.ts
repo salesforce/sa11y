@@ -42,6 +42,8 @@ afterAll(async () => {
 describe('integration test @sa11y/wdio in sync mode', () => {
     it('should throw error for html with a11y issues', () => {
         expect(browser).toBeTruthy();
+        // TODO (chore): File issue with webdriverIO: 'sync' missing 'default' in type def
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
         return sync.default(() => {
             browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync(browser)).toThrowErrorMatchingSnapshot();
@@ -50,6 +52,8 @@ describe('integration test @sa11y/wdio in sync mode', () => {
 
     it('should not throw error for html with no a11y issues', () => {
         expect(browser).toBeTruthy();
+        // TODO (chore): File issue with webdriverIO: 'sync' missing 'default' in type def
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
         return sync.default(() => {
             browser.url(htmlFileWithNoA11yIssues);
             expect(() => assertAccessibleSync(browser)).not.toThrow();

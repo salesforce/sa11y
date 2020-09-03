@@ -15,7 +15,7 @@ export function registerSa11yMatcher(): void {
     // Ref: https://github.com/jest-community/jest-extended
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore error TS2339: Property 'expect' does not exist on type 'Global'.
-    const jestExpect = global.expect;
+    const jestExpect = global.expect as jest.Expect;
     if (jestExpect !== undefined) {
         jestExpect.extend({ toBeAccessible });
     } else {

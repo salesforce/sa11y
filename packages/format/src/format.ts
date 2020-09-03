@@ -26,13 +26,11 @@ export interface Highlighter {
  * Optional parameters used while formatting a11y issues
  */
 export interface Options {
-    a11yViolationIndicator?: string;
-    helpUrlIndicator?: string;
+    a11yViolationIndicator: string;
+    helpUrlIndicator: string;
     formatter?: Formatter;
-    highlighter?: Highlighter;
+    highlighter: Highlighter;
 }
-
-const DefaultHighlighter = (text: string): string => text;
 
 /**
  * Default options to be used while formatting a11y issues
@@ -40,8 +38,9 @@ const DefaultHighlighter = (text: string): string => text;
 const DefaultOptions: Options = {
     a11yViolationIndicator: '*',
     helpUrlIndicator: '-',
+    // TODO (refactor): Create a Default formatter that points to A11yError.format()
     formatter: undefined,
-    highlighter: DefaultHighlighter,
+    highlighter: (text: string): string => text,
 };
 
 const defaultImpact = 'minor'; // if impact is undefined
@@ -92,14 +91,11 @@ export class A11yError extends Error {
      * Format a11y violations into a readable format highlighting important information to help fixing the issue.
      * @param options - Options used for formatting a11y issues.
      */
-    format(options: Options = {}): string {
-        options = { ...DefaultOptions, ...options };
+    format(opts: Options = DefaultOptions): string {
+        const options = Object.assign(DefaultOptions, opts);
         if (options.formatter !== undefined) {
             return options.formatter(this.violations);
         }
-
-        // Note: Workaround for "TS2722: Cannot invoke an object which is possibly 'undefined'."
-        const highlighter = options.highlighter || DefaultHighlighter;
 
         sortViolations(this.violations);
         return this.violations
@@ -112,7 +108,7 @@ export class A11yError extends Error {
                         // const criteria = violation.tags.filter((tag) => tag.startsWith('wcag2a') || tag.startsWith('best'));
 
                         return (
-                            highlighter(
+                            options.highlighter(
                                 `${options.a11yViolationIndicator} (${violation.id}) ${violation.help}: ${selectors}`
                             ) + `\n\t${options.helpUrlIndicator} Help URL: ${helpURL}`
                         );

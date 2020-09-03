@@ -27,7 +27,7 @@ export async function getViolations(axeRunner: AxeRunner): Promise<axe.Result[]>
     try {
         violations = await axeRunner();
     } catch (e) {
-        throw new Error(`${axeRuntimeExceptionMsgPrefix} ${e}`);
+        throw new Error(`${axeRuntimeExceptionMsgPrefix} ${(e as Error).message}`);
     }
     return violations;
 }

@@ -76,7 +76,7 @@ describe('toBeAccessible jest a11y matcher', () => {
         const errConfig = getA11yConfig(['non-existent-rule']);
         await expect(document)
             .toBeAccessible(errConfig)
-            .catch((e) => {
+            .catch((e: Error) => {
                 expect(e).toBeTruthy();
                 // TODO (test): add a test to check that A11yError is thrown in normal circumstance
                 //  Jest seems to wrap all errors in expect with JestAssertionError
