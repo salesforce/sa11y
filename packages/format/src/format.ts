@@ -91,8 +91,8 @@ export class A11yError extends Error {
      * Format a11y violations into a readable format highlighting important information to help fixing the issue.
      * @param options - Options used for formatting a11y issues.
      */
-    format(opts: Options = DefaultOptions): string {
-        const options = Object.assign(DefaultOptions, opts);
+    format(opts: Partial<Options> = DefaultOptions): string {
+        const options = Object.assign(Object.assign({}, DefaultOptions), opts);
         if (options.formatter !== undefined) {
             return options.formatter(this.violations);
         }
