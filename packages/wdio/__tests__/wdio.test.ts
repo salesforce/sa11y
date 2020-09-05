@@ -11,7 +11,9 @@ import { htmlFileWithA11yIssues, htmlFileWithNoA11yIssues } from '@sa11y/test-ut
 import { A11yError } from '@sa11y/format';
 import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
-import * as sync from '@wdio/sync';
+// TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
+const sync = require('@wdio/sync').default;
 
 const numA11yIssues = 6;
 
@@ -19,7 +21,9 @@ const numA11yIssues = 6;
  * Test util function to get violations from given html file
  */
 async function getViolationsHtml(htmlFilePath: string): Promise<axe.Result[]> {
-    browser.url(htmlFilePath);
+    // Note: Tests fail without using 'await'. Maybe the browser.url() signature is incorrect.
+    // eslint-disable-next-line @typescript-eslint/await-thenable
+    await browser.url(htmlFilePath);
     return runAxe(browser);
 }
 
@@ -69,12 +73,12 @@ function checkAccessibleSync(expectNumA11yIssues = 0): void {
 
 describe('integration test axe with WebdriverIO', () => {
     it('should load test page', async () => {
-        browser.url(htmlFileWithNoA11yIssues);
+        await browser.url(htmlFileWithNoA11yIssues);
         expect(await browser.getTitle()).toBe('Test Page');
     });
 
     it('should inject axe', async () => {
-        browser.url(htmlFileWithNoA11yIssues);
+        await browser.url(htmlFileWithNoA11yIssues);
 
         // Before loading axe, get version should not be defined
         expect(await getAxeVersion(browser)).toBeFalsy();
@@ -95,30 +99,29 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
     // Note: "expect"s are in the helper method "checkAccessible"
     /* eslint-disable jest/expect-expect */
     it('should throw no error for html with no a11y issues', async () => {
-        browser.url(htmlFileWithNoA11yIssues);
+        await browser.url(htmlFileWithNoA11yIssues);
         await checkAccessible(0);
     });
 
     it('should throw error for html with a11y issues', async () => {
-        browser.url(htmlFileWithA11yIssues);
+        await browser.url(htmlFileWithA11yIssues);
         await checkAccessible(numA11yIssues);
     });
     /* eslint-enable jest/expect-expect */
 
     it('should throw no error for html with no a11y issues in sync mode', () => {
-        // TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
-        return sync.default(() => {
-            browser.url(htmlFileWithNoA11yIssues);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
+        return sync(() => {
+            void browser.url(htmlFileWithNoA11yIssues);
             expect(() => assertAccessibleSync()).not.toThrow();
             checkAccessibleSync(0);
         });
     });
 
     it('should throw error for html with a11y issues in sync mode', () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
-        return sync.default(() => {
-            browser.url(htmlFileWithA11yIssues);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
+        return sync(() => {
+            void browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync()).toThrow();
             checkAccessibleSync(numA11yIssues);
         });

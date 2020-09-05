@@ -20,8 +20,8 @@ type objectWithVersion = {
  */
 function isLoaded(objName: string): Promise<string | boolean> {
     return browser.execute((objName) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        const obj: objectWithVersion = window[objName] as unknown;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+        const obj: objectWithVersion = (window as { [key: string]: any })[objName];
         return typeof obj === 'object' ? obj.version : false;
     }, objName);
 }
@@ -35,7 +35,7 @@ function verifySa11yLoaded(filePath: string): void {
     expect(sa11yMinJs.length).toBeGreaterThan(0);
 
     // Before injecting sa11y min js neither sa11y nor axe should not be defined
-    browser.reloadSession();
+    void browser.reloadSession();
     expect(isLoaded(namespace)).toBe(false);
     expect(isLoaded('axe')).toBe(false);
     void browser.execute(sa11yMinJs);
