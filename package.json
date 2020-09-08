@@ -23,7 +23,7 @@
         "commit": "! git diff --cached --exit-code && lint-staged && git-cz",
         "install:clean": "lerna clean --yes && yarn install",
         "lint": "eslint . --ext ts,js,md",
-        "lint:all": "yarn lint && yarn lint:lockfile && yarn lint:deps && yarn lint:depgraph",
+        "lint:all": "tsc --noEmit && yarn lint && yarn lint:lockfile && yarn lint:deps && yarn lint:depgraph",
         "lint:deps": "lerna exec depcheck",
         "lint:depgraph": "yarn pkg:depgraph && git diff --quiet docs/sa11y_dependency_graph.svg || echo 'Dependency graph needs to be updated!'",
         "lint:fix": "yarn lint --fix",
