@@ -32,7 +32,7 @@ The accessibility APIs need to be registered with Jest before they can be used i
 
 ### Project level
 
-You can set up the a11y API once at the project level to make it available to all the Jest tests in the project. For an example look at the [Integration test setup in @sa11y](../test-integration/README.md).
+You can set up the a11y API once at the project level to make it available to all the Jest tests in the project. For an example look at the [Integration test setup in @sa11y](../test-integration/jest.config.js).
 
 -   Add a Jest setup file (e.g. `jest-setup.js`) and add the following code that registers the a11y API
 

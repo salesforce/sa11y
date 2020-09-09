@@ -4,8 +4,10 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [0.3.1-beta](#031-beta)
-    - [Refactor](#refactor)
+- [0.4.0-beta (2020-08-26)](#040-beta-2020-08-26)
+    - [Features 🌱](#features-)
+    - [Documentation 📃](#documentation-)
+    - [Chores 🧹](#chores-%F0%9F%A7%B9)
 - [0.3.0-beta (2020-08-19)](#030-beta-2020-08-19)
     - [Features](#features)
 - [0.2.0-beta (2020-06-25)](#020-beta-2020-06-25)
@@ -28,11 +30,24 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# [0.3.1-beta](2020-08-19)
+# 0.4.0-beta (2020-08-26)
 
-### Refactor
+### Features 🌱
 
--   chore: update to the latest major release of axe
+-   **wdio:** add option to target specific elements from WDIO APIs ([#35](https://github.com/salesforce/sa11y/pull/35))
+
+### Documentation 📃
+
+-   add [SECURITY.md](./SECURITY.md) file to project
+-   add badges for license, published npm versions, download stats
+
+### Chores 🧹
+
+-   chore: update to the latest major release of axe v4 ([#34](https://github.com/salesforce/sa11y/pull/34))
+-   add a post-merge git hook to run clean build
+-   add lint script to ensure `version` property in `package.json` of changed packages are updated
+-   bump version of packages as they hadn't been bumped since [0.2.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.2.0-beta)
+-   add a post-merge git hook to run clean build
 
 # [0.3.0-beta](https://github.com/salesforce/sa11y/tree/v0.3.0-beta) (2020-08-19)
 
@@ -45,8 +60,7 @@
 ### Features
 
 -   **wdio:** add assert accessible API for WDIO ([#21](https://github.com/salesforce/sa11y/pull/21))
-
-*   **preset-rules:** add a full ruleset with all rules from axe ([#21](https://github.com/salesforce/sa11y/pull/21))
+-   **preset-rules:** add a full ruleset with all rules from axe ([#21](https://github.com/salesforce/sa11y/pull/21))
 
 ### Bug Fixes
 
