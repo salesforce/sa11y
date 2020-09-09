@@ -9,9 +9,27 @@ import * as axe from 'axe-core';
 import { BrowserObject } from 'webdriverio';
 import { A11yConfig, recommended } from '@sa11y/preset-rules';
 import { A11yError } from '@sa11y/format';
-import { getViolations } from '@sa11y/common';
+import { axeVersion, getViolations } from '@sa11y/common';
 
-export const axeVersion: string | undefined = axe.version;
+/**
+ * Optional arguments passed to WDIO APIs
+ * @param driver - WDIO {@link BrowserObject} instance navigated to the page to be checked.
+ *  Created automatically by WDIO test runner. Might need to be passed in explicitly with other test runners.
+ * @param context - CSS selector of element(s) to check for accessibility, defaults to the entire document
+ * @param rules - {@link A11yConfig} to be used for checking accessibility. Defaults to {@link recommended}
+ */
+export interface Options {
+    driver: BrowserObject;
+    context: string;
+    rules: A11yConfig;
+}
+
+const DefaultOptions: Options = {
+    driver: global.browser,
+    // driver: browser,
+    context: 'html',
+    rules: recommended,
+};
 
 /**
  * Return version of axe injected into browser
@@ -38,11 +56,8 @@ export async function loadAxe(driver: BrowserObject): Promise<void> {
 /**
  * Load and run axe in given WDIO instance and return the accessibility violations found.
  */
-export async function runAxe(
-    driver: BrowserObject,
-    context = 'html',
-    rules: A11yConfig = recommended
-): Promise<axe.Result[]> {
+export async function runAxe(options: Partial<Options> = {}): Promise<axe.Result[]> {
+    const { driver = DefaultOptions.driver, context = DefaultOptions.context, rules = DefaultOptions.rules } = options;
     // Verify that the element to be checked for a11y exists to get faster and better err msg from WDIO.
     await (await driver.$(context)).waitForExist();
 
@@ -68,16 +83,10 @@ export async function runAxe(
  * Verify that the currently loaded page in the browser is accessible.
  * Throw an error with the accessibility issues found if it is not accessible.
  * Asynchronous version of {@link assertAccessibleSync}
- * @param driver - WDIO browser instance navigated to page to be checked
- * @param context - CSS selector of element(s) to check for accessibility, defaults to the entire document
- * @param rules - a11y preset-rules to be used for checking accessibility
  */
-export async function assertAccessible(
-    driver: BrowserObject = browser,
-    context = 'html',
-    rules: A11yConfig = recommended
-): Promise<void> {
-    const violations = await getViolations(() => runAxe(driver, context, rules));
+export async function assertAccessible(opts: Partial<Options> = {}): Promise<void> {
+    const options = Object.assign(Object.assign({}, DefaultOptions), opts);
+    const violations = await getViolations(() => runAxe(options));
     A11yError.checkAndThrow(violations);
 }
 
@@ -85,17 +94,12 @@ export async function assertAccessible(
  * Verify that the currently loaded page in the browser is accessible.
  * Throw an error with the accessibility issues found if it is not accessible.
  * Synchronous version of {@link assertAccessible} to be used with `@wdio/sync` package.
- * @param driver - WDIO browser instance navigated to page to be checked
- * @param context - CSS selector of element(s) to check for accessibility, defaults to the entire document
- * @param rules - a11y preset-rules to be used for checking accessibility
  */
-export function assertAccessibleSync(
-    driver: BrowserObject = browser,
-    context = 'html',
-    rules: A11yConfig = recommended
-): void {
+export function assertAccessibleSync(opts: Partial<Options> = {}): void {
+    const options = Object.assign(Object.assign({}, DefaultOptions), opts);
+    // options = { ...DefaultOptions, ...options };
     // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
     driver.call(async () => {
-        await assertAccessible(driver, context, rules);
+        await assertAccessible(options);
     });
 }

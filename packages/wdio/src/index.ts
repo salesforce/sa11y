@@ -6,3 +6,4 @@
  */
 
 export { assertAccessible, assertAccessibleSync } from './wdio';
+export { registerSa11yCommands } from './setup';
