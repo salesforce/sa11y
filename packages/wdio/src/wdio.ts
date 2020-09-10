@@ -19,17 +19,22 @@ import { axeVersion, getViolations } from '@sa11y/common';
  * @param rules - {@link A11yConfig} to be used for checking accessibility. Defaults to {@link recommended}
  */
 export interface Options {
-    driver: BrowserObject;
-    context: string;
-    rules: A11yConfig;
+    driver: WebdriverIO.BrowserObject;
+    context?: Promise<WebdriverIO.Element>;
+    rules?: A11yConfig;
 }
 
-const DefaultOptions: Options = {
-    driver: global.browser,
-    // driver: browser,
-    context: 'html',
-    rules: recommended,
-};
+/**
+ * Merge given options with default options
+ */
+function setDefaultOptions(opts: Partial<Options> = {}): Options {
+    const defaultOptions: Options = {
+        driver: global.browser, // Need to be defined inside a function as it is defined at runtime
+        context: undefined,
+        rules: recommended,
+    };
+    return Object.assign(Object.assign({}, defaultOptions), opts);
+}
 
 /**
  * Return version of axe injected into browser
@@ -57,16 +62,15 @@ export async function loadAxe(driver: BrowserObject): Promise<void> {
  * Load and run axe in given WDIO instance and return the accessibility violations found.
  */
 export async function runAxe(options: Partial<Options> = {}): Promise<axe.Result[]> {
-    const { driver = DefaultOptions.driver, context = DefaultOptions.context, rules = DefaultOptions.rules } = options;
-    // Verify that the element to be checked for a11y exists to get faster and better err msg from WDIO.
-    await (await driver.$(context)).waitForExist();
+    const { driver, context, rules } = setDefaultOptions(options);
+    const elemContext = context ? (await context).selector : undefined;
 
     await loadAxe(driver);
 
     // run axe inside browser and return violations
     return await driver.executeAsync(
-        (context, rules, done) => {
-            axe.run((context || document) as axe.ElementContext, rules as axe.RunOptions, function (
+        (elemContext, rules, done) => {
+            axe.run((elemContext || document) as axe.ElementContext, rules as axe.RunOptions, function (
                 err: Error,
                 results: axe.AxeResults
             ) {
@@ -74,7 +78,7 @@ export async function runAxe(options: Partial<Options> = {}): Promise<axe.Result
                 done(results.violations);
             });
         },
-        context,
+        elemContext,
         rules
     );
 }
@@ -85,7 +89,7 @@ export async function runAxe(options: Partial<Options> = {}): Promise<axe.Result
  * Asynchronous version of {@link assertAccessibleSync}
  */
 export async function assertAccessible(opts: Partial<Options> = {}): Promise<void> {
-    const options = Object.assign(Object.assign({}, DefaultOptions), opts);
+    const options = setDefaultOptions(opts);
     const violations = await getViolations(() => runAxe(options));
     A11yError.checkAndThrow(violations);
 }
@@ -96,10 +100,9 @@ export async function assertAccessible(opts: Partial<Options> = {}): Promise<voi
  * Synchronous version of {@link assertAccessible} to be used with `@wdio/sync` package.
  */
 export function assertAccessibleSync(opts: Partial<Options> = {}): void {
-    const options = Object.assign(Object.assign({}, DefaultOptions), opts);
-    // options = { ...DefaultOptions, ...options };
+    const options = setDefaultOptions(opts);
     // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
-    driver.call(async () => {
+    options.driver.call(async () => {
         await assertAccessible(options);
     });
 }

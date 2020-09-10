@@ -53,7 +53,6 @@ async function checkAccessible(expectNumA11yIssues = 0, options: Partial<Options
     // expect(async () => await assertAccessible()).toThrow();
     let err: Error = new Error();
     try {
-        options.driver = browser;
         await assertAccessible(options);
     } catch (e) {
         err = e;
@@ -108,7 +107,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
 
     it('should throw no error for element with no a11y issues', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
-        await checkAccessible(0, { context: `#${shadowDomID}` });
+        await checkAccessible(0, { context: browser.$(`#${shadowDomID}`) });
     });
 
     it('should throw error for html with a11y issues', async () => {
@@ -118,25 +117,26 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
 
     it('should throw error for element with a11y issues', async () => {
         await browser.url(htmlFileWithA11yIssues);
-        await checkAccessible(1, { context: `#${domWithA11yIssuesBodyID}` });
+        await checkAccessible(1, { context: browser.$(`#${domWithA11yIssuesBodyID}`) });
     });
     /* eslint-enable jest/expect-expect */
 
-    it('should throw error for non-existent element', async () => {
+    it('should throw error for non-existent element (sync mode)', async () => {
         await browser.url(htmlFileWithA11yIssues);
         let err: Error = new Error();
         try {
+            // TODO (test): Is there a way to suppress the error stacktrace console log ?
+            // Note: expect(..).to.Throw() does not work with wdio async
+            console.log('Error expected. Please ignore =>');
             // using an existing elem ID using selector without the '#' prefix
-            await assertAccessible({ driver: browser, context: domWithA11yIssuesBodyID });
+            await assertAccessible({ context: browser.$(domWithA11yIssuesBodyID) });
         } catch (e) {
             err = e;
         }
-        expect(err.message).toContain(
-            `${axeRuntimeExceptionMsgPrefix} Error: element ("${domWithA11yIssuesBodyID}") still not existing after`
-        );
+        expect(err.message).toContain('Error: No elements found for include in page Context');
     });
 
-    it('should throw no error for html with no a11y issues in sync mode', () => {
+    it('should throw no error for html with no a11y issues (sync mode)', () => {
         return sync(() => {
             browser.url(htmlFileWithNoA11yIssues);
             expect(() => assertAccessibleSync()).not.toThrow();
@@ -144,7 +144,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         });
     });
 
-    it('should throw error for html with a11y issues in sync mode', () => {
+    it('should throw error for html with a11y issues (sync mode)', () => {
         return sync(() => {
             browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync()).toThrow();
