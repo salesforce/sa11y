@@ -12,6 +12,9 @@ import { A11yError } from '@sa11y/format';
 import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
 // TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
+// TODO (debug): "import sync = require('@wdio/sync');" or
+//  "import sync from '@wdio/sync';" doesn't work. Results in tests being skipped.
+//  Could be related to https://github.com/TypeStrong/ts-node/issues/1007
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
 const sync = require('@wdio/sync').default;
 
