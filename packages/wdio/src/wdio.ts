@@ -42,12 +42,12 @@ export async function runAxe(driver: BrowserObject, rules: A11yConfig = recommen
     await loadAxe(driver);
 
     // run axe inside browser and return violations
-    return await driver.executeAsync((rules, done) => {
+    return (await driver.executeAsync((rules, done: CallableFunction) => {
         axe.run(document, rules, function (err: Error, results: axe.AxeResults) {
             if (err) throw err;
             done(results.violations);
         });
-    }, rules);
+    }, rules)) as axe.Result[];
 }
 
 /**
@@ -76,7 +76,7 @@ export async function assertAccessible(
  */
 export function assertAccessibleSync(driver: BrowserObject = browser, rules: A11yConfig = recommended): void {
     // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
-    driver.call(async () => {
+    void driver.call(async () => {
         await assertAccessible(driver, rules);
     });
 }

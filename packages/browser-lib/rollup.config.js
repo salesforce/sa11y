@@ -16,6 +16,8 @@ import { namespace } from './src/index.ts';
 
 const globalName = '__SA11Y__';
 
+/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
+
 function getConfig(minified = false) {
     const debug = !!process.env.DEBUG;
 
@@ -43,6 +45,7 @@ function getConfig(minified = false) {
         ],
     };
 }
+/* eslint-enable @typescript-eslint/no-unsafe-call, @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
 
 export default [
     // Produce both minified and un-minified files

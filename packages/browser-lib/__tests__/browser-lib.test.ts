@@ -20,6 +20,7 @@ type objectWithVersion = {
  */
 function isLoaded(objName: string): Promise<string | boolean> {
     return browser.execute((objName) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
         const obj: objectWithVersion = (window as { [key: string]: any })[objName];
         return typeof obj === 'object' ? obj.version : false;
     }, objName);
@@ -34,10 +35,10 @@ function verifySa11yLoaded(filePath: string): void {
     expect(sa11yMinJs.length).toBeGreaterThan(0);
 
     // Before injecting sa11y min js neither sa11y nor axe should not be defined
-    browser.reloadSession();
+    void browser.reloadSession();
     expect(isLoaded(namespace)).toBe(false);
     expect(isLoaded('axe')).toBe(false);
-    browser.execute(sa11yMinJs);
+    void browser.execute(sa11yMinJs);
     // After injecting sa11y and axe should be defined
     // TODO (refactor): Get sa11y version dynamically (from package.json)
     expect(isLoaded(namespace)).toEqual('0.1.0-alpha');
