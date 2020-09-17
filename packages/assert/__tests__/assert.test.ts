@@ -27,7 +27,7 @@ beforeEach(() => {
 async function testDOMWithA11yIssues() {
     document.body.innerHTML = domWithA11yIssues;
     expect.assertions(3);
-    await assertAccessible(document, recommended).catch((e) => {
+    await assertAccessible(document, recommended).catch((e: Error) => {
         checkA11yError(e);
     });
 }
@@ -36,7 +36,7 @@ describe('assertAccessible API', () => {
     it('should trigger axe runtime exception for non existent rule', async () => {
         const errConfig = getA11yConfig(['non-existent-rule']);
         expect.assertions(2);
-        await assertAccessible(document, errConfig).catch((e) => {
+        await assertAccessible(document, errConfig).catch((e: Error) => {
             expect(e).toBeTruthy();
             expect(e.toString()).toContain(axeRuntimeExceptionMsgPrefix);
         });

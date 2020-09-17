@@ -1,4 +1,5 @@
 {
-    "compilerOptions": { "strict": true },
-    "include": ["**.js", "./packages/**/*.ts", "./packages/**/*.conf*.js", "./packages/test-integration/**/*.js"]
+    "extends": "./tsconfig.common.json",
+    "include": ["**.js", "./packages/**/*.ts", "./packages/**/*.conf*.js", "./packages/test-integration/**/*.js"],
+    "exclude": ["**/dist"]
 }

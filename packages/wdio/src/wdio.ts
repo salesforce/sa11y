@@ -68,8 +68,8 @@ export async function runAxe(options: Partial<Options> = {}): Promise<axe.Result
     await loadAxe(driver);
 
     // run axe inside browser and return violations
-    return await driver.executeAsync(
-        (elemContext, rules, done) => {
+    return (await driver.executeAsync(
+        (elemContext, rules, done: CallableFunction) => {
             axe.run((elemContext || document) as axe.ElementContext, rules as axe.RunOptions, function (
                 err: Error,
                 results: axe.AxeResults
@@ -80,7 +80,7 @@ export async function runAxe(options: Partial<Options> = {}): Promise<axe.Result
         },
         elemContext,
         rules
-    );
+    )) as axe.Result[];
 }
 
 /**
@@ -102,7 +102,7 @@ export async function assertAccessible(opts: Partial<Options> = {}): Promise<voi
 export function assertAccessibleSync(opts: Partial<Options> = {}): void {
     const options = setDefaultOptions(opts);
     // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
-    options.driver.call(async () => {
+    void options.driver.call(async () => {
         await assertAccessible(options);
     });
 }

@@ -15,6 +15,7 @@ import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export function cartesianProduct(...sets: Array<any>): Array<any> {
     const flatten = (arr: Array<any>): Array<any> => [].concat([], ...arr);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
     return sets.reduce((acc, set) => flatten(acc.map((x: any) => set.map((y: any) => [...x, y]))), [[]]);
     /* eslint-enable @typescript-eslint/no-explicit-any */
 }

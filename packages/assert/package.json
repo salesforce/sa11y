@@ -23,7 +23,7 @@
         "@sa11y/common": "0.2.1-beta.0",
         "@sa11y/format": "0.2.2-beta.0",
         "@sa11y/preset-rules": "0.3.0-beta.0",
-        "axe-core": "4.0.1"
+        "axe-core": "4.0.2"
     },
     "devDependencies": {
         "@sa11y/test-utils": "0.2.1-beta.0"

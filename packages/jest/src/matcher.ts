@@ -16,6 +16,7 @@ import { A11yConfig, recommended } from '@sa11y/preset-rules';
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace jest {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         interface Matchers<R> {
             toBeAccessible(config?: A11yConfig): Promise<CustomMatcherResult>;
         }

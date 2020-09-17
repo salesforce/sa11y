@@ -7,7 +7,7 @@
 
 import * as axe from 'axe-core';
 import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
-import { A11yError, Options, sortViolations } from '..';
+import { A11yError, sortViolations } from '..';
 
 async function getA11yError(dom: string): Promise<A11yError> {
     document.body.innerHTML = dom;
@@ -28,9 +28,9 @@ describe('a11y Results Formatter', () => {
         }
     );
 
-    it.each([{ formatter: JSON.stringify }, { highlighter: undefined }, {}, undefined, null])(
+    it.each([{ formatter: JSON.stringify }, { highlighter: (text: string) => `"${text}"` }, {}, undefined, null])(
         'should format using specified options: %#',
-        async (formatOptions: Options) => {
+        async (formatOptions) => {
             expect((await getA11yError(domWithA11yIssues)).format(formatOptions)).toMatchSnapshot();
         }
     );

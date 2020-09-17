@@ -16,6 +16,11 @@ import {
 import { A11yError } from '@sa11y/format';
 import { axeRuntimeExceptionMsgPrefix, axeVersion } from '@sa11y/common';
 
+// TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
+// TODO (debug): "import sync = require('@wdio/sync');" or
+//  "import sync from '@wdio/sync';" doesn't work. Results in tests being skipped.
+//  Could be related to https://github.com/TypeStrong/ts-node/issues/1007
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
 const sync = require('@wdio/sync').default;
 
 const numA11yIssues = 6;
@@ -24,6 +29,8 @@ const numA11yIssues = 6;
  * Test util function to get violations from given html file
  */
 async function getViolationsHtml(htmlFilePath: string): Promise<axe.Result[]> {
+    // Note: Tests fail without using 'await'. Maybe the browser.url() signature is incorrect.
+    // eslint-disable-next-line @typescript-eslint/await-thenable
     await browser.url(htmlFilePath);
     return runAxe({ driver: browser });
 }
@@ -55,7 +62,7 @@ async function checkAccessible(expectNumA11yIssues = 0, options: Partial<Options
     try {
         await assertAccessible(options);
     } catch (e) {
-        err = e;
+        err = e as Error;
     }
     checkA11yError(err, expectNumA11yIssues);
 }
@@ -67,7 +74,7 @@ function checkAccessibleSync(expectNumA11yIssues = 0): void {
     try {
         assertAccessibleSync({ driver: browser });
     } catch (e) {
-        err = e;
+        err = e as Error;
     }
     checkA11yError(err, expectNumA11yIssues);
 }
@@ -131,22 +138,24 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
             // using an existing elem ID using selector without the '#' prefix
             await assertAccessible({ context: browser.$(domWithA11yIssuesBodyID) });
         } catch (e) {
-            err = e;
+            err = e as Error;
         }
         expect(err.message).toContain('Error: No elements found for include in page Context');
     });
 
     it('should throw no error for html with no a11y issues (sync mode)', () => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
         return sync(() => {
-            browser.url(htmlFileWithNoA11yIssues);
+            void browser.url(htmlFileWithNoA11yIssues);
             expect(() => assertAccessibleSync()).not.toThrow();
             checkAccessibleSync(0);
         });
     });
 
     it('should throw error for html with a11y issues (sync mode)', () => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
         return sync(() => {
-            browser.url(htmlFileWithA11yIssues);
+            void browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync()).toThrow();
             checkAccessibleSync(numA11yIssues);
         });
