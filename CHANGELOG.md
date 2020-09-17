@@ -4,10 +4,11 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [0.4.0-beta (2020-08-26)](#040-beta-2020-08-26)
+- [0.4.0-beta (2020-09-18)](#040-beta-2020-09-18)
     - [Features 🌱](#features-)
     - [Documentation 📃](#documentation-)
     - [Chores 🧹](#chores-%F0%9F%A7%B9)
+    - [Refactor ♻](#refactor-%E2%99%BB)
 - [0.3.0-beta (2020-08-19)](#030-beta-2020-08-19)
     - [Features](#features)
 - [0.2.0-beta (2020-06-25)](#020-beta-2020-06-25)
@@ -30,7 +31,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# 0.4.0-beta (2020-08-26)
+# 0.4.0-beta (2020-09-18)
 
 ### Features 🌱
 
@@ -43,11 +44,23 @@
 
 ### Chores 🧹
 
--   chore: update to the latest major release of axe v4 ([#34](https://github.com/salesforce/sa11y/pull/34))
+-   update to the latest major release of axe v4 ([#34](https://github.com/salesforce/sa11y/pull/34))
+-   add a post-merge git hook to run clean build (#35)
+-   add lint script to ensure `version` property in `package.json` of changed packages are updated (#35)
+-   bump version of packages as they hadn't been bumped since [0.2.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.2.0-beta) (#35)
+-   update to next major release of [TypeScript 4.0](https://devblogs.microsoft.com/typescript/announcing-typescript-4-0/#whats-new) bringing increased build speeds and other improvements (#37)
+-   update to next major release of [typescript-eslint/typescript-eslint](https://github.com/typescript-eslint/typescript-eslint/releases) containing several breaking changes (#37)
+-   update to patch release of [axe-core 4.0.2](https://github.com/dequelabs/axe-core/releases/tag/v4.0.2) (#37)
+-   update other dev deps to minor/patch releases
 -   add a post-merge git hook to run clean build
--   add lint script to ensure `version` property in `package.json` of changed packages are updated
--   bump version of packages as they hadn't been bumped since [0.2.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.2.0-beta)
--   add a post-merge git hook to run clean build
+
+### Refactor ♻
+
+-   Fix code to take care of the new errors from the upgraded versions (#37)
+    -   Silencing rules only as last resort esp. in non application code (test, config etc)
+-   Fix how default options are processed for the formatter (#37)
+-   Fix chained npm commands to depend on previous exit code (#37)
+-   Reuse common typescript config for eslint (#37)
 
 # [0.3.0-beta](https://github.com/salesforce/sa11y/tree/v0.3.0-beta) (2020-08-19)
 
