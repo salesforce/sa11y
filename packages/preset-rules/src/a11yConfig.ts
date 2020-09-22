@@ -33,7 +33,9 @@ export function getA11yConfig(rules: string[]): A11yConfig {
             type: 'rule',
             values: rules,
         },
-        // Disable preloading assets as it causes timeouts for audio/video
+        // Disable preloading assets as it causes timeouts for audio/video elements
+        //  with jest and delaying webdriver tests by 2-3x when assets are not found (404)
+        //  Ref: https://github.com/dequelabs/axe-core/issues/2528
         preload: false,
         resultTypes: ['violations'],
     };
