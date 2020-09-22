@@ -10433,7 +10433,7 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
-shelljs@^0.8.3:
+shelljs@^0.8.3, shelljs@^0.8.4:
   version "0.8.4"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.8.4.tgz#de7684feeb767f8716b326078a8a00875890e3c2"
   integrity sha512-7gk3UZ9kOfPLIAbslLzyWeGiEqx9e3rxwZM0KE6EL8GlGwjym9Mrlx5/p33bWTu9YG6vcS4MBxYZDHYr5lr8BQ==
@@ -11639,6 +11639,13 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
+
+vertioner@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/vertioner/-/vertioner-1.0.6.tgz#1fc8024e7b62611004a52c6789db9981e60ef975"
+  integrity sha512-pgOpIUcYfoA3klnkH2CvUKI16pFmO23XcXebC0m0nsRTGOooFnUagqqwdrHHm3XZbFd0BxXz+3hwA3EfRdzUVA==
+  dependencies:
+    shelljs "^0.8.4"
 
 vfile-location@^2.0.0:
   version "2.0.6"
