@@ -33,6 +33,8 @@ export function getA11yConfig(rules: string[]): A11yConfig {
             type: 'rule',
             values: rules,
         },
+        // Disable preloading assets as it causes timeouts for audio/video
+        preload: false,
         resultTypes: ['violations'],
     };
 }
