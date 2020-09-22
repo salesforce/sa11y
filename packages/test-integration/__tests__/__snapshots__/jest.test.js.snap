@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`integration test @sa11y/jest show throw error for inaccessible dom 1`] = `
+exports[`integration test @sa11y/jest should throw error for inaccessible dom 1`] = `
 [Error: [2mexpect([22m[31m5 issues[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 5 issues: [22m
 [2m[22m
 [2m [31m"⭕ (bypass) Page must have means to bypass repeated blocks: html"[39m[22m
