@@ -38,7 +38,10 @@ You can set up the a11y API once at the project level to make it available to al
 -   Add a Jest setup file (e.g. `jest-setup.js`) and add the following code that registers the a11y API
 
 ```javascript
-const { registerSa11yMatcher } = require('@sa11y/jest');
+// Import using either CommonJS `require` or ES6 `import`
+const { registerSa11yMatcher } = require('@sa11y/jest'); // CommonJS
+import { registerSa11yMatcher } from '@sa11y/jest'; // ES6
+// Register the sa11y matcher
 registerSa11yMatcher();
 ```
 
