@@ -29,7 +29,7 @@
         "lint:fix": "yarn lint --fix",
         "lint:lockfile": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
         "lint:staged": "lint-staged",
-        "lint:version": "vertioner && yarn lerna exec --since master vertioner",
+        "lint:version": "yarn lerna exec --since master vertioner",
         "lint:watch": "esw --watch --changed --color --ext .js,.ts",
         "pkg:list": "lerna list --long --all --toposort",
         "pkg:deps": "yarn pkg:list --graph",
