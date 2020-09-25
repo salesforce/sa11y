@@ -11,8 +11,6 @@ jobs:
             - browser-tools/install-chrome
             - browser-tools/install-chromedriver
             - checkout
-            # CircleCI seems to mess with master ref which causes lint:version check to fail
-            - run: git branch -f master origin/master
             - run: yarn build:ci
             - run: yarn test:ci
             - run: yarn codecov
