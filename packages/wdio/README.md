@@ -6,10 +6,15 @@ Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used wi
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [⚠ Caution](#%E2%9A%A0-caution)
 - [Usage](#usage)
 - [Reference](#reference)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## ⚠ Caution
+
+-   **headless**: Checks such as color contrast do not work in headless mode. In general executing tests in headless mode [might yield different accessibility results](https://github.com/dequelabs/axe-core/issues/2088). Hence, it is recommended to run accessibility checks in windowed mode when possible for accurate results.
 
 ## Usage
 

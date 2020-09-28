@@ -16,7 +16,7 @@ describe('integration test @sa11y/jest', () => {
         await expect(document).toBeAccessible();
     });
 
-    it('show throw error for inaccessible dom', async () => {
+    it('should throw error for inaccessible dom', async () => {
         expect.assertions(2);
         document.body.innerHTML = domWithA11yIssues;
         await expect(document)

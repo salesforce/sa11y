@@ -1,6 +1,18 @@
 {
     "ignorePaths": ["node_modules/**", "package.json"],
-    "ignoreWords": ["circleci", "CNCF", "dlitem", "doctoc", "iife", "SPDX", "tsdoc", "wcag", "wdio", "webdriverio"],
+    "ignoreWords": [
+        "circleci",
+        "CNCF",
+        "dlitem",
+        "doctoc",
+        "iife",
+        "SPDX",
+        "tsdoc",
+        "wcag",
+        "wdio",
+        "webdriverio",
+        "webm"
+    ],
     "flagWords": ["master-slave", "slave", "blacklist", "whitelist"],
     "allowCompoundWords": true
 }
