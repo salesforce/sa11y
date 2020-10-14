@@ -11,7 +11,7 @@ Accessibility matcher for [Jest](https://jestjs.io)
 - [Setup](#setup)
   - [Project level](#project-level)
   - [Test module level](#test-module-level)
-- [⚠ Caution](#%E2%9A%A0-caution)
+- [Caution](#caution)
 - [Usage](#usage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -70,7 +70,7 @@ beforeAll(() => {
 
 -   This makes the `toBeAccessible` API available for the tests only in that specific test module where `registerSa11yMatcher()` is invoked.
 
-## ⚠ Caution
+## Caution
 
 -   **async**: `toBeAccessible` **must** be invoked with `async/wait` or `Promise` or the equivalent supported asynchronous method in your environment
     -   Not invoking it async would result in incorrect results e.g. no issues reported even when the page is not accessible
