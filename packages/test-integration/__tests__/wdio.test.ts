@@ -7,7 +7,7 @@
 
 import { BrowserObject, remote } from 'webdriverio';
 import { assertAccessibleSync } from '@sa11y/wdio';
-import { htmlFileWithA11yIssues, htmlFileWithNoA11yIssues } from '@sa11y/test-utils';
+import { htmlFileWithA11yIssues, htmlFileWithNoA11yIssues, htmlFileWithVisualA11yIssues } from '@sa11y/test-utils';
 
 // TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
@@ -43,8 +43,11 @@ afterAll(async () => {
 });
 
 describe('integration test @sa11y/wdio in sync mode', () => {
-    it('should throw error for html with a11y issues', () => {
+    it('should have browser object be setup', () => {
         expect(browser).toBeTruthy();
+    });
+
+    it('should throw error for html with a11y issues', () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
@@ -53,11 +56,18 @@ describe('integration test @sa11y/wdio in sync mode', () => {
     });
 
     it('should not throw error for html with no a11y issues', () => {
-        expect(browser).toBeTruthy();
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
         return sync(() => {
             void browser.url(htmlFileWithNoA11yIssues);
             expect(() => assertAccessibleSync(browser)).not.toThrow();
+        });
+    });
+
+    it('should not throw error for html with visual a11y issues', () => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
+        return sync(() => {
+            void browser.url(htmlFileWithVisualA11yIssues);
+            expect(() => assertAccessibleSync(browser)).toThrowErrorMatchingSnapshot();
         });
     });
 });

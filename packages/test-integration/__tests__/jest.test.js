@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
+import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues, domWithVisualA11yIssues } from '@sa11y/test-utils';
 
 beforeEach(beforeEachSetup);
 
@@ -22,5 +22,10 @@ describe('integration test @sa11y/jest', () => {
         await expect(document)
             .toBeAccessible()
             .catch((e) => expect(e).toMatchSnapshot());
+    });
+
+    it('will not throw error for audio video color-contrast', async () => {
+        document.body.innerHTML = domWithVisualA11yIssues;
+        await expect(document).toBeAccessible();
     });
 });
