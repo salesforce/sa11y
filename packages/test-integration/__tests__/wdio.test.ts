@@ -63,7 +63,7 @@ describe('integration test @sa11y/wdio in sync mode', () => {
         });
     });
 
-    it('should not throw error for html with visual a11y issues', () => {
+    it('should throw error for html with visual a11y issues', () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
         return sync(() => {
             void browser.url(htmlFileWithVisualA11yIssues);

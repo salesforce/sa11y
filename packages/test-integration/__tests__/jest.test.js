@@ -26,6 +26,8 @@ describe('integration test @sa11y/jest', () => {
 
     it('will not throw error for audio video color-contrast', async () => {
         document.body.innerHTML = domWithVisualA11yIssues;
+        // Even though the dom has a11y issues w.r.t color contrast and audio/video
+        //  elements etc, Jest/JSDOM will not able to detect them
         await expect(document).toBeAccessible();
     });
 });
