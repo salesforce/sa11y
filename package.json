@@ -1,6 +1,6 @@
 {
     "name": "sa11y-monorepo",
-    "version": "0.3.2-beta",
+    "version": "0.3.3-beta",
     "private": true,
     "description": "Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)",
     "license": "BSD-3-Clause",
