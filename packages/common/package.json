@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/common",
-    "version": "0.2.0-beta.0",
+    "version": "0.2.1-beta.0",
     "description": "Common utilities, constants, error messages for @sa11y",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/common#readme",
@@ -15,7 +15,7 @@
         "dist/**/*.js"
     ],
     "dependencies": {
-        "axe-core": "3.5.5"
+        "axe-core": "4.0.2"
     },
     "publishConfig": {
         "access": "public"

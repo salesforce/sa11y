@@ -10,6 +10,8 @@ import { recommended, getA11yConfig, base } from '@sa11y/preset-rules';
 import {
     beforeEachSetup,
     checkA11yError,
+    audioURL,
+    videoURL,
     domWithA11yIssues,
     domWithNoA11yIssues,
     shadowDomID,
@@ -27,7 +29,7 @@ beforeEach(() => {
 async function testDOMWithA11yIssues() {
     document.body.innerHTML = domWithA11yIssues;
     expect.assertions(3);
-    await assertAccessible(document, recommended).catch((e) => {
+    await assertAccessible(document, recommended).catch((e: Error) => {
         checkA11yError(e);
     });
 }
@@ -36,7 +38,7 @@ describe('assertAccessible API', () => {
     it('should trigger axe runtime exception for non existent rule', async () => {
         const errConfig = getA11yConfig(['non-existent-rule']);
         expect.assertions(2);
-        await assertAccessible(document, errConfig).catch((e) => {
+        await assertAccessible(document, errConfig).catch((e: Error) => {
             expect(e).toBeTruthy();
             expect(e.toString()).toContain(axeRuntimeExceptionMsgPrefix);
         });
@@ -83,4 +85,20 @@ describe('assertAccessible API', () => {
         expect(elem).toBeTruthy();
         await assertAccessible(elem).catch((e) => checkA11yError(e));
     });
+
+    it.each(['', 'non-existent-audio.mp3', audioURL])(
+        'should test audio without timing-out using src %#',
+        async (source: string) => {
+            document.body.innerHTML = `<audio src=${source}>Audio test</audio>`;
+            await assertAccessible(document, getA11yConfig(['audio-caption', 'no-autoplay-audio']));
+        }
+    );
+
+    it.each(['', 'non-existent-video.webm', videoURL])(
+        'should test video without timing-out using src %#',
+        async (source: string) => {
+            document.body.innerHTML = `<video src=${source}>Video test</video>`;
+            await assertAccessible(document, getA11yConfig(['video-caption', 'no-autoplay-audio']));
+        }
+    );
 });

@@ -6,12 +6,14 @@
  */
 
 export {
+    audioURL,
     domWithA11yIssues,
+    domWithA11yIssuesBodyID,
     domWithNoA11yIssues,
-    htmlFileWithNoA11yIssues,
     htmlFileWithA11yIssues,
+    htmlFileWithNoA11yIssues,
     a11yIssuesCount,
     shadowDomID,
-    domWithA11yIssuesBodyID,
+    videoURL,
 } from './test-data';
 export { beforeEachSetup, cartesianProduct, checkA11yError } from './utils';

@@ -17,16 +17,11 @@ describe('preset-rules', () => {
     // or due to their experimental nature
     const excludedRules = [
         /* cSpell:disable */
-        'aria-dpub-role-fallback',
-        'checkboxgroup',
         'frame-title-unique',
         'hidden-content',
-        'layout-table',
-        'radiogroup',
         'skip-link',
         'table-duplicate-name',
         'table-fake-caption',
-        'video-description',
         /* cSpell:enable */
     ];
 

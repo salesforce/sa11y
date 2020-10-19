@@ -6,6 +6,8 @@
 # Mark generated files
 yarn.lock linguist-generated=true
 # generated JS files
-dist/* linguist-generated=true
+**/dist/** linguist-generated=true
 # jest snapshots
-*.test.ts.snap linguist-generated=true
+**/__snapshots__/** linguist-generated=true
+# dependency graph
+docs/sa11y_dependency_graph.svg linguist-generated=true

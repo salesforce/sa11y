@@ -13,8 +13,7 @@ jobs:
             - checkout
             - run: yarn build:ci
             - run: yarn test:ci
-            - store_artifacts:
-                  path: coverage
+            - run: yarn codecov
 workflows:
     build-and-test:
         jobs:

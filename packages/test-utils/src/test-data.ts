@@ -20,3 +20,8 @@ export const shadowDomID = 'upside-down';
 const fileWithNoA11yIssues = path.resolve(__dirname, '../__data__/noA11yIssues.html');
 export const htmlFileWithNoA11yIssues = 'file:///' + fileWithNoA11yIssues;
 export const domWithNoA11yIssues = fs.readFileSync(fileWithNoA11yIssues).toString();
+
+// Sample media files
+// TODO (refactor): Is there a way to reuse these values inside the noA11yIssues.html
+export const audioURL = 'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3';
+export const videoURL = 'https://file-examples-com.github.io/uploads/2020/03/file_example_WEBM_480_900KB.webm';

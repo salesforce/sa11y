@@ -2,19 +2,19 @@
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 1`] = `
 "* (bypass) Page must have means to bypass repeated blocks: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/bypass
 
 * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/link-name
 
 * (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 2`] = `5`;
@@ -22,19 +22,19 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 3`] = `
 "5 accessibility issues found
  * (bypass) Page must have means to bypass repeated blocks: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/bypass
 
 * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/link-name
 
 * (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 1 1`] = `""`;
@@ -46,90 +46,90 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
  "
 `;
 
-exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"bypass\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.keyboard\\",\\"wcag2a\\",\\"wcag241\\",\\"section508\\",\\"section508.22.o\\"],\\"description\\":\\"Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content\\",\\"help\\":\\"Page must have means to bypass repeated blocks\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/3.5/bypass?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"internal-link-present\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"No valid skip link found\\"},{\\"id\\":\\"header-present\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Page does not have a heading\\"},{\\"id\\":\\"landmark\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Page does not have a landmark region\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  No valid skip link found\\\\n  Page does not have a heading\\\\n  Page does not have a landmark region\\"}]},{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.text-alternatives\\",\\"wcag2a\\",\\"wcag242\\"],\\"description\\":\\"Ensures each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/3.5/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.name-role-value\\",\\"wcag2a\\",\\"wcag412\\",\\"wcag244\\",\\"section508\\",\\"section508.22.a\\"],\\"description\\":\\"Ensures links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/3.5/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"minor\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"role-presentation\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"minor\\",\\"message\\":\\"Element's default semantics were not overridden with role=\\\\\\"presentation\\\\\\"\\"},{\\"id\\":\\"role-none\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"minor\\",\\"message\\":\\"Element's default semantics were not overridden with role=\\\\\\"none\\\\\\"\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element's default semantics were not overridden with role=\\\\\\"presentation\\\\\\"\\\\n  Element's default semantics were not overridden with role=\\\\\\"none\\\\\\"\\"}]},{\\"id\\":\\"landmark-one-main\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"cat.semantics\\",\\"best-practice\\"],\\"description\\":\\"Ensures the document has a main landmark\\",\\"help\\":\\"Document must have one main landmark\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/3.5/landmark-one-main?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[],\\"all\\":[{\\"id\\":\\"page-has-main\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Document does not have a main landmark\\"}],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Document does not have a main landmark\\"}]},{\\"id\\":\\"page-has-heading-one\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"cat.semantics\\",\\"best-practice\\"],\\"description\\":\\"Ensure that the page, or at least one of its frames contains a level-one heading\\",\\"help\\":\\"Page must contain a level-one heading\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[],\\"all\\":[{\\"id\\":\\"page-has-heading-one\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Page must have a level-one heading\\"}],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Page must have a level-one heading\\"}]}]"`;
+exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"bypass\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.keyboard\\",\\"wcag2a\\",\\"wcag241\\",\\"section508\\",\\"section508.22.o\\"],\\"description\\":\\"Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content\\",\\"help\\":\\"Page must have means to bypass repeated blocks\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.0/bypass?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"internal-link-present\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"No valid skip link found\\"},{\\"id\\":\\"header-present\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Page does not have a heading\\"},{\\"id\\":\\"landmark\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Page does not have a landmark region\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  No valid skip link found\\\\n  Page does not have a heading\\\\n  Page does not have a landmark region\\"}]},{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.text-alternatives\\",\\"wcag2a\\",\\"wcag242\\",\\"ACT\\"],\\"description\\":\\"Ensures each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.0/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.name-role-value\\",\\"wcag2a\\",\\"wcag412\\",\\"wcag244\\",\\"section508\\",\\"section508.22.a\\"],\\"description\\":\\"Ensures links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.0/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"minor\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"role-presentation\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"minor\\",\\"message\\":\\"Element's default semantics were not overridden with role=\\\\\\"presentation\\\\\\"\\"},{\\"id\\":\\"role-none\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"minor\\",\\"message\\":\\"Element's default semantics were not overridden with role=\\\\\\"none\\\\\\"\\"},{\\"id\\":\\"non-empty-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element has no title attribute or the title attribute is empty\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element's default semantics were not overridden with role=\\\\\\"presentation\\\\\\"\\\\n  Element's default semantics were not overridden with role=\\\\\\"none\\\\\\"\\\\n  Element has no title attribute or the title attribute is empty\\"}]},{\\"id\\":\\"landmark-one-main\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"cat.semantics\\",\\"best-practice\\"],\\"description\\":\\"Ensures the document has a main landmark\\",\\"help\\":\\"Document must have one main landmark\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.0/landmark-one-main?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[],\\"all\\":[{\\"id\\":\\"page-has-main\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Document does not have a main landmark\\"}],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Document does not have a main landmark\\"}]},{\\"id\\":\\"page-has-heading-one\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"cat.semantics\\",\\"best-practice\\"],\\"description\\":\\"Ensure that the page, or at least one of its frames contains a level-one heading\\",\\"help\\":\\"Page must contain a level-one heading\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[],\\"all\\":[{\\"id\\":\\"page-has-heading-one\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Page must have a level-one heading\\"}],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Page must have a level-one heading\\"}]}]"`;
 
 exports[`a11y Results Formatter should format using specified options: 1 1`] = `
-"* (bypass) Page must have means to bypass repeated blocks: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass
+"\\"* (bypass) Page must have means to bypass repeated blocks: html\\"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/bypass
 
-* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
+\\"* (document-title) Documents must have <title> element to aid in navigation: html\\"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/document-title
 
-* (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+\\"* (link-name) Links must have discernible text: a\\"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/link-name
 
-* (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
+\\"* (landmark-one-main) Document must have one main landmark: html\\"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/landmark-one-main
 
-* (page-has-heading-one) Page must contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
+\\"* (page-has-heading-one) Page must contain a level-one heading: html\\"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 "* (bypass) Page must have means to bypass repeated blocks: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/bypass
 
 * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/link-name
 
 * (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 "* (bypass) Page must have means to bypass repeated blocks: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/bypass
 
 * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/link-name
 
 * (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 "* (bypass) Page must have means to bypass repeated blocks: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/bypass
 
 * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/link-name
 
 * (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one"
 `;
 
 exports[`a11y Results Formatter should throw error when violations are present 1`] = `
 "5 accessibility issues found
  * (bypass) Page must have means to bypass repeated blocks: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/bypass
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/bypass
 
 * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/link-name
 
 * (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/landmark-one-main
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/3.5/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one"
 `;
