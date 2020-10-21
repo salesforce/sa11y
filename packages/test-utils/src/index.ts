@@ -10,8 +10,10 @@ export {
     domWithA11yIssues,
     domWithA11yIssuesBodyID,
     domWithNoA11yIssues,
+    domWithVisualA11yIssues,
     htmlFileWithA11yIssues,
     htmlFileWithNoA11yIssues,
+    htmlFileWithVisualA11yIssues,
     shadowDomID,
     videoURL,
 } from './test-data';

@@ -14,6 +14,7 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
 
 
 - [Docs](#docs)
+  - [References](#references)
 - [Packages](#packages)
   - [Jest integration](#jest-integration)
   - [WDIO integration](#wdio-integration)
@@ -38,6 +39,12 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
 -   [Code of Conduct](./CODE_OF_CONDUCT.md)
 -   [Changelog](./CHANGELOG.md)
 -   [LICENSE](./LICENSE.txt)
+
+### References
+
+-   [Automated Accessibility Testing with sa11y | Salesforce Developers Blog](https://developer.salesforce.com/blogs/2020/10/automated-accessibility-testing-with-sa11y.html)
+-   [Accessibility Overview - Lightning Design System](https://www.lightningdesignsystem.com/accessibility/overview/)
+-   [Get Started with Web Accessibility | Salesforce Trailhead](https://trailhead.salesforce.com/en/content/learn/trails/get-started-with-web-accessibility)
 
 ## Packages
 
