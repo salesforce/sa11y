@@ -31,9 +31,9 @@ export type exceptionList = Record<ruleID, cssSelectors>;
  * @param violations - List of violations found with axe
  * @param exceptionList - {@link exceptionList} of map of rule to corresponding css targets that needs to be filtered from a11y results
  */
-export function exceptionListFilter(violations: Result[], exceptionList: exceptionList = {}): Result[] {
+export function exceptionListFilter(violations: readonly Result[], exceptionList: exceptionList = {}): Result[] {
     const exceptionRules = Object.keys(exceptionList);
-    if (exceptionRules.length === 0) return violations;
+    if (exceptionRules.length === 0) return violations as Result[];
 
     const filteredViolations: Result[] = [];
 

@@ -9,7 +9,7 @@ import { domWithA11yIssues } from '@sa11y/test-utils';
 import * as axe from 'axe-core';
 import { exceptionListFilter } from '../src';
 
-let violations: axe.Result[];
+let violations: readonly axe.Result[];
 
 beforeAll(async () => {
     document.body.innerHTML = domWithA11yIssues;
