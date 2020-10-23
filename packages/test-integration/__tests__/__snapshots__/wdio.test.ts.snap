@@ -20,3 +20,15 @@ exports[`integration test @sa11y/wdio in sync mode should throw error for html w
 * (page-has-heading-one) Page must contain a level-one heading: html
 	- Help URL: https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one"
 `;
+
+exports[`integration test @sa11y/wdio in sync mode should throw error for html with visual a11y issues 1`] = `
+"2 accessibility issues found
+ * (color-contrast) Elements must have sufficient color contrast: #upside-down,button
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/color-contrast
+
+* (no-autoplay-audio) <video> or <audio> elements do not autoplay audio: audio
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/no-autoplay-audio
+
+* (no-autoplay-audio) <video> or <audio> elements do not autoplay audio: video
+	- Help URL: https://dequeuniversity.com/rules/axe/4.0/no-autoplay-audio"
+`;

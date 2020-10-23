@@ -21,6 +21,11 @@ const fileWithNoA11yIssues = path.resolve(__dirname, '../__data__/noA11yIssues.h
 export const htmlFileWithNoA11yIssues = 'file:///' + fileWithNoA11yIssues;
 export const domWithNoA11yIssues = fs.readFileSync(fileWithNoA11yIssues).toString();
 
+// DOM with video, color contrast a11y issues that can be detected only in a real browser
+const fileWithVisualA11yIssues = path.resolve(__dirname, '../__data__/a11yIssuesVisual.html');
+export const htmlFileWithVisualA11yIssues = 'file:///' + fileWithVisualA11yIssues;
+export const domWithVisualA11yIssues = fs.readFileSync(fileWithVisualA11yIssues).toString();
+
 // Sample media files
 // TODO (refactor): Is there a way to reuse these values inside the noA11yIssues.html
 export const audioURL = 'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3';
