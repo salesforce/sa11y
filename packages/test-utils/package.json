@@ -17,5 +17,8 @@
     ],
     "dependencies": {
         "@sa11y/common": "0.2.1-beta.0"
+    },
+    "devDependencies": {
+        "webdriverio": "6.6.7"
     }
 }

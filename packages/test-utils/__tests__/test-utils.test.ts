@@ -79,7 +79,9 @@ describe('wdio test utils', () => {
     });
 
     it('should not set headless config in debug mode', () => {
-        expect(getConfigWDIO(false).capabilities['goog:chromeOptions'].args).toContain('--headless');
-        expect(getConfigWDIO(true).capabilities['goog:chromeOptions'].args).not.toContain('--headless');
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        const getArgs = (debug) => getConfigWDIO(debug).capabilities['goog:chromeOptions'].args as string[];
+        expect(getArgs(false)).toContain('--headless');
+        expect(getArgs(true)).not.toContain('--headless');
     });
 });
