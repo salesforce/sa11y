@@ -11,6 +11,8 @@ export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks 
 
 export const axeVersion: string | undefined = axe.version;
 
+export type AxeResults = axe.Result[];
+
 /**
  * Interface that represents a function that runs axe and returns violations
  */
