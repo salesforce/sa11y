@@ -62,6 +62,10 @@ function checkNumViolations(script: string, expectedNumViolations = a11yIssuesCo
     expect(browser.execute(script)).toBe(expectedNumViolations);
 }
 
+function getSa11yScript(exceptionList = {}) {
+    return `return JSON.parse((await sa11y.checkAccessibility(${JSON.stringify(exceptionList)}))).length;`;
+}
+
 describe('@sa11y/browser-lib', () => {
     it('should not have axe or sa11y loaded to start with', () => {
         expect(isLoaded(namespace)).toBe(false);
@@ -90,16 +94,13 @@ describe('@sa11y/browser-lib', () => {
 
     // eslint-disable-next-line jest/expect-expect
     it('should run a11y checks using sa11y', () => {
-        checkNumViolations('return (await sa11y.checkAccessibility()).length;');
+        checkNumViolations(getSa11yScript());
     });
 
     // eslint-disable-next-line jest/expect-expect
     it('should filter a11y violations using sa11y', () => {
         const exceptionList = { 'document-title': ['html'], 'link-name': ['a'], bypass: ['html'] };
         const numViolations = a11yIssuesCount - Object.keys(exceptionList).length;
-        checkNumViolations(
-            `return (await sa11y.checkAccessibility(${JSON.stringify(exceptionList)})).length;`,
-            numViolations
-        );
+        checkNumViolations(getSa11yScript(exceptionList), numViolations);
     });
 });

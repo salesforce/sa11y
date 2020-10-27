@@ -20,9 +20,10 @@ export const namespace = 'sa11y';
 export async function checkAccessibility(exceptionList = {}, rules = recommended) {
     // TODO (debug): adding type annotations to args, return type results in error:
     //  "[!] Error: Unexpected token" in both rollup-plugin-typescript2 and @rollup/plugin-typescript
-    //  Compiling the index.ts file using tsc and using the dist/index.js file results
+    //  Compiling the index.ts file with tsc and using the dist/index.js file results
     //  in error when importing the "namespace" var. This would probably be easier to fix
     //  which could then result in getting rid of the rollup typescript plugins.
     const results = await axe.run(rules);
-    return exceptionListFilter(results.violations, exceptionList);
+    const filtered_results = exceptionListFilter(results.violations, exceptionList);
+    return JSON.stringify(filtered_results);
 }
