@@ -8,6 +8,7 @@
 import * as axe from 'axe-core';
 import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
 import { A11yError, sortViolations } from '../src/format';
+import { AxeResults } from '@sa11y/common';
 
 async function getA11yError(dom: string): Promise<A11yError> {
     document.body.innerHTML = dom;
@@ -44,7 +45,7 @@ describe('a11y Results Formatter', () => {
             { impact: 'critical' },
             { impact: 'critical' },
         ];
-        sortViolations(a11yIssues as axe.Result[]);
+        sortViolations(a11yIssues as AxeResults);
         expect(a11yIssues[0].impact).toEqual('critical');
         expect(a11yIssues[1].impact).toEqual('critical');
         expect(a11yIssues[2].impact).toEqual('moderate');

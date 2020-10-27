@@ -9,7 +9,7 @@ import * as axe from 'axe-core';
 import { assertAccessible, assertAccessibleSync, axeVersion, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
 import { a11yIssuesCount, htmlFileWithA11yIssues, htmlFileWithNoA11yIssues } from '@sa11y/test-utils';
 import { A11yError } from '@sa11y/format';
-import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
+import { AxeResults, axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
 // TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
 // TODO (debug): "import sync = require('@wdio/sync');" or
@@ -21,7 +21,7 @@ const sync = require('@wdio/sync').default;
 /**
  * Test util function to get violations from given html file
  */
-async function getViolationsHtml(htmlFilePath: string): Promise<axe.Result[]> {
+async function getViolationsHtml(htmlFilePath: string): Promise<AxeResults> {
     // Note: Tests fail without using 'await'. Maybe the browser.url() signature is incorrect.
     // eslint-disable-next-line @typescript-eslint/await-thenable
     await browser.url(htmlFilePath);
