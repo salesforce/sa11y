@@ -39,8 +39,8 @@
         "axe-core": "4.0.2"
     },
     "devDependencies": {
-        "@rollup/plugin-commonjs": "^15.1.0",
-        "@rollup/plugin-node-resolve": "^9.0.0",
+        "@rollup/plugin-commonjs": "^16.0.0",
+        "@rollup/plugin-node-resolve": "^10.0.0",
         "@sa11y/common": "0.2.1-beta.0",
         "@sa11y/test-utils": "0.2.2-beta.0",
         "rollup": "2.32.1",
