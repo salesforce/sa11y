@@ -8,7 +8,7 @@
 import * as axe from 'axe-core';
 import { exceptionListFilter } from '@sa11y/format';
 import { recommended } from '@sa11y/preset-rules';
-
+export { base, recommended, full } from '@sa11y/preset-rules';
 export const namespace = 'sa11y';
 
 /**
