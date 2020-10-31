@@ -44,8 +44,8 @@ function getConfig(minified = false) {
         ],
     };
 }
-
 /* eslint-enable @typescript-eslint/no-unsafe-call, @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
+
 export default [
     // Produce both minified and un-minified files
     getConfig(false),

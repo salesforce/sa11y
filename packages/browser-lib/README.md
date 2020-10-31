@@ -28,10 +28,15 @@ public class Sa11yTest {
   WebDriver driver = new ChromeDriver();
 
   @Test
-  void testAxeVersion() {
+  void testSa11yVersion() {
     ((JavascriptExecutor) this.driver).executeScript(sa11yMinJS);
     Object response = ((JavascriptExecutor) this.driver).executeScript("return sa11y.version;");
     assertEquals(sa11yVersion, response.toString());
+
+    // Call API to get a11y violations
+    Object response = ((JavascriptExecutor) this.driver).executeScript("return await sa11y.checkAccessibility();");
+    // Decode response with a JSON de-serialization library ...
+    //  e.g. results = new ObjectMapper().readValue(response, ..);
     driver.quit();
   }
 }
@@ -48,6 +53,8 @@ describe('demonstrate usage of sa11y.min.js', () => {
         // After injecting sa11y and axe should be defined
         expect(browser.execute('return typeof sa11y')).toEqual('object');
         expect(browser.execute('return axe.version')).toEqual(axeVersion);
+        // Call API to get a11y violations
+        const results = browser.execute('return await sa11y.checkAccessibility();');
     });
 });
 ```
