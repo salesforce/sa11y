@@ -63,7 +63,9 @@ function checkNumViolations(script: string, expectedNumViolations = a11yIssuesCo
 }
 
 function getSa11yScript(exceptionList = {}) {
-    return `return JSON.parse((await sa11y.checkAccessibility(${JSON.stringify(exceptionList)}))).length;`;
+    return `return JSON.parse((await sa11y.checkAccessibility(sa11y.recommended, ${JSON.stringify(
+        exceptionList
+    )}))).length;`;
 }
 
 describe('@sa11y/browser-lib', () => {

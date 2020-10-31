@@ -17,7 +17,7 @@ export const namespace = 'sa11y';
  * @param exceptionList - mapping of rule to css selectors to be filtered out using {@link exceptionListFilter}
  * @param rules - preset sa11y rules defaulting to {@link recommended}
  */
-export async function checkAccessibility(exceptionList = {}, rules = recommended) {
+export async function checkAccessibility(rules = recommended, exceptionList = {}) {
     // TODO (debug): adding type annotations to args, return type results in error:
     //  "[!] Error: Unexpected token" in both rollup-plugin-typescript2 and @rollup/plugin-typescript
     //  Compiling the index.ts file with tsc and using the dist/index.js file results
