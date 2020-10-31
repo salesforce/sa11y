@@ -22,7 +22,6 @@ Demonstrate using `sa11y.min.js` with both Selenium Java and WebdriverIO (Javasc
 
 ```java
 public class Sa11yTest {
-  String sa11yVersion = "0.1.0-alpha";
   InputStream sa11yMinJSFile = Sa11yTest.class.getClassLoader().getResourceAsStream("sa11y.min.js");
   String sa11yMinJS = new BufferedReader(new InputStreamReader(sa11yMinJSFile)).lines().collect(Collectors.joining());
   WebDriver driver = new ChromeDriver();
@@ -31,7 +30,7 @@ public class Sa11yTest {
   void testSa11yVersion() {
     ((JavascriptExecutor) this.driver).executeScript(sa11yMinJS);
     Object response = ((JavascriptExecutor) this.driver).executeScript("return sa11y.version;");
-    assertEquals(sa11yVersion, response.toString());
+    assertEquals("0.2.0-alpha.0", response.toString());
 
     // Call API to get a11y violations
     Object response = ((JavascriptExecutor) this.driver).executeScript("return await sa11y.checkAccessibility();");

@@ -48,7 +48,7 @@ function verifySa11yLoaded(filePath: string): void {
     loadMinJS(filePath);
     // After injecting sa11y and axe should be defined
     // TODO (refactor): Get sa11y version dynamically (from package.json)
-    expect(isLoaded(namespace)).toEqual('0.1.1-alpha.0');
+    expect(isLoaded(namespace)).toEqual('0.2.0-alpha.0');
     expect(isLoaded('axe')).toEqual(axeVersion);
 }
 
