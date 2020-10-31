@@ -131,6 +131,7 @@ Your test should now be running in the Chrome debugger. You get your handy conso
 ### Integration Testing
 
 -   Integration tests are available for certain packages executed using [WebdriverIO](https://webdriver.io/)
+    -   `yarn test:wdio`
 -   To [debug WebdriverIO tests](https://webdriver.io/docs/api/browser/debug.html)
     -   Add `await browser.debug();` to introduce a breakpoint
     -   Run test using `yarn test:debug` or `DEBUG=true yarn test`
