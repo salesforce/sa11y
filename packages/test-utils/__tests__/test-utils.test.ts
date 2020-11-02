@@ -81,6 +81,9 @@ describe('wdio test utils', () => {
     it('should not set headless config in debug mode', () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         const getArgs = (debug) => getConfigWDIO(debug).capabilities['goog:chromeOptions'].args as string[];
+
+        // Headless config is returned by default
+        expect(getArgs(undefined)).toContain('--headless');
         expect(getArgs(false)).toContain('--headless');
         expect(getArgs(true)).not.toContain('--headless');
     });
