@@ -8,17 +8,28 @@ Code in this package should be limited only to wrappers required to facilitate e
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [Build](#build)
 - [Usage](#usage)
-  - [[Selenium Java]](#selenium-java)
+  - [Selenium Java](#selenium-java)
   - [WebdriverIO](#webdriverio)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Build
+
+-   `yarn build`
+    -   generates the `sa11y.min.js` and `sa11y.js` bundles
+    -   `yarn build:watch` or `yarn build:debug` can be used during development
+-   `yarn test`
+    -   tests the generated JS bundles
 
 ## Usage
 
 Demonstrate using `sa11y.min.js` with both Selenium Java and WebdriverIO (Javascript) frameworks.
 
-### [Selenium Java]
+### Selenium Java
+
+Using [Selenium Java] library
 
 ```java
 public class Sa11yTest {
@@ -42,6 +53,8 @@ public class Sa11yTest {
 ```
 
 ### WebdriverIO
+
+Using [WebdriverIO](https://webdriver.io/) framework
 
 ```javascript
 describe('demonstrate usage of sa11y.min.js', () => {
