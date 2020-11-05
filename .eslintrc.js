@@ -30,6 +30,8 @@ module.exports = {
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        // TODO (spike): Evaluate using https://github.com/standard/eslint-config-standard-with-typescript
+        // 'standard-with-typescript',
         'plugin:jest/recommended',
         'plugin:jest/style',
         'plugin:prettier/recommended',
@@ -55,6 +57,7 @@ module.exports = {
                 templateFile: 'license-header.txt',
             },
         ],
+        '@typescript-eslint/naming-convention': 'error',
         'tsdoc/syntax': 'warn',
         'prefer-arrow-callback': 'warn',
     },
