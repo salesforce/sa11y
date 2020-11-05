@@ -6,4 +6,4 @@
  */
 
 export { A11yError, Options } from './format';
-export { exceptionListFilter, exceptionList } from './filter';
+export { exceptionListFilter, ExceptionList } from './filter';

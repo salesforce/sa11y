@@ -16,22 +16,22 @@ export interface Filter {
 // TODO (refactor): constrain rule id to known rule ids e.g using string literal, keyof, in etc
 //  e.g. https://stackoverflow.com/a/54061487
 // const ruleIDs = getRules().map((ruleObj) => ruleObj.ruleId);
-// type ruleID = keyof ruleIDs;
-// type ruleID = typeof ruleIDs[number];
-type ruleID = string;
-type cssSelectors = string[];
+// type RuleID = keyof ruleIDs;
+// type RuleID = typeof ruleIDs[number];
+type RuleID = string;
+type CssSelectors = string[];
 
 /**
  * Exception list of map of rule to corresponding css targets that needs to be filtered from a11y results.
  */
-export type exceptionList = Record<ruleID, cssSelectors>;
+export type ExceptionList = Record<RuleID, CssSelectors>;
 
 /**
- * Filter a11y violations from axe based on given {@link exceptionList}
+ * Filter a11y violations from axe based on given {@link ExceptionList}
  * @param violations - List of violations found with axe
- * @param exceptionList - {@link exceptionList} of map of rule to corresponding css targets that needs to be filtered from a11y results
+ * @param exceptionList - {@link ExceptionList} of map of rule to corresponding css targets that needs to be filtered from a11y results
  */
-export function exceptionListFilter(violations: readonly Result[], exceptionList: exceptionList = {}): Result[] {
+export function exceptionListFilter(violations: readonly Result[], exceptionList: ExceptionList = {}): Result[] {
     const exceptionRules = Object.keys(exceptionList);
     if (exceptionRules.length === 0) return violations as Result[];
 

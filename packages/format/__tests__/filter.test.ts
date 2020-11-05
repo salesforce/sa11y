@@ -62,6 +62,6 @@ describe('a11y results filter', () => {
         expect(filteredRuleIDs).not.toContain(validRule);
         expect(ruleIDs).toContain(validRule);
         // TODO (debug): Find why this causes the test to fail
-        // expect(ruleIDs.filter((ruleID) => ruleID === validRule)).toStrictEqual(filteredRuleIDs);
+        // expect(ruleIDs.filter((RuleID) => RuleID === validRule)).toStrictEqual(filteredRuleIDs);
     });
 });

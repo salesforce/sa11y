@@ -12,7 +12,7 @@ import { axeVersion } from '@sa11y/common';
 import { full } from '@sa11y/preset-rules';
 import { htmlFileWithNoA11yIssues, htmlFileWithA11yIssues, a11yIssuesCount } from '@sa11y/test-utils';
 
-type objectWithVersion = {
+type ObjectWithVersion = {
     version: string;
 };
 
@@ -28,7 +28,7 @@ const sa11yMinJS = '../dist/sa11y.min.js';
 function isLoaded(objName: string): Promise<string | boolean> {
     return browser.execute((objName) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-        const obj: objectWithVersion = (window as { [key: string]: any })[objName];
+        const obj: ObjectWithVersion = (window as { [key: string]: any })[objName];
         return typeof obj === 'object' ? obj.version : false;
     }, objName);
 }
@@ -49,7 +49,7 @@ function verifySa11yLoaded(filePath: string): void {
     // After injecting sa11y and axe should be defined
     const packageJSON = JSON.parse(
         fs.readFileSync(path.resolve(__dirname, '../package.json')).toString()
-    ) as objectWithVersion;
+    ) as ObjectWithVersion;
     expect(isLoaded(namespace)).toEqual(packageJSON.version);
     expect(isLoaded('axe')).toEqual(axeVersion);
 }

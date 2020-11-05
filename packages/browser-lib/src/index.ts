@@ -17,6 +17,7 @@ export const namespace = 'sa11y';
  * @param exceptionList - mapping of rule to css selectors to be filtered out using {@link exceptionListFilter}
  * @param rules - preset sa11y rules defaulting to {@link recommended}
  */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function checkAccessibility(rules = recommended, exceptionList = {}) {
     // TODO (debug): adding type annotations to args, return type results in error:
     //  "[!] Error: Unexpected token" in both rollup-plugin-typescript2 and @rollup/plugin-typescript
@@ -24,6 +25,6 @@ export async function checkAccessibility(rules = recommended, exceptionList = {}
     //  in error when importing the "namespace" var. This would probably be easier to fix
     //  which could then result in getting rid of the rollup typescript plugins.
     const results = await axe.run(rules);
-    const filtered_results = exceptionListFilter(results.violations, exceptionList);
-    return JSON.stringify(filtered_results);
+    const filteredResults = exceptionListFilter(results.violations, exceptionList);
+    return JSON.stringify(filteredResults);
 }
