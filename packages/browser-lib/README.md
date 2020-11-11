@@ -8,36 +8,53 @@ Code in this package should be limited only to wrappers required to facilitate e
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [Build](#build)
 - [Usage](#usage)
-  - [[Selenium Java]](#selenium-java)
+  - [Selenium Java](#selenium-java)
   - [WebdriverIO](#webdriverio)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Build
+
+-   `yarn build`
+    -   generates the `sa11y.min.js` and `sa11y.js` bundles
+    -   `yarn build:watch` or `yarn build:debug` can be used during development
+-   `yarn test`
+    -   tests the generated JS bundles
 
 ## Usage
 
 Demonstrate using `sa11y.min.js` with both Selenium Java and WebdriverIO (Javascript) frameworks.
 
-### [Selenium Java]
+### Selenium Java
+
+Using [Selenium Java] library
 
 ```java
 public class Sa11yTest {
-  String sa11yVersion = "0.1.0-alpha";
   InputStream sa11yMinJSFile = Sa11yTest.class.getClassLoader().getResourceAsStream("sa11y.min.js");
   String sa11yMinJS = new BufferedReader(new InputStreamReader(sa11yMinJSFile)).lines().collect(Collectors.joining());
   WebDriver driver = new ChromeDriver();
 
   @Test
-  void testAxeVersion() {
+  void testSa11yVersion() {
     ((JavascriptExecutor) this.driver).executeScript(sa11yMinJS);
     Object response = ((JavascriptExecutor) this.driver).executeScript("return sa11y.version;");
-    assertEquals(sa11yVersion, response.toString());
+    assertEquals("0.2.0-alpha.0", response.toString());
+
+    // Call API to get a11y violations
+    Object response = ((JavascriptExecutor) this.driver).executeScript("return await sa11y.checkAccessibility();");
+    // Decode response with a JSON de-serialization library ...
+    //  e.g. results = new ObjectMapper().readValue(response, ..);
     driver.quit();
   }
 }
 ```
 
 ### WebdriverIO
+
+Using [WebdriverIO](https://webdriver.io/) framework
 
 ```javascript
 describe('demonstrate usage of sa11y.min.js', () => {
@@ -48,6 +65,8 @@ describe('demonstrate usage of sa11y.min.js', () => {
         // After injecting sa11y and axe should be defined
         expect(browser.execute('return typeof sa11y')).toEqual('object');
         expect(browser.execute('return axe.version')).toEqual(axeVersion);
+        // Call API to get a11y violations
+        const results = browser.execute('return await sa11y.checkAccessibility();');
     });
 });
 ```

@@ -14,7 +14,9 @@ export {
     htmlFileWithA11yIssues,
     htmlFileWithNoA11yIssues,
     htmlFileWithVisualA11yIssues,
+    a11yIssuesCount,
     shadowDomID,
     videoURL,
 } from './test-data';
 export { beforeEachSetup, cartesianProduct, checkA11yError } from './utils';
+export { setupWDIO, teardownWDIO } from './wdio';

@@ -1,0 +1,1213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`a11y results filter should be setup with violations that can be reused across tests 1`] = `
+Array [
+  Object {
+    "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
+    "help": "Page must have means to bypass repeated blocks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/bypass?application=axeAPI",
+    "id": "bypass",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": null,
+            "id": "internal-link-present",
+            "impact": "serious",
+            "message": "No valid skip link found",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "header-present",
+            "impact": "serious",
+            "message": "Page does not have a heading",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "landmark",
+            "impact": "serious",
+            "message": "Page does not have a landmark region",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix any of the following:
+  No valid skip link found
+  Page does not have a heading
+  Page does not have a landmark region",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "serious",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.keyboard",
+      "wcag2a",
+      "wcag241",
+      "section508",
+      "section508.22.o",
+    ],
+  },
+  Object {
+    "description": "Ensures each HTML document contains a non-empty <title> element",
+    "help": "Documents must have <title> element to aid in navigation",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/document-title?application=axeAPI",
+    "id": "document-title",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": null,
+            "id": "doc-has-title",
+            "impact": "serious",
+            "message": "Document does not have a non-empty <title> element",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix any of the following:
+  Document does not have a non-empty <title> element",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "serious",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.text-alternatives",
+      "wcag2a",
+      "wcag242",
+      "ACT",
+    ],
+  },
+  Object {
+    "description": "Ensures every HTML document has a lang attribute",
+    "help": "<html> element must have a lang attribute",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/html-has-lang?application=axeAPI",
+    "id": "html-has-lang",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": Object {
+              "messageKey": "noLang",
+            },
+            "id": "has-lang",
+            "impact": "serious",
+            "message": "The <html> element does not have a lang attribute",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "serious",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.language",
+      "wcag2a",
+      "wcag311",
+      "ACT",
+    ],
+  },
+  Object {
+    "description": "Ensures the document has a main landmark",
+    "help": "Document must have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/landmark-one-main?application=axeAPI",
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "nodes": Array [
+      Object {
+        "all": Array [
+          CheckResult {
+            "data": null,
+            "id": "page-has-main",
+            "impact": "moderate",
+            "message": "Document does not have a main landmark",
+            "relatedNodes": Array [],
+          },
+        ],
+        "any": Array [],
+        "failureSummary": "Fix all of the following:
+  Document does not have a main landmark",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "moderate",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.semantics",
+      "best-practice",
+    ],
+  },
+  Object {
+    "description": "Ensures links have discernible text",
+    "help": "Links must have discernible text",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/link-name?application=axeAPI",
+    "id": "link-name",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": null,
+            "id": "has-visible-text",
+            "impact": "minor",
+            "message": "Element does not have text that is visible to screen readers",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "aria-label",
+            "impact": "serious",
+            "message": "aria-label attribute does not exist or is empty",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "aria-labelledby",
+            "impact": "serious",
+            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "role-presentation",
+            "impact": "minor",
+            "message": "Element's default semantics were not overridden with role=\\"presentation\\"",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "role-none",
+            "impact": "minor",
+            "message": "Element's default semantics were not overridden with role=\\"none\\"",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "non-empty-title",
+            "impact": "serious",
+            "message": "Element has no title attribute or the title attribute is empty",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element's default semantics were not overridden with role=\\"presentation\\"
+  Element's default semantics were not overridden with role=\\"none\\"
+  Element has no title attribute or the title attribute is empty",
+        "html": "<a href=\\"#\\"></a>",
+        "impact": "serious",
+        "none": Array [
+          CheckResult {
+            "data": null,
+            "id": "focusable-no-name",
+            "impact": "serious",
+            "message": "Element is in tab order and does not have accessible text",
+            "relatedNodes": Array [],
+          },
+        ],
+        "target": Array [
+          "a",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.name-role-value",
+      "wcag2a",
+      "wcag412",
+      "wcag244",
+      "section508",
+      "section508.22.a",
+    ],
+  },
+  Object {
+    "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+    "help": "Page must contain a level-one heading",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one?application=axeAPI",
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "nodes": Array [
+      Object {
+        "all": Array [
+          CheckResult {
+            "data": null,
+            "id": "page-has-heading-one",
+            "impact": "moderate",
+            "message": "Page must have a level-one heading",
+            "relatedNodes": Array [],
+          },
+        ],
+        "any": Array [],
+        "failureSummary": "Fix all of the following:
+  Page must have a level-one heading",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "moderate",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.semantics",
+      "best-practice",
+    ],
+  },
+]
+`;
+
+exports[`a11y results filter should filter results for matching exception list 0 1`] = `
+Array [
+  Object {
+    "description": "Ensures each HTML document contains a non-empty <title> element",
+    "help": "Documents must have <title> element to aid in navigation",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/document-title?application=axeAPI",
+    "id": "document-title",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": null,
+            "id": "doc-has-title",
+            "impact": "serious",
+            "message": "Document does not have a non-empty <title> element",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix any of the following:
+  Document does not have a non-empty <title> element",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "serious",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.text-alternatives",
+      "wcag2a",
+      "wcag242",
+      "ACT",
+    ],
+  },
+  Object {
+    "description": "Ensures every HTML document has a lang attribute",
+    "help": "<html> element must have a lang attribute",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/html-has-lang?application=axeAPI",
+    "id": "html-has-lang",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": Object {
+              "messageKey": "noLang",
+            },
+            "id": "has-lang",
+            "impact": "serious",
+            "message": "The <html> element does not have a lang attribute",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "serious",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.language",
+      "wcag2a",
+      "wcag311",
+      "ACT",
+    ],
+  },
+  Object {
+    "description": "Ensures the document has a main landmark",
+    "help": "Document must have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/landmark-one-main?application=axeAPI",
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "nodes": Array [
+      Object {
+        "all": Array [
+          CheckResult {
+            "data": null,
+            "id": "page-has-main",
+            "impact": "moderate",
+            "message": "Document does not have a main landmark",
+            "relatedNodes": Array [],
+          },
+        ],
+        "any": Array [],
+        "failureSummary": "Fix all of the following:
+  Document does not have a main landmark",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "moderate",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.semantics",
+      "best-practice",
+    ],
+  },
+  Object {
+    "description": "Ensures links have discernible text",
+    "help": "Links must have discernible text",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/link-name?application=axeAPI",
+    "id": "link-name",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": null,
+            "id": "has-visible-text",
+            "impact": "minor",
+            "message": "Element does not have text that is visible to screen readers",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "aria-label",
+            "impact": "serious",
+            "message": "aria-label attribute does not exist or is empty",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "aria-labelledby",
+            "impact": "serious",
+            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "role-presentation",
+            "impact": "minor",
+            "message": "Element's default semantics were not overridden with role=\\"presentation\\"",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "role-none",
+            "impact": "minor",
+            "message": "Element's default semantics were not overridden with role=\\"none\\"",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "non-empty-title",
+            "impact": "serious",
+            "message": "Element has no title attribute or the title attribute is empty",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element's default semantics were not overridden with role=\\"presentation\\"
+  Element's default semantics were not overridden with role=\\"none\\"
+  Element has no title attribute or the title attribute is empty",
+        "html": "<a href=\\"#\\"></a>",
+        "impact": "serious",
+        "none": Array [
+          CheckResult {
+            "data": null,
+            "id": "focusable-no-name",
+            "impact": "serious",
+            "message": "Element is in tab order and does not have accessible text",
+            "relatedNodes": Array [],
+          },
+        ],
+        "target": Array [
+          "a",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.name-role-value",
+      "wcag2a",
+      "wcag412",
+      "wcag244",
+      "section508",
+      "section508.22.a",
+    ],
+  },
+  Object {
+    "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+    "help": "Page must contain a level-one heading",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one?application=axeAPI",
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "nodes": Array [
+      Object {
+        "all": Array [
+          CheckResult {
+            "data": null,
+            "id": "page-has-heading-one",
+            "impact": "moderate",
+            "message": "Page must have a level-one heading",
+            "relatedNodes": Array [],
+          },
+        ],
+        "any": Array [],
+        "failureSummary": "Fix all of the following:
+  Page must have a level-one heading",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "moderate",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.semantics",
+      "best-practice",
+    ],
+  },
+]
+`;
+
+exports[`a11y results filter should filter results for matching exception list 1 1`] = `
+Array [
+  Object {
+    "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
+    "help": "Page must have means to bypass repeated blocks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/bypass?application=axeAPI",
+    "id": "bypass",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": null,
+            "id": "internal-link-present",
+            "impact": "serious",
+            "message": "No valid skip link found",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "header-present",
+            "impact": "serious",
+            "message": "Page does not have a heading",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "landmark",
+            "impact": "serious",
+            "message": "Page does not have a landmark region",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix any of the following:
+  No valid skip link found
+  Page does not have a heading
+  Page does not have a landmark region",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "serious",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.keyboard",
+      "wcag2a",
+      "wcag241",
+      "section508",
+      "section508.22.o",
+    ],
+  },
+  Object {
+    "description": "Ensures every HTML document has a lang attribute",
+    "help": "<html> element must have a lang attribute",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/html-has-lang?application=axeAPI",
+    "id": "html-has-lang",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": Object {
+              "messageKey": "noLang",
+            },
+            "id": "has-lang",
+            "impact": "serious",
+            "message": "The <html> element does not have a lang attribute",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "serious",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.language",
+      "wcag2a",
+      "wcag311",
+      "ACT",
+    ],
+  },
+  Object {
+    "description": "Ensures the document has a main landmark",
+    "help": "Document must have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/landmark-one-main?application=axeAPI",
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "nodes": Array [
+      Object {
+        "all": Array [
+          CheckResult {
+            "data": null,
+            "id": "page-has-main",
+            "impact": "moderate",
+            "message": "Document does not have a main landmark",
+            "relatedNodes": Array [],
+          },
+        ],
+        "any": Array [],
+        "failureSummary": "Fix all of the following:
+  Document does not have a main landmark",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "moderate",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.semantics",
+      "best-practice",
+    ],
+  },
+  Object {
+    "description": "Ensures links have discernible text",
+    "help": "Links must have discernible text",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/link-name?application=axeAPI",
+    "id": "link-name",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": null,
+            "id": "has-visible-text",
+            "impact": "minor",
+            "message": "Element does not have text that is visible to screen readers",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "aria-label",
+            "impact": "serious",
+            "message": "aria-label attribute does not exist or is empty",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "aria-labelledby",
+            "impact": "serious",
+            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "role-presentation",
+            "impact": "minor",
+            "message": "Element's default semantics were not overridden with role=\\"presentation\\"",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "role-none",
+            "impact": "minor",
+            "message": "Element's default semantics were not overridden with role=\\"none\\"",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "non-empty-title",
+            "impact": "serious",
+            "message": "Element has no title attribute or the title attribute is empty",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element's default semantics were not overridden with role=\\"presentation\\"
+  Element's default semantics were not overridden with role=\\"none\\"
+  Element has no title attribute or the title attribute is empty",
+        "html": "<a href=\\"#\\"></a>",
+        "impact": "serious",
+        "none": Array [
+          CheckResult {
+            "data": null,
+            "id": "focusable-no-name",
+            "impact": "serious",
+            "message": "Element is in tab order and does not have accessible text",
+            "relatedNodes": Array [],
+          },
+        ],
+        "target": Array [
+          "a",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.name-role-value",
+      "wcag2a",
+      "wcag412",
+      "wcag244",
+      "section508",
+      "section508.22.a",
+    ],
+  },
+  Object {
+    "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+    "help": "Page must contain a level-one heading",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one?application=axeAPI",
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "nodes": Array [
+      Object {
+        "all": Array [
+          CheckResult {
+            "data": null,
+            "id": "page-has-heading-one",
+            "impact": "moderate",
+            "message": "Page must have a level-one heading",
+            "relatedNodes": Array [],
+          },
+        ],
+        "any": Array [],
+        "failureSummary": "Fix all of the following:
+  Page must have a level-one heading",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "moderate",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.semantics",
+      "best-practice",
+    ],
+  },
+]
+`;
+
+exports[`a11y results filter should filter results for matching exception list 2 1`] = `
+Array [
+  Object {
+    "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
+    "help": "Page must have means to bypass repeated blocks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/bypass?application=axeAPI",
+    "id": "bypass",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": null,
+            "id": "internal-link-present",
+            "impact": "serious",
+            "message": "No valid skip link found",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "header-present",
+            "impact": "serious",
+            "message": "Page does not have a heading",
+            "relatedNodes": Array [],
+          },
+          CheckResult {
+            "data": null,
+            "id": "landmark",
+            "impact": "serious",
+            "message": "Page does not have a landmark region",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix any of the following:
+  No valid skip link found
+  Page does not have a heading
+  Page does not have a landmark region",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "serious",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.keyboard",
+      "wcag2a",
+      "wcag241",
+      "section508",
+      "section508.22.o",
+    ],
+  },
+  Object {
+    "description": "Ensures each HTML document contains a non-empty <title> element",
+    "help": "Documents must have <title> element to aid in navigation",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/document-title?application=axeAPI",
+    "id": "document-title",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": null,
+            "id": "doc-has-title",
+            "impact": "serious",
+            "message": "Document does not have a non-empty <title> element",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix any of the following:
+  Document does not have a non-empty <title> element",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "serious",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.text-alternatives",
+      "wcag2a",
+      "wcag242",
+      "ACT",
+    ],
+  },
+  Object {
+    "description": "Ensures every HTML document has a lang attribute",
+    "help": "<html> element must have a lang attribute",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/html-has-lang?application=axeAPI",
+    "id": "html-has-lang",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": Object {
+              "messageKey": "noLang",
+            },
+            "id": "has-lang",
+            "impact": "serious",
+            "message": "The <html> element does not have a lang attribute",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "serious",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.language",
+      "wcag2a",
+      "wcag311",
+      "ACT",
+    ],
+  },
+  Object {
+    "description": "Ensures the document has a main landmark",
+    "help": "Document must have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/landmark-one-main?application=axeAPI",
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "nodes": Array [
+      Object {
+        "all": Array [
+          CheckResult {
+            "data": null,
+            "id": "page-has-main",
+            "impact": "moderate",
+            "message": "Document does not have a main landmark",
+            "relatedNodes": Array [],
+          },
+        ],
+        "any": Array [],
+        "failureSummary": "Fix all of the following:
+  Document does not have a main landmark",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "moderate",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.semantics",
+      "best-practice",
+    ],
+  },
+  Object {
+    "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+    "help": "Page must contain a level-one heading",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one?application=axeAPI",
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "nodes": Array [
+      Object {
+        "all": Array [
+          CheckResult {
+            "data": null,
+            "id": "page-has-heading-one",
+            "impact": "moderate",
+            "message": "Page must have a level-one heading",
+            "relatedNodes": Array [],
+          },
+        ],
+        "any": Array [],
+        "failureSummary": "Fix all of the following:
+  Page must have a level-one heading",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "moderate",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.semantics",
+      "best-practice",
+    ],
+  },
+]
+`;
+
+exports[`a11y results filter should filter results for matching exception list 3 1`] = `
+Array [
+  Object {
+    "description": "Ensures every HTML document has a lang attribute",
+    "help": "<html> element must have a lang attribute",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/html-has-lang?application=axeAPI",
+    "id": "html-has-lang",
+    "impact": "serious",
+    "nodes": Array [
+      Object {
+        "all": Array [],
+        "any": Array [
+          CheckResult {
+            "data": Object {
+              "messageKey": "noLang",
+            },
+            "id": "has-lang",
+            "impact": "serious",
+            "message": "The <html> element does not have a lang attribute",
+            "relatedNodes": Array [],
+          },
+        ],
+        "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "serious",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.language",
+      "wcag2a",
+      "wcag311",
+      "ACT",
+    ],
+  },
+  Object {
+    "description": "Ensures the document has a main landmark",
+    "help": "Document must have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/landmark-one-main?application=axeAPI",
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "nodes": Array [
+      Object {
+        "all": Array [
+          CheckResult {
+            "data": null,
+            "id": "page-has-main",
+            "impact": "moderate",
+            "message": "Document does not have a main landmark",
+            "relatedNodes": Array [],
+          },
+        ],
+        "any": Array [],
+        "failureSummary": "Fix all of the following:
+  Document does not have a main landmark",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "moderate",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.semantics",
+      "best-practice",
+    ],
+  },
+  Object {
+    "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+    "help": "Page must contain a level-one heading",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one?application=axeAPI",
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "nodes": Array [
+      Object {
+        "all": Array [
+          CheckResult {
+            "data": null,
+            "id": "page-has-heading-one",
+            "impact": "moderate",
+            "message": "Page must have a level-one heading",
+            "relatedNodes": Array [],
+          },
+        ],
+        "any": Array [],
+        "failureSummary": "Fix all of the following:
+  Page must have a level-one heading",
+        "html": "<html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+        "impact": "moderate",
+        "none": Array [],
+        "target": Array [
+          "html",
+        ],
+      },
+    ],
+    "tags": Array [
+      "cat.semantics",
+      "best-practice",
+    ],
+  },
+]
+`;

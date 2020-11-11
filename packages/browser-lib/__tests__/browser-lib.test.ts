@@ -5,14 +5,21 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 import { namespace } from '../src';
 import { axeVersion } from '@sa11y/common';
+import { full } from '@sa11y/preset-rules';
+import { htmlFileWithNoA11yIssues, htmlFileWithA11yIssues, a11yIssuesCount } from '@sa11y/test-utils';
 
-type objectWithVersion = {
+type ObjectWithVersion = {
     version: string;
 };
+
+const sa11yJS = '../dist/sa11y.js';
+const sa11yMinJS = '../dist/sa11y.min.js';
+
+// TODO (refactor): reuse common code with @sa11y/wdio src/test code
 
 /**
  * Test util function to check if given object with 'version' property is loaded in browser.
@@ -21,38 +28,83 @@ type objectWithVersion = {
 function isLoaded(objName: string): Promise<string | boolean> {
     return browser.execute((objName) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-        const obj: objectWithVersion = (window as { [key: string]: any })[objName];
+        const obj: ObjectWithVersion = (window as { [key: string]: any })[objName];
         return typeof obj === 'object' ? obj.version : false;
     }, objName);
+}
+
+function loadMinJS(filePath = sa11yMinJS): void {
+    const sa11yMinJsPath = path.resolve(__dirname, filePath);
+    const sa11yMinJs = fs.readFileSync(sa11yMinJsPath).toString();
+    if (sa11yMinJs.length <= 0) throw new Error('Unable to load min js ' + filePath);
+    void browser.execute(sa11yMinJs);
 }
 
 /**
  * Test util function to inject given file and verify that sa11y and axe are loaded into browser
  */
 function verifySa11yLoaded(filePath: string): void {
-    const sa11yMinJsPath = path.resolve(__dirname, filePath);
-    const sa11yMinJs = fs.readFileSync(sa11yMinJsPath).toString();
-    expect(sa11yMinJs.length).toBeGreaterThan(0);
-
-    // Before injecting sa11y min js neither sa11y nor axe should not be defined
     void browser.reloadSession();
-    expect(isLoaded(namespace)).toBe(false);
-    expect(isLoaded('axe')).toBe(false);
-    void browser.execute(sa11yMinJs);
+    loadMinJS(filePath);
     // After injecting sa11y and axe should be defined
-    // TODO (refactor): Get sa11y version dynamically (from package.json)
-    expect(isLoaded(namespace)).toEqual('0.1.1-alpha.0');
+    const packageJSON = JSON.parse(
+        fs.readFileSync(path.resolve(__dirname, '../package.json')).toString()
+    ) as ObjectWithVersion;
+    expect(isLoaded(namespace)).toEqual(packageJSON.version);
     expect(isLoaded('axe')).toEqual(axeVersion);
 }
 
+function checkNumViolations(script: string, expectedNumViolations = a11yIssuesCount): void {
+    void browser.url(htmlFileWithNoA11yIssues);
+    loadMinJS();
+    expect(browser.execute(script)).toBe(0);
+
+    void browser.url(htmlFileWithA11yIssues);
+    loadMinJS();
+    expect(browser.execute(script)).toBe(expectedNumViolations);
+}
+
+function getSa11yScript(exceptionList = {}) {
+    return `return JSON.parse((await sa11y.checkAccessibility(sa11y.recommended, ${JSON.stringify(
+        exceptionList
+    )}))).length;`;
+}
+
 describe('@sa11y/browser-lib', () => {
+    it('should not have axe or sa11y loaded to start with', () => {
+        expect(isLoaded(namespace)).toBe(false);
+        expect(isLoaded('axe')).toBe(false);
+    });
+
     // eslint-disable-next-line jest/expect-expect
     it('should inject minified js', () => {
-        verifySa11yLoaded('../dist/sa11y.min.js');
+        verifySa11yLoaded(sa11yMinJS);
     });
 
     // eslint-disable-next-line jest/expect-expect
     it('should inject un-minified js', () => {
-        verifySa11yLoaded('../dist/sa11y.js');
+        verifySa11yLoaded(sa11yJS);
+    });
+
+    it('should invoke functions on axe e.g. getRules', () => {
+        loadMinJS();
+        expect(browser.execute('return axe.getRules().length')).toEqual(full.runOnly.values.length);
+    });
+
+    // eslint-disable-next-line jest/expect-expect
+    it('should run a11y checks using axe', () => {
+        checkNumViolations('return (await axe.run()).violations.length;');
+    });
+
+    // eslint-disable-next-line jest/expect-expect
+    it('should run a11y checks using sa11y', () => {
+        checkNumViolations(getSa11yScript());
+    });
+
+    // eslint-disable-next-line jest/expect-expect
+    it('should filter a11y violations using sa11y', () => {
+        const exceptionList = { 'document-title': ['html'], 'link-name': ['a'], bypass: ['html'] };
+        const numViolations = a11yIssuesCount - Object.keys(exceptionList).length;
+        checkNumViolations(getSa11yScript(exceptionList), numViolations);
     });
 });

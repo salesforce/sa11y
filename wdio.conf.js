@@ -9,7 +9,7 @@
 // Disable spell check for this file as there are a lot of config keys that are specific to this file that fail spell check
 
 // Ref: https://webdriver.io/docs/debugging.html
-const debug = process.env.DEBUG;
+const debug = !!process.env.DEBUG;
 
 exports.config = {
     //
@@ -147,8 +147,9 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         // TypeScript setup
-        // TODO (refactor): Can we reuse babel instead https://webdriver.io/docs/babel.html
-        //  https://github.com/webdriverio/webdriverio/issues/5588
+        // TODO (fix): when there is a TS warning/error, wdio runner skips tests
+        // TODO (refactor): migrate from ts-node
+        //  https://github.com/salesforce/sa11y/issues/42
         require: ['ts-node/register'],
         ui: 'bdd',
         timeout: debug ? 600000000 : 60000,

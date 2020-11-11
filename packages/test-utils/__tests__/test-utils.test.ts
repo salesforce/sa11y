@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { beforeEachSetup, cartesianProduct, checkA11yError } from '../src';
+import { beforeEachSetup, cartesianProduct, checkA11yError, setupWDIO, teardownWDIO } from '../src';
 import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
+import { getBrowser, getConfigWDIO } from '../src/wdio';
 const testDOMCleanupContent = 'foo';
 
 beforeAll(() => {
@@ -53,5 +54,37 @@ describe('test utils check a11y error', () => {
     it('should check for error to match snapshot', () => {
         expect.assertions(4);
         expect(() => checkA11yError(new Error('foo'))).not.toThrow();
+    });
+});
+
+describe('wdio test utils', () => {
+    afterEach(teardownWDIO);
+
+    it('should create browser object', async () => {
+        const browser = await getBrowser(false);
+        expect(browser).toBeTruthy();
+    });
+
+    it('should setup and cleanup browser in global namespace', async () => {
+        expect(global.browser).toBeFalsy();
+        await setupWDIO();
+        expect(global.browser).toBeTruthy();
+        // Calling setup multiple times should return the same browser instance
+        const browser = global.browser;
+        await setupWDIO();
+        expect(browser).toStrictEqual(global.browser);
+        // Calling teardown should destroy the browser instance
+        await teardownWDIO();
+        expect(global.browser).toBeFalsy();
+    });
+
+    it('should not set headless config in debug mode', () => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        const getArgs = (debug) => getConfigWDIO(debug).capabilities['goog:chromeOptions'].args as string[];
+
+        // Headless config is returned by default
+        expect(getArgs(undefined)).toContain('--headless');
+        expect(getArgs(false)).toContain('--headless');
+        expect(getArgs(true)).not.toContain('--headless');
     });
 });

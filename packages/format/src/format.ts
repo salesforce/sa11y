@@ -35,7 +35,7 @@ export interface Options {
 /**
  * Default options to be used while formatting a11y issues
  */
-const DefaultOptions: Options = {
+const defaultOptions: Options = {
     a11yViolationIndicator: '*',
     helpUrlIndicator: '-',
     // TODO (refactor): Create a Default formatter that points to A11yError.format()
@@ -91,8 +91,8 @@ export class A11yError extends Error {
      * Format a11y violations into a readable format highlighting important information to help fixing the issue.
      * @param options - Options used for formatting a11y issues.
      */
-    format(opts: Partial<Options> = DefaultOptions): string {
-        const options = Object.assign(Object.assign({}, DefaultOptions), opts);
+    format(opts: Partial<Options> = defaultOptions): string {
+        const options = Object.assign(Object.assign({}, defaultOptions), opts);
         if (options.formatter !== undefined) {
             return options.formatter(this.violations);
         }

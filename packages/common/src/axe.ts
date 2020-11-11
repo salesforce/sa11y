@@ -11,18 +11,20 @@ export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks 
 
 export const axeVersion: string | undefined = axe.version;
 
+export type AxeResults = axe.Result[];
+
 /**
  * Interface that represents a function that runs axe and returns violations
  */
 interface AxeRunner {
-    (): Promise<axe.Result[]>;
+    (): Promise<AxeResults>;
 }
 
 /**
  * Get violations by running axe with given function
  * @param axeRunner - function satisfying AxeRunner interface
  */
-export async function getViolations(axeRunner: AxeRunner): Promise<axe.Result[]> {
+export async function getViolations(axeRunner: AxeRunner): Promise<AxeResults> {
     let violations;
     try {
         violations = await axeRunner();

@@ -5,4 +5,5 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-export { AxeResults, axeRuntimeExceptionMsgPrefix, axeVersion, getViolations } from './axe';
+export { A11yError, Options } from './format';
+export { exceptionListFilter, ExceptionList } from './filter';

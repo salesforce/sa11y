@@ -7,7 +7,7 @@
 
 import { matcherHint, printReceived } from 'jest-matcher-utils';
 import { adaptA11yConfig } from './setup';
-import { a11yCheckableContext, assertAccessible } from '@sa11y/assert';
+import { A11yCheckableContext, assertAccessible } from '@sa11y/assert';
 import { A11yError, Options } from '@sa11y/format';
 import { A11yConfig, recommended } from '@sa11y/preset-rules';
 
@@ -16,6 +16,7 @@ import { A11yConfig, recommended } from '@sa11y/preset-rules';
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace jest {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         interface Matchers<R> {
             toBeAccessible(config?: A11yConfig): Promise<CustomMatcherResult>;
         }
@@ -24,7 +25,7 @@ declare global {
 
 const matcherHintMsg = `expected document to have no accessibility violations but found`;
 const expectedMsg = `0 issues`;
-const FormatOptions: Options = {
+const formatOptions: Options = {
     a11yViolationIndicator: '⭕',
     helpUrlIndicator: '🔗',
     highlighter: printReceived,
@@ -36,7 +37,7 @@ const FormatOptions: Options = {
  * @param config - A11yConfig to be used to test for accessibility. Defaults to recommended.
  */
 export async function toBeAccessible(
-    received: a11yCheckableContext = document,
+    received: A11yCheckableContext = document,
     config: A11yConfig = recommended
 ): Promise<jest.CustomMatcherResult> {
     let isAccessible = true;
@@ -61,7 +62,7 @@ export async function toBeAccessible(
         pass: isAccessible,
         message: (): string =>
             matcherHint(
-                `${toBeAccessible.name}: ${matcherHintMsg} ${receivedMsg}: \n\n ${a11yError.format(FormatOptions)}`,
+                `${toBeAccessible.name}: ${matcherHintMsg} ${receivedMsg}: \n\n ${a11yError.format(formatOptions)}`,
                 `${a11yError.length} issues`,
                 expectedMsg
             ),

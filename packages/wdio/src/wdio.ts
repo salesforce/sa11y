@@ -9,7 +9,7 @@ import * as axe from 'axe-core';
 import { BrowserObject } from 'webdriverio';
 import { A11yConfig, recommended } from '@sa11y/preset-rules';
 import { A11yError } from '@sa11y/format';
-import { getViolations } from '@sa11y/common';
+import { AxeResults, getViolations } from '@sa11y/common';
 
 export const axeVersion: string | undefined = axe.version;
 
@@ -38,16 +38,16 @@ export async function loadAxe(driver: BrowserObject): Promise<void> {
 /**
  * Load and run axe in given WDIO instance and return the accessibility violations found.
  */
-export async function runAxe(driver: BrowserObject, rules: A11yConfig = recommended): Promise<axe.Result[]> {
+export async function runAxe(driver: BrowserObject, rules: A11yConfig = recommended): Promise<AxeResults> {
     await loadAxe(driver);
 
     // run axe inside browser and return violations
     return (await driver.executeAsync((rules, done: CallableFunction) => {
-        axe.run(document, rules, function (err: Error, results: axe.AxeResults) {
+        axe.run(document, rules, (err: Error, results: axe.AxeResults) => {
             if (err) throw err;
             done(results.violations);
         });
-    }, rules)) as axe.Result[];
+    }, rules)) as AxeResults;
 }
 
 /**
