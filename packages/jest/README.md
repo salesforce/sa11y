@@ -20,6 +20,8 @@ Accessibility matcher for [Jest](https://jestjs.io)
 
 The `toBeAccessible()` API from this library can be used in Jest unit tests to test HTML elements or DOM for accessibility.
 
+[![Watch Automated Accessibility Tests with sa11y | Developer Quick Takes](https://img.youtube.com/vi/ScqZisOBbUM/0.jpg)](https://www.youtube.com/watch?v=ScqZisOBbUM&list=PLgIMQe2PKPSJdFGHjGpjd1FbCsOqq5H8t&index=21)
+
 ![Screenshot showing Sa11y Jest API usage and a11y errors showing up in VSCode](https://github.com/salesforce/sa11y/blob/media/screenshot/jest.png?raw=true)
 
 ## Install
