@@ -3,5 +3,10 @@
     "version": "independent",
     "exact": true,
     "npmClient": "yarn",
-    "useWorkspaces": true
+    "useWorkspaces": true,
+    "command": {
+        "publish": {
+            "registry": "https://registry.npmjs.org/"
+        }
+    }
 }
