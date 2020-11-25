@@ -3,32 +3,32 @@
 exports[`integration test @sa11y/wdio in sync mode should throw error for html with a11y issues 1`] = `
 "6 accessibility issues found
  * (bypass) Page must have means to bypass repeated blocks: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.0/bypass
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/bypass
 
 * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.0/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/document-title
 
 * (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.0/html-has-lang
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/html-has-lang
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.0/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
 
 * (landmark-one-main) Document must have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.0/landmark-one-main
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one"
 `;
 
 exports[`integration test @sa11y/wdio in sync mode should throw error for html with visual a11y issues 1`] = `
 "2 accessibility issues found
  * (color-contrast) Elements must have sufficient color contrast: #upside-down,button
-	- Help URL: https://dequeuniversity.com/rules/axe/4.0/color-contrast
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/color-contrast
 
 * (no-autoplay-audio) <video> or <audio> elements do not autoplay audio: audio
-	- Help URL: https://dequeuniversity.com/rules/axe/4.0/no-autoplay-audio
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/no-autoplay-audio
 
 * (no-autoplay-audio) <video> or <audio> elements do not autoplay audio: video
-	- Help URL: https://dequeuniversity.com/rules/axe/4.0/no-autoplay-audio"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/no-autoplay-audio"
 `;
