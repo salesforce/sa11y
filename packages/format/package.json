@@ -23,7 +23,7 @@
         "dist/**/*.js"
     ],
     "dependencies": {
-        "axe-core": "4.0.2"
+        "axe-core": "4.1.1"
     },
     "devDependencies": {
         "@sa11y/common": "0.2.2-beta.0",
