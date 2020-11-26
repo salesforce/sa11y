@@ -5,7 +5,7 @@ Array [
   Object {
     "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
     "help": "Page must have means to bypass repeated blocks",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/bypass?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/bypass?application=axeAPI",
     "id": "bypass",
     "impact": "serious",
     "nodes": Array [
@@ -64,7 +64,7 @@ Array [
   Object {
     "description": "Ensures each HTML document contains a non-empty <title> element",
     "help": "Documents must have <title> element to aid in navigation",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/document-title?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/document-title?application=axeAPI",
     "id": "document-title",
     "impact": "serious",
     "nodes": Array [
@@ -106,7 +106,7 @@ Array [
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -150,7 +150,7 @@ Array [
   Object {
     "description": "Ensures the document has a main landmark",
     "help": "Document must have one main landmark",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/landmark-one-main?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/landmark-one-main?application=axeAPI",
     "id": "landmark-one-main",
     "impact": "moderate",
     "nodes": Array [
@@ -190,7 +190,7 @@ Array [
   Object {
     "description": "Ensures links have discernible text",
     "help": "Links must have discernible text",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/link-name?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/link-name?application=axeAPI",
     "id": "link-name",
     "impact": "serious",
     "nodes": Array [
@@ -219,24 +219,12 @@ Array [
             "relatedNodes": Array [],
           },
           CheckResult {
-            "data": null,
-            "id": "role-presentation",
-            "impact": "minor",
-            "message": "Element's default semantics were not overridden with role=\\"presentation\\"",
-            "relatedNodes": Array [],
-          },
-          CheckResult {
-            "data": null,
-            "id": "role-none",
-            "impact": "minor",
-            "message": "Element's default semantics were not overridden with role=\\"none\\"",
-            "relatedNodes": Array [],
-          },
-          CheckResult {
-            "data": null,
+            "data": Object {
+              "messageKey": "noAttr",
+            },
             "id": "non-empty-title",
             "impact": "serious",
-            "message": "Element has no title attribute or the title attribute is empty",
+            "message": "Element has no title attribute",
             "relatedNodes": Array [],
           },
         ],
@@ -247,9 +235,7 @@ Fix any of the following:
   Element does not have text that is visible to screen readers
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-  Element's default semantics were not overridden with role=\\"presentation\\"
-  Element's default semantics were not overridden with role=\\"none\\"
-  Element has no title attribute or the title attribute is empty",
+  Element has no title attribute",
         "html": "<a href=\\"#\\"></a>",
         "impact": "serious",
         "none": Array [
@@ -273,12 +259,13 @@ Fix any of the following:
       "wcag244",
       "section508",
       "section508.22.a",
+      "ACT",
     ],
   },
   Object {
     "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
     "help": "Page must contain a level-one heading",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one?application=axeAPI",
     "id": "page-has-heading-one",
     "impact": "moderate",
     "nodes": Array [
@@ -323,7 +310,7 @@ Array [
   Object {
     "description": "Ensures each HTML document contains a non-empty <title> element",
     "help": "Documents must have <title> element to aid in navigation",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/document-title?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/document-title?application=axeAPI",
     "id": "document-title",
     "impact": "serious",
     "nodes": Array [
@@ -365,7 +352,7 @@ Array [
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -409,7 +396,7 @@ Array [
   Object {
     "description": "Ensures the document has a main landmark",
     "help": "Document must have one main landmark",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/landmark-one-main?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/landmark-one-main?application=axeAPI",
     "id": "landmark-one-main",
     "impact": "moderate",
     "nodes": Array [
@@ -449,7 +436,7 @@ Array [
   Object {
     "description": "Ensures links have discernible text",
     "help": "Links must have discernible text",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/link-name?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/link-name?application=axeAPI",
     "id": "link-name",
     "impact": "serious",
     "nodes": Array [
@@ -478,24 +465,12 @@ Array [
             "relatedNodes": Array [],
           },
           CheckResult {
-            "data": null,
-            "id": "role-presentation",
-            "impact": "minor",
-            "message": "Element's default semantics were not overridden with role=\\"presentation\\"",
-            "relatedNodes": Array [],
-          },
-          CheckResult {
-            "data": null,
-            "id": "role-none",
-            "impact": "minor",
-            "message": "Element's default semantics were not overridden with role=\\"none\\"",
-            "relatedNodes": Array [],
-          },
-          CheckResult {
-            "data": null,
+            "data": Object {
+              "messageKey": "noAttr",
+            },
             "id": "non-empty-title",
             "impact": "serious",
-            "message": "Element has no title attribute or the title attribute is empty",
+            "message": "Element has no title attribute",
             "relatedNodes": Array [],
           },
         ],
@@ -506,9 +481,7 @@ Fix any of the following:
   Element does not have text that is visible to screen readers
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-  Element's default semantics were not overridden with role=\\"presentation\\"
-  Element's default semantics were not overridden with role=\\"none\\"
-  Element has no title attribute or the title attribute is empty",
+  Element has no title attribute",
         "html": "<a href=\\"#\\"></a>",
         "impact": "serious",
         "none": Array [
@@ -532,12 +505,13 @@ Fix any of the following:
       "wcag244",
       "section508",
       "section508.22.a",
+      "ACT",
     ],
   },
   Object {
     "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
     "help": "Page must contain a level-one heading",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one?application=axeAPI",
     "id": "page-has-heading-one",
     "impact": "moderate",
     "nodes": Array [
@@ -582,7 +556,7 @@ Array [
   Object {
     "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
     "help": "Page must have means to bypass repeated blocks",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/bypass?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/bypass?application=axeAPI",
     "id": "bypass",
     "impact": "serious",
     "nodes": Array [
@@ -641,7 +615,7 @@ Array [
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -685,7 +659,7 @@ Array [
   Object {
     "description": "Ensures the document has a main landmark",
     "help": "Document must have one main landmark",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/landmark-one-main?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/landmark-one-main?application=axeAPI",
     "id": "landmark-one-main",
     "impact": "moderate",
     "nodes": Array [
@@ -725,7 +699,7 @@ Array [
   Object {
     "description": "Ensures links have discernible text",
     "help": "Links must have discernible text",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/link-name?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/link-name?application=axeAPI",
     "id": "link-name",
     "impact": "serious",
     "nodes": Array [
@@ -754,24 +728,12 @@ Array [
             "relatedNodes": Array [],
           },
           CheckResult {
-            "data": null,
-            "id": "role-presentation",
-            "impact": "minor",
-            "message": "Element's default semantics were not overridden with role=\\"presentation\\"",
-            "relatedNodes": Array [],
-          },
-          CheckResult {
-            "data": null,
-            "id": "role-none",
-            "impact": "minor",
-            "message": "Element's default semantics were not overridden with role=\\"none\\"",
-            "relatedNodes": Array [],
-          },
-          CheckResult {
-            "data": null,
+            "data": Object {
+              "messageKey": "noAttr",
+            },
             "id": "non-empty-title",
             "impact": "serious",
-            "message": "Element has no title attribute or the title attribute is empty",
+            "message": "Element has no title attribute",
             "relatedNodes": Array [],
           },
         ],
@@ -782,9 +744,7 @@ Fix any of the following:
   Element does not have text that is visible to screen readers
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-  Element's default semantics were not overridden with role=\\"presentation\\"
-  Element's default semantics were not overridden with role=\\"none\\"
-  Element has no title attribute or the title attribute is empty",
+  Element has no title attribute",
         "html": "<a href=\\"#\\"></a>",
         "impact": "serious",
         "none": Array [
@@ -808,12 +768,13 @@ Fix any of the following:
       "wcag244",
       "section508",
       "section508.22.a",
+      "ACT",
     ],
   },
   Object {
     "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
     "help": "Page must contain a level-one heading",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one?application=axeAPI",
     "id": "page-has-heading-one",
     "impact": "moderate",
     "nodes": Array [
@@ -858,7 +819,7 @@ Array [
   Object {
     "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
     "help": "Page must have means to bypass repeated blocks",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/bypass?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/bypass?application=axeAPI",
     "id": "bypass",
     "impact": "serious",
     "nodes": Array [
@@ -917,7 +878,7 @@ Array [
   Object {
     "description": "Ensures each HTML document contains a non-empty <title> element",
     "help": "Documents must have <title> element to aid in navigation",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/document-title?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/document-title?application=axeAPI",
     "id": "document-title",
     "impact": "serious",
     "nodes": Array [
@@ -959,7 +920,7 @@ Array [
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -1003,7 +964,7 @@ Array [
   Object {
     "description": "Ensures the document has a main landmark",
     "help": "Document must have one main landmark",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/landmark-one-main?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/landmark-one-main?application=axeAPI",
     "id": "landmark-one-main",
     "impact": "moderate",
     "nodes": Array [
@@ -1043,7 +1004,7 @@ Array [
   Object {
     "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
     "help": "Page must contain a level-one heading",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one?application=axeAPI",
     "id": "page-has-heading-one",
     "impact": "moderate",
     "nodes": Array [
@@ -1088,7 +1049,7 @@ Array [
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -1132,7 +1093,7 @@ Array [
   Object {
     "description": "Ensures the document has a main landmark",
     "help": "Document must have one main landmark",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/landmark-one-main?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/landmark-one-main?application=axeAPI",
     "id": "landmark-one-main",
     "impact": "moderate",
     "nodes": Array [
@@ -1172,7 +1133,7 @@ Array [
   Object {
     "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
     "help": "Page must contain a level-one heading",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.0/page-has-heading-one?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one?application=axeAPI",
     "id": "page-has-heading-one",
     "impact": "moderate",
     "nodes": Array [

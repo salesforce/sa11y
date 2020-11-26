@@ -145,8 +145,12 @@ Your test should now be running in the Chrome debugger. You get your handy conso
 -   `yarn release:version` to bump versions interactively
     -   `yarn release:version:auto` to automatically determine version bump based on commits
 -   To publish packages to npm
+    -   `npm config get registry`
+        -   ensure the correct OSS public registry is selected
     -   `npm login`
     -   `yarn release:publish`
+    -   `npm view <pkg>`
+        -   check meta-data about published packages
 -   Create a release in github
     -   Bump `version` in root `package.json` to reflect the changes to the packages since last release
         -   Use that root `version` for the github release
