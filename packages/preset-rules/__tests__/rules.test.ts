@@ -22,15 +22,6 @@ describe('preset-rules', () => {
         'skip-link',
         'table-duplicate-name',
         'table-fake-caption',
-        // TODO (feat): New rules introduced in axe v4.1 will be included in a future sa11y release
-        'aria-command-name',
-        'aria-dialog-name',
-        'aria-meter-name',
-        'aria-progressbar-name',
-        'aria-tooltip-name',
-        'aria-treeitem-name',
-        'presentation-role-conflict',
-        'select-name',
         /* cSpell:enable */
     ];
 
