@@ -6,6 +6,9 @@
  */
 
 import { base, full, recommended } from '../src';
+import * as fs from 'fs';
+import * as path from 'path';
+import { axeVersion } from '@sa11y/common';
 
 /**
  * TODO:
@@ -43,5 +46,15 @@ describe('preset-rules', () => {
         expect(full.runOnly.values).toEqual(expect.arrayContaining(excludedRules));
         const unusedRules = full.runOnly.values.filter((rule) => !recommended.runOnly.values.includes(rule));
         expect(unusedRules.sort()).toEqual(excludedRules.sort());
+    });
+
+    it('should document all recommended rules', () => {
+        // TODO (feat): Can we automate generation of the README using a template ?
+        const readmePath = path.resolve(__dirname, '../README.md');
+        const readme = fs.readFileSync(readmePath).toString();
+        const version = axeVersion.split('.').slice(0, 2).join('.'); // extract just major and minor version
+        full.runOnly.values.forEach((rule) => {
+            expect(readme).toContain(`| [${rule}](https://dequeuniversity.com/rules/axe/${version}/${rule})`);
+        });
     });
 });
