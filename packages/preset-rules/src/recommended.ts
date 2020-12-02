@@ -12,6 +12,9 @@ const rules = [
     ...base.runOnly.values,
     'accesskeys',
     'aria-allowed-role',
+    'aria-dialog-name',
+    'aria-meter-name',
+    'aria-progressbar-name',
     'avoid-inline-spacing',
     'css-orientation-lock',
     'frame-tested',
@@ -27,11 +30,12 @@ const rules = [
     'landmark-one-main',
     'landmark-unique',
     'link-in-text-block',
-    'meta-viewport-large',
     'meta-viewport',
+    'meta-viewport-large',
     'no-autoplay-audio',
     'object-alt',
     'p-as-heading',
+    'presentation-role-conflict',
     'region',
 ];
 
