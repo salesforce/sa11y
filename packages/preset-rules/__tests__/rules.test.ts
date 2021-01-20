@@ -48,7 +48,7 @@ describe('preset-rules', () => {
         expect(unusedRules.sort()).toEqual(excludedRules.sort());
     });
 
-    it('should document all recommended rules', () => {
+    it('should document all rules', () => {
         // TODO (feat): Can we automate generation of the README using a template ?
         const readmePath = path.resolve(__dirname, '../README.md');
         const readme = fs.readFileSync(readmePath).toString();
