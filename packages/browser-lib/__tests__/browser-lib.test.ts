@@ -10,7 +10,13 @@ import * as path from 'path';
 import { namespace } from '../src';
 import { axeVersion } from '@sa11y/common';
 import { full } from '@sa11y/preset-rules';
-import { htmlFileWithNoA11yIssues, htmlFileWithA11yIssues, a11yIssuesCount } from '@sa11y/test-utils';
+import {
+    a11yIssuesCountFiltered,
+    exceptionList,
+    htmlFileWithNoA11yIssues,
+    htmlFileWithA11yIssues,
+    a11yIssuesCount,
+} from '@sa11y/test-utils';
 
 type ObjectWithVersion = {
     version: string;
@@ -103,8 +109,6 @@ describe('@sa11y/browser-lib', () => {
 
     // eslint-disable-next-line jest/expect-expect
     it('should filter a11y violations using sa11y', () => {
-        const exceptionList = { 'document-title': ['html'], 'link-name': ['a'], bypass: ['html'] };
-        const numViolations = a11yIssuesCount - Object.keys(exceptionList).length;
-        checkNumViolations(getSa11yScript(exceptionList), numViolations);
+        checkNumViolations(getSa11yScript(exceptionList), a11yIssuesCountFiltered);
     });
 });

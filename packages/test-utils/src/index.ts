@@ -7,6 +7,7 @@
 
 export {
     audioURL,
+    exceptionList,
     domWithA11yIssues,
     domWithA11yIssuesBodyID,
     domWithNoA11yIssues,
@@ -15,6 +16,7 @@ export {
     htmlFileWithNoA11yIssues,
     htmlFileWithVisualA11yIssues,
     a11yIssuesCount,
+    a11yIssuesCountFiltered,
     shadowDomID,
     videoURL,
 } from './test-data';
