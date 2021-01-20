@@ -12,7 +12,7 @@
     },
     "devDependencies": {
         "@sa11y/jest": "0.2.0",
-        "@sa11y/test-utils": "0.3.1-beta.0",
-        "@sa11y/wdio": "0.2.0-alpha.0"
+        "@sa11y/test-utils": "0.3.2-beta.0",
+        "@sa11y/wdio": "0.3.0-alpha.0"
     }
 }
