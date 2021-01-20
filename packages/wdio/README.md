@@ -20,6 +20,7 @@ Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used wi
 
 ```javascript
 import { assertAccessible, assertAccessibleSync } from '@sa11y/wdio';
+import { recommended } from '@sa11y/preset-rules';
 
 describe('demonstrate usage of @sa11y/wdio', () => {
     it('should demonstrate usage of assertAccessible API', async () => {
@@ -30,10 +31,24 @@ describe('demonstrate usage of @sa11y/wdio', () => {
     });
 
     it('should demonstrate usage of assertAccessibleSync API', () => {
+        return sync(() => {
+            // Navigate to page to be tested
+            browser.url('pageToBeTested.html');
+            // Check for accessibility of the loaded page
+            assertAccessibleSync();
+        });
+    });
+
+    it('should demonstrate exception list', async () => {
         // Navigate to page to be tested
-        browser.url('pageToBeTested.html');
-        // Check for accessibility of the loaded page
-        assertAccessibleSync();
+        await browser.url('pageToBeTested.html');
+        // Exception list is a map of rule to corresponding css targets that needs to be filtered from a11y results
+        const exceptionList = {
+            'document-title': ['html'],
+            'link-name': ['a'],
+        };
+        // Check for accessibility of the loaded page, filtering out results from given exception list
+        await assertAccessible(browser, recommended, exceptionList);
     });
 });
 ```
