@@ -4,6 +4,7 @@
         "target": "es2016",
         "sourceMap": true,
         "declaration": true,
+        "declarationMap": true,
         "composite": true,
         "strict": true,
         "noEmitOnError": true,

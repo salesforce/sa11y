@@ -6,6 +6,7 @@
         "types": ["webdriverio", "jest"],
         "noEmitOnError": false,
         "declaration": false,
+        "declarationMap": false,
         "composite": false
     },
     "include": ["src"],
