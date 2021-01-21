@@ -20,7 +20,7 @@
     "types": "dist/index.d.ts",
     "files": [
         "dist/**/*.js",
-        "dist/**/*.d.ts"
+        "dist/**/*.d.ts*"
     ],
     "dependencies": {
         "@sa11y/assert": "0.2.1-beta.0",

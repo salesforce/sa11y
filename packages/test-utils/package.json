@@ -14,7 +14,7 @@
     "types": "dist/index.d.ts",
     "files": [
         "dist/**/*.js",
-        "dist/**/*.d.ts"
+        "dist/**/*.d.ts*"
     ],
     "dependencies": {
         "@sa11y/common": "0.2.3-beta.0"
