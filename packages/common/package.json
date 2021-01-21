@@ -12,7 +12,8 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
-        "dist/**/*.js"
+        "dist/**/*.js",
+        "dist/**/*.d.ts"
     ],
     "dependencies": {
         "axe-core": "4.1.1"

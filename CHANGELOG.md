@@ -1,3 +1,9 @@
+# Unreleased (2021-01-21)
+
+### Features
+
+-   **typescript:** include d.ts TypeScript definitions in packages
+
 # Changelog
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
