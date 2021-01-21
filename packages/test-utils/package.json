@@ -17,6 +17,6 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
-        "@sa11y/common": "0.2.3-beta.0"
+        "@sa11y/common": "0.2.4-beta.0"
     }
 }

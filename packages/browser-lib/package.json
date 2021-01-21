@@ -41,7 +41,7 @@
     "devDependencies": {
         "@rollup/plugin-commonjs": "17.0.0",
         "@rollup/plugin-node-resolve": "11.1.0",
-        "@sa11y/common": "0.2.3-beta.0",
+        "@sa11y/common": "0.2.4-beta.0",
         "@sa11y/test-utils": "0.3.2-beta.0",
         "rollup": "2.37.1",
         "rollup-plugin-progress": "1.1.2",

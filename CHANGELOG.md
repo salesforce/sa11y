@@ -1,14 +1,7 @@
-# Unreleased (2021-01-21)
-
-### Features
-
--   **typescript:** include d.ts TypeScript definitions in packages
-
 # Changelog
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [0.6.0-beta](#060-beta)
     - [Features](#features)
@@ -51,6 +44,7 @@
 ### Features
 
 -   **wdio:** add exception list opt to wdio APIs ([#51](https://github.com/salesforce/sa11y/pull/51))
+-   **typescript:** include d.ts TypeScript definitions in packages ([#52](https://github.com/salesforce/sa11y/pull/52))
 
 # [0.5.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.5.0-beta) (2020-12-01)
 
