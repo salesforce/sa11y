@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/test-utils",
-    "version": "0.3.1-beta.0",
+    "version": "0.3.2-beta.0",
     "private": true,
     "description": "Private package providing test utilities for @sa11y packages",
     "license": "BSD-3-Clause",
@@ -14,9 +14,9 @@
     "types": "dist/index.d.ts",
     "files": [
         "dist/**/*.js",
-        "dist/**/*.d.ts"
+        "dist/**/*.d.ts*"
     ],
     "dependencies": {
-        "@sa11y/common": "0.2.3-beta.0"
+        "@sa11y/common": "0.2.4-beta.0"
     }
 }

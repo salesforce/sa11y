@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/format",
-    "version": "0.3.1-beta.0",
+    "version": "0.3.2-beta.0",
     "description": "Accessibility results re-formatter",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/format#readme",
@@ -21,14 +21,14 @@
     "types": "dist/index.d.ts",
     "files": [
         "dist/**/*.js",
-        "dist/**/*.d.ts"
+        "dist/**/*.d.ts*"
     ],
     "dependencies": {
         "axe-core": "4.1.1"
     },
     "devDependencies": {
-        "@sa11y/common": "0.2.3-beta.0",
-        "@sa11y/test-utils": "0.3.1-beta.0"
+        "@sa11y/common": "0.2.4-beta.0",
+        "@sa11y/test-utils": "0.3.2-beta.0"
     },
     "publishConfig": {
         "access": "public"

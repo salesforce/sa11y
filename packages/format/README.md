@@ -14,8 +14,8 @@ Format accessibility results from axe
 
 ```javascript
 import axe from 'axe-core';
-import { a11yResultsFormatter } from '@sa11y/format';
+import { A11yError } from '@sa11y/format';
 
 const results = await axe.run();
-console.log(a11yResultsFormatter(results.violations));
+console.log(A11yError.checkAndThrow(results.violations));
 ```

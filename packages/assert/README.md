@@ -22,7 +22,7 @@ import { full } from '@sa11y/preset-rules';
 // Defaults to using
 //  - default document context e.g. JSDOM in Jest
 //  - recommended ruleset from @sa11y/preset-rules and
-//  - a11yResultsFormatter from @sa11y/format
+//  - A11yError.checkAndThrow from @sa11y/format
 await assertAccessible();
 
 // Can be used to test accessibility of a specific HTML element

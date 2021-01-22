@@ -7,9 +7,16 @@
 
 import * as axe from 'axe-core';
 import { assertAccessible, assertAccessibleSync, axeVersion, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
-import { a11yIssuesCount, htmlFileWithA11yIssues, htmlFileWithNoA11yIssues } from '@sa11y/test-utils';
+import {
+    a11yIssuesCount,
+    a11yIssuesCountFiltered,
+    exceptionList,
+    htmlFileWithA11yIssues,
+    htmlFileWithNoA11yIssues,
+} from '@sa11y/test-utils';
 import { A11yError } from '@sa11y/format';
 import { AxeResults, axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
+import { recommended } from '@sa11y/preset-rules';
 
 // TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
 // TODO (debug): "import sync = require('@wdio/sync');" or
@@ -60,12 +67,12 @@ async function checkAccessible(expectNumA11yIssues = 0): Promise<void> {
     checkA11yError(err, expectNumA11yIssues);
 }
 
-function checkAccessibleSync(expectNumA11yIssues = 0): void {
+function checkAccessibleSync(expectNumA11yIssues = 0, exceptionList = {}): void {
     let err: Error = new Error();
     // Note: WDIO doesn't provide snapshot feature to verify error thrown.
     //  Hence the longer try .. catch alternative
     try {
-        assertAccessibleSync();
+        assertAccessibleSync(browser, recommended, exceptionList);
     } catch (e) {
         err = e as Error;
     }
@@ -125,6 +132,15 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
             void browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync()).toThrow();
             checkAccessibleSync(a11yIssuesCount);
+        });
+    });
+
+    it('should filter violations with exception list', () => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
+        return sync(() => {
+            void browser.url(htmlFileWithA11yIssues);
+            expect(() => assertAccessibleSync(browser, recommended, exceptionList)).toThrow();
+            checkAccessibleSync(a11yIssuesCountFiltered, exceptionList);
         });
     });
 });

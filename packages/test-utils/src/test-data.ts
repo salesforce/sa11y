@@ -14,6 +14,12 @@ const fileWithA11yIssues = path.resolve(__dirname, '../__data__/a11yIssues.html'
 export const htmlFileWithA11yIssues = 'file:///' + fileWithA11yIssues;
 export const domWithA11yIssues = fs.readFileSync(fileWithA11yIssues).toString();
 export const a11yIssuesCount = 6;
+export const exceptionList = {
+    'document-title': ['html'],
+    'link-name': ['a'],
+    bypass: ['html'],
+};
+export const a11yIssuesCountFiltered = a11yIssuesCount - Object.keys(exceptionList).length;
 
 // DOM containing no a11y issues
 export const shadowDomID = 'upside-down';

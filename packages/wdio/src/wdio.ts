@@ -8,7 +8,7 @@
 import * as axe from 'axe-core';
 import { BrowserObject, MultiRemoteBrowserObject } from 'webdriverio';
 import { A11yConfig, recommended } from '@sa11y/preset-rules';
-import { A11yError } from '@sa11y/format';
+import { A11yError, exceptionListFilter } from '@sa11y/format';
 import { AxeResults, getViolations } from '@sa11y/common';
 
 export const axeVersion: string | undefined = axe.version;
@@ -66,12 +66,20 @@ export async function runAxe(driver: WDIOBrowser, rules: A11yConfig = recommende
  * Asynchronous version of {@link assertAccessibleSync}
  * @param driver - WDIO browser instance navigated to page to be checked
  * @param rules - a11y preset-rules to be used for checking accessibility
+ * @param exceptionList - mapping of rule to css selectors to be filtered out using {@link exceptionListFilter}
  */
-export async function assertAccessible(driver: WDIOBrowser = browser, rules: A11yConfig = recommended): Promise<void> {
+export async function assertAccessible(
+    driver: WDIOBrowser = browser,
+    rules: A11yConfig = recommended,
+    exceptionList = {}
+): Promise<void> {
     // TODO (feat): Add as custom commands to both browser for page level and elem
     //      https://webdriver.io/docs/customcommands.html
     const violations = await getViolations(() => runAxe(driver, rules));
-    A11yError.checkAndThrow(violations);
+    // TODO (refactor): move exception list filtering to getViolations()
+    //  and expose it as an arg to assert and jest api as well ?
+    const filteredResults = exceptionListFilter(violations, exceptionList);
+    A11yError.checkAndThrow(filteredResults);
 }
 
 /**
@@ -80,10 +88,15 @@ export async function assertAccessible(driver: WDIOBrowser = browser, rules: A11
  * Synchronous version of {@link assertAccessible}
  * @param driver - WDIO browser instance navigated to page to be checked
  * @param rules - a11y preset-rules to be used for checking accessibility
+ * @param exceptionList - mapping of rule to css selectors to be filtered out using {@link exceptionListFilter}
  */
-export function assertAccessibleSync(driver: WDIOBrowser = browser, rules: A11yConfig = recommended): void {
+export function assertAccessibleSync(
+    driver: WDIOBrowser = browser,
+    rules: A11yConfig = recommended,
+    exceptionList = {}
+): void {
     // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
     void driver.call(async () => {
-        await assertAccessible(driver, rules);
+        await assertAccessible(driver, rules, exceptionList);
     });
 }
