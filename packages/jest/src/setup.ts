@@ -38,12 +38,8 @@ const defaultSa11yOpts: Sa11yOpts = {
  * Register accessibility helpers toBeAccessible as jest matchers
  */
 export function registerSa11yMatcher(opts: Sa11yOpts = defaultSa11yOpts): void {
-    // Ref: https://github.com/jest-community/jest-extended
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore error TS2339: Property 'expect' does not exist on type 'Global'.
-    const jestExpect = global.expect as jest.Expect;
-    if (jestExpect !== undefined) {
-        jestExpect.extend({ toBeAccessible });
+    if (expect !== undefined) {
+        expect.extend({ toBeAccessible });
     } else {
         throw new Error(
             "Unable to find Jest's global expect." +
