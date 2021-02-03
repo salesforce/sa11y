@@ -9,9 +9,35 @@ import { toBeAccessible } from './matcher';
 import { A11yConfig } from '@sa11y/preset-rules';
 
 /**
+ *
+ */
+export type AutoCheckOpts = {
+    runAfterEach: boolean;
+    cleanupAfterEach: boolean;
+    excludeTests: string[];
+};
+
+const defaultAutoCheckOpts: AutoCheckOpts = {
+    runAfterEach: false,
+    cleanupAfterEach: false,
+    excludeTests: [],
+};
+
+/**
+ * Options to be passed on to {@link registerSa11yMatcher}
+ */
+export type Sa11yOpts = {
+    autoCheckOpts: AutoCheckOpts;
+};
+
+const defaultSa11yOpts: Sa11yOpts = {
+    autoCheckOpts: defaultAutoCheckOpts,
+};
+
+/**
  * Register accessibility helpers toBeAccessible as jest matchers
  */
-export function registerSa11yMatcher(): void {
+export function registerSa11yMatcher(opts: Sa11yOpts = defaultSa11yOpts): void {
     // Ref: https://github.com/jest-community/jest-extended
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore error TS2339: Property 'expect' does not exist on type 'Global'.
@@ -24,6 +50,22 @@ export function registerSa11yMatcher(): void {
                 '\nPlease check you have added @sa11y/jest correctly to your jest configuration.' +
                 '\nSee https://github.com/salesforce/sa11y/tree/master/packages/jest#readme for help.'
         );
+    }
+
+    if (opts.autoCheckOpts.runAfterEach) {
+        afterEach(async () => {
+            // TODO (spike): Is there a better way to walk the DOM ?
+            //  https://developer.mozilla.org/en-US/docs/Web/API/Node/firstChild
+            while (document.body.firstChild) {
+                try {
+                    await expect(document.body.firstChild).toBeAccessible();
+                } finally {
+                    if (opts.autoCheckOpts.cleanupAfterEach) {
+                        document.body.removeChild(document.body.firstChild);
+                    }
+                }
+            }
+        });
     }
 }
 
