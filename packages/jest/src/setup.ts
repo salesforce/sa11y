@@ -42,8 +42,8 @@ export function registerSa11yMatcher(opts: Sa11yOpts = defaultSa11yOpts): void {
         expect.extend({ toBeAccessible });
     } else {
         throw new Error(
-            "Unable to find Jest's global expect." +
-                '\nPlease check you have added @sa11y/jest correctly to your jest configuration.' +
+            "Unable to find Jest's expect function." +
+                '\nPlease check your Jest installation and that you have added @sa11y/jest correctly to your jest configuration.' +
                 '\nSee https://github.com/salesforce/sa11y/tree/master/packages/jest#readme for help.'
         );
     }
