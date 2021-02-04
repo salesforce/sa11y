@@ -5,27 +5,40 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { registerSa11yAutomaticChecks } from '../src/automatic';
+import { registerSa11yAutomaticChecks, automaticCheck } from '../src/automatic';
 import { beforeEachSetup, domWithA11yIssues } from '@sa11y/test-utils';
+import { registerSa11yMatcher } from '../src';
 
-describe('automatic checks', () => {
-    beforeEach(() => {
-        beforeEachSetup();
-        document.body.innerHTML = domWithA11yIssues;
+describe('automatic checks registration', () => {
+    // Note: Disable eslint for mock related import
+    // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
+    const automatic = require('../src/automatic');
+    const registerAutomaticMock = jest.spyOn(automatic, 'registerSa11yAutomaticChecks');
+
+    it('should not run by default', () => {
+        registerSa11yMatcher();
+        expect(registerAutomaticMock).toHaveBeenLastCalledWith({
+            cleanupAfterEach: false,
+            excludeTests: [],
+            runAfterEach: false,
+        });
     });
 
-    try {
-        it('should not run automatic checks by default', () => {
-            // registerSa11yMatcher();
-            registerSa11yAutomaticChecks();
-        });
-    } catch (e) {
-        if (e !== undefined) {
-            throw new Error(`Received unexpected error when not running automatic checks ' ${(e as Error).message}`);
-        }
-    }
+    it('should run when opted in', () => {
+        registerSa11yMatcher({ autoCheckOpts: { runAfterEach: true } });
+        expect(registerAutomaticMock).toHaveBeenLastCalledWith({ runAfterEach: true });
+    });
+});
 
-    it('should run automatic checks when opted in', () => {
+describe('automatic checks call', () => {
+    beforeAll(() => {
         registerSa11yAutomaticChecks();
+    });
+
+    beforeEach(beforeEachSetup);
+
+    it('should raise a11y issues for DOM with a11y issues', async () => {
+        document.body.innerHTML = domWithA11yIssues;
+        await automaticCheck(true).catch((e) => expect(e).toMatchSnapshot());
     });
 });
