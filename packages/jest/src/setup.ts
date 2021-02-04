@@ -7,7 +7,7 @@
 
 import { toBeAccessible } from './matcher';
 import { A11yConfig } from '@sa11y/preset-rules';
-import { AutoCheckOpts, defaultAutoCheckOpts } from './automatic';
+import { AutoCheckOpts, registerSa11yAutomaticChecks } from './automatic';
 
 /**
  * Options to be passed on to {@link registerSa11yMatcher}
@@ -15,8 +15,18 @@ import { AutoCheckOpts, defaultAutoCheckOpts } from './automatic';
 export type Sa11yOpts = {
     autoCheckOpts: AutoCheckOpts;
     // TODO (feat): add support for global opts to control formatting, filtering etc
-    // formatOpts: FormatOpts; // including format.Options
-    // filterOpts: FilterOpts; // including exception list filtering
+    // runOpts: RunOpts; // including ruleset, include/exclude selectors etc
+    // formatOpts: FormatOpts; // including format.Options etc
+    // filterOpts: FilterOpts; // including exception list filtering etc
+};
+
+/**
+ * Default options for automatic checks when {@link registerSa11yMatcher} is invoked
+ */
+const defaultAutoCheckOpts: AutoCheckOpts = {
+    runAfterEach: false,
+    cleanupAfterEach: false,
+    excludeTests: [],
 };
 
 const defaultSa11yOpts: Sa11yOpts = {
@@ -37,22 +47,7 @@ export function registerSa11yMatcher(opts: Sa11yOpts = defaultSa11yOpts): void {
         );
     }
 
-    if (opts.autoCheckOpts.runAfterEach) {
-        afterEach(async () => {
-            // TODO (spike): Is there a better way to walk the DOM ?
-            //  https://developer.mozilla.org/en-US/docs/Web/API/Node/firstChild
-            // TODO (debug): Without cleanup won't this result in an infinite loop ?
-            while (document.body.firstChild) {
-                try {
-                    await expect(document.body.firstChild).toBeAccessible();
-                } finally {
-                    if (opts.autoCheckOpts.cleanupAfterEach) {
-                        document.body.removeChild(document.body.firstChild);
-                    }
-                }
-            }
-        });
-    }
+    registerSa11yAutomaticChecks(opts.autoCheckOpts);
 }
 
 /**
