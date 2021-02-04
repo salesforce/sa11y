@@ -7,27 +7,16 @@
 
 import { toBeAccessible } from './matcher';
 import { A11yConfig } from '@sa11y/preset-rules';
-
-/**
- *
- */
-export type AutoCheckOpts = {
-    runAfterEach: boolean;
-    cleanupAfterEach: boolean;
-    excludeTests: string[];
-};
-
-const defaultAutoCheckOpts: AutoCheckOpts = {
-    runAfterEach: false,
-    cleanupAfterEach: false,
-    excludeTests: [],
-};
+import { AutoCheckOpts, defaultAutoCheckOpts } from './automatic';
 
 /**
  * Options to be passed on to {@link registerSa11yMatcher}
  */
 export type Sa11yOpts = {
     autoCheckOpts: AutoCheckOpts;
+    // TODO (feat): add support for global opts to control formatting, filtering etc
+    // formatOpts: FormatOpts; // including format.Options
+    // filterOpts: FilterOpts; // including exception list filtering
 };
 
 const defaultSa11yOpts: Sa11yOpts = {
@@ -52,6 +41,7 @@ export function registerSa11yMatcher(opts: Sa11yOpts = defaultSa11yOpts): void {
         afterEach(async () => {
             // TODO (spike): Is there a better way to walk the DOM ?
             //  https://developer.mozilla.org/en-US/docs/Web/API/Node/firstChild
+            // TODO (debug): Without cleanup won't this result in an infinite loop ?
             while (document.body.firstChild) {
                 try {
                     await expect(document.body.firstChild).toBeAccessible();
