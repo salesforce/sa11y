@@ -30,16 +30,16 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
 export async function automaticCheck(cleanup = false): Promise<void> {
     while (document.body.firstChild) {
         try {
-            // TODO (fix): check if sa11y matcher is registered and register
+            // TODO (refactor): check if sa11y matcher is registered and register?
             await expect(document.body.firstChild).toBeAccessible();
         } finally {
             // TODO (spike): Is there a better way to walk the DOM that makes cleanup optional ?
             //  Current way of walking the DOM leads to infinite loop if not cleaned up.
-            //  Could implement a list of visited nodes and check accordingly.
+            //  Could implement a list of visited nodes and check accordingly?
             //  But will cleanup being optional add any value to the user?
             //  https://developer.mozilla.org/en-US/docs/Web/API/Node/firstChild
             // if (cleanup)
-            document.body.removeChild(document.body.firstChild);
+            document.body.firstChild.remove();
         }
     }
 }

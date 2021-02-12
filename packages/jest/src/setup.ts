@@ -10,7 +10,7 @@ import { A11yConfig } from '@sa11y/preset-rules';
 import { AutoCheckOpts, registerSa11yAutomaticChecks } from './automatic';
 
 /**
- * Options to be passed on to {@link registerSa11yMatcher}
+ * Options to be passed on to {@link setup}
  */
 export type Sa11yOpts = {
     autoCheckOpts: AutoCheckOpts;
@@ -21,7 +21,7 @@ export type Sa11yOpts = {
 };
 
 /**
- * Default options for automatic checks when {@link registerSa11yMatcher} is invoked
+ * Default options for automatic checks
  */
 const defaultAutoCheckOpts: AutoCheckOpts = {
     runAfterEach: false,
@@ -34,9 +34,18 @@ const defaultSa11yOpts: Sa11yOpts = {
 };
 
 /**
+ * Register Sa11y Jest API and automatic checks depending on {@link Sa11yOpts}
+ * @param opts - {@link Sa11yOpts} to opt-in to automatic checks
+ */
+export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
+    registerSa11yMatcher();
+    registerSa11yAutomaticChecks(opts.autoCheckOpts);
+}
+
+/**
  * Register accessibility helpers toBeAccessible as jest matchers
  */
-export function registerSa11yMatcher(opts: Sa11yOpts = defaultSa11yOpts): void {
+export function registerSa11yMatcher(): void {
     if (expect !== undefined) {
         expect.extend({ toBeAccessible });
     } else {
@@ -46,8 +55,6 @@ export function registerSa11yMatcher(opts: Sa11yOpts = defaultSa11yOpts): void {
                 '\nSee https://github.com/salesforce/sa11y/tree/master/packages/jest#readme for help.'
         );
     }
-
-    registerSa11yAutomaticChecks(opts.autoCheckOpts);
 }
 
 /**
