@@ -7,10 +7,12 @@
 
 import * as automatic from '../src/automatic';
 import { automaticCheck, registerSa11yAutomaticChecks } from '../src/automatic';
-import { beforeEachSetup, checkA11yError, domWithA11yIssues } from '@sa11y/test-utils';
+import { beforeEachSetup, checkA11yError, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
 import { setup } from '../src';
 
-describe('checks registration', () => {
+describe('automatic checks registration', () => {
+    beforeAll(() => registerSa11yAutomaticChecks()); // Redundant - for code cov
+
     const registerAutomaticMock = jest.spyOn(automatic, 'registerSa11yAutomaticChecks');
 
     it('should not run by default', () => {
@@ -28,16 +30,14 @@ describe('checks registration', () => {
     });
 });
 
-describe('checks call', () => {
-    // TODO (refactor): Not really required for the tests - just here for code coverage
-    beforeAll(() => registerSa11yAutomaticChecks());
+describe('automatic checks call', () => {
     beforeEach(beforeEachSetup);
 
     // TODO (fix): Debug and fix the failing test ?
-    // it('should not raise a11y issues for DOM without a11y issues', () => {
-    //     document.body.innerHTML = domWithNoA11yIssues;
-    //     expect(async () => await automaticCheck()).not.toThrow();
-    // });
+    it('should not raise a11y issues for DOM without a11y issues', async () => {
+        document.body.innerHTML = domWithNoA11yIssues;
+        await automaticCheck(); // throws no error
+    });
 
     it('should raise a11y issues for DOM with a11y issues', async () => {
         document.body.innerHTML = domWithA11yIssues;
