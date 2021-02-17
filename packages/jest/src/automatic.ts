@@ -11,7 +11,10 @@
 export type AutoCheckOpts = {
     runAfterEach?: boolean;
     cleanupAfterEach?: boolean;
-    excludeTests?: string[];
+    // TODO (feat): add support for result consolidation across all tests for a test run
+    //  and optional exclusion of selected tests
+    // consolidateResults?: boolean;
+    // excludeTests?: string[];
 };
 
 /**
@@ -20,27 +23,22 @@ export type AutoCheckOpts = {
 const defaultAutoCheckOpts: AutoCheckOpts = {
     runAfterEach: true,
     cleanupAfterEach: true,
-    excludeTests: [],
 };
 
 /**
- * Run accessibility check on each node in the DOM using {@link toBeAccessible}
+ * Run accessibility check on each element node in the body using {@link toBeAccessible}
  * @param cleanup - boolean indicating if the DOM should be cleaned up after
  */
 export async function automaticCheck(cleanup = false): Promise<void> {
-    while (document.body.firstChild) {
-        try {
-            // TODO (refactor): check if sa11y matcher is registered and register?
-            await expect(document.body.firstChild).toBeAccessible();
-        } finally {
-            // TODO (spike): Is there a better way to walk the DOM that makes cleanup optional ?
-            //  Current way of walking the DOM leads to infinite loop if not cleaned up.
-            //  Could implement a list of visited nodes and check accordingly?
-            //  But will cleanup being optional add any value to the user?
-            //  https://developer.mozilla.org/en-US/docs/Web/API/Node/firstChild
-            // if (cleanup)
-            document.body.firstChild.remove();
-        }
+    // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
+
+    try {
+        while (walker.nextNode()) await expect(walker.currentNode).toBeAccessible();
+    } finally {
+        // TODO (refactor): Store and process a11y issues for all elements
+        //  in the body instead of just the first element that has a11y issues
+        if (cleanup) document.body.innerHTML = '';
     }
 }
 
