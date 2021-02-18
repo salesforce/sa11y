@@ -45,19 +45,12 @@
         "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "yarn test --watch",
-        "test:wdio": "yarn workspace @sa11y/wdio test && yarn workspace @sa11y/browser-lib test "
+        "test:wdio": "yarn workspace @sa11y/wdio test && yarn workspace @sa11y/browser-lib test ",
+        "postinstall": "husky install"
     },
     "config": {
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
-        }
-    },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -e $GIT_PARAMS",
-            "pre-commit": "lint-staged",
-            "pre-push": "yarn test:clean",
-            "post-checkout": "yarn build:ci"
         }
     },
     "devDependencies": {
