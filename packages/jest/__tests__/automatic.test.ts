@@ -11,7 +11,12 @@ import { automaticCheck } from '../src/automatic';
 import { beforeEachSetup, checkA11yError, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
 
 describe('automatic checks registration', () => {
-    afterAll(jest.restoreAllMocks);
+    afterAll(() => {
+        jest.restoreAllMocks();
+        process.env.SA11Y_AUTO = '';
+        process.env.SA11Y_CLEANUP = '';
+    });
+
     const registerAutomaticMock = jest.spyOn(automatic, 'registerSa11yAutomaticChecks');
 
     it('should not run by default', () => {
@@ -26,6 +31,23 @@ describe('automatic checks registration', () => {
         setup({ autoCheckOpts: { runAfterEach: true } });
         expect(registerAutomaticMock).toHaveBeenLastCalledWith({
             runAfterEach: true,
+            cleanupAfterEach: false,
+        });
+    });
+
+    it('should run when opted in with env vars', () => {
+        process.env.SA11Y_AUTO = '1';
+        setup();
+        expect(registerAutomaticMock).toHaveBeenLastCalledWith({
+            runAfterEach: true,
+            cleanupAfterEach: false,
+        });
+
+        process.env.SA11Y_CLEANUP = '1';
+        setup();
+        expect(registerAutomaticMock).toHaveBeenLastCalledWith({
+            runAfterEach: true,
+            cleanupAfterEach: true,
         });
     });
 });

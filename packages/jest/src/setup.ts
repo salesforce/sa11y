@@ -26,7 +26,6 @@ export type Sa11yOpts = {
 const defaultAutoCheckOpts: AutoCheckOpts = {
     runAfterEach: false,
     cleanupAfterEach: false,
-    excludeTests: [],
 };
 
 const defaultSa11yOpts: Sa11yOpts = {
@@ -39,7 +38,11 @@ const defaultSa11yOpts: Sa11yOpts = {
  */
 export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
     registerSa11yMatcher();
-    registerSa11yAutomaticChecks(opts.autoCheckOpts);
+    // Set defaults from env vars
+    const autoCheckOpts = opts.autoCheckOpts;
+    autoCheckOpts.runAfterEach = autoCheckOpts.runAfterEach || !!process.env.SA11Y_AUTO;
+    autoCheckOpts.cleanupAfterEach = autoCheckOpts.cleanupAfterEach || !!process.env.SA11Y_CLEANUP;
+    registerSa11yAutomaticChecks(autoCheckOpts);
 }
 
 /**
