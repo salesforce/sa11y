@@ -7,7 +7,7 @@
 
 import { setup } from '../src';
 import * as automatic from '../src/automatic';
-import { automaticCheck } from '../src/automatic';
+import { automaticCheck, registerSa11yAutomaticChecks } from '../src/automatic';
 import { beforeEachSetup, checkA11yError, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
 
 describe('automatic checks registration', () => {
@@ -19,17 +19,22 @@ describe('automatic checks registration', () => {
 
     const registerAutomaticMock = jest.spyOn(automatic, 'registerSa11yAutomaticChecks');
 
-    it('should not run by default', () => {
+    it('should run when called directly without setup', () => {
+        registerSa11yAutomaticChecks(); // exercising default args for code cov
+        expect(registerAutomaticMock).toHaveBeenCalledWith();
+    });
+
+    it('should not run by default via setup', () => {
         setup();
-        expect(registerAutomaticMock).toHaveBeenLastCalledWith({
+        expect(registerAutomaticMock).toHaveBeenCalledWith({
             runAfterEach: false,
             cleanupAfterEach: false,
         });
     });
 
-    it('should run when opted in', () => {
+    it('should run when opted in via setup', () => {
         setup({ autoCheckOpts: { runAfterEach: true } });
-        expect(registerAutomaticMock).toHaveBeenLastCalledWith({
+        expect(registerAutomaticMock).toHaveBeenCalledWith({
             runAfterEach: true,
             cleanupAfterEach: false,
         });
@@ -38,14 +43,14 @@ describe('automatic checks registration', () => {
     it('should run when opted in with env vars', () => {
         process.env.SA11Y_AUTO = '1';
         setup();
-        expect(registerAutomaticMock).toHaveBeenLastCalledWith({
+        expect(registerAutomaticMock).toHaveBeenCalledWith({
             runAfterEach: true,
             cleanupAfterEach: false,
         });
 
         process.env.SA11Y_CLEANUP = '1';
         setup();
-        expect(registerAutomaticMock).toHaveBeenLastCalledWith({
+        expect(registerAutomaticMock).toHaveBeenCalledWith({
             runAfterEach: true,
             cleanupAfterEach: true,
         });
