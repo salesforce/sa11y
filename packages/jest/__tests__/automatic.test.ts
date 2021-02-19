@@ -68,7 +68,9 @@ describe('automatic checks call', () => {
     });
 
     it('should raise a11y issues for DOM with a11y issues', async () => {
-        document.body.innerHTML = domWithA11yIssues;
+        // Note: Create multiple children in body with a11y issues
+        document.body.innerHTML = domWithA11yIssues + `<a id="second-link" href="#"></a>`;
+        console.log('document.body.innerHTML:' + document.body.innerHTML);
         // Note: cleanup required to prevent domWithA11yIssues being checked again after
         // the test as part of the afterEach hook that was setup in the previous
         // describe block
