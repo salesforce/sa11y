@@ -78,15 +78,15 @@ describe('automatic checks call', () => {
 
     it('should not cleanup DOM by default', async () => {
         document.body.innerHTML = domWithNoA11yIssues;
+        expect(document.body.childElementCount).toBe(4);
         await automaticCheck();
-        expect(document.body.innerHTML).not.toBe('');
-        // TODO (refactor): replace with a regex check on DOM content
-        // expect(domWithNoA11yIssues.replace(/\s/g, '')).toContain(document.body.innerHTML.replace(/\s/g, ''));
+        expect(document.body.childElementCount).toBe(4);
     });
 
     it('should cleanup DOM when opted in', async () => {
         document.body.innerHTML = domWithNoA11yIssues;
+        expect(document.body.childElementCount).toBe(4);
         await automaticCheck(true);
-        expect(document.body.innerHTML).toBe('');
+        expect(document.body.childElementCount).toBe(0);
     });
 });

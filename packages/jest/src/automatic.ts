@@ -30,16 +30,18 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
  * @param cleanup - boolean indicating if the DOM should be cleaned up after
  */
 export async function automaticCheck(cleanup = false): Promise<void> {
-    // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
-
-    try {
-        while (walker.nextNode()) await expect(walker.currentNode).toBeAccessible();
-    } finally {
-        // TODO (refactor): Store and process a11y issues for all elements
-        //  in the body instead of just the first element that has a11y issues
-        if (cleanup) document.body.innerHTML = '';
+    let currNode = document.body.firstElementChild;
+    while (currNode !== null) {
+        try {
+            // TODO (spike): Use a logger lib with log levels selectable at runtime
+            // console.log('♿ [DEBUG] Automatically checking a11y of ' + currNode.nodeName);
+            await expect(currNode).toBeAccessible();
+        } finally {
+            if (cleanup) document.body.removeChild(currNode);
+            currNode = currNode.nextElementSibling;
+        }
     }
+    if (cleanup) document.body.innerHTML = ''; // remove non-element nodes
 }
 
 /**
@@ -48,6 +50,7 @@ export async function automaticCheck(cleanup = false): Promise<void> {
  */
 export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
     if (opts.runAfterEach) {
+        console.log('♿ Registering sa11y checks to be run automatically after each test');
         afterEach(async () => {
             await automaticCheck(opts.cleanupAfterEach);
         });
