@@ -8,12 +8,13 @@
 import { domWithA11yIssues } from '@sa11y/test-utils';
 import * as axe from 'axe-core';
 import { exceptionListFilter } from '../src';
+import { AxeResults } from '@sa11y/common';
 
-let violations: readonly axe.Result[];
+let violations: AxeResults;
 
 beforeAll(async () => {
     document.body.innerHTML = domWithA11yIssues;
-    violations = Object.freeze(await axe.run(document).then((results) => results.violations));
+    violations = await axe.run(document).then((results) => results.violations);
 });
 
 describe('a11y results filter', () => {
