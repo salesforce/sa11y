@@ -1,10 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`automatic checks call should raise a11y issues for DOM with a11y issues 1`] = `
-"2 accessibility issues found
+"1 accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+`;
+
+exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 1`] = `
+"4 accessibility issues found
  * (link-name) Links must have discernible text: #dom-with-issues > a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
 
 * (link-name) Links must have discernible text: #second-link
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+
+* (link-name) Links must have discernible text: #third-link
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+
+* (link-name) Links must have discernible text: #fourth-link
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
 `;

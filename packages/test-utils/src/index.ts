@@ -11,6 +11,7 @@ export {
     domWithA11yIssues,
     domWithA11yIssuesBodyID,
     domWithNoA11yIssues,
+    domWithNoA11yIssuesChildCount,
     domWithVisualA11yIssues,
     htmlFileWithA11yIssues,
     htmlFileWithNoA11yIssues,
