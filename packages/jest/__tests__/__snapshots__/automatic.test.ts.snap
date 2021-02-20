@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`automatic checks call should raise a11y issues for DOM with a11y issues 1`] = `
-"[2mexpect([22m[31m1 issues[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 1 issues: [22m
-[2m[22m
-[2m [31m\\"⭕ (link-name) Links must have discernible text: #dom-with-issues > a\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name([22m[32m0 issues[39m[2m)[22m"
+"2 accessibility issues found
+ * (link-name) Links must have discernible text: #dom-with-issues > a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+
+* (link-name) Links must have discernible text: #second-link
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
 `;
