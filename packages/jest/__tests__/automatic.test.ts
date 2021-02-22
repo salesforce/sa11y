@@ -65,35 +65,37 @@ describe('automatic checks registration', () => {
 
 describe('automatic checks call', () => {
     beforeEach(beforeEachSetup);
-    // Note: "expect"s are in the helper method "checkA11yError"
-    /* eslint-disable jest/expect-expect */
 
     it('should not raise a11y issues for DOM without a11y issues', async () => {
         document.body.innerHTML = domWithNoA11yIssues;
-        await automaticCheck(); // throws no error
+        await expect(automaticCheck()).resolves.not.toThrow();
     });
 
     it('should raise a11y issues for DOM with a11y issues', async () => {
         document.body.innerHTML = domWithA11yIssues;
+        expect.assertions(3);
         // Note: cleanup required to prevent domWithA11yIssues being checked again after
         // the test as part of the afterEach hook that was setup in the previous
         // describe block
         await automaticCheck(true).catch((e) => checkA11yError(e));
     });
 
-    it('should raise consolidated a11y issues for DOM with multiple a11y issues', async () => {
-        // Note: Create multiple children in body with a11y issues
-        document.body.innerHTML =
-            domWithA11yIssues +
-            `<a id="second-link" href="#"></a>` +
-            `<a id="third-link" href="#"></a>` +
-            `<a id="fourth-link" href="#"></a>`;
-        // Note: cleanup required to prevent domWithA11yIssues being checked again after
-        // the test as part of the afterEach hook that was setup in the previous
-        // describe block
-        await automaticCheck(true).catch((e) => checkA11yError(e));
-    });
-    /* eslint-enable jest/expect-expect */
+    it.each([0, 1, 2, 3])(
+        'should raise consolidated a11y issues for DOM with multiple a11y issues',
+        async (numNodesWithIssues) => {
+            document.body.innerHTML = domWithA11yIssues;
+
+            // Note: Create multiple children in body with a11y issues
+            for (let i = 0; i < numNodesWithIssues; i++) {
+                document.body.innerHTML += `<a id="link-${i}" href="#"></a>`;
+            }
+            expect.assertions(3);
+            // Note: cleanup required to prevent domWithA11yIssues being checked again after
+            // the test as part of the afterEach hook that was setup in the previous
+            // describe block
+            await automaticCheck(true).catch((e) => checkA11yError(e));
+        }
+    );
 
     it('should not cleanup DOM by default', async () => {
         document.body.innerHTML = domWithNoA11yIssues;

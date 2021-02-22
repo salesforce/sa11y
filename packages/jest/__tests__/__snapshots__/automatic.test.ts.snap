@@ -7,16 +7,43 @@ exports[`automatic checks call should raise a11y issues for DOM with a11y issues
 `;
 
 exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 1`] = `
+"1 accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+`;
+
+exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 2`] = `
+"2 accessibility issues found
+ * (link-name) Links must have discernible text: #dom-with-issues > a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+
+* (link-name) Links must have discernible text: #link-0
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+`;
+
+exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 3`] = `
+"3 accessibility issues found
+ * (link-name) Links must have discernible text: #dom-with-issues > a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+
+* (link-name) Links must have discernible text: #link-0
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+
+* (link-name) Links must have discernible text: #link-1
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+`;
+
+exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 4`] = `
 "4 accessibility issues found
  * (link-name) Links must have discernible text: #dom-with-issues > a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
 
-* (link-name) Links must have discernible text: #second-link
+* (link-name) Links must have discernible text: #link-0
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
 
-* (link-name) Links must have discernible text: #third-link
+* (link-name) Links must have discernible text: #link-1
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
 
-* (link-name) Links must have discernible text: #fourth-link
+* (link-name) Links must have discernible text: #link-2
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
 `;
