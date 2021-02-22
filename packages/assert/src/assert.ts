@@ -16,6 +16,12 @@ import { AxeResults, getViolations } from '@sa11y/common';
  */
 export type A11yCheckableContext = Document | Node;
 
+/**
+ * Get list of a11y violations for given element and ruleset
+ * @param context - DOM or HTML Node to be tested for accessibility
+ * @param rules - A11yConfig preset rule to use, defaults to recommended
+ * @returns {@link AxeResults} - list of accessibility issues found
+ */
 export async function getViolationsJSDOM(
     context: A11yCheckableContext = document,
     rules: A11yConfig = recommended
@@ -28,7 +34,7 @@ export async function getViolationsJSDOM(
 
 /**
  * Checks DOM for accessibility issues and throws an error if violations are found.
- * @param context - DOM or HTMLElement to be tested for accessibility
+ * @param context - DOM or HTML Node to be tested for accessibility
  * @param rules - A11yConfig preset rule to use, defaults to recommended
  * @throws error - with the accessibility issues found, does not return any value
  * */
