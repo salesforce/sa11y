@@ -35,20 +35,20 @@ The accessibility APIs need to be registered with Jest before they can be used i
 
 ### Project level
 
-You can set up the a11y API once at the project level to make it available to all the Jest tests in the project. For an example look at the [Integration test setup in @sa11y](../test-integration/README.md).
+You can set up the sa11y API once at the project level to make it available to all the Jest tests in the project. For an example look at the [Integration test setup in @sa11y](../test-integration/README.md).
 
--   Add a Jest setup file (e.g. `jest-setup.js`) and add the following code that registers the a11y API
+- Add a Jest setup file (e.g. `jest-setup.js`) and add the following code that registers the sa11y API
 
 ```javascript
 // Import using either CommonJS `require` or ES6 `import`
-const { registerSa11yMatcher } = require('@sa11y/jest'); // CommonJS
-import { registerSa11yMatcher } from '@sa11y/jest'; // ES6
+const { setup } = require('@sa11y/jest'); // CommonJS
+import { setup } from '@sa11y/jest'; // ES6
 // Register the sa11y matcher
-registerSa11yMatcher();
+setup();
 ```
 
--   Add or Modify the Jest config at project root to invoke the Jest setup file as setup above.
-    In the `jest.config.js` at the root of your project, add:
+- Add or Modify the Jest config at project root to invoke the Jest setup file as setup above.
+- In the `jest.config.js` at the root of your project, add:
 
 ```javascript
 module.exports = {
@@ -60,17 +60,34 @@ module.exports = {
 
 ### Test module level
 
-Invoke `registerSa11yMatcher` before using the `toBeAccessible` API in the tests
+Invoke `setup` before using the `toBeAccessible` API in the tests
 
 ```javascript
-import { registerSa11yMatcher } from '@sa11y/jest';
+import { setup } from '@sa11y/jest';
 
 beforeAll(() => {
-    registerSa11yMatcher();
+    setup();
 });
 ```
 
--   This makes the `toBeAccessible` API available for the tests only in that specific test module where `registerSa11yMatcher()` is invoked.
+-   This makes the `toBeAccessible` API available for the tests only in that specific test module where `setup()` is invoked.
+
+### Automatic checks
+The sa11y API can be setup to be automatically invoked at the end of each test
+
+```javascript
+setup({ autoCheckOpts: { runAfterEach: true } });
+
+// To optionally cleanup the body after running a11y checks
+setup({ autoCheckOpts: { runAfterEach: true, cleanupAfterEach: true } });
+
+// Options can also be passed to setup() using environment variables
+// E.g. Invoking jest test runner in command line: "SA11Y_AUTO=1 SA11Y_CLEANUP=1 jest ..."
+setup() // Automatic checks will be enabled due to the environment variables
+```
+
+- Each child element in the DOM body will be checked for a11y, results consolidated and failures reported as part of the test
+- Automatic checks can be used as an alternative to adding the `toBeAccessible` API at the end of each test
 
 ## Caution
 
@@ -86,10 +103,10 @@ beforeAll(() => {
 
 ```javascript
 import { base, full } from '@sa11y/preset-rules';
-import { registerSa11yMatcher } from '@sa11y/jest';
+import { setup } from '@sa11y/jest';
 
 beforeAll(() => {
-    registerSa11yMatcher();
+    setup();
 });
 
 it('should be accessible', async () => {

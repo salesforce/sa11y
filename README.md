@@ -34,8 +34,7 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
 ## Docs
 
 -   [Developer Guidelines](./CONTRIBUTING.md)
-    -   Refer to [Quick start](./CONTRIBUTING.md#quick-start) instructions to get started, if you are a
-        developer looking to Contribute
+    -   Refer to [Quick start](./CONTRIBUTING.md#quick-start) instructions to get started, if you are a developer looking to Contribute
 -   [Code of Conduct](./CODE_OF_CONDUCT.md)
 -   [Changelog](./CHANGELOG.md)
 -   [LICENSE](./LICENSE.txt)
@@ -56,7 +55,7 @@ This repo contains the following packages for automated accessibility testing:
 
 -   Provides a `toBeAccessible()` accessibility matcher for Jest
     -   integrates the [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
--   If you are looking to add accessibility testing to your Jest tests use this package
+-   To add accessibility testing to your Jest tests use this package
 
 ![Screenshot showing Sa11y Jest API usage and a11y errors showing up in VSCode](https://github.com/salesforce/sa11y/blob/media/screenshot/jest.png?raw=true)
 
@@ -69,13 +68,13 @@ This repo contains the following packages for automated accessibility testing:
 ### [assertAccessible API](./packages/assert/README.md)
 
 -   Checks DOM or HTML Element for accessibility issues and throws an error if a11y issues are found
--   If you are looking to add accessibility testing to your Javascript unit tests and _not_ using Jest, use this package
+-   To add accessibility testing to your Javascript unit tests _not_ using Jest, use this package
 
 ### [a11y results formatter](./packages/format/README.md)
 
 -   Formats raw JSON output of a11y issues from [axe] into an easy to consume format by consolidating and cross-referencing
 -   Used by assert Accessible API and Jest a11y matcher
--   If you are using axe directly and want to format the results from `axe.run` use this package
+-   To use axe directly and want to format the results from `axe.run` use this package
 
 ### [Preset accessibility rules](./packages/preset-rules/README.md)
 
