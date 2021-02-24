@@ -3,14 +3,16 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [0.6.0-beta](#060-beta)
+- [0.7.0-beta](#070-beta)
     - [Features](#features)
-- [0.5.0-beta (2020-12-01)](#050-beta-2020-12-01)
+- [0.6.0-beta (2021-01-22)](#060-beta-2021-01-22)
     - [Features](#features-1)
+- [0.5.0-beta (2020-12-01)](#050-beta-2020-12-01)
+    - [Features](#features-2)
 - [0.4.1-beta (2020-11-24)](#041-beta-2020-11-24)
     - [Bug Fixes](#bug-fixes)
 - [0.4.0-beta (2020-10-31)](#040-beta-2020-10-31)
-    - [Features](#features-2)
+    - [Features](#features-3)
     - [Refactor](#refactor)
   - [0.3.2-beta (2020-09-22)](#032-beta-2020-09-22)
     - [Bug Fixes](#bug-fixes-1)
@@ -18,28 +20,35 @@
 - [0.3.1-beta (2020-08-20)](#031-beta-2020-08-20)
     - [Refactor](#refactor-2)
 - [0.3.0-beta (2020-08-19)](#030-beta-2020-08-19)
-    - [Features](#features-3)
-- [0.2.0-beta (2020-06-25)](#020-beta-2020-06-25)
     - [Features](#features-4)
+- [0.2.0-beta (2020-06-25)](#020-beta-2020-06-25)
+    - [Features](#features-5)
     - [Bug Fixes](#bug-fixes-2)
     - [BREAKING CHANGES](#breaking-changes)
 - [v0.1.0-alpha (2020-06-02)](#v010-alpha-2020-06-02)
-    - [Features](#features-5)
-- [(2020-05-29)](#2020-05-29)
     - [Features](#features-6)
+- [(2020-05-29)](#2020-05-29)
+    - [Features](#features-7)
 - [(2020-05-07)](#2020-05-07)
     - [Bug Fixes](#bug-fixes-3)
-    - [Features](#features-7)
+    - [Features](#features-8)
 - [(2020-04-07)](#2020-04-07)
     - [Bug Fixes](#bug-fixes-4)
-    - [Features](#features-8)
+    - [Features](#features-9)
 - [(2020-03-20)](#2020-03-20)
     - [Bug Fixes](#bug-fixes-5)
-    - [Features](#features-9)
+    - [Features](#features-10)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# [0.6.0-beta] (2021-01-20)
+# [0.7.0-beta] (2021-02-24)
+
+### Features
+
+-   **jest:** add opts to invoke checks automatically after each test ([#54](https://github.com/salesforce/sa11y/pull/54))
+-   Update axe-core to 4.1.2 ([#54](https://github.com/salesforce/sa11y/pull/54))
+
+# [0.6.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.6.0-beta) (2021-01-22)
 
 ### Features
 
