@@ -88,6 +88,7 @@ setup() // Automatic checks will be enabled due to the environment variables
 
 - Each child element in the DOM body will be checked for a11y, results consolidated and failures reported as part of the test
 - Automatic checks can be used as an alternative to adding the `toBeAccessible` API at the end of each test
+- The environment variables can be used to set up parallel builds e.g. in a CI environment without the code changes to `setup()` to opt-in to automatic checks
 
 ## Caution
 
