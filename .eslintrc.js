@@ -35,7 +35,6 @@ module.exports = {
         'plugin:jest/recommended',
         'plugin:jest/style',
         'plugin:prettier/recommended',
-        'prettier/@typescript-eslint',
         'plugin:import/typescript',
         'plugin:import/errors',
         'plugin:import/warnings',
