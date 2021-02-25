@@ -5,10 +5,9 @@ Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used wi
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
-- [Caution](#caution)
-- [Usage](#usage)
-- [Reference](#reference)
+-   [Caution](#caution)
+-   [Usage](#usage)
+-   [Reference](#reference)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

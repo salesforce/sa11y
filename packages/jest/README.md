@@ -5,12 +5,12 @@ Accessibility matcher for [Jest](https://jestjs.io)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Overview](#overview)
 - [Install](#install)
 - [Setup](#setup)
   - [Project level](#project-level)
   - [Test module level](#test-module-level)
+  - [Automatic checks](#automatic-checks)
 - [Caution](#caution)
 - [Usage](#usage)
 
@@ -37,7 +37,7 @@ The accessibility APIs need to be registered with Jest before they can be used i
 
 You can set up the sa11y API once at the project level to make it available to all the Jest tests in the project. For an example look at the [Integration test setup in @sa11y](../test-integration/README.md).
 
-- Add a Jest setup file (e.g. `jest-setup.js`) and add the following code that registers the sa11y API
+-   Add a Jest setup file (e.g. `jest-setup.js`) and add the following code that registers the sa11y API
 
 ```javascript
 // Import using either CommonJS `require` or ES6 `import`
@@ -47,8 +47,8 @@ import { setup } from '@sa11y/jest'; // ES6
 setup();
 ```
 
-- Add or Modify the Jest config at project root to invoke the Jest setup file as setup above.
-- In the `jest.config.js` at the root of your project, add:
+-   Add or Modify the Jest config at project root to invoke the Jest setup file as setup above.
+-   In the `jest.config.js` at the root of your project, add:
 
 ```javascript
 module.exports = {
@@ -73,6 +73,7 @@ beforeAll(() => {
 -   This makes the `toBeAccessible` API available for the tests only in that specific test module where `setup()` is invoked.
 
 ### Automatic checks
+
 The sa11y API can be setup to be automatically invoked at the end of each test
 
 ```javascript
@@ -83,12 +84,12 @@ setup({ autoCheckOpts: { runAfterEach: true, cleanupAfterEach: true } });
 
 // Options can also be passed to setup() using environment variables
 // E.g. Invoking jest test runner in command line: "SA11Y_AUTO=1 SA11Y_CLEANUP=1 jest ..."
-setup() // Automatic checks will be enabled due to the environment variables
+setup(); // Automatic checks will be enabled due to the environment variables
 ```
 
-- Each child element in the DOM body will be checked for a11y, results consolidated and failures reported as part of the test
-- Automatic checks can be used as an alternative to adding the `toBeAccessible` API at the end of each test
-- The environment variables can be used to set up parallel builds e.g. in a CI environment without the code changes to `setup()` to opt-in to automatic checks
+-   Each child element in the DOM body will be checked for a11y, results consolidated and failures reported as part of the test
+-   Automatic checks can be used as an alternative to adding the `toBeAccessible` API at the end of each test
+-   The environment variables can be used to set up parallel builds e.g. in a CI environment without the code changes to `setup()` to opt-in to automatic checks
 
 ## Caution
 
