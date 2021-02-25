@@ -43,7 +43,7 @@
         "@rollup/plugin-node-resolve": "11.2.0",
         "@sa11y/common": "0.2.5-beta.0",
         "@sa11y/test-utils": "0.3.3-beta.0",
-        "rollup": "2.39.0",
+        "rollup": "2.39.1",
         "rollup-plugin-progress": "1.1.2",
         "rollup-plugin-sizes": "1.0.3",
         "rollup-plugin-terser": "7.0.2",
