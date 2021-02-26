@@ -17,7 +17,7 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace jest {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        interface Matchers<R> {
+        interface Matchers<R> extends jest.CustomMatcher {
             toBeAccessible(config?: A11yConfig): Promise<CustomMatcherResult>;
         }
     }

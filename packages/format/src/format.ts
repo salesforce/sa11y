@@ -5,14 +5,14 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { Result } from 'axe-core';
+import { AxeResults } from '@sa11y/common';
 
 /**
  * Custom formatter to format a11y violations found by axe
  * Use `JSON.stringify` to return violations without formatting
  */
 export interface Formatter {
-    (violations: Result[]): string;
+    (violations: AxeResults): string;
 }
 
 /**
@@ -55,7 +55,7 @@ const impactOrder = {
 /**
  * Sorts give a11y results from axe in order of impact
  */
-export function sortViolations(violations: Result[]): void {
+export function sortViolations(violations: AxeResults): void {
     violations.sort((a, b) => {
         const aImpact = impactOrder[a.impact || defaultImpact];
         const bImpact = impactOrder[b.impact || defaultImpact];
@@ -71,13 +71,13 @@ export function sortViolations(violations: Result[]): void {
 export class A11yError extends Error {
     static readonly errMsgHeader = 'accessibility issues found';
 
-    constructor(readonly violations: Result[]) {
+    constructor(readonly violations: AxeResults) {
         super(`${violations.length} ${A11yError.errMsgHeader}`);
         this.name = A11yError.name;
         this.message = `${violations.length} ${A11yError.errMsgHeader}\n ${this.format()}`;
     }
 
-    static checkAndThrow(violations: Result[]): void {
+    static checkAndThrow(violations: AxeResults): void {
         if (violations.length > 0) {
             throw new A11yError(violations);
         }
@@ -89,7 +89,7 @@ export class A11yError extends Error {
 
     /**
      * Format a11y violations into a readable format highlighting important information to help fixing the issue.
-     * @param options - Options used for formatting a11y issues.
+     * @param opts - Options used for formatting a11y issues.
      */
     format(opts: Partial<Options> = defaultOptions): string {
         const options = Object.assign(Object.assign({}, defaultOptions), opts);

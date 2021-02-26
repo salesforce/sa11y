@@ -29,7 +29,9 @@ export function beforeEachSetup(): void {
 }
 
 /**
- * Check if given error is an a11y error and not an axe runtime exception
+ * Check if given error is an a11y error and not an axe runtime exception.
+ * Make sure to use `expect.assertions(..)` before calling this method esp in the `catch`
+ * block to make sure the test is not passing without running into the `catch` block.
  */
 export function checkA11yError(e: Error): void {
     expect(e).toBeTruthy();

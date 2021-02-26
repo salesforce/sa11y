@@ -5,34 +5,23 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { assertAccessible } from '../src/assert';
-import { recommended, getA11yConfig, base } from '@sa11y/preset-rules';
+import { assertAccessible, getViolationsJSDOM } from '../src/assert';
+import { base, getA11yConfig, recommended } from '@sa11y/preset-rules';
+import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 import {
+    a11yIssuesCount,
+    audioURL,
     beforeEachSetup,
     checkA11yError,
-    audioURL,
-    videoURL,
     domWithA11yIssues,
     domWithNoA11yIssues,
     shadowDomID,
+    videoURL,
 } from '@sa11y/test-utils';
-import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
 beforeEach(() => {
     beforeEachSetup();
 });
-
-/**
- * Test util to test DOM with a11y issues
- */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-async function testDOMWithA11yIssues() {
-    document.body.innerHTML = domWithA11yIssues;
-    expect.assertions(3);
-    await assertAccessible(document, recommended).catch((e: Error) => {
-        checkA11yError(e);
-    });
-}
 
 describe('assertAccessible API', () => {
     it('should trigger axe runtime exception for non existent rule', async () => {
@@ -44,30 +33,36 @@ describe('assertAccessible API', () => {
         });
     });
 
-    // eslint-disable-next-line jest/expect-expect
     it.each([base, recommended])(
         'should throw no errors for dom with no a11y issues with config %#',
         async (config) => {
             document.body.innerHTML = domWithNoA11yIssues;
+            expect(async () => await getViolationsJSDOM(document, config)).toHaveLength(0);
             await assertAccessible(document, config); // No error thrown
         }
     );
 
     it.each([
-        // DOM to test, expected assertions
-        [domWithNoA11yIssues, 0],
-        [domWithA11yIssues, 3],
+        // DOM to test, expected assertions, expected a11y violations
+        [domWithNoA11yIssues, 1, 0],
+        [domWithA11yIssues, 4, a11yIssuesCount - 1],
     ])(
         'should use default document, ruleset, formatter when called with no args - expecting %# assertion',
-        async (testDOM: string, expectedAssertions: number) => {
-            expect.assertions(expectedAssertions);
+        async (testDOM: string, expectedAssertions: number, expectedViolations: number) => {
             document.body.innerHTML = testDOM;
+            expect.assertions(expectedAssertions);
+            await expect(getViolationsJSDOM()).resolves.toHaveLength(expectedViolations);
             await assertAccessible().catch((e) => checkA11yError(e));
         }
     );
 
-    // eslint-disable-next-line jest/expect-expect
-    it('should throw an error with a11y issues found for dom with a11y issues', testDOMWithA11yIssues);
+    it('should throw an error with a11y issues found for dom with a11y issues', async () => {
+        document.body.innerHTML = domWithA11yIssues;
+        expect.assertions(3);
+        await assertAccessible(document, recommended).catch((e: Error) => {
+            checkA11yError(e);
+        });
+    });
 
     it('should not throw error with HTML element with no a11y issues', async () => {
         document.body.innerHTML = domWithNoA11yIssues;

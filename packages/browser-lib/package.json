@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/browser-lib",
-    "version": "0.3.1-beta.0",
+    "version": "0.3.2-beta.0",
     "description": "Provides a minified version of selected `@sa11y` libraries to be injected into a browser (using webdriver) and executed from integration testing workflows.",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/browser-lib#readme",
@@ -34,20 +34,20 @@
         "url": "https://github.com/salesforce/sa11y/issues"
     },
     "dependencies": {
-        "@sa11y/format": "0.3.2-beta.0",
-        "@sa11y/preset-rules": "0.3.1",
-        "axe-core": "4.1.1"
+        "@sa11y/format": "0.3.3-beta.0",
+        "@sa11y/preset-rules": "0.3.2",
+        "axe-core": "4.1.2"
     },
     "devDependencies": {
-        "@rollup/plugin-commonjs": "17.0.0",
-        "@rollup/plugin-node-resolve": "11.1.0",
-        "@sa11y/common": "0.2.4-beta.0",
-        "@sa11y/test-utils": "0.3.2-beta.0",
-        "rollup": "2.37.1",
+        "@rollup/plugin-commonjs": "17.1.0",
+        "@rollup/plugin-node-resolve": "11.2.0",
+        "@sa11y/common": "0.2.5-beta.0",
+        "@sa11y/test-utils": "0.3.3-beta.0",
+        "rollup": "2.39.1",
         "rollup-plugin-progress": "1.1.2",
         "rollup-plugin-sizes": "1.0.3",
         "rollup-plugin-terser": "7.0.2",
-        "rollup-plugin-typescript2": "0.29.0"
+        "rollup-plugin-typescript2": "0.30.0"
     },
     "publishConfig": {
         "access": "public"

@@ -26,6 +26,7 @@ export const shadowDomID = 'upside-down';
 const fileWithNoA11yIssues = path.resolve(__dirname, '../__data__/noA11yIssues.html');
 export const htmlFileWithNoA11yIssues = 'file:///' + fileWithNoA11yIssues;
 export const domWithNoA11yIssues = fs.readFileSync(fileWithNoA11yIssues).toString();
+export const domWithNoA11yIssuesChildCount = 4;
 
 // DOM with video, color contrast a11y issues that can be detected only in a real browser
 const fileWithVisualA11yIssues = path.resolve(__dirname, '../__data__/a11yIssuesVisual.html');

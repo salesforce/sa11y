@@ -4,13 +4,13 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { Result } from 'axe-core';
+import { AxeResults } from '@sa11y/common';
 
 /**
  * Filter to post-process a11y results from axe
  */
 export interface Filter {
-    (violations: Result[], ...args: never[]): Result[];
+    (violations: AxeResults, ...args: never[]): AxeResults;
 }
 
 // TODO (refactor): constrain rule id to known rule ids e.g using string literal, keyof, in etc
@@ -31,11 +31,11 @@ export type ExceptionList = Record<RuleID, CssSelectors>;
  * @param violations - List of violations found with axe
  * @param exceptionList - {@link ExceptionList} of map of rule to corresponding css targets that needs to be filtered from a11y results
  */
-export function exceptionListFilter(violations: readonly Result[], exceptionList: ExceptionList = {}): Result[] {
+export function exceptionListFilter(violations: AxeResults, exceptionList: ExceptionList = {}): AxeResults {
     const exceptionRules = Object.keys(exceptionList);
-    if (exceptionRules.length === 0) return violations as Result[];
+    if (exceptionRules.length === 0) return violations;
 
-    const filteredViolations: Result[] = [];
+    const filteredViolations: AxeResults = [];
 
     for (const violation of violations) {
         if (!exceptionRules.includes(violation.id)) {
