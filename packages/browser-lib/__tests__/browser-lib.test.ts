@@ -60,7 +60,18 @@ function verifySa11yLoaded(filePath: string): void {
     expect(isLoaded('axe')).toEqual(axeVersion);
 }
 
-function checkNumViolations(getViolationsScript: string, expectedNumViolations = a11yIssuesCount): void {
+function checkNumViolations(
+    scope = '',
+    exceptionList = {},
+    expectedNumViolations = a11yIssuesCount,
+    script = ''
+): void {
+    const getViolationsScript =
+        script ||
+        `return JSON.parse((await sa11y.checkAccessibility(
+                '${scope}',
+                sa11y.recommended,
+                ${JSON.stringify(exceptionList)}))).length;`;
     void browser.url(htmlFileWithNoA11yIssues);
     loadMinJS();
     expect(browser.execute(getViolationsScript)).toBe(0);
@@ -68,13 +79,6 @@ function checkNumViolations(getViolationsScript: string, expectedNumViolations =
     void browser.url(htmlFileWithA11yIssues);
     loadMinJS();
     expect(browser.execute(getViolationsScript)).toBe(expectedNumViolations);
-}
-
-function getSa11yScript(scope = '', exceptionList = {}) {
-    return `return JSON.parse((await sa11y.checkAccessibility(
-                '${scope}',
-                sa11y.recommended,
-                ${JSON.stringify(exceptionList)}))).length;`;
 }
 
 describe('@sa11y/browser-lib', () => {
@@ -98,19 +102,19 @@ describe('@sa11y/browser-lib', () => {
     });
 
     it('should run a11y checks using axe', () => {
-        checkNumViolations('return (await axe.run()).violations.length;');
+        checkNumViolations('', {}, a11yIssuesCount, 'return (await axe.run()).violations.length;');
     });
 
     it('should run a11y checks using sa11y', () => {
-        checkNumViolations(getSa11yScript());
+        checkNumViolations();
     });
 
     it('should filter a11y violations using sa11y', () => {
-        checkNumViolations(getSa11yScript('', exceptionList), a11yIssuesCountFiltered);
+        checkNumViolations('', exceptionList, a11yIssuesCountFiltered);
     });
 
     it('should analyze only specified scope using sa11y', () => {
-        checkNumViolations(getSa11yScript('div'), 1);
+        checkNumViolations('div', {}, 1);
     });
 
     /* eslint-enable jest/expect-expect */
