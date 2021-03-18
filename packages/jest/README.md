@@ -112,6 +112,7 @@ setup(); // Automatic checks will be enabled due to the environment variables
     -   `Promise` should not be mixed together with `async/wait`. Doing so could result in Jest timeout and other errors.
 -   **color-contrast**: Color-contrast check is disabled for Jest tests as it [does not work in JSDOM](https://github.com/dequelabs/axe-core/issues/595)
 -   **audio, video**: Accessibility of `audio`, `video` elements cannot be checked with Jest as they are [stubbed out in JSDOM](https://github.com/jsdom/jsdom/issues/2155)
+-   **template**: [`<template>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) are not rendered in DOM and hence cannot be checked directly without rendering. They have to be rendered before they can be checked.
 -   **real browser**: If you need to check for color-contrast, audio/video elements or any other checks which need the element to be rendered visually please use a real browser to test e.g. using [`@sa11y/wdio`](https://github.com/salesforce/sa11y/tree/master/packages/wdio#readme)
 
 ## Usage
