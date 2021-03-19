@@ -32,7 +32,7 @@
         "@sa11y/common": "0.2.5-beta.0",
         "@sa11y/format": "0.3.3-beta.0",
         "@sa11y/preset-rules": "0.3.2",
-        "axe-core": "4.1.2"
+        "axe-core": "4.1.3"
     },
     "peerDependencies": {
         "webdriverio": ">=6.0.0"
