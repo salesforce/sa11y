@@ -16,7 +16,6 @@ import {
 } from '@sa11y/test-utils';
 import { A11yError } from '@sa11y/format';
 import { AxeResults, axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
-import { recommended } from '@sa11y/preset-rules';
 
 // TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
 // TODO (debug): "import sync = require('@wdio/sync');" or
@@ -32,7 +31,7 @@ async function getViolationsHtml(htmlFilePath: string): Promise<AxeResults> {
     // Note: Tests fail without using 'await'. Maybe the browser.url() signature is incorrect.
     // eslint-disable-next-line @typescript-eslint/await-thenable
     await browser.url(htmlFilePath);
-    return runAxe(browser);
+    return runAxe();
 }
 
 function checkA11yError(err: Error, expectNumA11yIssues = 0): void {
@@ -72,7 +71,7 @@ function checkAccessibleSync(expectNumA11yIssues = 0, exceptionList = {}): void 
     // Note: WDIO doesn't provide snapshot feature to verify error thrown.
     //  Hence the longer try .. catch alternative
     try {
-        assertAccessibleSync(browser, recommended, exceptionList);
+        assertAccessibleSync({ exceptionList: exceptionList });
     } catch (e) {
         err = e as Error;
     }
@@ -139,7 +138,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
-            expect(() => assertAccessibleSync(browser, recommended, exceptionList)).toThrow();
+            expect(() => assertAccessibleSync({ exceptionList: exceptionList })).toThrow();
             checkAccessibleSync(a11yIssuesCountFiltered, exceptionList);
         });
     });
