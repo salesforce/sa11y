@@ -6,13 +6,23 @@
  */
 
 import * as axe from 'axe-core';
-import { assertAccessible, assertAccessibleSync, axeVersion, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
+import {
+    assertAccessible,
+    assertAccessibleSync,
+    axeVersion,
+    getAxeVersion,
+    loadAxe,
+    Options,
+    runAxe,
+} from '../src/wdio';
 import {
     a11yIssuesCount,
     a11yIssuesCountFiltered,
+    domWithA11yIssuesBodyID,
     exceptionList,
     htmlFileWithA11yIssues,
     htmlFileWithNoA11yIssues,
+    shadowDomID,
 } from '@sa11y/test-utils';
 import { A11yError } from '@sa11y/format';
 import { AxeResults, axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
@@ -47,7 +57,7 @@ function checkA11yError(err: Error, expectNumA11yIssues = 0): void {
     }
 }
 
-async function checkAccessible(expectNumA11yIssues = 0): Promise<void> {
+async function checkAccessible(expectNumA11yIssues = 0, options: Partial<Options> = {}): Promise<void> {
     // TODO (debug): setting expected number of assertions doesn't seem to be working correctly in mocha
     //  https://webdriver.io/docs/assertion.html
     //  Check mocha docs: https://mochajs.org/#assertions
@@ -59,7 +69,7 @@ async function checkAccessible(expectNumA11yIssues = 0): Promise<void> {
     // expect(async () => await assertAccessible()).toThrow();
     let err: Error = new Error();
     try {
-        await assertAccessible();
+        await assertAccessible(options);
     } catch (e) {
         err = e as Error;
     }
@@ -105,18 +115,28 @@ describe('integration test axe with WebdriverIO', () => {
 describe('integration test @sa11y/wdio with WebdriverIO', () => {
     // Note: "expect"s are in the helper method "checkAccessible"
     /* eslint-disable jest/expect-expect */
-    it('should throw no error for html with no a11y issues', async () => {
+    it('should not throw error for html with no a11y issues', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
         await checkAccessible(0);
+    });
+
+    it('should not throw error for element with no a11y issues', async () => {
+        await browser.url(htmlFileWithNoA11yIssues);
+        await checkAccessible(0, { scope: browser.$(`#${shadowDomID}`) });
     });
 
     it('should throw error for html with a11y issues', async () => {
         await browser.url(htmlFileWithA11yIssues);
         await checkAccessible(a11yIssuesCount);
     });
+
+    it('should throw error for element with a11y issues', async () => {
+        await browser.url(htmlFileWithA11yIssues);
+        await checkAccessible(1, { scope: browser.$(`#${domWithA11yIssuesBodyID}`) });
+    });
     /* eslint-enable jest/expect-expect */
 
-    it('should throw no error for html with no a11y issues in sync mode', () => {
+    it('should not throw error for html with no a11y issues in sync mode', () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
         return sync(() => {
             void browser.url(htmlFileWithNoA11yIssues);
@@ -132,6 +152,18 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
             expect(() => assertAccessibleSync()).toThrow();
             checkAccessibleSync(a11yIssuesCount);
         });
+    });
+
+    it('should throw error for non-existent element', async () => {
+        await browser.url(htmlFileWithA11yIssues);
+        let err: Error = new Error();
+        try {
+            // using an existing elem ID using selector without the '#' prefix
+            await assertAccessible({ scope: browser.$(domWithA11yIssuesBodyID) });
+        } catch (e) {
+            err = e as Error;
+        }
+        expect(err.message).toContain('Error: No elements found for include in page Context');
     });
 
     it('should filter violations with exception list', () => {
