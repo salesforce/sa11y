@@ -150,10 +150,14 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         await browser.url(htmlFileWithA11yIssues);
         let err: Error = new Error();
         try {
+            // TODO (test): Is there a way to suppress the error stacktrace console log ?
+            // Note: expect(..).to.Throw() does not work with wdio async
+            console.log('****** Error expected. Ignore ========>');
             // using an existing elem ID using selector without the '#' prefix
             await assertAccessible({ scope: browser.$(domWithA11yIssuesBodyID) });
         } catch (e) {
             err = e as Error;
+            console.log('<========= Ignore. Error expected ****** ');
         }
         expect(err.message).toContain('Error: No elements found for include in page Context');
     });

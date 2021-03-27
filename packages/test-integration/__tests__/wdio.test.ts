@@ -24,6 +24,7 @@ afterAll(teardownWDIO);
 // TODO: FIX "Error running accessibility checks using axe: Cannot read property 'element-6066-11e4-a52e-4f735466cecf' of undefined"
 //  Started happening after recent WDIO element scope refactor.
 //  Switching to sync mode or browser commands doesn't help.
+//  Will switching to wdio v7 help?
 
 // TODO(refactor): Switch to using sa11y API via browser commands for this test module
 //  once above error is fixed.
