@@ -1,10 +1,9 @@
 # Contributing Guidelines
 
-We want to encourage the developer community to contribute to Sa11y. This guide has instructions to install, build, test and contribute to the framework. Adapted from [salesforce/lwc](https://github.com/salesforce/lwc/blob/master/CONTRIBUTING.md).
+We want to encourage the developer community to contribute to Sa11y. This guide has instructions to install, build, test and contribute. Adapted from [salesforce/lwc](https://github.com/salesforce/lwc/blob/master/CONTRIBUTING.md).
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [Quick start](#quick-start)
 - [Requirements](#requirements)
@@ -118,9 +117,9 @@ To execute a particular test, use the following command:
 yarn test <path_to_test>
 ```
 
-If you want to debug these tests, you can do as follows:
+To debug unit tests
 
-1. First, insert a new line in your code where you think it might be failing and type `debugger`. This will serve as a break point for the debugger to stop at.
+1. Insert `debugger` in a new line in your code where you think it might be failing. This will serve as a break point for the debugger to stop at.
 2. Optionally run only a specific test by using `it.only(..)`
 3. Open up Chrome and type in the address bar: `chrome://inspect`
 4. Click on "Open dedicated DevTools for Node"
@@ -131,7 +130,7 @@ Your test should now be running in the Chrome debugger. You get your handy conso
 ### Integration Testing
 
 -   Integration tests are available for certain packages executed using [WebdriverIO](https://webdriver.io/)
-    -   `yarn test:wdio`
+-   Run with `yarn test:wdio`
 -   To [debug WebdriverIO tests](https://webdriver.io/docs/api/browser/debug.html)
     -   Add `await browser.debug();` to introduce a breakpoint
     -   Run test using `yarn test:debug` or `DEBUG=true yarn test`

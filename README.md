@@ -4,14 +4,12 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
 
 [![Build Status](https://circleci.com/gh/salesforce/sa11y.svg?style=svg)](https://app.circleci.com/pipelines/github/salesforce/sa11y?branch=master)
 [![Code Coverage](https://codecov.io/gh/salesforce/sa11y/branch/master/graph/badge.svg)](https://codecov.io/gh/salesforce/sa11y)
-
-<!-- Temp disabling code cov badge due to https://github.com/salesforce/sa11y/issues/14
-     Re-enable with a code cov service that works with CircleCi -->
-<!-- ![Code coverage](https://github.com/salesforce/sa11y/workflows/Code%20coverage/badge.svg) -->
+[![License](https://img.shields.io/npm/l/@sa11y/common)](./LICENSE.txt)
+[![NPM downloads per month of @sa11y/common package](https://img.shields.io/npm/dm/@sa11y/common)](https://www.npmtrends.com/@sa11y/common)
+[![Known Vulnerabilities](https://snyk.io/test/github/salesforce/sa11y/badge.svg?targetFile=package.json)](https://snyk.io/test/github/salesforce/sa11y?targetFile=package.json)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [Docs](#docs)
   - [References](#references)
@@ -53,6 +51,8 @@ This repo contains the following packages for automated accessibility testing:
 
 ### [Jest integration](./packages/jest/README.md)
 
+[![published npm version of @sa11y/jest](https://img.shields.io/npm/v/@sa11y/jest)](https://www.npmjs.com/package/@sa11y/jest)
+
 -   Provides a `toBeAccessible()` accessibility matcher for Jest
     -   integrates the [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
 -   Provides an option to set up the sa11y API to be invoked automatically at the end of each test
@@ -62,16 +62,22 @@ This repo contains the following packages for automated accessibility testing:
 
 ### [WDIO integration](./packages/wdio/README.md)
 
+[![published npm version of @sa11y/wdio](https://img.shields.io/npm/v/@sa11y/wdio)](https://www.npmjs.com/package/@sa11y/wdio)
+
 -   Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used with [WebdriverIO](https://webdriver.io/) to check accessibility of web pages rendered in browsers
 
 ![Screenshot showing a11y errors from a test using Sa11y WDIO in a terminal](https://github.com/salesforce/sa11y/blob/media/screenshot/wdio.png?raw=true)
 
 ### [assertAccessible API](./packages/assert/README.md)
 
+[![published npm version of @sa11y/assert](https://img.shields.io/npm/v/@sa11y/assert)](https://www.npmjs.com/package/@sa11y/assert)
+
 -   Checks DOM or HTML Element for accessibility issues and throws an error if a11y issues are found
 -   To add accessibility testing to your Javascript unit tests _not_ using Jest, use this package
 
 ### [a11y results formatter](./packages/format/README.md)
+
+[![published npm version of @sa11y/format](https://img.shields.io/npm/v/@sa11y/format)](https://www.npmjs.com/package/@sa11y/format)
 
 -   Formats raw JSON output of a11y issues from [axe] into an easy to consume format by consolidating and cross-referencing
 -   Used by assert Accessible API and Jest a11y matcher
@@ -79,11 +85,15 @@ This repo contains the following packages for automated accessibility testing:
 
 ### [Preset accessibility rules](./packages/preset-rules/README.md)
 
+[![published npm version of @sa11y/preset-rules](https://img.shields.io/npm/v/@sa11y/preset-rules)](https://www.npmjs.com/package/@sa11y/preset-rules)
+
 -   Provides Base, Recommended, Full accessibility preset rules as [axe] configuration
 -   The Recommended preset rule is used by default in the Jest a11y matcher and assert Accessible APIs
     -   The APIs can be overridden to use the Base or Full ruleset as necessary
 
 ### [Minified bundle for testing in browser](./packages/browser-lib/README.md)
+
+[![published npm version of @sa11y/browser-lib](https://img.shields.io/npm/v/@sa11y/browser-lib)](https://www.npmjs.com/package/@sa11y/browser-lib)
 
 -   Provides a minified version of selected `@sa11y` libraries to be injected into a browser (using webdriver) and executed from integration testing workflows.
 
