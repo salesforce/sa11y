@@ -9,16 +9,14 @@ import * as axe from 'axe-core';
 import { BrowserObject, MultiRemoteBrowserObject } from 'webdriverio';
 import { A11yConfig, recommended } from '@sa11y/preset-rules';
 import { A11yError, ExceptionList, exceptionListFilter } from '@sa11y/format';
-import { AxeResults, getViolations } from '@sa11y/common';
+import { AxeResults, axeVersion, getViolations } from '@sa11y/common';
 
-export const axeVersion: string | undefined = axe.version;
-
-type WDIOBrowser = BrowserObject | MultiRemoteBrowserObject;
+export type WDIOBrowser = BrowserObject | MultiRemoteBrowserObject;
 
 /**
  * Optional arguments passed to WDIO APIs
  * @param driver - WDIO {@link BrowserObject} instance navigated to the page to be checked. Created automatically by WDIO test runner. Might need to be passed in explicitly when other test runners are used.
- * @param scope - CSS selector of element to check for accessibility, defaults to the entire document.
+ * @param scope - Element to check for accessibility found using [`browser.$(selector)`](https://webdriver.io/docs/selectors), defaults to the entire document.
  * @param rules - {@link A11yConfig} to be used for checking accessibility. Defaults to {@link recommended}
  */
 export interface Options {
@@ -68,7 +66,7 @@ export async function loadAxe(driver: WDIOBrowser): Promise<void> {
  */
 export async function runAxe(options: Partial<Options> = {}): Promise<AxeResults> {
     const { driver, scope, rules } = setDefaultOptions(options);
-    const elemScope = scope ? (await scope).selector : undefined;
+    const elemSelector = scope ? (await scope).selector : undefined;
     await loadAxe(driver);
 
     // run axe inside browser and return violations
@@ -77,9 +75,9 @@ export async function runAxe(options: Partial<Options> = {}): Promise<AxeResults
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         // TS2345: Argument of type is not assignable to parameter of type
-        (elemScope: string, rules: A11yConfig, done: CallableFunction) => {
+        (elemSelector: string, rules: A11yConfig, done: CallableFunction) => {
             axe.run(
-                (elemScope || document) as axe.ElementContext,
+                (elemSelector || document) as axe.ElementContext,
                 rules as axe.RunOptions,
                 (err: Error, results: axe.AxeResults) => {
                     if (err) throw err;
@@ -87,7 +85,7 @@ export async function runAxe(options: Partial<Options> = {}): Promise<AxeResults
                 }
             );
         },
-        elemScope,
+        elemSelector,
         rules
     )) as AxeResults;
 }
@@ -116,7 +114,7 @@ export async function assertAccessible(opts: Partial<Options> = {}): Promise<voi
 export function assertAccessibleSync(opts: Partial<Options> = {}): void {
     const options = setDefaultOptions(opts);
     // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
-    void driver.call(async () => {
+    void options.driver.call(async () => {
         await assertAccessible(options);
     });
 }

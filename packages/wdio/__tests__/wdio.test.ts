@@ -6,15 +6,7 @@
  */
 
 import * as axe from 'axe-core';
-import {
-    assertAccessible,
-    assertAccessibleSync,
-    axeVersion,
-    getAxeVersion,
-    loadAxe,
-    Options,
-    runAxe,
-} from '../src/wdio';
+import { assertAccessible, assertAccessibleSync, getAxeVersion, loadAxe, Options, runAxe } from '../src/wdio';
 import {
     a11yIssuesCount,
     a11yIssuesCountFiltered,
@@ -25,7 +17,7 @@ import {
     shadowDomID,
 } from '@sa11y/test-utils';
 import { A11yError } from '@sa11y/format';
-import { AxeResults, axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
+import { AxeResults, axeRuntimeExceptionMsgPrefix, axeVersion } from '@sa11y/common';
 
 // TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
 // TODO (debug): "import sync = require('@wdio/sync');" or
