@@ -45,7 +45,7 @@
         "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "yarn test --watch",
-        "test:wdio": "yarn workspace @sa11y/wdio test && yarn workspace @sa11y/browser-lib test ",
+        "test:wdio": "yarn wdio run wdio.conf.js --suite wdio --suite browserLib",
         "postinstall": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks"
     },
     "config": {
