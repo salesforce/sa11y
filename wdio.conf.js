@@ -36,6 +36,7 @@ exports.config = {
     suites: {
         wdio: [`./packages/wdio/${testPath}`],
         browserLib: [`./packages/browser-lib/${testPath}`],
+        integration: [`./packages/test-integration/__tests__/wdio.test.ts`],
     },
     //
     // ============
