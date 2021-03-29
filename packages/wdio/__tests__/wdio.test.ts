@@ -30,8 +30,6 @@ const sync = require('@wdio/sync').default;
  * Test util function to get violations from given html file
  */
 async function getViolationsHtml(htmlFilePath: string): Promise<AxeResults> {
-    // Note: Tests fail without using 'await'. Maybe the browser.url() signature is incorrect.
-    // eslint-disable-next-line @typescript-eslint/await-thenable
     await browser.url(htmlFilePath);
     return runAxe();
 }
@@ -68,12 +66,12 @@ async function checkAccessible(expectNumA11yIssues = 0, options: Partial<Options
     checkA11yError(err, expectNumA11yIssues);
 }
 
-function checkAccessibleSync(expectNumA11yIssues = 0, exceptionList = {}): void {
+function checkAccessibleSync(expectNumA11yIssues = 0, options: Partial<Options> = {}): void {
     let err: Error = new Error();
     // Note: WDIO doesn't provide snapshot feature to verify error thrown.
     //  Hence the longer try .. catch alternative
     try {
-        assertAccessibleSync({ exceptionList: exceptionList });
+        assertAccessibleSync(options);
     } catch (e) {
         err = e as Error;
     }
@@ -128,8 +126,8 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
     });
     /* eslint-enable jest/expect-expect */
 
+    /* eslint-disable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */
     it('should not throw error for html with no a11y issues in sync mode', () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
         return sync(() => {
             void browser.url(htmlFileWithNoA11yIssues);
             expect(() => assertAccessibleSync()).not.toThrow();
@@ -138,7 +136,6 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
     });
 
     it('should throw error for html with a11y issues in sync mode', () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync()).toThrow();
@@ -163,11 +160,12 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
     });
 
     it('should filter violations with exception list', () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
+        const opts = { exceptionList: exceptionList };
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
-            expect(() => assertAccessibleSync({ exceptionList: exceptionList })).toThrow();
-            checkAccessibleSync(a11yIssuesCountFiltered, exceptionList);
+            expect(() => assertAccessibleSync(opts)).toThrow();
+            checkAccessibleSync(a11yIssuesCountFiltered, opts);
         });
     });
+    /* eslint-enable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */
 });
