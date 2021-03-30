@@ -46,7 +46,7 @@
         "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "yarn test --watch",
         "test:wdio": "yarn wdio run wdio.conf.js --suite wdio --suite integration && yarn workspace @sa11y/browser-lib test",
-        "postinstall": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks"
+        "prepare": "husky install"
     },
     "config": {
         "commitizen": {
