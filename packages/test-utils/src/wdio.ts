@@ -8,12 +8,12 @@
 // Ignore jest code coverage for WDIO test-utils
 /* istanbul ignore file */
 
-import { AssertFunction, Options, axeRuntimeExceptionMsgPrefix, errMsgHeader } from '@sa11y/common';
+import { WdioAssertFunction, WdioOptions, axeRuntimeExceptionMsgPrefix, errMsgHeader } from '@sa11y/common';
 
 export async function checkA11yErrorWdio(
-    assertFunc: AssertFunction,
+    assertFunc: WdioAssertFunction,
     expectNumA11yIssues = 0,
-    options: Partial<Options> = {}
+    options: Partial<WdioOptions> = {}
 ): Promise<void> {
     // TODO (debug): setting expected number of assertions doesn't seem to be working correctly in mocha
     //  https://webdriver.io/docs/assertion.html

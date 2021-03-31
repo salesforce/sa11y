@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { assertAccessible, assertAccessibleSync } from './wdio';
-import { WDIOBrowser } from '@sa11y/common';
+import { WdioBrowser } from '@sa11y/common';
 
 // https://webdriver.io/docs/typescript#adding-custom-commands
 declare global {
@@ -32,7 +32,7 @@ declare global {
  * Register sa11y commands on browser amd element to check for their accessibility.
  * @param driver - global webdriverIO browser object
  */
-export function setup(driver: WDIOBrowser = global.browser): void {
+export function setup(driver: WdioBrowser = global.browser): void {
     // Ref: https://webdriver.io/docs/customcommands.html
     // Define assert Accessible commands on 'browser'
     browser.addCommand('assertAccessible', () => assertAccessible({ driver }));

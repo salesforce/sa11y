@@ -8,13 +8,13 @@
 import * as axe from 'axe-core';
 import { recommended } from '@sa11y/preset-rules';
 import { A11yError, exceptionListFilter } from '@sa11y/format';
-import { A11yConfig, AxeResults, axeVersion, getViolations, Options, WDIOBrowser } from '@sa11y/common';
+import { A11yConfig, AxeResults, axeVersion, getViolations, WdioOptions, WdioBrowser } from '@sa11y/common';
 
 /**
  * Merge given options with default options
  */
-function setDefaultOptions(opts: Partial<Options> = {}): Options {
-    const defaultOptions: Options = {
+function setDefaultOptions(opts: Partial<WdioOptions> = {}): WdioOptions {
+    const defaultOptions: WdioOptions = {
         driver: global.browser, // Need to be defined inside a function as it is populated at runtime
         scope: undefined,
         rules: recommended,
@@ -26,7 +26,7 @@ function setDefaultOptions(opts: Partial<Options> = {}): Options {
 /**
  * Return version of axe injected into browser
  */
-export async function getAxeVersion(driver: WDIOBrowser): Promise<typeof axeVersion> {
+export async function getAxeVersion(driver: WdioBrowser): Promise<typeof axeVersion> {
     return driver.execute(() => {
         return typeof axe === 'object' ? axe.version : undefined;
     });
@@ -35,7 +35,7 @@ export async function getAxeVersion(driver: WDIOBrowser): Promise<typeof axeVers
 /**
  * Load axe source into browser if it is not already loaded and return version of axe
  */
-export async function loadAxe(driver: WDIOBrowser): Promise<void> {
+export async function loadAxe(driver: WdioBrowser): Promise<void> {
     if ((await getAxeVersion(driver)) !== axeVersion) {
         await driver.execute(axe.source);
     }
@@ -48,7 +48,7 @@ export async function loadAxe(driver: WDIOBrowser): Promise<void> {
 /**
  * Load and run axe in given WDIO instance and return the accessibility violations found.
  */
-export async function runAxe(options: Partial<Options> = {}): Promise<AxeResults> {
+export async function runAxe(options: Partial<WdioOptions> = {}): Promise<AxeResults> {
     const { driver, scope, rules } = setDefaultOptions(options);
     const elemSelector = scope ? (await scope).selector : undefined;
     await loadAxe(driver);
@@ -79,7 +79,7 @@ export async function runAxe(options: Partial<Options> = {}): Promise<AxeResults
  * Throw an error with the accessibility issues found if it is not accessible.
  * Asynchronous version of {@link assertAccessibleSync}
  */
-export async function assertAccessible(opts: Partial<Options> = {}): Promise<void> {
+export async function assertAccessible(opts: Partial<WdioOptions> = {}): Promise<void> {
     const options = setDefaultOptions(opts);
     // TODO (feat): Add as custom commands to both browser for page level and elem
     //      https://webdriver.io/docs/customcommands.html
@@ -95,7 +95,7 @@ export async function assertAccessible(opts: Partial<Options> = {}): Promise<voi
  * Throw an error with the accessibility issues found if it is not accessible.
  * Synchronous version of {@link assertAccessible}
  */
-export function assertAccessibleSync(opts: Partial<Options> = {}): void {
+export function assertAccessibleSync(opts: Partial<WdioOptions> = {}): void {
     const options = setDefaultOptions(opts);
     // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
     void options.driver.call(async () => {
