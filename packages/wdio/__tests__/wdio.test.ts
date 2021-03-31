@@ -6,26 +6,18 @@
  */
 
 import * as axe from 'axe-core';
-import {
-    assertAccessible,
-    assertAccessibleSync,
-    AssertFunction,
-    getAxeVersion,
-    loadAxe,
-    Options,
-    runAxe,
-} from '../src/wdio';
+import { assertAccessible, assertAccessibleSync, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
 import {
     a11yIssuesCount,
     a11yIssuesCountFiltered,
+    checkA11yErrorWdio,
     domWithA11yIssuesBodyID,
     exceptionList,
     htmlFileWithA11yIssues,
     htmlFileWithNoA11yIssues,
     shadowDomID,
 } from '@sa11y/test-utils';
-import { A11yError } from '@sa11y/format';
-import { AxeResults, axeRuntimeExceptionMsgPrefix, axeVersion } from '@sa11y/common';
+import { AxeResults, axeVersion } from '@sa11y/common';
 
 // TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
 // TODO (debug): "import sync = require('@wdio/sync');" or
@@ -40,38 +32,6 @@ const sync = require('@wdio/sync').default;
 async function getViolationsHtml(htmlFilePath: string): Promise<AxeResults> {
     await browser.url(htmlFilePath);
     return runAxe();
-}
-
-async function checkA11yError(
-    assertFunc: AssertFunction,
-    expectNumA11yIssues = 0,
-    options: Partial<Options> = {}
-): Promise<void> {
-    // TODO (debug): setting expected number of assertions doesn't seem to be working correctly in mocha
-    //  https://webdriver.io/docs/assertion.html
-    //  Check mocha docs: https://mochajs.org/#assertions
-    //  Checkout Jasmine ? https://webdriver.io/docs/frameworks.html
-    // expect.assertions(99999); // still passes ???
-
-    // TODO (debug): Not able to get the expect().toThrow() with async functions to work with wdio test runner
-    //  hence using the longer try.. catch alternative
-    // expect(async () => await assertAccessible()).toThrow();
-    let err: Error = new Error();
-    try {
-        await assertFunc(options);
-    } catch (e) {
-        err = e as Error;
-    }
-    expect(err).toBeTruthy();
-    expect(err.message).not.toContain(axeRuntimeExceptionMsgPrefix);
-
-    if (expectNumA11yIssues > 0) {
-        expect(err).not.toStrictEqual(new Error());
-        expect(err.toString()).toContain(`${expectNumA11yIssues} ${A11yError.errMsgHeader}`);
-    } else {
-        expect(err).toStrictEqual(new Error());
-        expect(err.toString()).not.toContain(A11yError.errMsgHeader);
-    }
 }
 
 describe('integration test axe with WebdriverIO', () => {
@@ -103,22 +63,22 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
     /* eslint-disable jest/expect-expect */
     it('should not throw error for html with no a11y issues', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
-        await checkA11yError(assertAccessible);
+        await checkA11yErrorWdio(assertAccessible);
     });
 
     it('should not throw error for element with no a11y issues', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
-        await checkA11yError(assertAccessible, 0, { scope: browser.$(`#${shadowDomID}`) });
+        await checkA11yErrorWdio(assertAccessible, 0, { scope: browser.$(`#${shadowDomID}`) });
     });
 
     it('should throw error for html with a11y issues', async () => {
         await browser.url(htmlFileWithA11yIssues);
-        await checkA11yError(assertAccessible, a11yIssuesCount);
+        await checkA11yErrorWdio(assertAccessible, a11yIssuesCount);
     });
 
     it('should throw error for element with a11y issues', async () => {
         await browser.url(htmlFileWithA11yIssues);
-        await checkA11yError(assertAccessible, 1, { scope: browser.$(`#${domWithA11yIssuesBodyID}`) });
+        await checkA11yErrorWdio(assertAccessible, 1, { scope: browser.$(`#${domWithA11yIssuesBodyID}`) });
     });
     /* eslint-enable jest/expect-expect */
 
@@ -127,7 +87,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         return sync(() => {
             void browser.url(htmlFileWithNoA11yIssues);
             expect(() => assertAccessibleSync()).not.toThrow();
-            void checkA11yError(assertAccessibleSync);
+            void checkA11yErrorWdio(assertAccessibleSync);
         });
     });
 
@@ -135,7 +95,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync()).toThrow();
-            void checkA11yError(assertAccessibleSync, a11yIssuesCount);
+            void checkA11yErrorWdio(assertAccessibleSync, a11yIssuesCount);
         });
     });
 
@@ -160,7 +120,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync(opts)).toThrow();
-            void checkA11yError(assertAccessibleSync, a11yIssuesCountFiltered, opts);
+            void checkA11yErrorWdio(assertAccessibleSync, a11yIssuesCountFiltered, opts);
         });
     });
     /* eslint-enable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */

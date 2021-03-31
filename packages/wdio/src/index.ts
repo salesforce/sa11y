@@ -5,5 +5,5 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-export { assertAccessible, assertAccessibleSync, Options } from './wdio';
+export { assertAccessible, assertAccessibleSync } from './wdio';
 export { setup } from './setup';
