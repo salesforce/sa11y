@@ -6,6 +6,27 @@
  */
 import { assertAccessible, assertAccessibleSync, WDIOBrowser } from './wdio';
 
+// https://webdriver.io/docs/typescript#adding-custom-commands
+declare global {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
+    namespace WebdriverIO {
+        interface Browser {
+            assertAccessible: (arg: any) => Promise<void>;
+            assertAccessibleSync: (arg: any) => void;
+        }
+
+        interface MultiRemoteBrowser {
+            assertAccessible: (arg: any) => Promise<void>;
+            assertAccessibleSync: (arg: any) => void;
+        }
+
+        interface Element {
+            assertAccessible: (arg: any) => Promise<void>;
+            assertAccessibleSync: (arg: any) => void;
+        }
+    }
+}
+
 /**
  * Register sa11y commands on browser amd element to check for their accessibility.
  * @param driver - global webdriverIO browser object

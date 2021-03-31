@@ -49,7 +49,6 @@ function checkAccessibleSync(expectNumA11yIssues = 0, options: Partial<Options> 
 }
 
 // TODO(refactor): Switch to using sa11y API via browser commands for this test module
-//  once above error is fixed.
 describe('integration test @sa11y/wdio in sync mode', () => {
     /* eslint-disable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, jest/expect-expect */
     it('should throw error for html with a11y issues', () => {
