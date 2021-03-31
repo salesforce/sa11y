@@ -42,20 +42,7 @@ async function getViolationsHtml(htmlFilePath: string): Promise<AxeResults> {
     return runAxe();
 }
 
-function checkA11yError(err: Error, expectNumA11yIssues = 0): void {
-    expect(err).toBeTruthy();
-    expect(err.message).not.toContain(axeRuntimeExceptionMsgPrefix);
-
-    if (expectNumA11yIssues > 0) {
-        expect(err).not.toStrictEqual(new Error());
-        expect(err.toString()).toContain(`${expectNumA11yIssues} ${A11yError.errMsgHeader}`);
-    } else {
-        expect(err).toStrictEqual(new Error());
-        expect(err.toString()).not.toContain(A11yError.errMsgHeader);
-    }
-}
-
-async function checkAccessible(
+async function checkA11yError(
     assertFunc: AssertFunction,
     expectNumA11yIssues = 0,
     options: Partial<Options> = {}
@@ -75,7 +62,16 @@ async function checkAccessible(
     } catch (e) {
         err = e as Error;
     }
-    checkA11yError(err, expectNumA11yIssues);
+    expect(err).toBeTruthy();
+    expect(err.message).not.toContain(axeRuntimeExceptionMsgPrefix);
+
+    if (expectNumA11yIssues > 0) {
+        expect(err).not.toStrictEqual(new Error());
+        expect(err.toString()).toContain(`${expectNumA11yIssues} ${A11yError.errMsgHeader}`);
+    } else {
+        expect(err).toStrictEqual(new Error());
+        expect(err.toString()).not.toContain(A11yError.errMsgHeader);
+    }
 }
 
 describe('integration test axe with WebdriverIO', () => {
@@ -107,22 +103,22 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
     /* eslint-disable jest/expect-expect */
     it('should not throw error for html with no a11y issues', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
-        await checkAccessible(assertAccessible);
+        await checkA11yError(assertAccessible);
     });
 
     it('should not throw error for element with no a11y issues', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
-        await checkAccessible(assertAccessible, 0, { scope: browser.$(`#${shadowDomID}`) });
+        await checkA11yError(assertAccessible, 0, { scope: browser.$(`#${shadowDomID}`) });
     });
 
     it('should throw error for html with a11y issues', async () => {
         await browser.url(htmlFileWithA11yIssues);
-        await checkAccessible(assertAccessible, a11yIssuesCount);
+        await checkA11yError(assertAccessible, a11yIssuesCount);
     });
 
     it('should throw error for element with a11y issues', async () => {
         await browser.url(htmlFileWithA11yIssues);
-        await checkAccessible(assertAccessible, 1, { scope: browser.$(`#${domWithA11yIssuesBodyID}`) });
+        await checkA11yError(assertAccessible, 1, { scope: browser.$(`#${domWithA11yIssuesBodyID}`) });
     });
     /* eslint-enable jest/expect-expect */
 
@@ -131,7 +127,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         return sync(() => {
             void browser.url(htmlFileWithNoA11yIssues);
             expect(() => assertAccessibleSync()).not.toThrow();
-            void checkAccessible(assertAccessibleSync);
+            void checkA11yError(assertAccessibleSync);
         });
     });
 
@@ -139,7 +135,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync()).toThrow();
-            void checkAccessible(assertAccessibleSync, a11yIssuesCount);
+            void checkA11yError(assertAccessibleSync, a11yIssuesCount);
         });
     });
 
@@ -164,7 +160,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync(opts)).toThrow();
-            void checkAccessible(assertAccessibleSync, a11yIssuesCountFiltered, opts);
+            void checkA11yError(assertAccessibleSync, a11yIssuesCountFiltered, opts);
         });
     });
     /* eslint-enable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */
