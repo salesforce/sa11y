@@ -6,27 +6,9 @@
  */
 
 import * as axe from 'axe-core';
-import { BrowserObject, MultiRemoteBrowserObject } from 'webdriverio';
-import { A11yConfig, recommended } from '@sa11y/preset-rules';
-import { A11yError, ExceptionList, exceptionListFilter } from '@sa11y/format';
-import { AxeResults, axeVersion, getViolations } from '@sa11y/common';
-
-export type WDIOBrowser = BrowserObject | MultiRemoteBrowserObject;
-
-/**
- * Optional arguments passed to WDIO APIs
- * @param driver - WDIO {@link BrowserObject} instance navigated to the page to be checked. Created automatically by WDIO test runner. Might need to be passed in explicitly when other test runners are used.
- * @param scope - Element to check for accessibility found using [`browser.$(selector)`](https://webdriver.io/docs/selectors), defaults to the entire document.
- * @param rules - {@link A11yConfig} to be used for checking accessibility. Defaults to {@link recommended}
- */
-export interface Options {
-    driver: WDIOBrowser;
-    scope?: Promise<WebdriverIO.Element>;
-    rules?: A11yConfig;
-    exceptionList?: ExceptionList;
-}
-
-export type AssertFunction = (opts: Partial<Options>) => void | Promise<void>;
+import { recommended } from '@sa11y/preset-rules';
+import { A11yError, exceptionListFilter } from '@sa11y/format';
+import { A11yConfig, AxeResults, axeVersion, getViolations, Options, WDIOBrowser } from '@sa11y/common';
 
 /**
  * Merge given options with default options

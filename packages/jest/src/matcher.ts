@@ -9,7 +9,8 @@ import { matcherHint, printReceived } from 'jest-matcher-utils';
 import { adaptA11yConfig } from './setup';
 import { A11yCheckableContext, assertAccessible } from '@sa11y/assert';
 import { A11yError, Options } from '@sa11y/format';
-import { A11yConfig, recommended } from '@sa11y/preset-rules';
+import { recommended } from '@sa11y/preset-rules';
+import { A11yConfig } from '@sa11y/common';
 
 // Type def for custom jest a11y matchers
 // Ref: https://jestjs.io/docs/en/expect.html#expectextendmatchers

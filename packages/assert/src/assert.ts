@@ -6,9 +6,9 @@
  */
 
 import * as axe from 'axe-core';
-import { A11yConfig, recommended } from '@sa11y/preset-rules';
+import { recommended } from '@sa11y/preset-rules';
 import { A11yError } from '@sa11y/format';
-import { AxeResults, getViolations } from '@sa11y/common';
+import { A11yConfig, AxeResults, getViolations } from '@sa11y/common';
 
 /**
  * Context that can be checked for accessibility: Document, Node or CSS selector.

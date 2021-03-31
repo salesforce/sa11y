@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { AxeResults } from '@sa11y/common';
+import { errMsgHeader, AxeResults } from '@sa11y/common';
 
 /**
  * Custom formatter to format a11y violations found by axe
@@ -69,7 +69,7 @@ export function sortViolations(violations: AxeResults): void {
  *  Custom error object to represent a11y violations
  */
 export class A11yError extends Error {
-    static readonly errMsgHeader = 'accessibility issues found';
+    static readonly errMsgHeader = errMsgHeader;
 
     constructor(readonly violations: AxeResults) {
         super(`${violations.length} ${A11yError.errMsgHeader}`);
