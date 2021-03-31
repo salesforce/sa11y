@@ -6,7 +6,15 @@
  */
 
 import * as axe from 'axe-core';
-import { assertAccessible, assertAccessibleSync, getAxeVersion, loadAxe, Options, runAxe } from '../src/wdio';
+import {
+    assertAccessible,
+    assertAccessibleSync,
+    AssertFunction,
+    getAxeVersion,
+    loadAxe,
+    Options,
+    runAxe,
+} from '../src/wdio';
 import {
     a11yIssuesCount,
     a11yIssuesCountFiltered,
@@ -47,7 +55,11 @@ function checkA11yError(err: Error, expectNumA11yIssues = 0): void {
     }
 }
 
-async function checkAccessible(expectNumA11yIssues = 0, options: Partial<Options> = {}): Promise<void> {
+async function checkAccessible(
+    assertFunc: AssertFunction,
+    expectNumA11yIssues = 0,
+    options: Partial<Options> = {}
+): Promise<void> {
     // TODO (debug): setting expected number of assertions doesn't seem to be working correctly in mocha
     //  https://webdriver.io/docs/assertion.html
     //  Check mocha docs: https://mochajs.org/#assertions
@@ -59,19 +71,7 @@ async function checkAccessible(expectNumA11yIssues = 0, options: Partial<Options
     // expect(async () => await assertAccessible()).toThrow();
     let err: Error = new Error();
     try {
-        await assertAccessible(options);
-    } catch (e) {
-        err = e as Error;
-    }
-    checkA11yError(err, expectNumA11yIssues);
-}
-
-function checkAccessibleSync(expectNumA11yIssues = 0, options: Partial<Options> = {}): void {
-    let err: Error = new Error();
-    // Note: WDIO doesn't provide snapshot feature to verify error thrown.
-    //  Hence the longer try .. catch alternative
-    try {
-        assertAccessibleSync(options);
+        await assertFunc(options);
     } catch (e) {
         err = e as Error;
     }
@@ -107,22 +107,22 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
     /* eslint-disable jest/expect-expect */
     it('should not throw error for html with no a11y issues', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
-        await checkAccessible(0);
+        await checkAccessible(assertAccessible);
     });
 
     it('should not throw error for element with no a11y issues', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
-        await checkAccessible(0, { scope: browser.$(`#${shadowDomID}`) });
+        await checkAccessible(assertAccessible, 0, { scope: browser.$(`#${shadowDomID}`) });
     });
 
     it('should throw error for html with a11y issues', async () => {
         await browser.url(htmlFileWithA11yIssues);
-        await checkAccessible(a11yIssuesCount);
+        await checkAccessible(assertAccessible, a11yIssuesCount);
     });
 
     it('should throw error for element with a11y issues', async () => {
         await browser.url(htmlFileWithA11yIssues);
-        await checkAccessible(1, { scope: browser.$(`#${domWithA11yIssuesBodyID}`) });
+        await checkAccessible(assertAccessible, 1, { scope: browser.$(`#${domWithA11yIssuesBodyID}`) });
     });
     /* eslint-enable jest/expect-expect */
 
@@ -131,7 +131,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         return sync(() => {
             void browser.url(htmlFileWithNoA11yIssues);
             expect(() => assertAccessibleSync()).not.toThrow();
-            checkAccessibleSync(0);
+            void checkAccessible(assertAccessibleSync);
         });
     });
 
@@ -139,7 +139,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync()).toThrow();
-            checkAccessibleSync(a11yIssuesCount);
+            void checkAccessible(assertAccessibleSync, a11yIssuesCount);
         });
     });
 
@@ -164,7 +164,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync(opts)).toThrow();
-            checkAccessibleSync(a11yIssuesCountFiltered, opts);
+            void checkAccessible(assertAccessibleSync, a11yIssuesCountFiltered, opts);
         });
     });
     /* eslint-enable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */

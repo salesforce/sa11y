@@ -26,6 +26,8 @@ export interface Options {
     exceptionList?: ExceptionList;
 }
 
+export type AssertFunction = (opts: Partial<Options>) => void | Promise<void>;
+
 /**
  * Merge given options with default options
  */
