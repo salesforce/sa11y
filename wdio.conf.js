@@ -36,8 +36,6 @@ exports.config = {
     suites: {
         wdio: [`./packages/wdio/${testPath}`],
         integration: [`./packages/test-integration/__tests__/wdio.test.ts`],
-        // TODO(debug): TS error when running browserlib suite along with others.
-        //  Could be due to browserlib having slightly different ts config.
         browserLib: [`./packages/browser-lib/${testPath}`],
     },
     //
