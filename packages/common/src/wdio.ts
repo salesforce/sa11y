@@ -18,7 +18,7 @@ export type WdioBrowser = BrowserObject | MultiRemoteBrowserObject;
  */
 export interface WdioOptions {
     driver: WdioBrowser;
-    scope?: Promise<WebdriverIO.Element>;
+    scope?: Promise<WebdriverIO.Element> | WebdriverIO.Element;
     rules?: A11yConfig;
     exceptionList?: ExceptionList;
 }
