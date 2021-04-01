@@ -6,4 +6,3 @@
  */
 
 export { assertAccessible, assertAccessibleSync } from './wdio';
-export { setup } from './setup';
