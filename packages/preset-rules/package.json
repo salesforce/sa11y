@@ -21,7 +21,7 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
-        "axe-core": "4.1.3"
+        "axe-core": "4.1.4"
     },
     "devDependencies": {
         "@sa11y/common": "0.3.0"
