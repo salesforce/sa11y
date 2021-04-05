@@ -4,10 +4,13 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { BrowserObject, MultiRemoteBrowserObject } from 'webdriverio';
+import { BrowserObject, MultiRemoteBrowserObject, Element } from 'webdriverio';
 import { A11yConfig } from './axe';
 import { ExceptionList } from './format';
 
+// TODO (refactor): The base common pkg depending on wdio feels strange.
+//  Refactor it out into another package, even a new one (e.g. test-utils-wdio) to
+//  avoid circular dep.
 export type WdioBrowser = BrowserObject | MultiRemoteBrowserObject;
 
 /**
@@ -18,7 +21,7 @@ export type WdioBrowser = BrowserObject | MultiRemoteBrowserObject;
  */
 export interface WdioOptions {
     driver: WdioBrowser;
-    scope?: Promise<WebdriverIO.Element> | WebdriverIO.Element;
+    scope?: Promise<Element> | Element;
     rules?: A11yConfig;
     exceptionList?: ExceptionList;
 }
