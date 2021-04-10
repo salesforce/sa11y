@@ -60,20 +60,25 @@ function verifySa11yLoaded(filePath: string): void {
     expect(isLoaded('axe')).toEqual(axeVersion);
 }
 
-function checkNumViolations(script: string, expectedNumViolations = a11yIssuesCount): void {
+function checkNumViolations(
+    scope = '',
+    exceptionList = {},
+    expectedNumViolations = a11yIssuesCount,
+    script = ''
+): void {
+    const getViolationsScript =
+        script ||
+        `return JSON.parse((await sa11y.checkAccessibility(
+                '${scope}',
+                sa11y.recommended,
+                ${JSON.stringify(exceptionList)}))).length;`;
     void browser.url(htmlFileWithNoA11yIssues);
     loadMinJS();
-    expect(browser.execute(script)).toBe(0);
+    expect(browser.execute(getViolationsScript)).toBe(0);
 
     void browser.url(htmlFileWithA11yIssues);
     loadMinJS();
-    expect(browser.execute(script)).toBe(expectedNumViolations);
-}
-
-function getSa11yScript(exceptionList = {}) {
-    return `return JSON.parse((await sa11y.checkAccessibility(sa11y.recommended, ${JSON.stringify(
-        exceptionList
-    )}))).length;`;
+    expect(browser.execute(getViolationsScript)).toBe(expectedNumViolations);
 }
 
 describe('@sa11y/browser-lib', () => {
@@ -82,12 +87,11 @@ describe('@sa11y/browser-lib', () => {
         expect(isLoaded('axe')).toBe(false);
     });
 
-    // eslint-disable-next-line jest/expect-expect
+    /* eslint-disable jest/expect-expect */
     it('should inject minified js', () => {
         verifySa11yLoaded(sa11yMinJS);
     });
 
-    // eslint-disable-next-line jest/expect-expect
     it('should inject un-minified js', () => {
         verifySa11yLoaded(sa11yJS);
     });
@@ -97,18 +101,21 @@ describe('@sa11y/browser-lib', () => {
         expect(browser.execute('return axe.getRules().length')).toEqual(full.runOnly.values.length);
     });
 
-    // eslint-disable-next-line jest/expect-expect
     it('should run a11y checks using axe', () => {
-        checkNumViolations('return (await axe.run()).violations.length;');
+        checkNumViolations('', {}, a11yIssuesCount, 'return (await axe.run()).violations.length;');
     });
 
-    // eslint-disable-next-line jest/expect-expect
     it('should run a11y checks using sa11y', () => {
-        checkNumViolations(getSa11yScript());
+        checkNumViolations();
     });
 
-    // eslint-disable-next-line jest/expect-expect
     it('should filter a11y violations using sa11y', () => {
-        checkNumViolations(getSa11yScript(exceptionList), a11yIssuesCountFiltered);
+        checkNumViolations('', exceptionList, a11yIssuesCountFiltered);
     });
+
+    it('should analyze only specified scope using sa11y', () => {
+        checkNumViolations('div', {}, 1);
+    });
+
+    /* eslint-enable jest/expect-expect */
 });

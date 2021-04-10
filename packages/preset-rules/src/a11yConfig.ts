@@ -5,18 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { RunOptions } from 'axe-core';
-
-/**
- * A11yConfig defines options to run accessibility checks using axe specifying list of rules to test
- */
-export interface A11yConfig extends RunOptions {
-    runOnly: {
-        type: 'rule';
-        values: string[];
-    };
-    resultTypes: ['violations'];
-}
+import { A11yConfig } from '@sa11y/common';
 
 /**
  * Returns config to be used in axe.run() with given rules

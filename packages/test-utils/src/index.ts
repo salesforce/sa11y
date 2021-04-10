@@ -22,4 +22,4 @@ export {
     videoURL,
 } from './test-data';
 export { beforeEachSetup, cartesianProduct, checkA11yError } from './utils';
-export { setupWDIO, teardownWDIO } from './wdio';
+export { checkA11yErrorWdio } from './wdio';

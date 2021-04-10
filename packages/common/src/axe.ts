@@ -21,6 +21,17 @@ interface AxeRunner {
 }
 
 /**
+ * A11yConfig defines options to run accessibility checks using axe specifying list of rules to test
+ */
+export interface A11yConfig extends axe.RunOptions {
+    runOnly: {
+        type: 'rule';
+        values: string[];
+    };
+    resultTypes: ['violations'];
+}
+
+/**
  * Get violations by running axe with given function
  * @param axeRunner - function satisfying AxeRunner interface
  */

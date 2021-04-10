@@ -10,6 +10,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import sizes from 'rollup-plugin-sizes';
+import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 import { namespace } from './src/index.ts';
@@ -33,6 +34,7 @@ function getConfig(minified = false) {
         },
         plugins: [
             debug ? progress({ clearLine: false }) : {},
+            nodePolyfills(), // axe-core uses node's "crypto" module
             resolve(),
             commonjs(),
             typescript({

@@ -6,7 +6,7 @@
  */
 
 import { toBeAccessible } from './matcher';
-import { A11yConfig } from '@sa11y/preset-rules';
+import { A11yConfig } from '@sa11y/common';
 import { AutoCheckOpts, registerSa11yAutomaticChecks } from './automatic';
 
 /**

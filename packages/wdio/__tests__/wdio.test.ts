@@ -6,17 +6,18 @@
  */
 
 import * as axe from 'axe-core';
-import { assertAccessible, assertAccessibleSync, axeVersion, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
+import { assertAccessible, assertAccessibleSync, getAxeVersion, loadAxe, runAxe } from '../src/wdio';
 import {
     a11yIssuesCount,
     a11yIssuesCountFiltered,
+    checkA11yErrorWdio,
+    domWithA11yIssuesBodyID,
     exceptionList,
     htmlFileWithA11yIssues,
     htmlFileWithNoA11yIssues,
+    shadowDomID,
 } from '@sa11y/test-utils';
-import { A11yError } from '@sa11y/format';
-import { AxeResults, axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
-import { recommended } from '@sa11y/preset-rules';
+import { AxeResults, axeVersion } from '@sa11y/common';
 
 // TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
 // TODO (debug): "import sync = require('@wdio/sync');" or
@@ -29,54 +30,8 @@ const sync = require('@wdio/sync').default;
  * Test util function to get violations from given html file
  */
 async function getViolationsHtml(htmlFilePath: string): Promise<AxeResults> {
-    // Note: Tests fail without using 'await'. Maybe the browser.url() signature is incorrect.
-    // eslint-disable-next-line @typescript-eslint/await-thenable
     await browser.url(htmlFilePath);
-    return runAxe(browser);
-}
-
-function checkA11yError(err: Error, expectNumA11yIssues = 0): void {
-    expect(err).toBeTruthy();
-    expect(err.message).not.toContain(axeRuntimeExceptionMsgPrefix);
-
-    if (expectNumA11yIssues > 0) {
-        expect(err).not.toStrictEqual(new Error());
-        expect(err.toString()).toContain(`${expectNumA11yIssues} ${A11yError.errMsgHeader}`);
-    } else {
-        expect(err).toStrictEqual(new Error());
-        expect(err.toString()).not.toContain(A11yError.errMsgHeader);
-    }
-}
-
-async function checkAccessible(expectNumA11yIssues = 0): Promise<void> {
-    // TODO (debug): setting expected number of assertions doesn't seem to be working correctly in mocha
-    //  https://webdriver.io/docs/assertion.html
-    //  Check mocha docs: https://mochajs.org/#assertions
-    //  Checkout Jasmine ? https://webdriver.io/docs/frameworks.html
-    // expect.assertions(99999); // still passes ???
-
-    // TODO (debug): Not able to get the expect().toThrow() with async functions to work with wdio test runner
-    //  hence using the longer try.. catch alternative
-    // expect(async () => await assertAccessible()).toThrow();
-    let err: Error = new Error();
-    try {
-        await assertAccessible();
-    } catch (e) {
-        err = e as Error;
-    }
-    checkA11yError(err, expectNumA11yIssues);
-}
-
-function checkAccessibleSync(expectNumA11yIssues = 0, exceptionList = {}): void {
-    let err: Error = new Error();
-    // Note: WDIO doesn't provide snapshot feature to verify error thrown.
-    //  Hence the longer try .. catch alternative
-    try {
-        assertAccessibleSync(browser, recommended, exceptionList);
-    } catch (e) {
-        err = e as Error;
-    }
-    checkA11yError(err, expectNumA11yIssues);
+    return runAxe();
 }
 
 describe('integration test axe with WebdriverIO', () => {
@@ -106,41 +61,67 @@ describe('integration test axe with WebdriverIO', () => {
 describe('integration test @sa11y/wdio with WebdriverIO', () => {
     // Note: "expect"s are in the helper method "checkAccessible"
     /* eslint-disable jest/expect-expect */
-    it('should throw no error for html with no a11y issues', async () => {
+    it('should not throw error for html with no a11y issues', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
-        await checkAccessible(0);
+        await checkA11yErrorWdio(assertAccessible);
+    });
+
+    it('should not throw error for element with no a11y issues', async () => {
+        await browser.url(htmlFileWithNoA11yIssues);
+        await checkA11yErrorWdio(assertAccessible, 0, { scope: browser.$(`#${shadowDomID}`) });
     });
 
     it('should throw error for html with a11y issues', async () => {
         await browser.url(htmlFileWithA11yIssues);
-        await checkAccessible(a11yIssuesCount);
+        await checkA11yErrorWdio(assertAccessible, a11yIssuesCount);
+    });
+
+    it('should throw error for element with a11y issues', async () => {
+        await browser.url(htmlFileWithA11yIssues);
+        await checkA11yErrorWdio(assertAccessible, 1, { scope: browser.$(`#${domWithA11yIssuesBodyID}`) });
     });
     /* eslint-enable jest/expect-expect */
 
-    it('should throw no error for html with no a11y issues in sync mode', () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
+    /* eslint-disable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */
+    it('should not throw error for html with no a11y issues in sync mode', () => {
         return sync(() => {
             void browser.url(htmlFileWithNoA11yIssues);
             expect(() => assertAccessibleSync()).not.toThrow();
-            checkAccessibleSync(0);
+            void checkA11yErrorWdio(assertAccessibleSync);
         });
     });
 
     it('should throw error for html with a11y issues in sync mode', () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
             expect(() => assertAccessibleSync()).toThrow();
-            checkAccessibleSync(a11yIssuesCount);
+            void checkA11yErrorWdio(assertAccessibleSync, a11yIssuesCount);
         });
     });
 
+    it('should throw error for non-existent element', async () => {
+        await browser.url(htmlFileWithA11yIssues);
+        let err: Error = new Error();
+        try {
+            // TODO (test): Is there a way to suppress the error stacktrace console log ?
+            // Note: expect(..).to.Throw() does not work with wdio async
+            console.log('****** Error expected. Ignore ========>');
+            // using an existing elem ID using selector without the '#' prefix
+            await assertAccessible({ scope: browser.$(domWithA11yIssuesBodyID) });
+        } catch (e) {
+            err = e as Error;
+            console.log('<========= Ignore. Error expected ****** ');
+        }
+        expect(err.message).toContain('Error: No elements found for include in page Context');
+    });
+
     it('should filter violations with exception list', () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
+        const opts = { exceptionList: exceptionList };
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
-            expect(() => assertAccessibleSync(browser, recommended, exceptionList)).toThrow();
-            checkAccessibleSync(a11yIssuesCountFiltered, exceptionList);
+            expect(() => assertAccessibleSync(opts)).toThrow();
+            void checkA11yErrorWdio(assertAccessibleSync, a11yIssuesCountFiltered, opts);
         });
     });
+    /* eslint-enable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */
 });

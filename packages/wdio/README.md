@@ -5,9 +5,9 @@ Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used wi
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
--   [Caution](#caution)
--   [Usage](#usage)
--   [Reference](#reference)
+- [Caution](#caution)
+- [Usage](#usage)
+- [Reference](#reference)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -38,16 +38,23 @@ describe('demonstrate usage of @sa11y/wdio', () => {
         });
     });
 
+    it('should demonstrate checking a11y of a selected element', async () => {
+        // Navigate to page to be tested
+        await browser.url('pageToBeTested.html');
+        // Check accessibility of a particular element using https://webdriver.io/docs/selectors
+        await assertAccessible({ scope: browser.$('selector') });
+    });
+
     it('should demonstrate exception list', async () => {
         // Navigate to page to be tested
         await browser.url('pageToBeTested.html');
         // Exception list is a map of rule to corresponding css targets that needs to be filtered from a11y results
-        const exceptionList = {
+        const exceptions = {
             'document-title': ['html'],
             'link-name': ['a'],
         };
         // Check for accessibility of the loaded page, filtering out results from given exception list
-        await assertAccessible(browser, recommended, exceptionList);
+        await assertAccessible({ exceptionList: exceptions });
     });
 });
 ```

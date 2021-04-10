@@ -6,19 +6,27 @@
  */
 
 import * as axe from 'axe-core';
-import { BrowserObject, MultiRemoteBrowserObject } from 'webdriverio';
-import { A11yConfig, recommended } from '@sa11y/preset-rules';
+import { recommended } from '@sa11y/preset-rules';
 import { A11yError, exceptionListFilter } from '@sa11y/format';
-import { AxeResults, getViolations } from '@sa11y/common';
+import { A11yConfig, AxeResults, axeVersion, getViolations, WdioOptions, WdioBrowser } from '@sa11y/common';
 
-export const axeVersion: string | undefined = axe.version;
-
-type WDIOBrowser = BrowserObject | MultiRemoteBrowserObject;
+/**
+ * Merge given options with default options
+ */
+function setDefaultOptions(opts: Partial<WdioOptions> = {}): WdioOptions {
+    const defaultOptions: WdioOptions = {
+        driver: global.browser, // Need to be defined inside a function as it is populated at runtime
+        scope: undefined,
+        rules: recommended,
+        exceptionList: {},
+    };
+    return Object.assign(Object.assign({}, defaultOptions), opts);
+}
 
 /**
  * Return version of axe injected into browser
  */
-export async function getAxeVersion(driver: WDIOBrowser): Promise<typeof axeVersion> {
+export async function getAxeVersion(driver: WdioBrowser): Promise<typeof axeVersion> {
     return driver.execute(() => {
         return typeof axe === 'object' ? axe.version : undefined;
     });
@@ -27,7 +35,7 @@ export async function getAxeVersion(driver: WDIOBrowser): Promise<typeof axeVers
 /**
  * Load axe source into browser if it is not already loaded and return version of axe
  */
-export async function loadAxe(driver: WDIOBrowser): Promise<void> {
+export async function loadAxe(driver: WdioBrowser): Promise<void> {
     if ((await getAxeVersion(driver)) !== axeVersion) {
         await driver.execute(axe.source);
     }
@@ -40,45 +48,45 @@ export async function loadAxe(driver: WDIOBrowser): Promise<void> {
 /**
  * Load and run axe in given WDIO instance and return the accessibility violations found.
  */
-export async function runAxe(driver: WDIOBrowser, rules: A11yConfig = recommended): Promise<AxeResults> {
+export async function runAxe(options: Partial<WdioOptions> = {}): Promise<AxeResults> {
+    const { driver, scope, rules } = setDefaultOptions(options);
+    const elemSelector = scope ? (await scope).selector : undefined;
     await loadAxe(driver);
 
-    // TODO (chore): Fix lint error
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    //   error TS2345: Argument of type
-    //      '(rules: A11yConfig, done: CallableFunction) => void' is not assignable to
-    //      parameter of type 'string | ((arguments_0: A11yConfig) => void)'.
-    //   Type '(rules: A11yConfig, done: CallableFunction) => void' is not assignable to
-    //      type '(arguments_0: A11yConfig) => void'.
     // run axe inside browser and return violations
-    return (await driver.executeAsync((rules: A11yConfig, done: CallableFunction) => {
-        axe.run(document, rules, (err: Error, results: axe.AxeResults) => {
-            if (err) throw err;
-            done(results.violations);
-        });
-    }, rules)) as AxeResults;
+    return (await driver.executeAsync(
+        // TODO (chore): Fix lint error
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        // TS2345: Argument of type is not assignable to parameter of type
+        (elemSelector: string, rules: A11yConfig, done: CallableFunction) => {
+            axe.run(
+                (elemSelector || document) as axe.ElementContext,
+                rules as axe.RunOptions,
+                (err: Error, results: axe.AxeResults) => {
+                    if (err) throw err;
+                    done(results.violations);
+                }
+            );
+        },
+        elemSelector,
+        rules
+    )) as AxeResults;
 }
 
 /**
  * Verify that the currently loaded page in the browser is accessible.
  * Throw an error with the accessibility issues found if it is not accessible.
  * Asynchronous version of {@link assertAccessibleSync}
- * @param driver - WDIO browser instance navigated to page to be checked
- * @param rules - a11y preset-rules to be used for checking accessibility
- * @param exceptionList - mapping of rule to css selectors to be filtered out using {@link exceptionListFilter}
  */
-export async function assertAccessible(
-    driver: WDIOBrowser = browser,
-    rules: A11yConfig = recommended,
-    exceptionList = {}
-): Promise<void> {
+export async function assertAccessible(opts: Partial<WdioOptions> = {}): Promise<void> {
+    const options = setDefaultOptions(opts);
     // TODO (feat): Add as custom commands to both browser for page level and elem
     //      https://webdriver.io/docs/customcommands.html
-    const violations = await getViolations(() => runAxe(driver, rules));
+    const violations = await getViolations(() => runAxe(options));
     // TODO (refactor): move exception list filtering to getViolations()
     //  and expose it as an arg to assert and jest api as well ?
-    const filteredResults = exceptionListFilter(violations, exceptionList);
+    const filteredResults = exceptionListFilter(violations, options.exceptionList);
     A11yError.checkAndThrow(filteredResults);
 }
 
@@ -86,17 +94,11 @@ export async function assertAccessible(
  * Verify that the currently loaded page in the browser is accessible.
  * Throw an error with the accessibility issues found if it is not accessible.
  * Synchronous version of {@link assertAccessible}
- * @param driver - WDIO browser instance navigated to page to be checked
- * @param rules - a11y preset-rules to be used for checking accessibility
- * @param exceptionList - mapping of rule to css selectors to be filtered out using {@link exceptionListFilter}
  */
-export function assertAccessibleSync(
-    driver: WDIOBrowser = browser,
-    rules: A11yConfig = recommended,
-    exceptionList = {}
-): void {
+export function assertAccessibleSync(opts: Partial<WdioOptions> = {}): void {
+    const options = setDefaultOptions(opts);
     // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
-    void driver.call(async () => {
-        await assertAccessible(driver, rules, exceptionList);
+    void options.driver.call(async () => {
+        await assertAccessible(options);
     });
 }

@@ -10,6 +10,7 @@
 
 // Ref: https://webdriver.io/docs/debugging.html
 const debug = !!process.env.DEBUG;
+const testPath = '__tests__/**/*.ts';
 
 exports.config = {
     //
@@ -30,8 +31,13 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     // Note: Paths below are relative to the specific package dir from which wdio cli is executed
-    specs: ['__tests__/**/*.ts'],
+    specs: [testPath],
     filesToWatch: ['src/**/*.ts'],
+    suites: {
+        wdio: [`./packages/wdio/${testPath}`],
+        integration: [`./packages/test-integration/__tests__/wdio.test.ts`],
+        browserLib: [`./packages/browser-lib/${testPath}`],
+    },
     //
     // ============
     // Capabilities

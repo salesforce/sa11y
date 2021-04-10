@@ -52,7 +52,21 @@ setup();
 
 ```javascript
 module.exports = {
-    setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
+    setupFilesAfterEnv: ['<rootDir>/sa11y-jest-setup.js'],
+};
+```
+
+-   If the project already has jest configs, they can be merged e.g.
+
+```javascript
+const { jestConfig } = require('@salesforce/sfdx-lwc-jest/config');
+
+const setupFilesAfterEnv = jestConfig.setupFilesAfterEnv || [];
+setupFilesAfterEnv.push('<rootDir>/jest-sa11y-setup.js');
+
+module.exports = {
+    ...jestConfig,
+    setupFilesAfterEnv,
 };
 ```
 
@@ -95,8 +109,11 @@ setup(); // Automatic checks will be enabled due to the environment variables
 
 -   **async**: `toBeAccessible` **must** be invoked with `async/wait` or `Promise` or the equivalent supported asynchronous method in your environment
     -   Not invoking it async would result in incorrect results e.g. no issues reported even when the page is not accessible
--   **color-contrast**: Color-contrast check is disabled for Jest tests as it [does not work in JSDOM](https://github.com/dequelabs/axe-core/issues/595)
--   **audio, video**: Accessibility of `audio`, `video` elements cannot be checked with Jest as they are [stubbed out in JSDOM](https://github.com/jsdom/jsdom/issues/2155)
+    -   `Promise` should not be mixed together with `async/wait`. Doing so could result in Jest timeout and other errors.
+-   **DOM**: 💡 The accessibility checks _cannot_ be run on static HTML markup. They can only be run against a rendered DOM.
+-   **color-contrast**: 🍭 Color-contrast check is disabled for Jest tests as it [does not work in JSDOM](https://github.com/dequelabs/axe-core/issues/595)
+-   **audio, video**: 📹 Accessibility of `audio`, `video` elements cannot be checked with Jest as they are [stubbed out in JSDOM](https://github.com/jsdom/jsdom/issues/2155)
+-   **template**: [`<template>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) are not rendered in DOM and hence cannot be checked directly without rendering. They have to be rendered before they can be checked.
 -   **real browser**: If you need to check for color-contrast, audio/video elements or any other checks which need the element to be rendered visually please use a real browser to test e.g. using [`@sa11y/wdio`](https://github.com/salesforce/sa11y/tree/master/packages/wdio#readme)
 
 ## Usage

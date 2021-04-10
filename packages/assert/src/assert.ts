@@ -6,15 +6,15 @@
  */
 
 import * as axe from 'axe-core';
-import { A11yConfig, recommended } from '@sa11y/preset-rules';
+import { recommended } from '@sa11y/preset-rules';
 import { A11yError } from '@sa11y/format';
-import { AxeResults, getViolations } from '@sa11y/common';
+import { A11yConfig, AxeResults, getViolations } from '@sa11y/common';
 
 /**
- * Type def for context that can be checked for accessibility.
- * Limiting to this subset from all options supported by axe for ease of use and maintenance.
+ * Context that can be checked for accessibility: Document, Node or CSS selector.
+ * Limiting to subset of options supported by axe for ease of use and maintenance.
  */
-export type A11yCheckableContext = Document | Node;
+export type A11yCheckableContext = Document | Node | string;
 
 /**
  * Get list of a11y violations for given element and ruleset
