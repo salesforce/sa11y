@@ -66,17 +66,51 @@ export function sortViolations(violations: AxeResults): void {
 }
 
 /**
+ * Consolidate unique a11y violations by removing duplicates.
+ */
+export class ConsolidatedResults {
+    // TODO (refactor): Is there any advantage to extending built-in Set/Map ?
+    // TODO (refactor): Would it be more efficient to recast into a Map struct?
+    // static consolidated = new Map<[RuleID, CssSelectors], AxeResult>();
+    static consolidated: AxeResults = [];
+
+    static add(results: AxeResults): boolean {
+        // TODO (feat): Add support for test name as key
+        if (this.has(results)) return false;
+        this.consolidated = this.consolidated.concat(results);
+        return true;
+    }
+
+    static has(results: AxeResults): boolean {
+        for (const consolidatedResult of this.consolidated) {
+            for (const result of results) {
+                if (
+                    result.id === consolidatedResult.id &&
+                    result.nodes.length === consolidatedResult.nodes.length &&
+                    result.nodes.filter((selector) => !consolidatedResult.nodes.includes(selector)).length === 0
+                )
+                    return true;
+            }
+        }
+        return false;
+    }
+}
+
+/**
  *  Custom error object to represent a11y violations
  */
 export class A11yError extends Error {
     static readonly errMsgHeader = errMsgHeader;
 
-    constructor(readonly violations: AxeResults) {
+    constructor(readonly violations: AxeResults, readonly consolidate: boolean = true) {
         super(`${violations.length} ${A11yError.errMsgHeader}`);
         this.name = A11yError.name;
         this.message = `${violations.length} ${A11yError.errMsgHeader}\n ${this.format()}`;
     }
 
+    /**
+     * Throw error with formatted a11y violations
+     */
     static checkAndThrow(violations: AxeResults): void {
         if (violations.length > 0) {
             throw new A11yError(violations);
@@ -102,7 +136,8 @@ export class A11yError extends Error {
             .map((violation) => {
                 return violation.nodes
                     .map((node) => {
-                        const selectors = node.target.join(', ');
+                        // Note: Use a separator that cannot be part of a CSS selector
+                        const selectors = node.target.join('; ');
                         const helpURL = violation.helpUrl.split('?')[0];
                         // TODO : Add wcag level or best practice tag to output ?
                         // const criteria = violation.tags.filter((tag) => tag.startsWith('wcag2a') || tag.startsWith('best'));

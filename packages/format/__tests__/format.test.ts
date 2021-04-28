@@ -7,8 +7,17 @@
 
 import * as axe from 'axe-core';
 import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
-import { A11yError, sortViolations } from '../src/format';
+import { A11yError, ConsolidatedResults, sortViolations } from '../src/format';
 import { AxeResults } from '@sa11y/common';
+
+const a11yIssues = [
+    { impact: undefined },
+    { impact: undefined },
+    { impact: 'moderate' },
+    { impact: 'minor' },
+    { impact: 'critical' },
+    { impact: 'critical' },
+] as AxeResults;
 
 async function getA11yError(dom: string): Promise<A11yError> {
     document.body.innerHTML = dom;
@@ -37,15 +46,7 @@ describe('a11y Results Formatter', () => {
     );
 
     it('should sort a11y issues by impact', () => {
-        const a11yIssues = [
-            { impact: undefined },
-            { impact: undefined },
-            { impact: 'moderate' },
-            { impact: 'minor' },
-            { impact: 'critical' },
-            { impact: 'critical' },
-        ];
-        sortViolations(a11yIssues as AxeResults);
+        sortViolations(a11yIssues);
         expect(a11yIssues[0].impact).toEqual('critical');
         expect(a11yIssues[1].impact).toEqual('critical');
         expect(a11yIssues[2].impact).toEqual('moderate');
@@ -62,5 +63,16 @@ describe('a11y Results Formatter', () => {
     it('should not throw error when no violations are present', async () => {
         const a11yError = await getA11yError(domWithNoA11yIssues);
         expect(() => A11yError.checkAndThrow(a11yError.violations)).not.toThrow();
+    });
+
+    it('should consolidate violations', async () => {
+        const a11yError = await getA11yError(domWithA11yIssues);
+        const violations = a11yError.violations;
+        expect(violations.length).toBeGreaterThan(0);
+        expect(ConsolidatedResults.has(violations)).toBeFalsy();
+        expect(ConsolidatedResults.add(violations)).toBeTruthy();
+        expect(ConsolidatedResults.has(violations)).toBeTruthy();
+        expect(ConsolidatedResults.add(violations)).toBeFalsy();
+        expect(ConsolidatedResults.add(violations.concat(violations))).toBeFalsy();
     });
 });
