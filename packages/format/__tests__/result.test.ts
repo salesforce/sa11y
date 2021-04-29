@@ -4,24 +4,34 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { domWithA11yIssues } from '@sa11y/test-utils';
-import { ConsolidatedResults } from '../src/result';
-import { getA11yError } from './format.test';
+import { ConsolidatedResults } from '../src';
+import { getViolations } from './format.test';
+import { AxeResults } from '@sa11y/common';
+
+let violations: AxeResults = [];
+beforeAll(async () => {
+    violations = await getViolations();
+});
+beforeEach(() => ConsolidatedResults.clear());
 
 describe('a11y results post-processing', () => {
-    it('should consolidate violations', async () => {
-        const a11yError = await getA11yError(domWithA11yIssues);
-        const violations = a11yError.violations;
+    it('should consolidate violations', () => {
         expect(violations.length).toBeGreaterThan(0);
         expect(ConsolidatedResults.add(violations)).toHaveLength(violations.length);
-        // Shouldn't add again for the same violations
+    });
+
+    it('should not add the same violations again', () => {
+        expect(ConsolidatedResults.add(violations)).toHaveLength(violations.length);
         expect(ConsolidatedResults.add(violations)).toHaveLength(0);
-        // Shouldn't add for duplicated violations
         expect(ConsolidatedResults.add(violations.concat(violations))).toHaveLength(0);
-        // Shouldn't add for individual violations
+    });
+
+    it('should not add a single duplicate violation', () => {
+        expect(ConsolidatedResults.add(violations)).toHaveLength(violations.length);
         const violation = violations.pop();
+        // Shouldn't add an individual duplicate violation
         expect(ConsolidatedResults.add([violation])).toHaveLength(0);
-        // Shouldn't add for modified violations (after a result is removed)
+        // Shouldn't add modified violations (after a result is removed)
         expect(ConsolidatedResults.add(violations)).toHaveLength(0);
         // Should add a modified result
         const newViolation = { ...violation }; // Create a copy

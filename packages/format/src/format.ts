@@ -6,6 +6,7 @@
  */
 
 import { AxeResults, errMsgHeader } from '@sa11y/common';
+import { ConsolidatedResults } from './result';
 
 /**
  * Custom formatter to format a11y violations found by axe
@@ -80,7 +81,8 @@ export class A11yError extends Error {
     /**
      * Throw error with formatted a11y violations
      */
-    static checkAndThrow(violations: AxeResults): void {
+    static checkAndThrow(violations: AxeResults, consolidate = false): void {
+        if (consolidate) violations = ConsolidatedResults.add(violations);
         if (violations.length > 0) {
             throw new A11yError(violations);
         }

@@ -41,6 +41,5 @@ export async function getViolationsJSDOM(
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function assertAccessible(context: A11yCheckableContext = document, rules: A11yConfig = recommended) {
     const violations = await getViolationsJSDOM(context, rules);
-
     A11yError.checkAndThrow(violations);
 }

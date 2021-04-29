@@ -24,11 +24,16 @@ export class ConsolidatedResults {
     // static consolidated = new Map<RuleIdCssSelectorMap, AxeResult>();
     static consolidated: AxeResults = [];
 
+    static clear(): void {
+        this.consolidated = [];
+    }
+
     /**
      * Adds given a11y results to a consolidated list if they are not already present
      * @returns results that have not been added earlier
      */
     static add(results: AxeResults): AxeResults {
+        // TODO (refactor): loop inside loop could be inefficient - convert consolidated results to map struct with constant lookup instead of looping over for each result?
         const newResults: AxeResults = [];
         for (const result of results) {
             let unique = true;

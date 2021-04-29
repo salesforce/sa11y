@@ -116,6 +116,42 @@ exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one"
 `;
 
+exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 1`] = `
+"5 accessibility issues found
+ * (bypass) Page must have means to bypass repeated blocks: html
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/bypass
+
+* (document-title) Documents must have <title> element to aid in navigation: html
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/document-title
+
+* (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+
+* (landmark-one-main) Document must have one main landmark: html
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/landmark-one-main
+
+* (page-has-heading-one) Page must contain a level-one heading: html
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one"
+`;
+
+exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 2`] = `
+"5 accessibility issues found
+ * (bypass) Page must have means to bypass repeated blocks: html
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/bypass
+
+* (document-title) Documents must have <title> element to aid in navigation: html
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/document-title
+
+* (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+
+* (landmark-one-main) Document must have one main landmark: html
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/landmark-one-main
+
+* (page-has-heading-one) Page must contain a level-one heading: html
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one"
+`;
+
 exports[`a11y Results Formatter should throw error when violations are present 1`] = `
 "5 accessibility issues found
  * (bypass) Page must have means to bypass repeated blocks: html
