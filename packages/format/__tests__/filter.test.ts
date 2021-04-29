@@ -62,7 +62,6 @@ describe('a11y results filter', () => {
         const filteredRuleIDs = filteredViolations.map((violation) => violation.id);
         expect(filteredRuleIDs).not.toContain(validRule);
         expect(ruleIDs).toContain(validRule);
-        // TODO (debug): Find why this causes the test to fail
-        // expect(ruleIDs.filter((RuleID) => RuleID === validRule)).toStrictEqual(filteredRuleIDs);
+        expect(ruleIDs.filter((ruleID) => ruleID !== validRule)).toStrictEqual(filteredRuleIDs);
     });
 });
