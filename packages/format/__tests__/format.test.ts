@@ -7,7 +7,7 @@
 
 import * as axe from 'axe-core';
 import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
-import { A11yError, ConsolidatedResults, sortViolations } from '../src/format';
+import { A11yError, sortViolations } from '../src/format';
 import { AxeResults } from '@sa11y/common';
 
 const a11yIssues = [
@@ -19,7 +19,10 @@ const a11yIssues = [
     { impact: 'critical' },
 ] as AxeResults;
 
-async function getA11yError(dom: string): Promise<A11yError> {
+// TODO (refactor): Move to common test-utils
+//  - without creating circular dep due to "A11yError"
+// eslint-disable-next-line jest/no-export
+export async function getA11yError(dom: string): Promise<A11yError> {
     document.body.innerHTML = dom;
     const violations = await axe.run(document).then((results) => results.violations);
     return new A11yError(violations);
@@ -63,16 +66,5 @@ describe('a11y Results Formatter', () => {
     it('should not throw error when no violations are present', async () => {
         const a11yError = await getA11yError(domWithNoA11yIssues);
         expect(() => A11yError.checkAndThrow(a11yError.violations)).not.toThrow();
-    });
-
-    it('should consolidate violations', async () => {
-        const a11yError = await getA11yError(domWithA11yIssues);
-        const violations = a11yError.violations;
-        expect(violations.length).toBeGreaterThan(0);
-        expect(ConsolidatedResults.has(violations)).toBeFalsy();
-        expect(ConsolidatedResults.add(violations)).toBeTruthy();
-        expect(ConsolidatedResults.has(violations)).toBeTruthy();
-        expect(ConsolidatedResults.add(violations)).toBeFalsy();
-        expect(ConsolidatedResults.add(violations.concat(violations))).toBeFalsy();
     });
 });

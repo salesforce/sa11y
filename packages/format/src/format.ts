@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { errMsgHeader, AxeResults } from '@sa11y/common';
+import { AxeResults, errMsgHeader } from '@sa11y/common';
 
 /**
  * Custom formatter to format a11y violations found by axe
@@ -63,37 +63,6 @@ export function sortViolations(violations: AxeResults): void {
         if (aImpact > bImpact) return 1;
         return 0;
     });
-}
-
-/**
- * Consolidate unique a11y violations by removing duplicates.
- */
-export class ConsolidatedResults {
-    // TODO (refactor): Is there any advantage to extending built-in Set/Map ?
-    // TODO (refactor): Would it be more efficient to recast into a Map struct?
-    // static consolidated = new Map<[RuleID, CssSelectors], AxeResult>();
-    static consolidated: AxeResults = [];
-
-    static add(results: AxeResults): boolean {
-        // TODO (feat): Add support for test name as key
-        if (this.has(results)) return false;
-        this.consolidated = this.consolidated.concat(results);
-        return true;
-    }
-
-    static has(results: AxeResults): boolean {
-        for (const consolidatedResult of this.consolidated) {
-            for (const result of results) {
-                if (
-                    result.id === consolidatedResult.id &&
-                    result.nodes.length === consolidatedResult.nodes.length &&
-                    result.nodes.filter((selector) => !consolidatedResult.nodes.includes(selector)).length === 0
-                )
-                    return true;
-            }
-        }
-        return false;
-    }
 }
 
 /**

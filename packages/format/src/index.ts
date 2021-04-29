@@ -5,5 +5,5 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-export { A11yError, Options, ConsolidatedResults } from './format';
+export { A11yError, Options } from './format';
 export { exceptionListFilter } from './filter';
