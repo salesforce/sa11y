@@ -38,8 +38,7 @@ export class ConsolidatedResults {
                     result.nodes.length === consolidatedResult.nodes.length &&
                     result.nodes.filter((selector) => !consolidatedResult.nodes.includes(selector)).length === 0
                 )
-                    continue;
-                unique = false;
+                    unique = false;
             }
             if (unique) newResults.push(result);
         }

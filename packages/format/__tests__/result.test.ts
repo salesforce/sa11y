@@ -14,7 +14,19 @@ describe('a11y results post-processing', () => {
         const violations = a11yError.violations;
         expect(violations.length).toBeGreaterThan(0);
         expect(ConsolidatedResults.add(violations)).toHaveLength(violations.length);
+        // Shouldn't add again for the same violations
         expect(ConsolidatedResults.add(violations)).toHaveLength(0);
+        // Shouldn't add for duplicated violations
         expect(ConsolidatedResults.add(violations.concat(violations))).toHaveLength(0);
+        // Shouldn't add for individual violations
+        const violation = violations.pop();
+        expect(ConsolidatedResults.add([violation])).toHaveLength(0);
+        // Shouldn't add for modified violations (after a result is removed)
+        expect(ConsolidatedResults.add(violations)).toHaveLength(0);
+        // Should add a modified result
+        const newViolation = { ...violation }; // Create a copy
+        newViolation.id = 'nonExistentID';
+        expect(ConsolidatedResults.add([newViolation])).toHaveLength(1);
+        expect(ConsolidatedResults.add([newViolation])).toHaveLength(0);
     });
 });
