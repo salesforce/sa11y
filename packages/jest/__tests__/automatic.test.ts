@@ -80,7 +80,7 @@ describe('automatic checks call', () => {
         // Note: cleanup required to prevent domWithA11yIssues being checked again after
         // the test as part of the afterEach hook that was setup in the previous
         // describe block
-        await automaticCheck().catch((e) => checkA11yError(e));
+        await automaticCheck({ cleanupAfterEach: true }).catch((e) => checkA11yError(e));
     });
 
     it.each([0, 1, 2, 3])(
@@ -96,22 +96,22 @@ describe('automatic checks call', () => {
             // Note: cleanup required to prevent domWithA11yIssues being checked again after
             // the test as part of the afterEach hook that was setup in the previous
             // describe block
-            await automaticCheck().catch((e) => checkA11yError(e));
+            await automaticCheck({ cleanupAfterEach: true }).catch((e) => checkA11yError(e));
         }
     );
 
-    it('should not cleanup DOM when opted out', async () => {
+    it('should cleanup DOM when opted in', async () => {
         document.body.innerHTML = domWithNoA11yIssues;
         expect(document.body.childElementCount).toBe(domWithNoA11yIssuesChildCount);
-        await automaticCheck({ cleanupAfterEach: false });
-        expect(document.body.childElementCount).toBe(domWithNoA11yIssuesChildCount);
+        await automaticCheck({ cleanupAfterEach: true });
+        expect(document.body.childElementCount).toBe(0);
     });
 
-    it('should cleanup DOM by default', async () => {
+    it('should not cleanup DOM by default', async () => {
         document.body.innerHTML = domWithNoA11yIssues;
         expect(document.body.childElementCount).toBe(domWithNoA11yIssuesChildCount);
         await automaticCheck();
-        expect(document.body.childElementCount).toBe(0);
+        expect(document.body.childElementCount).toBe(domWithNoA11yIssuesChildCount);
     });
 
     it('should not raise error for duplicated issues', async () => {

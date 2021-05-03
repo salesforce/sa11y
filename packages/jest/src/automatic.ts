@@ -24,8 +24,8 @@ export type AutoCheckOpts = {
  * Default options when {@link registerSa11yAutomaticChecks} is invoked
  */
 const defaultAutoCheckOpts: AutoCheckOpts = {
-    runAfterEach: true,
-    cleanupAfterEach: true,
+    runAfterEach: false,
+    cleanupAfterEach: false,
     consolidateResults: true,
 };
 
