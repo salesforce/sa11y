@@ -49,8 +49,8 @@
 
 ### Features
 
--   **browser-lib**: add support for selecting specific css selector to check for a11y
--   ** wdio**: add scope to target only given css selector for a11y checks
+-   **browser-lib:** add support for selecting specific css selector to check for a11y
+-   **wdio:** add scope to target only given css selector for a11y checks
     -   add custom browser commands for the sa11y APIs
 
 ### BREAKING CHANGES
