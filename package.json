@@ -44,7 +44,7 @@
         "test:ci": "yarn lint:all && yarn test --ci && yarn test:wdio",
         "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
-        "test:watch": "yarn test --watch",
+        "test:watch": "jest --watch",
         "test:wdio": "wdio run wdio.conf.js --suite wdio --suite integration --suite browserLib < /dev/null",
         "prepare": "husky install"
     },
