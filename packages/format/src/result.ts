@@ -33,17 +33,21 @@ export class ConsolidatedResults {
      * @returns results that have not been added earlier
      */
     static add(results: AxeResults): AxeResults {
-        // TODO (refactor): loop inside loop could be inefficient - convert consolidated results to map struct with constant lookup instead of looping over for each result?
+        // TODO (refactor): multi-level loops could be inefficient - convert consolidated results to a map struct with faster lookup instead of looping over for each result?
         const newResults: AxeResults = [];
         for (const result of results) {
             let unique = true;
             for (const consolidatedResult of this.consolidated) {
-                if (
-                    result.id === consolidatedResult.id &&
-                    result.nodes.length === consolidatedResult.nodes.length &&
-                    result.nodes.filter((selector) => !consolidatedResult.nodes.includes(selector)).length === 0
-                )
-                    unique = false;
+                if (result.id !== consolidatedResult.id) continue;
+                for (const node of result.nodes) {
+                    for (const consolidatedNode of consolidatedResult.nodes) {
+                        if (
+                            node.target.length === consolidatedNode.target.length &&
+                            node.target.filter((selector) => !consolidatedNode.target.includes(selector)).length === 0
+                        )
+                            unique = false;
+                    }
+                }
             }
             if (unique) newResults.push(result);
         }

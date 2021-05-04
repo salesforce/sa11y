@@ -33,10 +33,19 @@ describe('a11y results post-processing', () => {
         expect(ConsolidatedResults.add([violation])).toHaveLength(0);
         // Shouldn't add modified violations (after a result is removed)
         expect(ConsolidatedResults.add(violations)).toHaveLength(0);
-        // Should add a modified result
-        const newViolation = { ...violation }; // Create a copy
-        newViolation.id = 'nonExistentID';
-        expect(ConsolidatedResults.add([newViolation])).toHaveLength(1);
-        expect(ConsolidatedResults.add([newViolation])).toHaveLength(0);
+        // Should add a result with diff id
+        const newViolationId = { ...violation }; // Create a copy
+        newViolationId.id = 'nonExistentID';
+        expect(ConsolidatedResults.add([newViolationId])).toHaveLength(1);
+        expect(ConsolidatedResults.add([newViolationId])).toHaveLength(0);
+        // Let's add a CSS selector to the violation
+        expect(violation.nodes[0].target.length).toBeGreaterThan(0);
+        const newViolationCss = JSON.parse(JSON.stringify(violation)) as typeof violation; // Create a copy
+        // Copy should not get added as it is identical
+        expect(ConsolidatedResults.add([newViolationCss])).toHaveLength(0);
+        // Changing a CSS selector in the copy should add the violation
+        newViolationCss.nodes[0].target.push('nonExistentCssSelector');
+        expect(ConsolidatedResults.add([newViolationCss])).toHaveLength(1);
+        expect(ConsolidatedResults.add([newViolationCss])).toHaveLength(0);
     });
 });
