@@ -100,34 +100,34 @@ describe('automatic checks call', () => {
         }
     );
 
-    it('should cleanup DOM when opted in', async () => {
-        document.body.innerHTML = domWithNoA11yIssues;
-        expect(document.body.childElementCount).toBe(domWithNoA11yIssuesChildCount);
-        await automaticCheck({ cleanupAfterEach: true });
-        expect(document.body.childElementCount).toBe(0);
-    });
-
-    it('should not cleanup DOM by default', async () => {
+    it('should cleanup DOM by default', async () => {
         document.body.innerHTML = domWithNoA11yIssues;
         expect(document.body.childElementCount).toBe(domWithNoA11yIssuesChildCount);
         await automaticCheck();
+        expect(document.body.childElementCount).toBe(0);
+    });
+
+    it('should not cleanup DOM when opted out', async () => {
+        document.body.innerHTML = domWithNoA11yIssues;
+        expect(document.body.childElementCount).toBe(domWithNoA11yIssuesChildCount);
+        await automaticCheck({ cleanupAfterEach: false });
         expect(document.body.childElementCount).toBe(domWithNoA11yIssuesChildCount);
     });
 
     it('should not raise error for duplicated issues', async () => {
         // TODO (Refactor): extract out duplicated code to set dom, expect assertions and invoke automatic check
         document.body.innerHTML = domWithA11yIssues;
-        const opts = { cleanupAfterEach: true, consolidateResults: true };
+        // const opts = { cleanupAfterEach: false };
         expect.assertions(3);
+        await automaticCheck().catch((e) => checkA11yError(e));
+        // TODO (DEBUG): Following results in "Error running accessibility checks using axe: undefined"
+        // Should not throw error for the same DOM with consolidation
+        // document.body.innerHTML = domWithA11yIssues;
+        // expect(async () => await automaticCheck()).not.toThrow();
+        // Should throw error again without consolidation
         // Note: cleanup required to prevent domWithA11yIssues being checked again after
         // the test as part of the afterEach hook that was setup in the previous
         // describe block
-        await automaticCheck(opts).catch((e) => checkA11yError(e));
-        // TODO (DEBUG): Following results in "Error running accessibility checks using axe: undefined"
-        // Should not throw error with consolidation
-        // document.body.innerHTML = domWithA11yIssues;
-        // expect(async () => await automaticCheck(opts)).not.toThrow();
-        // Should throw error again without consolidation
         // await automaticCheck({ cleanupAfterEach: true, consolidateResults: false }).catch((e) => checkA11yError(e));
     });
 });

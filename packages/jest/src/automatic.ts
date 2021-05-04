@@ -24,8 +24,8 @@ export type AutoCheckOpts = {
  * Default options when {@link registerSa11yAutomaticChecks} is invoked
  */
 const defaultAutoCheckOpts: AutoCheckOpts = {
-    runAfterEach: false,
-    cleanupAfterEach: false,
+    runAfterEach: true,
+    cleanupAfterEach: true,
     consolidateResults: true,
 };
 
@@ -61,8 +61,8 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
  * @param opts - Options for automatic checks {@link AutoCheckOpts}
  */
 export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
-    console.log('♿ Registering sa11y checks to be run automatically after each test');
     if (opts.runAfterEach) {
+        console.log('♿ Registering sa11y checks to be run automatically after each test');
         // TODO (feat): Add test path/name as key to consolidated results
         // console.log('=>testPath', expect.getState().testPath);
         // console.log('=>currentTestName', expect.getState().currentTestName);
