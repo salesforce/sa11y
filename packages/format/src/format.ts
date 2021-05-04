@@ -72,7 +72,7 @@ export function sortViolations(violations: AxeResults): void {
 export class A11yError extends Error {
     static readonly errMsgHeader = errMsgHeader;
 
-    constructor(readonly violations: AxeResults, readonly consolidate: boolean = true) {
+    constructor(readonly violations: AxeResults) {
         super(`${violations.length} ${A11yError.errMsgHeader}`);
         this.name = A11yError.name;
         this.message = `${violations.length} ${A11yError.errMsgHeader}\n ${this.format()}`;
