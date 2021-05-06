@@ -20,6 +20,12 @@ describe('preset-rules', () => {
     // or due to their experimental nature
     const excludedRules = [
         /* cSpell:disable */
+        // TODO (fix): Temp disable new rules in axe 4.2.
+        //  They will be added to the preset-rules in a future release
+        'aria-text', // new in axe 4.2
+        'empty-table-header', // new in axe 4.2
+        'frame-focusable-content', // new in axe 4.2
+        'nested-interactive', // new in axe 4.2
         'frame-title-unique',
         'hidden-content',
         'skip-link',
@@ -53,8 +59,10 @@ describe('preset-rules', () => {
         const readmePath = path.resolve(__dirname, '../README.md');
         const readme = fs.readFileSync(readmePath).toString();
         const version = axeVersion.split('.').slice(0, 2).join('.'); // extract just major and minor version
-        full.runOnly.values.forEach((rule) => {
-            expect(readme).toContain(`| [${rule}](https://dequeuniversity.com/rules/axe/${version}/${rule})`);
-        });
+        full.runOnly.values
+            .filter((rule) => !excludedRules.includes(rule))
+            .forEach((rule) => {
+                expect(readme).toContain(`| [${rule}](https://dequeuniversity.com/rules/axe/${version}/${rule})`);
+            });
     });
 });
