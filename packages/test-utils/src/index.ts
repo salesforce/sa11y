@@ -21,5 +21,5 @@ export {
     shadowDomID,
     videoURL,
 } from './test-data';
-export { beforeEachSetup, cartesianProduct, checkA11yError } from './utils';
+export { beforeEachSetup, cartesianProduct, checkA11yError, checkA11yErrorFunc } from './utils';
 export { checkA11yErrorWdio } from './wdio';

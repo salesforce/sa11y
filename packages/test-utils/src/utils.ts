@@ -38,3 +38,23 @@ export function checkA11yError(e: Error): void {
     expect(e.message).not.toContain(axeRuntimeExceptionMsgPrefix);
     expect(e.message).toMatchSnapshot();
 }
+
+/**
+ * Check error thrown by calling given function.
+ * Preferable to using `checkA11yError` with `expect.assertions(..)` due to
+ * https://github.com/jest-community/eslint-plugin-jest/blob/main/docs/rules/no-conditional-expect.md
+ */
+export async function checkA11yErrorFunc(func: CallableFunction, expectRuntimeError = false): Promise<void> {
+    let err = new Error();
+    try {
+        await func();
+    } catch (e) {
+        err = e as Error;
+    } finally {
+        if (expectRuntimeError) {
+            expect(err.message).toContain(axeRuntimeExceptionMsgPrefix);
+        } else {
+            checkA11yError(err);
+        }
+    }
+}
