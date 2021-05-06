@@ -42,7 +42,7 @@ describe('assertAccessible API', () => {
     it.each([
         // DOM to test, expected assertions, expected a11y violations
         [domWithNoA11yIssues, 1, 0],
-        [domWithA11yIssues, 4, a11yIssuesCount - 1],
+        [domWithA11yIssues, 4, a11yIssuesCount - 2],
     ])(
         'should use default document, ruleset, formatter when called with no args - expecting %# assertion',
         async (testDOM: string, expectedAssertions: number, expectedViolations: number) => {
