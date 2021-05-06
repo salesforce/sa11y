@@ -11,6 +11,7 @@ import { automaticCheck, registerSa11yAutomaticChecks } from '../src/automatic';
 import {
     beforeEachSetup,
     checkA11yError,
+    checkA11yErrorFunc,
     domWithA11yIssues,
     domWithNoA11yIssues,
     domWithNoA11yIssuesChildCount,
@@ -67,6 +68,8 @@ describe('automatic checks registration', () => {
 });
 
 describe('automatic checks call', () => {
+    // Note: cleanup required at end of test to prevent dom being checked again after
+    // the test as part of the afterEach automatic check hook
     beforeEach(beforeEachSetup);
 
     it('should not raise a11y issues for DOM without a11y issues', async () => {
@@ -76,11 +79,7 @@ describe('automatic checks call', () => {
 
     it('should raise a11y issues for DOM with a11y issues', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        expect.assertions(3);
-        // Note: cleanup required to prevent domWithA11yIssues being checked again after
-        // the test as part of the afterEach hook that was setup in the previous
-        // describe block
-        await automaticCheck({ cleanupAfterEach: true }).catch((e) => checkA11yError(e));
+        await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true }));
     });
 
     it.each([0, 1, 2, 3])(
@@ -92,11 +91,7 @@ describe('automatic checks call', () => {
             for (let i = 0; i < numNodesWithIssues; i++) {
                 document.body.innerHTML += `<a id="link-${i}" href="#"></a>`;
             }
-            expect.assertions(3);
-            // Note: cleanup required to prevent domWithA11yIssues being checked again after
-            // the test as part of the afterEach hook that was setup in the previous
-            // describe block
-            await automaticCheck({ cleanupAfterEach: true }).catch((e) => checkA11yError(e));
+            await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true }));
         }
     );
 
@@ -118,11 +113,11 @@ describe('automatic checks call', () => {
         // TODO (Refactor): extract out duplicated code to set dom, expect assertions and invoke automatic check
         document.body.innerHTML = domWithA11yIssues;
         // const opts = { cleanupAfterEach: false };
-        expect.assertions(3);
-        await automaticCheck().catch((e) => checkA11yError(e));
+        await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true }));
         // TODO (DEBUG): Following results in "Error running accessibility checks using axe: undefined"
         // Should not throw error for the same DOM with consolidation
         // document.body.innerHTML = domWithA11yIssues;
+        // await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true }));
         // expect(async () => await automaticCheck()).not.toThrow();
         // Should throw error again without consolidation
         // Note: cleanup required to prevent domWithA11yIssues being checked again after
