@@ -12,7 +12,7 @@ import { AxeResults } from '@sa11y/common';
 // class A11yResult {
 //     constructor(AxeResult) {}
 // }
-
+//
 // type RuleIdCssSelectorMap = Map<RuleID, CssSelectors>;
 
 /**
@@ -33,7 +33,8 @@ export class ConsolidatedResults {
      * @returns results that have not been added earlier
      */
     static add(results: AxeResults): AxeResults {
-        // TODO (refactor): multi-level loops could be inefficient - convert consolidated results to a map struct with faster lookup instead of looping over for each result?
+        // TODO (perf): convert consolidated results to a map struct with faster lookup
+        //  instead of multi-level looping over each result?
         const newResults: AxeResults = [];
         for (const result of results) {
             let unique = true;

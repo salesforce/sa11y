@@ -80,6 +80,9 @@ export class A11yError extends Error {
 
     /**
      * Throw error with formatted a11y violations
+     * @param violations - List of a11y violations
+     * @param consolidate - Filter our previously reported issues and report only new
+     *  issues which haven't been previously reported.
      */
     static checkAndThrow(violations: AxeResults, consolidate = false): void {
         if (consolidate) violations = ConsolidatedResults.add(violations);

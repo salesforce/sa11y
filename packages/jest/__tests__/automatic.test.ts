@@ -10,7 +10,6 @@ import * as automatic from '../src/automatic';
 import { automaticCheck, registerSa11yAutomaticChecks } from '../src/automatic';
 import {
     beforeEachSetup,
-    checkA11yError,
     checkA11yErrorFunc,
     domWithA11yIssues,
     domWithNoA11yIssues,
@@ -39,6 +38,7 @@ describe('automatic checks registration', () => {
         expect(registerAutomaticMock).toHaveBeenCalledWith({
             runAfterEach: false,
             cleanupAfterEach: false,
+            consolidateResults: false,
         });
     });
 
@@ -47,6 +47,20 @@ describe('automatic checks registration', () => {
         expect(registerAutomaticMock).toHaveBeenCalledWith({
             runAfterEach: true,
             cleanupAfterEach: false,
+            consolidateResults: true,
+        });
+    });
+
+    it('should not run when opted out with env vars', () => {
+        // TODO (debug): If this test is moved to last it fails even with process.env
+        //  cleanup after/before each test
+        process.env.SA11Y_AUTO = '';
+        process.env.SA11Y_CLEANUP = '';
+        setup();
+        expect(registerAutomaticMock).toHaveBeenCalledWith({
+            runAfterEach: false,
+            cleanupAfterEach: false,
+            consolidateResults: false,
         });
     });
 
@@ -56,6 +70,7 @@ describe('automatic checks registration', () => {
         expect(registerAutomaticMock).toHaveBeenCalledWith({
             runAfterEach: true,
             cleanupAfterEach: false,
+            consolidateResults: true,
         });
 
         process.env.SA11Y_CLEANUP = '1';
@@ -63,6 +78,7 @@ describe('automatic checks registration', () => {
         expect(registerAutomaticMock).toHaveBeenCalledWith({
             runAfterEach: true,
             cleanupAfterEach: true,
+            consolidateResults: true,
         });
     });
 });
@@ -109,6 +125,7 @@ describe('automatic checks call', () => {
         expect(document.body.childElementCount).toBe(domWithNoA11yIssuesChildCount);
     });
 
+    // eslint-disable-next-line jest/expect-expect
     it('should not raise error for duplicated issues', async () => {
         // TODO (Refactor): extract out duplicated code to set dom, expect assertions and invoke automatic check
         document.body.innerHTML = domWithA11yIssues;

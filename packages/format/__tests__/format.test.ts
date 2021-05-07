@@ -85,6 +85,6 @@ describe('a11y Results Formatter', () => {
         // Should not throw error for repeated violations with consolidation
         expect(() => A11yError.checkAndThrow(violations, true)).not.toThrow();
         // Should throw error for repeated violations without consolidation
-        expect(() => A11yError.checkAndThrow(violations)).toThrowErrorMatchingSnapshot();
+        expect(() => A11yError.checkAndThrow(violations, false)).toThrowErrorMatchingSnapshot();
     });
 });

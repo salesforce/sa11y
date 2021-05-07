@@ -31,14 +31,17 @@ describe('a11y results post-processing', () => {
         const violation = violations.pop();
         // Shouldn't add an individual duplicate violation
         expect(ConsolidatedResults.add([violation])).toHaveLength(0);
+
         // Shouldn't add modified violations (after a result is removed)
         expect(ConsolidatedResults.add(violations)).toHaveLength(0);
-        // Should add a result with diff id
+
+        // Should add the result copy with diff id
         const newViolationId = { ...violation }; // Create a copy
         newViolationId.id = 'nonExistentID';
         expect(ConsolidatedResults.add([newViolationId])).toHaveLength(1);
         expect(ConsolidatedResults.add([newViolationId])).toHaveLength(0);
-        // Let's add a CSS selector to the violation
+
+        // Should add the result copy with diff CSS selector
         expect(violation.nodes[0].target.length).toBeGreaterThan(0);
         const newViolationCss = JSON.parse(JSON.stringify(violation)) as typeof violation; // Create a copy
         // Copy should not get added as it is identical
