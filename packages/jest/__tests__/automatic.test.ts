@@ -90,8 +90,8 @@ describe('automatic checks registration', () => {
 });
 
 describe('automatic checks call', () => {
-    // Note: cleanup required at end of test to prevent dom being checked again after
-    // the test as part of the afterEach automatic check hook
+    // Note: cleanup required at end of each test to prevent dom being checked again
+    // after the test as part of the afterEach automatic check hook
     beforeEach(beforeEachSetup);
 
     it('should not raise a11y issues for DOM without a11y issues', async () => {
@@ -136,17 +136,11 @@ describe('automatic checks call', () => {
     it('should not raise error for duplicated issues', async () => {
         // TODO (Refactor): extract out duplicated code to set dom, expect assertions and invoke automatic check
         document.body.innerHTML = domWithA11yIssues;
-        // const opts = { cleanupAfterEach: false };
-        await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true }));
-        // TODO (DEBUG): Following results in "Error running accessibility checks using axe: undefined"
+        const opts = { cleanupAfterEach: false, consolidateResults: true };
+        await checkA11yErrorFunc(() => automaticCheck(opts));
         // Should not throw error for the same DOM with consolidation
-        // document.body.innerHTML = domWithA11yIssues;
-        // await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true }));
-        // expect(async () => await automaticCheck()).not.toThrow();
+        await checkA11yErrorFunc(() => automaticCheck(opts), false, true);
         // Should throw error again without consolidation
-        // Note: cleanup required to prevent domWithA11yIssues being checked again after
-        // the test as part of the afterEach hook that was setup in the previous
-        // describe block
-        // await automaticCheck({ cleanupAfterEach: true, consolidateResults: false }).catch((e) => checkA11yError(e));
+        await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true, consolidateResults: false }));
     });
 });

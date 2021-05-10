@@ -6,6 +6,12 @@ exports[`automatic checks call should not raise error for duplicated issues 1`] 
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
 `;
 
+exports[`automatic checks call should not raise error for duplicated issues 2`] = `
+"1 accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+`;
+
 exports[`automatic checks call should raise a11y issues for DOM with a11y issues 1`] = `
 "1 accessibility issues found
  * (link-name) Links must have discernible text: a
