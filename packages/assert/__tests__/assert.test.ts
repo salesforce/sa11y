@@ -63,7 +63,7 @@ describe('assertAccessible API', () => {
         document.body.innerHTML = domWithNoA11yIssues;
         const elem = document.getElementById(shadowDomID);
         expect(elem).toBeTruthy();
-        await assertAccessible(elem); // No error thrown
+        await checkA11yErrorFunc(() => assertAccessible(document), false, true);
     });
 
     it('should throw error with HTML element with a11y issues', async () => {
@@ -79,7 +79,11 @@ describe('assertAccessible API', () => {
         'should test audio without timing-out using src %#',
         async (source: string) => {
             document.body.innerHTML = `<audio src=${source}>Audio test</audio>`;
-            await assertAccessible(document, getA11yConfig(['audio-caption', 'no-autoplay-audio']));
+            await checkA11yErrorFunc(
+                () => assertAccessible(document, getA11yConfig(['audio-caption', 'no-autoplay-audio'])),
+                false,
+                true
+            );
         }
     );
 
@@ -87,7 +91,11 @@ describe('assertAccessible API', () => {
         'should test video without timing-out using src %#',
         async (source: string) => {
             document.body.innerHTML = `<video src=${source}>Video test</video>`;
-            await assertAccessible(document, getA11yConfig(['video-caption', 'no-autoplay-audio']));
+            await checkA11yErrorFunc(
+                () => assertAccessible(document, getA11yConfig(['video-caption', 'no-autoplay-audio'])),
+                false,
+                true
+            );
         }
     );
 });
