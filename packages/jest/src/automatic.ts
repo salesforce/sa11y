@@ -34,7 +34,6 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
  * @param opts - Options for automatic checks {@link AutoCheckOpts}
  */
 export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts): Promise<void> {
-    // TODO (refactor): take AutoCheckOpts instead of individual args ?
     const violations: AxeResults = [];
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);

@@ -18,13 +18,18 @@ import {
 import { ConsolidatedResults } from '@sa11y/format';
 
 describe('automatic checks registration', () => {
+    const PREV_ENV = process.env;
     afterAll(() => {
         jest.restoreAllMocks();
-        process.env.SA11Y_AUTO = '';
-        process.env.SA11Y_CLEANUP = '';
+        process.env = PREV_ENV; // Restore prev env
     });
 
-    beforeEach(() => ConsolidatedResults.clear());
+    beforeEach(() => {
+        // Reset process.env Ref: https://stackoverflow.com/a/48042799
+        jest.resetModules();
+        process.env = { ...PREV_ENV }; // Copy prev env
+        ConsolidatedResults.clear();
+    });
 
     const registerAutomaticMock = jest.spyOn(automatic, 'registerSa11yAutomaticChecks');
 
@@ -52,8 +57,9 @@ describe('automatic checks registration', () => {
     });
 
     it('should not run when opted out with env vars', () => {
-        // TODO (debug): If this test is moved to last it fails even with process.env
-        //  cleanup after/before each test
+        // TODO (debug): If this test is moved to after the next test it fails
+        //  even with process.env cleanup after/before each test or jest.isolateModules()
+        //  Use mocked-env pkg ?
         process.env.SA11Y_AUTO = '';
         process.env.SA11Y_CLEANUP = '';
         setup();
@@ -93,6 +99,7 @@ describe('automatic checks call', () => {
         await expect(automaticCheck()).resolves.not.toThrow();
     });
 
+    // eslint-disable-next-line jest/expect-expect
     it('should raise a11y issues for DOM with a11y issues', async () => {
         document.body.innerHTML = domWithA11yIssues;
         await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true }));
