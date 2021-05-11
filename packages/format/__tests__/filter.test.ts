@@ -5,16 +5,13 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { domWithA11yIssues } from '@sa11y/test-utils';
-import * as axe from 'axe-core';
 import { exceptionListFilter } from '../src';
 import { AxeResults } from '@sa11y/common';
+import { getViolations } from './format.test';
 
-let violations: AxeResults;
-
+let violations: AxeResults = [];
 beforeAll(async () => {
-    document.body.innerHTML = domWithA11yIssues;
-    violations = await axe.run(document).then((results) => results.violations);
+    violations = await getViolations();
 });
 
 describe('a11y results filter', () => {
@@ -62,7 +59,6 @@ describe('a11y results filter', () => {
         const filteredRuleIDs = filteredViolations.map((violation) => violation.id);
         expect(filteredRuleIDs).not.toContain(validRule);
         expect(ruleIDs).toContain(validRule);
-        // TODO (debug): Find why this causes the test to fail
-        // expect(ruleIDs.filter((RuleID) => RuleID === validRule)).toStrictEqual(filteredRuleIDs);
+        expect(ruleIDs.filter((ruleID) => ruleID !== validRule)).toStrictEqual(filteredRuleIDs);
     });
 });

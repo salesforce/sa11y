@@ -15,9 +15,8 @@ import { A11yError } from '@sa11y/format';
 export type AutoCheckOpts = {
     runAfterEach?: boolean;
     cleanupAfterEach?: boolean;
-    // TODO (feat): add support for result consolidation across all tests for a test run
-    //  and optional exclusion of selected tests
-    // consolidateResults?: boolean;
+    consolidateResults?: boolean;
+    // TODO (feat): add support for optional exclusion of selected tests
     // excludeTests?: string[];
 };
 
@@ -27,13 +26,14 @@ export type AutoCheckOpts = {
 const defaultAutoCheckOpts: AutoCheckOpts = {
     runAfterEach: true,
     cleanupAfterEach: true,
+    consolidateResults: true,
 };
 
 /**
  * Run accessibility check on each element node in the body using {@link toBeAccessible}
- * @param cleanup - boolean indicating if the DOM should be cleaned up after
+ * @param opts - Options for automatic checks {@link AutoCheckOpts}
  */
-export async function automaticCheck(cleanup = false): Promise<void> {
+export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts): Promise<void> {
     const violations: AxeResults = [];
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
@@ -50,8 +50,8 @@ export async function automaticCheck(cleanup = false): Promise<void> {
             currNode = walker.nextSibling();
         }
     } finally {
-        if (cleanup) document.body.innerHTML = ''; // remove non-element nodes
-        A11yError.checkAndThrow(violations);
+        if (opts.cleanupAfterEach) document.body.innerHTML = ''; // remove non-element nodes
+        A11yError.checkAndThrow(violations, opts.consolidateResults);
     }
 }
 
@@ -62,8 +62,11 @@ export async function automaticCheck(cleanup = false): Promise<void> {
 export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
     if (opts.runAfterEach) {
         console.log('♿ Registering sa11y checks to be run automatically after each test');
+        // TODO (feat): Add test path/name as key to consolidated results
+        // console.log('=>testPath', expect.getState().testPath);
+        // console.log('=>currentTestName', expect.getState().currentTestName);
         afterEach(async () => {
-            await automaticCheck(opts.cleanupAfterEach);
+            await automaticCheck(opts);
         });
     }
 }

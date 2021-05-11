@@ -21,15 +21,14 @@ export type Sa11yOpts = {
 };
 
 /**
- * Default options for automatic checks
+ * Default options for sa11y jest matcher
  */
-const defaultAutoCheckOpts: AutoCheckOpts = {
-    runAfterEach: false,
-    cleanupAfterEach: false,
-};
-
 const defaultSa11yOpts: Sa11yOpts = {
-    autoCheckOpts: defaultAutoCheckOpts,
+    autoCheckOpts: {
+        runAfterEach: false,
+        cleanupAfterEach: false,
+        consolidateResults: false,
+    },
 };
 
 /**
@@ -40,8 +39,10 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
     registerSa11yMatcher();
     // Set defaults from env vars
     const autoCheckOpts = opts.autoCheckOpts;
-    autoCheckOpts.runAfterEach = autoCheckOpts.runAfterEach || !!process.env.SA11Y_AUTO;
-    autoCheckOpts.cleanupAfterEach = autoCheckOpts.cleanupAfterEach || !!process.env.SA11Y_CLEANUP;
+    autoCheckOpts.runAfterEach ||= !!process.env.SA11Y_AUTO;
+    // Consolidate results if automatic checks is enabled
+    autoCheckOpts.consolidateResults ||= autoCheckOpts.runAfterEach;
+    autoCheckOpts.cleanupAfterEach ||= !!process.env.SA11Y_CLEANUP;
     registerSa11yAutomaticChecks(autoCheckOpts);
 }
 

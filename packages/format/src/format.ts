@@ -5,7 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { errMsgHeader, AxeResults } from '@sa11y/common';
+import { AxeResults, errMsgHeader } from '@sa11y/common';
+import { ConsolidatedResults } from './result';
 
 /**
  * Custom formatter to format a11y violations found by axe
@@ -77,7 +78,14 @@ export class A11yError extends Error {
         this.message = `${violations.length} ${A11yError.errMsgHeader}\n ${this.format()}`;
     }
 
-    static checkAndThrow(violations: AxeResults): void {
+    /**
+     * Throw error with formatted a11y violations
+     * @param violations - List of a11y violations
+     * @param consolidate - Filter our previously reported issues and report only new
+     *  issues which haven't been previously reported.
+     */
+    static checkAndThrow(violations: AxeResults, consolidate = false): void {
+        if (consolidate) violations = ConsolidatedResults.add(violations);
         if (violations.length > 0) {
             throw new A11yError(violations);
         }
@@ -102,7 +110,8 @@ export class A11yError extends Error {
             .map((violation) => {
                 return violation.nodes
                     .map((node) => {
-                        const selectors = node.target.join(', ');
+                        // Note: Use a separator that cannot be part of a CSS selector
+                        const selectors = node.target.join('; ');
                         const helpURL = violation.helpUrl.split('?')[0];
                         // TODO : Add wcag level or best practice tag to output ?
                         // const criteria = violation.tags.filter((tag) => tag.startsWith('wcag2a') || tag.startsWith('best'));
