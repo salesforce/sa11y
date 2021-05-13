@@ -22,4 +22,5 @@ module.exports = {
     testPathIgnorePatterns: [browserLibTestPath, integrationTestPath, wdioTestPath],
     // Direct Jest to read the jest config file from integration tests
     projects: ['<rootDir>', integrationTestPath],
+    reporters: ['default', '<rootDir>/CustomReporter.js'],
 };
