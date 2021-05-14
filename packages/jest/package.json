@@ -23,6 +23,7 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
+        "@jest/reporters": "26.6.2",
         "@sa11y/assert": "0.2.3",
         "@sa11y/format": "0.3.4",
         "@sa11y/preset-rules": "0.3.3",
