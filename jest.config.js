@@ -23,7 +23,4 @@ module.exports = {
     // Direct Jest to read the jest config file from integration tests
     projects: ['<rootDir>', integrationTestPath],
     reporters: ['default', '<rootDir>/packages/jest/dist/reporter.js'],
-    // Required onTestCaseResult is not triggered with default test runner in Jest v26
-    //  https://github.com/facebook/jest/issues/11405
-    testRunner: 'jest-circus/runner',
 };
