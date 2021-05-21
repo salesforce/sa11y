@@ -72,10 +72,13 @@ export function sortViolations(violations: AxeResults): void {
 export class A11yError extends Error {
     static readonly errMsgHeader = errMsgHeader;
 
-    constructor(readonly violations: AxeResults) {
+    constructor(readonly violations: AxeResults, opts: Partial<Options> = defaultOptions) {
         super(`${violations.length} ${A11yError.errMsgHeader}`);
         this.name = A11yError.name;
-        this.message = `${violations.length} ${A11yError.errMsgHeader}\n ${this.format()}`;
+        const options = Object.assign(Object.assign({}, defaultOptions), opts);
+        this.message = options.formatter
+            ? this.format(options)
+            : `${violations.length} ${A11yError.errMsgHeader}\n ${this.format()}`;
     }
 
     /**
@@ -83,12 +86,26 @@ export class A11yError extends Error {
      * @param violations - List of a11y violations
      * @param consolidate - Filter our previously reported issues and report only new
      *  issues which haven't been previously reported.
+     * @param opts - Options used for formatting a11y issues
      */
-    static checkAndThrow(violations: AxeResults, consolidate = false): void {
-        if (consolidate) violations = ConsolidatedResults.add(violations);
-        if (violations.length > 0) {
-            throw new A11yError(violations);
+    static checkAndThrow(violations: AxeResults, consolidate = false, opts: Partial<Options> = defaultOptions): void {
+        if (consolidate) {
+            violations = ConsolidatedResults.add(violations);
+            Error.stackTraceLimit = 0;
+            opts.formatter = opts.formatter ? opts.formatter : JSON.stringify;
         }
+        if (violations.length > 0) {
+            throw new A11yError(violations, opts);
+        }
+    }
+
+    /**
+     * Parse error message from failure message.
+     * @param errMsg - JSON serialized violations thrown with consolidated results
+     * from automatic checks.
+     */
+    static parse(errMsg: string): AxeResults {
+        return JSON.parse(errMsg.split(`${A11yError.name}: `)[1]) as AxeResults;
     }
 
     get length(): number {
