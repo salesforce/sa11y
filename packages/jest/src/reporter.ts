@@ -37,32 +37,33 @@ export default class Sa11yReporter implements Reporter {
 
     /**
      * Triggered after all tests have been executed.
+     * Aggregated Result contains Error objects thrown from tests in addition to
+     *  error messages. But only error messages are output by built-in json reporter.
      */
     onRunComplete(_contexts?: Set<Context>, results?: AggregatedResult): void {
-        if (results && results.numFailedTests > 0) {
-            results.testResults
-                .filter((testSuite) => testSuite.numFailingTests > 0)
-                .forEach((testSuite) => {
-                    testSuite.testResults
-                        .filter((testResult) => testResult.status === 'failed')
-                        .forEach((testResult) => {
-                            testResult.failureDetails.forEach((failure) => {
-                                let error = (failure as FailureDetail).error;
-                                // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
-                                if (error === undefined) error = failure as A11yError;
-                                if (error.name === A11yError.name) {
-                                    const violations = error.violations;
-                                    Sa11yReporter.violations.push(...violations);
-                                    Sa11yReporter.testCount += violations.length;
-                                }
-                            });
+        if (results?.numFailedTests === 0) return;
+        results?.testResults
+            .filter((testSuite) => testSuite.numFailingTests > 0)
+            .forEach((testSuite) => {
+                testSuite.testResults
+                    .filter((testResult) => testResult.status === 'failed')
+                    .forEach((testResult) => {
+                        testResult.failureDetails.forEach((failure) => {
+                            let error = (failure as FailureDetail).error;
+                            // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
+                            if (error === undefined) error = failure as A11yError;
+                            if (error.name === A11yError.name) {
+                                const violations = error.violations;
+                                Sa11yReporter.violations.push(...violations);
+                                Sa11yReporter.testCount += violations.length;
+                            }
                         });
-                });
+                    });
+            });
 
-            console.log('testCount', Sa11yReporter.testCount);
-            console.log('violations', Sa11yReporter.violations);
-            writeFileSync('sa11y.json', JSON.stringify(Sa11yReporter.violations, null, 2));
-        }
+        console.log('testCount', Sa11yReporter.testCount);
+        console.log('violations', Sa11yReporter.violations);
+        writeFileSync('sa11y.json', JSON.stringify(Sa11yReporter.violations, null, 2));
     }
 
     // Required methods in the Reporter interface - currently not being used in this reporter
