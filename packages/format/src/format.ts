@@ -72,15 +72,6 @@ export function sortViolations(violations: AxeResults): void {
 export class A11yError extends Error {
     static readonly errMsgHeader = errMsgHeader;
 
-    constructor(readonly violations: AxeResults, opts: Partial<Options> = defaultOptions) {
-        super(`${violations.length} ${A11yError.errMsgHeader}`);
-        this.name = A11yError.name;
-        const options = Object.assign(Object.assign({}, defaultOptions), opts);
-        this.message = options.formatter
-            ? this.format(options)
-            : `${violations.length} ${A11yError.errMsgHeader}\n ${this.format()}`;
-    }
-
     /**
      * Throw error with formatted a11y violations
      * @param violations - List of a11y violations
@@ -91,21 +82,18 @@ export class A11yError extends Error {
     static checkAndThrow(violations: AxeResults, consolidate = false, opts: Partial<Options> = defaultOptions): void {
         if (consolidate) {
             violations = ConsolidatedResults.add(violations);
+            // TODO (debug): Will this affect all errors globally?
             Error.stackTraceLimit = 0;
-            opts.formatter = opts.formatter ? opts.formatter : JSON.stringify;
         }
         if (violations.length > 0) {
             throw new A11yError(violations, opts);
         }
     }
 
-    /**
-     * Parse error message from failure message.
-     * @param errMsg - JSON serialized violations thrown with consolidated results
-     * from automatic checks.
-     */
-    static parse(errMsg: string): AxeResults {
-        return JSON.parse(errMsg.split(`${A11yError.name}: `)[1]) as AxeResults;
+    constructor(readonly violations: AxeResults, opts: Partial<Options> = defaultOptions) {
+        super(`${violations.length} ${A11yError.errMsgHeader}`);
+        this.name = A11yError.name;
+        this.message = `${violations.length} ${A11yError.errMsgHeader}\n ${this.format(opts)}`;
     }
 
     get length(): number {

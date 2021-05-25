@@ -13,6 +13,10 @@ import { writeFileSync } from 'fs';
 import { A11yResult } from '@sa11y/format/dist/result';
 import { Context } from '@jest/reporters/build/types';
 
+type FailureDetail = {
+    error?: A11yError;
+};
+
 /**
  * Custom Jest Reporter to output consolidated a11y issues as JSON file.
  * Notes:
@@ -44,13 +48,16 @@ export default class Sa11yReporter implements Reporter {
                 testSuite.testResults
                     .filter((testResult) => testResult.status === 'failed')
                     .forEach((testResult) => {
-                        testResult.failureMessages
-                            .filter((failure) => failure.startsWith(A11yError.name))
-                            .forEach((errMsg) => {
-                                const violations = A11yError.parse(errMsg);
+                        testResult.failureDetails.forEach((failure) => {
+                            let error = (failure as FailureDetail).error;
+                            // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
+                            if (error === undefined) error = failure as A11yError;
+                            if (error.name === A11yError.name) {
+                                const violations = error.violations;
                                 Sa11yReporter.violations.push(...violations);
                                 Sa11yReporter.testCount += violations.length;
-                            });
+                            }
+                        });
                     });
             });
 
