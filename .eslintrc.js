@@ -56,6 +56,7 @@ module.exports = {
                 templateFile: 'license-header.txt',
             },
         ],
+        '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
         '@typescript-eslint/naming-convention': 'error',
         'tsdoc/syntax': 'warn',
         'prefer-arrow-callback': 'warn',
