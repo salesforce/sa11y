@@ -7,11 +7,9 @@
 
 import { Reporter, ReporterOnStartOptions } from '@jest/reporters';
 import { AggregatedResult } from '@jest/test-result/build/types';
-import { A11yError } from '@sa11y/format';
-import { AxeResults } from '@sa11y/common';
-import { writeFileSync } from 'fs';
-import { A11yResult } from '@sa11y/format/dist/result';
 import { Context } from '@jest/reporters/build/types';
+import { A11yError, ConsolidatedResults } from '@sa11y/format';
+import { writeFileSync } from 'fs';
 
 type FailureDetail = {
     error?: A11yError;
@@ -31,10 +29,6 @@ type FailureDetail = {
  *  https://github.com/facebook/jest/issues/11405
  */
 export default class Sa11yReporter implements Reporter {
-    static testCount = 0;
-    static violations: AxeResults = [];
-    static consolidated = new Map<string, Map<string, A11yResult>>();
-
     /**
      * Triggered after all tests have been executed.
      * Aggregated Result contains Error objects thrown from tests in addition to
@@ -53,17 +47,15 @@ export default class Sa11yReporter implements Reporter {
                             // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
                             if (error === undefined) error = failure as A11yError;
                             if (error.name === A11yError.name) {
-                                const violations = error.violations;
-                                Sa11yReporter.violations.push(...violations);
-                                Sa11yReporter.testCount += violations.length;
+                                ConsolidatedResults.convert(error.violations, testSuite.testFilePath);
                             }
                         });
                     });
             });
 
-        console.log('testCount', Sa11yReporter.testCount);
-        console.log('violations', Sa11yReporter.violations);
-        writeFileSync('sa11y.json', JSON.stringify(Sa11yReporter.violations, null, 2));
+        // TODO (refactor): Remove hard-coded file name with configurable name
+        //  from reporter options
+        writeFileSync('sa11y.json', JSON.stringify(ConsolidatedResults.a11yResults, null, 2));
     }
 
     // Required methods in the Reporter interface - currently not being used in this reporter

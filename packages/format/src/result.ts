@@ -25,24 +25,28 @@ export type A11yResult = {
     testNames: string[];
 };
 
-export type A11yResults = A11yResult[];
-
 /**
  * Consolidate unique a11y violations by removing duplicates.
  */
 export class ConsolidatedResults {
-    // static consolidatedMap = new Map<string, A11yResult>();
+    static a11yResults: Record<string, A11yResult[]> = {};
     static consolidatedMap = new Map<string, axe.Result>();
 
     static clear(): void {
         this.consolidatedMap.clear();
     }
 
-    static convert(results: AxeResults): A11yResults {
-        const a11yResults: A11yResults = [];
+    /**
+     * Convert and consolidate given a11y results based on given key
+     */
+    // TODO(refactor): Merge with ConsolidatedResults.add()
+    static convert(results: AxeResults, key = ''): void {
+        const a11yResults = ConsolidatedResults.a11yResults;
+        // Initialize if key doesn't exist
+        if (!Array.isArray(a11yResults[key])) a11yResults[key] = [];
         for (const result of results) {
             for (const node of result.nodes) {
-                a11yResults.push(<A11yResult>{
+                a11yResults[key].push(<A11yResult>{
                     // TODO (refactor): Reuse A11yResult for A11yError.format()
                     id: result.id,
                     // Note: Use a separator that cannot be part of a CSS selector
@@ -55,7 +59,6 @@ export class ConsolidatedResults {
                 });
             }
         }
-        return a11yResults;
     }
 
     /**
