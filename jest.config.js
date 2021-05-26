@@ -8,6 +8,7 @@
 const browserLibTestPath = '<rootDir>/packages/browser-lib';
 const integrationTestPath = '<rootDir>/packages/test-integration';
 const wdioTestPath = '<rootDir>/packages/wdio';
+const reporterConfig = { outputFile: 'sa11y_results.json' };
 
 module.exports = {
     coverageThreshold: {
@@ -22,5 +23,5 @@ module.exports = {
     testPathIgnorePatterns: [browserLibTestPath, integrationTestPath, wdioTestPath],
     // Direct Jest to read the jest config file from integration tests
     projects: ['<rootDir>', integrationTestPath],
-    reporters: ['default', '<rootDir>/packages/jest/dist/reporter.js'],
+    reporters: ['default', ['<rootDir>/packages/jest/dist/reporter.js', reporterConfig]],
 };

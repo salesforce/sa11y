@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { Reporter, ReporterOnStartOptions } from '@jest/reporters';
+import { Config, Reporter, ReporterOnStartOptions } from '@jest/reporters';
 import { AggregatedResult } from '@jest/test-result/build/types';
 import { Context } from '@jest/reporters/build/types';
 import { A11yError, ConsolidatedResults } from '@sa11y/format';
@@ -13,6 +13,14 @@ import { writeFileSync } from 'fs';
 
 type FailureDetail = {
     error?: A11yError;
+};
+
+type Options = {
+    outputFile: string;
+};
+
+const defaultOpts: Options = {
+    outputFile: 'sa11y_results.json',
 };
 
 /**
@@ -29,6 +37,10 @@ type FailureDetail = {
  *  https://github.com/facebook/jest/issues/11405
  */
 export default class Sa11yReporter implements Reporter {
+    constructor(_globalConfig: Config.GlobalConfig, private options: Options) {
+        this.options = { ...defaultOpts, ...options };
+    }
+
     /**
      * Triggered after all tests have been executed.
      * Aggregated Result contains Error objects thrown from tests in addition to
@@ -53,9 +65,8 @@ export default class Sa11yReporter implements Reporter {
                     });
             });
 
-        // TODO (refactor): Remove hard-coded file name with configurable name
-        //  from reporter options
-        writeFileSync('sa11y.json', JSON.stringify(ConsolidatedResults.a11yResults, null, 2));
+        writeFileSync(this.options.outputFile, JSON.stringify(ConsolidatedResults.a11yResults, null, 2));
+        console.log(`${Sa11yReporter.name} results written to`, this.options.outputFile);
     }
 
     // Required methods in the Reporter interface - currently not being used in this reporter
