@@ -5,11 +5,12 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { Config, Reporter, ReporterOnStartOptions } from '@jest/reporters';
-import { AggregatedResult } from '@jest/test-result/build/types';
+import { Config, Reporter, ReporterOnStartOptions, TestResult } from '@jest/reporters';
+import { AggregatedResult, AssertionResult } from '@jest/test-result/build/types';
 import { Context } from '@jest/reporters/build/types';
 import { A11yError, ConsolidatedResults } from '@sa11y/format';
 import { writeFileSync } from 'fs';
+import xml from 'xml';
 
 type FailureDetail = {
     error?: A11yError;
@@ -17,10 +18,14 @@ type FailureDetail = {
 
 type Options = {
     outputFile: string;
+    outputFormat: 'json' | 'xml';
+    suiteName: string;
 };
 
 const defaultOpts: Options = {
-    outputFile: 'sa11y_results.json',
+    outputFile: 'sa11y_results',
+    outputFormat: 'json',
+    suiteName: 'sa11y-accessibility-failures',
 };
 
 /**
@@ -41,32 +46,87 @@ export default class Sa11yReporter implements Reporter {
         this.options = { ...defaultOpts, ...options };
     }
 
+    initXmlResults(results: AggregatedResult) {
+        return {
+            testsuite: [
+                {
+                    _attr: {
+                        name: this.options.suiteName,
+                        failures: results.numFailedTests,
+                        errors: results.numRuntimeErrorTestSuites,
+                        tests: results.numTotalTests,
+                    },
+                },
+            ],
+        };
+    }
+
+    initTestCaseResult(testSuite: TestResult, testResult: AssertionResult) {
+        return {
+            testcase: [
+                {
+                    _attr: {
+                        classname: testSuite.testFilePath,
+                        name: testResult.fullName.replace(/ /g, '_'),
+                    },
+                },
+            ],
+        };
+    }
+
+    addTestFailure(testResult: AssertionResult) {
+        const errMsg = testResult.failureMessages[0];
+        const firstLineErrMsg = errMsg.substring(0, errMsg.indexOf('\n'));
+        return {
+            failure: [
+                {
+                    _attr: {
+                        message: firstLineErrMsg,
+                    },
+                },
+                errMsg,
+            ],
+        };
+    }
+
     /**
      * Triggered after all tests have been executed.
-     * Aggregated Result contains Error objects thrown from tests in addition to
-     *  error messages. But only error messages are output by built-in json reporter.
+     * Results are aggregated from Error objects thrown from tests.
      */
     onRunComplete(_contexts?: Set<Context>, results?: AggregatedResult): void {
-        if (results?.numFailedTests === 0) return;
+        if (results === undefined || results.numFailedTests === 0) return;
+
+        const xmlResults = this.initXmlResults(results);
         results?.testResults
             .filter((testSuite) => testSuite.numFailingTests > 0)
             .forEach((testSuite) => {
                 testSuite.testResults
                     .filter((testResult) => testResult.status === 'failed')
                     .forEach((testResult) => {
+                        const xmlTestCaseResult = this.initTestCaseResult(testSuite, testResult);
                         testResult.failureDetails.forEach((failure) => {
                             let error = (failure as FailureDetail).error;
                             // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
                             if (error === undefined) error = failure as A11yError;
                             if (error.name === A11yError.name) {
                                 ConsolidatedResults.convert(error.violations, testSuite.testFilePath);
+                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                // @ts-ignore TS2345: Argument of type is not assignable to parameter of type ...
+                                xmlTestCaseResult.testcase.push(this.addTestFailure(testResult));
                             }
                         });
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        xmlResults.testsuite.push(xmlTestCaseResult);
                     });
             });
 
-        writeFileSync(this.options.outputFile, JSON.stringify(ConsolidatedResults.a11yResults, null, 2));
-        console.log(`${Sa11yReporter.name} results written to`, this.options.outputFile);
+        const outputFile = `${this.options.outputFile}.${this.options.outputFormat}`;
+        if (this.options.outputFormat === 'json') writeFileSync(outputFile, JSON.stringify(xmlResults, null, 2));
+
+        if (this.options.outputFormat === 'xml') writeFileSync(outputFile, xml(xmlResults, { indent: ' ' }));
+
+        console.log(`${Sa11yReporter.name} results written to`, outputFile);
     }
 
     // Required methods in the Reporter interface - currently not being used in this reporter

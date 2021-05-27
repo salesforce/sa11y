@@ -8,7 +8,7 @@
 const browserLibTestPath = '<rootDir>/packages/browser-lib';
 const integrationTestPath = '<rootDir>/packages/test-integration';
 const wdioTestPath = '<rootDir>/packages/wdio';
-const reporterConfig = { outputFile: 'sa11y_results.json' };
+const reporterConfig = { outputFile: 'sa11y_results', outputFormat: 'xml' };
 
 module.exports = {
     coverageThreshold: {
