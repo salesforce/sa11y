@@ -25,21 +25,34 @@ export function resultsProcessor(results: AggregatedResult): AggregatedResult {
     results.testResults
         .filter((testSuite) => testSuite.numFailingTests > 0)
         .forEach((testSuite) => {
-            const sa11yTestSuite = { ...testSuite };
-            sa11yTestSuite.testResults = [];
+            const sa11yTestSuite = { ...testSuite }; // Duplicate test suite
+            sa11yTestSuite.testResults = []; // Clear existing test results
             testSuite.testResults
                 .filter((testResult) => testResult.status === 'failed')
                 .forEach((testResult) => {
                     testResult.failureDetails.forEach((failure) => {
+                        // TODO (refactor): Move following block into its own function
                         let error = (failure as FailureDetail).error;
                         // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
                         if (error === undefined) error = failure as A11yError;
                         if (error.name === A11yError.name) {
-                            sa11yTestSuite.testResults.push(testResult);
+                            // TODO : What happens if ever there are multiple failureDetails? Are there ever?
+                            sa11yTestSuite.testResults.push({ ...testResult });
+                            // Don't report the failure twice
+                            testResult.status = 'disabled';
+                            testResult.failureMessages = [];
+                            testResult.failureDetails = [];
+                            // Suites with only a11y errors should be marked as passed
+                            testSuite.numFailingTests -= 1;
+                            // TODO (fix): Remove sa11y msg from test suite message
+                            //  ANSI codes and test names in suite message makes it difficult
+                            testSuite.failureMessage = '';
                         }
                     });
                 });
-            if (sa11yTestSuite.testResults.length > 0) sa11yResults.push(sa11yTestSuite);
+            if (sa11yTestSuite.testResults.length > 0) {
+                sa11yResults.push(sa11yTestSuite);
+            }
         });
 
     results.testResults.push(...sa11yResults);
