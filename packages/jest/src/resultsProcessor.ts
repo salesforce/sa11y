@@ -4,13 +4,35 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { AggregatedResult } from '@jest/test-result/build/types';
+import { AggregatedResult, AssertionResult } from '@jest/test-result/build/types';
 import { TestResult } from '@jest/reporters';
 import { A11yError } from '@sa11y/format';
 
 type FailureDetail = {
     error?: A11yError;
 };
+
+function addTestResult(testResult: AssertionResult, testSuite: TestResult, sa11yTestSuite: TestResult) {
+    testResult.failureDetails.forEach((failure) => {
+        // TODO (refactor): Move following block into its own function
+        let error = (failure as FailureDetail).error;
+        // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
+        if (error === undefined) error = failure as A11yError;
+        if (error.name === A11yError.name) {
+            // TODO : What happens if ever there are multiple failureDetails? Are there ever?
+            sa11yTestSuite.testResults.push({ ...testResult });
+            // Don't report the failure twice
+            testResult.status = 'disabled';
+            testResult.failureMessages = [];
+            testResult.failureDetails = [];
+            // Suites with only a11y errors should be marked as passed
+            testSuite.numFailingTests -= 1;
+            // TODO (fix): Remove sa11y msg from test suite message
+            //  ANSI codes and test names in suite message makes it difficult
+            testSuite.failureMessage = '';
+        }
+    });
+}
 
 /**
  * Custom results processor for a11y results. Only affects JSON results file output.
@@ -25,31 +47,13 @@ export function resultsProcessor(results: AggregatedResult): AggregatedResult {
     results.testResults
         .filter((testSuite) => testSuite.numFailingTests > 0)
         .forEach((testSuite) => {
-            const sa11yTestSuite = { ...testSuite }; // Duplicate test suite
-            sa11yTestSuite.testResults = []; // Clear existing test results
+            // Copy test suite meta-data and clear test results
+            const sa11yTestSuite = { ...testSuite, testResults: [] };
+
             testSuite.testResults
                 .filter((testResult) => testResult.status === 'failed')
-                .forEach((testResult) => {
-                    testResult.failureDetails.forEach((failure) => {
-                        // TODO (refactor): Move following block into its own function
-                        let error = (failure as FailureDetail).error;
-                        // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
-                        if (error === undefined) error = failure as A11yError;
-                        if (error.name === A11yError.name) {
-                            // TODO : What happens if ever there are multiple failureDetails? Are there ever?
-                            sa11yTestSuite.testResults.push({ ...testResult });
-                            // Don't report the failure twice
-                            testResult.status = 'disabled';
-                            testResult.failureMessages = [];
-                            testResult.failureDetails = [];
-                            // Suites with only a11y errors should be marked as passed
-                            testSuite.numFailingTests -= 1;
-                            // TODO (fix): Remove sa11y msg from test suite message
-                            //  ANSI codes and test names in suite message makes it difficult
-                            testSuite.failureMessage = '';
-                        }
-                    });
-                });
+                .forEach((testResult) => addTestResult(testResult, testSuite, sa11yTestSuite));
+
             if (sa11yTestSuite.testResults.length > 0) {
                 sa11yResults.push(sa11yTestSuite);
             }
