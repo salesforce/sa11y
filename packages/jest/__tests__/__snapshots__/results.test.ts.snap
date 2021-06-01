@@ -466,11 +466,10 @@ Fix any of the following:
           "duration": 54,
           "failureDetails": Array [],
           "failureMessages": Array [
-            "Accessibility issue found: Links must have discernible text
- Help: https://dequeuniversity.com/rules/axe/4.1/link-name
+            "accessibility issues found: Links must have discernible text
  CSS Selectors: \\"a\\"
- Tests: \\"automatic checks call should not raise error for duplicated issues\\"
- More info: https://sfdc.co/a11y-jest",
+ Help: https://dequeuniversity.com/rules/axe/4.1/link-name
+ Tests: \\"automatic checks call should not raise error for duplicated issues\\"",
           ],
           "fullName": "a",
           "location": null,

@@ -8,7 +8,7 @@ import { AggregatedResult, AssertionResult, SerializableError } from '@jest/test
 import { TestResult } from '@jest/reporters';
 import { A11yError } from '@sa11y/format';
 import { buildFailureTestResult } from '@jest/test-result';
-import { AxeResults } from '@sa11y/common';
+import { AxeResults, errMsgHeader } from '@sa11y/common';
 
 type FailureDetail = {
     error?: A11yError;
@@ -53,16 +53,15 @@ function convertA11yTestResult(testSuite: TestResult, testResult: AssertionResul
             if (!consolidatedErrors.has(suiteKey)) consolidatedErrors.set(suiteKey, []);
             consolidatedErrors.get(suiteKey)?.push({
                 ...testResult,
-                fullName: `${a11yError.target[0]}`, // CSS Selector
+                fullName: `${a11yError.target[0]}`, // First CSS Selector
                 failureMessages: [
-                    `Accessibility issue found: ${violation.help}
- Help: ${violation.helpUrl.split('?')[0]}
+                    `${errMsgHeader}: ${violation.help}
  CSS Selectors: "${a11yError.target.join('; ')}"
- Tests: "${testResult.fullName}"
- More info: https://sfdc.co/a11y-jest`,
+ Help: ${violation.helpUrl.split('?')[0]}
+ Tests: "${testResult.fullName}"`,
                 ],
-                failureDetails: [],
-                ancestorTitles: [...new Set(testResult.ancestorTitles).add(testResult.fullName)],
+                failureDetails: [], // We don't need them anymore
+                ancestorTitles: [...new Set(testResult.ancestorTitles).add(testResult.fullName)], // Add all test's having the same a11y issue
             } as AssertionResult);
         });
     });
