@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WCAG Metadata extractor should format WCAG metadata when required data is present (arg:["wcag2a"]) 1`] = `"WCAG-2.0-Level-A SC-best-practice"`;
+exports[`WCAG Metadata extractor should format WCAG metadata when required data is present (arg:["wcag2a"]) 1`] = `"WCAG-2.0-Level-A best-practice"`;
 
-exports[`WCAG Metadata extractor should format WCAG metadata when required data is present (arg:["wcag21aaa"]) 1`] = `"WCAG-2.1-Level-AAA SC-best-practice"`;
+exports[`WCAG Metadata extractor should format WCAG metadata when required data is present (arg:["wcag21aaa"]) 1`] = `"WCAG-2.1-Level-AAA best-practice"`;
 
 exports[`WCAG Metadata extractor should format WCAG metadata when required data is present (arg:["wcag222", "wcag21aa"]) 1`] = `"WCAG-2.1-Level-AA SC-2.2.2"`;
 
