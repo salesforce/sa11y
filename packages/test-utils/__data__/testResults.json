@@ -1,0 +1,347 @@
+{
+    "numFailedTestSuites": 1,
+    "numFailedTests": 3,
+    "numPassedTestSuites": 0,
+    "numPassedTests": 12,
+    "numPendingTestSuites": 0,
+    "numPendingTests": 0,
+    "numRuntimeErrorTestSuites": 0,
+    "numTodoTests": 0,
+    "numTotalTestSuites": 1,
+    "numTotalTests": 15,
+    "openHandles": [],
+    "snapshot": {
+        "added": 0,
+        "didUpdate": false,
+        "failure": false,
+        "filesAdded": 0,
+        "filesRemoved": 0,
+        "filesRemovedList": [],
+        "filesUnmatched": 0,
+        "filesUpdated": 0,
+        "matched": 5,
+        "total": 5,
+        "unchecked": 0,
+        "uncheckedKeysByFile": [],
+        "unmatched": 0,
+        "updated": 0
+    },
+    "startTime": 1622493935568,
+    "success": false,
+    "testResults": [
+        {
+            "leaks": false,
+            "numFailingTests": 3,
+            "numPassingTests": 12,
+            "numPendingTests": 0,
+            "numTodoTests": 0,
+            "openHandles": [],
+            "perfStats": {
+                "end": 1622493938167,
+                "runtime": 1724,
+                "slow": false,
+                "start": 1622493936443
+            },
+            "skipped": false,
+            "snapshot": {
+                "added": 0,
+                "fileDeleted": false,
+                "matched": 5,
+                "unchecked": 0,
+                "unmatched": 0,
+                "updated": 0,
+                "uncheckedKeys": []
+            },
+            "testFilePath": "/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/__tests__/automatic.test.ts",
+            "testResults": [
+                {
+                    "ancestorTitles": ["automatic checks registration"],
+                    "duration": 23,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks registration should run when called directly without setup",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should run when called directly without setup"
+                },
+                {
+                    "ancestorTitles": ["automatic checks registration"],
+                    "duration": 2,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks registration should not run by default via setup",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should not run by default via setup"
+                },
+                {
+                    "ancestorTitles": ["automatic checks registration"],
+                    "duration": 6,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks registration should run when opted in via setup",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should run when opted in via setup"
+                },
+                {
+                    "ancestorTitles": ["automatic checks registration"],
+                    "duration": 2,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks registration should not run when opted out with env vars",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should not run when opted out with env vars"
+                },
+                {
+                    "ancestorTitles": ["automatic checks registration"],
+                    "duration": 4,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks registration should run when opted in with env vars",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should run when opted in with env vars"
+                },
+                {
+                    "ancestorTitles": ["automatic checks call"],
+                    "duration": 242,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks call should not raise a11y issues for DOM without a11y issues",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should not raise a11y issues for DOM without a11y issues"
+                },
+                {
+                    "ancestorTitles": ["automatic checks call"],
+                    "duration": 41,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks call should raise a11y issues for DOM with a11y issues",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should raise a11y issues for DOM with a11y issues"
+                },
+                {
+                    "ancestorTitles": ["automatic checks call"],
+                    "duration": 34,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should raise consolidated a11y issues for DOM with multiple a11y issues"
+                },
+                {
+                    "ancestorTitles": ["automatic checks call"],
+                    "duration": 54,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should raise consolidated a11y issues for DOM with multiple a11y issues"
+                },
+                {
+                    "ancestorTitles": ["automatic checks call"],
+                    "duration": 72,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should raise consolidated a11y issues for DOM with multiple a11y issues"
+                },
+                {
+                    "ancestorTitles": ["automatic checks call"],
+                    "duration": 93,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should raise consolidated a11y issues for DOM with multiple a11y issues"
+                },
+                {
+                    "ancestorTitles": ["automatic checks call"],
+                    "duration": 3,
+                    "failureDetails": [
+                        {
+                            "actual": "",
+                            "error": {
+                                "matcherResult": {
+                                    "actual": 1,
+                                    "expected": 2,
+                                    "name": "toBe",
+                                    "pass": false
+                                }
+                            },
+                            "expected": "",
+                            "matcherName": "",
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                            "passed": false,
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m"
+                        }
+                    ],
+                    "failureMessages": [
+                        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m"
+                    ],
+                    "fullName": "automatic checks call should raise failure",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "failed",
+                    "title": "should raise failure"
+                },
+                {
+                    "ancestorTitles": ["automatic checks call"],
+                    "duration": 100,
+                    "failureDetails": [
+                        {
+                            "actual": "",
+                            "error": {
+                                "matcherResult": {
+                                    "actual": 1,
+                                    "expected": 2,
+                                    "name": "toBe",
+                                    "pass": false
+                                }
+                            },
+                            "expected": "",
+                            "matcherName": "",
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                            "passed": false,
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m"
+                        }
+                    ],
+                    "failureMessages": [
+                        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m1\u001b[39m"
+                    ],
+                    "fullName": "automatic checks call should cleanup DOM by default",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "failed",
+                    "title": "should cleanup DOM by default"
+                },
+                {
+                    "ancestorTitles": ["automatic checks call"],
+                    "duration": 191,
+                    "failureDetails": [],
+                    "failureMessages": [],
+                    "fullName": "automatic checks call should not cleanup DOM when opted out",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "passed",
+                    "title": "should not cleanup DOM when opted out"
+                },
+                {
+                    "ancestorTitles": ["automatic checks call"],
+                    "duration": 54,
+                    "failureDetails": [
+                        {
+                            "actual": "",
+                            "error": {
+                                "violations": [
+                                    {
+                                        "id": "link-name",
+                                        "impact": "serious",
+                                        "tags": [
+                                            "cat.name-role-value",
+                                            "wcag2a",
+                                            "wcag412",
+                                            "wcag244",
+                                            "section508",
+                                            "section508.22.a",
+                                            "ACT"
+                                        ],
+                                        "description": "Ensures links have discernible text",
+                                        "help": "Links must have discernible text",
+                                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/link-name?application=axeAPI",
+                                        "nodes": [
+                                            {
+                                                "any": [
+                                                    {
+                                                        "id": "has-visible-text",
+                                                        "data": null,
+                                                        "relatedNodes": [],
+                                                        "impact": "minor",
+                                                        "message": "Element does not have text that is visible to screen readers"
+                                                    },
+                                                    {
+                                                        "id": "aria-label",
+                                                        "data": null,
+                                                        "relatedNodes": [],
+                                                        "impact": "serious",
+                                                        "message": "aria-label attribute does not exist or is empty"
+                                                    },
+                                                    {
+                                                        "id": "aria-labelledby",
+                                                        "data": null,
+                                                        "relatedNodes": [],
+                                                        "impact": "serious",
+                                                        "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+                                                    },
+                                                    {
+                                                        "id": "non-empty-title",
+                                                        "data": {
+                                                            "messageKey": "noAttr"
+                                                        },
+                                                        "relatedNodes": [],
+                                                        "impact": "serious",
+                                                        "message": "Element has no title attribute"
+                                                    }
+                                                ],
+                                                "all": [],
+                                                "none": [
+                                                    {
+                                                        "id": "focusable-no-name",
+                                                        "data": null,
+                                                        "relatedNodes": [],
+                                                        "impact": "serious",
+                                                        "message": "Element is in tab order and does not have accessible text"
+                                                    }
+                                                ],
+                                                "impact": "serious",
+                                                "html": "<a href=\"#\"></a>",
+                                                "target": ["a"],
+                                                "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "name": "A11yError"
+                            },
+                            "expected": "",
+                            "matcherName": "",
+                            "message": "A11yError: 1 accessibility issues found\n * (link-name) Links must have discernible text: a\n\t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name",
+                            "passed": false,
+                            "stack": "A11yError: 1 accessibility issues found\n * (link-name) Links must have discernible text: a\n\t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+                        }
+                    ],
+                    "failureMessages": [
+                        "A11yError: 1 accessibility issues found\n * (link-name) Links must have discernible text: a\n\t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+                    ],
+                    "fullName": "automatic checks call should not raise error for duplicated issues",
+                    "location": null,
+                    "numPassingAsserts": 0,
+                    "status": "failed",
+                    "title": "should not raise error for duplicated issues"
+                }
+            ],
+            "failureMessage": "\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mautomatic checks call › should raise failure\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      Expected: \u001b[32m2\u001b[39m\u001b[22m\n\u001b[2m      Received: \u001b[31m1\u001b[39m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mautomatic checks call › should cleanup DOM by default\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      Expected: \u001b[32m2\u001b[39m\u001b[22m\n\u001b[2m      Received: \u001b[31m1\u001b[39m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mautomatic checks call › should not raise error for duplicated issues\u001b[39m\u001b[22m\n\n    A11yError: 1 accessibility issues found\n\u001b[2m\u001b[22m\n\u001b[2m       * (link-name) Links must have discernible text: a\u001b[22m\n\u001b[2m      \t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name\u001b[22m\n"
+        }
+    ],
+    "wasInterrupted": false
+}

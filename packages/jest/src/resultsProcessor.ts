@@ -70,16 +70,16 @@ function addTestResult(testResult: AssertionResult, testSuite: TestResult) {
  * Ref: https://jestjs.io/docs/configuration#testresultsprocessor-string
  *  - Mapping of AggregatedResult to JSON format to https://github.com/facebook/jest/blob/master/packages/jest-test-result/src/formatTestResults.ts
  */
-export function resultsProcessor(results: AggregatedResult): AggregatedResult {
+export default function resultsProcessor(results: AggregatedResult): AggregatedResult {
     // const sa11yResults = [] as TestResult[];
 
-    results.testResults
+    results.testResults // suite results
         .filter((testSuite) => testSuite.numFailingTests > 0)
         .forEach((testSuite) => {
             // Copy test suite meta-data and clear test results
             // const sa11yTestSuite = { ...testSuite, testResults: [] };
 
-            testSuite.testResults
+            testSuite.testResults // individual test results
                 .filter((testResult) => testResult.status === 'failed')
                 .forEach((testResult) => addTestResult(testResult, testSuite));
 
