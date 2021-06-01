@@ -4,11 +4,10 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { AggregatedResult, AssertionResult, SerializableError } from '@jest/test-result/build/types';
-import { TestResult } from '@jest/reporters';
-import { A11yError, WcagMetadata } from '@sa11y/format';
 import { buildFailureTestResult } from '@jest/test-result';
+import { AggregatedResult, AssertionResult, SerializableError, TestResult } from '@jest/test-result/build/types';
 import { AxeResults, errMsgHeader } from '@sa11y/common';
+import { A11yError, WcagMetadata } from '@sa11y/format';
 
 type FailureDetail = {
     error?: A11yError;

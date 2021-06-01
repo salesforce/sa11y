@@ -23,6 +23,7 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
+        "@jest/test-result": "26.6.2",
         "@sa11y/assert": "0.2.3",
         "@sa11y/format": "0.3.4",
         "@sa11y/preset-rules": "0.3.3",
@@ -34,7 +35,6 @@
     },
     "devDependencies": {
         "@jest/reporters": "26.6.2",
-        "@jest/test-result": "26.6.2",
         "@sa11y/common": "0.3.0",
         "@sa11y/test-utils": "0.4.0",
         "@types/xml": "1.0.5"
