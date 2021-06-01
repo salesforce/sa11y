@@ -14,14 +14,51 @@ type FailureDetail = {
     error?: A11yError;
 };
 
+type WcagLevel = 'A' | 'AA' | 'AAA' | undefined;
+type WcagVersion = '2.0' | '2.1' | undefined;
+/**
+ * Process given tags from a11y violations and return WCAG meta-data
+ * Ref: https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#axe-core-tags
+ */
+class WcagMetadata {
+    static readonly regExp = /^(wcag)(?<version_or_sc>\d+)(?<level>a*)$/;
+    public wcagLevel: WcagLevel;
+    public wcagVersion: WcagVersion;
+    public successCriteria = 'best-practice'; // Default SC for non-wcag rules
+    constructor(readonly tags: string[]) {
+        tags.forEach((tag) => {
+            const match = WcagMetadata.regExp.exec(tag);
+            if (match && match.groups) {
+                const level = match.groups.level;
+                // Tags starting with "wcag" can contain either wcag version and level
+                // or success criteria
+                if (level) {
+                    this.wcagLevel = level.toUpperCase() as WcagLevel;
+                    if (match.groups.version_or_sc === '2') {
+                        this.wcagVersion = '2.0'; // Add decimal for consistency
+                    } else {
+                        this.wcagVersion = match.groups.version_or_sc.split('').join('.') as WcagVersion;
+                    }
+                } else {
+                    this.successCriteria = match.groups.version_or_sc.split('').join('.');
+                }
+            }
+        });
+    }
+
+    /**
+     * Return formatted string containing WCAG version, level and SC
+     */
+    toString(): string {
+        if (!this.wcagVersion || !this.wcagLevel) {
+            throw new Error(`Unable to set WCAG version and level from given tags: ${this.tags.join(', ')}`);
+        }
+        return `WCAG-${this.wcagVersion}-Level-${this.wcagLevel} SC-${this.successCriteria}`;
+    }
+}
+
 // Map of test suite name to test results
 const consolidatedErrors = new Map<string, AssertionResult[]>();
-
-// suite.name = [Sa11y WCAG-`2.0`-Level-`A` SC-`1.1.1` `image-alt`]: `testSuite.testFilePath`
-// test.name = CSS Selectors[0]
-// test.failure.message =
-//  first line: Accessibility issue found:`description`
-//  rest: Help URL, CSS Selectors, List of tests `test.name`, Sa11y Help URL
 
 /**
  * Modify existing test suites, test results containing a11y errors after a11y errors
@@ -48,8 +85,10 @@ function convertA11yTestResult(testSuite: TestResult, testResult: AssertionResul
     modifyTestSuiteResults(testSuite, testResult);
 
     violations.forEach((violation) => {
+        const wcagMetaData = new WcagMetadata(violation.tags).toString();
         violation.nodes.forEach((a11yError) => {
-            const suiteKey = `[Sa11y ${violation.id}]: ${suiteName}`;
+            // TODO (refactor): Extract common code and reuse in regular a11y formatted error output
+            const suiteKey = `[Sa11y ${wcagMetaData} ${violation.id}]: ${suiteName}`;
             if (!consolidatedErrors.has(suiteKey)) consolidatedErrors.set(suiteKey, []);
             consolidatedErrors.get(suiteKey)?.push({
                 ...testResult,
@@ -91,6 +130,7 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
  *  - Mapping of AggregatedResult to JSON format to https://github.com/facebook/jest/blob/master/packages/jest-test-result/src/formatTestResults.ts
  */
 export default function resultsProcessor(results: AggregatedResult): AggregatedResult {
+    // TODO (refactor): Use map/filter to get results directly without global var
     results.testResults // suite results
         .filter((testSuite) => testSuite.numFailingTests > 0)
         .forEach((testSuite) => {

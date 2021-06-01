@@ -456,7 +456,7 @@ Fix any of the following:
       },
       "sourceMaps": Object {},
       "testExecError": [Error],
-      "testFilePath": "[Sa11y link-name]: automatic.test.ts",
+      "testFilePath": "[Sa11y WCAG-2.0-Level-A SC-2.4.4 link-name]: automatic.test.ts",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
