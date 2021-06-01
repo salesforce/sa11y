@@ -13,6 +13,7 @@ describe('Results Processor', () => {
     });
 
     it('should process test results as expected', () => {
+        // TODO (tests): Add more fine grained, targeted tests
         expect(resultsProcessor(aggregatedTestResults)).toMatchSnapshot();
     });
 });

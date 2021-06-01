@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WCAG Metadata extractor should format WCAG metadata when required data is present (arg:["wcag2a"]) 1`] = `"WCAG-2.0-Level-A SC-best-practice"`;
+
+exports[`WCAG Metadata extractor should format WCAG metadata when required data is present (arg:["wcag21aaa"]) 1`] = `"WCAG-2.1-Level-AAA SC-best-practice"`;
+
+exports[`WCAG Metadata extractor should format WCAG metadata when required data is present (arg:["wcag222", "wcag21aa"]) 1`] = `"WCAG-2.1-Level-AA SC-2.2.2"`;
+
+exports[`WCAG Metadata extractor should throw error when required data is not present (arg:["foo", "bar"]) 1`] = `"Unable to set WCAG version and level from given tags: foo, bar"`;
+
+exports[`WCAG Metadata extractor should throw error when required data is not present (arg:["wcag2foo", "wcag21bar"]) 1`] = `"Unable to set WCAG version and level from given tags: wcag2foo, wcag21bar"`;
+
+exports[`WCAG Metadata extractor should throw error when required data is not present (arg:["wcag222"]) 1`] = `"Unable to set WCAG version and level from given tags: wcag222"`;
+
+exports[`WCAG Metadata extractor should throw error when required data is not present (arg:[]) 1`] = `"Unable to set WCAG version and level from given tags: "`;
