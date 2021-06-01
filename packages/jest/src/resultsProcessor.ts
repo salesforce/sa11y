@@ -8,6 +8,7 @@ import { AggregatedResult, AssertionResult, SerializableError } from '@jest/test
 import { TestResult } from '@jest/reporters';
 import { A11yError } from '@sa11y/format';
 import { buildFailureTestResult } from '@jest/test-result';
+import { AxeResults } from '@sa11y/common';
 
 type FailureDetail = {
     error?: A11yError;
@@ -22,43 +23,63 @@ const consolidatedErrors = new Map<string, AssertionResult[]>();
 //  first line: Accessibility issue found:`description`
 //  rest: Help URL, CSS Selectors, List of tests `test.name`, Sa11y Help URL
 
-function addTestResult(testResult: AssertionResult, testSuite: TestResult) {
-    // const sa11yResults = [] as TestResult[];
-    // Copy test suite meta-data and clear test results
-    // const sa11yTestSuite = { ...testSuite, testResults: [] };
+/**
+ * Modify existing test suites, test results containing a11y errors after a11y errors
+ *  are extracted out into their own test suites and results
+ */
+function modifyTestSuiteResults(testSuite: TestResult, testResult: AssertionResult) {
+    // Don't report the failure twice
+    testResult.status = 'disabled';
+    // Suites with only a11y errors should be marked as passed
+    testSuite.numFailingTests -= 1;
+    // TODO (fix): Remove sa11y msg from test suite message
+    //  ANSI codes and test names in suite message makes it difficult
+    // testResult.failureMessages = [];
+    // testResult.failureDetails = [];
+    // testSuite.failureMessage = '';
+}
+
+/**
+ * Convert a11y violations from given Jest tests to A11y Test Results
+ */
+function convertA11yTestResult(testSuite: TestResult, testResult: AssertionResult, violations: AxeResults) {
     const suiteName = testSuite.testFilePath.substring(testSuite.testFilePath.lastIndexOf('/') + 1);
+
+    modifyTestSuiteResults(testSuite, testResult);
+
+    violations.forEach((violation) => {
+        violation.nodes.forEach((a11yError) => {
+            const suiteKey = `[Sa11y ${violation.id}]: ${suiteName}`;
+            if (!consolidatedErrors.has(suiteKey)) consolidatedErrors.set(suiteKey, []);
+            consolidatedErrors.get(suiteKey)?.push({
+                ...testResult,
+                fullName: `${a11yError.target[0]}`, // CSS Selector
+                failureMessages: [
+                    `Accessibility issue found: ${violation.help}
+ Help: ${violation.helpUrl.split('?')[0]}
+ CSS Selectors: "${a11yError.target.join('; ')}"
+ Tests: "${testResult.fullName}"
+ More info: https://sfdc.co/a11y-jest`,
+                ],
+                failureDetails: [],
+                ancestorTitles: [...new Set(testResult.ancestorTitles).add(testResult.fullName)],
+            } as AssertionResult);
+        });
+    });
+}
+
+/**
+ * Convert any a11y errors from test failures into their own test suite, results
+ */
+function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
     testResult.failureDetails.forEach((failure) => {
         let error = (failure as FailureDetail).error;
         // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
         if (error === undefined) error = failure as A11yError;
         if (error.name === A11yError.name) {
-            // TODO : What happens if ever there are multiple failureDetails? Are there ever?
-            error.violations.forEach((violation) => {
-                violation.nodes.forEach((a11yError) => {
-                    const suiteKey = `[Sa11y ${violation.id}]: ${suiteName}`;
-                    if (!consolidatedErrors.has(suiteKey)) consolidatedErrors.set(suiteKey, []);
-                    consolidatedErrors.get(suiteKey)?.push({
-                        ...testResult,
-                        fullName: `${a11yError.target[0]}`, // CSS Selector
-                        failureMessages: [
-                            `Accessibility issue found: ${violation.help}
- Help: ${violation.helpUrl.split('?')[0]}
- CSS Selectors: "${a11yError.target.join('; ')}"
- Tests: "${testResult.fullName}"
- More info: https://sfdc.co/a11y-jest`,
-                        ],
-                    });
-                });
-            });
-            // Don't report the failure twice
-            testResult.status = 'disabled';
-            // Suites with only a11y errors should be marked as passed
-            testSuite.numFailingTests -= 1;
-            // TODO (fix): Remove sa11y msg from test suite message
-            //  ANSI codes and test names in suite message makes it difficult
-            // testResult.failureMessages = [];
-            // testResult.failureDetails = [];
-            testSuite.failureMessage = '';
+            // TODO : What happens if there are ever multiple failureDetails?
+            //  Ideally there shouldn't be as test execution should be stopped on failure
+            convertA11yTestResult(testSuite, testResult, error.violations);
         }
     });
 }
@@ -71,24 +92,13 @@ function addTestResult(testResult: AssertionResult, testSuite: TestResult) {
  *  - Mapping of AggregatedResult to JSON format to https://github.com/facebook/jest/blob/master/packages/jest-test-result/src/formatTestResults.ts
  */
 export default function resultsProcessor(results: AggregatedResult): AggregatedResult {
-    // const sa11yResults = [] as TestResult[];
-
     results.testResults // suite results
         .filter((testSuite) => testSuite.numFailingTests > 0)
         .forEach((testSuite) => {
-            // Copy test suite meta-data and clear test results
-            // const sa11yTestSuite = { ...testSuite, testResults: [] };
-
             testSuite.testResults // individual test results
                 .filter((testResult) => testResult.status === 'failed')
-                .forEach((testResult) => addTestResult(testResult, testSuite));
-
-            // if (sa11yTestSuite.testResults.length > 0) {
-            //     sa11yResults.push(sa11yTestSuite);
-            // }
+                .forEach((testResult) => processA11yErrors(testSuite, testResult));
         });
-
-    // results.testResults.push(...sa11yResults);
 
     consolidatedErrors.forEach((testResults, suiteKey) => {
         const sa11ySuite = buildFailureTestResult(suiteKey, new Error() as SerializableError);

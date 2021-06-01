@@ -33,7 +33,27 @@ Object {
   "success": false,
   "testResults": Array [
     Object {
-      "failureMessage": "",
+      "failureMessage": "[1m[31m  [1m● [22m[1mautomatic checks call › should raise failure[39m[22m
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+[2m[22m
+[2m      Expected: [32m2[39m[22m
+[2m      Received: [31m1[39m[22m
+
+[1m[31m  [1m● [22m[1mautomatic checks call › should cleanup DOM by default[39m[22m
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+[2m[22m
+[2m      Expected: [32m2[39m[22m
+[2m      Received: [31m1[39m[22m
+
+[1m[31m  [1m● [22m[1mautomatic checks call › should not raise error for duplicated issues[39m[22m
+
+    A11yError: 1 accessibility issues found
+[2m[22m
+[2m       * (link-name) Links must have discernible text: a[22m
+[2m      	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name[22m
+",
       "leaks": false,
       "numFailingTests": 2,
       "numPassingTests": 12,
@@ -202,7 +222,9 @@ Object {
           "title": "should raise consolidated a11y issues for DOM with multiple a11y issues",
         },
         Object {
-          "ancestorTitles": Array [],
+          "ancestorTitles": Array [
+            "automatic checks call",
+          ],
           "duration": 3,
           "failureDetails": Array [
             Object {
@@ -241,7 +263,9 @@ Received: [31m1[39m",
           "title": "should raise failure",
         },
         Object {
-          "ancestorTitles": Array [],
+          "ancestorTitles": Array [
+            "automatic checks call",
+          ],
           "duration": 100,
           "failureDetails": Array [
             Object {
@@ -294,7 +318,7 @@ Received: [31m1[39m",
         },
         Object {
           "ancestorTitles": Array [
-            "automatic checks call should not raise error for duplicated issues",
+            "automatic checks call",
           ],
           "duration": 54,
           "failureDetails": Array [
@@ -436,103 +460,11 @@ Fix any of the following:
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
+            "automatic checks call",
             "automatic checks call should not raise error for duplicated issues",
           ],
           "duration": 54,
-          "failureDetails": Array [
-            Object {
-              "actual": "",
-              "error": Object {
-                "name": "A11yError",
-                "violations": Array [
-                  Object {
-                    "description": "Ensures links have discernible text",
-                    "help": "Links must have discernible text",
-                    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/link-name?application=axeAPI",
-                    "id": "link-name",
-                    "impact": "serious",
-                    "nodes": Array [
-                      Object {
-                        "all": Array [],
-                        "any": Array [
-                          Object {
-                            "data": null,
-                            "id": "has-visible-text",
-                            "impact": "minor",
-                            "message": "Element does not have text that is visible to screen readers",
-                            "relatedNodes": Array [],
-                          },
-                          Object {
-                            "data": null,
-                            "id": "aria-label",
-                            "impact": "serious",
-                            "message": "aria-label attribute does not exist or is empty",
-                            "relatedNodes": Array [],
-                          },
-                          Object {
-                            "data": null,
-                            "id": "aria-labelledby",
-                            "impact": "serious",
-                            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                            "relatedNodes": Array [],
-                          },
-                          Object {
-                            "data": Object {
-                              "messageKey": "noAttr",
-                            },
-                            "id": "non-empty-title",
-                            "impact": "serious",
-                            "message": "Element has no title attribute",
-                            "relatedNodes": Array [],
-                          },
-                        ],
-                        "failureSummary": "Fix all of the following:
-  Element is in tab order and does not have accessible text
-
-Fix any of the following:
-  Element does not have text that is visible to screen readers
-  aria-label attribute does not exist or is empty
-  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-  Element has no title attribute",
-                        "html": "<a href=\\"#\\"></a>",
-                        "impact": "serious",
-                        "none": Array [
-                          Object {
-                            "data": null,
-                            "id": "focusable-no-name",
-                            "impact": "serious",
-                            "message": "Element is in tab order and does not have accessible text",
-                            "relatedNodes": Array [],
-                          },
-                        ],
-                        "target": Array [
-                          "a",
-                        ],
-                      },
-                    ],
-                    "tags": Array [
-                      "cat.name-role-value",
-                      "wcag2a",
-                      "wcag412",
-                      "wcag244",
-                      "section508",
-                      "section508.22.a",
-                      "ACT",
-                    ],
-                  },
-                ],
-              },
-              "expected": "",
-              "matcherName": "",
-              "message": "A11yError: 1 accessibility issues found
- * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name",
-              "passed": false,
-              "stack": "A11yError: 1 accessibility issues found
- * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name",
-            },
-          ],
+          "failureDetails": Array [],
           "failureMessages": Array [
             "Accessibility issue found: Links must have discernible text
  Help: https://dequeuniversity.com/rules/axe/4.1/link-name
@@ -543,7 +475,7 @@ Fix any of the following:
           "fullName": "a",
           "location": null,
           "numPassingAsserts": 0,
-          "status": "failed",
+          "status": "disabled",
           "title": "should not raise error for duplicated issues",
         },
       ],
