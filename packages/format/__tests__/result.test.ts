@@ -7,6 +7,16 @@
 import { ConsolidatedResults } from '../src';
 import { getViolations } from './format.test';
 import { AxeResults } from '@sa11y/common';
+import { A11yResult } from '../src/result';
+
+const a11yIssues = [
+    { impact: undefined },
+    { impact: undefined },
+    { impact: 'moderate' },
+    { impact: 'minor' },
+    { impact: 'critical' },
+    { impact: 'critical' },
+] as AxeResults;
 
 let violations: AxeResults = [];
 beforeAll(async () => {
@@ -14,7 +24,17 @@ beforeAll(async () => {
 });
 beforeEach(() => ConsolidatedResults.clear());
 
-describe('a11y results post-processing', () => {
+describe('a11y results processing', () => {
+    it('should sort a11y issues by impact', () => {
+        A11yResult.sort(a11yIssues);
+        expect(a11yIssues[0].impact).toEqual('critical');
+        expect(a11yIssues[1].impact).toEqual('critical');
+        expect(a11yIssues[2].impact).toEqual('moderate');
+        expect(a11yIssues[3].impact).toBeUndefined(); // Sort by "defaultImpact"
+        expect(a11yIssues[4].impact).toBeUndefined();
+        expect(a11yIssues[5].impact).toEqual('minor');
+    });
+
     it('should consolidate violations', () => {
         expect(violations.length).toBeGreaterThan(0);
         expect(ConsolidatedResults.add(violations)).toHaveLength(violations.length);

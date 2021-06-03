@@ -7,18 +7,8 @@
 
 import * as axe from 'axe-core';
 import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
-import { A11yError, sortViolations } from '../src/format';
 import { AxeResults } from '@sa11y/common';
-import { ConsolidatedResults } from '../src';
-
-const a11yIssues = [
-    { impact: undefined },
-    { impact: undefined },
-    { impact: 'moderate' },
-    { impact: 'minor' },
-    { impact: 'critical' },
-    { impact: 'critical' },
-] as AxeResults;
+import { A11yError, ConsolidatedResults } from '../src';
 
 async function getA11yError(dom: string): Promise<A11yError> {
     document.body.innerHTML = dom;
@@ -56,16 +46,6 @@ describe('a11y Results Formatter', () => {
             expect((await getA11yError(domWithA11yIssues)).format(formatOptions)).toMatchSnapshot();
         }
     );
-
-    it('should sort a11y issues by impact', () => {
-        sortViolations(a11yIssues);
-        expect(a11yIssues[0].impact).toEqual('critical');
-        expect(a11yIssues[1].impact).toEqual('critical');
-        expect(a11yIssues[2].impact).toEqual('moderate');
-        expect(a11yIssues[3].impact).toBeUndefined(); // Sort by "defaultImpact"
-        expect(a11yIssues[4].impact).toBeUndefined();
-        expect(a11yIssues[5].impact).toEqual('minor');
-    });
 
     it('should not throw error when no violations are present', async () => {
         const a11yError = await getA11yError(domWithNoA11yIssues);

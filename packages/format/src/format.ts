@@ -44,28 +44,6 @@ const defaultOptions: Options = {
     highlighter: (text: string): string => text,
 };
 
-const defaultImpact = 'minor'; // if impact is undefined
-// Helper object to sort violations by impact order
-const impactOrder = {
-    critical: 1,
-    serious: 2,
-    moderate: 3,
-    minor: 4,
-};
-
-/**
- * Sorts give a11y results from axe in order of impact
- */
-export function sortViolations(violations: AxeResults): void {
-    violations.sort((a, b) => {
-        const aImpact = impactOrder[a.impact || defaultImpact];
-        const bImpact = impactOrder[b.impact || defaultImpact];
-        if (aImpact < bImpact) return -1;
-        if (aImpact > bImpact) return 1;
-        return 0;
-    });
-}
-
 /**
  *  Custom error object to represent a11y violations
  */
