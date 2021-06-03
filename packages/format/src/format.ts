@@ -70,8 +70,6 @@ export function sortViolations(violations: AxeResults): void {
  *  Custom error object to represent a11y violations
  */
 export class A11yError extends Error {
-    static readonly errMsgHeader = errMsgHeader;
-
     /**
      * Throw error with formatted a11y violations
      * @param violations - List of a11y violations
@@ -91,9 +89,9 @@ export class A11yError extends Error {
     }
 
     constructor(readonly violations: AxeResults, opts: Partial<Options> = defaultOptions) {
-        super(`${violations.length} ${A11yError.errMsgHeader}`);
+        super(`${violations.length} ${errMsgHeader}`);
         this.name = A11yError.name;
-        this.message = `${violations.length} ${A11yError.errMsgHeader}\n ${this.format(opts)}`;
+        this.message = `${violations.length} ${errMsgHeader}\n ${this.format(opts)}`;
     }
 
     get length(): number {
