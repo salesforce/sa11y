@@ -5,25 +5,64 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { AxeResults } from '@sa11y/common';
-import { ImpactValue } from 'axe-core';
+import { NodeResult, Result } from 'axe-core';
 import * as axe from 'axe-core';
+import { WcagMetadata } from './wcag';
+
+const defaultImpact = 'minor'; // if impact is undefined
+// Helper object to sort violations by impact order
+const impactOrder = {
+    critical: 1,
+    serious: 2,
+    moderate: 3,
+    minor: 4,
+};
 
 /**
  * Filtered a11y result containing essential info about the a11y failure
  */
-export type A11yResult = {
-    id: string;
-    selectors: string;
-    description: string;
-    helpUrl: string;
-    impact: ImpactValue;
+export class A11yResult {
+    public readonly id: string;
+    public readonly selectors: string;
+    public readonly description: string;
+    public readonly helpUrl: string;
     // TODO: Add WCAG levels to sort rule
-    wcagVersion: number; // TODO: convert to enum
-    wcagLevel: string; // TODO: convert to enum
-    wcagSC: string;
-    testPath: string;
-    testNames: string[];
-};
+    public readonly wcag: WcagMetadata;
+    // public readonly testPath: string;
+    // public readonly testNames: string[];
+
+    /**
+     * Normalize and flatten a11y violations from Axe
+     */
+    static convert(violations: AxeResults): A11yResult[] {
+        return A11yResult.sort(violations).flatMap((violation) => {
+            return violation.nodes.map((node) => {
+                return new A11yResult(violation, node);
+            });
+        });
+    }
+
+    /**
+     * Sorts give a11y violations from axe in order of impact
+     */
+    static sort(violations: AxeResults): AxeResults {
+        return violations.sort((a, b) => {
+            const aImpact = impactOrder[a.impact || defaultImpact];
+            const bImpact = impactOrder[b.impact || defaultImpact];
+            if (aImpact < bImpact) return -1;
+            if (aImpact > bImpact) return 1;
+            return 0;
+        });
+    }
+
+    constructor(violation: Result, node: NodeResult) {
+        this.id = violation.id;
+        this.description = violation.help;
+        this.wcag = new WcagMetadata(violation.tags);
+        this.helpUrl = violation.helpUrl.split('?')[0];
+        this.selectors = node.target.sort().join('; ');
+    }
+}
 
 /**
  * Consolidate unique a11y violations by removing duplicates.
@@ -41,24 +80,24 @@ export class ConsolidatedResults {
      */
     // TODO(refactor): Merge with ConsolidatedResults.add()
     static convert(results: AxeResults, key = ''): void {
-        const a11yResults = ConsolidatedResults.a11yResults;
-        // Initialize if key doesn't exist
-        if (!Array.isArray(a11yResults[key])) a11yResults[key] = [];
-        for (const result of results) {
-            for (const node of result.nodes) {
-                a11yResults[key].push(<A11yResult>{
-                    // TODO (refactor): Reuse A11yResult for A11yError.format()
-                    id: result.id,
-                    // Note: Use a separator that cannot be part of a CSS selector
-                    selectors: node.target.sort().join('; '),
-                    description: result.help,
-                    helpUrl: result.helpUrl.split('?')[0],
-                    impact: result.impact,
-                    // TODO : Add wcag level or best practice tag to output ?
-                    // const criteria = violation.tags.filter((tag) => tag.startsWith('wcag2a') || tag.startsWith('best'));
-                });
-            }
-        }
+        // const a11yResults = ConsolidatedResults.a11yResults;
+        // // Initialize if key doesn't exist
+        // if (!Array.isArray(a11yResults[key])) a11yResults[key] = [];
+        // for (const result of results) {
+        //     for (const node of result.nodes) {
+        //         a11yResults[key].push(<A11yResult>{
+        //             // TODO (refactor): Reuse A11yResult for A11yError.format()
+        //             id: result.id,
+        //             // Note: Use a separator that cannot be part of a CSS selector
+        //             selectors: node.target.sort().join('; '),
+        //             description: result.help,
+        //             helpUrl: result.helpUrl.split('?')[0],
+        //             impact: result.impact,
+        //             // TODO : Add wcag level or best practice tag to output ?
+        //             // const criteria = violation.tags.filter((tag) => tag.startsWith('wcag2a') || tag.startsWith('best'));
+        //         });
+        //     }
+        // }
     }
 
     /**

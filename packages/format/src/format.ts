@@ -6,7 +6,7 @@
  */
 
 import { AxeResults, errMsgHeader } from '@sa11y/common';
-import { ConsolidatedResults } from './result';
+import { A11yResult, ConsolidatedResults } from './result';
 
 /**
  * Custom formatter to format a11y violations found by axe
@@ -70,6 +70,8 @@ export function sortViolations(violations: AxeResults): void {
  *  Custom error object to represent a11y violations
  */
 export class A11yError extends Error {
+    public readonly a11yResults;
+
     /**
      * Throw error with formatted a11y violations
      * @param violations - List of a11y violations
@@ -81,7 +83,7 @@ export class A11yError extends Error {
         if (consolidate) {
             violations = ConsolidatedResults.add(violations);
             // TODO (debug): Will this affect all errors globally?
-            Error.stackTraceLimit = 0;
+            // Error.stackTraceLimit = 0;
         }
         if (violations.length > 0) {
             throw new A11yError(violations, opts);
@@ -91,6 +93,7 @@ export class A11yError extends Error {
     constructor(readonly violations: AxeResults, opts: Partial<Options> = defaultOptions) {
         super(`${violations.length} ${errMsgHeader}`);
         this.name = A11yError.name;
+        this.a11yResults = A11yResult.convert(this.violations);
         this.message = `${violations.length} ${errMsgHeader}\n ${this.format(opts)}`;
     }
 
@@ -108,24 +111,13 @@ export class A11yError extends Error {
             return options.formatter(this.violations);
         }
 
-        sortViolations(this.violations);
-        return this.violations
-            .map((violation) => {
-                return violation.nodes
-                    .map((node) => {
-                        // Note: Use a separator that cannot be part of a CSS selector
-                        const selectors = node.target.join('; ');
-                        const helpURL = violation.helpUrl.split('?')[0];
-                        // TODO : Add wcag level or best practice tag to output ?
-                        // const criteria = violation.tags.filter((tag) => tag.startsWith('wcag2a') || tag.startsWith('best'));
-
-                        return (
-                            options.highlighter(
-                                `${options.a11yViolationIndicator} (${violation.id}) ${violation.help}: ${selectors}`
-                            ) + `\n\t${options.helpUrlIndicator} Help URL: ${helpURL}`
-                        );
-                    })
-                    .join('\n\n');
+        return this.a11yResults
+            .map((a11yResult) => {
+                return (
+                    options.highlighter(
+                        `${options.a11yViolationIndicator} (${a11yResult.id}) ${a11yResult.description}: ${a11yResult.selectors}`
+                    ) + `\n\t${options.helpUrlIndicator} Help URL: ${a11yResult.helpUrl}`
+                );
             })
             .join('\n\n');
     }
