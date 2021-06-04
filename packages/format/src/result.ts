@@ -24,6 +24,7 @@ const impactOrder = {
 export class A11yResult {
     public readonly id: string;
     public readonly selectors: string;
+    public readonly html: string;
     public readonly description: string;
     public readonly helpUrl: string;
     // TODO: Add WCAG levels to sort rule
@@ -61,6 +62,7 @@ export class A11yResult {
         this.wcag = new WcagMetadata(violation.tags);
         this.helpUrl = violation.helpUrl.split('?')[0];
         this.selectors = node.target.sort().join('; ');
+        this.html = node.html;
     }
 }
 

@@ -4,10 +4,9 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { ConsolidatedResults } from '../src';
+import { A11yResult, ConsolidatedResults } from '../src';
 import { getViolations } from './format.test';
 import { AxeResults } from '@sa11y/common';
-import { A11yResult } from '../src/result';
 
 const a11yIssues = [
     { impact: undefined },

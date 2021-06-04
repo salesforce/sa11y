@@ -6,8 +6,8 @@
  */
 import { buildFailureTestResult } from '@jest/test-result';
 import { AggregatedResult, AssertionResult, SerializableError, TestResult } from '@jest/test-result/build/types';
-import { AxeResults, errMsgHeader } from '@sa11y/common';
-import { A11yError, WcagMetadata } from '@sa11y/format';
+import { errMsgHeader } from '@sa11y/common';
+import { A11yError, A11yResult } from '@sa11y/format';
 
 type FailureDetail = {
     error?: A11yError;
@@ -35,30 +35,28 @@ function modifyTestSuiteResults(testSuite: TestResult, testResult: AssertionResu
 /**
  * Convert a11y violations from given Jest tests to A11y Test Results
  */
-function convertA11yTestResult(testSuite: TestResult, testResult: AssertionResult, violations: AxeResults) {
+function convertA11yTestResult(testSuite: TestResult, testResult: AssertionResult, a11yResults: A11yResult[]) {
     const suiteName = testSuite.testFilePath.substring(testSuite.testFilePath.lastIndexOf('/') + 1);
 
     modifyTestSuiteResults(testSuite, testResult);
 
-    violations.forEach((violation) => {
-        const wcagMetaData = new WcagMetadata(violation.tags).toString();
-        violation.nodes.forEach((a11yError) => {
-            // TODO (refactor): Extract common code and reuse in regular a11y formatted error output
-            const suiteKey = `[Sa11y ${wcagMetaData} ${violation.id}]: ${suiteName}`;
-            if (!consolidatedErrors.has(suiteKey)) consolidatedErrors.set(suiteKey, []);
-            consolidatedErrors.get(suiteKey)?.push({
-                ...testResult,
-                fullName: `${a11yError.target[0]}`, // First CSS Selector
-                failureMessages: [
-                    `${errMsgHeader}: ${violation.help}
- CSS Selectors: "${a11yError.target.join('; ')}"
- Help: ${violation.helpUrl.split('?')[0]}
+    a11yResults.forEach((a11yResult) => {
+        // TODO (refactor): Extract common code and reuse in regular a11y formatted error output
+        const suiteKey = `[Sa11y ${a11yResult.wcag.toString()} ${a11yResult.id}]: ${suiteName}`;
+        if (!consolidatedErrors.has(suiteKey)) consolidatedErrors.set(suiteKey, []);
+        consolidatedErrors.get(suiteKey)?.push({
+            ...testResult,
+            fullName: `${a11yResult.description}`,
+            failureMessages: [
+                `${errMsgHeader}: ${a11yResult.description}
+ CSS Selectors: ${a11yResult.selectors}
+ HTML element: ${a11yResult.html}
+ Help: ${a11yResult.helpUrl}
  Tests: "${testResult.fullName}"`,
-                ],
-                failureDetails: [], // We don't need them anymore
-                ancestorTitles: [...new Set(testResult.ancestorTitles).add(testResult.fullName)], // Add all test's having the same a11y issue
-            } as AssertionResult);
-        });
+            ],
+            failureDetails: [], // We don't need them anymore
+            ancestorTitles: [...new Set(testResult.ancestorTitles).add(testResult.fullName)], // Add all test's having the same a11y issue
+        } as AssertionResult);
     });
 }
 
@@ -73,7 +71,7 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
         if (error.name === A11yError.name) {
             // TODO : What happens if there are ever multiple failureDetails?
             //  Ideally there shouldn't be as test execution should be stopped on failure
-            convertA11yTestResult(testSuite, testResult, error.violations);
+            convertA11yTestResult(testSuite, testResult, error.a11yResults);
         }
     });
 }
@@ -104,6 +102,7 @@ export default function resultsProcessor(results: AggregatedResult): AggregatedR
 
     consolidatedErrors.forEach((testResults, suiteKey) => {
         const sa11ySuite = buildFailureTestResult(suiteKey, new Error() as SerializableError);
+        // TODO : Increment failing test, suite counts at aggregate and suite level ?
         sa11ySuite.testResults = testResults;
         results.testResults.push(sa11ySuite);
     });

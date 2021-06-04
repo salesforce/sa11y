@@ -76,7 +76,7 @@ export class A11yError extends Error {
     }
 
     get length(): number {
-        return this.violations.length;
+        return this.a11yResults.length;
     }
 
     /**
