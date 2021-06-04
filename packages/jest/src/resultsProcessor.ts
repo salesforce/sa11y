@@ -86,6 +86,13 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
  *  - Mapping of AggregatedResult to JSON format to https://github.com/facebook/jest/blob/master/packages/jest-test-result/src/formatTestResults.ts
  */
 export default function resultsProcessor(results: AggregatedResult): AggregatedResult {
+    // Note: To re-generate test data when required (e.g. changes in A11yError)
+    //  uncomment the following lines to write output to file and run:
+    //  yarn jest --json --outputFile /tmp/jestOut.json --testResultsProcessor `pwd`/node_modules/@sa11y/jest/dist/resultsProcessor.js resultsProcessor.test.ts
+    //
+    // writeFileSync('/tmp/AggregatedResult.json', JSON.stringify(results, null, 2));
+    // return results;
+
     // TODO (refactor): Use map/filter to get results directly without global var
     results.testResults // suite results
         .filter((testSuite) => testSuite.numFailingTests > 0)
