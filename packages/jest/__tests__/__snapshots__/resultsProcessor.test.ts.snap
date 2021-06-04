@@ -1,0 +1,521 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Results Processor should process test results as expected 1`] = `
+Object {
+  "numFailedTestSuites": 1,
+  "numFailedTests": 3,
+  "numPassedTestSuites": 0,
+  "numPassedTests": 0,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 0,
+  "numRuntimeErrorTestSuites": 0,
+  "numTodoTests": 0,
+  "numTotalTestSuites": 1,
+  "numTotalTests": 3,
+  "openHandles": Array [],
+  "snapshot": Object {
+    "added": 0,
+    "didUpdate": false,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": Array [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": Array [],
+    "unmatched": 0,
+    "updated": 0,
+  },
+  "startTime": 1622770460154,
+  "success": false,
+  "testResults": Array [
+    Object {
+      "failureMessage": "[1m[31m  [1m● [22m[1mPrepare test data › with a11y failures[39m[22m
+
+    A11yError: 1 accessibility issues found
+     * (link-name) Links must have discernible text: a
+    	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+[2m[22m
+[2m    [0m [90m 65 |[39m         }[0m[22m
+[2m    [0m [90m 66 |[39m         [36mif[39m (violations[33m.[39mlength [33m>[39m [35m0[39m) {[0m[22m
+[2m    [0m[31m[1m>[22m[2m[39m[90m 67 |[39m             [36mthrow[39m [36mnew[39m [33mA11yError[39m(violations[33m,[39m opts)[33m;[39m[0m[22m
+[2m    [0m [90m    |[39m                   [31m[1m^[22m[2m[39m[0m[22m
+[2m    [0m [90m 68 |[39m         }[0m[22m
+[2m    [0m [90m 69 |[39m     }[0m[22m
+[2m    [0m [90m 70 |[39m[0m[22m
+[2m[22m
+[2m      [2mat Function.checkAndThrow ([22m[2mpackages/format/src/format.ts[2m:67:19)[22m[2m[22m
+[2m      [2mat automaticCheck ([22m[2mpackages/jest/src/automatic.ts[2m:54:19)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36mpackages/jest/__tests__/resultsProcessor.test.ts[39m[0m[2m:31:9)[22m[2m[22m
+
+[1m[31m  [1m● [22m[1mPrepare test data › with duplicate a11y failures to test consolidation[39m[22m
+
+    A11yError: 1 accessibility issues found
+     * (link-name) Links must have discernible text: a
+    	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+[2m[22m
+[2m    [0m [90m 65 |[39m         }[0m[22m
+[2m    [0m [90m 66 |[39m         [36mif[39m (violations[33m.[39mlength [33m>[39m [35m0[39m) {[0m[22m
+[2m    [0m[31m[1m>[22m[2m[39m[90m 67 |[39m             [36mthrow[39m [36mnew[39m [33mA11yError[39m(violations[33m,[39m opts)[33m;[39m[0m[22m
+[2m    [0m [90m    |[39m                   [31m[1m^[22m[2m[39m[0m[22m
+[2m    [0m [90m 68 |[39m         }[0m[22m
+[2m    [0m [90m 69 |[39m     }[0m[22m
+[2m    [0m [90m 70 |[39m[0m[22m
+[2m[22m
+[2m      [2mat Function.checkAndThrow ([22m[2mpackages/format/src/format.ts[2m:67:19)[22m[2m[22m
+[2m      [2mat automaticCheck ([22m[2mpackages/jest/src/automatic.ts[2m:54:19)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36mpackages/jest/__tests__/resultsProcessor.test.ts[39m[0m[2m:36:9)[22m[2m[22m
+
+[1m[31m  [1m● [22m[1mPrepare test data › with non-a11y failures[39m[22m
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m2[39m
+    Received: [31m1[39m
+[2m[22m
+[2m    [0m [90m 38 |[39m[0m[22m
+[2m    [0m [90m 39 |[39m     it([32m'with non-a11y failures'[39m[33m,[39m () [33m=>[39m {[0m[22m
+[2m    [0m[31m[1m>[22m[2m[39m[90m 40 |[39m         expect([35m1[39m)[33m.[39mtoBe([35m2[39m)[33m;[39m[0m[22m
+[2m    [0m [90m    |[39m                   [31m[1m^[22m[2m[39m[0m[22m
+[2m    [0m [90m 41 |[39m     })[33m;[39m[0m[22m
+[2m    [0m [90m 42 |[39m })[33m;[39m[0m[22m
+[2m    [0m [90m 43 |[39m [90m/* eslint-enable jest/no-commented-out-tests */[39m[0m[22m
+[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36mpackages/jest/__tests__/resultsProcessor.test.ts[39m[0m[2m:40:19)[22m[2m[22m
+",
+      "leaks": false,
+      "numFailingTests": 1,
+      "numPassingTests": 0,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "openHandles": Array [],
+      "perfStats": Object {
+        "end": 1622770462152,
+        "runtime": 1120,
+        "slow": false,
+        "start": 1622770461032,
+      },
+      "skipped": false,
+      "snapshot": Object {
+        "added": 0,
+        "fileDeleted": false,
+        "matched": 0,
+        "unchecked": 0,
+        "uncheckedKeys": Array [],
+        "unmatched": 0,
+        "updated": 0,
+      },
+      "testFilePath": "/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/__tests__/resultsProcessor.test.ts",
+      "testResults": Array [
+        Object {
+          "ancestorTitles": Array [
+            "Prepare test data",
+          ],
+          "duration": 148,
+          "failureDetails": Array [
+            Object {
+              "actual": "",
+              "error": Object {
+                "a11yResults": Array [
+                  Object {
+                    "description": "Links must have discernible text",
+                    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/link-name",
+                    "html": "<a href=\\"#\\"></a>",
+                    "id": "link-name",
+                    "selectors": "a",
+                    "wcag": Object {
+                      "successCriteria": "2.4.4",
+                      "tags": Array [
+                        "cat.name-role-value",
+                        "wcag2a",
+                        "wcag412",
+                        "wcag244",
+                        "section508",
+                        "section508.22.a",
+                        "ACT",
+                      ],
+                      "wcagLevel": "A",
+                      "wcagVersion": "2.0",
+                    },
+                  },
+                ],
+                "name": "A11yError",
+                "violations": Array [
+                  Object {
+                    "description": "Ensures links have discernible text",
+                    "help": "Links must have discernible text",
+                    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/link-name?application=axeAPI",
+                    "id": "link-name",
+                    "impact": "serious",
+                    "nodes": Array [
+                      Object {
+                        "all": Array [],
+                        "any": Array [
+                          Object {
+                            "data": null,
+                            "id": "has-visible-text",
+                            "impact": "minor",
+                            "message": "Element does not have text that is visible to screen readers",
+                            "relatedNodes": Array [],
+                          },
+                          Object {
+                            "data": null,
+                            "id": "aria-label",
+                            "impact": "serious",
+                            "message": "aria-label attribute does not exist or is empty",
+                            "relatedNodes": Array [],
+                          },
+                          Object {
+                            "data": null,
+                            "id": "aria-labelledby",
+                            "impact": "serious",
+                            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                            "relatedNodes": Array [],
+                          },
+                          Object {
+                            "data": Object {
+                              "messageKey": "noAttr",
+                            },
+                            "id": "non-empty-title",
+                            "impact": "serious",
+                            "message": "Element has no title attribute",
+                            "relatedNodes": Array [],
+                          },
+                        ],
+                        "failureSummary": "Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute",
+                        "html": "<a href=\\"#\\"></a>",
+                        "impact": "serious",
+                        "none": Array [
+                          Object {
+                            "data": null,
+                            "id": "focusable-no-name",
+                            "impact": "serious",
+                            "message": "Element is in tab order and does not have accessible text",
+                            "relatedNodes": Array [],
+                          },
+                        ],
+                        "target": Array [
+                          "a",
+                        ],
+                      },
+                    ],
+                    "tags": Array [
+                      "cat.name-role-value",
+                      "wcag2a",
+                      "wcag412",
+                      "wcag244",
+                      "section508",
+                      "section508.22.a",
+                      "ACT",
+                    ],
+                  },
+                ],
+              },
+              "expected": "",
+              "matcherName": "",
+              "message": "A11yError: 1 accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name",
+              "passed": false,
+              "stack": "A11yError: 1 accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+    at Function.checkAndThrow (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/format/src/format.ts:67:19)
+    at automaticCheck (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/src/automatic.ts:54:19)
+    at Object.<anonymous> (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/__tests__/resultsProcessor.test.ts:31:9)",
+            },
+          ],
+          "failureMessages": Array [
+            "A11yError: 1 accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+    at Function.checkAndThrow (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/format/src/format.ts:67:19)
+    at automaticCheck (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/src/automatic.ts:54:19)
+    at Object.<anonymous> (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/__tests__/resultsProcessor.test.ts:31:9)",
+          ],
+          "fullName": "Prepare test data with a11y failures",
+          "location": null,
+          "numPassingAsserts": 0,
+          "status": "disabled",
+          "title": "with a11y failures",
+        },
+        Object {
+          "ancestorTitles": Array [
+            "Prepare test data",
+          ],
+          "duration": 43,
+          "failureDetails": Array [
+            Object {
+              "actual": "",
+              "error": Object {
+                "a11yResults": Array [
+                  Object {
+                    "description": "Links must have discernible text",
+                    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/link-name",
+                    "html": "<a href=\\"#\\"></a>",
+                    "id": "link-name",
+                    "selectors": "a",
+                    "wcag": Object {
+                      "successCriteria": "2.4.4",
+                      "tags": Array [
+                        "cat.name-role-value",
+                        "wcag2a",
+                        "wcag412",
+                        "wcag244",
+                        "section508",
+                        "section508.22.a",
+                        "ACT",
+                      ],
+                      "wcagLevel": "A",
+                      "wcagVersion": "2.0",
+                    },
+                  },
+                ],
+                "name": "A11yError",
+                "violations": Array [
+                  Object {
+                    "description": "Ensures links have discernible text",
+                    "help": "Links must have discernible text",
+                    "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/link-name?application=axeAPI",
+                    "id": "link-name",
+                    "impact": "serious",
+                    "nodes": Array [
+                      Object {
+                        "all": Array [],
+                        "any": Array [
+                          Object {
+                            "data": null,
+                            "id": "has-visible-text",
+                            "impact": "minor",
+                            "message": "Element does not have text that is visible to screen readers",
+                            "relatedNodes": Array [],
+                          },
+                          Object {
+                            "data": null,
+                            "id": "aria-label",
+                            "impact": "serious",
+                            "message": "aria-label attribute does not exist or is empty",
+                            "relatedNodes": Array [],
+                          },
+                          Object {
+                            "data": null,
+                            "id": "aria-labelledby",
+                            "impact": "serious",
+                            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                            "relatedNodes": Array [],
+                          },
+                          Object {
+                            "data": Object {
+                              "messageKey": "noAttr",
+                            },
+                            "id": "non-empty-title",
+                            "impact": "serious",
+                            "message": "Element has no title attribute",
+                            "relatedNodes": Array [],
+                          },
+                        ],
+                        "failureSummary": "Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute",
+                        "html": "<a href=\\"#\\"></a>",
+                        "impact": "serious",
+                        "none": Array [
+                          Object {
+                            "data": null,
+                            "id": "focusable-no-name",
+                            "impact": "serious",
+                            "message": "Element is in tab order and does not have accessible text",
+                            "relatedNodes": Array [],
+                          },
+                        ],
+                        "target": Array [
+                          "a",
+                        ],
+                      },
+                    ],
+                    "tags": Array [
+                      "cat.name-role-value",
+                      "wcag2a",
+                      "wcag412",
+                      "wcag244",
+                      "section508",
+                      "section508.22.a",
+                      "ACT",
+                    ],
+                  },
+                ],
+              },
+              "expected": "",
+              "matcherName": "",
+              "message": "A11yError: 1 accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name",
+              "passed": false,
+              "stack": "A11yError: 1 accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+    at Function.checkAndThrow (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/format/src/format.ts:67:19)
+    at automaticCheck (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/src/automatic.ts:54:19)
+    at Object.<anonymous> (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/__tests__/resultsProcessor.test.ts:36:9)",
+            },
+          ],
+          "failureMessages": Array [
+            "A11yError: 1 accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+    at Function.checkAndThrow (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/format/src/format.ts:67:19)
+    at automaticCheck (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/src/automatic.ts:54:19)
+    at Object.<anonymous> (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/__tests__/resultsProcessor.test.ts:36:9)",
+          ],
+          "fullName": "Prepare test data with duplicate a11y failures to test consolidation",
+          "location": null,
+          "numPassingAsserts": 0,
+          "status": "disabled",
+          "title": "with duplicate a11y failures to test consolidation",
+        },
+        Object {
+          "ancestorTitles": Array [
+            "Prepare test data",
+          ],
+          "duration": 5,
+          "failureDetails": Array [
+            Object {
+              "actual": "",
+              "error": Object {
+                "matcherResult": Object {
+                  "actual": 1,
+                  "expected": 2,
+                  "name": "toBe",
+                  "pass": false,
+                },
+              },
+              "expected": "",
+              "matcherName": "",
+              "message": "Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+Expected: [32m2[39m
+Received: [31m1[39m",
+              "passed": false,
+              "stack": "Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+Expected: [32m2[39m
+Received: [31m1[39m
+    at Object.<anonymous> (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/__tests__/resultsProcessor.test.ts:40:19)
+    at Object.asyncJestTest (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+    at /Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+    at new Promise (<anonymous>)
+    at mapper (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+    at /Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/node_modules/jest-jasmine2/build/queueRunner.js:75:41",
+            },
+          ],
+          "failureMessages": Array [
+            "Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+Expected: [32m2[39m
+Received: [31m1[39m
+    at Object.<anonymous> (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/packages/jest/__tests__/resultsProcessor.test.ts:40:19)
+    at Object.asyncJestTest (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+    at /Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+    at new Promise (<anonymous>)
+    at mapper (/Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+    at /Users/mrajamanickam/src/a11y/sa11y/github.com/sa11y/node_modules/jest-jasmine2/build/queueRunner.js:75:41",
+          ],
+          "fullName": "Prepare test data with non-a11y failures",
+          "location": null,
+          "numPassingAsserts": 0,
+          "status": "failed",
+          "title": "with non-a11y failures",
+        },
+      ],
+    },
+    Object {
+      "console": undefined,
+      "displayName": undefined,
+      "failureMessage": null,
+      "leaks": false,
+      "numFailingTests": 0,
+      "numPassingTests": 0,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "openHandles": Array [],
+      "perfStats": Object {
+        "end": 0,
+        "runtime": 0,
+        "slow": false,
+        "start": 0,
+      },
+      "skipped": false,
+      "snapshot": Object {
+        "added": 0,
+        "fileDeleted": false,
+        "matched": 0,
+        "unchecked": 0,
+        "uncheckedKeys": Array [],
+        "unmatched": 0,
+        "updated": 0,
+      },
+      "sourceMaps": Object {},
+      "testExecError": [Error],
+      "testFilePath": "[Sa11y [object Object] link-name]: resultsProcessor.test.ts",
+      "testResults": Array [
+        Object {
+          "ancestorTitles": Array [
+            "Prepare test data",
+            "Prepare test data with a11y failures",
+          ],
+          "duration": 148,
+          "failureDetails": Array [],
+          "failureMessages": Array [
+            "accessibility issues found: Links must have discernible text
+ CSS Selectors: a
+ HTML element: <a href=\\"#\\"></a>
+ Help: https://dequeuniversity.com/rules/axe/4.1/link-name
+ Tests: \\"Prepare test data with a11y failures\\"",
+          ],
+          "fullName": "Links must have discernible text",
+          "location": null,
+          "numPassingAsserts": 0,
+          "status": "disabled",
+          "title": "with a11y failures",
+        },
+        Object {
+          "ancestorTitles": Array [
+            "Prepare test data",
+            "Prepare test data with duplicate a11y failures to test consolidation",
+          ],
+          "duration": 43,
+          "failureDetails": Array [],
+          "failureMessages": Array [
+            "accessibility issues found: Links must have discernible text
+ CSS Selectors: a
+ HTML element: <a href=\\"#\\"></a>
+ Help: https://dequeuniversity.com/rules/axe/4.1/link-name
+ Tests: \\"Prepare test data with duplicate a11y failures to test consolidation\\"",
+          ],
+          "fullName": "Links must have discernible text",
+          "location": null,
+          "numPassingAsserts": 0,
+          "status": "disabled",
+          "title": "with duplicate a11y failures to test consolidation",
+        },
+      ],
+    },
+  ],
+  "wasInterrupted": false,
+}
+`;
