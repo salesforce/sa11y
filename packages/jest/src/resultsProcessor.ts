@@ -17,47 +17,28 @@ type FailureDetail = {
 const consolidatedErrors = new Map<string, AssertionResult[]>();
 
 /**
- * Modify existing test suites, test results containing a11y errors after a11y errors
- *  are extracted out into their own test suites and results
+ * Create a test failure result for given a11y failure and add it to consolidated errors
  */
-function modifyTestSuiteResults(testSuite: TestResult, testResult: AssertionResult) {
-    // Don't report the failure twice
-    testResult.status = 'disabled';
-    // Suites with only a11y errors should be marked as passed
-    testSuite.numFailingTests -= 1;
-    // TODO (fix): Remove sa11y msg from test suite message
-    //  ANSI codes and test names in suite message makes it difficult
-    // testResult.failureMessages = [];
-    // testResult.failureDetails = [];
-    // testSuite.failureMessage = '';
-}
-
-/**
- * Convert a11y violations from given Jest tests to A11y Test Results
- */
-function convertA11yTestResult(testSuite: TestResult, testResult: AssertionResult, a11yResults: A11yResult[]) {
+function createA11yTestResult(testSuite: TestResult, testResult: AssertionResult, a11yResult: A11yResult) {
     const suiteName = testSuite.testFilePath.substring(testSuite.testFilePath.lastIndexOf('/') + 1);
-
-    modifyTestSuiteResults(testSuite, testResult);
-
-    a11yResults.forEach((a11yResult) => {
-        // TODO (refactor): Extract common code and reuse in regular a11y formatted error output
-        const suiteKey = `[Sa11y ${a11yResult.wcag.toString()} ${a11yResult.id}]: ${suiteName}`;
-        if (!consolidatedErrors.has(suiteKey)) consolidatedErrors.set(suiteKey, []);
-        consolidatedErrors.get(suiteKey)?.push({
-            ...testResult,
-            fullName: `${a11yResult.description}`,
-            failureMessages: [
-                `${errMsgHeader}: ${a11yResult.description}
- CSS Selectors: ${a11yResult.selectors}
+    const suiteKey = `[Sa11y ${a11yResult.wcag.toString()} ${a11yResult.id}]`;
+    if (!consolidatedErrors.has(suiteKey)) consolidatedErrors.set(suiteKey, []);
+    consolidatedErrors.get(suiteKey)?.push({
+        ...testResult,
+        fullName: `${suiteName}: ${a11yResult.css}`,
+        failureMessages: [
+            `${errMsgHeader}: ${a11yResult.description}
+ CSS Selectors: ${a11yResult.css}
  HTML element: ${a11yResult.html}
  Help: ${a11yResult.helpUrl}
+ Summary: ${a11yResult.summary}
  Tests: "${testResult.fullName}"`,
-            ],
-            failureDetails: [], // We don't need them anymore
-            ancestorTitles: [...new Set(testResult.ancestorTitles).add(testResult.fullName)], // Add all test's having the same a11y issue
-        } as AssertionResult);
-    });
+        ],
+        // We don't need the error objects anymore as they have been processed
+        failureDetails: [],
+        // Add all test's having the same a11y issue
+        ancestorTitles: [...new Set(testResult.ancestorTitles).add(testResult.fullName)],
+    } as AssertionResult);
 }
 
 /**
@@ -71,9 +52,32 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
         if (error.name === A11yError.name) {
             // TODO : What happens if there are ever multiple failureDetails?
             //  Ideally there shouldn't be as test execution should be stopped on failure
-            convertA11yTestResult(testSuite, testResult, error.a11yResults);
+            error.a11yResults.forEach((a11yResult) => {
+                createA11yTestResult(testSuite, testResult, a11yResult);
+            });
         }
     });
+}
+
+/**
+ * Modify existing test suites, test results containing a11y errors after a11y errors
+ *  are extracted out into their own test suites and results.
+ */
+function modifyTestSuiteResults(results: AggregatedResult, testSuite: TestResult, testResult: AssertionResult) {
+    // Don't report the failure twice
+    testResult.status = 'disabled';
+    // TODO (fix): Remove sa11y msg from test suite message
+    //  ANSI codes and test names in suite message makes it difficult
+    //  Removing error from test result doesn't affect test suite error msg
+    // testResult.failureMessages = [];
+    // testResult.failureDetails = [];
+    // testSuite.failureMessage = '';
+    // Suites with only a11y errors should be marked as passed
+    testSuite.numFailingTests -= 1;
+    results.numFailedTests -= 1;
+    if (testSuite.numFailingTests === 0) results.numFailedTestSuites -= 1;
+    // TODO(debug): Does 'success' represent only failed tests?
+    // if (results.numFailedTestSuites === 0) results.success = true;
 }
 
 /**
@@ -91,13 +95,16 @@ export default function resultsProcessor(results: AggregatedResult): AggregatedR
     // writeFileSync('/tmp/AggregatedResult.json', JSON.stringify(results, null, 2));
     // return results;
 
-    // TODO (refactor): Use map/filter to get results directly without global var
+    // TODO (refactor): Use map/filter to get results directly without global var for consolidated errors
     results.testResults // suite results
         .filter((testSuite) => testSuite.numFailingTests > 0)
         .forEach((testSuite) => {
             testSuite.testResults // individual test results
                 .filter((testResult) => testResult.status === 'failed')
-                .forEach((testResult) => processA11yErrors(testSuite, testResult));
+                .forEach((testResult) => {
+                    processA11yErrors(testSuite, testResult);
+                    modifyTestSuiteResults(results, testSuite, testResult);
+                });
         });
 
     consolidatedErrors.forEach((testResults, suiteKey) => {
