@@ -23,6 +23,25 @@ beforeAll(async () => {
 });
 beforeEach(() => ConsolidatedResults.clear());
 
+describe('a11y result', () => {
+    it('should be serializable', () => {
+        const deserializeResults = (a11yResults) => JSON.parse(JSON.stringify(a11yResults)) as A11yResult[];
+        const a11yResults = A11yResult.convert(violations);
+        expect(deserializeResults(a11yResults)).toEqual(a11yResults);
+
+        // Add a non-serializable property to A11yResult (E.g. a function)
+        a11yResults.map(
+            (a11yResult) =>
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore TS2339: Property 'foo' does not exist on type 'A11yResult'.
+                (a11yResult.foo = () => {
+                    return 'foo';
+                })
+        );
+        expect(deserializeResults(a11yResults)).not.toEqual(a11yResults);
+    });
+});
+
 describe('a11y results processing', () => {
     it('should sort a11y issues by impact', () => {
         A11yResult.sort(a11yIssues);

@@ -46,12 +46,22 @@ export class WcagMetadata {
     /**
      * Return formatted string containing WCAG version, level and SC
      */
-    toString(): string {
-        if (!this.wcagVersion || !this.wcagLevel) {
-            throw new Error(`Unable to set WCAG version and level from given tags: ${this.tags.join(', ')}`);
-        }
+    public toString(): string {
+        if (!this.wcagVersion || !this.wcagLevel) return '';
+
         const sc =
             this.successCriteria === WcagMetadata.defaultSC ? WcagMetadata.defaultSC : `SC-${this.successCriteria}`;
         return `WCAG-${this.wcagVersion}-Level-${this.wcagLevel} ${sc}`;
+    }
+
+    /**
+     * Wrapper over toString that throws error for missing properties.
+     * toString() cannot throw error as it is a basic Object method.
+     */
+    public format(): string {
+        const formattedStr = this.toString();
+        if (!formattedStr)
+            throw new Error(`Unable to set WCAG version and level from given tags: ${this.tags.join(', ')}`);
+        return formattedStr;
     }
 }

@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { WcagMetadata } from '../src/wcag';
+import { WcagMetadata } from '../src/';
 
 // input tags, expected version, expected level, expected SC
 const noErrorCases = [
@@ -34,7 +34,7 @@ describe('WCAG Metadata extractor', () => {
     it.each(noErrorCases)(
         'should format WCAG metadata when required data is present (arg:%p)',
         (tags: string[], wcagVersion: string, wcagLevel: string, successCriteria: string) => {
-            const wcag = new WcagMetadata(tags).toString();
+            const wcag = new WcagMetadata(tags).format();
             expect(wcag).toMatchSnapshot();
             expect(wcag).toContain(wcagVersion);
             expect(wcag).toContain(wcagLevel);
@@ -45,7 +45,7 @@ describe('WCAG Metadata extractor', () => {
     it.each(errorCases)(
         'should throw error when required data is not present (arg:%p)',
         (tags: string[], _wcagVersion: string, _wcagLevel: string, _successCriteria: string) => {
-            expect(() => new WcagMetadata(tags).toString()).toThrowErrorMatchingSnapshot();
+            expect(() => new WcagMetadata(tags).format()).toThrowErrorMatchingSnapshot();
         }
     );
 });

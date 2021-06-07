@@ -22,13 +22,16 @@ const impactOrder = {
  * Filtered a11y result containing essential info about the a11y failure
  */
 export class A11yResult {
+    // Note: This is serialized as part of A11yError and read back from the
+    // custom test results processor to consolidate/transform a11y errors.
+    // So it can only have members that can be deserialized back easily
+    // i.e. no object refs etc.
     public readonly id: string;
     public readonly selectors: string;
     public readonly html: string;
     public readonly description: string;
     public readonly helpUrl: string;
-    // TODO: Add WCAG levels to sort rule
-    public readonly wcag: WcagMetadata;
+    public readonly wcag: string;
     // public readonly testPath: string;
     // public readonly testNames: string[];
 
@@ -59,7 +62,7 @@ export class A11yResult {
     constructor(violation: Result, node: NodeResult) {
         this.id = violation.id;
         this.description = violation.help;
-        this.wcag = new WcagMetadata(violation.tags);
+        this.wcag = new WcagMetadata(violation.tags).toString();
         this.helpUrl = violation.helpUrl.split('?')[0];
         this.selectors = node.target.sort().join('; ');
         this.html = node.html;
