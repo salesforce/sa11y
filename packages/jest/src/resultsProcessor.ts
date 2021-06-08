@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { buildFailureTestResult } from '@jest/test-result';
-import { AggregatedResult, AssertionResult, SerializableError, TestResult } from '@jest/test-result/build/types';
+import { addResult, createEmptyTestResult } from '@jest/test-result';
+import { AggregatedResult, AssertionResult, TestResult } from '@jest/test-result/build/types';
 import { errMsgHeader } from '@sa11y/common';
 import { A11yError, A11yResult } from '@sa11y/format';
 
@@ -21,18 +21,18 @@ const consolidatedErrors = new Map<string, AssertionResult[]>();
  */
 function createA11yTestResult(testSuite: TestResult, testResult: AssertionResult, a11yResult: A11yResult) {
     const suiteName = testSuite.testFilePath.substring(testSuite.testFilePath.lastIndexOf('/') + 1);
-    const suiteKey = `[Sa11y ${a11yResult.wcag.toString()} ${a11yResult.id}]`;
+    const suiteKey = `[Sa11y ${a11yResult.wcag} ${a11yResult.id}]`;
     if (!consolidatedErrors.has(suiteKey)) consolidatedErrors.set(suiteKey, []);
     consolidatedErrors.get(suiteKey)?.push({
         ...testResult,
-        fullName: `${suiteName}: ${a11yResult.css}`,
+        fullName: `${suiteName}: ${a11yResult.selectors}`,
         failureMessages: [
             `${errMsgHeader}: ${a11yResult.description}
- CSS Selectors: ${a11yResult.css}
- HTML element: ${a11yResult.html}
- Help: ${a11yResult.helpUrl}
- Summary: ${a11yResult.summary}
- Tests: "${testResult.fullName}"`,
+CSS Selectors: ${a11yResult.selectors}
+HTML element: ${a11yResult.html}
+Summary: ${a11yResult.summary}
+Help: ${a11yResult.helpUrl}
+Tests: ${testResult.fullName}`,
         ],
         // We don't need the error objects anymore as they have been processed
         failureDetails: [],
@@ -83,18 +83,11 @@ function modifyTestSuiteResults(results: AggregatedResult, testSuite: TestResult
 /**
  * Custom results processor for a11y results. Only affects JSON results file output.
  * To be used with jest cli options --json --outputFile
- *  e.g. jest --json --outputFile jestResults.json --testResultsProcessor node_modules/@sa11y/jest/dist/resultsProcessor.js
+ *  e.g. jest --json --outputFile jestResults.json --testResultsProcessor `node_modules/@sa11y/jest/dist/resultsProcessor.js`
  * Ref: https://jestjs.io/docs/configuration#testresultsprocessor-string
  *  - Mapping of AggregatedResult to JSON format to https://github.com/facebook/jest/blob/master/packages/jest-test-result/src/formatTestResults.ts
  */
 export default function resultsProcessor(results: AggregatedResult): AggregatedResult {
-    // Note: To re-generate test data when required (e.g. changes in A11yError)
-    //  uncomment the following lines to write output to file and run:
-    //  yarn jest --json --outputFile /tmp/jestOut.json --testResultsProcessor `pwd`/node_modules/@sa11y/jest/dist/resultsProcessor.js resultsProcessor.test.ts
-    //
-    // writeFileSync('/tmp/AggregatedResult.json', JSON.stringify(results, null, 2));
-    // return results;
-
     // TODO (refactor): Use map/filter to get results directly without global var for consolidated errors
     results.testResults // suite results
         .filter((testSuite) => testSuite.numFailingTests > 0)
@@ -108,10 +101,11 @@ export default function resultsProcessor(results: AggregatedResult): AggregatedR
         });
 
     consolidatedErrors.forEach((testResults, suiteKey) => {
-        const sa11ySuite = buildFailureTestResult(suiteKey, new Error() as SerializableError);
-        // TODO : Increment failing test, suite counts at aggregate and suite level ?
+        const sa11ySuite = createEmptyTestResult();
+        sa11ySuite.testFilePath = suiteKey;
         sa11ySuite.testResults = testResults;
-        results.testResults.push(sa11ySuite);
+        sa11ySuite.numFailingTests = testResults.length;
+        addResult(results, sa11ySuite);
     });
 
     return results;

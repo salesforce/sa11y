@@ -15,11 +15,19 @@ const violations: AxeResults = [];
 const a11yResults: A11yResult[] = [];
 const aggregatedResults = makeEmptyAggregatedTestResult();
 const testSuite = createEmptyTestResult();
+let testSuffix = 0;
 
 function addTestFailure(suite: TestResult, err: Error) {
-    const failure = { failureDetails: [err], status: 'failed' } as AssertionResult;
+    const failure = {
+        // Subset of props used by results processor logic
+        failureDetails: [err],
+        fullName: `${err.name}-${testSuffix}`, // Unique test name to test consolidation
+        status: 'failed',
+        ancestorTitles: ['sa11y'],
+    } as AssertionResult;
     suite.testResults.push(failure);
     suite.numFailingTests += 1;
+    testSuffix++;
 }
 
 beforeAll(async () => {

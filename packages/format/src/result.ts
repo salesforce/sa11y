@@ -19,7 +19,7 @@ const impactOrder = {
 };
 
 /**
- * Filtered a11y result containing essential info about the a11y failure
+ * Filtered a11y result containing selected and normalized info about the a11y failure
  */
 export class A11yResult {
     // Note: This is serialized as part of A11yError and read back from the
@@ -32,8 +32,7 @@ export class A11yResult {
     public readonly description: string;
     public readonly helpUrl: string;
     public readonly wcag: string;
-    // public readonly testPath: string;
-    // public readonly testNames: string[];
+    public readonly summary: string;
 
     /**
      * Normalize and flatten a11y violations from Axe
@@ -66,6 +65,7 @@ export class A11yResult {
         this.helpUrl = violation.helpUrl.split('?')[0];
         this.selectors = node.target.sort().join('; ');
         this.html = node.html;
+        this.summary = node.failureSummary || '';
     }
 }
 
