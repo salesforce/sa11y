@@ -4,55 +4,51 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { aggregatedTestResults, domWithA11yIssues } from '@sa11y/test-utils';
 import resultsProcessor from '../src/resultsProcessor';
-import { automaticCheck } from '../src/automatic';
 import { addResult, createEmptyTestResult, makeEmptyAggregatedTestResult } from '@jest/test-result';
-import { AssertionResult } from '@jest/test-result/build/types';
-import { A11yError } from '@sa11y/format';
+import { AggregatedResult, AssertionResult, TestResult } from '@jest/test-result/build/types';
+import { A11yError, A11yResult } from '@sa11y/format';
+import { AxeResults } from '@sa11y/common';
+import { getViolations } from '@sa11y/format/__tests__/format.test';
 
-// Note: To re-generate test data when required (e.g. changes in A11yError)
-//  enable the following tests and the code to output file in resultsProcessor.ts
-/* eslint-disable jest/no-commented-out-tests,jest/expect-expect */
-// eslint-disable-next-line jest/no-disabled-tests
-describe.skip('Prepare test data (when A11yError changes)', () => {
-    it('with a11y failures', async () => {
-        document.body.innerHTML = domWithA11yIssues;
-        await automaticCheck({ cleanupAfterEach: false });
-    });
+const violations: AxeResults = [];
+const a11yResults: A11yResult[] = [];
+const aggregatedResults = makeEmptyAggregatedTestResult();
+const testSuite = createEmptyTestResult();
 
-    it('with duplicate a11y failures to test consolidation', async () => {
-        document.body.innerHTML = domWithA11yIssues;
-        await automaticCheck({ cleanupAfterEach: false });
-    });
+function addTestFailure(suite: TestResult, err: Error) {
+    const failure = { failureDetails: [err], status: 'failed' } as AssertionResult;
+    suite.testResults.push(failure);
+    suite.numFailingTests += 1;
+}
 
-    it('with non-a11y failures', () => {
-        expect(1).toBe(2);
-    });
+beforeAll(async () => {
+    // Prepare test data
+    violations.push(...(await getViolations()));
+    a11yResults.push(...A11yResult.convert(violations));
+    addTestFailure(testSuite, new A11yError(violations));
+    // Duplicate test result to test consolidation
+    addTestFailure(testSuite, new A11yError(violations));
+    // Add non-a11y test failure
+    addTestFailure(testSuite, new Error('foo'));
+    addResult(aggregatedResults, testSuite);
 });
-/* eslint-enable jest/no-commented-out-tests,jest/expect-expect */
 
 describe('Results Processor', () => {
-    it.skip('should prepare test data', () => {
-        // TODO (refactor): Generate test results using helpers instead of hard-coded result file.
-        //  The helpers seem to have functions to generate only empty test results.
-        //  Not able to find one which can take an Error() and convert it into a test result (AssertionResult).
-        const aggregatedResults = makeEmptyAggregatedTestResult();
-        const testSuite = createEmptyTestResult();
-        const testResult = { failureDetails: [new A11yError([])], status: 'failed' } as AssertionResult;
-        testSuite.testResults.push(testResult);
-        testSuite.numFailingTests += 1;
-        addResult(aggregatedResults, testSuite);
-        expect(resultsProcessor(aggregatedTestResults)).toMatchSnapshot();
-    });
-
     it('should have valid test data to start with', () => {
-        expect(aggregatedTestResults.numFailedTests).toBeGreaterThan(0);
+        expect(aggregatedResults.numFailedTests).toBe(3);
+        expect(aggregatedResults.numFailedTestSuites).toBe(1);
+        expect(aggregatedResults).toMatchSnapshot();
     });
 
     it('should process test results as expected', () => {
-        expect(resultsProcessor(aggregatedTestResults)).toMatchSnapshot();
-        // TODO (tests): Add more fine grained, targeted tests
-        // expect(resultsProcessor(aggregatedTestResults)).not.toStrictEqual(aggregatedTestResults);
+        // Create a copy as results gets mutated by results processor
+        const results = JSON.parse(JSON.stringify(aggregatedResults)) as AggregatedResult;
+        const processedResults = resultsProcessor(results);
+        expect(processedResults).toMatchSnapshot();
+        expect(processedResults).not.toEqual(aggregatedResults);
+        // Should have added one more test suite for a11y errors
+        expect(processedResults.numFailedTestSuites).toBeGreaterThan(aggregatedResults.numFailedTestSuites + 1);
+        expect(processedResults.numTotalTests).toEqual(aggregatedResults.numTotalTests + 2 * a11yResults.length); // Before consolidation
     });
 });

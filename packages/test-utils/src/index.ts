@@ -6,7 +6,6 @@
  */
 
 export {
-    aggregatedTestResults,
     audioURL,
     exceptionList,
     domWithA11yIssues,

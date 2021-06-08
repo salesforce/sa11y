@@ -7,7 +7,6 @@
 
 import fs from 'fs';
 import path from 'path';
-import { AggregatedResult } from '@jest/test-result/build/types';
 
 const dataDir = path.resolve(__dirname, '../__data__/');
 
@@ -40,8 +39,3 @@ export const domWithVisualA11yIssues = fs.readFileSync(fileWithVisualA11yIssues)
 // TODO (refactor): Is there a way to reuse these values inside the noA11yIssues.html
 export const audioURL = 'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3';
 export const videoURL = 'https://file-examples-com.github.io/uploads/2020/03/file_example_WEBM_480_900KB.webm';
-
-// Aggregated test results passed to test results processor by Jest
-export const aggregatedTestResults = JSON.parse(
-    fs.readFileSync(path.resolve(dataDir, 'testResults.json')).toString()
-) as AggregatedResult;
