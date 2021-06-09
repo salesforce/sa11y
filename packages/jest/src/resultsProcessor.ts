@@ -17,13 +17,10 @@ type FailureDetail = {
 const consolidatedErrors = new Map<string, AssertionResult[]>();
 
 /**
- * Create a test failure result for given a11y failure and add it to consolidated errors
+ * Create a test failure result for given a11y failure
  */
-function createA11yTestResult(testSuite: TestResult, testResult: AssertionResult, a11yResult: A11yResult) {
-    const suiteName = testSuite.testFilePath.substring(testSuite.testFilePath.lastIndexOf('/') + 1);
-    const suiteKey = `[Sa11y ${a11yResult.wcag} ${a11yResult.id} ${suiteName}]`;
-    if (!consolidatedErrors.has(suiteKey)) consolidatedErrors.set(suiteKey, []);
-    consolidatedErrors.get(suiteKey)?.push({
+function convertA11yTestResult(testResult: AssertionResult, a11yResult: A11yResult): AssertionResult {
+    return {
         ...testResult,
         fullName: `${a11yResult.description}: ${a11yResult.selectors}`,
         failureMessages: [
@@ -38,13 +35,15 @@ Tests: ${testResult.fullName}`, // TODO (refactor): replace with array of tests 
         failureDetails: [],
         // Add all test's having the same a11y issue
         ancestorTitles: [...new Set(testResult.ancestorTitles).add(testResult.fullName)],
-    } as AssertionResult);
+    } as AssertionResult;
 }
 
 /**
  * Convert any a11y errors from test failures into their own test suite, results
  */
 function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
+    const suiteName = testSuite.testFilePath.substring(testSuite.testFilePath.lastIndexOf('/') + 1);
+
     testResult.failureDetails.forEach((failure) => {
         let error = (failure as FailureDetail).error;
         // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
@@ -53,7 +52,9 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
             // TODO : What happens if there are ever multiple failureDetails?
             //  Ideally there shouldn't be as test execution should be stopped on failure
             error.a11yResults.forEach((a11yResult) => {
-                createA11yTestResult(testSuite, testResult, a11yResult);
+                const suiteKey = `[Sa11y ${a11yResult.wcag} ${a11yResult.id} ${suiteName}]`;
+                if (!Array.isArray(consolidatedErrors.get(suiteKey))) consolidatedErrors.set(suiteKey, []);
+                consolidatedErrors.get(suiteKey)?.push(convertA11yTestResult(testResult, a11yResult));
             });
         }
     });
