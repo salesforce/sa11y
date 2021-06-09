@@ -33,6 +33,7 @@ export class A11yResult {
     public readonly helpUrl: string;
     public readonly wcag: string;
     public readonly summary: string;
+    public readonly key: string; // Represent a key with uniquely identifiable info
 
     /**
      * Normalize and flatten a11y violations from Axe
@@ -66,6 +67,7 @@ export class A11yResult {
         this.selectors = node.target.sort().join('; ');
         this.html = node.html;
         this.summary = node.failureSummary || '';
+        this.key = `${this.id}--${this.selectors}`;
     }
 }
 
@@ -73,11 +75,28 @@ export class A11yResult {
  * Consolidate unique a11y violations by removing duplicates.
  */
 export class ConsolidatedResults {
-    static a11yResults: Record<string, A11yResult[]> = {};
+    // static a11yResults: Record<string, A11yResult[]> = {};
+    static a11yResults = new Map<string, string[]>();
     static consolidatedMap = new Map<string, axe.Result>();
 
     static clear(): void {
         this.consolidatedMap.clear();
+    }
+
+    /**
+     * Convert and consolidate given a11y results based on given key (test scope)
+     */
+    // TODO(refactor): Merge with ConsolidatedResults.add()
+    static consolidate(results: A11yResult[], key = ''): A11yResult[] {
+        const a11yResults = ConsolidatedResults.a11yResults;
+        const existingResults = a11yResults.get(key) || [];
+        if (existingResults.length === 0) a11yResults.set(key, existingResults);
+        return results.filter((result) => {
+            if (!existingResults.includes(result.key)) {
+                existingResults.push(result.key);
+                return result;
+            }
+        });
     }
 
     /**

@@ -131,7 +131,7 @@ Object {
 exports[`Results Processor should process test results as expected 1`] = `
 Object {
   "numFailedTestSuites": 6,
-  "numFailedTests": 12,
+  "numFailedTests": 6,
   "numPassedTestSuites": 0,
   "numPassedTests": 0,
   "numPendingTestSuites": 0,
@@ -139,7 +139,7 @@ Object {
   "numRuntimeErrorTestSuites": 0,
   "numTodoTests": 0,
   "numTotalTestSuites": 0,
-  "numTotalTests": 15,
+  "numTotalTests": 9,
   "openHandles": Array [],
   "snapshot": Object {
     "added": 0,
@@ -204,6 +204,7 @@ Object {
 
 </body></html>",
                   "id": "bypass",
+                  "key": "bypass--html",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   No valid skip link found
@@ -223,6 +224,7 @@ Object {
 
 </body></html>",
                   "id": "document-title",
+                  "key": "document-title--html",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
@@ -240,6 +242,7 @@ Object {
 
 </body></html>",
                   "id": "html-has-lang",
+                  "key": "html-has-lang--html",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
@@ -250,6 +253,7 @@ Object {
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
+                  "key": "link-name--a",
                   "selectors": "a",
                   "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -273,6 +277,7 @@ Fix any of the following:
 
 </body></html>",
                   "id": "landmark-one-main",
+                  "key": "landmark-one-main--html",
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Document does not have a main landmark",
@@ -290,6 +295,7 @@ Fix any of the following:
 
 </body></html>",
                   "id": "page-has-heading-one",
+                  "key": "page-has-heading-one--html",
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Page must have a level-one heading",
@@ -623,6 +629,7 @@ Fix any of the following:
 
 </body></html>",
                   "id": "bypass",
+                  "key": "bypass--html",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   No valid skip link found
@@ -642,6 +649,7 @@ Fix any of the following:
 
 </body></html>",
                   "id": "document-title",
+                  "key": "document-title--html",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
@@ -659,6 +667,7 @@ Fix any of the following:
 
 </body></html>",
                   "id": "html-has-lang",
+                  "key": "html-has-lang--html",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
@@ -669,6 +678,7 @@ Fix any of the following:
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
+                  "key": "link-name--a",
                   "selectors": "a",
                   "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -692,6 +702,7 @@ Fix any of the following:
 
 </body></html>",
                   "id": "landmark-one-main",
+                  "key": "landmark-one-main--html",
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Document does not have a main landmark",
@@ -709,6 +720,7 @@ Fix any of the following:
 
 </body></html>",
                   "id": "page-has-heading-one",
+                  "key": "page-has-heading-one--html",
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Page must have a level-one heading",
@@ -1037,7 +1049,7 @@ Fix any of the following:
     },
     Object {
       "leaks": false,
-      "numFailingTests": 2,
+      "numFailingTests": 1,
       "numPassingTests": 0,
       "numPendingTests": 0,
       "numTodoTests": 0,
@@ -1087,38 +1099,11 @@ Tests: A11yError-0",
           "fullName": "Page must have means to bypass repeated blocks: html",
           "status": "failed",
         },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-            "A11yError-1",
-          ],
-          "failureDetails": Array [],
-          "failureMessages": Array [
-            "accessibility issues found: Page must have means to bypass repeated blocks
-CSS Selectors: html
-HTML element: <html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>
-Summary: Fix any of the following:
-  No valid skip link found
-  Page does not have a heading
-  Page does not have a landmark region
-Help: https://dequeuniversity.com/rules/axe/4.1/bypass
-Tests: A11yError-1",
-          ],
-          "fullName": "Page must have means to bypass repeated blocks: html",
-          "status": "failed",
-        },
       ],
     },
     Object {
       "leaks": false,
-      "numFailingTests": 2,
+      "numFailingTests": 1,
       "numPassingTests": 0,
       "numPendingTests": 0,
       "numTodoTests": 0,
@@ -1166,36 +1151,11 @@ Tests: A11yError-0",
           "fullName": "Documents must have <title> element to aid in navigation: html",
           "status": "failed",
         },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-            "A11yError-1",
-          ],
-          "failureDetails": Array [],
-          "failureMessages": Array [
-            "accessibility issues found: Documents must have <title> element to aid in navigation
-CSS Selectors: html
-HTML element: <html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>
-Summary: Fix any of the following:
-  Document does not have a non-empty <title> element
-Help: https://dequeuniversity.com/rules/axe/4.1/document-title
-Tests: A11yError-1",
-          ],
-          "fullName": "Documents must have <title> element to aid in navigation: html",
-          "status": "failed",
-        },
       ],
     },
     Object {
       "leaks": false,
-      "numFailingTests": 2,
+      "numFailingTests": 1,
       "numPassingTests": 0,
       "numPendingTests": 0,
       "numTodoTests": 0,
@@ -1243,36 +1203,11 @@ Tests: A11yError-0",
           "fullName": "<html> element must have a lang attribute: html",
           "status": "failed",
         },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-            "A11yError-1",
-          ],
-          "failureDetails": Array [],
-          "failureMessages": Array [
-            "accessibility issues found: <html> element must have a lang attribute
-CSS Selectors: html
-HTML element: <html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>
-Summary: Fix any of the following:
-  The <html> element does not have a lang attribute
-Help: https://dequeuniversity.com/rules/axe/4.1/html-has-lang
-Tests: A11yError-1",
-          ],
-          "fullName": "<html> element must have a lang attribute: html",
-          "status": "failed",
-        },
       ],
     },
     Object {
       "leaks": false,
-      "numFailingTests": 2,
+      "numFailingTests": 1,
       "numPassingTests": 0,
       "numPendingTests": 0,
       "numTodoTests": 0,
@@ -1319,35 +1254,11 @@ Tests: A11yError-0",
           "fullName": "Links must have discernible text: a",
           "status": "failed",
         },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-            "A11yError-1",
-          ],
-          "failureDetails": Array [],
-          "failureMessages": Array [
-            "accessibility issues found: Links must have discernible text
-CSS Selectors: a
-HTML element: <a href=\\"#\\"></a>
-Summary: Fix all of the following:
-  Element is in tab order and does not have accessible text
-
-Fix any of the following:
-  Element does not have text that is visible to screen readers
-  aria-label attribute does not exist or is empty
-  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-  Element has no title attribute
-Help: https://dequeuniversity.com/rules/axe/4.1/link-name
-Tests: A11yError-1",
-          ],
-          "fullName": "Links must have discernible text: a",
-          "status": "failed",
-        },
       ],
     },
     Object {
       "leaks": false,
-      "numFailingTests": 2,
+      "numFailingTests": 1,
       "numPassingTests": 0,
       "numPendingTests": 0,
       "numTodoTests": 0,
@@ -1395,36 +1306,11 @@ Tests: A11yError-0",
           "fullName": "Document must have one main landmark: html",
           "status": "failed",
         },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-            "A11yError-1",
-          ],
-          "failureDetails": Array [],
-          "failureMessages": Array [
-            "accessibility issues found: Document must have one main landmark
-CSS Selectors: html
-HTML element: <html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>
-Summary: Fix all of the following:
-  Document does not have a main landmark
-Help: https://dequeuniversity.com/rules/axe/4.1/landmark-one-main
-Tests: A11yError-1",
-          ],
-          "fullName": "Document must have one main landmark: html",
-          "status": "failed",
-        },
       ],
     },
     Object {
       "leaks": false,
-      "numFailingTests": 2,
+      "numFailingTests": 1,
       "numPassingTests": 0,
       "numPendingTests": 0,
       "numTodoTests": 0,
@@ -1468,31 +1354,6 @@ Summary: Fix all of the following:
   Page must have a level-one heading
 Help: https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one
 Tests: A11yError-0",
-          ],
-          "fullName": "Page must contain a level-one heading: html",
-          "status": "failed",
-        },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-            "A11yError-1",
-          ],
-          "failureDetails": Array [],
-          "failureMessages": Array [
-            "accessibility issues found: Page must contain a level-one heading
-CSS Selectors: html
-HTML element: <html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>
-Summary: Fix all of the following:
-  Page must have a level-one heading
-Help: https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one
-Tests: A11yError-1",
           ],
           "fullName": "Page must contain a level-one heading: html",
           "status": "failed",

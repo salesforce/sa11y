@@ -7,7 +7,7 @@
 import { addResult, createEmptyTestResult } from '@jest/test-result';
 import { AggregatedResult, AssertionResult, TestResult } from '@jest/test-result/build/types';
 import { errMsgHeader } from '@sa11y/common';
-import { A11yError, A11yResult } from '@sa11y/format';
+import { A11yError, A11yResult, ConsolidatedResults } from '@sa11y/format';
 
 type FailureDetail = {
     error?: A11yError;
@@ -51,7 +51,7 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
         if (error.name === A11yError.name) {
             // TODO : What happens if there are ever multiple failureDetails?
             //  Ideally there shouldn't be as test execution should be stopped on failure
-            error.a11yResults.forEach((a11yResult) => {
+            ConsolidatedResults.consolidate(error.a11yResults, suiteName).forEach((a11yResult) => {
                 const suiteKey = `[Sa11y ${a11yResult.wcag} ${a11yResult.id} ${suiteName}]`;
                 if (!Array.isArray(consolidatedErrors.get(suiteKey))) consolidatedErrors.set(suiteKey, []);
                 consolidatedErrors.get(suiteKey)?.push(convertA11yTestResult(testResult, a11yResult));
