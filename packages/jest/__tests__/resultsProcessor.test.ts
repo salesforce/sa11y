@@ -39,6 +39,7 @@ beforeAll(async () => {
     addTestFailure(testSuite, new A11yError(violations));
     // Add non-a11y test failure
     addTestFailure(testSuite, new Error('foo'));
+    testSuite.testFilePath = '/test/data/sa11y-auto-checks.js';
     addResult(aggregatedResults, testSuite);
 });
 

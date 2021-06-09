@@ -21,18 +21,18 @@ const consolidatedErrors = new Map<string, AssertionResult[]>();
  */
 function createA11yTestResult(testSuite: TestResult, testResult: AssertionResult, a11yResult: A11yResult) {
     const suiteName = testSuite.testFilePath.substring(testSuite.testFilePath.lastIndexOf('/') + 1);
-    const suiteKey = `[Sa11y ${a11yResult.wcag} ${a11yResult.id}]`;
+    const suiteKey = `[Sa11y ${a11yResult.wcag} ${a11yResult.id} ${suiteName}]`;
     if (!consolidatedErrors.has(suiteKey)) consolidatedErrors.set(suiteKey, []);
     consolidatedErrors.get(suiteKey)?.push({
         ...testResult,
-        fullName: `${suiteName}: ${a11yResult.selectors}`,
+        fullName: `${a11yResult.description}: ${a11yResult.selectors}`,
         failureMessages: [
             `${errMsgHeader}: ${a11yResult.description}
 CSS Selectors: ${a11yResult.selectors}
 HTML element: ${a11yResult.html}
 Summary: ${a11yResult.summary}
 Help: ${a11yResult.helpUrl}
-Tests: ${testResult.fullName}`,
+Tests: ${testResult.fullName}`, // TODO (refactor): replace with array of tests when consolidating
         ],
         // We don't need the error objects anymore as they have been processed
         failureDetails: [],

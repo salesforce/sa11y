@@ -55,7 +55,7 @@ Object {
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "",
+      "testFilePath": "/test/data/sa11y-auto-checks.js",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -183,7 +183,7 @@ Object {
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "",
+      "testFilePath": "/test/data/sa11y-auto-checks.js",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -209,7 +209,7 @@ Object {
   No valid skip link found
   Page does not have a heading
   Page does not have a landmark region",
-                  "wcag": "WCAG-2.0-Level-A SC-2.4.1",
+                  "wcag": "WCAG2.0-LevelA-SC2.4.1",
                 },
                 Object {
                   "description": "Documents must have <title> element to aid in navigation",
@@ -226,7 +226,7 @@ Object {
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
-                  "wcag": "WCAG-2.0-Level-A SC-2.4.2",
+                  "wcag": "WCAG2.0-LevelA-SC2.4.2",
                 },
                 Object {
                   "description": "<html> element must have a lang attribute",
@@ -243,7 +243,7 @@ Object {
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG-2.0-Level-A SC-3.1.1",
+                  "wcag": "WCAG2.0-LevelA-SC3.1.1",
                 },
                 Object {
                   "description": "Links must have discernible text",
@@ -259,7 +259,7 @@ Fix any of the following:
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
-                  "wcag": "WCAG-2.0-Level-A SC-2.4.4",
+                  "wcag": "WCAG2.0-LevelA-SC2.4.4",
                 },
                 Object {
                   "description": "Document must have one main landmark",
@@ -276,7 +276,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Document does not have a main landmark",
-                  "wcag": "",
+                  "wcag": "best-practice",
                 },
                 Object {
                   "description": "Page must contain a level-one heading",
@@ -293,7 +293,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Page must have a level-one heading",
-                  "wcag": "",
+                  "wcag": "best-practice",
                 },
               ],
               "name": "A11yError",
@@ -628,7 +628,7 @@ Fix any of the following:
   No valid skip link found
   Page does not have a heading
   Page does not have a landmark region",
-                  "wcag": "WCAG-2.0-Level-A SC-2.4.1",
+                  "wcag": "WCAG2.0-LevelA-SC2.4.1",
                 },
                 Object {
                   "description": "Documents must have <title> element to aid in navigation",
@@ -645,7 +645,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
-                  "wcag": "WCAG-2.0-Level-A SC-2.4.2",
+                  "wcag": "WCAG2.0-LevelA-SC2.4.2",
                 },
                 Object {
                   "description": "<html> element must have a lang attribute",
@@ -662,7 +662,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG-2.0-Level-A SC-3.1.1",
+                  "wcag": "WCAG2.0-LevelA-SC3.1.1",
                 },
                 Object {
                   "description": "Links must have discernible text",
@@ -678,7 +678,7 @@ Fix any of the following:
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
-                  "wcag": "WCAG-2.0-Level-A SC-2.4.4",
+                  "wcag": "WCAG2.0-LevelA-SC2.4.4",
                 },
                 Object {
                   "description": "Document must have one main landmark",
@@ -695,7 +695,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Document does not have a main landmark",
-                  "wcag": "",
+                  "wcag": "best-practice",
                 },
                 Object {
                   "description": "Page must contain a level-one heading",
@@ -712,7 +712,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Page must have a level-one heading",
-                  "wcag": "",
+                  "wcag": "best-practice",
                 },
               ],
               "name": "A11yError",
@@ -1058,7 +1058,7 @@ Fix any of the following:
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "[Sa11y WCAG-2.0-Level-A SC-2.4.1 bypass]",
+      "testFilePath": "[Sa11y WCAG2.0-LevelA-SC2.4.1 bypass sa11y-auto-checks.js]",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -1084,7 +1084,7 @@ Summary: Fix any of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/bypass
 Tests: A11yError-0",
           ],
-          "fullName": ": html",
+          "fullName": "Page must have means to bypass repeated blocks: html",
           "status": "failed",
         },
         Object {
@@ -1111,7 +1111,7 @@ Summary: Fix any of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/bypass
 Tests: A11yError-1",
           ],
-          "fullName": ": html",
+          "fullName": "Page must have means to bypass repeated blocks: html",
           "status": "failed",
         },
       ],
@@ -1139,7 +1139,7 @@ Tests: A11yError-1",
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "[Sa11y WCAG-2.0-Level-A SC-2.4.2 document-title]",
+      "testFilePath": "[Sa11y WCAG2.0-LevelA-SC2.4.2 document-title sa11y-auto-checks.js]",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -1163,7 +1163,7 @@ Summary: Fix any of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/document-title
 Tests: A11yError-0",
           ],
-          "fullName": ": html",
+          "fullName": "Documents must have <title> element to aid in navigation: html",
           "status": "failed",
         },
         Object {
@@ -1188,7 +1188,7 @@ Summary: Fix any of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/document-title
 Tests: A11yError-1",
           ],
-          "fullName": ": html",
+          "fullName": "Documents must have <title> element to aid in navigation: html",
           "status": "failed",
         },
       ],
@@ -1216,7 +1216,7 @@ Tests: A11yError-1",
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "[Sa11y WCAG-2.0-Level-A SC-3.1.1 html-has-lang]",
+      "testFilePath": "[Sa11y WCAG2.0-LevelA-SC3.1.1 html-has-lang sa11y-auto-checks.js]",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -1240,7 +1240,7 @@ Summary: Fix any of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/html-has-lang
 Tests: A11yError-0",
           ],
-          "fullName": ": html",
+          "fullName": "<html> element must have a lang attribute: html",
           "status": "failed",
         },
         Object {
@@ -1265,7 +1265,7 @@ Summary: Fix any of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/html-has-lang
 Tests: A11yError-1",
           ],
-          "fullName": ": html",
+          "fullName": "<html> element must have a lang attribute: html",
           "status": "failed",
         },
       ],
@@ -1293,7 +1293,7 @@ Tests: A11yError-1",
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "[Sa11y WCAG-2.0-Level-A SC-2.4.4 link-name]",
+      "testFilePath": "[Sa11y WCAG2.0-LevelA-SC2.4.4 link-name sa11y-auto-checks.js]",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -1316,7 +1316,7 @@ Fix any of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/link-name
 Tests: A11yError-0",
           ],
-          "fullName": ": a",
+          "fullName": "Links must have discernible text: a",
           "status": "failed",
         },
         Object {
@@ -1340,7 +1340,7 @@ Fix any of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/link-name
 Tests: A11yError-1",
           ],
-          "fullName": ": a",
+          "fullName": "Links must have discernible text: a",
           "status": "failed",
         },
       ],
@@ -1368,7 +1368,7 @@ Tests: A11yError-1",
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "[Sa11y  landmark-one-main]",
+      "testFilePath": "[Sa11y best-practice landmark-one-main sa11y-auto-checks.js]",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -1392,7 +1392,7 @@ Summary: Fix all of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/landmark-one-main
 Tests: A11yError-0",
           ],
-          "fullName": ": html",
+          "fullName": "Document must have one main landmark: html",
           "status": "failed",
         },
         Object {
@@ -1417,7 +1417,7 @@ Summary: Fix all of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/landmark-one-main
 Tests: A11yError-1",
           ],
-          "fullName": ": html",
+          "fullName": "Document must have one main landmark: html",
           "status": "failed",
         },
       ],
@@ -1445,7 +1445,7 @@ Tests: A11yError-1",
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "[Sa11y  page-has-heading-one]",
+      "testFilePath": "[Sa11y best-practice page-has-heading-one sa11y-auto-checks.js]",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -1469,7 +1469,7 @@ Summary: Fix all of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one
 Tests: A11yError-0",
           ],
-          "fullName": ": html",
+          "fullName": "Page must contain a level-one heading: html",
           "status": "failed",
         },
         Object {
@@ -1494,7 +1494,7 @@ Summary: Fix all of the following:
 Help: https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one
 Tests: A11yError-1",
           ],
-          "fullName": ": html",
+          "fullName": "Page must contain a level-one heading: html",
           "status": "failed",
         },
       ],
