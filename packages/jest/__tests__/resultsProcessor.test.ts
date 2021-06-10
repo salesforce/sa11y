@@ -8,35 +8,39 @@ import resultsProcessor from '../src/resultsProcessor';
 import { addResult, createEmptyTestResult, makeEmptyAggregatedTestResult } from '@jest/test-result';
 import { AggregatedResult, AssertionResult, TestResult } from '@jest/test-result/build/types';
 import { A11yError, A11yResult } from '@sa11y/format';
-import { AxeResults } from '@sa11y/common';
 import { getViolations } from '@sa11y/format/__tests__/format.test';
+import { domWithVisualA11yIssues } from '@sa11y/test-utils';
 
-const violations: AxeResults = [];
 const a11yResults: A11yResult[] = [];
 const aggregatedResults = makeEmptyAggregatedTestResult();
 const testSuite = createEmptyTestResult();
-let testSuffix = 0;
+let numTestFailures = 0;
 
 function addTestFailure(suite: TestResult, err: Error) {
     const failure = {
         // Subset of props used by results processor logic
         failureDetails: [err],
-        fullName: `${err.name}-${testSuffix}`, // Unique test name to test consolidation
+        fullName: `${err.name}-${numTestFailures}`, // Unique test name to test consolidation
         status: 'failed',
         ancestorTitles: ['sa11y'],
     } as AssertionResult;
     suite.testResults.push(failure);
     suite.numFailingTests += 1;
-    testSuffix++;
+    numTestFailures++;
 }
 
 beforeAll(async () => {
     // Prepare test data
-    violations.push(...(await getViolations()));
-    a11yResults.push(...A11yResult.convert(violations));
+    const violations = await getViolations();
+    const violationsVisual = await getViolations(domWithVisualA11yIssues);
+    const combinedViolations = [...violations, ...violationsVisual];
+    a11yResults.push(...A11yResult.convert(combinedViolations));
     addTestFailure(testSuite, new A11yError(violations));
+    addTestFailure(testSuite, new A11yError(violationsVisual));
     // Duplicate test result to test consolidation
     addTestFailure(testSuite, new A11yError(violations));
+    addTestFailure(testSuite, new A11yError(violationsVisual));
+    addTestFailure(testSuite, new A11yError(combinedViolations));
     // Add non-a11y test failure
     addTestFailure(testSuite, new Error('foo'));
     testSuite.testFilePath = '/test/data/sa11y-auto-checks.js';
@@ -45,8 +49,8 @@ beforeAll(async () => {
 
 describe('Results Processor', () => {
     it('should have valid test data to start with', () => {
-        expect(aggregatedResults.numFailedTests).toBe(3);
         expect(aggregatedResults.numFailedTestSuites).toBe(1);
+        expect(aggregatedResults.numFailedTests).toBe(numTestFailures);
         expect(aggregatedResults).toMatchSnapshot();
     });
 
@@ -58,6 +62,6 @@ describe('Results Processor', () => {
         expect(processedResults).not.toEqual(aggregatedResults);
         // Should have added one more test suite for a11y errors
         expect(processedResults.numFailedTestSuites).toBeGreaterThan(aggregatedResults.numFailedTestSuites + 1);
-        expect(processedResults.numTotalTests).toEqual(aggregatedResults.numTotalTests + a11yResults.length); // After consolidation
+        expect(processedResults.numTotalTests).toEqual(aggregatedResults.numTotalTests + a11yResults.length - 1); // After consolidation + non-a11y failure
     });
 });

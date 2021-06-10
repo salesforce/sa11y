@@ -29,7 +29,7 @@ CSS Selectors: ${a11yResult.selectors}
 HTML element: ${a11yResult.html}
 Summary: ${a11yResult.summary}
 Help: ${a11yResult.helpUrl}
-Tests: ${testResult.fullName}`, // TODO (refactor): replace with array of tests when consolidating
+Tests: ${testResult.fullName}`, // TODO (refactor): replace with array of tests when consolidating? But we reach here after de-duping a11y results?
         ],
         // We don't need the error objects anymore as they have been processed
         failureDetails: [],
@@ -101,6 +101,7 @@ export default function resultsProcessor(results: AggregatedResult): AggregatedR
                 });
         });
 
+    // Create test suites to hold a11y failures
     consolidatedErrors.forEach((testResults, suiteKey) => {
         const sa11ySuite = createEmptyTestResult();
         sa11ySuite.testFilePath = suiteKey;

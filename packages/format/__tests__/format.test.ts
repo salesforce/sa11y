@@ -19,8 +19,8 @@ async function getA11yError(dom: string): Promise<A11yError> {
 // TODO (refactor): Move to common test-utils
 //  - without creating circular dep due to "A11yError"
 // eslint-disable-next-line jest/no-export
-export async function getViolations(): Promise<AxeResults> {
-    const a11yError = await getA11yError(domWithA11yIssues);
+export async function getViolations(dom = domWithA11yIssues): Promise<AxeResults> {
+    const a11yError = await getA11yError(dom);
     return a11yError.violations;
 }
 
