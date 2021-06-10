@@ -100,31 +100,6 @@ export class ConsolidatedResults {
     }
 
     /**
-     * Convert and consolidate given a11y results based on given key
-     */
-    // TODO(refactor): Merge with ConsolidatedResults.add()
-    static convert(results: AxeResults, key = ''): void {
-        // const a11yResults = ConsolidatedResults.a11yResults;
-        // // Initialize if key doesn't exist
-        // if (!Array.isArray(a11yResults[key])) a11yResults[key] = [];
-        // for (const result of results) {
-        //     for (const node of result.nodes) {
-        //         a11yResults[key].push(<A11yResult>{
-        //             // TODO (refactor): Reuse A11yResult for A11yError.format()
-        //             id: result.id,
-        //             // Note: Use a separator that cannot be part of a CSS selector
-        //             selectors: node.target.sort().join('; '),
-        //             description: result.help,
-        //             helpUrl: result.helpUrl.split('?')[0],
-        //             impact: result.impact,
-        //             // TODO : Add wcag level or best practice tag to output ?
-        //             // const criteria = violation.tags.filter((tag) => tag.startsWith('wcag2a') || tag.startsWith('best'));
-        //         });
-        //     }
-        // }
-    }
-
-    /**
      * Adds given a11y results to a consolidated list if they are not already present
      * @returns results that have not been added earlier
      */

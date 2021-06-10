@@ -8,7 +8,6 @@
 const browserLibTestPath = '<rootDir>/packages/browser-lib';
 const integrationTestPath = '<rootDir>/packages/test-integration';
 const wdioTestPath = '<rootDir>/packages/wdio';
-const reporterConfig = { outputFile: 'sa11y_results', outputFormat: 'xml' };
 
 module.exports = {
     coverageThreshold: {
@@ -23,5 +22,9 @@ module.exports = {
     testPathIgnorePatterns: [browserLibTestPath, integrationTestPath, wdioTestPath],
     // Direct Jest to read the jest config file from integration tests
     projects: ['<rootDir>', integrationTestPath],
-    reporters: ['default', ['<rootDir>/packages/jest/dist/reporter.js', reporterConfig]],
+    // Custom results processor for a11y results. Only affects JSON results file output.
+    // To be used with jest cli options --json --outputFile
+    //   *  e.g. jest --json --outputFile jestResults.json
+    // Ref: https://jestjs.io/docs/configuration#testresultsprocessor-string
+    testResultsProcessor: '<rootDir>/packages/jest/dist/resultsProcessor.js',
 };

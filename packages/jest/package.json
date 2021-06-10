@@ -27,17 +27,14 @@
         "@sa11y/assert": "0.2.3",
         "@sa11y/format": "0.3.4",
         "@sa11y/preset-rules": "0.3.3",
-        "jest-matcher-utils": "26.6.2",
-        "xml": "1.0.1"
+        "jest-matcher-utils": "26.6.2"
     },
     "peerDependencies": {
         "jest": ">=26.0.0"
     },
     "devDependencies": {
-        "@jest/reporters": "26.6.2",
         "@sa11y/common": "0.3.0",
-        "@sa11y/test-utils": "0.4.0",
-        "@types/xml": "1.0.5"
+        "@sa11y/test-utils": "0.4.0"
     },
     "publishConfig": {
         "access": "public"
