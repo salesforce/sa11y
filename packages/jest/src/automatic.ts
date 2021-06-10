@@ -51,7 +51,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
         }
     } finally {
         if (opts.cleanupAfterEach) document.body.innerHTML = ''; // remove non-element nodes
-        A11yError.checkAndThrow(violations, opts.consolidateResults);
+        A11yError.checkAndThrow(violations, { deduplicate: opts.consolidateResults });
     }
 }
 

@@ -31,6 +31,7 @@ export interface Options {
     helpUrlIndicator: string;
     formatter?: Formatter;
     highlighter: Highlighter;
+    deduplicate: boolean; // Remove duplicate A11yResult with the same key (id, css)
 }
 
 /**
@@ -41,6 +42,7 @@ const defaultOptions: Options = {
     helpUrlIndicator: '-',
     // TODO (refactor): Create a Default formatter that points to A11yError.format()
     highlighter: (text: string): string => text,
+    deduplicate: false,
 };
 
 /**
@@ -52,12 +54,10 @@ export class A11yError extends Error {
     /**
      * Throw error with formatted a11y violations
      * @param violations - List of a11y violations
-     * @param consolidate - Filter our previously reported issues and report only new
-     *  issues which haven't been previously reported.
      * @param opts - Options used for formatting a11y issues
      */
-    static checkAndThrow(violations: AxeResults, consolidate = false, opts: Partial<Options> = defaultOptions): void {
-        if (consolidate) {
+    static checkAndThrow(violations: AxeResults, opts: Partial<Options> = defaultOptions): void {
+        if (opts.deduplicate) {
             violations = ConsolidatedResults.add(violations);
             // TODO (debug): Will this affect all errors globally?
             // Error.stackTraceLimit = 0;

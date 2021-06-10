@@ -61,10 +61,10 @@ describe('a11y Results Formatter', () => {
         const a11yError = await getA11yError(domWithA11yIssues);
         const violations = a11yError.violations;
         // Should throw error for the first time
-        expect(() => A11yError.checkAndThrow(violations, true)).toThrowErrorMatchingSnapshot();
+        expect(() => A11yError.checkAndThrow(violations, { deduplicate: true })).toThrowErrorMatchingSnapshot();
         // Should not throw error for repeated violations with consolidation
-        expect(() => A11yError.checkAndThrow(violations, true)).not.toThrow();
+        expect(() => A11yError.checkAndThrow(violations, { deduplicate: true })).not.toThrow();
         // Should throw error for repeated violations without consolidation
-        expect(() => A11yError.checkAndThrow(violations, false)).toThrowErrorMatchingSnapshot();
+        expect(() => A11yError.checkAndThrow(violations, { deduplicate: false })).toThrowErrorMatchingSnapshot();
     });
 });

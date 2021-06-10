@@ -30,6 +30,7 @@ const formatOptions: Options = {
     a11yViolationIndicator: '⭕',
     helpUrlIndicator: '🔗',
     highlighter: printReceived,
+    deduplicate: false,
 };
 
 /**
