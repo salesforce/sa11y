@@ -81,10 +81,12 @@ export class ConsolidatedResults {
 
     static clear(): void {
         this.consolidatedMap.clear();
+        this.a11yResults.clear();
     }
 
     /**
-     * Convert and consolidate given a11y results based on given key (test scope)
+     * Consolidate given a11y results based on given key (test scope)
+     *  and return new results that are not already present
      */
     // TODO(refactor): Merge with ConsolidatedResults.add()
     static consolidate(results: A11yResult[], key = ''): A11yResult[] {

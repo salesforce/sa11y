@@ -18,8 +18,10 @@ const a11yIssues = [
 ] as AxeResults;
 
 let violations: AxeResults = [];
+let a11yResults: A11yResult[] = [];
 beforeAll(async () => {
     violations = await getViolations();
+    a11yResults = A11yResult.convert(violations);
 });
 beforeEach(() => ConsolidatedResults.clear());
 
@@ -39,6 +41,48 @@ describe('a11y result', () => {
                 })
         );
         expect(deserializeResults(a11yResults)).not.toEqual(a11yResults);
+    });
+
+    it('should consolidate violations', () => {
+        expect(a11yResults.length).toBeGreaterThan(0);
+        expect(ConsolidatedResults.consolidate(a11yResults)).toHaveLength(a11yResults.length);
+    });
+
+    it('should not add the same violations again', () => {
+        expect(ConsolidatedResults.consolidate(a11yResults)).toHaveLength(a11yResults.length);
+        expect(ConsolidatedResults.consolidate(a11yResults)).toHaveLength(0);
+        expect(ConsolidatedResults.consolidate(a11yResults.concat(a11yResults))).toHaveLength(0);
+    });
+
+    it('should not add a single duplicate violation', () => {
+        expect(ConsolidatedResults.consolidate(a11yResults)).toHaveLength(a11yResults.length);
+        const a11yResult = a11yResults[0];
+        // Shouldn't add an individual duplicate violation
+        expect(ConsolidatedResults.consolidate([a11yResult])).toHaveLength(0);
+
+        // Shouldn't add modified violations (after a result is removed)
+        expect(ConsolidatedResults.consolidate(a11yResults)).toHaveLength(0);
+
+        // Should add the result copy with diff id
+        const violation = violations[0];
+        // base line check before modifying id, css
+        const existingA11yResult = new A11yResult(violation, violation.nodes[0]);
+        expect(ConsolidatedResults.consolidate([existingA11yResult])).toHaveLength(0);
+
+        // Create a copy with diff ID
+        const newA11yResultId = new A11yResult({ ...violation, id: 'foo' }, violation.nodes[0]);
+        expect(ConsolidatedResults.consolidate([newA11yResultId])).toHaveLength(1);
+        expect(ConsolidatedResults.consolidate([newA11yResultId])).toHaveLength(0);
+
+        // Should add the result copy with diff CSS selector
+        const newA11yResultCss = new A11yResult(violation, { ...violation.nodes[0], target: ['bar'] });
+        expect(ConsolidatedResults.consolidate([newA11yResultCss])).toHaveLength(1);
+        expect(ConsolidatedResults.consolidate([newA11yResultCss])).toHaveLength(0);
+    });
+
+    it.each(['', 'foo', 'bar'])('should consolidate based on given key: %#', (key) => {
+        expect(ConsolidatedResults.consolidate(a11yResults, key)).toHaveLength(a11yResults.length);
+        expect(ConsolidatedResults.consolidate(a11yResults, key)).toHaveLength(0);
     });
 });
 
@@ -66,7 +110,7 @@ describe('a11y results processing', () => {
 
     it('should not add a single duplicate violation', () => {
         expect(ConsolidatedResults.add(violations)).toHaveLength(violations.length);
-        const violation = violations.pop();
+        const violation = violations[0];
         // Shouldn't add an individual duplicate violation
         expect(ConsolidatedResults.add([violation])).toHaveLength(0);
 
