@@ -23,7 +23,7 @@ export class WcagMetadata {
     public successCriteria = WcagMetadata.defaultSC;
 
     constructor(readonly tags: string[]) {
-        for (const tag of tags) {
+        for (const tag of tags.sort()) {
             const match = WcagMetadata.regExp.exec(tag);
             if (!match || !match.groups) continue;
             const level = match.groups.level;

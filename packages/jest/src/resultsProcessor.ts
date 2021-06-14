@@ -22,14 +22,17 @@ const consolidatedErrors = new Map<string, AssertionResult[]>();
 function convertA11yTestResult(testResult: AssertionResult, a11yResult: A11yResult): AssertionResult {
     return {
         ...testResult,
+        // TODO (refactor): extract formatting into its own function.
+        //  - Can this satisfy Formatter interface?
+        //  - Be part of format? (FileFormatter vs ConsoleFormatter)?
         fullName: `${a11yResult.description}: ${a11yResult.selectors}`,
         failureMessages: [
             `${errMsgHeader}: ${a11yResult.description}
 CSS Selectors: ${a11yResult.selectors}
 HTML element: ${a11yResult.html}
-Summary: ${a11yResult.summary}
 Help: ${a11yResult.helpUrl}
-Tests: ${testResult.fullName}`, // TODO (refactor): replace with array of tests when consolidating? But we reach here after de-duping a11y results?
+Tests: "${testResult.fullName}"
+Summary: ${a11yResult.summary}`, // TODO (refactor): replace with array of tests when consolidating? But we reach here after de-duping a11y results?
         ],
         // We don't need the error objects anymore as they have been processed
         failureDetails: [],
