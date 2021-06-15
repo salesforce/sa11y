@@ -23,6 +23,7 @@ module.exports = {
     // Direct Jest to read the jest config file from integration tests
     projects: ['<rootDir>', integrationTestPath],
     testEnvironment: 'jsdom',
+    testRunner: 'jest-jasmine2',
     // Custom results processor for a11y results. Only affects JSON results file output.
     // To be used with jest cli options --json --outputFile
     //   *  e.g. jest --json --outputFile jestResults.json

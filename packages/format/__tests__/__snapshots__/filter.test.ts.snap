@@ -475,7 +475,7 @@ Fix any of the following:
 ]
 `;
 
-exports[`a11y results filter should filter results for matching exception list 0 1`] = `
+exports[`a11y results filter should filter results for matching exception list %# 1`] = `
 Array [
   Object {
     "description": "Ensures each HTML document contains a non-empty <title> element",
@@ -721,7 +721,7 @@ Fix any of the following:
 ]
 `;
 
-exports[`a11y results filter should filter results for matching exception list 1 1`] = `
+exports[`a11y results filter should filter results for matching exception list %# 2`] = `
 Array [
   Object {
     "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
@@ -984,7 +984,7 @@ Fix any of the following:
 ]
 `;
 
-exports[`a11y results filter should filter results for matching exception list 2 1`] = `
+exports[`a11y results filter should filter results for matching exception list %# 3`] = `
 Array [
   Object {
     "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
@@ -1214,7 +1214,7 @@ Array [
 ]
 `;
 
-exports[`a11y results filter should filter results for matching exception list 3 1`] = `
+exports[`a11y results filter should filter results for matching exception list %# 4`] = `
 Array [
   Object {
     "description": "Ensures every HTML document has a lang attribute",
