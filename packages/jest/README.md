@@ -12,7 +12,7 @@ Accessibility matcher for [Jest](https://jestjs.io)
   - [Test module level](#test-module-level)
   - [Automatic checks](#automatic-checks)
     - [Using environment variables](#using-environment-variables)
-      - [Workflow](#workflow)
+    - [Workflow](#workflow)
 - [Caution](#caution)
 - [Usage](#usage)
 
@@ -110,7 +110,7 @@ SA11Y_AUTO=1 SA11Y_CLEANUP=1 jest
 -   Invoking `jest` with environment variables as above will enable automatic checks with no changes required to `setup()`
 -   The environment variables can be used to set up parallel builds e.g., in a CI environment without code changes to `setup()` to opt-in to automatic checks
 
-##### Workflow
+#### Workflow
 
 When automatic checks are enabled
 
@@ -119,7 +119,7 @@ When automatic checks are enabled
 -   a11y errors can be transformed into their own test failures using the sa11y custom test result processor
     -   `jest --json --outputFile results.json --testResultsProcessor node_modules/@sa11y/jest/dist/resultsProcessor.js`
     -   This would extract the a11y errors from the original tests and create additional test failures with the WCAG version, level, rule ID, CSS selectors as key
-        -   bringing a11y metadata to forefront instead of being part of stack-traces.
+        -   bringing a11y metadata to forefront instead of being part of stacktrace
     -   The JSON output can be transformed into JUnit XML format e.g., using [jest-junit](https://github.com/jest-community/jest-junit)
 
 ## Caution
