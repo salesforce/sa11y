@@ -39,11 +39,11 @@
         "axe-core": "4.1.4"
     },
     "devDependencies": {
-        "@rollup/plugin-commonjs": "18.1.0",
+        "@rollup/plugin-commonjs": "19.0.0",
         "@rollup/plugin-node-resolve": "13.0.0",
         "@sa11y/common": "0.3.0",
         "@sa11y/test-utils": "0.4.0",
-        "rollup": "2.47.0",
+        "rollup": "2.51.2",
         "rollup-plugin-polyfill-node": "0.6.2",
         "rollup-plugin-progress": "1.1.2",
         "rollup-plugin-sizes": "1.0.4",
