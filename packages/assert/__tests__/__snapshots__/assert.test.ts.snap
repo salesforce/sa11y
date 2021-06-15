@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`assertAccessible API should throw an error with a11y issues found for dom with a11y issues 1`] = `
-"5 accessibility issues found
+"5 Accessibility issues found
  * (bypass) Page must have means to bypass repeated blocks: html
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/bypass
 
@@ -19,13 +19,13 @@ exports[`assertAccessible API should throw an error with a11y issues found for d
 `;
 
 exports[`assertAccessible API should throw error with HTML element with a11y issues 1`] = `
-"1 accessibility issues found
+"1 Accessibility issues found
  * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
 `;
 
 exports[`assertAccessible API should use default document, ruleset, formatter when called with no args - expecting 1 assertion 1`] = `
-"5 accessibility issues found
+"5 Accessibility issues found
  * (bypass) Page must have means to bypass repeated blocks: html
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/bypass
 
