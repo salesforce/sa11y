@@ -41,6 +41,7 @@ const defaultOptions: Options = {
     a11yViolationIndicator: '*',
     helpUrlIndicator: '-',
     // TODO (refactor): Create a Default formatter that points to A11yError.format()
+    formatter: undefined,
     highlighter: (text: string): string => text,
     deduplicate: false,
 };
