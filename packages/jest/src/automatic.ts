@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { AxeResults } from '@sa11y/common';
+import { AxeResults, log } from '@sa11y/common';
 import { getViolationsJSDOM } from '@sa11y/assert';
 import { A11yError } from '@sa11y/format';
 
@@ -61,7 +61,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
  */
 export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
     if (opts.runAfterEach) {
-        console.log('♿ Registering sa11y checks to be run automatically after each test');
+        log('Registering sa11y checks to be run automatically after each test');
         // TODO (feat): Add test path/name as key to consolidated results
         // console.log('=>testPath', expect.getState().testPath);
         // console.log('=>currentTestName', expect.getState().currentTestName);

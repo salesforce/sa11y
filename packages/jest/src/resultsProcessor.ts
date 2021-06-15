@@ -6,7 +6,7 @@
  */
 import { addResult, createEmptyTestResult } from '@jest/test-result';
 import { AggregatedResult, AssertionResult, TestResult } from '@jest/test-result/build/types';
-import { errMsgHeader } from '@sa11y/common';
+import { errMsgHeader, log } from '@sa11y/common';
 import { A11yError, A11yResult, ConsolidatedResults } from '@sa11y/format';
 
 type FailureDetail = {
@@ -93,7 +93,7 @@ function modifyTestSuiteResults(results: AggregatedResult, testSuite: TestResult
  */
 export default function resultsProcessor(results: AggregatedResult): AggregatedResult {
     // TODO (refactor): Use map/filter to get results directly without global var for consolidated errors
-    console.log(`♿[Sa11y] Processing ${results.numTotalTests} tests ..`);
+    log(`Processing ${results.numTotalTests} tests ..`);
     results.testResults // suite results
         .filter((testSuite) => testSuite.numFailingTests > 0)
         .forEach((testSuite) => {
@@ -105,7 +105,7 @@ export default function resultsProcessor(results: AggregatedResult): AggregatedR
                 });
         });
 
-    console.log(`♿[Sa11y] Transforming a11y failures from ${consolidatedErrors.size} suites ..`);
+    log(`Transforming a11y failures from ${consolidatedErrors.size} suites ..`);
     // Create test suites to hold a11y failures
     consolidatedErrors.forEach((testResults, suiteKey) => {
         const sa11ySuite = createEmptyTestResult();
