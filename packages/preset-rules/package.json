@@ -24,7 +24,7 @@
         "axe-core": "4.1.4"
     },
     "devDependencies": {
-        "@sa11y/common": "0.3.0"
+        "@sa11y/common": "0.3.1"
     },
     "publishConfig": {
         "access": "public"

@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/common",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "Common utilities, constants, error messages for @sa11y",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/common#readme",
