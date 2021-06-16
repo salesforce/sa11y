@@ -40,7 +40,7 @@
         "release:version": "yarn pkg:diff; lerna version --no-push --no-git-tag-version && yarn build:clean",
         "release:version:auto": "yarn release:version --conventional-commits --no-changelog && yarn build:clean",
         "release:publish": "yarn test:clean && lerna publish from-package",
-        "test": "jest --coverage",
+        "test": "jest --coverage --runInBand",
         "test:ci": "yarn lint:all && yarn test --ci && yarn test:wdio",
         "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
