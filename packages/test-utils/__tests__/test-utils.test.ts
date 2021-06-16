@@ -46,16 +46,18 @@ describe('test utils check a11y error', () => {
     });
 
     it('should check for axe run time exception', () => {
-        expect.assertions(3);
-        expect(() => checkA11yError(new Error(axeRuntimeExceptionMsgPrefix))).toThrowErrorMatchingSnapshot();
+        function runtimeErrorThrower() {
+            throw new Error(axeRuntimeExceptionMsgPrefix);
+        }
+        expect.assertions(2);
+        expect(() => checkA11yErrorFunc(runtimeErrorThrower, true)).not.toThrow();
     });
 
     it('should check for error to match snapshot', () => {
+        function errorThrower() {
+            throw new Error('foo');
+        }
         expect.assertions(4);
-        expect(() =>
-            checkA11yErrorFunc(() => {
-                throw new Error('foo');
-            })
-        ).not.toThrow();
+        expect(() => checkA11yErrorFunc(errorThrower, false, false)).not.toThrow();
     });
 });
