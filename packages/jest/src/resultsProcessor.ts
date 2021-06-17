@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { addResult, createEmptyTestResult } from '@jest/test-result';
-import { AggregatedResult, AssertionResult, TestResult } from '@jest/test-result/build/types';
+import { AggregatedResult, AssertionResult, TestResult, addResult, createEmptyTestResult } from '@jest/test-result';
 import { errMsgHeader, log } from '@sa11y/common';
 import { A11yError, A11yResult, ConsolidatedResults } from '@sa11y/format';
 
@@ -17,9 +16,10 @@ type FailureDetail = {
 const consolidatedErrors = new Map<string, AssertionResult[]>();
 
 /**
- * Create a test failure result for given a11y failure
+ * Create a test failure result with a11y meta-data at forefront from given test failure
+ * with a11y error.
  */
-function convertA11yTestResult(testResult: AssertionResult, a11yResult: A11yResult): AssertionResult {
+function createA11yTestResult(testResult: AssertionResult, a11yResult: A11yResult): AssertionResult {
     return {
         ...testResult,
         // TODO (refactor): extract formatting into its own function.
@@ -54,29 +54,29 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
         /* istanbul ignore next */
         if (error === undefined) error = failure as A11yError;
         if (error.name === A11yError.name) {
-            // TODO : What happens if there are ever multiple failureDetails?
+            // TODO (spike) : What happens if there are ever multiple failureDetails?
             //  Ideally there shouldn't be as test execution should be stopped on failure
             ConsolidatedResults.consolidate(error.a11yResults, suiteName).forEach((a11yResult) => {
                 const suiteKey = `[Sa11y ${a11yResult.wcag} ${a11yResult.id} ${suiteName}]`;
                 // TODO (code cov): Fix - should be covered by existing tests
                 /* istanbul ignore next */
                 if (!Array.isArray(consolidatedErrors.get(suiteKey))) consolidatedErrors.set(suiteKey, []);
-                consolidatedErrors.get(suiteKey)?.push(convertA11yTestResult(testResult, a11yResult));
+                consolidatedErrors.get(suiteKey)?.push(createA11yTestResult(testResult, a11yResult));
             });
         }
     });
 }
 
 /**
- * Modify existing test suites, test results containing a11y errors after a11y errors
- *  are extracted out into their own test suites and results.
+ * Modify existing test result containing a11y error after a11y error
+ *  is extracted into its own test result using {@link createA11yTestResult}.
  */
-function modifyTestSuiteResults(results: AggregatedResult, testSuite: TestResult, testResult: AssertionResult) {
+function modifyOriginalTestResult(results: AggregatedResult, testSuite: TestResult, testResult: AssertionResult) {
     // Don't report the failure twice
     testResult.status = 'disabled';
-    // TODO (fix): Remove sa11y msg from test suite message
-    //  ANSI codes and test names in suite message makes it difficult
-    //  Removing error from test result doesn't affect test suite error msg
+    // TODO (fix): Remove sa11y msg from test suite message.
+    //  ANSI codes and test names in suite message makes it difficult.
+    //  Removing error from test result doesn't affect test suite error msg.
     // testResult.failureMessages = [];
     // testResult.failureDetails = [];
     // testSuite.failureMessage = '';
@@ -85,6 +85,7 @@ function modifyTestSuiteResults(results: AggregatedResult, testSuite: TestResult
     results.numFailedTests -= 1;
     if (testSuite.numFailingTests === 0) results.numFailedTestSuites -= 1;
     // TODO(debug): Does 'success' represent only failed tests?
+    //  Or errored tests as well e.g.?
     // if (results.numFailedTestSuites === 0) results.success = true;
 }
 
@@ -105,7 +106,7 @@ export default function resultsProcessor(results: AggregatedResult): AggregatedR
                 .filter((testResult) => testResult.status === 'failed')
                 .forEach((testResult) => {
                     processA11yErrors(testSuite, testResult);
-                    modifyTestSuiteResults(results, testSuite, testResult);
+                    modifyOriginalTestResult(results, testSuite, testResult);
                 });
         });
 
