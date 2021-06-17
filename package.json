@@ -45,6 +45,7 @@
         "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "jest --watch",
+        "test:auto": "SA11Y_AUTO=1 yarn test --json --outputFile jestResults.json",
         "test:wdio": "wdio run wdio.conf.js --suite wdio --suite integration --suite browserLib < /dev/null",
         "prepare": "husky install"
     },
