@@ -50,12 +50,16 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
     testResult.failureDetails.forEach((failure) => {
         let error = (failure as FailureDetail).error;
         // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
+        // TODO (code cov): Add test data covering the case for circus test runner
+        /* istanbul ignore next */
         if (error === undefined) error = failure as A11yError;
         if (error.name === A11yError.name) {
             // TODO : What happens if there are ever multiple failureDetails?
             //  Ideally there shouldn't be as test execution should be stopped on failure
             ConsolidatedResults.consolidate(error.a11yResults, suiteName).forEach((a11yResult) => {
                 const suiteKey = `[Sa11y ${a11yResult.wcag} ${a11yResult.id} ${suiteName}]`;
+                // TODO (code cov): Fix - should be covered by existing tests
+                /* istanbul ignore next */
                 if (!Array.isArray(consolidatedErrors.get(suiteKey))) consolidatedErrors.set(suiteKey, []);
                 consolidatedErrors.get(suiteKey)?.push(convertA11yTestResult(testResult, a11yResult));
             });

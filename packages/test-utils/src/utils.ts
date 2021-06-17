@@ -45,13 +45,13 @@ export function checkA11yError(e: Error): void {
  * https://github.com/jest-community/eslint-plugin-jest/blob/main/docs/rules/no-conditional-expect.md
  */
 export async function checkA11yErrorFunc(
-    func: CallableFunction,
+    errorThrower: CallableFunction,
     expectRuntimeError = false,
     expectNoError = false
 ): Promise<void> {
     let err = new Error();
     try {
-        await func();
+        await errorThrower();
     } catch (e) {
         err = e as Error;
     } finally {

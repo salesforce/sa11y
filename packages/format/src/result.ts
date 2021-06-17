@@ -66,6 +66,8 @@ export class A11yResult {
         this.helpUrl = violation.helpUrl.split('?')[0];
         this.selectors = node.target.sort().join('; ');
         this.html = node.html;
+        // TODO (code cov): Add test data where failure summary is missing
+        /* istanbul ignore next */
         this.summary = node.failureSummary || '';
         this.key = `${this.id}--${this.selectors}`;
     }

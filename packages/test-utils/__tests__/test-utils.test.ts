@@ -59,6 +59,6 @@ describe('test utils check a11y error', () => {
         }
         expect.assertions(6);
         expect(() => checkA11yErrorFunc(() => 'foo', false, true)).not.toThrow();
-        expect(() => checkA11yErrorFunc(errorThrower, false, false)).not.toThrow();
+        expect(() => checkA11yErrorFunc(errorThrower)).not.toThrow();
     });
 });
