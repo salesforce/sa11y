@@ -6,7 +6,6 @@
  */
 import { AxeResults } from '@sa11y/common';
 import { NodeResult, Result } from 'axe-core';
-import * as axe from 'axe-core';
 import { WcagMetadata } from './wcag';
 
 const defaultImpact = 'minor'; // if impact is undefined

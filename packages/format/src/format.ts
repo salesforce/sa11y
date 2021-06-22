@@ -50,7 +50,7 @@ const defaultOptions: Options = {
  *  Custom error object to represent a11y violations
  */
 export class A11yError extends Error {
-    public readonly a11yResults;
+    // public readonly a11yResults;
 
     /**
      * Throw error with formatted a11y violations
@@ -58,21 +58,23 @@ export class A11yError extends Error {
      * @param opts - Options used for formatting a11y issues
      */
     static checkAndThrow(violations: AxeResults, opts: Partial<Options> = defaultOptions): void {
+        let a11yResults = A11yResult.convert(violations);
         if (opts.deduplicate) {
-            violations = ConsolidatedResults.add(violations);
-            // TODO (debug): Will this affect all errors globally?
-            // Error.stackTraceLimit = 0;
+            a11yResults = ConsolidatedResults.consolidate(a11yResults);
         }
-        if (violations.length > 0) {
-            throw new A11yError(violations, opts);
+        if (a11yResults.length > 0) {
+            throw new A11yError(violations, a11yResults, opts);
         }
     }
 
-    constructor(readonly violations: AxeResults, opts: Partial<Options> = defaultOptions) {
-        super(`${violations.length} ${errMsgHeader}`);
+    constructor(
+        readonly violations: AxeResults,
+        readonly a11yResults: A11yResult[],
+        opts: Partial<Options> = defaultOptions
+    ) {
+        super(`${a11yResults.length} ${errMsgHeader}`);
         this.name = A11yError.name;
-        this.a11yResults = A11yResult.convert(this.violations);
-        this.message = `${violations.length} ${errMsgHeader}\n ${this.format(opts)}`;
+        this.message = `${a11yResults.length} ${errMsgHeader}\n ${this.format(opts)}`;
     }
 
     get length(): number {

@@ -8,7 +8,7 @@ import resultsProcessor from '../src/resultsProcessor';
 import { addResult, createEmptyTestResult, makeEmptyAggregatedTestResult } from '@jest/test-result';
 import { AggregatedResult, AssertionResult, TestResult } from '@jest/test-result/build/types';
 import { A11yError, A11yResult } from '@sa11y/format';
-import { getViolations } from '@sa11y/format/__tests__/format.test';
+import { getA11yError } from '@sa11y/format/__tests__/format.test';
 import { domWithVisualA11yIssues } from '@sa11y/test-utils';
 
 const a11yResults: A11yResult[] = [];
@@ -31,16 +31,16 @@ function addTestFailure(suite: TestResult, err: Error) {
 
 beforeAll(async () => {
     // Prepare test data
-    const violations = await getViolations();
-    const violationsVisual = await getViolations(domWithVisualA11yIssues);
-    const combinedViolations = [...violations, ...violationsVisual];
-    a11yResults.push(...A11yResult.convert(combinedViolations));
-    addTestFailure(testSuite, new A11yError(violations));
-    addTestFailure(testSuite, new A11yError(violationsVisual));
+    const a11yError = await getA11yError();
+    const a11yErrorVisual = await getA11yError(domWithVisualA11yIssues);
+    const combinedViolations = [...a11yError.violations, ...a11yErrorVisual.violations];
+    a11yResults.push(...a11yError.a11yResults, ...a11yErrorVisual.a11yResults);
+    addTestFailure(testSuite, new A11yError(a11yError.violations, a11yError.a11yResults));
+    addTestFailure(testSuite, new A11yError(a11yErrorVisual.violations, a11yErrorVisual.a11yResults));
     // Duplicate test result to test consolidation
-    addTestFailure(testSuite, new A11yError(violations));
-    addTestFailure(testSuite, new A11yError(violationsVisual));
-    addTestFailure(testSuite, new A11yError(combinedViolations));
+    addTestFailure(testSuite, new A11yError(a11yError.violations, a11yError.a11yResults));
+    addTestFailure(testSuite, new A11yError(a11yErrorVisual.violations, a11yErrorVisual.a11yResults));
+    addTestFailure(testSuite, new A11yError(combinedViolations, a11yResults));
     // Add non-a11y test failure
     addTestFailure(testSuite, new Error('foo'));
     testSuite.testFilePath = '/test/data/sa11y-auto-checks.js';

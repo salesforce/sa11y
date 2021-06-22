@@ -153,14 +153,14 @@ Object {
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
 
-* (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/html-has-lang
-
 * (landmark-one-main) Document must have one main landmark: html
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/landmark-one-main
 
 * (page-has-heading-one) Page must contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one],
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/page-has-heading-one
+
+* (html-has-lang) <html> element must have a lang attribute: html
+	- Help URL: https://dequeuniversity.com/rules/axe/4.1/html-has-lang],
           ],
           "fullName": "A11yError-4",
           "status": "failed",
@@ -1298,17 +1298,6 @@ Fix any of the following:
                   "wcag": "WCAG2.0-LevelA-SC4.1.2",
                 },
                 Object {
-                  "description": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/html-has-lang",
-                  "html": "<html>",
-                  "id": "html-has-lang",
-                  "key": "html-has-lang--html",
-                  "selectors": "html",
-                  "summary": "Fix any of the following:
-  The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.0-LevelA-SC3.1.1",
-                },
-                Object {
                   "description": "Document must have one main landmark",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/landmark-one-main",
                   "html": "<html><head></head><body>
@@ -1343,6 +1332,17 @@ Fix any of the following:
                   "summary": "Fix all of the following:
   Page must have a level-one heading",
                   "wcag": "best-practice",
+                },
+                Object {
+                  "description": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/html-has-lang",
+                  "html": "<html>",
+                  "id": "html-has-lang",
+                  "key": "html-has-lang--html",
+                  "selectors": "html",
+                  "summary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                  "wcag": "WCAG2.0-LevelA-SC3.1.1",
                 },
               ],
               "name": "A11yError",
@@ -1568,43 +1568,6 @@ Fix any of the following:
                   ],
                 },
                 Object {
-                  "description": "Ensures every HTML document has a lang attribute",
-                  "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/html-has-lang?application=axeAPI",
-                  "id": "html-has-lang",
-                  "impact": "serious",
-                  "nodes": Array [
-                    Object {
-                      "all": Array [],
-                      "any": Array [
-                        Object {
-                          "data": Object {
-                            "messageKey": "noLang",
-                          },
-                          "id": "has-lang",
-                          "impact": "serious",
-                          "message": "The <html> element does not have a lang attribute",
-                          "relatedNodes": Array [],
-                        },
-                      ],
-                      "failureSummary": "Fix any of the following:
-  The <html> element does not have a lang attribute",
-                      "html": "<html>",
-                      "impact": "serious",
-                      "none": Array [],
-                      "target": Array [
-                        "html",
-                      ],
-                    },
-                  ],
-                  "tags": Array [
-                    "ACT",
-                    "cat.language",
-                    "wcag2a",
-                    "wcag311",
-                  ],
-                },
-                Object {
                   "description": "Ensures the document has a main landmark",
                   "help": "Document must have one main landmark",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/landmark-one-main?application=axeAPI",
@@ -1682,6 +1645,43 @@ Fix any of the following:
                   "tags": Array [
                     "best-practice",
                     "cat.semantics",
+                  ],
+                },
+                Object {
+                  "description": "Ensures every HTML document has a lang attribute",
+                  "help": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.1/html-has-lang?application=axeAPI",
+                  "id": "html-has-lang",
+                  "impact": "serious",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "messageKey": "noLang",
+                          },
+                          "id": "has-lang",
+                          "impact": "serious",
+                          "message": "The <html> element does not have a lang attribute",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                      "html": "<html>",
+                      "impact": "serious",
+                      "none": Array [],
+                      "target": Array [
+                        "html",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "ACT",
+                    "cat.language",
+                    "wcag2a",
+                    "wcag311",
                   ],
                 },
               ],

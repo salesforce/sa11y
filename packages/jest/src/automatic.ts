@@ -51,6 +51,9 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
         }
     } finally {
         if (opts.cleanupAfterEach) document.body.innerHTML = ''; // remove non-element nodes
+        // TODO (spike): Disable stack trace for automatic checks.
+        //  Will this affect all errors globally?
+        // Error.stackTraceLimit = 0;
         A11yError.checkAndThrow(violations, { deduplicate: opts.consolidateResults });
     }
 }
@@ -62,9 +65,6 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
 export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
     if (opts.runAfterEach) {
         log('Registering sa11y checks to be run automatically after each test');
-        // TODO (feat): Add test path/name as key to consolidated results
-        // console.log('=>testPath', expect.getState().testPath);
-        // console.log('=>currentTestName', expect.getState().currentTestName);
         afterEach(async () => {
             await automaticCheck(opts);
         });

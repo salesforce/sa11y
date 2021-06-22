@@ -10,10 +10,19 @@ import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/
 import { AxeResults } from '@sa11y/common';
 import { A11yError, ConsolidatedResults } from '../src';
 
-async function getA11yError(dom: string): Promise<A11yError> {
+// TODO (refactor): Move to common test-utils
+//  - without creating circular dep due to "A11yError"
+// eslint-disable-next-line jest/no-export
+export async function getA11yError(dom: string = domWithA11yIssues): Promise<A11yError> {
     document.body.innerHTML = dom;
     const violations = await axe.run(document).then((results) => results.violations);
-    return new A11yError(violations);
+    try {
+        A11yError.checkAndThrow(violations);
+    } catch (e) {
+        return e as A11yError;
+    }
+    // If there are no violations and no A11yError thrown
+    return new A11yError([], []);
 }
 
 // TODO (refactor): Move to common test-utils
