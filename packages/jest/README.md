@@ -193,15 +193,16 @@ With sa11y results processor:
 Automatic checks currently has the following limitations.
 
 -   Automatic check is triggered regardless of the test status which would result in the original test failure if any getting overwritten by a11y failures if any from automatic checks ([#66](https://github.com/salesforce/sa11y/issues/66))
--   Tests using the sa11y jest api would get tested twice with automatic checks - once as part of the sa11y API in the test and again as part of the automatic check
+-   Tests using the sa11y jest api would get tested twice with automatic checks - once as part of the sa11y API in the test and again as part of the automatic check at the end
     -   a11y issues from automatic checks would overwrite the a11y issues found by the API
-    -   If the sa11y API has been added to the test to check specific intermediate states of the DOM, enabling automatic checks could result in missed a11y issues
--   Automatic checks check the DOM state as it is at the end of the test. DOM states before the end of the test are not checked which could result in missed a11y issues.
+    -   If your tests typically use the sa11y API at various intermediate points cognizant of the DOM state, then enabling automatic checks in its current form could result in missed a11y issues
+    -   This would be fixed in future with ([#66](https://github.com/salesforce/sa11y/issues/66))
+-   Automatic checks are run at the end of the test. States of DOM before the end of the test are not checked which could result in missed a11y issues.
 -   If the test cleans up the DOM after execution, as part of teardown e.g., the sa11y automatic check executed at the end of the test would not be able to check the DOM
     -   Workaround: Remove the DOM cleanup code from the test and opt-in to using sa11y to clean-up the DOM using the options as described above (`cleanupAfterEach: true` or `SA11Y_CLEANUP=1`)
--   With the sa11y results processor
-    -   Though the originating test from which the a11y failures are extracted is disabled, and test counts adjusted accordingly - the original test suite failure message still contains the a11y failures.
-        -   The test suite failure message is typically not displayed or used in testing workflows. But if your testing workflow uses the test suite failure message, this might cause confusion.
+-   With the sa11y results processor, the originating test from which the a11y failures are extracted is disabled and test counts adjusted accordingly
+    -   But the original test suite failure message still contains the a11y failures.
+    -   The test suite failure message is typically not displayed or used in testing workflows. But if your testing workflow uses the test suite failure message, this might cause confusion.
 
 ## Caution
 
