@@ -77,12 +77,9 @@ export class A11yResult {
  * Consolidate unique a11y violations by removing duplicates.
  */
 export class ConsolidatedResults {
-    // static a11yResults: Record<string, A11yResult[]> = {};
     static a11yResults = new Map<string, string[]>();
-    static consolidatedMap = new Map<string, axe.Result>();
 
     static clear(): void {
-        this.consolidatedMap.clear();
         this.a11yResults.clear();
     }
 
@@ -90,7 +87,6 @@ export class ConsolidatedResults {
      * Consolidate given a11y results based on given key (test scope)
      *  and return new results that are not already present
      */
-    // TODO(refactor): Merge with ConsolidatedResults.add()
     static consolidate(results: A11yResult[], key = ''): A11yResult[] {
         const a11yResults = ConsolidatedResults.a11yResults;
         const existingResults = a11yResults.get(key) || [];
@@ -101,26 +97,5 @@ export class ConsolidatedResults {
                 return result;
             }
         });
-    }
-
-    /**
-     * Adds given a11y results to a consolidated list if they are not already present
-     * @returns results that have not been added earlier
-     */
-    static add(results: AxeResults): AxeResults {
-        const newResults: AxeResults = [];
-        for (const result of results) {
-            for (const node of result.nodes) {
-                const selectors = node.target.sort().join(';');
-                const key = `${result.id}--${selectors}`;
-                if (!this.consolidatedMap.has(key)) {
-                    this.consolidatedMap.set(key, result);
-                    // TODO (refactor): Store A11yResult with selected fields instead
-                    //  AND reuse it to display formatted error message
-                    newResults.push(result);
-                }
-            }
-        }
-        return newResults;
     }
 }
