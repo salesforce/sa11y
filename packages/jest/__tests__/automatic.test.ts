@@ -15,7 +15,6 @@ import {
     domWithNoA11yIssues,
     domWithNoA11yIssuesChildCount,
 } from '@sa11y/test-utils';
-import { ConsolidatedResults } from '@sa11y/format';
 
 describe('automatic checks registration', () => {
     const PREV_ENV = process.env;
@@ -28,7 +27,6 @@ describe('automatic checks registration', () => {
         // Reset process.env Ref: https://stackoverflow.com/a/48042799
         jest.resetModules();
         process.env = { ...PREV_ENV }; // Copy prev env
-        ConsolidatedResults.clear();
     });
 
     const registerAutomaticMock = jest.spyOn(automatic, 'registerSa11yAutomaticChecks');

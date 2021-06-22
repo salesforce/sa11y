@@ -15,6 +15,7 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
   - [Unit Testing](#unit-testing)
   - [Integration Testing](#integration-testing)
 - [Release](#release)
+    - [Upgrade dependencies](#upgrade-dependencies)
     - [Use local npm registry for testing](#use-local-npm-registry-for-testing)
 - [Editor Configurations](#editor-configurations)
   - [Types](#types)
@@ -160,6 +161,16 @@ Your test should now be running in the Chrome debugger. You get your handy conso
         -   Changes should be limited to non-source code changes (docs, config)
     -   Push the `release` branch and create a pull request against `master`
         -   with PR title of the format `chore(release): ...`
+
+#### Upgrade dependencies
+
+-   `yarn install:update`
+    -   Select dependencies to update
+-   Check for CircleCI Orb updates
+    -   [circleci/node](https://circleci.com/developer/orbs/orb/circleci/node)
+    -   [circleci/browser-tools](https://circleci.com/developer/orbs/orb/circleci/browser-tools)
+    -   update CircleCI config file
+    -   [Test CI config](#test-ci-config)
 
 #### Use local npm registry for testing
 

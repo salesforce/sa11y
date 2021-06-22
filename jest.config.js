@@ -22,4 +22,10 @@ module.exports = {
     testPathIgnorePatterns: [browserLibTestPath, integrationTestPath, wdioTestPath],
     // Direct Jest to read the jest config file from integration tests
     projects: ['<rootDir>', integrationTestPath],
+    testEnvironment: 'jsdom',
+    // Custom results processor for a11y results. Only affects JSON results file output.
+    // To be used with jest cli options --json --outputFile
+    //   *  e.g. jest --json --outputFile jestResults.json
+    // Ref: https://jestjs.io/docs/configuration#testresultsprocessor-string
+    testResultsProcessor: '<rootDir>/packages/jest/dist/resultsProcessor.js',
 };

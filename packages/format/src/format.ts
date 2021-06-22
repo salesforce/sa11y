@@ -6,7 +6,7 @@
  */
 
 import { AxeResults, errMsgHeader } from '@sa11y/common';
-import { ConsolidatedResults } from './result';
+import { A11yResult, A11yResults } from './result';
 
 /**
  * Custom formatter to format a11y violations found by axe
@@ -31,6 +31,7 @@ export interface Options {
     helpUrlIndicator: string;
     formatter?: Formatter;
     highlighter: Highlighter;
+    deduplicate: boolean; // Remove duplicate A11yResult with the same key (id, css)
 }
 
 /**
@@ -42,87 +43,61 @@ const defaultOptions: Options = {
     // TODO (refactor): Create a Default formatter that points to A11yError.format()
     formatter: undefined,
     highlighter: (text: string): string => text,
+    deduplicate: false,
 };
-
-const defaultImpact = 'minor'; // if impact is undefined
-// Helper object to sort violations by impact order
-const impactOrder = {
-    critical: 1,
-    serious: 2,
-    moderate: 3,
-    minor: 4,
-};
-
-/**
- * Sorts give a11y results from axe in order of impact
- */
-export function sortViolations(violations: AxeResults): void {
-    violations.sort((a, b) => {
-        const aImpact = impactOrder[a.impact || defaultImpact];
-        const bImpact = impactOrder[b.impact || defaultImpact];
-        if (aImpact < bImpact) return -1;
-        if (aImpact > bImpact) return 1;
-        return 0;
-    });
-}
 
 /**
  *  Custom error object to represent a11y violations
  */
 export class A11yError extends Error {
-    static readonly errMsgHeader = errMsgHeader;
-
-    constructor(readonly violations: AxeResults) {
-        super(`${violations.length} ${A11yError.errMsgHeader}`);
-        this.name = A11yError.name;
-        this.message = `${violations.length} ${A11yError.errMsgHeader}\n ${this.format()}`;
-    }
-
     /**
      * Throw error with formatted a11y violations
      * @param violations - List of a11y violations
-     * @param consolidate - Filter our previously reported issues and report only new
-     *  issues which haven't been previously reported.
+     * @param opts - Options used for formatting a11y issues
      */
-    static checkAndThrow(violations: AxeResults, consolidate = false): void {
-        if (consolidate) violations = ConsolidatedResults.add(violations);
-        if (violations.length > 0) {
-            throw new A11yError(violations);
+    static checkAndThrow(violations: AxeResults, opts: Partial<Options> = defaultOptions): void {
+        let a11yResults = A11yResults.convert(violations);
+        if (opts.deduplicate) {
+            a11yResults = A11yResults.add(a11yResults);
+        }
+        if (a11yResults.length > 0) {
+            throw new A11yError(violations, a11yResults, opts);
         }
     }
 
+    constructor(
+        readonly violations: AxeResults,
+        readonly a11yResults: A11yResult[],
+        opts: Partial<Options> = defaultOptions
+    ) {
+        super(`${a11yResults.length} ${errMsgHeader}`);
+        this.name = A11yError.name;
+        this.message = `${a11yResults.length} ${errMsgHeader}\n ${this.format(opts)}`;
+    }
+
     get length(): number {
-        return this.violations.length;
+        return this.a11yResults.length;
     }
 
     /**
      * Format a11y violations into a readable format highlighting important information to help fixing the issue.
      * @param opts - Options used for formatting a11y issues.
      */
-    format(opts: Partial<Options> = defaultOptions): string {
-        const options = Object.assign(Object.assign({}, defaultOptions), opts);
+    format(opts: Partial<Options>): string {
+        const options = { ...defaultOptions, ...opts };
+        // TODO (code cov): Fails only in CI, passes locally
+        /* istanbul ignore next */
         if (options.formatter !== undefined) {
             return options.formatter(this.violations);
         }
 
-        sortViolations(this.violations);
-        return this.violations
-            .map((violation) => {
-                return violation.nodes
-                    .map((node) => {
-                        // Note: Use a separator that cannot be part of a CSS selector
-                        const selectors = node.target.join('; ');
-                        const helpURL = violation.helpUrl.split('?')[0];
-                        // TODO : Add wcag level or best practice tag to output ?
-                        // const criteria = violation.tags.filter((tag) => tag.startsWith('wcag2a') || tag.startsWith('best'));
-
-                        return (
-                            options.highlighter(
-                                `${options.a11yViolationIndicator} (${violation.id}) ${violation.help}: ${selectors}`
-                            ) + `\n\t${options.helpUrlIndicator} Help URL: ${helpURL}`
-                        );
-                    })
-                    .join('\n\n');
+        return this.a11yResults
+            .map((a11yResult) => {
+                return (
+                    options.highlighter(
+                        `${options.a11yViolationIndicator} (${a11yResult.id}) ${a11yResult.description}: ${a11yResult.selectors}`
+                    ) + `\n\t${options.helpUrlIndicator} Help URL: ${a11yResult.helpUrl}`
+                );
             })
             .join('\n\n');
     }

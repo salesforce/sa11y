@@ -1,31 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`automatic checks call should not raise error for duplicated issues 1`] = `
-"1 accessibility issues found
+"1 Accessibility issues found
  * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
 `;
 
 exports[`automatic checks call should not raise error for duplicated issues 2`] = `
-"1 accessibility issues found
+"1 Accessibility issues found
  * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
 `;
 
 exports[`automatic checks call should raise a11y issues for DOM with a11y issues 1`] = `
-"1 accessibility issues found
+"1 Accessibility issues found
  * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
 `;
 
 exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 1`] = `
-"1 accessibility issues found
+"1 Accessibility issues found
  * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
 `;
 
 exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 2`] = `
-"2 accessibility issues found
+"2 Accessibility issues found
  * (link-name) Links must have discernible text: #dom-with-issues > a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
 
@@ -34,7 +34,7 @@ exports[`automatic checks call should raise consolidated a11y issues for DOM wit
 `;
 
 exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 3`] = `
-"3 accessibility issues found
+"3 Accessibility issues found
  * (link-name) Links must have discernible text: #dom-with-issues > a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
 
@@ -46,7 +46,7 @@ exports[`automatic checks call should raise consolidated a11y issues for DOM wit
 `;
 
 exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 4`] = `
-"4 accessibility issues found
+"4 Accessibility issues found
  * (link-name) Links must have discernible text: #dom-with-issues > a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
 

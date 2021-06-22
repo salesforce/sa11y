@@ -30,6 +30,7 @@ const formatOptions: Options = {
     a11yViolationIndicator: '⭕',
     helpUrlIndicator: '🔗',
     highlighter: printReceived,
+    deduplicate: false,
 };
 
 /**
@@ -43,7 +44,7 @@ export async function toBeAccessible(
 ): Promise<jest.CustomMatcherResult> {
     let isAccessible = true;
     // a11yError can be 'undefined' when used with `not` matcher and there is no error
-    let a11yError: A11yError = new A11yError([]);
+    let a11yError: A11yError = new A11yError([], []);
     let receivedMsg = expectedMsg;
 
     // TODO (Improvement): Can we detect if this is invoked async and error if not ?

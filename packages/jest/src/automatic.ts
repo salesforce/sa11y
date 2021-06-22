@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { AxeResults } from '@sa11y/common';
+import { AxeResults, log } from '@sa11y/common';
 import { getViolationsJSDOM } from '@sa11y/assert';
 import { A11yError } from '@sa11y/format';
 
@@ -51,7 +51,10 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
         }
     } finally {
         if (opts.cleanupAfterEach) document.body.innerHTML = ''; // remove non-element nodes
-        A11yError.checkAndThrow(violations, opts.consolidateResults);
+        // TODO (spike): Disable stack trace for automatic checks.
+        //  Will this affect all errors globally?
+        // Error.stackTraceLimit = 0;
+        A11yError.checkAndThrow(violations, { deduplicate: opts.consolidateResults });
     }
 }
 
@@ -61,10 +64,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
  */
 export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
     if (opts.runAfterEach) {
-        console.log('♿ Registering sa11y checks to be run automatically after each test');
-        // TODO (feat): Add test path/name as key to consolidated results
-        // console.log('=>testPath', expect.getState().testPath);
-        // console.log('=>currentTestName', expect.getState().currentTestName);
+        log('Registering sa11y checks to be run automatically after each test');
         afterEach(async () => {
             await automaticCheck(opts);
         });

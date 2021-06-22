@@ -11,6 +11,10 @@ Accessibility matcher for [Jest](https://jestjs.io)
   - [Project level](#project-level)
   - [Test module level](#test-module-level)
   - [Automatic checks](#automatic-checks)
+    - [Using environment variables](#using-environment-variables)
+    - [Sa11y results processor](#sa11y-results-processor)
+      - [JSON result transformation](#json-result-transformation)
+    - [Limitations](#limitations)
 - [Caution](#caution)
 - [Usage](#usage)
 
@@ -88,22 +92,117 @@ beforeAll(() => {
 
 ### Automatic checks
 
-The sa11y API can be setup to be automatically invoked at the end of each test
+The sa11y API can be setup to be automatically invoked at the end of each test as an alternative to adding the `toBeAccessible` API at the end of each test.
+
+-   When automatic checks are enabled each child element in the DOM body will be checked for a11y and failures reported as part of the test.
 
 ```javascript
 setup({ autoCheckOpts: { runAfterEach: true } });
 
 // To optionally cleanup the body after running a11y checks
 setup({ autoCheckOpts: { runAfterEach: true, cleanupAfterEach: true } });
-
-// Options can also be passed to setup() using environment variables
-// E.g. Invoking jest test runner in command line: "SA11Y_AUTO=1 SA11Y_CLEANUP=1 jest ..."
-setup(); // Automatic checks will be enabled due to the environment variables
 ```
 
--   Each child element in the DOM body will be checked for a11y, results consolidated and failures reported as part of the test
--   Automatic checks can be used as an alternative to adding the `toBeAccessible` API at the end of each test
--   The environment variables can be used to set up parallel builds e.g. in a CI environment without the code changes to `setup()` to opt-in to automatic checks
+#### Using environment variables
+
+Automatic checks can also be enabled using environment variables
+
+```shell
+SA11Y_AUTO=1 SA11Y_CLEANUP=1 jest
+```
+
+-   Invoking `jest` with environment variables as above will enable automatic checks with no changes required to `setup()`
+-   The environment variables can be used to set up parallel builds e.g., in a CI environment without code changes to `setup()` to opt-in to automatic checks
+
+#### Sa11y results processor
+
+The sa11y custom test results processor can be enabled using e.g., - `jest --json --outputFile results.json --testResultsProcessor node_modules/@sa11y/jest/dist/resultsProcessor.js`
+
+-   sa11y results processor affects only the JSON result output
+    -   It does not affect the default console reporter or output of any other reporter (e.g., HTML reporter)
+-   a11y errors within a single test file will be de-duped by rule ID and CSS selectors
+-   a11y errors will be transformed into their own test failures
+    -   This would extract the a11y errors from the original tests and create additional test failures with the WCAG version, level, rule ID, CSS selectors as key
+        -   bringing a11y metadata to forefront instead of being part of stacktrace
+    -   The JSON output can be transformed into JUnit XML format e.g., using [jest-junit](https://github.com/jest-community/jest-junit)
+
+##### JSON result transformation
+
+With default results processor - a11y error is embedded within the test failure:
+
+```json
+"assertionResults": [
+  {
+    "ancestorTitles": [
+      "integration test @sa11y/jest"
+    ],
+    "failureMessages": [
+      "A11yError: 1 Accessibility issues found\n * (link-name) Links must have discernible text: a\n\t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name\n    at Function.checkAndThrow (packages/format/src/format.ts:67:19)\n    at automaticCheck (packages/jest/src/automatic.ts:54:19)\n    at Object.<anonymous> (packages/jest/src/automatic.ts:69:13)"
+    ],
+    "fullName": "integration test @sa11y/jest should throw error for inaccessible dom",
+    "location": null,
+    "status": "failed",
+    "title": "should throw error for inaccessible dom"
+  }
+]
+```
+
+With sa11y results processor:
+
+-   Original JSON test result (failure with embedded a11y error) is disabled
+
+```json
+"assertionResults": [
+  {
+    "ancestorTitles": [
+    "integration test @sa11y/jest"
+  ],
+  "failureMessages": [
+    "A11yError: 1 Accessibility issues found\n * (link-name) Links must have discernible text: a\n\t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name\n    at Function.checkAndThrow (packages/format/src/format.ts:67:19)\n    at automaticCheck (packages/jest/src/automatic.ts:54:19)\n    at Object.<anonymous> (packages/jest/src/automatic.ts:69:13)"
+    ],
+    "fullName": "integration test @sa11y/jest should throw error for inaccessible dom",
+    "location": null,
+    "status": "disabled",
+    "title": "should throw error for inaccessible dom"
+  },
+]
+```
+
+-   Each unique a11y failure in a test module is extracted as a new test failure and added to a new test suite using a11y metadata as key. This could result in increase of total test count and suite count in the results JSON.
+
+```json
+"assertionResults": [
+  {
+    "ancestorTitles": [
+      "integration test @sa11y/jest",
+      "integration test @sa11y/jest should throw error for inaccessible dom"
+    ],
+    "failureMessages": [
+      "Accessibility issues found: Links must have discernible text\nCSS Selectors: a\nHTML element: <a href=\"#\"></a>\nHelp: https://dequeuniversity.com/rules/axe/4.1/link-name\nTests: \"integration test @sa11y/jest should throw error for inaccessible dom\"\nSummary: Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+    ],
+    "fullName": "Links must have discernible text: a",
+    "location": null,
+    "status": "failed",
+    "title": "should throw error for inaccessible dom"
+  }
+],
+```
+
+#### Limitations
+
+Automatic checks currently has the following limitations.
+
+-   Automatic check is triggered regardless of the test status which would result in the original test failure if any getting overwritten by a11y failures if any from automatic checks ([#66](https://github.com/salesforce/sa11y/issues/66))
+-   Tests using the sa11y jest api would get tested twice with automatic checks - once as part of the sa11y API in the test and again as part of the automatic check at the end
+    -   a11y issues from automatic checks would overwrite the a11y issues found by the API
+    -   If your tests typically use the sa11y API at various intermediate points cognizant of the DOM state, then enabling automatic checks in its current form could result in missed a11y issues
+    -   This would be fixed in future with ([#66](https://github.com/salesforce/sa11y/issues/66))
+-   Automatic checks are run at the end of the test. States of DOM before the end of the test are not checked which could result in missed a11y issues.
+-   If the test cleans up the DOM after execution, as part of teardown e.g., the sa11y automatic check executed at the end of the test would not be able to check the DOM
+    -   Workaround: Remove the DOM cleanup code from the test and opt-in to using sa11y to clean-up the DOM using the options as described above (`cleanupAfterEach: true` or `SA11Y_CLEANUP=1`)
+-   With the sa11y results processor, the originating test from which the a11y failures are extracted is disabled and test counts adjusted accordingly
+    -   But the original test suite failure message still contains the a11y failures.
+    -   The test suite failure message is typically not displayed or used in testing workflows. But if your testing workflow uses the test suite failure message, this might cause confusion.
 
 ## Caution
 

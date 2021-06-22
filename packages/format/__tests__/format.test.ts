@@ -7,36 +7,34 @@
 
 import * as axe from 'axe-core';
 import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
-import { A11yError, sortViolations } from '../src/format';
 import { AxeResults } from '@sa11y/common';
-import { ConsolidatedResults } from '../src';
+import { A11yError } from '../src';
 
-const a11yIssues = [
-    { impact: undefined },
-    { impact: undefined },
-    { impact: 'moderate' },
-    { impact: 'minor' },
-    { impact: 'critical' },
-    { impact: 'critical' },
-] as AxeResults;
-
-async function getA11yError(dom: string): Promise<A11yError> {
+// TODO (refactor): Move to common test-utils
+//  - without creating circular dep due to "A11yError"
+// eslint-disable-next-line jest/no-export
+export async function getA11yError(dom: string = domWithA11yIssues): Promise<A11yError> {
     document.body.innerHTML = dom;
     const violations = await axe.run(document).then((results) => results.violations);
-    return new A11yError(violations);
+    try {
+        A11yError.checkAndThrow(violations);
+    } catch (e) {
+        return e as A11yError;
+    }
+    // If there are no violations and no A11yError thrown
+    return new A11yError([], []);
 }
 
 // TODO (refactor): Move to common test-utils
 //  - without creating circular dep due to "A11yError"
 // eslint-disable-next-line jest/no-export
-export async function getViolations(): Promise<AxeResults> {
-    const a11yError = await getA11yError(domWithA11yIssues);
+export async function getViolations(dom = domWithA11yIssues): Promise<AxeResults> {
+    const a11yError = await getA11yError(dom);
     return a11yError.violations;
 }
 
 beforeEach(() => {
     beforeEachSetup();
-    ConsolidatedResults.clear();
 });
 
 describe('a11y Results Formatter', () => {
@@ -57,16 +55,6 @@ describe('a11y Results Formatter', () => {
         }
     );
 
-    it('should sort a11y issues by impact', () => {
-        sortViolations(a11yIssues);
-        expect(a11yIssues[0].impact).toEqual('critical');
-        expect(a11yIssues[1].impact).toEqual('critical');
-        expect(a11yIssues[2].impact).toEqual('moderate');
-        expect(a11yIssues[3].impact).toBeUndefined(); // Sort by "defaultImpact"
-        expect(a11yIssues[4].impact).toBeUndefined();
-        expect(a11yIssues[5].impact).toEqual('minor');
-    });
-
     it('should not throw error when no violations are present', async () => {
         const a11yError = await getA11yError(domWithNoA11yIssues);
         expect(() => A11yError.checkAndThrow(a11yError.violations)).not.toThrow();
@@ -81,10 +69,10 @@ describe('a11y Results Formatter', () => {
         const a11yError = await getA11yError(domWithA11yIssues);
         const violations = a11yError.violations;
         // Should throw error for the first time
-        expect(() => A11yError.checkAndThrow(violations, true)).toThrowErrorMatchingSnapshot();
+        expect(() => A11yError.checkAndThrow(violations, { deduplicate: true })).toThrowErrorMatchingSnapshot();
         // Should not throw error for repeated violations with consolidation
-        expect(() => A11yError.checkAndThrow(violations, true)).not.toThrow();
+        expect(() => A11yError.checkAndThrow(violations, { deduplicate: true })).not.toThrow();
         // Should throw error for repeated violations without consolidation
-        expect(() => A11yError.checkAndThrow(violations, false)).toThrowErrorMatchingSnapshot();
+        expect(() => A11yError.checkAndThrow(violations, { deduplicate: false })).toThrowErrorMatchingSnapshot();
     });
 });

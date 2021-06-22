@@ -6,7 +6,7 @@
  */
 import { AxeResults } from './axe';
 
-export const errMsgHeader = 'accessibility issues found';
+export const errMsgHeader = 'Accessibility issues found';
 
 /**
  * Filter to post-process a11y results from axe

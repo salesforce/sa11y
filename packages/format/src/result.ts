@@ -5,54 +5,95 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { AxeResults } from '@sa11y/common';
+import { NodeResult, Result } from 'axe-core';
+import { WcagMetadata } from './wcag';
 
-/**
- * Remap, filter info from axe result
- */
-// class A11yResult {
-//     constructor(AxeResult) {}
-// }
-//
-// type RuleIdCssSelectorMap = Map<RuleID, CssSelectors>;
+const defaultImpact = 'minor'; // if impact is undefined
+// Helper object to sort violations by impact order
+const impactOrder = {
+    critical: 1,
+    serious: 2,
+    moderate: 3,
+    minor: 4,
+};
 
-/**
- * Consolidate unique a11y violations by removing duplicates.
- */
-export class ConsolidatedResults {
-    // TODO (refactor): Is there any advantage to extending built-in Set/Map ?
-    // TODO (refactor): Would it be more efficient to recast into a Map struct?
-    // static consolidated = new Map<RuleIdCssSelectorMap, AxeResult>();
-    static consolidated: AxeResults = [];
+export class A11yResults {
+    private static consolidated = new Map<string, string[]>();
 
+    /**
+     * Clear accumulated consolidated results
+     */
     static clear(): void {
-        this.consolidated = [];
+        this.consolidated.clear();
     }
 
     /**
-     * Adds given a11y results to a consolidated list if they are not already present
-     * @returns results that have not been added earlier
+     * Consolidate given a11y results based on given key (test scope)
+     *  and return new results that are not already present
      */
-    static add(results: AxeResults): AxeResults {
-        // TODO (perf): convert consolidated results to a map struct with faster lookup
-        //  instead of multi-level looping over each result?
-        const newResults: AxeResults = [];
-        for (const result of results) {
-            let unique = true;
-            for (const consolidatedResult of this.consolidated) {
-                if (result.id !== consolidatedResult.id) continue;
-                for (const node of result.nodes) {
-                    for (const consolidatedNode of consolidatedResult.nodes) {
-                        if (
-                            node.target.length === consolidatedNode.target.length &&
-                            node.target.filter((selector) => !consolidatedNode.target.includes(selector)).length === 0
-                        )
-                            unique = false;
-                    }
-                }
+    static add(results: A11yResult[], key = ''): A11yResult[] {
+        const existingResults = this.consolidated.get(key) || [];
+        if (existingResults.length === 0) this.consolidated.set(key, existingResults);
+        return results.filter((result) => {
+            if (!existingResults.includes(result.key)) {
+                existingResults.push(result.key);
+                return result;
             }
-            if (unique) newResults.push(result);
-        }
-        this.consolidated.push(...newResults);
-        return newResults;
+        });
+    }
+
+    /**
+     * Sorts give a11y violations from axe in order of impact
+     */
+    static sort(violations: AxeResults): AxeResults {
+        return violations.sort((a, b) => {
+            const aImpact = impactOrder[a.impact || defaultImpact];
+            const bImpact = impactOrder[b.impact || defaultImpact];
+            if (aImpact < bImpact) return -1;
+            if (aImpact > bImpact) return 1;
+            return 0;
+        });
+    }
+
+    /**
+     * Normalize and flatten a11y violations from Axe
+     */
+    static convert(violations: AxeResults): A11yResult[] {
+        return A11yResults.sort(violations).flatMap((violation) => {
+            return violation.nodes.map((node) => {
+                return new A11yResult(violation, node);
+            });
+        });
+    }
+}
+
+/**
+ * Filtered a11y result containing selected and normalized info about the a11y failure
+ */
+export class A11yResult {
+    // Note: This is serialized as part of A11yError and read back from the
+    // custom test results processor to consolidate/transform a11y errors.
+    // So it can only have members that can be deserialized back easily
+    // i.e. no object refs etc.
+    public readonly id: string;
+    public readonly selectors: string;
+    public readonly html: string;
+    public readonly description: string;
+    public readonly helpUrl: string;
+    public readonly wcag: string;
+    public readonly summary: string;
+    public readonly key: string; // Represent a key with uniquely identifiable info
+
+    constructor(violation: Result, node: NodeResult) {
+        this.id = violation.id;
+        this.description = violation.help;
+        this.wcag = new WcagMetadata(violation.tags).toString();
+        this.helpUrl = violation.helpUrl.split('?')[0];
+        this.selectors = node.target.sort().join('; ');
+        this.html = node.html;
+        // TODO (code cov): Add test data where failure summary is missing
+        /* istanbul ignore next */
+        this.summary = node.failureSummary || '';
+        this.key = `${this.id}--${this.selectors}`;
     }
 }
