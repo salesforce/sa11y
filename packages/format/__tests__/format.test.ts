@@ -8,7 +8,7 @@
 import * as axe from 'axe-core';
 import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
 import { AxeResults } from '@sa11y/common';
-import { A11yError, ConsolidatedResults } from '../src';
+import { A11yError } from '../src';
 
 // TODO (refactor): Move to common test-utils
 //  - without creating circular dep due to "A11yError"
@@ -35,7 +35,6 @@ export async function getViolations(dom = domWithA11yIssues): Promise<AxeResults
 
 beforeEach(() => {
     beforeEachSetup();
-    ConsolidatedResults.clear();
 });
 
 describe('a11y Results Formatter', () => {

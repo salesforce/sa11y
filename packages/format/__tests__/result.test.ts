@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { A11yResult, ConsolidatedResults } from '../src';
+import { A11yResult, A11yResults } from '../src';
 import { getViolations } from './format.test';
 import { AxeResults } from '@sa11y/common';
 
@@ -21,14 +21,14 @@ let violations: AxeResults = [];
 let a11yResults: A11yResult[] = [];
 beforeAll(async () => {
     violations = await getViolations();
-    a11yResults = A11yResult.convert(violations);
+    a11yResults = A11yResults.convert(violations);
 });
-beforeEach(() => ConsolidatedResults.clear());
+beforeEach(() => A11yResults.clear());
 
 describe('a11y result', () => {
     it('should be serializable', () => {
         const deserializeResults = (a11yResults) => JSON.parse(JSON.stringify(a11yResults)) as A11yResult[];
-        const a11yResults = A11yResult.convert(violations);
+        const a11yResults = A11yResults.convert(violations);
         expect(deserializeResults(a11yResults)).toEqual(a11yResults);
 
         // Add a non-serializable property to A11yResult (E.g. a function)
@@ -44,7 +44,7 @@ describe('a11y result', () => {
     });
 
     it('should sort a11y issues by impact', () => {
-        A11yResult.sort(a11yIssues);
+        A11yResults.sort(a11yIssues);
         expect(a11yIssues[0].impact).toEqual('critical');
         expect(a11yIssues[1].impact).toEqual('critical');
         expect(a11yIssues[2].impact).toEqual('moderate');
@@ -55,43 +55,43 @@ describe('a11y result', () => {
 
     it('should consolidate violations', () => {
         expect(a11yResults.length).toBeGreaterThan(0);
-        expect(ConsolidatedResults.add(a11yResults)).toHaveLength(a11yResults.length);
+        expect(A11yResults.add(a11yResults)).toHaveLength(a11yResults.length);
     });
 
     it('should not add the same violations again', () => {
-        expect(ConsolidatedResults.add(a11yResults)).toHaveLength(a11yResults.length);
-        expect(ConsolidatedResults.add(a11yResults)).toHaveLength(0);
-        expect(ConsolidatedResults.add(a11yResults.concat(a11yResults))).toHaveLength(0);
+        expect(A11yResults.add(a11yResults)).toHaveLength(a11yResults.length);
+        expect(A11yResults.add(a11yResults)).toHaveLength(0);
+        expect(A11yResults.add(a11yResults.concat(a11yResults))).toHaveLength(0);
     });
 
     it('should not add a single duplicate violation', () => {
-        expect(ConsolidatedResults.add(a11yResults)).toHaveLength(a11yResults.length);
+        expect(A11yResults.add(a11yResults)).toHaveLength(a11yResults.length);
         const a11yResult = a11yResults[0];
         // Shouldn't add an individual duplicate violation
-        expect(ConsolidatedResults.add([a11yResult])).toHaveLength(0);
+        expect(A11yResults.add([a11yResult])).toHaveLength(0);
 
         // Shouldn't add modified violations (after a result is removed)
-        expect(ConsolidatedResults.add(a11yResults)).toHaveLength(0);
+        expect(A11yResults.add(a11yResults)).toHaveLength(0);
 
         // Should add the result copy with diff id
         const violation = violations[0];
         // base line check before modifying id, css
         const existingA11yResult = new A11yResult(violation, violation.nodes[0]);
-        expect(ConsolidatedResults.add([existingA11yResult])).toHaveLength(0);
+        expect(A11yResults.add([existingA11yResult])).toHaveLength(0);
 
         // Create a copy with diff ID
         const newA11yResultId = new A11yResult({ ...violation, id: 'foo' }, violation.nodes[0]);
-        expect(ConsolidatedResults.add([newA11yResultId])).toHaveLength(1);
-        expect(ConsolidatedResults.add([newA11yResultId])).toHaveLength(0);
+        expect(A11yResults.add([newA11yResultId])).toHaveLength(1);
+        expect(A11yResults.add([newA11yResultId])).toHaveLength(0);
 
         // Should add the result copy with diff CSS selector
         const newA11yResultCss = new A11yResult(violation, { ...violation.nodes[0], target: ['bar'] });
-        expect(ConsolidatedResults.add([newA11yResultCss])).toHaveLength(1);
-        expect(ConsolidatedResults.add([newA11yResultCss])).toHaveLength(0);
+        expect(A11yResults.add([newA11yResultCss])).toHaveLength(1);
+        expect(A11yResults.add([newA11yResultCss])).toHaveLength(0);
     });
 
     it.each(['', 'foo', 'bar'])('should consolidate based on given key: %#', (key) => {
-        expect(ConsolidatedResults.add(a11yResults, key)).toHaveLength(a11yResults.length);
-        expect(ConsolidatedResults.add(a11yResults, key)).toHaveLength(0);
+        expect(A11yResults.add(a11yResults, key)).toHaveLength(a11yResults.length);
+        expect(A11yResults.add(a11yResults, key)).toHaveLength(0);
     });
 });

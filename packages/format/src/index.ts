@@ -7,5 +7,5 @@
 
 export { A11yError, Options } from './format';
 export { exceptionListFilter } from './filter';
-export { A11yResult, ConsolidatedResults } from './result';
+export { A11yResult, A11yResults } from './result';
 export { WcagMetadata } from './wcag';

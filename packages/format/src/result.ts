@@ -17,6 +17,56 @@ const impactOrder = {
     minor: 4,
 };
 
+export class A11yResults {
+    private static consolidated = new Map<string, string[]>();
+
+    /**
+     * Clear accumulated consolidated results
+     */
+    static clear(): void {
+        this.consolidated.clear();
+    }
+
+    /**
+     * Consolidate given a11y results based on given key (test scope)
+     *  and return new results that are not already present
+     */
+    static add(results: A11yResult[], key = ''): A11yResult[] {
+        const existingResults = this.consolidated.get(key) || [];
+        if (existingResults.length === 0) this.consolidated.set(key, existingResults);
+        return results.filter((result) => {
+            if (!existingResults.includes(result.key)) {
+                existingResults.push(result.key);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * Sorts give a11y violations from axe in order of impact
+     */
+    static sort(violations: AxeResults): AxeResults {
+        return violations.sort((a, b) => {
+            const aImpact = impactOrder[a.impact || defaultImpact];
+            const bImpact = impactOrder[b.impact || defaultImpact];
+            if (aImpact < bImpact) return -1;
+            if (aImpact > bImpact) return 1;
+            return 0;
+        });
+    }
+
+    /**
+     * Normalize and flatten a11y violations from Axe
+     */
+    static convert(violations: AxeResults): A11yResult[] {
+        return A11yResults.sort(violations).flatMap((violation) => {
+            return violation.nodes.map((node) => {
+                return new A11yResult(violation, node);
+            });
+        });
+    }
+}
+
 /**
  * Filtered a11y result containing selected and normalized info about the a11y failure
  */
@@ -34,30 +84,6 @@ export class A11yResult {
     public readonly summary: string;
     public readonly key: string; // Represent a key with uniquely identifiable info
 
-    /**
-     * Normalize and flatten a11y violations from Axe
-     */
-    static convert(violations: AxeResults): A11yResult[] {
-        return A11yResult.sort(violations).flatMap((violation) => {
-            return violation.nodes.map((node) => {
-                return new A11yResult(violation, node);
-            });
-        });
-    }
-
-    /**
-     * Sorts give a11y violations from axe in order of impact
-     */
-    static sort(violations: AxeResults): AxeResults {
-        return violations.sort((a, b) => {
-            const aImpact = impactOrder[a.impact || defaultImpact];
-            const bImpact = impactOrder[b.impact || defaultImpact];
-            if (aImpact < bImpact) return -1;
-            if (aImpact > bImpact) return 1;
-            return 0;
-        });
-    }
-
     constructor(violation: Result, node: NodeResult) {
         this.id = violation.id;
         this.description = violation.help;
@@ -69,32 +95,5 @@ export class A11yResult {
         /* istanbul ignore next */
         this.summary = node.failureSummary || '';
         this.key = `${this.id}--${this.selectors}`;
-    }
-}
-
-/**
- * Consolidate unique a11y violations by removing duplicates.
- */
-export class ConsolidatedResults {
-    static a11yResults = new Map<string, string[]>();
-
-    static clear(): void {
-        this.a11yResults.clear();
-    }
-
-    /**
-     * Consolidate given a11y results based on given key (test scope)
-     *  and return new results that are not already present
-     */
-    static add(results: A11yResult[], key = ''): A11yResult[] {
-        const a11yResults = ConsolidatedResults.a11yResults;
-        const existingResults = a11yResults.get(key) || [];
-        if (existingResults.length === 0) a11yResults.set(key, existingResults);
-        return results.filter((result) => {
-            if (!existingResults.includes(result.key)) {
-                existingResults.push(result.key);
-                return result;
-            }
-        });
     }
 }

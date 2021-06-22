@@ -6,7 +6,7 @@
  */
 
 import { AxeResults, errMsgHeader } from '@sa11y/common';
-import { A11yResult, ConsolidatedResults } from './result';
+import { A11yResult, A11yResults } from './result';
 
 /**
  * Custom formatter to format a11y violations found by axe
@@ -50,17 +50,15 @@ const defaultOptions: Options = {
  *  Custom error object to represent a11y violations
  */
 export class A11yError extends Error {
-    // public readonly a11yResults;
-
     /**
      * Throw error with formatted a11y violations
      * @param violations - List of a11y violations
      * @param opts - Options used for formatting a11y issues
      */
     static checkAndThrow(violations: AxeResults, opts: Partial<Options> = defaultOptions): void {
-        let a11yResults = A11yResult.convert(violations);
+        let a11yResults = A11yResults.convert(violations);
         if (opts.deduplicate) {
-            a11yResults = ConsolidatedResults.add(a11yResults);
+            a11yResults = A11yResults.add(a11yResults);
         }
         if (a11yResults.length > 0) {
             throw new A11yError(violations, a11yResults, opts);
