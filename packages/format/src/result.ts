@@ -86,7 +86,7 @@ export class ConsolidatedResults {
      * Consolidate given a11y results based on given key (test scope)
      *  and return new results that are not already present
      */
-    static consolidate(results: A11yResult[], key = ''): A11yResult[] {
+    static add(results: A11yResult[], key = ''): A11yResult[] {
         const a11yResults = ConsolidatedResults.a11yResults;
         const existingResults = a11yResults.get(key) || [];
         if (existingResults.length === 0) a11yResults.set(key, existingResults);

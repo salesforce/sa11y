@@ -56,7 +56,7 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
         if (error.name === A11yError.name) {
             // TODO (spike) : What happens if there are ever multiple failureDetails?
             //  Ideally there shouldn't be as test execution should be stopped on failure
-            ConsolidatedResults.consolidate(error.a11yResults, suiteName).forEach((a11yResult) => {
+            ConsolidatedResults.add(error.a11yResults, suiteName).forEach((a11yResult) => {
                 const suiteKey = `[Sa11y ${a11yResult.wcag} ${a11yResult.id} ${suiteName}]`;
                 // TODO (code cov): Fix - should be covered by existing tests
                 /* istanbul ignore next */

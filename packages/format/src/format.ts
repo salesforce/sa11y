@@ -60,7 +60,7 @@ export class A11yError extends Error {
     static checkAndThrow(violations: AxeResults, opts: Partial<Options> = defaultOptions): void {
         let a11yResults = A11yResult.convert(violations);
         if (opts.deduplicate) {
-            a11yResults = ConsolidatedResults.consolidate(a11yResults);
+            a11yResults = ConsolidatedResults.add(a11yResults);
         }
         if (a11yResults.length > 0) {
             throw new A11yError(violations, a11yResults, opts);
