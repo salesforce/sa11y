@@ -153,18 +153,18 @@ With sa11y results processor:
 
 ```json
 "assertionResults": [
-{
-"ancestorTitles": [
-"integration test @sa11y/jest"
-],
-"failureMessages": [
-"A11yError: 1 Accessibility issues found\n * (link-name) Links must have discernible text: a\n\t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name\n    at Function.checkAndThrow (packages/format/src/format.ts:67:19)\n    at automaticCheck (packages/jest/src/automatic.ts:54:19)\n    at Object.<anonymous> (packages/jest/src/automatic.ts:69:13)"
-],
-"fullName": "integration test @sa11y/jest should throw error for inaccessible dom",
-"location": null,
-"status": "disabled",
-"title": "should throw error for inaccessible dom"
-},
+  {
+    "ancestorTitles": [
+    "integration test @sa11y/jest"
+  ],
+  "failureMessages": [
+    "A11yError: 1 Accessibility issues found\n * (link-name) Links must have discernible text: a\n\t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name\n    at Function.checkAndThrow (packages/format/src/format.ts:67:19)\n    at automaticCheck (packages/jest/src/automatic.ts:54:19)\n    at Object.<anonymous> (packages/jest/src/automatic.ts:69:13)"
+    ],
+    "fullName": "integration test @sa11y/jest should throw error for inaccessible dom",
+    "location": null,
+    "status": "disabled",
+    "title": "should throw error for inaccessible dom"
+  },
 ]
 ```
 
