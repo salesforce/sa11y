@@ -23,11 +23,11 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
-        "@jest/test-result": "26.6.2",
+        "@jest/test-result": "27.0.2",
         "@sa11y/assert": "0.2.4",
         "@sa11y/format": "0.4.0",
         "@sa11y/preset-rules": "0.3.3",
-        "jest-matcher-utils": "26.6.2"
+        "jest-matcher-utils": "27.0.2"
     },
     "peerDependencies": {
         "jest": ">=26.0.0"
