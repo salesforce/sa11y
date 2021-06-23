@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/format",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "Accessibility results re-formatter",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/format#readme",
@@ -27,8 +27,8 @@
         "axe-core": "4.2.3"
     },
     "devDependencies": {
-        "@sa11y/common": "0.3.1",
-        "@sa11y/test-utils": "0.4.1"
+        "@sa11y/common": "0.3.2",
+        "@sa11y/test-utils": "0.4.2"
     },
     "publishConfig": {
         "access": "public"
