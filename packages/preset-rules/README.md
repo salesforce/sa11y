@@ -133,7 +133,7 @@ Rules that do not necessarily conform to WCAG success criterion but are industry
 
 ### Experimental Rules
 
-Rules we are still testing and developing. They are not enabled by default in axe-core, but are enabled for the axe browser extensions.
+Rules that are still under testing and development in axe-core.
 
 | Rule ID                                                                                              | Description                                                                                                                                         | Impact   | Issue Type                 | In Base Ruleset    | In Recommended Ruleset | Notes                                  |
 | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------------------------- | ------------------ | ---------------------- | -------------------------------------- |
