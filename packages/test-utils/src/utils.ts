@@ -49,6 +49,7 @@ export async function checkA11yErrorFunc(
     expectRuntimeError = false,
     expectNoError = false
 ): Promise<void> {
+    expect.hasAssertions();
     let err = new Error();
     try {
         await errorThrower();
