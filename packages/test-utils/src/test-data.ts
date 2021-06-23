@@ -15,11 +15,10 @@ export const domWithA11yIssuesBodyID = 'dom-with-issues';
 const fileWithA11yIssues = path.resolve(dataDir, 'a11yIssues.html');
 export const htmlFileWithA11yIssues = 'file:///' + fileWithA11yIssues;
 export const domWithA11yIssues = fs.readFileSync(fileWithA11yIssues).toString();
-export const a11yIssuesCount = 6;
+export const a11yIssuesCount = 5;
 export const exceptionList = {
     'document-title': ['html'],
     'link-name': ['a'],
-    bypass: ['html'],
 };
 export const a11yIssuesCountFiltered = a11yIssuesCount - Object.keys(exceptionList).length;
 
