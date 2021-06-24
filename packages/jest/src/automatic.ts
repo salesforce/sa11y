@@ -38,6 +38,8 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();
+    // Using fake timer results in async timeout issue with axe
+    jest.useRealTimers();
     try {
         while (currNode !== null) {
             // TODO (spike): Use a logger lib with log levels selectable at runtime
