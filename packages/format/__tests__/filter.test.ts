@@ -39,10 +39,9 @@ describe('a11y results filter', () => {
     });
 
     it.each([
-        { bypass: ['html'] },
         { 'document-title': ['html'] },
         { 'link-name': ['a'] },
-        { 'document-title': ['html'], 'link-name': ['a'], bypass: ['html'] },
+        { 'document-title': ['html'], 'link-name': ['a'] },
     ])('should filter results for matching exception list %#', (exceptionList) => {
         const filteredViolations = exceptionListFilter(violations, exceptionList);
         expect(filteredViolations).not.toStrictEqual(violations);

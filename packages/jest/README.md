@@ -10,13 +10,13 @@ Accessibility matcher for [Jest](https://jestjs.io)
 - [Setup](#setup)
   - [Project level](#project-level)
   - [Test module level](#test-module-level)
-  - [Automatic checks](#automatic-checks)
-    - [Using environment variables](#using-environment-variables)
-    - [Sa11y results processor](#sa11y-results-processor)
-      - [JSON result transformation](#json-result-transformation)
-    - [Limitations](#limitations)
-- [Caution](#caution)
 - [Usage](#usage)
+  - [Caveats](#caveats)
+- [Automatic checks](#automatic-checks)
+  - [Using environment variables](#using-environment-variables)
+  - [Sa11y results processor](#sa11y-results-processor)
+    - [JSON result transformation](#json-result-transformation)
+  - [Limitations](#limitations)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -90,7 +90,51 @@ beforeAll(() => {
 
 -   This makes the `toBeAccessible` API available for the tests only in that specific test module where `setup()` is invoked.
 
-### Automatic checks
+## Usage
+
+-   `toBeAccessible` can either be invoked on the entire `document` (JSDOM) or on a specific HTML element to check for accessibility
+
+```javascript
+import { base, full } from '@sa11y/preset-rules';
+import { setup } from '@sa11y/jest';
+
+beforeAll(() => {
+    setup();
+});
+
+it('should be accessible', async () => {
+    // Setup DOM to be tested for accessibility
+    //...
+
+    // assert that DOM is accessible (using recommended preset-rule)
+    await expect(document).toBeAccessible();
+
+    // Can be used to test accessibility of a specific HTML element
+    const elem = document.getElementById('foo');
+    await expect(elem).toBeAccessible();
+
+    // If you want to test against all rules provided by axe
+    await expect(document).toBeAccessible(full);
+
+    // If you have any a11y issues from the default recommended preset-rule
+    //  that you can't fix for now, you can use the base preset-rule
+    await expect(document).toBeAccessible(base);
+});
+```
+
+### Caveats
+
+-   **async**: `toBeAccessible` **must** be invoked with `async/wait` or `Promise` or the equivalent supported asynchronous method in your environment
+    -   Not invoking it async would result in incorrect results e.g. no issues reported even when the page is not accessible
+    -   `Promise` should not be mixed together with `async/wait`. Doing so could result in Jest timeout and other errors.
+-   **useRealTimers**: ⏲ When Timer is mocked (e.g. `jest.useFakeTimers()`) accessibility API can timeout. Before invoking the accessibility API switch to the real timer (e.g. `jest.useRealTimers()`).
+-   **DOM**: 💡 The accessibility checks _cannot_ be run on static HTML markup. They can only be run against a rendered DOM.
+-   **color-contrast**: 🍭 Color-contrast check is disabled for Jest tests as it [does not work in JSDOM](https://github.com/dequelabs/axe-core/issues/595)
+-   **audio, video**: 📹 Accessibility of `audio`, `video` elements cannot be checked with Jest as they are [stubbed out in JSDOM](https://github.com/jsdom/jsdom/issues/2155)
+-   **template**: [`<template>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) are not rendered in DOM and hence cannot be checked directly without rendering. They have to be rendered before they can be checked.
+-   **real browser**: If you need to check for color-contrast, audio/video elements or any other checks which need the element to be rendered visually please use a real browser to test e.g. using [`@sa11y/wdio`](https://github.com/salesforce/sa11y/tree/master/packages/wdio#readme)
+
+## Automatic checks
 
 The sa11y API can be setup to be automatically invoked at the end of each test as an alternative to adding the `toBeAccessible` API at the end of each test.
 
@@ -103,7 +147,7 @@ setup({ autoCheckOpts: { runAfterEach: true } });
 setup({ autoCheckOpts: { runAfterEach: true, cleanupAfterEach: true } });
 ```
 
-#### Using environment variables
+### Using environment variables
 
 Automatic checks can also be enabled using environment variables
 
@@ -114,7 +158,7 @@ SA11Y_AUTO=1 SA11Y_CLEANUP=1 jest
 -   Invoking `jest` with environment variables as above will enable automatic checks with no changes required to `setup()`
 -   The environment variables can be used to set up parallel builds e.g., in a CI environment without code changes to `setup()` to opt-in to automatic checks
 
-#### Sa11y results processor
+### Sa11y results processor
 
 The sa11y custom test results processor can be enabled using e.g., - `jest --json --outputFile results.json --testResultsProcessor node_modules/@sa11y/jest/dist/resultsProcessor.js`
 
@@ -126,7 +170,7 @@ The sa11y custom test results processor can be enabled using e.g., - `jest --jso
         -   bringing a11y metadata to forefront instead of being part of stacktrace
     -   The JSON output can be transformed into JUnit XML format e.g., using [jest-junit](https://github.com/jest-community/jest-junit)
 
-##### JSON result transformation
+#### JSON result transformation
 
 With default results processor - a11y error is embedded within the test failure:
 
@@ -188,7 +232,7 @@ With sa11y results processor:
 ],
 ```
 
-#### Limitations
+### Limitations
 
 Automatic checks currently has the following limitations.
 
@@ -203,46 +247,3 @@ Automatic checks currently has the following limitations.
 -   With the sa11y results processor, the originating test from which the a11y failures are extracted is disabled and test counts adjusted accordingly
     -   But the original test suite failure message still contains the a11y failures.
     -   The test suite failure message is typically not displayed or used in testing workflows. But if your testing workflow uses the test suite failure message, this might cause confusion.
-
-## Caution
-
--   **async**: `toBeAccessible` **must** be invoked with `async/wait` or `Promise` or the equivalent supported asynchronous method in your environment
-    -   Not invoking it async would result in incorrect results e.g. no issues reported even when the page is not accessible
-    -   `Promise` should not be mixed together with `async/wait`. Doing so could result in Jest timeout and other errors.
--   **DOM**: 💡 The accessibility checks _cannot_ be run on static HTML markup. They can only be run against a rendered DOM.
--   **color-contrast**: 🍭 Color-contrast check is disabled for Jest tests as it [does not work in JSDOM](https://github.com/dequelabs/axe-core/issues/595)
--   **audio, video**: 📹 Accessibility of `audio`, `video` elements cannot be checked with Jest as they are [stubbed out in JSDOM](https://github.com/jsdom/jsdom/issues/2155)
--   **template**: [`<template>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) are not rendered in DOM and hence cannot be checked directly without rendering. They have to be rendered before they can be checked.
--   **real browser**: If you need to check for color-contrast, audio/video elements or any other checks which need the element to be rendered visually please use a real browser to test e.g. using [`@sa11y/wdio`](https://github.com/salesforce/sa11y/tree/master/packages/wdio#readme)
-
-## Usage
-
--   `toBeAccessible` can either be invoked on the entire `document` (JSDOM) or on a specific HTML element to check for accessibility
-
-```javascript
-import { base, full } from '@sa11y/preset-rules';
-import { setup } from '@sa11y/jest';
-
-beforeAll(() => {
-    setup();
-});
-
-it('should be accessible', async () => {
-    // Setup DOM to be tested for accessibility
-    //...
-
-    // assert that DOM is accessible (using recommended preset-rule)
-    await expect(document).toBeAccessible();
-
-    // Can be used to test accessibility of a specific HTML element
-    const elem = document.getElementById('foo');
-    await expect(elem).toBeAccessible();
-
-    // If you want to test against all rules provided by axe
-    await expect(document).toBeAccessible(full);
-
-    // If you have any a11y issues from the default recommended preset-rule
-    //  that you can't fix for now, you can use the base preset-rule
-    await expect(document).toBeAccessible(base);
-});
-```

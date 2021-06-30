@@ -46,7 +46,6 @@ describe('toBeAccessible jest a11y matcher', () => {
 
     it.each(a11yConfigParams)('should throw error for dom with a11y issues with config: %#', async (config) => {
         document.body.innerHTML = domWithA11yIssues;
-        expect.assertions(a11yIssuesCount);
         // using the 'not' matcher just for testing, not expecting this to be used out of the unit testing context
         await expect(document).not.toBeAccessible(config);
         await expect(document.getElementById(domWithA11yIssuesBodyID)).not.toBeAccessible();

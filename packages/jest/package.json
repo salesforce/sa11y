@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/jest",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "Accessibility testing matcher for Jest",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/jest#readme",
@@ -24,17 +24,17 @@
     ],
     "dependencies": {
         "@jest/test-result": "26.6.2",
-        "@sa11y/assert": "0.2.4",
-        "@sa11y/format": "0.4.0",
-        "@sa11y/preset-rules": "0.3.3",
+        "@sa11y/assert": "0.2.5",
+        "@sa11y/format": "0.4.1",
+        "@sa11y/preset-rules": "0.3.4",
         "jest-matcher-utils": "26.6.2"
     },
     "peerDependencies": {
         "jest": ">=26.0.0"
     },
     "devDependencies": {
-        "@sa11y/common": "0.3.1",
-        "@sa11y/test-utils": "0.4.1"
+        "@sa11y/common": "0.3.2",
+        "@sa11y/test-utils": "0.4.2"
     },
     "publishConfig": {
         "access": "public"

@@ -3,59 +3,59 @@
 exports[`automatic checks call should not raise error for duplicated issues 1`] = `
 "1 Accessibility issues found
  * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name"
 `;
 
 exports[`automatic checks call should not raise error for duplicated issues 2`] = `
 "1 Accessibility issues found
  * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name"
 `;
 
 exports[`automatic checks call should raise a11y issues for DOM with a11y issues 1`] = `
 "1 Accessibility issues found
  * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name"
 `;
 
 exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 1`] = `
 "1 Accessibility issues found
  * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name"
 `;
 
 exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 2`] = `
 "2 Accessibility issues found
  * (link-name) Links must have discernible text: #dom-with-issues > a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name
 
 * (link-name) Links must have discernible text: #link-0
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name"
 `;
 
 exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 3`] = `
 "3 Accessibility issues found
  * (link-name) Links must have discernible text: #dom-with-issues > a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name
 
 * (link-name) Links must have discernible text: #link-0
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name
 
 * (link-name) Links must have discernible text: #link-1
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name"
 `;
 
 exports[`automatic checks call should raise consolidated a11y issues for DOM with multiple a11y issues 4`] = `
 "4 Accessibility issues found
  * (link-name) Links must have discernible text: #dom-with-issues > a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name
 
 * (link-name) Links must have discernible text: #link-0
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name
 
 * (link-name) Links must have discernible text: #link-1
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name
 
 * (link-name) Links must have discernible text: #link-2
-	- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name"
 `;
