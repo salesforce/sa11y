@@ -16,7 +16,9 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
-        "axe-core": "4.2.3",
+        "axe-core": "4.2.3"
+    },
+    "devDependencies": {
         "webdriverio": "6.12.1"
     },
     "publishConfig": {
