@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/common",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "Common utilities, constants, error messages for @sa11y",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/common#readme",
@@ -16,7 +16,9 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
-        "axe-core": "4.2.3",
+        "axe-core": "4.2.3"
+    },
+    "devDependencies": {
         "webdriverio": "6.12.1"
     },
     "publishConfig": {
