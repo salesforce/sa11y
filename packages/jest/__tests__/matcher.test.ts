@@ -15,7 +15,6 @@ import {
     domWithA11yIssuesBodyID,
     domWithNoA11yIssues,
     shadowDomID,
-    a11yIssuesCount,
 } from '@sa11y/test-utils';
 
 // Collection of values to be tested passed in as different API parameters
