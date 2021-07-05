@@ -47,6 +47,12 @@ export async function toBeAccessible(
     let a11yError: A11yError = new A11yError([], []);
     let receivedMsg = expectedMsg;
 
+    if (isTestUsingFakeTimer()) {
+        throw new Error(
+            'Cannot run accessibility checks when fake timer is in use. Switch to real timer before invoking accessibility check.'
+        );
+    }
+
     // TODO (Improvement): Can we detect if this is invoked async and error if not ?
     try {
         await assertAccessible(received, adaptA11yConfig(config));
@@ -69,4 +75,19 @@ export async function toBeAccessible(
                 expectedMsg
             ),
     };
+}
+
+/**
+ * Detect if fake timer is being used in a jest test.
+ * Fake timers result in axe timeout https://github.com/dequelabs/axe-core/issues/3055
+ * Workaround until underlying issue can be fixed in axe.
+ * Ref: https://github.com/facebook/jest/issues/10555
+ */
+export function isTestUsingFakeTimer(): boolean {
+    return (
+        typeof jest !== 'undefined' &&
+        typeof setTimeout !== 'undefined' &&
+        // eslint-disable-next-line no-prototype-builtins
+        (setTimeout.hasOwnProperty('_isMockFunction') || setTimeout.hasOwnProperty('clock'))
+    );
 }
