@@ -226,7 +226,7 @@ With sa11y results processor:
             "failureMessages": [
                 "Accessibility issues found: Links must have discernible text\nCSS Selectors: a\nHTML element: <a href=\"#\"></a>\nHelp: https://dequeuniversity.com/rules/axe/4.1/link-name\nTests: \"integration test @sa11y/jest should throw error for inaccessible dom\"\nSummary: Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
             ],
-            "fullName": "Links must have discernible text: a",
+            "fullName": "[Sa11y WCAG2.0-LevelA-SC4.1.2] Links must have discernible text: a",
             "location": null,
             "status": "failed",
             "title": "should throw error for inaccessible dom"
