@@ -3,7 +3,9 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [0.9.0-beta](#090-beta)
+- [0.9.1-beta](#091-beta)
+    - [Fix](#fix)
+- [0.9.0-beta (2021-06-15)](#090-beta-2021-06-15)
     - [Features](#features)
 - [0.8.0-beta (2021-03-19)](#080-beta-2021-03-19)
     - [Features](#features-1)
@@ -47,7 +49,15 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# [0.9.0-beta] (2021-06-15)
+# [0.9.1-beta] (2021-07-05)
+
+### Fix
+
+-   **jest(result processor):** move WCAG metadata from suite name to test name ([#69](https://github.com/salesforce/sa11y/pull/69))
+-   **jest:** add workaround for mock timer timeout issue for API and automatic checks ([#69](https://github.com/salesforce/sa11y/pull/69))
+-   **build:** move webdriverIO to dev dependency in sa11y common pkg ([#68](https://github.com/salesforce/sa11y/pull/68))
+
+# [0.9.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.9.0-beta) (2021-06-15)
 
 ### Features
 
