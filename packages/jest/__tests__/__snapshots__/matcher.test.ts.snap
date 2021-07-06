@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`mock timer helper should result in error when mock timer is being used from API 1`] = `"Cannot run accessibility checks when fake timer is in use. Switch to real timer before invoking accessibility check."`;
+exports[`mock timer helper should result in error when mock timer is being used from API 1`] = `"Cannot run accessibility check when fake timer is in use. Switch to real timer before invoking accessibility check."`;
 
 exports[`mock timer helper should skip automatic check when mock timer is being used 1`] = `
 "1 Accessibility issues found

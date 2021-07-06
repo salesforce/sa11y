@@ -49,7 +49,7 @@ export async function toBeAccessible(
 
     if (isTestUsingFakeTimer()) {
         throw new Error(
-            'Cannot run accessibility checks when fake timer is in use. Switch to real timer before invoking accessibility check.'
+            'Cannot run accessibility check when fake timer is in use. Switch to real timer before invoking accessibility check.'
         );
     }
 
