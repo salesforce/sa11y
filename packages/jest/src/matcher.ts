@@ -24,6 +24,10 @@ declare global {
     }
 }
 
+const fakeTimerErrMsg =
+    'Cannot run accessibility check when Jest fake timer is in use. ' +
+    'Switch to real timer before invoking accessibility check. ' +
+    'Ref: https://jestjs.io/docs/timer-mocks';
 const matcherHintMsg = `expected document to have no accessibility violations but found`;
 const expectedMsg = `0 issues`;
 const formatOptions: Options = {
@@ -47,11 +51,7 @@ export async function toBeAccessible(
     let a11yError: A11yError = new A11yError([], []);
     let receivedMsg = expectedMsg;
 
-    if (isTestUsingFakeTimer()) {
-        throw new Error(
-            'Cannot run accessibility check when fake timer is in use. Switch to real timer before invoking accessibility check.'
-        );
-    }
+    if (isTestUsingFakeTimer()) throw new Error(fakeTimerErrMsg);
 
     // TODO (Improvement): Can we detect if this is invoked async and error if not ?
     try {

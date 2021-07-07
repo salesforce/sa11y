@@ -37,7 +37,10 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
 export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts): Promise<void> {
     const violations: AxeResults = [];
     // Skip automatic check if test is using fake timer as it would result in timeout
-    if (isTestUsingFakeTimer()) return;
+    if (isTestUsingFakeTimer()) {
+        log('Skipping automatic check as Jest fake timer is in use.');
+        return;
+    }
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();
