@@ -25,7 +25,7 @@ function createA11yTestResult(testResult: AssertionResult, a11yResult: A11yResul
         // TODO (refactor): extract formatting into its own function.
         //  - Can this satisfy Formatter interface?
         //  - Be part of format? (FileFormatter vs ConsoleFormatter)?
-        fullName: `[Sa11y ${a11yResult.wcag}] ${a11yResult.description}: ${a11yResult.selectors}`,
+        fullName: `[Sa11y-${a11yResult.wcag}]${a11yResult.description}:${a11yResult.selectors}`,
         failureMessages: [
             `${errMsgHeader}: ${a11yResult.description}
 CSS Selectors: ${a11yResult.selectors}
