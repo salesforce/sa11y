@@ -36,7 +36,7 @@
     "dependencies": {
         "@sa11y/format": "0.4.2",
         "@sa11y/preset-rules": "0.3.5",
-        "axe-core": "4.2.3"
+        "axe-core": "4.3.0"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "19.0.0",
