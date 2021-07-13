@@ -157,6 +157,7 @@ SA11Y_AUTO=1 SA11Y_CLEANUP=1 jest
 
 -   Invoking `jest` with environment variables as above will enable automatic checks with no changes required to `setup()`
 -   The environment variables can be used to set up parallel builds e.g., in a CI environment without code changes to `setup()` to opt-in to automatic checks
+-   Setting `SA11Y_DEBUG=1` will output verbose logging
 
 ### Sa11y results processor
 
@@ -175,20 +176,20 @@ The sa11y custom test results processor can be enabled using e.g., - `jest --jso
 With default results processor - a11y error is embedded within the test failure:
 
 ```json
-"assertionResults": [
-  {
-    "ancestorTitles": [
-      "integration test @sa11y/jest"
-    ],
-    "failureMessages": [
-      "A11yError: 1 Accessibility issues found\n * (link-name) Links must have discernible text: a\n\t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name\n    at Function.checkAndThrow (packages/format/src/format.ts:67:19)\n    at automaticCheck (packages/jest/src/automatic.ts:54:19)\n    at Object.<anonymous> (packages/jest/src/automatic.ts:69:13)"
-    ],
-    "fullName": "integration test @sa11y/jest should throw error for inaccessible dom",
-    "location": null,
-    "status": "failed",
-    "title": "should throw error for inaccessible dom"
-  }
-]
+{
+    "assertionResults": [
+        {
+            "ancestorTitles": ["integration test @sa11y/jest"],
+            "failureMessages": [
+                "A11yError: 1 Accessibility issues found\n * (link-name) Links must have discernible text: a\n\t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name\n    at Function.checkAndThrow (packages/format/src/format.ts:67:19)\n    at automaticCheck (packages/jest/src/automatic.ts:54:19)\n    at Object.<anonymous> (packages/jest/src/automatic.ts:69:13)"
+            ],
+            "fullName": "integration test @sa11y/jest should throw error for inaccessible dom",
+            "location": null,
+            "status": "failed",
+            "title": "should throw error for inaccessible dom"
+        }
+    ]
+}
 ```
 
 With sa11y results processor:
@@ -196,40 +197,42 @@ With sa11y results processor:
 -   Original JSON test result (failure with embedded a11y error) is disabled
 
 ```json
-"assertionResults": [
-  {
-    "ancestorTitles": [
-    "integration test @sa11y/jest"
-  ],
-  "failureMessages": [
-    "A11yError: 1 Accessibility issues found\n * (link-name) Links must have discernible text: a\n\t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name\n    at Function.checkAndThrow (packages/format/src/format.ts:67:19)\n    at automaticCheck (packages/jest/src/automatic.ts:54:19)\n    at Object.<anonymous> (packages/jest/src/automatic.ts:69:13)"
-    ],
-    "fullName": "integration test @sa11y/jest should throw error for inaccessible dom",
-    "location": null,
-    "status": "disabled",
-    "title": "should throw error for inaccessible dom"
-  },
-]
+{
+    "assertionResults": [
+        {
+            "ancestorTitles": ["integration test @sa11y/jest"],
+            "failureMessages": [
+                "A11yError: 1 Accessibility issues found\n * (link-name) Links must have discernible text: a\n\t- Help URL: https://dequeuniversity.com/rules/axe/4.1/link-name\n    at Function.checkAndThrow (packages/format/src/format.ts:67:19)\n    at automaticCheck (packages/jest/src/automatic.ts:54:19)\n    at Object.<anonymous> (packages/jest/src/automatic.ts:69:13)"
+            ],
+            "fullName": "integration test @sa11y/jest should throw error for inaccessible dom",
+            "location": null,
+            "status": "disabled",
+            "title": "should throw error for inaccessible dom"
+        }
+    ]
+}
 ```
 
 -   Each unique a11y failure in a test module is extracted as a new test failure and added to a new test suite using a11y metadata as key. This could result in increase of total test count and suite count in the results JSON.
 
 ```json
-"assertionResults": [
-  {
-    "ancestorTitles": [
-      "integration test @sa11y/jest",
-      "integration test @sa11y/jest should throw error for inaccessible dom"
-    ],
-    "failureMessages": [
-      "Accessibility issues found: Links must have discernible text\nCSS Selectors: a\nHTML element: <a href=\"#\"></a>\nHelp: https://dequeuniversity.com/rules/axe/4.1/link-name\nTests: \"integration test @sa11y/jest should throw error for inaccessible dom\"\nSummary: Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
-    ],
-    "fullName": "Links must have discernible text: a",
-    "location": null,
-    "status": "failed",
-    "title": "should throw error for inaccessible dom"
-  }
-],
+{
+    "assertionResults": [
+        {
+            "ancestorTitles": [
+                "integration test @sa11y/jest",
+                "integration test @sa11y/jest should throw error for inaccessible dom"
+            ],
+            "failureMessages": [
+                "Accessibility issues found: Links must have discernible text\nCSS Selectors: a\nHTML element: <a href=\"#\"></a>\nHelp: https://dequeuniversity.com/rules/axe/4.1/link-name\nTests: \"integration test @sa11y/jest should throw error for inaccessible dom\"\nSummary: Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            ],
+            "fullName": "[Sa11y WCAG2.0-LevelA-SC4.1.2] Links must have discernible text: a",
+            "location": null,
+            "status": "failed",
+            "title": "should throw error for inaccessible dom"
+        }
+    ]
+}
 ```
 
 ### Limitations

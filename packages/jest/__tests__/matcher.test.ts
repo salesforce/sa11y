@@ -15,8 +15,9 @@ import {
     domWithA11yIssuesBodyID,
     domWithNoA11yIssues,
     shadowDomID,
-    a11yIssuesCount,
 } from '@sa11y/test-utils';
+import { isTestUsingFakeTimer } from '../src/matcher';
+import { automaticCheck } from '../src/automatic';
 
 // Collection of values to be tested passed in as different API parameters
 const a11yConfigParams = [recommended, base, undefined];
@@ -67,5 +68,46 @@ describe('toBeAccessible jest a11y matcher', () => {
     it('should throw non A11yError for non a11y issues', async () => {
         const errConfig = getA11yConfig(['non-existent-rule']);
         await checkA11yErrorFunc(() => expect(document).toBeAccessible(errConfig), true);
+    });
+});
+
+describe('mock timer helper', () => {
+    afterAll(jest.useRealTimers);
+
+    it('should detect when mock timer is being used', () => {
+        // Baseline checks
+        expect(isTestUsingFakeTimer()).toBeFalsy();
+        jest.useRealTimers();
+        expect(isTestUsingFakeTimer()).toBeFalsy();
+        // Fake timer check
+        for (const mode of ['modern', 'legacy']) {
+            jest.useFakeTimers(mode);
+            expect(isTestUsingFakeTimer()).toBeTruthy();
+        }
+        // Revert back and check
+        jest.useRealTimers();
+        expect(isTestUsingFakeTimer()).toBeFalsy();
+    });
+
+    it('should result in error when mock timer is being used from API', async () => {
+        // Baseline check
+        document.body.innerHTML = domWithNoA11yIssues;
+        await expect(document).toBeAccessible();
+        // Check for error when using fake timer
+        jest.useFakeTimers();
+        await checkA11yErrorFunc(() => expect(document).toBeAccessible());
+        // Check for absence of error when using real timer
+        jest.useRealTimers();
+        await checkA11yErrorFunc(() => expect(document).toBeAccessible(), false, true);
+    });
+
+    // eslint-disable-next-line jest/expect-expect
+    it('should skip automatic check when mock timer is being used', async () => {
+        document.body.innerHTML = domWithA11yIssues;
+        await checkA11yErrorFunc(() => automaticCheck());
+        jest.useFakeTimers();
+        await checkA11yErrorFunc(() => automaticCheck(), false, true);
+        jest.useRealTimers();
+        await checkA11yErrorFunc(() => automaticCheck());
     });
 });

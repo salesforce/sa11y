@@ -61,7 +61,7 @@ describe('Results Processor', () => {
         expect(processedResults).toMatchSnapshot();
         expect(processedResults).not.toEqual(aggregatedResults);
         // Should have added one more test suite for a11y errors
-        expect(processedResults.numFailedTestSuites).toBeGreaterThan(aggregatedResults.numFailedTestSuites + 1);
+        expect(processedResults.numFailedTestSuites).toEqual(aggregatedResults.numFailedTestSuites);
         expect(processedResults.numTotalTests).toEqual(aggregatedResults.numTotalTests + a11yResults.length - 1); // After consolidation + non-a11y failure
     });
 });
