@@ -8,6 +8,7 @@
 import { AxeResults, log } from '@sa11y/common';
 import { getViolationsJSDOM } from '@sa11y/assert';
 import { A11yError } from '@sa11y/format';
+import { isTestUsingFakeTimer } from './matcher';
 
 /**
  * Options for Automatic checks to be passed to {@link registerSa11yAutomaticChecks}
@@ -35,6 +36,11 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
  */
 export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts): Promise<void> {
     const violations: AxeResults = [];
+    // Skip automatic check if test is using fake timer as it would result in timeout
+    if (isTestUsingFakeTimer()) {
+        log('Skipping automatic check as Jest fake timer is in use.');
+        return;
+    }
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();

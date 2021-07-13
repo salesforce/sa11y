@@ -25,7 +25,7 @@ function createA11yTestResult(testResult: AssertionResult, a11yResult: A11yResul
         // TODO (refactor): extract formatting into its own function.
         //  - Can this satisfy Formatter interface?
         //  - Be part of format? (FileFormatter vs ConsoleFormatter)?
-        fullName: `${a11yResult.description}: ${a11yResult.selectors}`,
+        fullName: `[Sa11y-${a11yResult.wcag}]${a11yResult.description}:${a11yResult.selectors}`,
         failureMessages: [
             `${errMsgHeader}: ${a11yResult.description}
 CSS Selectors: ${a11yResult.selectors}
@@ -45,7 +45,7 @@ Summary: ${a11yResult.summary}`, // TODO (refactor): replace with array of tests
  * Convert any a11y errors from test failures into their own test suite, results
  */
 function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
-    const suiteName = testSuite.testFilePath.substring(testSuite.testFilePath.lastIndexOf('/') + 1);
+    const suiteName = testSuite.testFilePath;
 
     testResult.failureDetails.forEach((failure) => {
         let error = (failure as FailureDetail).error;
@@ -57,11 +57,10 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
             // TODO (spike) : What happens if there are ever multiple failureDetails?
             //  Ideally there shouldn't be as test execution should be stopped on failure
             A11yResults.add(error.a11yResults, suiteName).forEach((a11yResult) => {
-                const suiteKey = `[Sa11y ${a11yResult.wcag} ${a11yResult.id} ${suiteName}]`;
                 // TODO (code cov): Fix - should be covered by existing tests
                 /* istanbul ignore next */
-                if (!Array.isArray(consolidatedErrors.get(suiteKey))) consolidatedErrors.set(suiteKey, []);
-                consolidatedErrors.get(suiteKey)?.push(createA11yTestResult(testResult, a11yResult));
+                if (!Array.isArray(consolidatedErrors.get(suiteName))) consolidatedErrors.set(suiteName, []);
+                consolidatedErrors.get(suiteName)?.push(createA11yTestResult(testResult, a11yResult));
             });
         }
     });
@@ -113,7 +112,10 @@ export default function resultsProcessor(results: AggregatedResult): AggregatedR
     log(`Transforming a11y failures from ${consolidatedErrors.size} suites ..`);
     // Create test suites to hold a11y failures
     consolidatedErrors.forEach((testResults, suiteKey) => {
+        // TODO (refactor): Do we need to create a test suite if suite name
+        //  is not changing? Can this be simplified by adding tests to existing suite?
         const sa11ySuite = createEmptyTestResult();
+        // "testFilePath" gets output as suite "name" in formatted JSON result
         sa11ySuite.testFilePath = suiteKey;
         sa11ySuite.testResults = testResults;
         sa11ySuite.numFailingTests = testResults.length;

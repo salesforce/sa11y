@@ -175,7 +175,7 @@ Object {
 
 exports[`Results Processor should process test results as expected 1`] = `
 Object {
-  "numFailedTestSuites": 5,
+  "numFailedTestSuites": 1,
   "numFailedTests": 5,
   "numPassedTestSuites": 0,
   "numPassedTests": 0,
@@ -1458,7 +1458,7 @@ Fix any of the following:
     },
     Object {
       "leaks": false,
-      "numFailingTests": 1,
+      "numFailingTests": 5,
       "numPassingTests": 0,
       "numPendingTests": 0,
       "numTodoTests": 0,
@@ -1479,7 +1479,7 @@ Fix any of the following:
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "[Sa11y WCAG2.0-LevelA-SC2.4.2 document-title sa11y-auto-checks.js]",
+      "testFilePath": "/test/data/sa11y-auto-checks.js",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -1503,36 +1503,9 @@ Tests: \\"A11yError-0\\"
 Summary: Fix any of the following:
   Document does not have a non-empty <title> element",
           ],
-          "fullName": "Documents must have <title> element to aid in navigation: html",
+          "fullName": "[Sa11y-WCAG2.0-LevelA-SC2.4.2]Documents must have <title> element to aid in navigation:html",
           "status": "failed",
         },
-      ],
-    },
-    Object {
-      "leaks": false,
-      "numFailingTests": 1,
-      "numPassingTests": 0,
-      "numPendingTests": 0,
-      "numTodoTests": 0,
-      "openHandles": Array [],
-      "perfStats": Object {
-        "end": 0,
-        "runtime": 0,
-        "slow": false,
-        "start": 0,
-      },
-      "skipped": false,
-      "snapshot": Object {
-        "added": 0,
-        "fileDeleted": false,
-        "matched": 0,
-        "unchecked": 0,
-        "uncheckedKeys": Array [],
-        "unmatched": 0,
-        "updated": 0,
-      },
-      "testFilePath": "[Sa11y WCAG2.0-LevelA-SC3.1.1 html-has-lang sa11y-auto-checks.js]",
-      "testResults": Array [
         Object {
           "ancestorTitles": Array [
             "sa11y",
@@ -1555,36 +1528,9 @@ Tests: \\"A11yError-0\\"
 Summary: Fix any of the following:
   The <html> element does not have a lang attribute",
           ],
-          "fullName": "<html> element must have a lang attribute: html",
+          "fullName": "[Sa11y-WCAG2.0-LevelA-SC3.1.1]<html> element must have a lang attribute:html",
           "status": "failed",
         },
-      ],
-    },
-    Object {
-      "leaks": false,
-      "numFailingTests": 1,
-      "numPassingTests": 0,
-      "numPendingTests": 0,
-      "numTodoTests": 0,
-      "openHandles": Array [],
-      "perfStats": Object {
-        "end": 0,
-        "runtime": 0,
-        "slow": false,
-        "start": 0,
-      },
-      "skipped": false,
-      "snapshot": Object {
-        "added": 0,
-        "fileDeleted": false,
-        "matched": 0,
-        "unchecked": 0,
-        "uncheckedKeys": Array [],
-        "unmatched": 0,
-        "updated": 0,
-      },
-      "testFilePath": "[Sa11y WCAG2.0-LevelA-SC4.1.2 link-name sa11y-auto-checks.js]",
-      "testResults": Array [
         Object {
           "ancestorTitles": Array [
             "sa11y",
@@ -1606,36 +1552,9 @@ Fix any of the following:
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
           ],
-          "fullName": "Links must have discernible text: a",
+          "fullName": "[Sa11y-WCAG2.0-LevelA-SC4.1.2]Links must have discernible text:a",
           "status": "failed",
         },
-      ],
-    },
-    Object {
-      "leaks": false,
-      "numFailingTests": 1,
-      "numPassingTests": 0,
-      "numPendingTests": 0,
-      "numTodoTests": 0,
-      "openHandles": Array [],
-      "perfStats": Object {
-        "end": 0,
-        "runtime": 0,
-        "slow": false,
-        "start": 0,
-      },
-      "skipped": false,
-      "snapshot": Object {
-        "added": 0,
-        "fileDeleted": false,
-        "matched": 0,
-        "unchecked": 0,
-        "uncheckedKeys": Array [],
-        "unmatched": 0,
-        "updated": 0,
-      },
-      "testFilePath": "[Sa11y best-practice landmark-one-main sa11y-auto-checks.js]",
-      "testResults": Array [
         Object {
           "ancestorTitles": Array [
             "sa11y",
@@ -1658,36 +1577,9 @@ Tests: \\"A11yError-0\\"
 Summary: Fix all of the following:
   Document does not have a main landmark",
           ],
-          "fullName": "Document should have one main landmark: html",
+          "fullName": "[Sa11y-best-practice]Document should have one main landmark:html",
           "status": "failed",
         },
-      ],
-    },
-    Object {
-      "leaks": false,
-      "numFailingTests": 1,
-      "numPassingTests": 0,
-      "numPendingTests": 0,
-      "numTodoTests": 0,
-      "openHandles": Array [],
-      "perfStats": Object {
-        "end": 0,
-        "runtime": 0,
-        "slow": false,
-        "start": 0,
-      },
-      "skipped": false,
-      "snapshot": Object {
-        "added": 0,
-        "fileDeleted": false,
-        "matched": 0,
-        "unchecked": 0,
-        "uncheckedKeys": Array [],
-        "unmatched": 0,
-        "updated": 0,
-      },
-      "testFilePath": "[Sa11y best-practice page-has-heading-one sa11y-auto-checks.js]",
-      "testResults": Array [
         Object {
           "ancestorTitles": Array [
             "sa11y",
@@ -1710,7 +1602,7 @@ Tests: \\"A11yError-0\\"
 Summary: Fix all of the following:
   Page must have a level-one heading",
           ],
-          "fullName": "Page should contain a level-one heading: html",
+          "fullName": "[Sa11y-best-practice]Page should contain a level-one heading:html",
           "status": "failed",
         },
       ],
