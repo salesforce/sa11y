@@ -3,35 +3,35 @@
 exports[`assertAccessible API should throw an error with a11y issues found for dom with a11y issues 1`] = `
 "4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.2/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name
 
 * (landmark-one-main) Document should have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.2/landmark-one-main
+	- Help URL: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
 
 * (page-has-heading-one) Page should contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.2/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one"
 `;
 
 exports[`assertAccessible API should throw error with HTML element with a11y issues 1`] = `
 "1 Accessibility issues found
  * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name"
 `;
 
 exports[`assertAccessible API should use default document, ruleset, formatter when called with no args - expecting 1 assertion 1`] = `
 "4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.2/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.2/link-name
+	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name
 
 * (landmark-one-main) Document should have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.2/landmark-one-main
+	- Help URL: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
 
 * (page-has-heading-one) Page should contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.2/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one"
 `;
