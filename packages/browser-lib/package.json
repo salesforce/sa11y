@@ -43,7 +43,7 @@
         "@rollup/plugin-node-resolve": "13.0.0",
         "@sa11y/common": "0.3.4",
         "@sa11y/test-utils": "0.4.3",
-        "rollup": "2.52.7",
+        "rollup": "2.53.1",
         "rollup-plugin-polyfill-node": "0.6.2",
         "rollup-plugin-progress": "1.1.2",
         "rollup-plugin-sizes": "1.0.4",
