@@ -9,7 +9,7 @@ import { A11yConfig } from '@sa11y/common';
 
 /**
  * Returns config to be used in axe.run() with given rules
- *
+ * Ref: https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter
  * @param rules - List of rules to be used in the config
  * @returns A11yConfig with formatted rules
  */
@@ -26,6 +26,8 @@ export function getA11yConfig(rules: string[]): A11yConfig {
         //  with jest and delays webdriver tests by 2-3x when assets are not found (404)
         //  Ref: https://github.com/dequelabs/axe-core/issues/2528
         preload: false,
+        // Types not listed will still show a maximum of one node
         resultTypes: ['violations'],
+        reporter: 'no-passes', // return only violation results
     };
 }
