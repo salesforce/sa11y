@@ -85,6 +85,21 @@ describe('automatic checks registration', () => {
             consolidateResults: true,
         });
     });
+
+    it('should set run only files option when specified', () => {
+        const testFiles = 'foo,bar';
+        process.env.SA11Y_AUTO_ONLY = testFiles;
+        setup();
+        expect(registerAutomaticMock).toHaveBeenCalledWith({
+            // TODO (debug): Values seem to be carrying over from previous test
+            //  in spite of env reset in setup/teardown. 'true' values below are 'false'
+            //  when run in isolation with 'it.only'
+            runAfterEach: true,
+            cleanupAfterEach: true,
+            consolidateResults: true,
+            runOnlyOnFiles: testFiles.split(','),
+        });
+    });
 });
 
 describe('automatic checks call', () => {
@@ -140,5 +155,15 @@ describe('automatic checks call', () => {
         await checkA11yErrorFunc(() => automaticCheck(opts), false, true);
         // Should throw error again without consolidation
         await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true, consolidateResults: false }));
+    });
+
+    it('should skip auto checks when file is not specified in run only option', async () => {
+        document.body.innerHTML = domWithA11yIssues;
+        await checkA11yErrorFunc(() => automaticCheck({ runOnlyOnFiles: ['foo'] }), false, true);
+    });
+
+    it('should run auto checks when file is specified in run only option', async () => {
+        document.body.innerHTML = domWithA11yIssues;
+        await checkA11yErrorFunc(() => automaticCheck({ runOnlyOnFiles: ['foo', expect.getState().testPath] }));
     });
 });

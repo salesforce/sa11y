@@ -59,3 +59,9 @@ exports[`automatic checks call should raise consolidated a11y issues for DOM wit
 * (link-name) Links must have discernible text: #link-2
 	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name"
 `;
+
+exports[`automatic checks call should run auto checks when file is specified in run only option 1`] = `
+"1 Accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name"
+`;
