@@ -9,7 +9,7 @@ import { matcherHint, printReceived } from 'jest-matcher-utils';
 import { adaptA11yConfig } from './setup';
 import { A11yCheckableContext, assertAccessible } from '@sa11y/assert';
 import { A11yError, Options } from '@sa11y/format';
-import { recommended } from '@sa11y/preset-rules';
+import { defaultRuleset } from '@sa11y/preset-rules';
 import { A11yConfig } from '@sa11y/common';
 
 // Type def for custom jest a11y matchers
@@ -44,7 +44,7 @@ const formatOptions: Options = {
  */
 export async function toBeAccessible(
     received: A11yCheckableContext = document,
-    config: A11yConfig = recommended
+    config: A11yConfig = defaultRuleset
 ): Promise<jest.CustomMatcherResult> {
     let isAccessible = true;
     // a11yError can be 'undefined' when used with `not` matcher and there is no error

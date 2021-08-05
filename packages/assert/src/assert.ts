@@ -6,7 +6,7 @@
  */
 
 import * as axe from 'axe-core';
-import { recommended } from '@sa11y/preset-rules';
+import { defaultRuleset } from '@sa11y/preset-rules';
 import { A11yError } from '@sa11y/format';
 import { A11yConfig, AxeResults, getViolations } from '@sa11y/common';
 
@@ -24,7 +24,7 @@ export type A11yCheckableContext = Document | Node | string;
  */
 export async function getViolationsJSDOM(
     context: A11yCheckableContext = document,
-    rules: A11yConfig = recommended
+    rules: A11yConfig = defaultRuleset
 ): Promise<AxeResults> {
     return await getViolations(async () => {
         const results = await axe.run(context as axe.ElementContext, rules as axe.RunOptions);
@@ -39,7 +39,7 @@ export async function getViolationsJSDOM(
  * @throws error - with the accessibility issues found, does not return any value
  * */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export async function assertAccessible(context: A11yCheckableContext = document, rules: A11yConfig = recommended) {
+export async function assertAccessible(context: A11yCheckableContext = document, rules: A11yConfig = defaultRuleset) {
     const violations = await getViolationsJSDOM(context, rules);
     A11yError.checkAndThrow(violations);
 }
