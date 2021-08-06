@@ -55,7 +55,8 @@
 
 ### Features
 
--   **jest:** add config to run automatic checks only on selected files ([#72](https://github.com/salesforce/sa11y/pull/72))
+-   **jest:** add config to run automatic checks only on selected files
+-   **preset-rules:** add config to override default ruleset using environment variable
 
 # [0.9.1-beta](https://github.com/salesforce/sa11y/releases/tag/v0.9.1-beta) (2021-07-05)
 
