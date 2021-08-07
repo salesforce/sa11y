@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/wdio",
-    "version": "1.0.3-alpha.0",
+    "version": "1.0.4-alpha.0",
     "description": "Accessibility testing API for WebdriverIO",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/wdio#readme",
@@ -29,10 +29,10 @@
         "test:watch": "yarn test --watch"
     },
     "dependencies": {
-        "@sa11y/common": "0.3.4",
-        "@sa11y/format": "0.4.3",
-        "@sa11y/preset-rules": "0.3.6",
-        "axe-core": "4.3.1"
+        "@sa11y/common": "0.3.5",
+        "@sa11y/format": "0.4.4",
+        "@sa11y/preset-rules": "0.3.7",
+        "axe-core": "4.3.2"
     },
     "peerDependencies": {
         "webdriverio": ">=6.0.0"

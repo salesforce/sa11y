@@ -158,6 +158,7 @@ SA11Y_AUTO=1 SA11Y_CLEANUP=1 jest
 -   Invoking `jest` with environment variables as above will enable automatic checks with no changes required to `setup()`
 -   The environment variables can be used to set up parallel builds e.g., in a CI environment without code changes to `setup()` to opt-in to automatic checks
 -   Setting `SA11Y_DEBUG=1` will output verbose logging
+-   `SA11Y_AUTO_ONLY` can be used to specify a comma seperated list of files to run automatic checks on while other files are ignored.
 
 ### Sa11y results processor
 

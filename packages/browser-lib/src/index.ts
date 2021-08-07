@@ -7,7 +7,7 @@
 
 import * as axe from 'axe-core';
 import { exceptionListFilter } from '@sa11y/format';
-import { recommended } from '@sa11y/preset-rules';
+import { defaultRuleset } from '@sa11y/preset-rules';
 export { base, recommended, full } from '@sa11y/preset-rules';
 export const namespace = 'sa11y';
 
@@ -19,7 +19,7 @@ export const namespace = 'sa11y';
  * @param exceptionList - mapping of rule to css selectors to be filtered out using {@link exceptionListFilter}
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export async function checkAccessibility(scope = document, rules = recommended, exceptionList = {}) {
+export async function checkAccessibility(scope = document, rules = defaultRuleset, exceptionList = {}) {
     // TODO (debug): adding type annotations to args, return type results in error:
     //  "[!] Error: Unexpected token" in both rollup-plugin-typescript2 and @rollup/plugin-typescript
     //  Compiling the index.ts file with tsc and using the dist/index.js file results

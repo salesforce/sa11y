@@ -19,6 +19,8 @@ export type AutoCheckOpts = {
     consolidateResults?: boolean;
     // TODO (feat): add support for optional exclusion of selected tests
     // excludeTests?: string[];
+    // List of file names to run automatic checks, if specified other files are ignored
+    runOnlyOnFiles?: string[];
 };
 
 /**
@@ -28,6 +30,7 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
     runAfterEach: true,
     cleanupAfterEach: true,
     consolidateResults: true,
+    runOnlyOnFiles: [],
 };
 
 /**
@@ -36,9 +39,19 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
  */
 export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts): Promise<void> {
     const violations: AxeResults = [];
+    const testPath = expect.getState().testPath;
+    // If option to run only on selected files is specified, then current path should
+    // match against at least one file
+    if (opts.runOnlyOnFiles?.length && !opts.runOnlyOnFiles.some((fileName) => testPath.endsWith(fileName))) {
+        log(
+            `Skipping automatic accessibility check on ${testPath} as it does not match selected files provided: ${opts.runOnlyOnFiles.toString()}`
+        );
+        return;
+    }
+
     // Skip automatic check if test is using fake timer as it would result in timeout
     if (isTestUsingFakeTimer()) {
-        log('Skipping automatic check as Jest fake timer is in use.');
+        log('Skipping automatic accessibility check as Jest fake timer is in use.');
         return;
     }
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
@@ -70,6 +83,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
  */
 export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
     if (opts.runAfterEach) {
+        // TODO (fix): Make registration idempotent
         log('Registering sa11y checks to be run automatically after each test');
         afterEach(async () => {
             await automaticCheck(opts);

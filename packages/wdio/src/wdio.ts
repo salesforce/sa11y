@@ -6,7 +6,7 @@
  */
 
 import * as axe from 'axe-core';
-import { recommended } from '@sa11y/preset-rules';
+import { defaultRuleset } from '@sa11y/preset-rules';
 import { A11yError, exceptionListFilter } from '@sa11y/format';
 import { A11yConfig, AxeResults, axeVersion, getViolations, WdioOptions, WdioBrowser } from '@sa11y/common';
 
@@ -17,7 +17,7 @@ function setDefaultOptions(opts: Partial<WdioOptions> = {}): WdioOptions {
     const defaultOptions: WdioOptions = {
         driver: global.browser, // Need to be defined inside a function as it is populated at runtime
         scope: undefined,
-        rules: recommended,
+        rules: defaultRuleset,
         exceptionList: {},
     };
     return Object.assign(Object.assign({}, defaultOptions), opts);

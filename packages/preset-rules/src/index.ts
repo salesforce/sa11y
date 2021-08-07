@@ -6,6 +6,7 @@
  */
 
 export { getA11yConfig } from './a11yConfig';
+export { defaultRuleset, getDefaultRuleset } from './default';
 export { recommended } from './recommended';
 export { base } from './base';
 export { full } from './full';

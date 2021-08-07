@@ -7,6 +7,7 @@
 
 import progress from 'rollup-plugin-progress';
 import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import sizes from 'rollup-plugin-sizes';
@@ -43,6 +44,11 @@ function getConfig(minified = false) {
             }),
             minified ? terser() : {},
             sizes({ details: debug }),
+            replace({
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                'process.env.SA11Y_RULESET': JSON.stringify('recommended'),
+                preventAssignment: true,
+            }),
         ],
     };
 }

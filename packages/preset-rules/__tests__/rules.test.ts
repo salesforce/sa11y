@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { base, full, recommended } from '../src';
+import { base, full, recommended, defaultRuleset, getDefaultRuleset } from '../src';
 import * as fs from 'fs';
 import * as path from 'path';
 import { axeVersion } from '@sa11y/common';
@@ -16,6 +16,10 @@ import { axeVersion } from '@sa11y/common';
  * */
 
 describe('preset-rules', () => {
+    afterAll(() => {
+        process.env.SA11Y_RULESET = '';
+    });
+
     // Rules that have been excluded from running due to being deprecated by axe
     // or due to their experimental nature
     const excludedRules = [
@@ -64,5 +68,17 @@ describe('preset-rules', () => {
             .forEach((rule) => {
                 expect(readme).toContain(`| [${rule}](https://dequeuniversity.com/rules/axe/${version}/${rule})`);
             });
+    });
+
+    it('should default to recommended', () => {
+        expect(getDefaultRuleset()).toEqual(recommended);
+        expect(defaultRuleset).toEqual(recommended);
+    });
+
+    it('should change default ruleset based on env override', () => {
+        process.env.SA11Y_RULESET = 'full';
+        expect(getDefaultRuleset()).toEqual(full);
+        // defaultRuleset initialized at beginning, so wouldn't reflect runtime overrides
+        expect(defaultRuleset).toEqual(recommended);
     });
 });

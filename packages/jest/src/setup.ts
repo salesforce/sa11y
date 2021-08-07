@@ -43,6 +43,8 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
     // Consolidate results if automatic checks is enabled
     autoCheckOpts.consolidateResults ||= autoCheckOpts.runAfterEach;
     autoCheckOpts.cleanupAfterEach ||= !!process.env.SA11Y_CLEANUP;
+    if (process.env.SA11Y_AUTO_ONLY?.trim().length)
+        autoCheckOpts.runOnlyOnFiles ||= process.env.SA11Y_AUTO_ONLY.split(',');
     registerSa11yAutomaticChecks(autoCheckOpts);
 }
 

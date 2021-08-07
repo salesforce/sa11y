@@ -5,12 +5,12 @@ Accessibility preset rule configs for axe
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Usage](#usage)
-- [Ruleset Mapping](#ruleset-mapping)
-  - [WCAG 2.0 Level A & AA Rules](#wcag-20-level-a--aa-rules)
-  - [WCAG 2.1 Level A & AA Rules](#wcag-21-level-a--aa-rules)
-  - [Best Practices Rules](#best-practices-rules)
-  - [Experimental Rules](#experimental-rules)
+-   [Usage](#usage)
+-   [Ruleset Mapping](#ruleset-mapping)
+    -   [WCAG 2.0 Level A & AA Rules](#wcag-20-level-a--aa-rules)
+    -   [WCAG 2.1 Level A & AA Rules](#wcag-21-level-a--aa-rules)
+    -   [Best Practices Rules](#best-practices-rules)
+    -   [Experimental Rules](#experimental-rules)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -30,6 +30,8 @@ console.log(a11yResults);
 
 -   Below is the set of rules from [axe rule descriptions](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md) and their current mapping to the `base` and `recommended` rulesets in `@sa11y/preset-rules`.
 -   `full` ruleset consists of all rules that are enabled by default in axe.
+-   The default ruleset used by the sa11y APIs is `recommended`.
+    -   This can be overridden using the `SA11Y_RULESET` environment variable.
 
 ### WCAG 2.0 Level A & AA Rules
 
@@ -100,7 +102,7 @@ console.log(a11yResults);
 Rules that do not necessarily conform to WCAG success criterion but are industry accepted practices that improve the user experience.
 
 | Rule ID                                                                                                              | Description                                                                                                | Impact             | Issue Type                 | In Base Ruleset    | In Recommended Ruleset | Notes                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------ | -------------------------- | ------------------ | ---------------------- | ---------------------------------------------------------------------------------------------- | 
+| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------ | -------------------------- | ------------------ | ---------------------- | ---------------------------------------------------------------------------------------------- |
 | [accesskeys](https://dequeuniversity.com/rules/axe/4.3/accesskeys)                                                   | Ensures every accesskey attribute value is unique                                                          | Serious            | failure                    | :x:                | :heavy_check_mark:     | Rarely applicable                                                                              |
 | [aria-allowed-role](https://dequeuniversity.com/rules/axe/4.3/aria-allowed-role)                                     | Ensures role attribute has an appropriate value for the element                                            | Minor              | failure, needs&nbsp;review | :x:                | :heavy_check_mark:     |                                                                                                |
 | [aria-dialog-name](https://dequeuniversity.com/rules/axe/4.3/aria-dialog-name)                                       | Ensures every ARIA dialog and alertdialog node has an accessible name                                      | Serious            | failure, needs&nbsp;review | :x:                | :heavy_check_mark:     |                                                                                                |
