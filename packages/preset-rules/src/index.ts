@@ -6,7 +6,7 @@
  */
 
 export { getA11yConfig, RuleInfo } from './a11yConfig';
-export { defaultRuleset, getDefaultRuleset } from './default';
+export { defaultRuleset, getDefaultRuleset } from './config';
 export { recommended } from './recommended';
 export { base } from './base';
 export { full, excludedRules } from './full';
