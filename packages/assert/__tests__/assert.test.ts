@@ -18,6 +18,13 @@ import {
     shadowDomID,
     videoURL,
 } from '@sa11y/test-utils';
+import { A11yConfig } from '@sa11y/common';
+
+// Create a11y config with a map of rules with default priority and wcag sc from given
+// list of rule ids
+function getA11yConfigMap(rules: string[]): A11yConfig {
+    return getA11yConfig(new Map(rules.map((ruleId) => [ruleId, { priority: 'P3', wcagSC: '' }])));
+}
 
 beforeEach(() => {
     beforeEachSetup();
@@ -26,7 +33,7 @@ beforeEach(() => {
 describe('assertAccessible API', () => {
     // eslint-disable-next-line jest/expect-expect
     it('should trigger axe runtime exception for non existent rule', async () => {
-        const errConfig = getA11yConfig(['non-existent-rule']);
+        const errConfig = getA11yConfigMap(['non-existent-rule']);
         await checkA11yErrorFunc(() => assertAccessible(document, errConfig), true);
     });
 
@@ -80,7 +87,7 @@ describe('assertAccessible API', () => {
         async (source: string) => {
             document.body.innerHTML = `<audio src=${source}>Audio test</audio>`;
             await checkA11yErrorFunc(
-                () => assertAccessible(document, getA11yConfig(['audio-caption', 'no-autoplay-audio'])),
+                () => assertAccessible(document, getA11yConfigMap(['audio-caption', 'no-autoplay-audio'])),
                 false,
                 true
             );
@@ -92,7 +99,7 @@ describe('assertAccessible API', () => {
         async (source: string) => {
             document.body.innerHTML = `<video src=${source}>Video test</video>`;
             await checkA11yErrorFunc(
-                () => assertAccessible(document, getA11yConfig(['video-caption', 'no-autoplay-audio'])),
+                () => assertAccessible(document, getA11yConfigMap(['video-caption', 'no-autoplay-audio'])),
                 false,
                 true
             );
