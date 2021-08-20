@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { getA11yConfig, RuleInfo } from './a11yConfig';
+import { getA11yConfig, RuleInfo } from './rules';
 import { baseRulesInfo } from './base';
 
 export const recommendedRulesInfo: RuleInfo = new Map([

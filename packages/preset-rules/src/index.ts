@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-export { getA11yConfig, RuleInfo } from './a11yConfig';
+export { getA11yConfig, RuleInfo } from './rules';
 export { defaultRuleset, getDefaultRuleset } from './config';
 export { recommended } from './recommended';
 export { base } from './base';
