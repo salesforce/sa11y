@@ -5,7 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { base, full, recommended, defaultRuleset, getDefaultRuleset } from '../src';
+import { base, full, recommended, defaultRuleset, excludedRules, getDefaultRuleset } from '../src';
+import * as axe from 'axe-core';
 import * as fs from 'fs';
 import * as path from 'path';
 import { axeVersion } from '@sa11y/common';
@@ -20,23 +21,14 @@ describe('preset-rules', () => {
         process.env.SA11Y_RULESET = '';
     });
 
-    // Rules that have been excluded from running due to being deprecated by axe
-    // or due to their experimental nature
-    const excludedRules = [
-        /* cSpell:disable */
-        // TODO (fix): Temp disable new rules in axe 4.2.
-        //  They will be added to the preset-rules in a future release
-        'aria-text', // new in axe 4.2
-        'empty-table-header', // new in axe 4.2
-        'frame-focusable-content', // new in axe 4.2
-        'nested-interactive', // new in axe 4.2
-        'frame-title-unique',
-        'hidden-content',
-        'skip-link',
-        'table-duplicate-name',
-        'table-fake-caption',
-        /* cSpell:enable */
-    ];
+    it('should match all axe rules with full ruleset', () => {
+        expect(
+            axe
+                .getRules()
+                .map((ruleObj) => ruleObj.ruleId)
+                .sort()
+        ).toEqual(full.runOnly.values);
+    });
 
     it('should match ruleset hierarchy full -> recommended', () => {
         expect(full.runOnly.values).not.toEqual(recommended.runOnly.values);
