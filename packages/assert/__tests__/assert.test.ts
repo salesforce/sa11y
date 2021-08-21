@@ -19,11 +19,14 @@ import {
     videoURL,
 } from '@sa11y/test-utils';
 import { A11yConfig } from '@sa11y/common';
+import { defaultPriority } from '../../preset-rules/dist/rules';
 
 // Create a11y config with a map of rules with default priority and wcag sc from given
 // list of rule ids
 function getA11yConfigMap(rules: string[]): A11yConfig {
-    return getA11yConfig(new Map(rules.map((ruleId) => [ruleId, { priority: 'P3', wcagSC: '' }])));
+    return getA11yConfig(
+        new Map(rules.map((ruleId) => [ruleId, { priority: defaultPriority, wcagSC: '', wcagLevel: '' }]))
+    );
 }
 
 beforeEach(() => {

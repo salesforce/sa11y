@@ -7,6 +7,10 @@
 
 import { A11yConfig } from '@sa11y/common';
 
+// Default values for rule meta-data
+export const defaultPriority = 'P3';
+export const defaultWcagSC = 'best-practice';
+
 /**
  * Metadata about rules such as Priority and WCAG SC (overriding values from axe tags)
  */
@@ -15,6 +19,7 @@ export type RuleInfo = Map<
     {
         priority: 'P1' | 'P2' | 'P3';
         wcagSC: string;
+        wcagLevel: 'A' | 'AA' | 'AAA' | '';
     }
 >;
 

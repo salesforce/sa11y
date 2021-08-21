@@ -10,6 +10,7 @@ import * as axe from 'axe-core';
 import * as fs from 'fs';
 import * as path from 'path';
 import { axeVersion } from '@sa11y/common';
+import { recommendedRulesInfo } from '../src/recommended';
 
 /**
  * TODO:
@@ -31,8 +32,7 @@ describe('preset-rules', () => {
     });
 
     it('should match ruleset hierarchy full -> recommended', () => {
-        expect(full.runOnly.values).not.toEqual(recommended.runOnly.values);
-        expect(full.runOnly.values).toEqual(expect.arrayContaining(recommended.runOnly.values));
+        expect(full.runOnly.values).toEqual(expect.arrayContaining([...recommended.runOnly.values, ...excludedRules]));
     });
 
     it('should match ruleset hierarchy recommended -> base', () => {
@@ -40,8 +40,16 @@ describe('preset-rules', () => {
         expect(recommended.runOnly.values).toEqual(expect.arrayContaining(base.runOnly.values));
     });
 
+    it('should contain both WCAG SC and Level or none', () => {
+        expect(
+            Array.from(recommendedRulesInfo.values()).filter(
+                (ruleInfo) => !ruleInfo.wcagSC && ruleInfo.wcagSC !== ruleInfo.wcagLevel
+            )
+        ).toHaveLength(0);
+    });
+
     it('should not contain excluded, deprecated rules', () => {
-        expect(recommended.runOnly.values).toEqual(expect.not.arrayContaining(excludedRules));
+        expect(recommended.runOnly.values.filter((rule) => excludedRules.includes(rule))).toHaveLength(0);
     });
 
     it('should not use only the excluded, deprecated rules from axe', () => {
