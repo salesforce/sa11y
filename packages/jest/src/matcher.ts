@@ -40,7 +40,7 @@ const formatOptions: Options = {
 /**
  * Jest expect matcher to check DOM for accessibility issues
  * @param received - DOM or HTML Element to be tested for accessibility. Defaults to current DOM.
- * @param config - A11yConfig to be used to test for accessibility. Defaults to recommended.
+ * @param config - A11yConfig to be used to test for accessibility. Defaults to `base` ruleset.
  */
 export async function toBeAccessible(
     received: A11yCheckableContext = document,

@@ -7,6 +7,6 @@
 
 export { getA11yConfig, RuleInfo } from './rules';
 export { defaultRuleset, getDefaultRuleset } from './config';
-export { recommended } from './recommended';
+export { extended } from './extended';
 export { base } from './base';
 export { full, excludedRules } from './full';

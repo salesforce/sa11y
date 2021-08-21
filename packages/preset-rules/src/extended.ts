@@ -8,7 +8,7 @@
 import { getA11yConfig, RuleInfo } from './rules';
 import { baseRulesInfo } from './base';
 
-export const recommendedRulesInfo: RuleInfo = new Map([
+export const extendedRulesInfo: RuleInfo = new Map([
     ...baseRulesInfo,
     ...(new Map(
         Object.entries({
@@ -32,4 +32,4 @@ export const recommendedRulesInfo: RuleInfo = new Map([
 ]);
 
 // Contains best-practice rules without an associated WCAG SC and experimental rules
-export const recommended = getA11yConfig(recommendedRulesInfo);
+export const extended = getA11yConfig(extendedRulesInfo);

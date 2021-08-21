@@ -8,14 +8,14 @@
 import * as axe from 'axe-core';
 import { exceptionListFilter } from '@sa11y/format';
 import { defaultRuleset } from '@sa11y/preset-rules';
-export { base, recommended, full } from '@sa11y/preset-rules';
+export { base, extended, full } from '@sa11y/preset-rules';
 export const namespace = 'sa11y';
 
 /**
  * Wrapper function to check accessibility to be invoked after the sa11y minified JS file
  * is injected into the browser
  * @param scope - Scope of the analysis as {@link A11yCheckableContext}
- * @param rules - preset sa11y rules defaulting to {@link recommended}
+ * @param rules - preset sa11y rules defaulting to {@link base}
  * @param exceptionList - mapping of rule to css selectors to be filtered out using {@link exceptionListFilter}
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

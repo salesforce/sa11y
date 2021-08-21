@@ -6,7 +6,7 @@
  */
 
 import { assertAccessible, getViolationsJSDOM } from '../src/assert';
-import { base, getA11yConfig, recommended } from '@sa11y/preset-rules';
+import { base, extended, getA11yConfig } from '@sa11y/preset-rules';
 import {
     a11yIssuesCount,
     audioURL,
@@ -40,14 +40,11 @@ describe('assertAccessible API', () => {
         await checkA11yErrorFunc(() => assertAccessible(document, errConfig), true);
     });
 
-    it.each([base, recommended])(
-        'should throw no errors for dom with no a11y issues with config %#',
-        async (config) => {
-            document.body.innerHTML = domWithNoA11yIssues;
-            expect(async () => await getViolationsJSDOM(document, config)).toHaveLength(0);
-            await assertAccessible(document, config); // No error thrown
-        }
-    );
+    it.each([base, extended])('should throw no errors for dom with no a11y issues with config %#', async (config) => {
+        document.body.innerHTML = domWithNoA11yIssues;
+        expect(async () => await getViolationsJSDOM(document, config)).toHaveLength(0);
+        await assertAccessible(document, config); // No error thrown
+    });
 
     it.each([
         // DOM to test, expected assertions, expected a11y violations
