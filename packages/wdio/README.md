@@ -19,7 +19,6 @@ Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used wi
 
 ```javascript
 import { assertAccessible, assertAccessibleSync } from '@sa11y/wdio';
-import { recommended } from '@sa11y/preset-rules';
 
 describe('demonstrate usage of @sa11y/wdio', () => {
     it('should demonstrate usage of assertAccessible API', async () => {

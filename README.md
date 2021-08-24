@@ -87,9 +87,9 @@ This repo contains the following packages for automated accessibility testing:
 
 [![published npm version of @sa11y/preset-rules](https://img.shields.io/npm/v/@sa11y/preset-rules)](https://www.npmjs.com/package/@sa11y/preset-rules)
 
--   Provides Base, Recommended, Full accessibility preset rules as [axe] configuration
--   The Recommended preset rule is used by default in the Jest a11y matcher and assert Accessible APIs
-    -   The APIs can be overridden to use the Base or Full ruleset as necessary
+-   Provides Base, Extended, Full accessibility preset rules as [axe] configuration
+-   The Base preset rule is used by default in the Jest a11y matcher and assert Accessible APIs
+    -   The APIs can be overridden to use the Extended or Full ruleset as necessary
 
 ### [Minified bundle for testing in browser](./packages/browser-lib/README.md)
 
