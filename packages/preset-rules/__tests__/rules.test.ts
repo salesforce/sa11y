@@ -11,6 +11,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { axeVersion } from '@sa11y/common';
 import { extendedRulesInfo } from '../src/extended';
+import { getRulesDoc } from '../src/docgen';
 
 /**
  * TODO:
@@ -58,18 +59,6 @@ describe('preset-rules', () => {
         expect(unusedRules.sort()).toEqual(excludedRules.sort());
     });
 
-    it('should document all rules', () => {
-        // TODO (feat): Can we automate generation of the README using a template ?
-        const readmePath = path.resolve(__dirname, '../README.md');
-        const readme = fs.readFileSync(readmePath).toString();
-        const version = axeVersion.split('.').slice(0, 2).join('.'); // extract just major and minor version
-        full.runOnly.values
-            .filter((rule) => !excludedRules.includes(rule))
-            .forEach((rule) => {
-                expect(readme).toContain(`| [${rule}](https://dequeuniversity.com/rules/axe/${version}/${rule})`);
-            });
-    });
-
     it('should default to base', () => {
         expect(getDefaultRuleset()).toEqual(base);
         expect(defaultRuleset).toEqual(base);
@@ -80,5 +69,30 @@ describe('preset-rules', () => {
         expect(getDefaultRuleset()).toEqual(full);
         // defaultRuleset initialized at beginning, so wouldn't reflect runtime overrides
         expect(defaultRuleset).toEqual(base);
+    });
+});
+
+describe('preset-rules documentation', () => {
+    const readmePath = path.resolve(__dirname, '../README.md');
+    const readme = fs.readFileSync(readmePath).toString();
+
+    it('should document all rules', () => {
+        // Note: to update the readme when rulesets are updated, pass in the readmePath
+        // expect(readme).toContain(getRulesDoc(readmePath));
+        expect(readme).toContain(getRulesDoc());
+    });
+
+    it('should contain all rules from extended', () => {
+        const version = axeVersion.split('.').slice(0, 2).join('.'); // extract just major and minor version
+        extended.runOnly.values
+            // TODO (test): Add test to check that excluded rules are not present in the doc
+            .filter((rule) => !excludedRules.includes(rule))
+            .forEach((rule) => {
+                const ruleWithLink = `[${rule}](https://dequeuniversity.com/rules/axe/${version}/${rule})`;
+                expect(readme).toContain(ruleWithLink);
+                // TODO (fix): regex to detect duplicate doc
+                // should document the rule only once
+                // expect(RegExp(rule, 'g').exec(readme)).toHaveLength(1);
+            });
     });
 });

@@ -45,8 +45,9 @@ function getConfig(minified = false) {
             minified ? terser() : {},
             sizes({ details: debug }),
             replace({
+                // 'process' is not defined in browser
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                'process.env.SA11Y_RULESET': JSON.stringify('recommended'),
+                'process.env.SA11Y_RULESET': JSON.stringify('base'),
                 preventAssignment: true,
             }),
         ],

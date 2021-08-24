@@ -6,6 +6,7 @@
  */
 
 import * as axe from 'axe-core';
+import { RuleMetadata } from 'axe-core';
 
 export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks using axe:';
 
@@ -43,4 +44,13 @@ export async function getViolations(axeRunner: AxeRunner): Promise<AxeResults> {
         throw new Error(`${axeRuntimeExceptionMsgPrefix} ${(e as Error).message}`);
     }
     return violations;
+}
+
+/**
+ * Return list of axe rules as a map of rule id to corresponding metadata
+ */
+export function getAxeRules(): Map<string, RuleMetadata> {
+    const axeRules = new Map<string, RuleMetadata>();
+    axe.getRules().forEach((rule) => axeRules.set(rule.ruleId, rule));
+    return axeRules;
 }
