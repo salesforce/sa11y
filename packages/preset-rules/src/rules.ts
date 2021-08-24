@@ -7,9 +7,10 @@
 
 import { A11yConfig } from '@sa11y/common';
 
+export const priorities = ['P1', 'P2', 'P3', ''] as const;
+export type Priority = typeof priorities[number];
 // Default values for rule meta-data
-export const defaultPriority = 'P3';
-export const defaultWcagSC = 'best-practice';
+export const defaultPriority: Priority = '';
 
 /**
  * Metadata about rules such as Priority and WCAG SC (overriding values from axe tags)
@@ -17,11 +18,21 @@ export const defaultWcagSC = 'best-practice';
 export type RuleInfo = Map<
     string, // Rule ID
     {
-        priority: 'P1' | 'P2' | 'P3';
+        priority: Priority;
         wcagSC: string;
         wcagLevel: 'A' | 'AA' | 'AAA' | '';
     }
 >;
+
+/**
+ * Get Priority override for default ruleset.
+ * When set, only the rules matching the given priority from the default ruleset will be
+ * used for the sa11y API and automatic checks.
+ */
+export function getPriorityOverride(): Priority {
+    const priority = process.env.SA11Y_RULESET_PRIORITY;
+    return priority && priority in priorities ? (priority as Priority) : defaultPriority;
+}
 
 /**
  * Returns config to be used in axe.run() with given rules
@@ -33,10 +44,21 @@ export function getA11yConfig(rules: RuleInfo): A11yConfig {
     // Note: Making the returned config immutable using Object.freeze() results in
     //  "TypeError: Cannot add property reporter, object is not extensible"
     //  even when no local modifications are made. axe.run() itself seems to be modifying the config object.
+    const ruleIDs: string[] = [];
+    const priorityOverride = getPriorityOverride();
+    if (!priorityOverride) {
+        // if no override is set, return all rules
+        ruleIDs.push(...rules.keys());
+    } else {
+        for (const [ruleID, ruleInfo] of rules.entries()) {
+            if (priorityOverride === ruleInfo.priority) ruleIDs.push(ruleID);
+        }
+    }
+
     return {
         runOnly: {
             type: 'rule',
-            values: Array.from(rules.keys()).sort(),
+            values: ruleIDs.sort(),
         },
         // Disable preloading assets as it causes timeouts for audio/video elements
         //  with jest and delays webdriver tests by 2-3x when assets are not found (404)

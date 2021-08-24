@@ -46,8 +46,10 @@ function getConfig(minified = false) {
             sizes({ details: debug }),
             replace({
                 // 'process' is not defined in browser
-                // eslint-disable-next-line @typescript-eslint/naming-convention
+                /* eslint-disable @typescript-eslint/naming-convention */
                 'process.env.SA11Y_RULESET': JSON.stringify('base'),
+                'process.env.SA11Y_RULESET_PRIORITY': JSON.stringify(''),
+                /* eslint-enable @typescript-eslint/naming-convention */
                 preventAssignment: true,
             }),
         ],
