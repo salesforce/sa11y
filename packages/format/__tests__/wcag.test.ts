@@ -14,18 +14,18 @@ const noErrorCases = [
 ];
 
 const errorCases = [
-    [[], undefined, undefined, WcagMetadata.defaultSC],
-    [[WcagMetadata.defaultSC], undefined, undefined, WcagMetadata.defaultSC],
-    [['wcag222'], undefined, undefined, '2.2.2'],
-    [['foo', 'bar'], undefined, undefined, WcagMetadata.defaultSC],
-    [['wcag2foo', 'wcag21bar'], undefined, undefined, WcagMetadata.defaultSC],
+    [[], undefined, '', WcagMetadata.defaultSC],
+    [[WcagMetadata.defaultSC], undefined, '', WcagMetadata.defaultSC],
+    [['wcag222'], undefined, '', '2.2.2'],
+    [['foo', 'bar'], undefined, '', WcagMetadata.defaultSC],
+    [['wcag2foo', 'wcag21bar'], undefined, '', WcagMetadata.defaultSC],
 ];
 
 describe('WCAG Metadata extractor', () => {
     it.each([...noErrorCases, ...errorCases])(
         'should extract WCAG version and level (arg:%p)',
         (tags: string[], wcagVersion: string, wcagLevel: string, successCriteria: string) => {
-            const wcag = new WcagMetadata(tags);
+            const wcag = new WcagMetadata(tags, null);
             expect(wcag.wcagVersion).toBe(wcagVersion);
             expect(wcag.wcagLevel).toBe(wcagLevel);
             expect(wcag.successCriteria).toBe(successCriteria);
@@ -35,7 +35,7 @@ describe('WCAG Metadata extractor', () => {
     it.each(noErrorCases)(
         'should format WCAG metadata when required data is present (arg:%p)',
         (tags: string[], wcagVersion: string, wcagLevel: string, successCriteria: string) => {
-            const wcag = new WcagMetadata(tags).toString();
+            const wcag = new WcagMetadata(tags, null).toString();
             expect(wcag).toMatchSnapshot();
             expect(wcag).toContain(wcagVersion);
             expect(wcag).toContain(wcagLevel);

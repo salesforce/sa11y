@@ -7,6 +7,7 @@
 import { AxeResults } from '@sa11y/common';
 import { NodeResult, Result } from 'axe-core';
 import { WcagMetadata } from './wcag';
+import { extendedRulesInfo } from '@sa11y/preset-rules';
 
 const defaultImpact = 'minor'; // if impact is undefined
 // Helper object to sort violations by impact order
@@ -46,6 +47,7 @@ export class A11yResults {
      * Sorts give a11y violations from axe in order of impact
      */
     static sort(violations: AxeResults): AxeResults {
+        // TODO (refactor): Sort by Priority instead
         return violations.sort((a, b) => {
             const aImpact = impactOrder[a.impact || defaultImpact];
             const bImpact = impactOrder[b.impact || defaultImpact];
@@ -87,7 +89,9 @@ export class A11yResult {
     constructor(violation: Result, node: NodeResult) {
         this.id = violation.id;
         this.description = violation.help;
-        this.wcag = new WcagMetadata(violation.tags).toString();
+        const ruleInfo = extendedRulesInfo.get(violation.id);
+        // TODO (refactor): Make WcagMetadata take Result for consolidation of ruleInfo lookup logic
+        this.wcag = new WcagMetadata(violation.tags, ruleInfo).toString();
         this.helpUrl = violation.helpUrl.split('?')[0];
         this.selectors = node.target.sort().join('; ');
         this.html = node.html;

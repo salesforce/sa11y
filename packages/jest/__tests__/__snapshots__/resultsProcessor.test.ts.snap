@@ -253,7 +253,7 @@ Object {
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
-                  "wcag": "WCAG2.0-LevelA-SC2.4.2",
+                  "wcag": "WCAG2.1-LevelA-SC2.4.2",
                 },
                 Object {
                   "description": "<html> element must have a lang attribute",
@@ -271,7 +271,7 @@ Object {
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.0-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
                 },
                 Object {
                   "description": "Links must have discernible text",
@@ -288,7 +288,7 @@ Fix any of the following:
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
-                  "wcag": "WCAG2.0-LevelA-SC4.1.2",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.2",
                 },
                 Object {
                   "description": "Document should have one main landmark",
@@ -306,7 +306,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Document does not have a main landmark",
-                  "wcag": "best-practice",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.1",
                 },
                 Object {
                   "description": "Page should contain a level-one heading",
@@ -324,7 +324,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Page must have a level-one heading",
-                  "wcag": "best-practice",
+                  "wcag": "WCAG2.1-LevelA-SC1.3.1",
                 },
               ],
               "name": "A11yError",
@@ -365,10 +365,10 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.text-alternatives",
-                    "wcag242",
                     "wcag2a",
+                    "wcag242",
+                    "ACT",
                   ],
                 },
                 Object {
@@ -409,10 +409,10 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.language",
                     "wcag2a",
                     "wcag311",
+                    "ACT",
                   ],
                 },
                 Object {
@@ -481,13 +481,13 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.name-role-value",
-                    "section508",
-                    "section508.22.a",
-                    "wcag244",
                     "wcag2a",
                     "wcag412",
+                    "wcag244",
+                    "section508",
+                    "section508.22.a",
+                    "ACT",
                   ],
                 },
                 Object {
@@ -526,8 +526,8 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "best-practice",
                     "cat.semantics",
+                    "best-practice",
                   ],
                 },
                 Object {
@@ -566,8 +566,8 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "best-practice",
                     "cat.semantics",
+                    "best-practice",
                   ],
                 },
               ],
@@ -592,7 +592,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.0-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
                 },
               ],
               "name": "A11yError",
@@ -628,10 +628,10 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.language",
                     "wcag2a",
                     "wcag311",
+                    "ACT",
                   ],
                 },
               ],
@@ -663,7 +663,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
-                  "wcag": "WCAG2.0-LevelA-SC2.4.2",
+                  "wcag": "WCAG2.1-LevelA-SC2.4.2",
                 },
                 Object {
                   "description": "<html> element must have a lang attribute",
@@ -681,7 +681,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.0-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
                 },
                 Object {
                   "description": "Links must have discernible text",
@@ -698,7 +698,7 @@ Fix any of the following:
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
-                  "wcag": "WCAG2.0-LevelA-SC4.1.2",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.2",
                 },
                 Object {
                   "description": "Document should have one main landmark",
@@ -716,7 +716,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Document does not have a main landmark",
-                  "wcag": "best-practice",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.1",
                 },
                 Object {
                   "description": "Page should contain a level-one heading",
@@ -734,7 +734,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Page must have a level-one heading",
-                  "wcag": "best-practice",
+                  "wcag": "WCAG2.1-LevelA-SC1.3.1",
                 },
               ],
               "name": "A11yError",
@@ -775,10 +775,10 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.text-alternatives",
-                    "wcag242",
                     "wcag2a",
+                    "wcag242",
+                    "ACT",
                   ],
                 },
                 Object {
@@ -819,10 +819,10 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.language",
                     "wcag2a",
                     "wcag311",
+                    "ACT",
                   ],
                 },
                 Object {
@@ -891,13 +891,13 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.name-role-value",
-                    "section508",
-                    "section508.22.a",
-                    "wcag244",
                     "wcag2a",
                     "wcag412",
+                    "wcag244",
+                    "section508",
+                    "section508.22.a",
+                    "ACT",
                   ],
                 },
                 Object {
@@ -936,8 +936,8 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "best-practice",
                     "cat.semantics",
+                    "best-practice",
                   ],
                 },
                 Object {
@@ -976,8 +976,8 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "best-practice",
                     "cat.semantics",
+                    "best-practice",
                   ],
                 },
               ],
@@ -1002,7 +1002,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.0-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
                 },
               ],
               "name": "A11yError",
@@ -1038,10 +1038,10 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.language",
                     "wcag2a",
                     "wcag311",
+                    "ACT",
                   ],
                 },
               ],
@@ -1073,7 +1073,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
-                  "wcag": "WCAG2.0-LevelA-SC2.4.2",
+                  "wcag": "WCAG2.1-LevelA-SC2.4.2",
                 },
                 Object {
                   "description": "<html> element must have a lang attribute",
@@ -1091,7 +1091,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.0-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
                 },
                 Object {
                   "description": "Links must have discernible text",
@@ -1108,7 +1108,7 @@ Fix any of the following:
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
-                  "wcag": "WCAG2.0-LevelA-SC4.1.2",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.2",
                 },
                 Object {
                   "description": "Document should have one main landmark",
@@ -1126,7 +1126,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Document does not have a main landmark",
-                  "wcag": "best-practice",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.1",
                 },
                 Object {
                   "description": "Page should contain a level-one heading",
@@ -1144,7 +1144,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Page must have a level-one heading",
-                  "wcag": "best-practice",
+                  "wcag": "WCAG2.1-LevelA-SC1.3.1",
                 },
                 Object {
                   "description": "<html> element must have a lang attribute",
@@ -1155,7 +1155,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.0-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
                 },
               ],
               "name": "A11yError",
@@ -1196,10 +1196,10 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.text-alternatives",
-                    "wcag242",
                     "wcag2a",
+                    "wcag242",
+                    "ACT",
                   ],
                 },
                 Object {
@@ -1240,10 +1240,10 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.language",
                     "wcag2a",
                     "wcag311",
+                    "ACT",
                   ],
                 },
                 Object {
@@ -1312,13 +1312,13 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.name-role-value",
-                    "section508",
-                    "section508.22.a",
-                    "wcag244",
                     "wcag2a",
                     "wcag412",
+                    "wcag244",
+                    "section508",
+                    "section508.22.a",
+                    "ACT",
                   ],
                 },
                 Object {
@@ -1357,8 +1357,8 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "best-practice",
                     "cat.semantics",
+                    "best-practice",
                   ],
                 },
                 Object {
@@ -1397,8 +1397,8 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "best-practice",
                     "cat.semantics",
+                    "best-practice",
                   ],
                 },
                 Object {
@@ -1432,10 +1432,10 @@ Fix any of the following:
                     },
                   ],
                   "tags": Array [
-                    "ACT",
                     "cat.language",
                     "wcag2a",
                     "wcag311",
+                    "ACT",
                   ],
                 },
               ],
@@ -1503,7 +1503,7 @@ Tests: \\"A11yError-0\\"
 Summary: Fix any of the following:
   Document does not have a non-empty <title> element",
           ],
-          "fullName": "[Sa11y-WCAG2.0-LevelA-SC2.4.2]Documents must have <title> element to aid in navigation:html",
+          "fullName": "[Sa11y-WCAG2.1-LevelA-SC2.4.2]Documents must have <title> element to aid in navigation:html",
           "status": "failed",
         },
         Object {
@@ -1528,7 +1528,7 @@ Tests: \\"A11yError-0\\"
 Summary: Fix any of the following:
   The <html> element does not have a lang attribute",
           ],
-          "fullName": "[Sa11y-WCAG2.0-LevelA-SC3.1.1]<html> element must have a lang attribute:html",
+          "fullName": "[Sa11y-WCAG2.1-LevelA-SC3.1.1]<html> element must have a lang attribute:html",
           "status": "failed",
         },
         Object {
@@ -1552,7 +1552,7 @@ Fix any of the following:
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
           ],
-          "fullName": "[Sa11y-WCAG2.0-LevelA-SC4.1.2]Links must have discernible text:a",
+          "fullName": "[Sa11y-WCAG2.1-LevelA-SC4.1.2]Links must have discernible text:a",
           "status": "failed",
         },
         Object {
@@ -1577,7 +1577,7 @@ Tests: \\"A11yError-0\\"
 Summary: Fix all of the following:
   Document does not have a main landmark",
           ],
-          "fullName": "[Sa11y-best-practice]Document should have one main landmark:html",
+          "fullName": "[Sa11y-WCAG2.1-LevelA-SC4.1.1]Document should have one main landmark:html",
           "status": "failed",
         },
         Object {
@@ -1602,7 +1602,7 @@ Tests: \\"A11yError-0\\"
 Summary: Fix all of the following:
   Page must have a level-one heading",
           ],
-          "fullName": "[Sa11y-best-practice]Page should contain a level-one heading:html",
+          "fullName": "[Sa11y-WCAG2.1-LevelA-SC1.3.1]Page should contain a level-one heading:html",
           "status": "failed",
         },
       ],
@@ -1652,7 +1652,7 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
  "
 `;
 
-exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"ACT\\",\\"cat.text-alternatives\\",\\"wcag242\\",\\"wcag2a\\"],\\"description\\":\\"Ensures each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"ACT\\",\\"cat.name-role-value\\",\\"section508\\",\\"section508.22.a\\",\\"wcag244\\",\\"wcag2a\\",\\"wcag412\\"],\\"description\\":\\"Ensures links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"minor\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"non-empty-title\\",\\"data\\":{\\"messageKey\\":\\"noAttr\\"},\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element has no title attribute\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element has no title attribute\\"}]},{\\"id\\":\\"landmark-one-main\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"best-practice\\",\\"cat.semantics\\"],\\"description\\":\\"Ensures the document has a main landmark\\",\\"help\\":\\"Document should have one main landmark\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/landmark-one-main?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[],\\"all\\":[{\\"id\\":\\"page-has-main\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Document does not have a main landmark\\"}],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Document does not have a main landmark\\"}]},{\\"id\\":\\"page-has-heading-one\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"best-practice\\",\\"cat.semantics\\"],\\"description\\":\\"Ensure that the page, or at least one of its frames contains a level-one heading\\",\\"help\\":\\"Page should contain a level-one heading\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[],\\"all\\":[{\\"id\\":\\"page-has-heading-one\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Page must have a level-one heading\\"}],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Page must have a level-one heading\\"}]}]"`;
+exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.text-alternatives\\",\\"wcag2a\\",\\"wcag242\\",\\"ACT\\"],\\"description\\":\\"Ensures each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.name-role-value\\",\\"wcag2a\\",\\"wcag412\\",\\"wcag244\\",\\"section508\\",\\"section508.22.a\\",\\"ACT\\"],\\"description\\":\\"Ensures links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"minor\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"non-empty-title\\",\\"data\\":{\\"messageKey\\":\\"noAttr\\"},\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element has no title attribute\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element has no title attribute\\"}]},{\\"id\\":\\"landmark-one-main\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"cat.semantics\\",\\"best-practice\\"],\\"description\\":\\"Ensures the document has a main landmark\\",\\"help\\":\\"Document should have one main landmark\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/landmark-one-main?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[],\\"all\\":[{\\"id\\":\\"page-has-main\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Document does not have a main landmark\\"}],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Document does not have a main landmark\\"}]},{\\"id\\":\\"page-has-heading-one\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"cat.semantics\\",\\"best-practice\\"],\\"description\\":\\"Ensure that the page, or at least one of its frames contains a level-one heading\\",\\"help\\":\\"Page should contain a level-one heading\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[],\\"all\\":[{\\"id\\":\\"page-has-heading-one\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Page must have a level-one heading\\"}],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Page must have a level-one heading\\"}]}]"`;
 
 exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 "\\"* (document-title) Documents must have <title> element to aid in navigation: html\\"

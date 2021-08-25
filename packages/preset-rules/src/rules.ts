@@ -11,17 +11,20 @@ export const priorities = ['P1', 'P2', 'P3', ''] as const;
 export type Priority = typeof priorities[number];
 // Default values for rule meta-data
 export const defaultPriority: Priority = '';
+export type WcagLevel = 'A' | 'AA' | 'AAA' | '';
+
+export type RuleMetadata = {
+    priority: Priority;
+    wcagSC: string;
+    wcagLevel: WcagLevel;
+};
 
 /**
  * Metadata about rules such as Priority and WCAG SC (overriding values from axe tags)
  */
 export type RuleInfo = Map<
     string, // Rule ID
-    {
-        priority: Priority;
-        wcagSC: string;
-        wcagLevel: 'A' | 'AA' | 'AAA' | '';
-    }
+    RuleMetadata
 >;
 
 /**
