@@ -7,11 +7,11 @@
 
 import { A11yConfig } from '@sa11y/common';
 
+export type WcagVersion = '2.0' | '2.1' | undefined;
+export type WcagLevel = 'A' | 'AA' | 'AAA' | '';
 export const priorities = ['P1', 'P2', 'P3', ''] as const;
 export type Priority = typeof priorities[number];
-// Default values for rule meta-data
-export const defaultPriority: Priority = '';
-export type WcagLevel = 'A' | 'AA' | 'AAA' | '';
+export const defaultPriority: Priority = 'P3';
 
 export type RuleMetadata = {
     priority: Priority;
@@ -34,7 +34,7 @@ export type RuleInfo = Map<
  */
 export function getPriorityOverride(): Priority {
     const priority = process.env.SA11Y_RULESET_PRIORITY;
-    return priority && priority in priorities ? (priority as Priority) : defaultPriority;
+    return priority && priority in priorities ? (priority as Priority) : '';
 }
 
 /**

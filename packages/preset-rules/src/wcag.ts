@@ -5,11 +5,10 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { RuleMetadata, WcagLevel } from '@sa11y/preset-rules';
+import { defaultPriority, Priority, WcagLevel, WcagVersion } from './rules';
+import { extendedRulesInfo } from './extended';
+import { Result } from 'axe-core';
 
-type WcagVersion = '2.0' | '2.1' | undefined;
-
-// TODO (refactor): Move class to preset-rules as it is better fit with rules metadata processing
 /**
  * Process given tags from a11y violations and extract WCAG meta-data
  * Ref: https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#axe-core-tags
@@ -22,17 +21,20 @@ export class WcagMetadata {
     public wcagLevel: WcagLevel = '';
     public wcagVersion: WcagVersion;
     public successCriteria = WcagMetadata.defaultSC;
+    public priority: Priority = defaultPriority;
 
-    constructor(readonly tags: string[], readonly ruleInfo: RuleMetadata | undefined) {
+    constructor(readonly violation: Result) {
+        const ruleInfo = extendedRulesInfo.get(violation.id);
         if (ruleInfo) {
             // rule has metadata provided in preset-rules
             this.wcagVersion = '2.1';
             this.wcagLevel = ruleInfo.wcagLevel;
             this.successCriteria = ruleInfo.wcagSC;
+            this.priority = ruleInfo.priority;
             return;
         }
 
-        for (const tag of tags.sort()) {
+        for (const tag of violation.tags.sort()) {
             const match = WcagMetadata.regExp.exec(tag);
             if (!match || !match.groups) continue;
             const level = match.groups.level;
@@ -56,7 +58,7 @@ export class WcagMetadata {
      * Return formatted string containing WCAG version, level and SC
      */
     public toString(): string {
-        if (!this.wcagVersion || !this.wcagLevel) return this.successCriteria;
-        return `WCAG${this.wcagVersion}-Level${this.wcagLevel}-SC${this.successCriteria}`;
+        if (!this.wcagVersion || !this.wcagLevel || !this.priority) return this.successCriteria;
+        return `WCAG${this.wcagVersion}-Level${this.wcagLevel}-SC${this.successCriteria}-${this.priority}`;
     }
 }

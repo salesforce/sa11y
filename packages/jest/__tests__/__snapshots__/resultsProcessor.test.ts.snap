@@ -253,7 +253,7 @@ Object {
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
-                  "wcag": "WCAG2.1-LevelA-SC2.4.2",
+                  "wcag": "WCAG2.1-LevelA-SC2.4.2-P2",
                 },
                 Object {
                   "description": "<html> element must have a lang attribute",
@@ -271,7 +271,7 @@ Object {
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1-P2",
                 },
                 Object {
                   "description": "Links must have discernible text",
@@ -288,7 +288,7 @@ Fix any of the following:
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
-                  "wcag": "WCAG2.1-LevelA-SC4.1.2",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.2-P1",
                 },
                 Object {
                   "description": "Document should have one main landmark",
@@ -306,7 +306,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Document does not have a main landmark",
-                  "wcag": "WCAG2.1-LevelA-SC4.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.1-P3",
                 },
                 Object {
                   "description": "Page should contain a level-one heading",
@@ -324,7 +324,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Page must have a level-one heading",
-                  "wcag": "WCAG2.1-LevelA-SC1.3.1",
+                  "wcag": "WCAG2.1-LevelA-SC1.3.1-P2",
                 },
               ],
               "name": "A11yError",
@@ -592,7 +592,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1-P2",
                 },
               ],
               "name": "A11yError",
@@ -663,7 +663,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
-                  "wcag": "WCAG2.1-LevelA-SC2.4.2",
+                  "wcag": "WCAG2.1-LevelA-SC2.4.2-P2",
                 },
                 Object {
                   "description": "<html> element must have a lang attribute",
@@ -681,7 +681,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1-P2",
                 },
                 Object {
                   "description": "Links must have discernible text",
@@ -698,7 +698,7 @@ Fix any of the following:
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
-                  "wcag": "WCAG2.1-LevelA-SC4.1.2",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.2-P1",
                 },
                 Object {
                   "description": "Document should have one main landmark",
@@ -716,7 +716,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Document does not have a main landmark",
-                  "wcag": "WCAG2.1-LevelA-SC4.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.1-P3",
                 },
                 Object {
                   "description": "Page should contain a level-one heading",
@@ -734,7 +734,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Page must have a level-one heading",
-                  "wcag": "WCAG2.1-LevelA-SC1.3.1",
+                  "wcag": "WCAG2.1-LevelA-SC1.3.1-P2",
                 },
               ],
               "name": "A11yError",
@@ -1002,7 +1002,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1-P2",
                 },
               ],
               "name": "A11yError",
@@ -1073,7 +1073,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
-                  "wcag": "WCAG2.1-LevelA-SC2.4.2",
+                  "wcag": "WCAG2.1-LevelA-SC2.4.2-P2",
                 },
                 Object {
                   "description": "<html> element must have a lang attribute",
@@ -1091,7 +1091,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1-P2",
                 },
                 Object {
                   "description": "Links must have discernible text",
@@ -1108,7 +1108,7 @@ Fix any of the following:
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
-                  "wcag": "WCAG2.1-LevelA-SC4.1.2",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.2-P1",
                 },
                 Object {
                   "description": "Document should have one main landmark",
@@ -1126,7 +1126,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Document does not have a main landmark",
-                  "wcag": "WCAG2.1-LevelA-SC4.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC4.1.1-P3",
                 },
                 Object {
                   "description": "Page should contain a level-one heading",
@@ -1144,7 +1144,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix all of the following:
   Page must have a level-one heading",
-                  "wcag": "WCAG2.1-LevelA-SC1.3.1",
+                  "wcag": "WCAG2.1-LevelA-SC1.3.1-P2",
                 },
                 Object {
                   "description": "<html> element must have a lang attribute",
@@ -1155,7 +1155,7 @@ Fix any of the following:
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                  "wcag": "WCAG2.1-LevelA-SC3.1.1",
+                  "wcag": "WCAG2.1-LevelA-SC3.1.1-P2",
                 },
               ],
               "name": "A11yError",
@@ -1503,7 +1503,7 @@ Tests: \\"A11yError-0\\"
 Summary: Fix any of the following:
   Document does not have a non-empty <title> element",
           ],
-          "fullName": "[Sa11y-WCAG2.1-LevelA-SC2.4.2]Documents must have <title> element to aid in navigation:html",
+          "fullName": "[Sa11y-WCAG2.1-LevelA-SC2.4.2-P2]Documents must have <title> element to aid in navigation:html",
           "status": "failed",
         },
         Object {
@@ -1528,7 +1528,7 @@ Tests: \\"A11yError-0\\"
 Summary: Fix any of the following:
   The <html> element does not have a lang attribute",
           ],
-          "fullName": "[Sa11y-WCAG2.1-LevelA-SC3.1.1]<html> element must have a lang attribute:html",
+          "fullName": "[Sa11y-WCAG2.1-LevelA-SC3.1.1-P2]<html> element must have a lang attribute:html",
           "status": "failed",
         },
         Object {
@@ -1552,7 +1552,7 @@ Fix any of the following:
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
           ],
-          "fullName": "[Sa11y-WCAG2.1-LevelA-SC4.1.2]Links must have discernible text:a",
+          "fullName": "[Sa11y-WCAG2.1-LevelA-SC4.1.2-P1]Links must have discernible text:a",
           "status": "failed",
         },
         Object {
@@ -1577,7 +1577,7 @@ Tests: \\"A11yError-0\\"
 Summary: Fix all of the following:
   Document does not have a main landmark",
           ],
-          "fullName": "[Sa11y-WCAG2.1-LevelA-SC4.1.1]Document should have one main landmark:html",
+          "fullName": "[Sa11y-WCAG2.1-LevelA-SC4.1.1-P3]Document should have one main landmark:html",
           "status": "failed",
         },
         Object {
@@ -1602,7 +1602,7 @@ Tests: \\"A11yError-0\\"
 Summary: Fix all of the following:
   Page must have a level-one heading",
           ],
-          "fullName": "[Sa11y-WCAG2.1-LevelA-SC1.3.1]Page should contain a level-one heading:html",
+          "fullName": "[Sa11y-WCAG2.1-LevelA-SC1.3.1-P2]Page should contain a level-one heading:html",
           "status": "failed",
         },
       ],
