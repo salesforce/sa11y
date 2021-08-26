@@ -6,14 +6,14 @@
  */
 
 import { base, full, extended, defaultRuleset, excludedRules, getDefaultRuleset } from '../src';
-import * as axe from 'axe-core';
-import * as fs from 'fs';
-import * as path from 'path';
-import { axeVersion } from '@sa11y/common';
 import { baseRulesInfo } from '../src/base';
 import { extendedRulesInfo } from '../src/extended';
 import { getRulesDoc } from '../src/docgen';
-import { RuleInfo } from '../src/rules';
+import { filterRulesByPriority, getPriorityOverride, priorities, RuleInfo } from '../src/rules';
+import { axeVersion } from '@sa11y/common';
+import * as axe from 'axe-core';
+import * as fs from 'fs';
+import * as path from 'path';
 
 /**
  * TODO:
@@ -108,5 +108,26 @@ describe('preset-rules documentation', () => {
                 // should document the rule only once
                 // expect(RegExp(rule, 'g').exec(readme)).toHaveLength(1);
             });
+    });
+});
+
+describe('preset-rules priority config', () => {
+    afterAll(() => {
+        process.env.SA11Y_RULESET_PRIORITY = '';
+    });
+
+    it('should filter rules by given priority', () => {
+        for (const priority of priorities) {
+            if (!priority) continue;
+            const filteredRules = filterRulesByPriority(extendedRulesInfo, priority);
+            filteredRules.forEach((rule) => {
+                expect(extendedRulesInfo.get(rule).priority).toEqual(priority);
+            });
+        }
+    });
+
+    it.each(priorities)('should override priority based on env var', (priority) => {
+        process.env.SA11Y_RULESET_PRIORITY = priority;
+        expect(getPriorityOverride()).toEqual(priority);
     });
 });
