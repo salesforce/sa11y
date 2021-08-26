@@ -10,6 +10,7 @@ import * as axe from 'axe-core';
 import * as fs from 'fs';
 import * as path from 'path';
 import { axeVersion } from '@sa11y/common';
+import { baseRulesInfo } from '../src/base';
 import { extendedRulesInfo } from '../src/extended';
 import { getRulesDoc } from '../src/docgen';
 import { RuleInfo } from '../src/rules';
@@ -40,6 +41,14 @@ describe('preset-rules', () => {
     it('should match ruleset hierarchy extended -> base', () => {
         expect(extended.runOnly.values).not.toEqual(base.runOnly.values);
         expect(extended.runOnly.values).toEqual(expect.arrayContaining(base.runOnly.values));
+    });
+
+    it('should contain both WCAG SC, Level and no AAA rules for base ruleset', () => {
+        expect(
+            Array.from(baseRulesInfo.values()).filter(
+                (ruleInfo) => !ruleInfo.wcagSC || !ruleInfo.wcagLevel || ruleInfo.wcagLevel === 'AAA'
+            )
+        ).toHaveLength(0);
     });
 
     it('should contain both WCAG SC and Level or none', () => {

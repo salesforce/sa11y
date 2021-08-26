@@ -145,7 +145,7 @@ describe('automatic checks call', () => {
         expect(document.body.childElementCount).toBe(domWithNoA11yIssuesChildCount);
     });
 
-    // eslint-disable-next-line jest/expect-expect
+    /* eslint-disable jest/expect-expect */
     it('should not raise error for duplicated issues', async () => {
         // TODO (Refactor): extract out duplicated code to set dom, expect assertions and invoke automatic check
         document.body.innerHTML = domWithA11yIssues;
@@ -166,4 +166,5 @@ describe('automatic checks call', () => {
         document.body.innerHTML = domWithA11yIssues;
         await checkA11yErrorFunc(() => automaticCheck({ runOnlyOnFiles: ['foo', expect.getState().testPath] }));
     });
+    /* eslint-enable jest/expect-expect */
 });

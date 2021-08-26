@@ -25,10 +25,13 @@ console.log(a11yResults);
 
 `@sa11y/preset-rules` provides three pre-configured rule set curated from axe: `base`, `extended` and `full`.
 
--   Below is the set of rules from [axe rule descriptions](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md) and their current mapping to the `base` and `extended` rulesets in `@sa11y/preset-rules`.
--   `full` ruleset consists of all rules that are enabled by default in axe.
--   The default ruleset used by the sa11y APIs is `base`.
-    -   This can be overridden using the `SA11Y_RULESET` environment variable.
+- Below is the set of rules from [axe rule descriptions](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md) and their current mapping to the `base` and `extended` rulesets in `@sa11y/preset-rules`.
+- `base` contains WCAG 2.1 AA rules available in axe-core.
+- `extended` contains WCAG `AAA` rules, experimental rules and non-WCAG best-practice rules.
+- `full` ruleset consists of all rules that are enabled by default in axe.
+- The default ruleset used by the sa11y APIs is `base`.
+    - This can be overridden using the `SA11Y_RULESET` environment variable.
+- The `SA11Y_RULESET_PRIORITY` environment variable can be used to select rules of specified priority in a ruleset.
 
 ### Rules
 | Rule ID                                                                                                              | Description                                                                                                                                   | WCAG SC | WCAG Level | Priority | In Base ruleset | In Extended ruleset |
