@@ -24,6 +24,7 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
+        "@sa11y/preset-rules": "0.3.7",
         "axe-core": "4.3.2"
     },
     "devDependencies": {
