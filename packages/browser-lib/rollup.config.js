@@ -47,6 +47,10 @@ function getConfig(minified = false) {
             replace({
                 // 'process' is not defined in browser
                 /* eslint-disable @typescript-eslint/naming-convention */
+                'process.env.SA11Y_AUTO': JSON.stringify(''),
+                'process.env.SA11Y_AUTO_ONLY': JSON.stringify(''),
+                'process.env.SA11Y_CLEANUP': JSON.stringify(''),
+                'process.env.SA11Y_DEBUG': JSON.stringify(''),
                 'process.env.SA11Y_RULESET': JSON.stringify('base'),
                 'process.env.SA11Y_RULESET_PRIORITY': JSON.stringify(''),
                 /* eslint-enable @typescript-eslint/naming-convention */
