@@ -57,6 +57,16 @@ describe('demonstrate usage of @sa11y/wdio', () => {
     });
 });
 ```
+### Options
+An options object containing following properties can be passed to WDIO APIs
+* `driver` - [WDIO BrowserObject](https://webdriver.io/docs/browserobject/) instance navigated to the page to be checked.
+  * Created automatically by WDIO test runner.
+  * Might need to be passed in explicitly when other test runners are used.
+* `scope` - Element to check for accessibility found using [`browser.$(selector)`](https://webdriver.io/docs/selectors).
+  * Defaults to the entire document.
+* `rules` - [@sa11y/preset-rules](https://github.com/salesforce/sa11y/blob/master/packages/preset-rules/README.md) used for checking accessibility.
+  * Defaults to `base` ruleset.
+* `exceptionList` - map of rule id to corresponding CSS targets that needs to be filtered from results
 
 ![Screenshot showing a11y errors from a test using Sa11y WDIO in a terminal](https://github.com/salesforce/sa11y/blob/media/screenshot/wdio.png?raw=true)
 
