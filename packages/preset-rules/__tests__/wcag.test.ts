@@ -6,6 +6,8 @@
  */
 import { WcagMetadata } from '../src';
 import { Result } from 'axe-core';
+import { defaultWcagVersion } from '../src/rules';
+import { extendedRulesInfo } from '../src/extended';
 
 // input tags, expected version, expected level, expected SC
 const noErrorCases = [
@@ -43,4 +45,16 @@ describe('WCAG Metadata extractor', () => {
             expect(wcag).toContain(successCriteria);
         }
     );
+
+    it.each([
+        'accesskeys', // base rule
+        'table-duplicate-name', // extended rule without WCAG SC
+    ])('should populate WCAG metadata as expected for rule (arg:%p)', (ruleID) => {
+        const wcag = new WcagMetadata({ id: ruleID, tags: [] } as Result);
+        const ruleInfo = extendedRulesInfo.get(ruleID);
+        expect(wcag.wcagVersion).toBe(defaultWcagVersion);
+        expect(wcag.wcagLevel).toBe(ruleInfo.wcagLevel);
+        expect(wcag.successCriteria).toBe(ruleInfo.wcagSC);
+        expect(wcag.priority).toBe(ruleInfo.priority);
+    });
 });

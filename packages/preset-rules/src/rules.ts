@@ -12,6 +12,7 @@ export type WcagLevel = 'A' | 'AA' | 'AAA' | '';
 export const priorities = ['P1', 'P2', 'P3', ''] as const;
 export type Priority = typeof priorities[number];
 export const defaultPriority: Priority = 'P3';
+export const defaultWcagVersion: WcagVersion = '2.1';
 
 export type RuleMetadata = {
     priority: Priority;

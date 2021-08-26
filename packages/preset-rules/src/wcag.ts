@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { defaultPriority, Priority, WcagLevel, WcagVersion } from './rules';
+import { defaultPriority, defaultWcagVersion, Priority, WcagLevel, WcagVersion } from './rules';
 import { extendedRulesInfo } from './extended';
 import { Result } from 'axe-core';
 
@@ -26,14 +26,16 @@ export class WcagMetadata {
     constructor(readonly violation: Result) {
         const ruleInfo = extendedRulesInfo.get(violation.id);
         if (ruleInfo) {
+            // TODO: add tests for codecov
             // rule has metadata provided in preset-rules
-            this.wcagVersion = '2.1';
+            this.wcagVersion = defaultWcagVersion;
             this.wcagLevel = ruleInfo.wcagLevel;
             this.successCriteria = ruleInfo.wcagSC;
             this.priority = ruleInfo.priority;
             return;
         }
 
+        // If rule info metadata doesn't exist (e.g. full ruleset)
         for (const tag of violation.tags.sort()) {
             const match = WcagMetadata.regExp.exec(tag);
             if (!match || !match.groups) continue;

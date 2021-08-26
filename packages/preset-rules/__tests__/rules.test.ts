@@ -12,6 +12,7 @@ import * as path from 'path';
 import { axeVersion } from '@sa11y/common';
 import { extendedRulesInfo } from '../src/extended';
 import { getRulesDoc } from '../src/docgen';
+import { RuleInfo } from '../src/rules';
 
 /**
  * TODO:
@@ -80,6 +81,10 @@ describe('preset-rules documentation', () => {
         // Note: to update the readme when rulesets are updated, pass in the readmePath
         // expect(readme).toContain(getRulesDoc(readmePath));
         expect(readme).toContain(getRulesDoc());
+    });
+
+    it('should throw error for non existent rule', () => {
+        expect(() => getRulesDoc(new Map([['foo', {}]]) as RuleInfo)).toThrowErrorMatchingSnapshot();
     });
 
     it('should contain all rules from extended', () => {

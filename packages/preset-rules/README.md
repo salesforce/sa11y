@@ -5,12 +5,9 @@ Accessibility preset rule configs for axe
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
--   [Usage](#usage)
--   [Ruleset Mapping](#ruleset-mapping)
-    -   [WCAG 2.0 Level A & AA Rules](#wcag-20-level-a--aa-rules)
-    -   [WCAG 2.1 Level A & AA Rules](#wcag-21-level-a--aa-rules)
-    -   [Best Practices Rules](#best-practices-rules)
-    -   [Experimental Rules](#experimental-rules)
+- [Usage](#usage)
+- [Ruleset Mapping](#ruleset-mapping)
+  - [Rules](#rules)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
