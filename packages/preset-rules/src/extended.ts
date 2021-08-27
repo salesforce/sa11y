@@ -22,7 +22,7 @@ export const extendedRulesInfo: RuleInfo = new Map([
             'link-in-text-block': { priority: 'P1', wcagSC: '1.4.1', wcagLevel: 'A' },
             'no-autoplay-audio': { priority: 'P1', wcagSC: '1.4.2', wcagLevel: 'A' },
             'p-as-heading': { priority: 'P2', wcagSC: '1.3.1', wcagLevel: 'A' },
-            region: { priority: 'P3', wcagSC: '', wcagLevel: '' },
+            'region': { priority: 'P3', wcagSC: '', wcagLevel: '' },
             'skip-link': { priority: 'P3', wcagSC: '', wcagLevel: '' },
             'table-duplicate-name': { priority: 'P3', wcagSC: '', wcagLevel: '' },
             'table-fake-caption': { priority: 'P3', wcagSC: '', wcagLevel: '' },

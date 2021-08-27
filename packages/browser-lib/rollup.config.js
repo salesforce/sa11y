@@ -54,7 +54,7 @@ function getConfig(minified = false) {
                 'process.env.SA11Y_RULESET': JSON.stringify('base'),
                 'process.env.SA11Y_RULESET_PRIORITY': JSON.stringify(''),
                 /* eslint-enable @typescript-eslint/naming-convention */
-                preventAssignment: true,
+                'preventAssignment': true,
             }),
         ],
     };
