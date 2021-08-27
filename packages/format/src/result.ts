@@ -6,7 +6,7 @@
  */
 import { AxeResults } from '@sa11y/common';
 import { NodeResult, Result } from 'axe-core';
-import { WcagMetadata } from '@sa11y/preset-rules';
+import { priorities, wcagLevels, WcagMetadata } from '@sa11y/preset-rules';
 
 const defaultImpact = 'minor'; // if impact is undefined
 // Helper object to sort violations by impact order
@@ -46,7 +46,6 @@ export class A11yResults {
      * Sorts give a11y violations from axe in order of impact
      */
     static sort(violations: AxeResults): AxeResults {
-        // TODO (refactor): Sort by Priority instead
         return violations.sort((a, b) => {
             const aImpact = impactOrder[a.impact || defaultImpact];
             const bImpact = impactOrder[b.impact || defaultImpact];
@@ -84,11 +83,13 @@ export class A11yResult {
     public readonly wcag: string;
     public readonly summary: string;
     public readonly key: string; // Represent a key with uniquely identifiable info
+    private readonly wcagData: WcagMetadata; // Used to sort results
 
     constructor(violation: Result, node: NodeResult) {
         this.id = violation.id;
         this.description = violation.help;
-        this.wcag = new WcagMetadata(violation).toString();
+        this.wcagData = new WcagMetadata(violation);
+        this.wcag = this.wcagData.toString();
         this.helpUrl = violation.helpUrl.split('?')[0];
         this.selectors = node.target.sort().join('; ');
         this.html = node.html;
@@ -96,5 +97,19 @@ export class A11yResult {
         /* istanbul ignore next */
         this.summary = node.failureSummary || '';
         this.key = `${this.id}--${this.selectors}`;
+    }
+
+    /**
+     * Sort result by Priority and WCAG Level
+     */
+    static sort(results: A11yResult[]): A11yResult[] {
+        // TODO (test): add more specific tests for sorting by priority, wcag level
+        return results.sort((a, b) => {
+            const priorityA = priorities.indexOf(a.wcagData.priority);
+            const priorityB = priorities.indexOf(b.wcagData.priority);
+            const wcagLevelA = wcagLevels.indexOf(a.wcagData.wcagLevel);
+            const wcagLevelB = wcagLevels.indexOf(b.wcagData.wcagLevel);
+            return priorityB - priorityA || wcagLevelB - wcagLevelA;
+        });
     }
 }

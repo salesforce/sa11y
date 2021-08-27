@@ -44,7 +44,7 @@ export class WcagMetadata {
             // Tags starting with "wcag" can contain either wcag version and level
             // or success criteria e.g. "wcag2aa", "wcag111"
             if (level) {
-                this.wcagLevel = level.toUpperCase() as WcagLevel;
+                this.wcagLevel = level.toUpperCase();
                 if (versionOrSC === '2') {
                     this.wcagVersion = '2.0'; // Add decimal for consistency
                 } else {

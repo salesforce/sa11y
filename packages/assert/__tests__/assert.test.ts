@@ -6,7 +6,7 @@
  */
 
 import { assertAccessible, getViolationsJSDOM } from '../src/assert';
-import { base, extended, getA11yConfig } from '@sa11y/preset-rules';
+import { base, extended, defaultPriority, getA11yConfig } from '@sa11y/preset-rules';
 import {
     a11yIssuesCount,
     audioURL,
@@ -19,7 +19,6 @@ import {
     videoURL,
 } from '@sa11y/test-utils';
 import { A11yConfig } from '@sa11y/common';
-import { defaultPriority } from '../../preset-rules/dist/rules';
 
 // Create a11y config with a map of rules with default priority and wcag sc from given
 // list of rule ids

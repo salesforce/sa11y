@@ -8,7 +8,8 @@
 import { A11yConfig, log } from '@sa11y/common';
 
 export type WcagVersion = '2.0' | '2.1' | undefined;
-export type WcagLevel = 'A' | 'AA' | 'AAA' | '';
+export const wcagLevels = ['A', 'AA', 'AAA', ''];
+export type WcagLevel = typeof wcagLevels[number];
 export const priorities = ['P1', 'P2', 'P3', ''] as const;
 export type Priority = typeof priorities[number];
 export const defaultPriority: Priority = 'P3';
@@ -53,7 +54,6 @@ export function filterRulesByPriority(rules: RuleInfo, priority: Priority = ''):
         // if no override is set, return all rules
         ruleIDs.push(...rules.keys());
     } else {
-        // TODO: add tests for codecov
         for (const [ruleID, ruleInfo] of rules.entries()) {
             if (priorityOverride === ruleInfo.priority) ruleIDs.push(ruleID);
         }
