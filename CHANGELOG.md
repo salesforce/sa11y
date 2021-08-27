@@ -51,20 +51,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# [0.11.0-beta] (2021-08-26)
-### BREAKING CHANGES ⚠️
-* Refactor rulesets into `base`, `extended`
-    * with `extended` replacing `recommended`
-    * `base` contains WCAG 2.1 AA rules available in axe-core
-    * `extended` contains AAA rules, experimental rules and non-WCAG best practice rules
-    * These ruleset changes could result in different test results from previous versions
-
-### Features
-* Add priority and WCAG Success Criteria metadata to preset-rules
-* Add config to run rules selectively by priority
-* Add script to generate preset rules markdown table in Readme with provided rules metadata
-
-# [0.10.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.10.0-beta) (2021-08-04)
+# [0.10.0-beta] (2021-08-04)
 
 ### Features
 
