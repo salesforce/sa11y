@@ -9,7 +9,7 @@ import { base, full, extended, defaultRuleset, excludedRules, getDefaultRuleset 
 import { baseRulesInfo } from '../src/base';
 import { extendedRulesInfo } from '../src/extended';
 import { getRulesDoc } from '../src/docgen';
-import { filterRulesByPriority, getPriorityOverride, priorities, RuleInfo } from '../src/rules';
+import { filterRulesByPriority, getPriorityFilter, priorities, RuleInfo } from '../src/rules';
 import { axeVersion } from '@sa11y/common';
 import * as axe from 'axe-core';
 import * as fs from 'fs';
@@ -51,7 +51,7 @@ describe('preset-rules', () => {
         ).toHaveLength(0);
     });
 
-    it('should contain both WCAG SC and Level or none', () => {
+    it('should contain both WCAG SC and Level or none in base, extended rulesets', () => {
         expect(
             Array.from(extendedRulesInfo.values()).filter(
                 (ruleInfo) => !ruleInfo.wcagSC && ruleInfo.wcagSC !== ruleInfo.wcagLevel
@@ -59,7 +59,7 @@ describe('preset-rules', () => {
         ).toHaveLength(0);
     });
 
-    it('should not contain excluded, deprecated rules', () => {
+    it('should not contain excluded, deprecated rules in base, extended rulesets', () => {
         expect(extended.runOnly.values.filter((rule) => excludedRules.includes(rule))).toHaveLength(0);
     });
 
@@ -87,7 +87,8 @@ describe('preset-rules documentation', () => {
     const readme = fs.readFileSync(readmePath).toString();
 
     it('should document all rules', () => {
-        // Note: to update the readme when rulesets are updated, pass in the readmePath
+        // Note: To update the readme when rulesets are updated, pass in the readmePath
+        //  after removing the existing outdated ruleset table.
         // expect(readme).toContain(getRulesDoc(readmePath));
         expect(readme).toContain(getRulesDoc());
     });
@@ -126,8 +127,8 @@ describe('preset-rules priority config', () => {
         }
     });
 
-    it.each(priorities)('should override priority based on env var', (priority) => {
+    it.each(priorities)('should set priority based on env var', (priority) => {
         process.env.SA11Y_RULESET_PRIORITY = priority;
-        expect(getPriorityOverride()).toEqual(priority);
+        expect(getPriorityFilter()).toEqual(priority);
     });
 });

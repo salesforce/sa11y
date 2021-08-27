@@ -32,11 +32,11 @@ export type RuleInfo = Map<
 >;
 
 /**
- * Get Priority override for default ruleset.
+ * Get Priority filter for the default ruleset.
  * When set, only the rules matching the given priority from the default ruleset will be
  * used for the sa11y API and automatic checks.
  */
-export function getPriorityOverride(): Priority {
+export function getPriorityFilter(): Priority {
     const priorityEnv = process.env.SA11Y_RULESET_PRIORITY;
     const priority = priorityEnv && priorities.includes(priorityEnv as Priority) ? (priorityEnv as Priority) : '';
     log(`Setting Sa11y rules priority to ${priority}`);
@@ -48,7 +48,7 @@ export function getPriorityOverride(): Priority {
  */
 export function filterRulesByPriority(rules: RuleInfo, priority: Priority = ''): string[] {
     const ruleIDs: string[] = [];
-    const priorityOverride = priority || getPriorityOverride();
+    const priorityOverride = priority || getPriorityFilter();
     if (!priorityOverride) {
         // if no override is set, return all rules
         ruleIDs.push(...rules.keys());
