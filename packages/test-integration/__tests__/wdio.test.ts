@@ -38,7 +38,7 @@ describe('integration test @sa11y/wdio in sync mode', () => {
     it('should throw error for html with visual a11y issues', () => {
         return sync(() => {
             void browser.url(htmlFileWithVisualA11yIssues);
-            void checkA11yErrorWdio(assertAccessibleSync, 3);
+            void checkA11yErrorWdio(assertAccessibleSync, 1);
         });
     });
     /* eslint-enable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, jest/expect-expect */

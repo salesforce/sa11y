@@ -6,7 +6,7 @@
  */
 
 import { assertAccessible, getViolationsJSDOM } from '../src/assert';
-import { base, getA11yConfig, recommended } from '@sa11y/preset-rules';
+import { base, extended, defaultPriority, getA11yConfig } from '@sa11y/preset-rules';
 import {
     a11yIssuesCount,
     audioURL,
@@ -18,6 +18,15 @@ import {
     shadowDomID,
     videoURL,
 } from '@sa11y/test-utils';
+import { A11yConfig } from '@sa11y/common';
+
+// Create a11y config with a map of rules with default priority and wcag sc from given
+// list of rule ids
+function getA11yConfigMap(rules: string[]): A11yConfig {
+    return getA11yConfig(
+        new Map(rules.map((ruleId) => [ruleId, { priority: defaultPriority, wcagSC: '', wcagLevel: '' }]))
+    );
+}
 
 beforeEach(() => {
     beforeEachSetup();
@@ -26,18 +35,15 @@ beforeEach(() => {
 describe('assertAccessible API', () => {
     // eslint-disable-next-line jest/expect-expect
     it('should trigger axe runtime exception for non existent rule', async () => {
-        const errConfig = getA11yConfig(['non-existent-rule']);
+        const errConfig = getA11yConfigMap(['non-existent-rule']);
         await checkA11yErrorFunc(() => assertAccessible(document, errConfig), true);
     });
 
-    it.each([base, recommended])(
-        'should throw no errors for dom with no a11y issues with config %#',
-        async (config) => {
-            document.body.innerHTML = domWithNoA11yIssues;
-            expect(async () => await getViolationsJSDOM(document, config)).toHaveLength(0);
-            await assertAccessible(document, config); // No error thrown
-        }
-    );
+    it.each([base, extended])('should throw no errors for dom with no a11y issues with config %#', async (config) => {
+        document.body.innerHTML = domWithNoA11yIssues;
+        expect(async () => await getViolationsJSDOM(document, config)).toHaveLength(0);
+        await assertAccessible(document, config); // No error thrown
+    });
 
     it.each([
         // DOM to test, expected assertions, expected a11y violations
@@ -80,7 +86,7 @@ describe('assertAccessible API', () => {
         async (source: string) => {
             document.body.innerHTML = `<audio src=${source}>Audio test</audio>`;
             await checkA11yErrorFunc(
-                () => assertAccessible(document, getA11yConfig(['audio-caption', 'no-autoplay-audio'])),
+                () => assertAccessible(document, getA11yConfigMap(['audio-caption', 'no-autoplay-audio'])),
                 false,
                 true
             );
@@ -92,7 +98,7 @@ describe('assertAccessible API', () => {
         async (source: string) => {
             document.body.innerHTML = `<video src=${source}>Video test</video>`;
             await checkA11yErrorFunc(
-                () => assertAccessible(document, getA11yConfig(['video-caption', 'no-autoplay-audio'])),
+                () => assertAccessible(document, getA11yConfigMap(['video-caption', 'no-autoplay-audio'])),
                 false,
                 true
             );

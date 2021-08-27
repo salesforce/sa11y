@@ -6,17 +6,18 @@
  */
 import { A11yConfig } from '@sa11y/common';
 import { base } from './base';
-import { recommended } from './recommended';
+import { extended } from './extended';
 import { full } from './full';
+
+export const ruleSets = new Map(Object.entries({ base: base, extended: extended, full: full }));
 
 /**
  * Get ruleset from environment variable `SA11Y_RULESET` if defined.
- * Defaults to `recommended` ruleset.
+ * Defaults to `base` ruleset.
  */
 export function getDefaultRuleset(): A11yConfig {
-    const ruleSets = new Map(Object.entries({ base: base, recommended: recommended, full: full }));
     const envRuleset = process.env.SA11Y_RULESET;
-    return envRuleset ? ruleSets.get(envRuleset) || recommended : recommended;
+    return envRuleset ? ruleSets.get(envRuleset) || base : base;
 }
 
 export const defaultRuleset = getDefaultRuleset();

@@ -20,7 +20,7 @@ import { full } from '@sa11y/preset-rules';
 // Assert that the current dom has no a11y issues
 // Defaults to using
 //  - default document context e.g. JSDOM in Jest
-//  - recommended ruleset from @sa11y/preset-rules and
+//  - base ruleset from @sa11y/preset-rules and
 //  - A11yError.checkAndThrow from @sa11y/format
 await assertAccessible();
 

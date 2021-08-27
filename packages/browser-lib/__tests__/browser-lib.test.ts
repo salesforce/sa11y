@@ -70,7 +70,7 @@ function checkNumViolations(
         script ||
         `return JSON.parse((await sa11y.checkAccessibility(
                 '${scope}',
-                sa11y.recommended,
+                sa11y.base,
                 ${JSON.stringify(exceptionList)}))).length;`;
     void browser.url(htmlFileWithNoA11yIssues);
     loadMinJS();

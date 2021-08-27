@@ -5,10 +5,15 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { base, full, recommended, defaultRuleset, getDefaultRuleset } from '../src';
+import { base, full, extended, defaultRuleset, excludedRules, getDefaultRuleset } from '../src';
+import { baseRulesInfo } from '../src/base';
+import { extendedRulesInfo } from '../src/extended';
+import { getRulesDoc } from '../src/docgen';
+import { filterRulesByPriority, getPriorityFilter, priorities, RuleInfo } from '../src/rules';
+import { axeVersion } from '@sa11y/common';
+import * as axe from 'axe-core';
 import * as fs from 'fs';
 import * as path from 'path';
-import { axeVersion } from '@sa11y/common';
 
 /**
  * TODO:
@@ -20,65 +25,110 @@ describe('preset-rules', () => {
         process.env.SA11Y_RULESET = '';
     });
 
-    // Rules that have been excluded from running due to being deprecated by axe
-    // or due to their experimental nature
-    const excludedRules = [
-        /* cSpell:disable */
-        // TODO (fix): Temp disable new rules in axe 4.2.
-        //  They will be added to the preset-rules in a future release
-        'aria-text', // new in axe 4.2
-        'empty-table-header', // new in axe 4.2
-        'frame-focusable-content', // new in axe 4.2
-        'nested-interactive', // new in axe 4.2
-        'frame-title-unique',
-        'hidden-content',
-        'skip-link',
-        'table-duplicate-name',
-        'table-fake-caption',
-        /* cSpell:enable */
-    ];
-
-    it('should match ruleset hierarchy full -> recommended', () => {
-        expect(full.runOnly.values).not.toEqual(recommended.runOnly.values);
-        expect(full.runOnly.values).toEqual(expect.arrayContaining(recommended.runOnly.values));
+    it('should match all axe rules with full ruleset', () => {
+        expect(
+            axe
+                .getRules()
+                .map((ruleObj) => ruleObj.ruleId)
+                .sort()
+        ).toEqual(full.runOnly.values);
     });
 
-    it('should match ruleset hierarchy recommended -> base', () => {
-        expect(recommended.runOnly.values).not.toEqual(base.runOnly.values);
-        expect(recommended.runOnly.values).toEqual(expect.arrayContaining(base.runOnly.values));
+    it('should match ruleset hierarchy full -> extended', () => {
+        expect(full.runOnly.values).toEqual(expect.arrayContaining([...extended.runOnly.values, ...excludedRules]));
     });
 
-    it('should not contain excluded, deprecated rules', () => {
-        expect(recommended.runOnly.values).toEqual(expect.not.arrayContaining(excludedRules));
+    it('should match ruleset hierarchy extended -> base', () => {
+        expect(extended.runOnly.values).not.toEqual(base.runOnly.values);
+        expect(extended.runOnly.values).toEqual(expect.arrayContaining(base.runOnly.values));
+    });
+
+    it('should contain both WCAG SC, Level and no AAA rules for base ruleset', () => {
+        expect(
+            Array.from(baseRulesInfo.values()).filter(
+                (ruleInfo) => !ruleInfo.wcagSC || !ruleInfo.wcagLevel || ruleInfo.wcagLevel === 'AAA'
+            )
+        ).toHaveLength(0);
+    });
+
+    it('should contain both WCAG SC and Level or none in base, extended rulesets', () => {
+        expect(
+            Array.from(extendedRulesInfo.values()).filter(
+                (ruleInfo) => !ruleInfo.wcagSC && ruleInfo.wcagSC !== ruleInfo.wcagLevel
+            )
+        ).toHaveLength(0);
+    });
+
+    it('should not contain excluded, deprecated rules in base, extended rulesets', () => {
+        expect(extended.runOnly.values.filter((rule) => excludedRules.includes(rule))).toHaveLength(0);
     });
 
     it('should not use only the excluded, deprecated rules from axe', () => {
         expect(full.runOnly.values).toEqual(expect.arrayContaining(excludedRules));
-        const unusedRules = full.runOnly.values.filter((rule) => !recommended.runOnly.values.includes(rule));
+        const unusedRules = full.runOnly.values.filter((rule) => !extended.runOnly.values.includes(rule));
         expect(unusedRules.sort()).toEqual(excludedRules.sort());
     });
 
-    it('should document all rules', () => {
-        // TODO (feat): Can we automate generation of the README using a template ?
-        const readmePath = path.resolve(__dirname, '../README.md');
-        const readme = fs.readFileSync(readmePath).toString();
-        const version = axeVersion.split('.').slice(0, 2).join('.'); // extract just major and minor version
-        full.runOnly.values
-            .filter((rule) => !excludedRules.includes(rule))
-            .forEach((rule) => {
-                expect(readme).toContain(`| [${rule}](https://dequeuniversity.com/rules/axe/${version}/${rule})`);
-            });
-    });
-
-    it('should default to recommended', () => {
-        expect(getDefaultRuleset()).toEqual(recommended);
-        expect(defaultRuleset).toEqual(recommended);
+    it('should default to base', () => {
+        expect(getDefaultRuleset()).toEqual(base);
+        expect(defaultRuleset).toEqual(base);
     });
 
     it('should change default ruleset based on env override', () => {
         process.env.SA11Y_RULESET = 'full';
         expect(getDefaultRuleset()).toEqual(full);
         // defaultRuleset initialized at beginning, so wouldn't reflect runtime overrides
-        expect(defaultRuleset).toEqual(recommended);
+        expect(defaultRuleset).toEqual(base);
+    });
+});
+
+describe('preset-rules documentation', () => {
+    const readmePath = path.resolve(__dirname, '../README.md');
+    const readme = fs.readFileSync(readmePath).toString();
+
+    it('should document all rules', () => {
+        // Note: To update the readme when rulesets are updated, pass in the readmePath
+        //  after removing the existing outdated ruleset table.
+        // expect(readme).toContain(getRulesDoc(readmePath));
+        expect(readme).toContain(getRulesDoc());
+    });
+
+    it('should throw error for non existent rule', () => {
+        expect(() => getRulesDoc(new Map([['foo', {}]]) as RuleInfo)).toThrowErrorMatchingSnapshot();
+    });
+
+    it('should contain all rules from extended', () => {
+        const version = axeVersion.split('.').slice(0, 2).join('.'); // extract just major and minor version
+        extended.runOnly.values
+            // TODO (test): Add test to check that excluded rules are not present in the doc
+            .filter((rule) => !excludedRules.includes(rule))
+            .forEach((rule) => {
+                const ruleWithLink = `[${rule}](https://dequeuniversity.com/rules/axe/${version}/${rule})`;
+                expect(readme).toContain(ruleWithLink);
+                // TODO (fix): regex to detect duplicate doc
+                // should document the rule only once
+                // expect(RegExp(rule, 'g').exec(readme)).toHaveLength(1);
+            });
+    });
+});
+
+describe('preset-rules priority config', () => {
+    afterAll(() => {
+        process.env.SA11Y_RULESET_PRIORITY = '';
+    });
+
+    it('should filter rules by given priority', () => {
+        for (const priority of priorities) {
+            if (!priority) continue;
+            const filteredRules = filterRulesByPriority(extendedRulesInfo, priority);
+            filteredRules.forEach((rule) => {
+                expect(extendedRulesInfo.get(rule).priority).toEqual(priority);
+            });
+        }
+    });
+
+    it.each(priorities)('should set priority based on env var', (priority) => {
+        process.env.SA11Y_RULESET_PRIORITY = priority;
+        expect(getPriorityFilter()).toEqual(priority);
     });
 });

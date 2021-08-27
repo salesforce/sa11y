@@ -56,7 +56,7 @@ export class A11yError extends Error {
      * @param opts - Options used for formatting a11y issues
      */
     static checkAndThrow(violations: AxeResults, opts: Partial<Options> = defaultOptions): void {
-        let a11yResults = A11yResults.convert(violations);
+        let a11yResults = A11yResults.convert(violations).sort();
         if (opts.deduplicate) {
             a11yResults = A11yResults.add(a11yResults);
         }

@@ -5,8 +5,9 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-export { getA11yConfig } from './a11yConfig';
-export { defaultRuleset, getDefaultRuleset } from './default';
-export { recommended } from './recommended';
+export { defaultPriority, priorities, wcagLevels, getA11yConfig, RuleInfo } from './rules';
+export { defaultRuleset, getDefaultRuleset } from './config';
+export { extended } from './extended';
 export { base } from './base';
-export { full } from './full';
+export { full, excludedRules } from './full';
+export { WcagMetadata } from './wcag';

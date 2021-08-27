@@ -5,8 +5,9 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-type WcagLevel = 'A' | 'AA' | 'AAA' | undefined;
-type WcagVersion = '2.0' | '2.1' | undefined;
+import { defaultPriority, defaultWcagVersion, Priority, WcagLevel, WcagVersion } from './rules';
+import { extendedRulesInfo } from './extended';
+import { Result } from 'axe-core';
 
 /**
  * Process given tags from a11y violations and extract WCAG meta-data
@@ -17,13 +18,25 @@ export class WcagMetadata {
     // Default SC for axe rules not strictly associated with a WCAG SC
     //  Could also be experimental rules that are enabled in sa11y preset rules
     static readonly defaultSC = 'best-practice';
-    public wcagLevel: WcagLevel;
+    public wcagLevel: WcagLevel = '';
     public wcagVersion: WcagVersion;
-    // TODO (feat): Add support for multiple SC
     public successCriteria = WcagMetadata.defaultSC;
+    public priority: Priority = defaultPriority;
 
-    constructor(readonly tags: string[]) {
-        for (const tag of tags.sort()) {
+    constructor(readonly violation: Result) {
+        const ruleInfo = extendedRulesInfo.get(violation.id);
+        if (ruleInfo) {
+            // TODO: add tests for codecov
+            // rule has metadata provided in preset-rules
+            this.wcagVersion = defaultWcagVersion;
+            this.wcagLevel = ruleInfo.wcagLevel;
+            this.successCriteria = ruleInfo.wcagSC;
+            this.priority = ruleInfo.priority;
+            return;
+        }
+
+        // If rule info metadata doesn't exist (e.g. full ruleset)
+        for (const tag of violation.tags.sort()) {
             const match = WcagMetadata.regExp.exec(tag);
             if (!match || !match.groups) continue;
             const level = match.groups.level;
@@ -31,7 +44,7 @@ export class WcagMetadata {
             // Tags starting with "wcag" can contain either wcag version and level
             // or success criteria e.g. "wcag2aa", "wcag111"
             if (level) {
-                this.wcagLevel = level.toUpperCase() as WcagLevel;
+                this.wcagLevel = level.toUpperCase();
                 if (versionOrSC === '2') {
                     this.wcagVersion = '2.0'; // Add decimal for consistency
                 } else {
@@ -48,6 +61,6 @@ export class WcagMetadata {
      */
     public toString(): string {
         if (!this.wcagVersion || !this.wcagLevel) return this.successCriteria;
-        return `WCAG${this.wcagVersion}-Level${this.wcagLevel}-SC${this.successCriteria}`;
+        return `WCAG${this.wcagVersion}-Level${this.wcagLevel}-SC${this.successCriteria}-${this.priority}`;
     }
 }

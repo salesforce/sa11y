@@ -17,7 +17,8 @@ export type WdioBrowser = BrowserObject | MultiRemoteBrowserObject;
  * Optional arguments passed to WDIO APIs
  * @param driver - WDIO {@link BrowserObject} instance navigated to the page to be checked. Created automatically by WDIO test runner. Might need to be passed in explicitly when other test runners are used.
  * @param scope - Element to check for accessibility found using [`browser.$(selector)`](https://webdriver.io/docs/selectors), defaults to the entire document.
- * @param rules - {@link A11yConfig} to be used for checking accessibility. Defaults to {@link recommended}
+ * @param rules - {@link A11yConfig} to be used for checking accessibility. Defaults to {@link base}
+ * @param exceptionList - map of rule id to corresponding CSS targets that needs to be filtered from results
  */
 export interface WdioOptions {
     driver: WdioBrowser;

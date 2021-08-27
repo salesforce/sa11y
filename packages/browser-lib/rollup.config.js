@@ -45,9 +45,16 @@ function getConfig(minified = false) {
             minified ? terser() : {},
             sizes({ details: debug }),
             replace({
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                'process.env.SA11Y_RULESET': JSON.stringify('recommended'),
-                preventAssignment: true,
+                // 'process' is not defined in browser
+                /* eslint-disable @typescript-eslint/naming-convention */
+                'process.env.SA11Y_AUTO': JSON.stringify(''),
+                'process.env.SA11Y_AUTO_ONLY': JSON.stringify(''),
+                'process.env.SA11Y_CLEANUP': JSON.stringify(''),
+                'process.env.SA11Y_DEBUG': JSON.stringify(''),
+                'process.env.SA11Y_RULESET': JSON.stringify('base'),
+                'process.env.SA11Y_RULESET_PRIORITY': JSON.stringify(''),
+                /* eslint-enable @typescript-eslint/naming-convention */
+                'preventAssignment': true,
             }),
         ],
     };

@@ -65,8 +65,8 @@ exports.config = {
             // maxInstances can get overwritten per capability. So if you have an in-house Selenium
             // grid with only 5 firefox instances available you can make sure that not more than
             // 5 instances get started at a time.
-            maxInstances: debug ? 1 : 5,
-            browserName: 'chrome',
+            'maxInstances': debug ? 1 : 5,
+            'browserName': 'chrome',
             'goog:chromeOptions': {
                 // https://developers.google.com/web/updates/2017/04/headless-chrome)
                 args: debug ? [] : ['--headless', '--disable-gpu'],

@@ -7,6 +7,7 @@
 import { A11yResult, A11yResults } from '../src';
 import { getViolations } from './format.test';
 import { AxeResults } from '@sa11y/common';
+import { NodeResult, Result } from 'axe-core';
 
 const a11yIssues = [
     { impact: undefined },
@@ -51,6 +52,33 @@ describe('a11y result', () => {
         expect(a11yIssues[3].impact).toBeUndefined(); // Sort by "defaultImpact"
         expect(a11yIssues[4].impact).toBeUndefined();
         expect(a11yIssues[5].impact).toEqual('minor');
+    });
+
+    it('should sort a11y results by priority, WCAG level', () => {
+        // Create test data with rule ids of different priority
+        const rules = [
+            'identical-links-same-purpose', // P3, AAA
+            'avoid-inline-spacing', // P3, AA
+            'autocomplete-valid', // P2, AA
+            'audio-caption', // P1, A
+        ];
+        const expectedSortedRules = [...rules].reverse();
+        const a11yResults = A11yResults.convert(
+            rules.map(
+                (rule) =>
+                    ({
+                        id: rule,
+                        helpUrl: 'foo',
+                        nodes: [{ target: ['foo'], html: 'bar', failureSummary: 'baz' } as NodeResult],
+                    } as Result)
+            )
+        );
+
+        // baseline check before sorting
+        a11yResults.forEach((result, index) => expect(result.id).toEqual(rules[index]));
+
+        // Sort and check if they have been rearranged by priority and WCAG level
+        A11yResult.sort(a11yResults).forEach((result, index) => expect(result.id).toEqual(expectedSortedRules[index]));
     });
 
     it('should consolidate violations', () => {

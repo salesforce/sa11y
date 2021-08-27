@@ -33,7 +33,7 @@ describe('a11y results filter', () => {
         { bypass: ['html5'] },
         { bypassFoo: ['html'] },
         { 'link-name': ['html'] },
-        { 'document-title': ['a'], 'link-name': ['html'], bypass: ['a'] },
+        { 'document-title': ['a'], 'link-name': ['html'], 'bypass': ['a'] },
     ])('should not filter results for non-matching exception list %#', (exceptionList) => {
         expect(exceptionListFilter(violations, exceptionList)).toStrictEqual(violations);
     });
@@ -52,7 +52,7 @@ describe('a11y results filter', () => {
 
     it('should filter results appropriately for exception list with both matching and non-matching items', () => {
         const validRule = 'document-title'; // Rule with valid css selector that matches violations
-        const mixedExceptionList = { 'document-title': ['html'], 'link-name': ['html'], bypass: ['a'] };
+        const mixedExceptionList = { 'document-title': ['html'], 'link-name': ['html'], 'bypass': ['a'] };
         const ruleIDs = violations.map((violation) => violation.id);
         const filteredViolations = exceptionListFilter(violations, mixedExceptionList);
         const filteredRuleIDs = filteredViolations.map((violation) => violation.id);

@@ -6,7 +6,7 @@
  */
 
 import { adaptA11yConfig, registerSa11yMatcher } from '../src/setup';
-import { base, recommended } from '@sa11y/preset-rules';
+import { base, extended } from '@sa11y/preset-rules';
 
 describe('jest setup', () => {
     registerSa11yMatcher();
@@ -14,7 +14,7 @@ describe('jest setup', () => {
         expect(expect['toBeAccessible']).toBeDefined();
     });
 
-    it.each([recommended, base])('should customize %s preset-rule as expected', (config) => {
+    it.each([extended, base])('should customize %s preset-rule as expected', (config) => {
         expect(config.rules).toBeUndefined();
         expect(adaptA11yConfig(config).rules['color-contrast'].enabled).toBe(false);
     });
