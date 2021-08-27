@@ -103,13 +103,12 @@ export class A11yResult {
      * Sort result by Priority and WCAG Level
      */
     static sort(results: A11yResult[]): A11yResult[] {
-        // TODO (test): add more specific tests for sorting by priority, wcag level
         return results.sort((a, b) => {
             const priorityA = priorities.indexOf(a.wcagData.priority);
             const priorityB = priorities.indexOf(b.wcagData.priority);
             const wcagLevelA = wcagLevels.indexOf(a.wcagData.wcagLevel);
             const wcagLevelB = wcagLevels.indexOf(b.wcagData.wcagLevel);
-            return priorityB - priorityA || wcagLevelB - wcagLevelA;
+            return priorityA - priorityB || wcagLevelA - wcagLevelB;
         });
     }
 }
