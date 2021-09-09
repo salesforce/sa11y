@@ -27,7 +27,7 @@ console.log(a11yResults);
 
 - Below is the set of rules from [axe rule descriptions](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md) and their current mapping to the `base` and `extended` rulesets in `@sa11y/preset-rules`.
 - `base` contains WCAG 2.1 AA rules available in axe-core.
-- `extended` contains WCAG `AAA` rules, experimental rules and non-WCAG best-practice rules.
+- `extended` contains WCAG AAA rules, experimental rules and non-WCAG best-practice rules.
 - `full` ruleset consists of all rules that are enabled by default in axe.
 - The default ruleset used by the sa11y APIs is `base`.
     - This can be overridden using the `SA11Y_RULESET` environment variable.
