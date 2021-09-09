@@ -61,6 +61,6 @@ export class WcagMetadata {
      */
     public toString(): string {
         if (!this.wcagVersion || !this.wcagLevel) return this.successCriteria;
-        return `WCAG${this.wcagVersion}-Level${this.wcagLevel}-SC${this.successCriteria}-${this.priority}`;
+        return `WCAG-SC${this.successCriteria}-${this.priority}`;
     }
 }
