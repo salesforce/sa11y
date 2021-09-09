@@ -26,7 +26,6 @@ export class WcagMetadata {
     constructor(readonly violation: Result) {
         const ruleInfo = extendedRulesInfo.get(violation.id);
         if (ruleInfo) {
-            // TODO: add tests for codecov
             // rule has metadata provided in preset-rules
             this.wcagVersion = defaultWcagVersion;
             this.wcagLevel = ruleInfo.wcagLevel;
@@ -35,6 +34,8 @@ export class WcagMetadata {
             return;
         }
 
+        // TODO (refactor): Is the following required anymore?
+        //  Cleanup taking the new preset-rules structure into account?
         // If rule info metadata doesn't exist (e.g. full ruleset)
         for (const tag of violation.tags.sort()) {
             const match = WcagMetadata.regExp.exec(tag);

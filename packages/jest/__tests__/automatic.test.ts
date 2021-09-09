@@ -88,7 +88,7 @@ describe('automatic checks registration', () => {
 
     it('should set run only files option when specified', () => {
         const testFiles = 'foo,bar';
-        process.env.SA11Y_AUTO_ONLY = testFiles;
+        process.env.SA11Y_AUTO_FILTER = testFiles;
         setup();
         expect(registerAutomaticMock).toHaveBeenCalledWith({
             // TODO (debug): Values seem to be carrying over from previous test
@@ -97,7 +97,7 @@ describe('automatic checks registration', () => {
             runAfterEach: true,
             cleanupAfterEach: true,
             consolidateResults: true,
-            runOnlyOnFiles: testFiles.split(','),
+            filesFilter: testFiles.split(','),
         });
     });
 });
@@ -160,7 +160,7 @@ describe('automatic checks call', () => {
     it('should skip auto checks when file is not specified in run only option', async () => {
         document.body.innerHTML = domWithA11yIssues;
         await checkA11yErrorFunc(
-            () => automaticCheck({ runOnlyOnFiles: ['foo', `/(?!${expect.getState().testPath})$`] }),
+            () => automaticCheck({ filesFilter: ['foo', `/(?!${expect.getState().testPath})$`] }),
             false,
             true
         );
@@ -168,7 +168,7 @@ describe('automatic checks call', () => {
 
     it('should run auto checks when file is specified in run only option', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(() => automaticCheck({ runOnlyOnFiles: ['foo', expect.getState().testPath] }));
+        await checkA11yErrorFunc(() => automaticCheck({ filesFilter: ['foo', expect.getState().testPath] }));
     });
     /* eslint-enable jest/expect-expect */
 });
