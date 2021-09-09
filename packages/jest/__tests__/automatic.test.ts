@@ -159,7 +159,11 @@ describe('automatic checks call', () => {
 
     it('should skip auto checks when file is not specified in run only option', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(() => automaticCheck({ runOnlyOnFiles: ['foo'] }), false, true);
+        await checkA11yErrorFunc(
+            () => automaticCheck({ runOnlyOnFiles: ['foo', `/(?!${expect.getState().testPath})$`] }),
+            false,
+            true
+        );
     });
 
     it('should run auto checks when file is specified in run only option', async () => {

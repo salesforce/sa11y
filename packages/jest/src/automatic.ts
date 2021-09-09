@@ -42,7 +42,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     const testPath = expect.getState().testPath;
     // If option to run only on selected files is specified, then current path should
     // match against at least one file
-    if (opts.runOnlyOnFiles?.length && !opts.runOnlyOnFiles.some((fileName) => testPath.endsWith(fileName))) {
+    if (opts.runOnlyOnFiles?.length && !opts.runOnlyOnFiles.some((fileName) => RegExp(fileName).test(testPath))) {
         log(
             `Skipping automatic accessibility check on ${testPath} as it does not match selected files provided: ${opts.runOnlyOnFiles.toString()}`
         );
@@ -63,7 +63,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
             // console.log(
             //     `♿ [DEBUG] Automatically checking a11y of ${currNode.nodeName}
             //      for test "${expect.getState().currentTestName}"
-            //      : ${expect.getState().testPath}`
+            //      : ${testPath}`
             // );
             violations.push(...(await getViolationsJSDOM(currNode)));
             currNode = walker.nextSibling();
