@@ -15,6 +15,7 @@ const a11yResults: A11yResult[] = [];
 const aggregatedResults = makeEmptyAggregatedTestResult();
 const testSuite = createEmptyTestResult();
 let numTestFailures = 0;
+const numNonA11yFailures = 1;
 
 function addTestFailure(suite: TestResult, err: Error) {
     const failure = {
@@ -55,13 +56,13 @@ describe('Results Processor', () => {
     });
 
     it('should process test results as expected', () => {
+        const numA11yFailures = numTestFailures - numNonA11yFailures;
         // Create a copy as results gets mutated by results processor
         const results = JSON.parse(JSON.stringify(aggregatedResults)) as AggregatedResult;
         const processedResults = resultsProcessor(results);
         expect(processedResults).toMatchSnapshot();
         expect(processedResults).not.toEqual(aggregatedResults);
-        // Should have added one more test suite for a11y errors
-        expect(processedResults.numFailedTestSuites).toEqual(aggregatedResults.numFailedTestSuites);
-        expect(processedResults.numTotalTests).toEqual(aggregatedResults.numTotalTests + a11yResults.length - 1); // After consolidation + non-a11y failure
+        expect(processedResults.numFailedTestSuites).toEqual(numA11yFailures);
+        expect(processedResults.numTotalTests).toEqual(aggregatedResults.numTotalTests + numA11yFailures); // After consolidation + non-a11y failure
     });
 });
