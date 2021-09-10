@@ -51,9 +51,19 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# [0.11.0-beta] (2021-08-26)
+# [0.11.1-beta](https://github.com/salesforce/sa11y/releases/tag/v0.11.1-beta) (2021-09-10)
+### Automatic checks
+* Add ability and convenience shortcut for excluding files from automatic checks ([#74](https://github.com/salesforce/sa11y/pull/74))
+
+### Results processor
+* Move the WCAG metadata and Priority info to class name in Jest results so that downstream CI systems make use of the info accordingly
+    - Remove WCAG version, Level for brevity
+* Error msgs: Move help URL up in order to prevent it from getting truncated e.g. when CSS selectors are long
+
+
+# [0.11.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.11.0-beta) (2021-08-26)
 ### BREAKING CHANGES ⚠️
-* Refactor rulesets into `base`, `extended`
+* Refactor rulesets into `base`, `extended` ([#73](https://github.com/salesforce/sa11y/pull/73))
     * with `extended` replacing `recommended`
     * `base` contains WCAG 2.1 AA rules available in axe-core
     * `extended` contains AAA rules, experimental rules and non-WCAG best practice rules

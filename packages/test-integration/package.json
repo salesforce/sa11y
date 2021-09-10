@@ -11,7 +11,7 @@
         "directory": "packages/test-integration"
     },
     "devDependencies": {
-        "@sa11y/jest": "1.0.0",
+        "@sa11y/jest": "1.1.0",
         "@sa11y/test-utils": "0.4.3",
         "@sa11y/wdio": "2.0.0-alpha.0"
     }
