@@ -2421,7 +2421,7 @@ Fix any of the following:
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "/test/data/sa11y-auto-checks.js:[WCAG-SC2.4.2-P2]",
+      "testFilePath": "/test/data/sa11y-auto-checks.js::WCAG-SC2.4.2-P2",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -2473,7 +2473,7 @@ Summary: Fix any of the following:
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "/test/data/sa11y-auto-checks.js:[WCAG-SC3.1.1-P2]",
+      "testFilePath": "/test/data/sa11y-auto-checks.js::WCAG-SC3.1.1-P2",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -2525,7 +2525,7 @@ Summary: Fix any of the following:
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "/test/data/sa11y-auto-checks.js:[WCAG-SC4.1.2-P1]",
+      "testFilePath": "/test/data/sa11y-auto-checks.js::WCAG-SC4.1.2-P1",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -2576,7 +2576,7 @@ Fix any of the following:
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "/test/data/sa11y-auto-checks.js:[WCAG-SC4.1.1-P3]",
+      "testFilePath": "/test/data/sa11y-auto-checks.js::WCAG-SC4.1.1-P3",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [
@@ -2628,7 +2628,7 @@ Summary: Fix all of the following:
         "unmatched": 0,
         "updated": 0,
       },
-      "testFilePath": "/test/data/sa11y-auto-checks.js:[WCAG-SC1.3.1-P2]",
+      "testFilePath": "/test/data/sa11y-auto-checks.js::WCAG-SC1.3.1-P2",
       "testResults": Array [
         Object {
           "ancestorTitles": Array [

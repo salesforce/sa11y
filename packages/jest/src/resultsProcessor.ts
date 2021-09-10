@@ -12,6 +12,8 @@ type FailureDetail = {
     error?: A11yError;
 };
 
+// This is used by downstream CI workflows to separate file/classname from attached WCAG metadata
+const classNameMetadataSeparator = '::';
 // Map of test suite name to test results
 const consolidatedErrors = new Map<string, AssertionResult[]>();
 
@@ -57,7 +59,7 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
             // TODO (spike) : What happens if there are ever multiple failureDetails?
             //  Ideally there shouldn't be as test execution should be stopped on failure
             A11yResults.add(error.a11yResults, suiteName).forEach((a11yResult) => {
-                const className = `${suiteName}:[${a11yResult.wcag}]`;
+                const className = `${suiteName}${classNameMetadataSeparator}${a11yResult.wcag}`;
                 // TODO (code cov): Fix - should be covered by existing tests
                 /* istanbul ignore next */
                 if (!Array.isArray(consolidatedErrors.get(className))) consolidatedErrors.set(className, []);
