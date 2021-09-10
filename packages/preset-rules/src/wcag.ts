@@ -58,10 +58,10 @@ export class WcagMetadata {
     }
 
     /**
-     * Return formatted string containing WCAG version, level and SC
+     * Return formatted string containing WCAG SC and Priority
      */
     public toString(): string {
-        if (!this.wcagVersion || !this.wcagLevel) return this.successCriteria;
+        if (!this.priority) return this.successCriteria;
         return `WCAG-SC${this.successCriteria}-${this.priority}`;
     }
 }
