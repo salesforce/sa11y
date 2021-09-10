@@ -2431,6 +2431,7 @@ Fix any of the following:
           "failureDetails": Array [],
           "failureMessages": Array [
             "Accessibility issues found: Documents must have <title> element to aid in navigation
+Help: https://dequeuniversity.com/rules/axe/4.3/document-title
 CSS Selectors: html
 HTML element: <html><head></head><body>
 
@@ -2440,7 +2441,6 @@ HTML element: <html><head></head><body>
 
 
 </body></html>
-Help: https://dequeuniversity.com/rules/axe/4.3/document-title
 Tests: \\"A11yError-0\\"
 Summary: Fix any of the following:
   Document does not have a non-empty <title> element",
@@ -2483,6 +2483,7 @@ Summary: Fix any of the following:
           "failureDetails": Array [],
           "failureMessages": Array [
             "Accessibility issues found: <html> element must have a lang attribute
+Help: https://dequeuniversity.com/rules/axe/4.3/html-has-lang
 CSS Selectors: html
 HTML element: <html><head></head><body>
 
@@ -2492,7 +2493,6 @@ HTML element: <html><head></head><body>
 
 
 </body></html>
-Help: https://dequeuniversity.com/rules/axe/4.3/html-has-lang
 Tests: \\"A11yError-0\\"
 Summary: Fix any of the following:
   The <html> element does not have a lang attribute",
@@ -2535,9 +2535,9 @@ Summary: Fix any of the following:
           "failureDetails": Array [],
           "failureMessages": Array [
             "Accessibility issues found: Links must have discernible text
+Help: https://dequeuniversity.com/rules/axe/4.3/link-name
 CSS Selectors: a
 HTML element: <a href=\\"#\\"></a>
-Help: https://dequeuniversity.com/rules/axe/4.3/link-name
 Tests: \\"A11yError-0\\"
 Summary: Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -2586,6 +2586,7 @@ Fix any of the following:
           "failureDetails": Array [],
           "failureMessages": Array [
             "Accessibility issues found: Document should have one main landmark
+Help: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
 CSS Selectors: html
 HTML element: <html><head></head><body>
 
@@ -2595,7 +2596,6 @@ HTML element: <html><head></head><body>
 
 
 </body></html>
-Help: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
 Tests: \\"A11yError-0\\"
 Summary: Fix all of the following:
   Document does not have a main landmark",
@@ -2638,6 +2638,7 @@ Summary: Fix all of the following:
           "failureDetails": Array [],
           "failureMessages": Array [
             "Accessibility issues found: Page should contain a level-one heading
+Help: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one
 CSS Selectors: html
 HTML element: <html><head></head><body>
 
@@ -2647,7 +2648,6 @@ HTML element: <html><head></head><body>
 
 
 </body></html>
-Help: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one
 Tests: \\"A11yError-0\\"
 Summary: Fix all of the following:
   Page must have a level-one heading",

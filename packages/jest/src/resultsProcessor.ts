@@ -30,9 +30,9 @@ function createA11yTestResult(testResult: AssertionResult, a11yResult: A11yResul
         fullName: `${a11yResult.description}:${a11yResult.selectors}`,
         failureMessages: [
             `${errMsgHeader}: ${a11yResult.description}
+Help: ${a11yResult.helpUrl}
 CSS Selectors: ${a11yResult.selectors}
 HTML element: ${a11yResult.html}
-Help: ${a11yResult.helpUrl}
 Tests: "${testResult.fullName}"
 Summary: ${a11yResult.summary}`, // TODO (refactor): replace with array of tests when consolidating? But we reach here after de-duping a11y results?
         ],
