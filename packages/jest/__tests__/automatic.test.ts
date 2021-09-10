@@ -103,6 +103,8 @@ describe('automatic checks registration', () => {
 });
 
 describe('automatic checks call', () => {
+    const testPath = expect.getState().testPath;
+    const nonExistentFilePaths = ['foo', `/(?!${testPath})$`, `!${testPath}`];
     // Note: cleanup required at end of each test to prevent dom being checked again
     // after the test as part of the afterEach automatic check hook
     beforeEach(beforeEachSetup);
@@ -159,16 +161,12 @@ describe('automatic checks call', () => {
 
     it('should skip auto checks when file is not specified in run only option', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(
-            () => automaticCheck({ filesFilter: ['foo', `/(?!${expect.getState().testPath})$`] }),
-            false,
-            true
-        );
+        await checkA11yErrorFunc(() => automaticCheck({ filesFilter: nonExistentFilePaths }), false, true);
     });
 
     it('should run auto checks when file is specified in run only option', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(() => automaticCheck({ filesFilter: ['foo', expect.getState().testPath] }));
+        await checkA11yErrorFunc(() => automaticCheck({ filesFilter: [...nonExistentFilePaths, testPath] }));
     });
     /* eslint-enable jest/expect-expect */
 });

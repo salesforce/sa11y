@@ -40,7 +40,7 @@ export type RuleInfo = Map<
 export function getPriorityFilter(): Priority {
     const priorityEnv = process.env.SA11Y_RULESET_PRIORITY;
     const priority = priorityEnv && priorities.includes(priorityEnv as Priority) ? (priorityEnv as Priority) : '';
-    log(`Setting Sa11y rules priority to ${priority}`);
+    if (priority) log(`Setting Sa11y rules priority to ${priority}`);
     return priority;
 }
 

@@ -42,7 +42,14 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     const testPath = expect.getState().testPath;
     // If option to run only on selected files is specified, then current path should
     // match against at least one file
-    if (opts.filesFilter?.length && !opts.filesFilter.some((fileName) => RegExp(fileName).test(testPath))) {
+    if (
+        opts.filesFilter?.length &&
+        !opts.filesFilter
+            // Convenience shortcut converting '!' prefix to filename
+            // as negative lookahead assertion regex
+            .map((filename) => (filename.startsWith('!') ? `/(?!${filename})$` : filename))
+            .some((fileName) => RegExp(fileName).test(testPath))
+    ) {
         log(
             `Skipping automatic accessibility check on ${testPath} as it does not match selected files provided: ${opts.filesFilter.toString()}`
         );
