@@ -60,6 +60,9 @@
     - Remove WCAG version, Level for brevity
 * Error msgs: Move help URL up in order to prevent it from getting truncated e.g. when CSS selectors are long
 
+### WDIO
+* Fix race condition when loading axe using poll with timeout
+
 
 # [0.11.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.11.0-beta) (2021-08-26)
 ### BREAKING CHANGES ⚠️
