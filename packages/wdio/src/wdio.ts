@@ -33,16 +33,17 @@ export async function getAxeVersion(driver: WdioBrowser): Promise<typeof axeVers
 }
 
 /**
- * Load axe source into browser if it is not already loaded and return version of axe
+ * Load axe source into browser if it is not already loaded and return version of axe.
+ * Keep waiting and trying until given timeout milliseconds.
  */
-export async function loadAxe(driver: WdioBrowser): Promise<void> {
-    if ((await getAxeVersion(driver)) !== axeVersion) {
+export async function loadAxe(driver: WdioBrowser, timeout = 1000, pollTime = 100): Promise<void> {
+    for (let i = 0; i < timeout; i += pollTime) {
+        if ((await getAxeVersion(driver)) === axeVersion) return;
         await driver.execute(axe.source);
+        await driver.pause(pollTime); // in milliseconds
     }
 
-    if ((await getAxeVersion(driver)) !== axeVersion) {
-        throw new Error('Unable to load axe');
-    }
+    throw new Error(`Unable to load axe after ${timeout} ms`);
 }
 
 /**
