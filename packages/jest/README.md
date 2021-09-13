@@ -159,7 +159,7 @@ SA11Y_AUTO=1 SA11Y_CLEANUP=1 jest
 - Setting `SA11Y_DEBUG=1` will output verbose logging
 - `SA11Y_AUTO_FILTER` can be used to specify a comma seperated list of test file paths to filter for automatic checks
   - When specified, automatic checks will be run only on given files
-  - Files can be excluded from automatic checks by prefixing the filename with `!`
+  - A file can be excluded from automatic checks by prefixing the filename with `!`
     - e.g. `SA11Y_AUTO_FILTER='!exclude.test.js'`
   - The file paths can be also be expressed as [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet) if necessary
 

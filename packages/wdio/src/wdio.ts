@@ -34,13 +34,17 @@ export async function getAxeVersion(driver: WdioBrowser): Promise<typeof axeVers
 
 /**
  * Load axe source into browser if it is not already loaded and return version of axe.
- * Keep waiting and trying until given timeout milliseconds.
+ * Since axe min js is large (400+kb), keep polling until given timeout in milliseconds.
  */
-export async function loadAxe(driver: WdioBrowser, timeout = 1000, pollTime = 100): Promise<void> {
+export async function loadAxe(driver: WdioBrowser, timeout = 5000, pollTime = 100): Promise<void> {
     for (let i = 0; i < timeout; i += pollTime) {
         if ((await getAxeVersion(driver)) === axeVersion) return;
-        await driver.execute(axe.source);
-        await driver.pause(pollTime); // in milliseconds
+        if (i === 0) {
+            // Inject axe once - the first time in the loop
+            await driver.execute(axe.source);
+        } else {
+            await driver.pause(pollTime); // in milliseconds
+        }
     }
 
     throw new Error(`Unable to load axe after ${timeout} ms`);
