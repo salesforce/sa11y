@@ -40,8 +40,6 @@ describe('WCAG Metadata extractor', () => {
         (tags: string[], wcagVersion: string, wcagLevel: string, successCriteria: string) => {
             const wcag = new WcagMetadata({ tags: tags } as Result).toString();
             expect(wcag).toMatchSnapshot();
-            expect(wcag).toContain(wcagVersion);
-            expect(wcag).toContain(wcagLevel);
             expect(wcag).toContain(successCriteria);
         }
     );

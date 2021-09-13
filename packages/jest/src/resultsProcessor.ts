@@ -12,6 +12,8 @@ type FailureDetail = {
     error?: A11yError;
 };
 
+// This is used by downstream CI workflows to separate file/classname from attached WCAG metadata
+const classNameMetadataSeparator = '::';
 // Map of test suite name to test results
 const consolidatedErrors = new Map<string, AssertionResult[]>();
 
@@ -25,12 +27,12 @@ function createA11yTestResult(testResult: AssertionResult, a11yResult: A11yResul
         // TODO (refactor): extract formatting into its own function.
         //  - Can this satisfy Formatter interface?
         //  - Be part of format? (FileFormatter vs ConsoleFormatter)?
-        fullName: `[Sa11y-${a11yResult.wcag}]${a11yResult.description}:${a11yResult.selectors}`,
+        fullName: `${a11yResult.description}:${a11yResult.selectors}`,
         failureMessages: [
             `${errMsgHeader}: ${a11yResult.description}
+Help: ${a11yResult.helpUrl}
 CSS Selectors: ${a11yResult.selectors}
 HTML element: ${a11yResult.html}
-Help: ${a11yResult.helpUrl}
 Tests: "${testResult.fullName}"
 Summary: ${a11yResult.summary}`, // TODO (refactor): replace with array of tests when consolidating? But we reach here after de-duping a11y results?
         ],
@@ -57,10 +59,11 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
             // TODO (spike) : What happens if there are ever multiple failureDetails?
             //  Ideally there shouldn't be as test execution should be stopped on failure
             A11yResults.add(error.a11yResults, suiteName).forEach((a11yResult) => {
+                const className = `${suiteName}${classNameMetadataSeparator}${a11yResult.wcag}`;
                 // TODO (code cov): Fix - should be covered by existing tests
                 /* istanbul ignore next */
-                if (!Array.isArray(consolidatedErrors.get(suiteName))) consolidatedErrors.set(suiteName, []);
-                consolidatedErrors.get(suiteName)?.push(createA11yTestResult(testResult, a11yResult));
+                if (!Array.isArray(consolidatedErrors.get(className))) consolidatedErrors.set(className, []);
+                consolidatedErrors.get(className)?.push(createA11yTestResult(testResult, a11yResult));
             });
         }
     });

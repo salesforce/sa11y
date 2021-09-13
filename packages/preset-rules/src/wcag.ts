@@ -26,7 +26,6 @@ export class WcagMetadata {
     constructor(readonly violation: Result) {
         const ruleInfo = extendedRulesInfo.get(violation.id);
         if (ruleInfo) {
-            // TODO: add tests for codecov
             // rule has metadata provided in preset-rules
             this.wcagVersion = defaultWcagVersion;
             this.wcagLevel = ruleInfo.wcagLevel;
@@ -35,6 +34,8 @@ export class WcagMetadata {
             return;
         }
 
+        // TODO (refactor): Is the following required anymore?
+        //  Cleanup taking the new preset-rules structure into account?
         // If rule info metadata doesn't exist (e.g. full ruleset)
         for (const tag of violation.tags.sort()) {
             const match = WcagMetadata.regExp.exec(tag);
@@ -57,10 +58,11 @@ export class WcagMetadata {
     }
 
     /**
-     * Return formatted string containing WCAG version, level and SC
+     * Return formatted string containing WCAG SC and Priority
      */
     public toString(): string {
-        if (!this.wcagVersion || !this.wcagLevel) return this.successCriteria;
-        return `WCAG${this.wcagVersion}-Level${this.wcagLevel}-SC${this.successCriteria}-${this.priority}`;
+        const SC =
+            this.successCriteria === WcagMetadata.defaultSC ? this.successCriteria : `WCAG-SC${this.successCriteria}`;
+        return `SA11Y-${SC}-${this.priority}`;
     }
 }

@@ -19,8 +19,8 @@ export type AutoCheckOpts = {
     consolidateResults?: boolean;
     // TODO (feat): add support for optional exclusion of selected tests
     // excludeTests?: string[];
-    // List of file names to run automatic checks, if specified other files are ignored
-    runOnlyOnFiles?: string[];
+    // List of test file paths (as regex) to filter for automatic checks
+    filesFilter?: string[];
 };
 
 /**
@@ -30,7 +30,7 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
     runAfterEach: true,
     cleanupAfterEach: true,
     consolidateResults: true,
-    runOnlyOnFiles: [],
+    filesFilter: [],
 };
 
 /**
@@ -42,9 +42,16 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     const testPath = expect.getState().testPath;
     // If option to run only on selected files is specified, then current path should
     // match against at least one file
-    if (opts.runOnlyOnFiles?.length && !opts.runOnlyOnFiles.some((fileName) => testPath.endsWith(fileName))) {
+    if (
+        opts.filesFilter?.length &&
+        !opts.filesFilter
+            // Convenience shortcut converting '!' prefix to filename
+            // as negative lookahead assertion regex
+            .map((filename) => (filename.startsWith('!') ? `/(?!${filename})$` : filename))
+            .some((fileName) => RegExp(fileName).test(testPath))
+    ) {
         log(
-            `Skipping automatic accessibility check on ${testPath} as it does not match selected files provided: ${opts.runOnlyOnFiles.toString()}`
+            `Skipping automatic accessibility check on ${testPath} as it does not match selected files provided: ${opts.filesFilter.toString()}`
         );
         return;
     }
@@ -63,7 +70,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
             // console.log(
             //     `♿ [DEBUG] Automatically checking a11y of ${currNode.nodeName}
             //      for test "${expect.getState().currentTestName}"
-            //      : ${expect.getState().testPath}`
+            //      : ${testPath}`
             // );
             violations.push(...(await getViolationsJSDOM(currNode)));
             currNode = walker.nextSibling();
