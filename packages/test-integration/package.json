@@ -13,6 +13,6 @@
     "devDependencies": {
         "@sa11y/jest": "1.1.0",
         "@sa11y/test-utils": "0.4.3",
-        "@sa11y/wdio": "2.0.1-beta.0"
+        "@sa11y/wdio": "2.0.2-beta.0"
     }
 }
