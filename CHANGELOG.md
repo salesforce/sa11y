@@ -3,79 +3,100 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [0.10.0-beta](#0100-beta)
-    - [Features](#features)
-- [0.9.1-beta (2021-07-05)](#091-beta-2021-07-05)
-    - [Fix](#fix)
-- [0.9.0-beta (2021-06-15)](#090-beta-2021-06-15)
-    - [Features](#features-1)
-- [0.8.0-beta (2021-03-19)](#080-beta-2021-03-19)
-    - [Features](#features-2)
-    - [BREAKING CHANGES](#breaking-changes)
-    - [Refactor](#refactor)
-- [0.7.0-beta (2021-02-24)](#070-beta-2021-02-24)
-    - [Features](#features-3)
-- [0.6.0-beta (2021-01-22)](#060-beta-2021-01-22)
-    - [Features](#features-4)
-- [0.5.0-beta (2020-12-01)](#050-beta-2020-12-01)
-    - [Features](#features-5)
-- [0.4.1-beta (2020-11-24)](#041-beta-2020-11-24)
-    - [Bug Fixes](#bug-fixes)
-- [0.4.0-beta (2020-10-31)](#040-beta-2020-10-31)
-    - [Features](#features-6)
-    - [Refactor](#refactor-1)
-  - [0.3.2-beta (2020-09-22)](#032-beta-2020-09-22)
-    - [Bug Fixes](#bug-fixes-1)
-    - [Refactor](#refactor-2)
-- [0.3.1-beta (2020-08-20)](#031-beta-2020-08-20)
-    - [Refactor](#refactor-3)
-- [0.3.0-beta (2020-08-19)](#030-beta-2020-08-19)
-    - [Features](#features-7)
-- [0.2.0-beta (2020-06-25)](#020-beta-2020-06-25)
-    - [Features](#features-8)
-    - [Bug Fixes](#bug-fixes-2)
-    - [BREAKING CHANGES](#breaking-changes-1)
-- [v0.1.0-alpha (2020-06-02)](#v010-alpha-2020-06-02)
-    - [Features](#features-9)
-- [(2020-05-29)](#2020-05-29)
-    - [Features](#features-10)
-- [(2020-05-07)](#2020-05-07)
-    - [Bug Fixes](#bug-fixes-3)
-    - [Features](#features-11)
-- [(2020-04-07)](#2020-04-07)
-    - [Bug Fixes](#bug-fixes-4)
-    - [Features](#features-12)
-- [(2020-03-20)](#2020-03-20)
-    - [Bug Fixes](#bug-fixes-5)
-    - [Features](#features-13)
+-   [0.11.2-beta (2021-09-13)](#0112-beta-2021-09-13)
+    -   [WDIO](#wdio)
+-   [0.11.1-beta (2021-09-10)](#0111-beta-2021-09-10)
+    -   [Automatic checks](#automatic-checks)
+    -   [Results processor](#results-processor)
+    -   [WDIO](#wdio-1)
+-   [0.11.0-beta (2021-08-26)](#0110-beta-2021-08-26)
+    -   [BREAKING CHANGES ⚠️](#breaking-changes-)
+    -   [Features](#features)
+-   [0.10.0-beta (2021-08-04)](#0100-beta-2021-08-04)
+    -   [Features](#features-1)
+-   [0.9.1-beta (2021-07-05)](#091-beta-2021-07-05)
+    -   [Fix](#fix)
+-   [0.9.0-beta (2021-06-15)](#090-beta-2021-06-15)
+    -   [Features](#features-2)
+-   [0.8.0-beta (2021-03-19)](#080-beta-2021-03-19)
+    -   [Features](#features-3)
+    -   [BREAKING CHANGES](#breaking-changes)
+    -   [Refactor](#refactor)
+-   [0.7.0-beta (2021-02-24)](#070-beta-2021-02-24)
+    -   [Features](#features-4)
+-   [0.6.0-beta (2021-01-22)](#060-beta-2021-01-22)
+    -   [Features](#features-5)
+-   [0.5.0-beta (2020-12-01)](#050-beta-2020-12-01)
+    -   [Features](#features-6)
+-   [0.4.1-beta (2020-11-24)](#041-beta-2020-11-24)
+    -   [Bug Fixes](#bug-fixes)
+-   [0.4.0-beta (2020-10-31)](#040-beta-2020-10-31)
+    -   [Features](#features-7)
+    -   [Refactor](#refactor-1)
+    -   [0.3.2-beta (2020-09-22)](#032-beta-2020-09-22)
+        -   [Bug Fixes](#bug-fixes-1)
+        -   [Refactor](#refactor-2)
+-   [0.3.1-beta (2020-08-20)](#031-beta-2020-08-20)
+    -   [Refactor](#refactor-3)
+-   [0.3.0-beta (2020-08-19)](#030-beta-2020-08-19)
+    -   [Features](#features-8)
+-   [0.2.0-beta (2020-06-25)](#020-beta-2020-06-25)
+    -   [Features](#features-9)
+    -   [Bug Fixes](#bug-fixes-2)
+    -   [BREAKING CHANGES](#breaking-changes-1)
+-   [v0.1.0-alpha (2020-06-02)](#v010-alpha-2020-06-02)
+    -   [Features](#features-10)
+-   [(2020-05-29)](#2020-05-29)
+    -   [Features](#features-11)
+-   [(2020-05-07)](#2020-05-07)
+    -   [Bug Fixes](#bug-fixes-3)
+    -   [Features](#features-12)
+-   [(2020-04-07)](#2020-04-07)
+    -   [Bug Fixes](#bug-fixes-4)
+    -   [Features](#features-13)
+-   [(2020-03-20)](#2020-03-20)
+    -   [Bug Fixes](#bug-fixes-5)
+    -   [Features](#features-14)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+# [0.11.2-beta](https://github.com/salesforce/sa11y/releases/tag/v0.11.2-beta) (2021-09-13)
+
+## WDIO
+
+-   Fix: Replace custom polling logic to use [WebdriverIO's wait util](https://webdriver.io/docs/api/browser/waitUntil/) instead as it reliably fixes the race condition
+
 # [0.11.1-beta](https://github.com/salesforce/sa11y/releases/tag/v0.11.1-beta) (2021-09-10)
+
 ### Automatic checks
-* Add ability and convenience shortcut for excluding files from automatic checks ([#74](https://github.com/salesforce/sa11y/pull/74))
+
+-   Add ability and convenience shortcut for excluding files from automatic checks ([#74](https://github.com/salesforce/sa11y/pull/74))
 
 ### Results processor
-* Move the WCAG metadata and Priority info to class name in Jest results so that downstream CI systems make use of the info accordingly
-    - Remove WCAG version, Level for brevity
-* Error msgs: Move help URL up in order to prevent it from getting truncated e.g. when CSS selectors are long
+
+-   Move the WCAG metadata and Priority info to class name in Jest results so that downstream CI systems make use of the info accordingly
+    -   Remove WCAG version, Level for brevity
+-   Error msgs: Move help URL up in order to prevent it from getting truncated e.g. when CSS selectors are long
 
 ### WDIO
-* Fix race condition when loading axe using poll with timeout
 
+-   Fix race condition when loading axe using poll with timeout
 
 # [0.11.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.11.0-beta) (2021-08-26)
+
 ### BREAKING CHANGES ⚠️
-* Refactor rulesets into `base`, `extended` ([#73](https://github.com/salesforce/sa11y/pull/73))
-    * with `extended` replacing `recommended`
-    * `base` contains WCAG 2.1 AA rules available in axe-core
-    * `extended` contains AAA rules, experimental rules and non-WCAG best practice rules
-    * These ruleset changes could result in different test results from previous versions
+
+-   Refactor rulesets into `base`, `extended` ([#73](https://github.com/salesforce/sa11y/pull/73))
+    -   with `extended` replacing `recommended`
+    -   `base` contains WCAG 2.1 AA rules available in axe-core
+    -   `extended` contains AAA rules, experimental rules and non-WCAG best practice rules
+    -   These ruleset changes could result in different test results from previous versions
 
 ### Features
-* Add priority and WCAG Success Criteria metadata to preset-rules
-* Add config to run rules selectively by priority
-* Add script to generate preset rules markdown table in Readme with provided rules metadata
+
+-   Add priority and WCAG Success Criteria metadata to preset-rules
+-   Add config to run rules selectively by priority
+-   Add script to generate preset rules markdown table in Readme with provided rules metadata
 
 # [0.10.0-beta](https://github.com/salesforce/sa11y/releases/tag/v0.10.0-beta) (2021-08-04)
 
