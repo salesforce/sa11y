@@ -52,22 +52,6 @@ describe('integration test axe with WebdriverIO', () => {
         expect(await getAxeVersion(browser)).toBe(axeVersion);
     });
 
-    it('should error when injecting axe with low timeout', async () => {
-        // low timeout that will cause control to fall out of the poll loop
-        // in loadAxe() and result in error
-        const timeout = 1;
-        let err = new Error();
-
-        await browser.reloadSession();
-        try {
-            await loadAxe(browser, timeout, timeout);
-        } catch (e) {
-            err = e;
-        }
-
-        expect(err.toString()).toContain(`Unable to load axe after ${timeout} ms`);
-    });
-
     it('should get violations', async () => {
         expect(await getViolationsHtml(htmlFileWithNoA11yIssues)).toHaveLength(0);
         expect(await getViolationsHtml(htmlFileWithA11yIssues)).toHaveLength(a11yIssuesCount);
