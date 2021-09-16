@@ -3,6 +3,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+-   [3.0.0 (2021-09-16)](#300-2021-09-16)
 -   [0.11.2-beta (2021-09-13)](#0112-beta-2021-09-13)
     -   [WDIO](#wdio)
 -   [0.11.1-beta (2021-09-10)](#0111-beta-2021-09-10)
@@ -59,6 +60,11 @@
     -   [Features](#features-14)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# [3.0.0](https://github.com/salesforce/sa11y/releases/tag/v3.0.0) (2021-09-16)
+
+-   Moving to unified versioning of @sa11y packages instead of independent versioning for reducing complexity of managing independent versions
+-   No code changes, No breaking changes
 
 # [0.11.2-beta](https://github.com/salesforce/sa11y/releases/tag/v0.11.2-beta) (2021-09-13)
 
