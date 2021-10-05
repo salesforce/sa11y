@@ -27,6 +27,7 @@
         "@sa11y/assert": "3.0.0",
         "@sa11y/format": "3.0.0",
         "@sa11y/preset-rules": "3.0.0",
+        "async-mutex": "0.3.2",
         "jest-matcher-utils": "26.6.2"
     },
     "peerDependencies": {
