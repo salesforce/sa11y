@@ -8,7 +8,9 @@
 import { AxeResults, log } from '@sa11y/common';
 import { getViolationsJSDOM } from '@sa11y/assert';
 import { A11yError } from '@sa11y/format';
+import { defaultRuleset } from '@sa11y/preset-rules';
 import { isTestUsingFakeTimer } from './matcher';
+import { Mutex, withTimeout, E_CANCELED } from 'async-mutex';
 
 /**
  * Options for Automatic checks to be passed to {@link registerSa11yAutomaticChecks}
@@ -84,16 +86,113 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     }
 }
 
+// https://thoughtspile.github.io/2018/06/20/serialize-promises/
+// function serializePromises(immediate: CallableFunction) {
+//     // This works as our promise queue
+//     let last = Promise.resolve();
+//     return function (...a) {
+//         // Catch is necessary here — otherwise a rejection in a promise will
+//         // break the serializer forever
+//         last = last.catch(() => {}).then(() => immediate(...a));
+//         return last;
+//     };
+// }
+
+// https://advancedweb.hu/how-to-serialize-calls-to-an-async-function/
+// const serializePromises = (fn: CallableFunction) => {
+//     // Start of the queue. Every other call is appended to this Promise.
+//     let queue = Promise.resolve();
+//     return (...args: any[]) => {
+//         // Adds the function call to the queue and saves its result.
+//         // Will be resolved when the current and all the previous calls are resolved.
+//         const result = queue.then(() => fn(...args));
+//         // Makes sure that the queue won’t get stuck in rejection when one part of it is rejected.
+//         queue = result.catch((err) => {
+//             console.log(err);
+//         });
+//         return result;
+//     };
+// };
+
+const mutexTimeout = 5000;
+const mutex = withTimeout(new Mutex(), mutexTimeout, new Error('Timed-out waiting for axe'));
+
+function observerCallback(mutations: MutationRecord[], _observer: MutationObserver) {
+    const violations: AxeResults = []; // TODO (refactor): move to global/test scope
+    for (const mutation of mutations) {
+        // log('Mutation event triggered on', mutation.target.nodeName);
+        for (const node of mutation.addedNodes) {
+            // console.log('Added node', node.nodeName);
+            // console.log('Waiting for axe', mutex.isLocked());
+            //
+            // 1. Serialize axe invocations using a Promise queue
+            // const getViolationsSerialized = serializePromises(getViolationsJSDOM);
+            // void getViolationsSerialized(node).then((results) => violations.push(...results));
+            //
+            //
+            // 2. Use array reduce to serialize axe invocation.
+            //  But this wouldn't serialize across multiple mutation callbacks.
+            // const resultsPromise = Array.from(mutation.addedNodes).reduce(
+            //     (prevPromise, node) => {
+            //         return prevPromise.then(() => {
+            //             return getViolationsJSDOM(node);
+            //         });
+            //     },
+            //     Promise.resolve()
+            //     // Promise.resolve(violations).then((results) => violations.push(...results))
+            // );
+            // resultsPromise.then((results: AxeResults) => violations.push(...results));
+            //
+            //
+            // 3. Wrap axe invocation with a mutex
+            // schedules getViolationsJSDOM to be run once the mutex is unlocked
+            // void mutex
+            //     .runExclusive(() => getViolationsJSDOM(node))
+            getViolationsJSDOM(node, defaultRuleset, mutex)
+                .then((results) => violations.push(...results))
+                .catch((err) => {
+                    if (err == E_CANCELED) {
+                        console.log('Mutex cancelled');
+                        return;
+                    }
+                    console.log('Error:', err);
+                });
+        }
+    }
+
+    A11yError.checkAndThrow(violations);
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit
+const observerOptions: MutationObserverInit = {
+    subtree: false, // extend monitoring to the entire subtree of nodes rooted at target
+    childList: true, // monitor target node for addition/removal of child nodes
+    // TODO (feat): Add option to enable monitoring selected attribute changes
+    attributes: false, // monitor changes to the value of attributes of nodes
+    characterData: false, // monitor changes to the character data contained within nodes
+};
+
 /**
  * Register accessibility checks to be run automatically after each test
  * @param opts - Options for automatic checks {@link AutoCheckOpts}
  */
 export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
     if (opts.runAfterEach) {
+        // TODO (config): Add another option 'runAfterMutation' for mutation observer
         // TODO (fix): Make registration idempotent
+        const observer = new MutationObserver(observerCallback);
         log('Registering sa11y checks to be run automatically after each test');
-        afterEach(async () => {
-            await automaticCheck(opts);
+        beforeEach(() => {
+            observer.observe(document.body, observerOptions);
+        });
+
+        afterEach(() => {
+            observer.disconnect(); // stop mutation observer
+            // Give time for mutex executions to complete
+            // await new Promise((r) => setTimeout(r, mutexTimeout));
+            // await mutex.waitForUnlock();
+            mutex.cancel(); // cancelling pending locks
+            // await automaticCheck(opts);
         });
     }
 }
