@@ -48,6 +48,8 @@ export function getPriorityFilter(): Priority {
  * Filter given rules and return those matching given priority or .
  */
 export function filterRulesByPriority(rules: RuleInfo, priority: Priority = ''): string[] {
+    // TODO (refactor): Could be simplified by filtering and returning a RuleInfo map
+    //  and using the rule keys in the calling function
     const ruleIDs: string[] = [];
     const priorityOverride = priority || getPriorityFilter();
     if (!priorityOverride) {
