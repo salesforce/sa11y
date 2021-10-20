@@ -15,8 +15,10 @@ describe('jest setup', () => {
     });
 
     it.each([extended, base])('should customize %s preset-rule as expected', (config) => {
-        expect(config.rules).toBeUndefined();
-        expect(adaptA11yConfig(config).rules['color-contrast'].enabled).toBe(false);
+        expect(config.runOnly.values).toContain('color-contrast');
+        expect(adaptA11yConfig(config).runOnly.values).not.toContain('color-contrast');
+        // original ruleset is not modified
+        expect(config.runOnly.values).toContain('color-contrast');
     });
 
     it('should throw error when global expect is undefined', () => {

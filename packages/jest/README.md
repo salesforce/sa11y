@@ -12,6 +12,7 @@ Accessibility matcher for [Jest](https://jestjs.io)
   - [Test module level](#test-module-level)
 - [Usage](#usage)
   - [Caveats](#caveats)
+    - [Disabled checks](#disabled-checks)
 - [Automatic checks](#automatic-checks)
   - [Using environment variables](#using-environment-variables)
   - [Sa11y results processor](#sa11y-results-processor)
@@ -126,16 +127,38 @@ it('should be accessible', async () => {
 -   **async**: `toBeAccessible` **must** be invoked with `async/wait` or `Promise` or the equivalent supported asynchronous method in your environment
     -   Not invoking it async would result in incorrect results e.g. no issues reported even when the page is not accessible
     -   `Promise` should not be mixed together with `async/wait`. Doing so could result in Jest timeout and other errors.
+    -   In spite of using async/await correctly if you run into the error `Axe is already running. Use await axe.run() to wait for the previous run to finish before starting a new run.` try running tests serially by using Jest's [run in band option](https://jestjs.io/docs/cli#--runinband).
 -   **useRealTimers**: ⏲ When Timer is mocked (e.g. `jest.useFakeTimers()`) accessibility API can timeout. Before invoking the accessibility API switch to the real timer (e.g. `jest.useRealTimers()`).
 -   **DOM**: 💡 The accessibility checks _cannot_ be run on static HTML markup. They can only be run against a rendered DOM.
--   **color-contrast**: 🍭 Color-contrast check is disabled for Jest tests as it [does not work in JSDOM](https://github.com/dequelabs/axe-core/issues/595)
--   **audio, video**: 📹 Accessibility of `audio`, `video` elements cannot be checked with Jest as they are [stubbed out in JSDOM](https://github.com/jsdom/jsdom/issues/2155)
 -   **template**: [`<template>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) are not rendered in DOM and hence cannot be checked directly without rendering. They have to be rendered before they can be checked.
+
+#### Disabled checks
+
+Following rules are disabled for the Sa11y Jest API
+
+-   **descendancy checks**:
+    -   Following rules are disabled as they might fail at unit/component level but might pass at page level
+        -   aria-required-children
+        -   aria-required-parent
+        -   dlitem
+        -   definition-list
+        -   list
+        -   listitem
+        -   landmark-one-main
+    -   Following rules are not disabled, but they might pass at the unit/component level but might fail at integration/page level.
+        -   landmark-banner-is-top-level
+        -   landmark-complementary-is-top-level
+        -   landmark-contentinfo-is-top-level
+        -   landmark-main-is-top-level
+        -   landmark-no-duplicate-banner
+        -   landmark-no-duplicate-contentinfo
+-   **color-contrast**: 🍭 Color-contrast check is disabled as it [does not work in JSDOM](https://github.com/dequelabs/axe-core/issues/595)
+-   **audio, video**: 📹 Accessibility of `audio`, `video` elements cannot be checked as they are [stubbed out in JSDOM](https://github.com/jsdom/jsdom/issues/2155)
 -   **real browser**: If you need to check for color-contrast, audio/video elements or any other checks which need the element to be rendered visually please use a real browser to test e.g. using [`@sa11y/wdio`](https://github.com/salesforce/sa11y/tree/master/packages/wdio#readme)
 
 ## Automatic checks
 
-The sa11y API can be setup to be automatically invoked at the end of each test as an alternative to adding the `toBeAccessible` API at the end of each test.
+The Sa11y Jest API can be setup to be automatically invoked at the end of each test as an alternative to adding the `toBeAccessible` API at the end of each test.
 
 -   When automatic checks are enabled each child element in the DOM body will be checked for a11y and failures reported as part of the test.
 
@@ -154,14 +177,14 @@ Automatic checks can also be enabled using environment variables
 SA11Y_AUTO=1 SA11Y_CLEANUP=1 jest
 ```
 
-- Invoking `jest` with environment variables as above will enable automatic checks with no changes required to `setup()`
-- The environment variables can be used to set up parallel builds e.g., in a CI environment without code changes to `setup()` to opt-in to automatic checks
-- Setting `SA11Y_DEBUG=1` will output verbose logging
-- `SA11Y_AUTO_FILTER` can be used to specify a comma seperated list of test file paths to filter for automatic checks
-  - When specified, automatic checks will be run only on given files
-  - A file can be excluded from automatic checks by prefixing the filename with `!`
-    - e.g. `SA11Y_AUTO_FILTER='!exclude.test.js'`
-  - The file paths can be also be expressed as [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet) if necessary
+-   Invoking `jest` with environment variables as above will enable automatic checks with no changes required to `setup()`
+-   The environment variables can be used to set up parallel builds e.g., in a CI environment without code changes to `setup()` to opt-in to automatic checks
+-   Setting `SA11Y_DEBUG=1` will output verbose logging
+-   `SA11Y_AUTO_FILTER` can be used to specify a comma seperated list of test file paths to filter for automatic checks
+    -   When specified, automatic checks will be run only on given files
+    -   A file can be excluded from automatic checks by prefixing the filename with `!`
+        -   e.g. `SA11Y_AUTO_FILTER='!exclude.test.js'`
+    -   The file paths can be also be expressed as [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet) if necessary
 
 ### Sa11y results processor
 
