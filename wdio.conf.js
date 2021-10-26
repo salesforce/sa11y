@@ -78,7 +78,10 @@ exports.config = {
         },
     ],
     // Additional list of node arguments to use when starting child processes
-    execArgv: debug ? ['--inspect', '--trace-warnings'] : ['--unhandled-rejections=strict'],
+    execArgv: [
+        '--no-wasm-code-gc', // https://github.com/webdriverio/webdriverio/issues/7381
+        ...(debug ? ['--inspect', '--trace-warnings'] : ['--unhandled-rejections=strict']),
+    ],
     //
     // ===================
     // Test Configurations

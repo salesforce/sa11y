@@ -4,7 +4,14 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { AggregatedResult, AssertionResult, TestResult, addResult, createEmptyTestResult } from '@jest/test-result';
+import {
+    AggregatedResult,
+    AssertionResult,
+    TestResult,
+    addResult,
+    createEmptyTestResult,
+    makeEmptyAggregatedTestResult,
+} from '@jest/test-result';
 import { errMsgHeader, log } from '@sa11y/common';
 import { A11yError, A11yResult, A11yResults } from '@sa11y/format';
 
@@ -12,8 +19,8 @@ type FailureDetail = {
     error?: A11yError;
 };
 
-// This is used by downstream CI workflows to separate file/classname from attached WCAG metadata
-const classNameMetadataSeparator = '::';
+// Used by downstream CI workflows to separate file/classname from attached WCAG metadata
+const metadataSeparator = '::';
 // Map of test suite name to test results
 const consolidatedErrors = new Map<string, AssertionResult[]>();
 
@@ -27,7 +34,7 @@ function createA11yTestResult(testResult: AssertionResult, a11yResult: A11yResul
         // TODO (refactor): extract formatting into its own function.
         //  - Can this satisfy Formatter interface?
         //  - Be part of format? (FileFormatter vs ConsoleFormatter)?
-        fullName: `${a11yResult.description}:${a11yResult.selectors}`,
+        fullName: `${a11yResult.description}${metadataSeparator}${a11yResult.selectors}`,
         failureMessages: [
             `${errMsgHeader}: ${a11yResult.description}
 Help: ${a11yResult.helpUrl}
@@ -59,7 +66,7 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
             // TODO (spike) : What happens if there are ever multiple failureDetails?
             //  Ideally there shouldn't be as test execution should be stopped on failure
             A11yResults.add(error.a11yResults, suiteName).forEach((a11yResult) => {
-                const className = `${suiteName}${classNameMetadataSeparator}${a11yResult.wcag}`;
+                const className = `${suiteName}${metadataSeparator}${a11yResult.wcag}`;
                 // TODO (code cov): Fix - should be covered by existing tests
                 /* istanbul ignore next */
                 if (!Array.isArray(consolidatedErrors.get(className))) consolidatedErrors.set(className, []);
@@ -67,28 +74,6 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
             });
         }
     });
-}
-
-/**
- * Modify existing test result containing a11y error after a11y error
- *  is extracted into its own test result using {@link createA11yTestResult}.
- */
-function modifyOriginalTestResult(results: AggregatedResult, testSuite: TestResult, testResult: AssertionResult) {
-    // Don't report the failure twice
-    testResult.status = 'disabled';
-    // TODO (fix): Remove sa11y msg from test suite message.
-    //  ANSI codes and test names in suite message makes it difficult.
-    //  Removing error from test result doesn't affect test suite error msg.
-    // testResult.failureMessages = [];
-    // testResult.failureDetails = [];
-    // testSuite.failureMessage = '';
-    // Suites with only a11y errors should be marked as passed
-    testSuite.numFailingTests -= 1;
-    results.numFailedTests -= 1;
-    if (testSuite.numFailingTests === 0) results.numFailedTestSuites -= 1;
-    // TODO(debug): Does 'success' represent only failed tests?
-    //  Or errored tests as well e.g.?
-    // if (results.numFailedTestSuites === 0) results.success = true;
 }
 
 /**
@@ -108,24 +93,22 @@ export default function resultsProcessor(results: AggregatedResult): AggregatedR
                 .filter((testResult) => testResult.status === 'failed')
                 .forEach((testResult) => {
                     processA11yErrors(testSuite, testResult);
-                    modifyOriginalTestResult(results, testSuite, testResult);
                 });
         });
 
     log(`Transforming a11y failures from ${consolidatedErrors.size} suites ..`);
     // Create test suites to hold a11y failures
+    const aggregatedA11yResults = makeEmptyAggregatedTestResult();
     consolidatedErrors.forEach((testResults, suiteKey) => {
-        // TODO (refactor): Do we need to create a test suite if suite name
-        //  is not changing? Can this be simplified by adding tests to existing suite?
         const sa11ySuite = createEmptyTestResult();
         // "testFilePath" gets output as suite "name" in formatted JSON result
         sa11ySuite.testFilePath = suiteKey;
         sa11ySuite.testResults = testResults;
         sa11ySuite.numFailingTests = testResults.length;
-        addResult(results, sa11ySuite);
+        addResult(aggregatedA11yResults, sa11ySuite);
     });
 
-    return results;
+    return aggregatedA11yResults;
 }
 
 // The processor must be a node module that exports a function

@@ -9,6 +9,25 @@ import { toBeAccessible } from './matcher';
 import { A11yConfig } from '@sa11y/common';
 import { AutoCheckOpts, registerSa11yAutomaticChecks } from './automatic';
 
+export const disabledRules = [
+    // Descendancy checks that would fail at unit/component level, but pass at page level
+    'aria-required-children',
+    'aria-required-parent',
+    'dlitem',
+    'definition-list',
+    'list',
+    'listitem',
+    'landmark-one-main',
+    // color-contrast doesn't work for JSDOM and might affect performance
+    //  https://github.com/dequelabs/axe-core/issues/595
+    //  https://github.com/dequelabs/axe-core/blob/develop/doc/examples/jsdom/test/a11y.js
+    'color-contrast',
+    // audio, video elements are stubbed out in JSDOM
+    //  https://github.com/jsdom/jsdom/issues/2155
+    'audio-caption',
+    'video-caption',
+];
+
 /**
  * Options to be passed on to {@link setup}
  */
@@ -66,18 +85,9 @@ export function registerSa11yMatcher(): void {
 /**
  * Customize sa11y preset rules specific to JSDOM
  */
-export function adaptA11yConfig(config: A11yConfig): A11yConfig {
-    // TODO: Is it worth checking if we are running in jsdom before modifying config ?
-    //  Ref: https://github.com/jsdom/jsdom/issues/1537#issuecomment-229405327
-    // const runningInJSDOM = navigator.userAgent.includes('Node.js') || navigator.userAgent.includes('jsdom');
-    // if (!runningInJSDOM) return config;
-    return {
-        ...config,
-        rules: {
-            // Disable color-contrast as it is doesn't work for JSDOM and might affect performance
-            //  https://github.com/dequelabs/axe-core/issues/595
-            //  https://github.com/dequelabs/axe-core/blob/develop/doc/examples/jsdom/test/a11y.js
-            'color-contrast': { enabled: false },
-        },
-    };
+export function adaptA11yConfig(config: A11yConfig, filterRules = disabledRules): A11yConfig {
+    // TODO (refactor): Move into preset-rules pkg as a generic rules filter util
+    const adaptedConfig = JSON.parse(JSON.stringify(config)) as A11yConfig;
+    adaptedConfig.runOnly.values = config.runOnly.values.filter((rule) => !filterRules.includes(rule));
+    return adaptedConfig;
 }

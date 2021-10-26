@@ -3,6 +3,7 @@
     "ignoreWords": [
         "circleci",
         "CNCF",
+        "descendancy",
         "dlitem",
         "doctoc",
         "goog",

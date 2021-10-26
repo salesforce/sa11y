@@ -9,6 +9,7 @@ import { base } from './base';
 import { extended } from './extended';
 import { full } from './full';
 
+// TODO (refactor): Can this file be merged into rules.ts ?
 export const ruleSets = new Map(Object.entries({ base: base, extended: extended, full: full }));
 
 /**
