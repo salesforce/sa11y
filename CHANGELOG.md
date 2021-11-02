@@ -63,7 +63,13 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# 3.0.1 (2021-10-21)
+# 3.0.2 (2021-11-02)
+### Reverts
+
+* filtering of non-a11y results introduced in 3.0.1
+  * as it is causing issues with certain CI workflows that produce no test results file
+
+# [3.0.1](https://github.com/salesforce/sa11y/releases/tag/v3.0.1) (2021-10-21)
 
 ### Refactor
 

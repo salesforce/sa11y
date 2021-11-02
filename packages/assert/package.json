@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/assert",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "Provides assertAccessible API to check DOM for accessibility issues",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/assert#readme",
@@ -21,13 +21,13 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
-        "@sa11y/common": "3.0.1",
-        "@sa11y/format": "3.0.1",
-        "@sa11y/preset-rules": "3.0.1",
+        "@sa11y/common": "3.0.2",
+        "@sa11y/format": "3.0.2",
+        "@sa11y/preset-rules": "3.0.2",
         "axe-core": "4.3.3"
     },
     "devDependencies": {
-        "@sa11y/test-utils": "3.0.1"
+        "@sa11y/test-utils": "3.0.2"
     },
     "publishConfig": {
         "access": "public"
