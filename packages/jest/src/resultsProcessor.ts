@@ -4,14 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import {
-    AggregatedResult,
-    AssertionResult,
-    TestResult,
-    addResult,
-    createEmptyTestResult,
-    makeEmptyAggregatedTestResult,
-} from '@jest/test-result';
+import { AggregatedResult, AssertionResult, TestResult, addResult, createEmptyTestResult } from '@jest/test-result';
 import { errMsgHeader, log } from '@sa11y/common';
 import { A11yError, A11yResult, A11yResults } from '@sa11y/format';
 
@@ -77,6 +70,28 @@ function processA11yErrors(testSuite: TestResult, testResult: AssertionResult) {
 }
 
 /**
+ * Modify existing test result containing a11y error after a11y error
+ *  is extracted into its own test result using {@link createA11yTestResult}.
+ */
+function modifyOriginalTestResult(results: AggregatedResult, testSuite: TestResult, testResult: AssertionResult) {
+    // Don't report the failure twice
+    testResult.status = 'disabled';
+    // TODO (fix): Remove sa11y msg from test suite message.
+    //  ANSI codes and test names in suite message makes it difficult.
+    //  Removing error from test result doesn't affect test suite error msg.
+    // testResult.failureMessages = [];
+    // testResult.failureDetails = [];
+    // testSuite.failureMessage = '';
+    // Suites with only a11y errors should be marked as passed
+    testSuite.numFailingTests -= 1;
+    results.numFailedTests -= 1;
+    if (testSuite.numFailingTests === 0) results.numFailedTestSuites -= 1;
+    // TODO(debug): Does 'success' represent only failed tests?
+    //  Or errored tests as well e.g.?
+    // if (results.numFailedTestSuites === 0) results.success = true;
+}
+
+/**
  * Custom results processor for a11y results. Only affects JSON results file output.
  * To be used with jest cli options --json --outputFile
  *  e.g. jest --json --outputFile jestResults.json --testResultsProcessor `node_modules/@sa11y/jest/dist/resultsProcessor.js`
@@ -93,22 +108,21 @@ export default function resultsProcessor(results: AggregatedResult): AggregatedR
                 .filter((testResult) => testResult.status === 'failed')
                 .forEach((testResult) => {
                     processA11yErrors(testSuite, testResult);
+                    modifyOriginalTestResult(results, testSuite, testResult);
                 });
         });
 
     log(`Transforming a11y failures from ${consolidatedErrors.size} suites ..`);
-    // Create test suites to hold a11y failures
-    const aggregatedA11yResults = makeEmptyAggregatedTestResult();
     consolidatedErrors.forEach((testResults, suiteKey) => {
         const sa11ySuite = createEmptyTestResult();
         // "testFilePath" gets output as suite "name" in formatted JSON result
         sa11ySuite.testFilePath = suiteKey;
         sa11ySuite.testResults = testResults;
         sa11ySuite.numFailingTests = testResults.length;
-        addResult(aggregatedA11yResults, sa11ySuite);
+        addResult(results, sa11ySuite);
     });
 
-    return aggregatedA11yResults;
+    return results;
 }
 
 // The processor must be a node module that exports a function
