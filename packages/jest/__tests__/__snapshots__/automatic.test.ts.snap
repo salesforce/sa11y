@@ -60,7 +60,7 @@ exports[`automatic checks call should raise consolidated a11y issues for DOM wit
 	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name"
 `;
 
-exports[`automatic checks call should run auto checks when file is specified in run only option 1`] = `
+exports[`automatic checks call should run auto checks when file is not excluded using filter 1`] = `
 "1 Accessibility issues found
  * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name"

@@ -7,7 +7,7 @@
 
 import { setup } from '../src';
 import * as automatic from '../src/automatic';
-import { automaticCheck, registerSa11yAutomaticChecks } from '../src/automatic';
+import { automaticCheck, registerSa11yAutomaticChecks, skipTest } from '../src/automatic';
 import {
     beforeEachSetup,
     checkA11yErrorFunc,
@@ -159,14 +159,34 @@ describe('automatic checks call', () => {
         await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true, consolidateResults: false }));
     });
 
-    it('should skip auto checks when file is not specified in run only option', async () => {
+    it.each([
+        ['foo', undefined, false],
+        ['foo', [], false],
+        ['foo', ['foo'], true],
+        ['foo', ['!foo'], false],
+        ['foo', ['bar'], false],
+        ['foo', ['!bar'], false],
+        ['foo', ['foo', 'bar'], true],
+        ['foo', ['foo', '(?!foo)', 'bar'], true],
+    ])(
+        'should filter test file as expected with args # %#',
+        (testPath: string, filesFilter: string[] | undefined, expectedResult: boolean) => {
+            expect(skipTest(testPath, filesFilter)).toBe(expectedResult);
+        }
+    );
+
+    it('should skip auto checks when file is excluded using filter', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(() => automaticCheck({ filesFilter: nonExistentFilePaths }), false, true);
+        await checkA11yErrorFunc(
+            () => automaticCheck({ filesFilter: [...nonExistentFilePaths, testPath] }),
+            false,
+            true
+        );
     });
 
-    it('should run auto checks when file is specified in run only option', async () => {
+    it('should run auto checks when file is not excluded using filter', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(() => automaticCheck({ filesFilter: [...nonExistentFilePaths, testPath] }));
+        await checkA11yErrorFunc(() => automaticCheck({ filesFilter: nonExistentFilePaths }));
     });
     /* eslint-enable jest/expect-expect */
 });
