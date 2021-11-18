@@ -6,8 +6,7 @@ jobs:
     build-and-test:
         executor:
             name: node/default
-            # TODO: switch back to 'lts'. Temp workaround for issues with lts v16.
-            tag: '14.18.1'
+            tag: 'lts'
         steps:
             - browser-tools/install-chrome
             - browser-tools/install-chromedriver
