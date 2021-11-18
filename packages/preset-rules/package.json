@@ -20,9 +20,10 @@
         "dist/**/*.js",
         "dist/**/*.d.ts*"
     ],
-    "dependencies": {},
+    "dependencies": {
+        "@sa11y/common": "3.0.2"
+    },
     "devDependencies": {
-        "@sa11y/common": "3.0.2",
         "axe-core": "4.3.3",
         "markdown-table-ts": "1.0.3"
     },

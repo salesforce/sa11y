@@ -24,11 +24,11 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
+        "@sa11y/common": "3.0.2",
         "@sa11y/preset-rules": "3.0.2",
         "axe-core": "4.3.3"
     },
     "devDependencies": {
-        "@sa11y/common": "3.0.2",
         "@sa11y/test-utils": "3.0.2"
     },
     "publishConfig": {
