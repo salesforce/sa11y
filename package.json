@@ -25,7 +25,7 @@
         "lint": "eslint . --ext ts,js,md",
         "lint:all": "tsc --noEmit && yarn lint && yarn lint:lockfile && yarn lint:deps && yarn lint:depgraph",
         "lint:deps": "lerna exec depcheck",
-        "lint:depgraph": "yarn pkg:depgraph && git diff --quiet docs/sa11y_dependency_graph.svg || echo 'Dependency graph needs to be updated!'",
+        "lint:depgraph": "yarn pkg:depgraph && git diff --quiet docs/sa11y_dependency_graph.svg || (echo 'Dependency graph needs to be updated!'; exit 1)",
         "lint:fix": "yarn lint --fix",
         "lint:lockfile": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
         "lint:staged": "lint-staged",
