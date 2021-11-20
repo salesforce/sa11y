@@ -7,6 +7,7 @@ jobs:
         executor:
             name: node/default
             # TODO: switch back to 'lts'. Temp workaround for issues with lts v16.
+            # https://github.com/salesforce/sa11y/issues/82
             tag: '14.18.1'
         steps:
             - browser-tools/install-chrome

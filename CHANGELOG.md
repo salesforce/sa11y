@@ -3,6 +3,10 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+- [3.1.0 (2021-11-18)](#310-2021-11-18)
+    - [Bug Fixes](#bug-fixes)
+- [3.0.2 (2021-11-02)](#302-2021-11-02)
+    - [Reverts](#reverts)
 - [3.0.1 (2021-10-21)](#301-2021-10-21)
     - [Refactor](#refactor)
 - [3.0.0 (2021-09-16)](#300-2021-09-16)
@@ -32,12 +36,12 @@
 - [0.5.0-beta (2020-12-01)](#050-beta-2020-12-01)
     - [Features](#features-6)
 - [0.4.1-beta (2020-11-24)](#041-beta-2020-11-24)
-    - [Bug Fixes](#bug-fixes)
+    - [Bug Fixes](#bug-fixes-1)
 - [0.4.0-beta (2020-10-31)](#040-beta-2020-10-31)
     - [Features](#features-7)
     - [Refactor](#refactor-2)
   - [0.3.2-beta (2020-09-22)](#032-beta-2020-09-22)
-    - [Bug Fixes](#bug-fixes-1)
+    - [Bug Fixes](#bug-fixes-2)
     - [Refactor](#refactor-3)
 - [0.3.1-beta (2020-08-20)](#031-beta-2020-08-20)
     - [Refactor](#refactor-4)
@@ -45,29 +49,37 @@
     - [Features](#features-8)
 - [0.2.0-beta (2020-06-25)](#020-beta-2020-06-25)
     - [Features](#features-9)
-    - [Bug Fixes](#bug-fixes-2)
+    - [Bug Fixes](#bug-fixes-3)
     - [BREAKING CHANGES](#breaking-changes-1)
 - [v0.1.0-alpha (2020-06-02)](#v010-alpha-2020-06-02)
     - [Features](#features-10)
 - [(2020-05-29)](#2020-05-29)
     - [Features](#features-11)
 - [(2020-05-07)](#2020-05-07)
-    - [Bug Fixes](#bug-fixes-3)
+    - [Bug Fixes](#bug-fixes-4)
     - [Features](#features-12)
 - [(2020-04-07)](#2020-04-07)
-    - [Bug Fixes](#bug-fixes-4)
+    - [Bug Fixes](#bug-fixes-5)
     - [Features](#features-13)
 - [(2020-03-20)](#2020-03-20)
-    - [Bug Fixes](#bug-fixes-5)
+    - [Bug Fixes](#bug-fixes-6)
     - [Features](#features-14)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# 3.0.2 (2021-11-02)
+# 3.1.0 (2021-11-18)
+
+### Bug Fixes
+
+-   automatic checks file filter to be exclusion only to keep it simple
+-   add sa11y common pkg as dep instead of dev dep
+
+# [3.0.2](https://github.com/salesforce/sa11y/releases/tag/v3.0.2) (2021-11-02)
+
 ### Reverts
 
-* filtering of non-a11y results introduced in 3.0.1
-  * as it is causing issues with certain CI workflows that produce no test results file
+-   filtering of non-a11y results introduced in 3.0.1
+    -   as it is causing issues with certain CI workflows that produce no test results file
 
 # [3.0.1](https://github.com/salesforce/sa11y/releases/tag/v3.0.1) (2021-10-21)
 

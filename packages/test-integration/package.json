@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/test-integration",
-    "version": "3.0.2",
+    "version": "3.1.0",
     "private": true,
     "description": "Private package for integration testing @sa11y packages",
     "license": "BSD-3-Clause",
@@ -11,8 +11,8 @@
         "directory": "packages/test-integration"
     },
     "devDependencies": {
-        "@sa11y/jest": "3.0.2",
-        "@sa11y/test-utils": "3.0.2",
-        "@sa11y/wdio": "3.0.2"
+        "@sa11y/jest": "3.1.0",
+        "@sa11y/test-utils": "3.1.0",
+        "@sa11y/wdio": "3.1.0"
     }
 }

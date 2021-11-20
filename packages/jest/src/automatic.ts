@@ -34,33 +34,34 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
 };
 
 /**
+ * Check if current test file needs to be skipped based on any provided filter
+ */
+export function skipTest(testPath: string, filesFilter?: string[]): boolean {
+    if (!filesFilter || !(filesFilter?.length > 0)) return false;
+    const skipTest = filesFilter.some((fileName) => testPath.toLowerCase().includes(fileName.toLowerCase()));
+
+    if (skipTest) {
+        log(
+            `Skipping automatic accessibility check on ${testPath} as it matches given files filter: ${filesFilter.toString()}`
+        );
+    }
+    return skipTest;
+}
+
+/**
  * Run accessibility check on each element node in the body using {@link toBeAccessible}
  * @param opts - Options for automatic checks {@link AutoCheckOpts}
  */
 export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts): Promise<void> {
-    const violations: AxeResults = [];
-    const testPath = expect.getState().testPath;
-    // If option to run only on selected files is specified, then current path should
-    // match against at least one file
-    if (
-        opts.filesFilter?.length &&
-        !opts.filesFilter
-            // Convenience shortcut converting '!' prefix to filename
-            // as negative lookahead assertion regex
-            .map((filename) => (filename.startsWith('!') ? `/(?!${filename})$` : filename))
-            .some((fileName) => RegExp(fileName).test(testPath))
-    ) {
-        log(
-            `Skipping automatic accessibility check on ${testPath} as it does not match selected files provided: ${opts.filesFilter.toString()}`
-        );
-        return;
-    }
+    if (skipTest(expect.getState().testPath, opts.filesFilter)) return;
 
     // Skip automatic check if test is using fake timer as it would result in timeout
     if (isTestUsingFakeTimer()) {
         log('Skipping automatic accessibility check as Jest fake timer is in use.');
         return;
     }
+
+    const violations: AxeResults = [];
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();

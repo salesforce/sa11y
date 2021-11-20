@@ -7,7 +7,7 @@
 
 import { setup } from '../src';
 import * as automatic from '../src/automatic';
-import { automaticCheck, registerSa11yAutomaticChecks } from '../src/automatic';
+import { automaticCheck, registerSa11yAutomaticChecks, skipTest } from '../src/automatic';
 import {
     beforeEachSetup,
     checkA11yErrorFunc,
@@ -104,7 +104,7 @@ describe('automatic checks registration', () => {
 
 describe('automatic checks call', () => {
     const testPath = expect.getState().testPath;
-    const nonExistentFilePaths = ['foo', `/(?!${testPath})$`, `!${testPath}`];
+    const nonExistentFilePaths = ['foo', `foo${testPath}`, `${testPath}foo`];
     // Note: cleanup required at end of each test to prevent dom being checked again
     // after the test as part of the afterEach automatic check hook
     beforeEach(beforeEachSetup);
@@ -159,14 +159,34 @@ describe('automatic checks call', () => {
         await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true, consolidateResults: false }));
     });
 
-    it('should skip auto checks when file is not specified in run only option', async () => {
+    it.each([
+        ['foo', undefined, false],
+        ['foo', [], false],
+        ['foo', ['foo'], true],
+        ['foo', ['Foo'], true],
+        ['foo', ['foo', 'bar'], true],
+        ['foo', ['bar'], false],
+        ['foo', ['foobar'], false],
+        ['foo', ['barfoo'], false],
+    ])(
+        'should filter test file as expected with args # %#',
+        (testPath: string, filesFilter: string[] | undefined, expectedResult: boolean) => {
+            expect(skipTest(testPath, filesFilter)).toBe(expectedResult);
+        }
+    );
+
+    it('should skip auto checks when file is excluded using filter', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(() => automaticCheck({ filesFilter: nonExistentFilePaths }), false, true);
+        await checkA11yErrorFunc(
+            () => automaticCheck({ filesFilter: [...nonExistentFilePaths, testPath] }),
+            false,
+            true
+        );
     });
 
-    it('should run auto checks when file is specified in run only option', async () => {
+    it('should run auto checks when file is not excluded using filter', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(() => automaticCheck({ filesFilter: [...nonExistentFilePaths, testPath] }));
+        await checkA11yErrorFunc(() => automaticCheck({ filesFilter: nonExistentFilePaths }));
     });
     /* eslint-enable jest/expect-expect */
 });
