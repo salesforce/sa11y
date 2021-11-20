@@ -180,9 +180,7 @@ SA11Y_AUTO=1 SA11Y_CLEANUP=1 jest
 -   Invoking `jest` with environment variables as above will enable automatic checks with no changes required to `setup()`
 -   The environment variables can be used to set up parallel builds e.g., in a CI environment without code changes to `setup()` to opt-in to automatic checks
 -   Setting `SA11Y_DEBUG=1` will output verbose logging
--   `SA11Y_AUTO_FILTER` can be used to specify a comma seperated list of test file paths to filter out from automatic checks
-    -   When specified automatic checks are skipped for given files
-    -   The file paths can be also be expressed as [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet) if necessary
+-   `SA11Y_AUTO_FILTER` can be used to specify a comma seperated list of test file paths to filter out from automatic checks. When specified automatic checks are skipped for given files.
 
 ### Sa11y results processor
 

@@ -38,7 +38,7 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
  */
 export function skipTest(testPath: string, filesFilter?: string[]): boolean {
     if (!filesFilter || !(filesFilter?.length > 0)) return false;
-    const skipTest = filesFilter.some((fileName) => RegExp(fileName).test(testPath));
+    const skipTest = filesFilter.some((fileName) => testPath.toLowerCase().includes(fileName.toLowerCase()));
 
     if (skipTest) {
         log(

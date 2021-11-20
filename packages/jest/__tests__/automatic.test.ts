@@ -104,7 +104,7 @@ describe('automatic checks registration', () => {
 
 describe('automatic checks call', () => {
     const testPath = expect.getState().testPath;
-    const nonExistentFilePaths = ['foo', `/(?!${testPath})$`, `!${testPath}`];
+    const nonExistentFilePaths = ['foo', `foo${testPath}`, `${testPath}foo`];
     // Note: cleanup required at end of each test to prevent dom being checked again
     // after the test as part of the afterEach automatic check hook
     beforeEach(beforeEachSetup);
@@ -163,11 +163,11 @@ describe('automatic checks call', () => {
         ['foo', undefined, false],
         ['foo', [], false],
         ['foo', ['foo'], true],
-        ['foo', ['!foo'], false],
-        ['foo', ['bar'], false],
-        ['foo', ['!bar'], false],
+        ['foo', ['Foo'], true],
         ['foo', ['foo', 'bar'], true],
-        ['foo', ['foo', '(?!foo)', 'bar'], true],
+        ['foo', ['bar'], false],
+        ['foo', ['foobar'], false],
+        ['foo', ['barfoo'], false],
     ])(
         'should filter test file as expected with args # %#',
         (testPath: string, filesFilter: string[] | undefined, expectedResult: boolean) => {
