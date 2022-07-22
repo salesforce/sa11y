@@ -17,16 +17,16 @@ import {
 } from '@sa11y/test-utils';
 
 describe('automatic checks registration', () => {
-    const PREV_ENV = process.env;
+    const prevEnv = process.env;
     afterAll(() => {
         jest.restoreAllMocks();
-        process.env = PREV_ENV; // Restore prev env
+        process.env = prevEnv; // Restore prev env
     });
 
     beforeEach(() => {
         // Reset process.env Ref: https://stackoverflow.com/a/48042799
         jest.resetModules();
-        process.env = { ...PREV_ENV }; // Copy prev env
+        process.env = { ...prevEnv }; // Copy prev env
     });
 
     const registerAutomaticMock = jest.spyOn(automatic, 'registerSa11yAutomaticChecks');

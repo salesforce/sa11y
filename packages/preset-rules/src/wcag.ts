@@ -61,8 +61,8 @@ export class WcagMetadata {
      * Return formatted string containing WCAG SC and Priority
      */
     public toString(): string {
-        const SC =
+        const successCriteria =
             this.successCriteria === WcagMetadata.defaultSC ? this.successCriteria : `WCAG-SC${this.successCriteria}`;
-        return `SA11Y-${SC}-${this.priority}`;
+        return `SA11Y-${successCriteria}-${this.priority}`;
     }
 }
