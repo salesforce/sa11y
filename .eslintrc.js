@@ -57,7 +57,14 @@ module.exports = {
             },
         ],
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-        '@typescript-eslint/naming-convention': 'error',
+        '@typescript-eslint/naming-convention': [
+            'error',
+            {
+                selector: ['variable', 'function'],
+                format: ['camelCase'],
+            },
+        ],
+
         'tsdoc/syntax': 'warn',
         'prefer-arrow-callback': 'warn',
     },
