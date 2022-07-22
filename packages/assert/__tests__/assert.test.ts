@@ -55,7 +55,7 @@ describe('assertAccessible API', () => {
             document.body.innerHTML = testDOM;
             expect.assertions(expectedAssertions);
             await expect(getViolationsJSDOM()).resolves.toHaveLength(expectedViolations);
-            await assertAccessible().catch((e) => checkA11yError(e));
+            await assertAccessible().catch((e: Error) => checkA11yError(e));
         }
     );
 
