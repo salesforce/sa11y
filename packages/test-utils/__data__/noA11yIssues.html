@@ -13,6 +13,7 @@
         <div role="contentinfo" id="upside-down"></div>
         <!-- cSpell:disable-line -->
         <script>
+            // This script is not executed in Jest/JSDOM! It's only executed in the browser.
             const shadow = document.getElementById('upside-down').attachShadow({ mode: 'open' });
             shadow.innerHTML = '<h2 id="shadow">SHADOW DOM</h2><ul><li>Shadow Item 1</li></ul>';
         </script>
