@@ -12,12 +12,12 @@ import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
  * Ref: https://eddmann.com/posts/cartesian-product-in-javascript/
  */
 // TODO(types): Fix types for the cartesianProduct function - from any to generics
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument */
 export function cartesianProduct(...sets: Array<any>): Array<any> {
     const flatten = (arr: Array<any>): Array<any> => [].concat([], ...arr);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
     return sets.reduce((acc, set) => flatten(acc.map((x: any) => set.map((y: any) => [...x, y]))), [[]]);
-    /* eslint-enable @typescript-eslint/no-explicit-any */
+    /* eslint-enable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument */
 }
 
 /**

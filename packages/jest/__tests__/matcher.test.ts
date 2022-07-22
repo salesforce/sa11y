@@ -42,6 +42,7 @@ describe('a11y matchers', () => {
 describe('toBeAccessible jest a11y matcher', () => {
     it.each(domConfigParams)('should not throw error for dom with no a11y issues (arg: %#)', async (dom, config) => {
         document.body.innerHTML = domWithNoA11yIssues;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         await expect(dom).toBeAccessible(config);
     });
 
