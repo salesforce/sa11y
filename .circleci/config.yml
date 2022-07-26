@@ -4,11 +4,14 @@ orbs:
     browser-tools: circleci/browser-tools@1.4.0
 jobs:
     build-and-test:
+        parameters:
+            node-version:
+                type: string
         executor:
             name: node/default
             # TODO: switch back to 'lts'. Temp workaround for issues with lts v16.
             # https://github.com/salesforce/sa11y/issues/82
-            tag: '14.18.1'
+            tag: << parameters.node-version >>
         steps:
             - browser-tools/install-chrome
             - browser-tools/install-chromedriver
@@ -17,6 +20,10 @@ jobs:
             - run: yarn test:ci
             - run: yarn codecov
 workflows:
-    build-and-test:
+    matrix-tests:
         jobs:
-            - build-and-test
+            - build-and-test:
+                  matrix:
+                      parameters:
+                          node-version:
+                              - '14.18.1'
