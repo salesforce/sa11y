@@ -5,13 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import {
-    beforeEachSetup,
-    checkA11yErrorFunc,
-    domWithA11yIssues,
-    domWithNoA11yIssues,
-    domWithVisualA11yIssues,
-} from '@sa11y/test-utils';
+import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues, domWithVisualA11yIssues } from '@sa11y/test-utils';
 
 beforeEach(beforeEachSetup);
 
