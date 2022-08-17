@@ -63,7 +63,7 @@ Before you start, it helps to be familiar with [Web Accessibility](https://trail
 
 ## Requirements
 
--   [Node](https://nodejs.org/) >= 12
+-   [Node](https://nodejs.org/) >= 14
 -   [Yarn](https://yarnpkg.com/) >= 1.22
 
 ## Installation
