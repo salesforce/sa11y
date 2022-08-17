@@ -42,7 +42,7 @@ describe('test utils cartesian product', () => {
 describe('test utils check a11y error', () => {
     it('should check for error to be defined', () => {
         expect.assertions(2);
-        expect(() => checkA11yError(undefined)).toThrowErrorMatchingSnapshot();
+        expect(() => checkA11yError(undefined)).toThrow();
     });
 
     it('should check for axe run time exception', () => {
