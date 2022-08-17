@@ -81,6 +81,7 @@ describe('assertAccessible API', () => {
         await checkA11yErrorFunc(() => assertAccessible(elem));
     });
 
+    // eslint-disable-next-line jest/expect-expect
     it.each(['', 'non-existent-audio.mp3', audioURL])(
         'should test audio without timing-out using src %#',
         async (source: string) => {
@@ -93,6 +94,7 @@ describe('assertAccessible API', () => {
         }
     );
 
+    // eslint-disable-next-line jest/expect-expect
     it.each(['', 'non-existent-video.webm', videoURL])(
         'should test video without timing-out using src %#',
         async (source: string) => {

@@ -24,7 +24,7 @@ describe('test utils jest setup', () => {
 
     it('should cleanup document', () => {
         expect(document.body.innerHTML).not.toEqual(testDOMCleanupContent);
-        expect(document.body.innerHTML).toEqual('');
+        expect(document.body.innerHTML).toBe('');
     });
 });
 

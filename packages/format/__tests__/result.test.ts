@@ -46,12 +46,12 @@ describe('a11y result', () => {
 
     it('should sort a11y issues by impact', () => {
         A11yResults.sort(a11yIssues);
-        expect(a11yIssues[0].impact).toEqual('critical');
-        expect(a11yIssues[1].impact).toEqual('critical');
-        expect(a11yIssues[2].impact).toEqual('moderate');
+        expect(a11yIssues[0].impact).toBe('critical');
+        expect(a11yIssues[1].impact).toBe('critical');
+        expect(a11yIssues[2].impact).toBe('moderate');
         expect(a11yIssues[3].impact).toBeUndefined(); // Sort by "defaultImpact"
         expect(a11yIssues[4].impact).toBeUndefined();
-        expect(a11yIssues[5].impact).toEqual('minor');
+        expect(a11yIssues[5].impact).toBe('minor');
     });
 
     it('should sort a11y results by priority, WCAG level', () => {
