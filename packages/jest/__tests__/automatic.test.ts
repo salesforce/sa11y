@@ -120,6 +120,7 @@ describe('automatic checks call', () => {
         await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true }));
     });
 
+    // eslint-disable-next-line jest/expect-expect
     it.each([0, 1, 2, 3])(
         'should raise consolidated a11y issues for DOM with multiple a11y issues',
         async (numNodesWithIssues) => {
