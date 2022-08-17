@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`mock timer helper should result in error when mock timer is being used from API 1`] = `"Cannot run accessibility check when Jest fake timer is in use. Switch to real timer before invoking accessibility check. Ref: https://jestjs.io/docs/timer-mocks"`;
-
 exports[`mock timer helper should skip automatic check when mock timer is being used 1`] = `
 "1 Accessibility issues found
  * (link-name) Links must have discernible text: a
@@ -9,51 +7,3 @@ exports[`mock timer helper should skip automatic check when mock timer is being 
 `;
 
 exports[`mock timer helper should skip automatic check when mock timer is being used 2`] = `""`;
-
-exports[`toBeAccessible jest a11y matcher should be able to check a11y of a HTML element: dom-with-issues 1`] = `
-"[2mexpect([22m[31m1 issues[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 1 issues: [22m
-[2m[22m
-[2m [31m\\"⭕ (link-name) Links must have discernible text: a\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name([22m[32m0 issues[39m[2m)[22m"
-`;
-
-exports[`toBeAccessible jest a11y matcher should be able to check a11y of a HTML element: upside-down 1`] = `""`;
-
-exports[`toBeAccessible jest a11y matcher should throw error for dom with a11y issues with config: 0 1`] = `
-"[2mexpect([22m[31m3 issues[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 3 issues: [22m
-[2m[22m
-[2m [31m\\"⭕ (document-title) Documents must have <title> element to aid in navigation: html\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title[22m
-[2m[22m
-[2m[31m\\"⭕ (link-name) Links must have discernible text: a\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name[22m
-[2m[22m
-[2m[31m\\"⭕ (page-has-heading-one) Page should contain a level-one heading: html\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one([22m[32m0 issues[39m[2m)[22m"
-`;
-
-exports[`toBeAccessible jest a11y matcher should throw error for dom with a11y issues with config: 1 1`] = `
-"[2mexpect([22m[31m3 issues[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 3 issues: [22m
-[2m[22m
-[2m [31m\\"⭕ (document-title) Documents must have <title> element to aid in navigation: html\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title[22m
-[2m[22m
-[2m[31m\\"⭕ (link-name) Links must have discernible text: a\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name[22m
-[2m[22m
-[2m[31m\\"⭕ (page-has-heading-one) Page should contain a level-one heading: html\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one([22m[32m0 issues[39m[2m)[22m"
-`;
-
-exports[`toBeAccessible jest a11y matcher should throw error for dom with a11y issues with config: 2 1`] = `
-"[2mexpect([22m[31m3 issues[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 3 issues: [22m
-[2m[22m
-[2m [31m\\"⭕ (document-title) Documents must have <title> element to aid in navigation: html\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title[22m
-[2m[22m
-[2m[31m\\"⭕ (link-name) Links must have discernible text: a\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name[22m
-[2m[22m
-[2m[31m\\"⭕ (page-has-heading-one) Page should contain a level-one heading: html\\"[39m[22m
-[2m	🔗 Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one([22m[32m0 issues[39m[2m)[22m"
-`;

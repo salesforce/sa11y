@@ -18,6 +18,7 @@ import {
 } from '@sa11y/test-utils';
 import { isTestUsingFakeTimer } from '../src/matcher';
 import { automaticCheck } from '../src/automatic';
+import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
 // Collection of values to be tested passed in as different API parameters
 const a11yConfigParams = [extended, base, undefined];
@@ -52,23 +53,30 @@ describe('toBeAccessible jest a11y matcher', () => {
         await expect(document).not.toBeAccessible(config);
         await expect(document.getElementById(domWithA11yIssuesBodyID)).not.toBeAccessible();
         // using without the 'not' matcher which should be the primary way the API is used (without error catching)
-        await checkA11yErrorFunc(() => expect(document).toBeAccessible());
+        return expect(() => expect(document).toBeAccessible()).rejects.toThrow('3 issues');
     });
 
     it.each([
         // dom with no issues won't result in error thrown and hence will have less assertions
-        [shadowDomID, domWithNoA11yIssues],
-        [domWithA11yIssuesBodyID, domWithA11yIssues],
-    ])('should be able to check a11y of a HTML element: %s', async (id: string, dom: string) => {
+        [shadowDomID, domWithNoA11yIssues, undefined],
+        [domWithA11yIssuesBodyID, domWithA11yIssues, '1 issues'],
+    ])('should be able to check a11y of a HTML element: %s', async (id: string, dom: string, issues?: string) => {
+        expect.hasAssertions();
         document.body.innerHTML = dom;
         const elem = document.getElementById(id);
         expect(elem).toBeTruthy();
-        await checkA11yErrorFunc(() => expect(elem).toBeAccessible());
+        if (issues) {
+            // eslint-disable-next-line jest/no-conditional-expect
+            await expect(() => expect(elem).toBeAccessible()).rejects.toThrow(issues);
+        } else {
+            // eslint-disable-next-line jest/no-conditional-expect
+            await expect(elem).toBeAccessible();
+        }
     });
 
-    it('should throw non A11yError for non a11y issues', async () => {
+    it('should throw non A11yError for non a11y issues', () => {
         const errConfig = getA11yConfig(['non-existent-rule']);
-        await checkA11yErrorFunc(() => expect(document).toBeAccessible(errConfig), true);
+        return expect(() => expect(document).toBeAccessible(errConfig)).rejects.toThrow(axeRuntimeExceptionMsgPrefix);
     });
 });
 
@@ -96,10 +104,12 @@ describe('mock timer helper', () => {
         await expect(document).toBeAccessible();
         // Check for error when using fake timer
         jest.useFakeTimers();
-        await checkA11yErrorFunc(() => expect(document).toBeAccessible());
+        await expect(() => expect(document).toBeAccessible()).rejects.toThrow(
+            'Cannot run accessibility check when Jest fake timer is in use. Switch to real timer before invoking accessibility check. Ref: https://jestjs.io/docs/timer-mocks'
+        );
         // Check for absence of error when using real timer
         jest.useRealTimers();
-        await checkA11yErrorFunc(() => expect(document).toBeAccessible(), false, true);
+        await expect(document).toBeAccessible();
     });
 
     // eslint-disable-next-line jest/expect-expect
