@@ -22,9 +22,9 @@ describe('integration test @sa11y/jest', () => {
         await expect(document).toBeAccessible();
     });
 
-    it('should throw error for inaccessible dom', async () => {
+    it('should throw error for inaccessible dom', () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(() => expect(document).toBeAccessible());
+        return expect(() => expect(document).toBeAccessible()).rejects.toThrow('3 issues');
     });
 
     it('will not throw error for audio video color-contrast', async () => {
