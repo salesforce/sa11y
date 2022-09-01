@@ -156,12 +156,14 @@ exports.config = {
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
-        // TypeScript setup
-        // TODO (fix): when there is a TS warning/error, wdio runner skips tests
-        // TODO (refactor): migrate from ts-node
-        //  https://github.com/salesforce/sa11y/issues/42
-        require: ['ts-node/register'],
         ui: 'bdd',
         timeout: debug ? 600000000 : 60000,
+    },
+    autoCompileOpts: {
+        autoCompile: true,
+
+        tsNodeOpts: {
+            transpileOnly: true,
+        },
     },
 };
