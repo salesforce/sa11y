@@ -19,13 +19,6 @@ import {
 } from '@sa11y/test-utils';
 import { AxeResults, axeVersion } from '@sa11y/common';
 
-// TODO (chore): Raise issue with WebdriverIO - 'sync' missing 'default' in ts def
-// TODO (debug): "import sync = require('@wdio/sync');" or
-//  "import sync from '@wdio/sync';" doesn't work. Results in tests being skipped.
-//  Could be related to https://github.com/TypeStrong/ts-node/issues/1007
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
-const sync = require('@wdio/sync').default;
-
 /**
  * Test util function to get violations from given html file
  */
@@ -81,20 +74,10 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
     });
 
     /* eslint-disable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */
-    it('should not throw error for html with no a11y issues in sync mode', () => {
-        return sync(() => {
-            void browser.url(htmlFileWithNoA11yIssues);
-            expect(() => assertAccessibleSync()).not.toThrow();
-            void checkA11yErrorWdio(assertAccessibleSync);
-        });
-    });
-
-    it('should throw error for html with a11y issues in sync mode', () => {
-        return sync(() => {
-            void browser.url(htmlFileWithA11yIssues);
-            expect(() => assertAccessibleSync()).toThrow();
-            void checkA11yErrorWdio(assertAccessibleSync, a11yIssuesCount);
-        });
+    it('should not throw error for html with no a11y issues in sync mode', async () => {
+        await browser.url(htmlFileWithNoA11yIssues);
+        expect(() => assertAccessibleSync()).not.toThrow();
+        await checkA11yErrorWdio(assertAccessibleSync);
     });
 
     it('should throw error for non-existent element', async () => {
@@ -113,13 +96,12 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         expect(err.message).toContain('Error: No elements found for include in page Context');
     });
 
-    it('should filter violations with exception list', () => {
+    it('should filter violations with exception list', async () => {
         const opts = { exceptionList: exceptionList };
-        return sync(() => {
-            void browser.url(htmlFileWithA11yIssues);
-            expect(() => assertAccessibleSync(opts)).toThrow();
-            void checkA11yErrorWdio(assertAccessibleSync, a11yIssuesCountFiltered, opts);
-        });
+
+        await browser.url(htmlFileWithA11yIssues);
+        expect(() => assertAccessibleSync(opts)).toThrow();
+        await checkA11yErrorWdio(assertAccessibleSync, a11yIssuesCountFiltered, opts);
     });
     /* eslint-enable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */
 });
