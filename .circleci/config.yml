@@ -2,6 +2,7 @@ version: 2.1
 orbs:
     node: circleci/node@5.0.2
     browser-tools: circleci/browser-tools@1.4.0
+    codecov: codecov/codecov@3.2.3
 jobs:
     build-and-test:
         executor:
@@ -15,7 +16,7 @@ jobs:
             - checkout
             - run: yarn build:ci
             - run: yarn test:ci
-            - run: yarn codecov
+            - codecov/upload
 workflows:
     build-and-test:
         jobs:

@@ -70,7 +70,6 @@
         "@wdio/sync": "6.10.4",
         "babel-jest": "27.3.1",
         "chromedriver": "^104.0.0",
-        "codecov": "3.8.3",
         "commitizen": "4.2.5",
         "conventional-changelog-cli": "2.2.2",
         "cspell": "5.13.0",
