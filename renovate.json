@@ -1,0 +1,17 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["config:base", ":dependencyDashboardApproval"],
+    "packageRules": [
+        {
+            "groupName": "node",
+            "matchPackageNames": ["node"],
+            "extends": [":disableMajorUpdates"]
+        },
+        {
+            "matchPackagePatterns": ["^@wdio/"],
+            "matchPackageNames": ["webdriverio", "wdio-chromedriver-service"],
+            "allowedVersions": "<7",
+            "groupName": "WebdriverIO"
+        }
+    ]
+}
