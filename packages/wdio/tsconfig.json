@@ -3,7 +3,8 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist",
-        "noEmitOnError": false
+        "noEmitOnError": false,
+        "types": ["node", "webdriverio/async"]
     },
     "include": ["src"],
     "references": [

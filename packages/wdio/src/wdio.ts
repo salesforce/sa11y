@@ -15,7 +15,7 @@ import { A11yConfig, AxeResults, axeVersion, getViolations, WdioOptions, WdioBro
  */
 function setDefaultOptions(opts: Partial<WdioOptions> = {}): WdioOptions {
     const defaultOptions: WdioOptions = {
-        driver: global.browser, // Need to be defined inside a function as it is populated at runtime
+        driver: browser, // Need to be defined inside a function as it is populated at runtime
         scope: undefined,
         rules: defaultRuleset,
         exceptionList: {},

@@ -2,7 +2,9 @@
     "extends": "../../tsconfig.common.json",
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "dist"
+        "outDir": "dist",
+        "lib": ["DOM", "DOM.Iterable", "es2020"], // Override @tsconfig/node14
+
     },
     "include": ["src"],
     "references": [{ "path": "../common" }]
