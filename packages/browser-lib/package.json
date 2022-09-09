@@ -39,7 +39,7 @@
         "axe-core": "4.3.3"
     },
     "devDependencies": {
-        "@rollup/plugin-commonjs": "21.1.0",
+        "@rollup/plugin-commonjs": "22.0.2",
         "@rollup/plugin-node-resolve": "13.3.0",
         "@rollup/plugin-replace": "4.0.0",
         "@sa11y/common": "3.1.0",
