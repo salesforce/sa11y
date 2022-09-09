@@ -96,6 +96,7 @@ export async function assertAccessible(opts: Partial<WdioOptions> = {}): Promise
  * Verify that the currently loaded page in the browser is accessible.
  * Throw an error with the accessibility issues found if it is not accessible.
  * Synchronous version of {@link assertAccessible}
+ * @deprecated Please update to using async method.
  */
 export function assertAccessibleSync(opts: Partial<WdioOptions> = {}): void {
     const options = setDefaultOptions(opts);

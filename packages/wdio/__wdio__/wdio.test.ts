@@ -17,7 +17,7 @@ import {
     htmlFileWithNoA11yIssues,
     shadowDomID,
 } from '@sa11y/test-utils';
-import { AxeResults, axeVersion } from '@sa11y/common';
+import { AxeResults, axeVersion, WdioOptions } from '@sa11y/common';
 
 /**
  * Test util function to get violations from given html file
@@ -77,7 +77,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
     it('should not throw error for html with no a11y issues in sync mode', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
         expect(() => assertAccessibleSync()).not.toThrow();
-        await checkA11yErrorWdio(assertAccessibleSync);
+        await checkA11yErrorWdio(assertAccessible);
     });
 
     it('should throw error for non-existent element', async () => {
@@ -100,8 +100,12 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         const opts = { exceptionList: exceptionList };
 
         await browser.url(htmlFileWithA11yIssues);
-        expect(() => assertAccessibleSync(opts)).toThrow();
-        await checkA11yErrorWdio(assertAccessibleSync, a11yIssuesCountFiltered, opts);
+        await expect(assertAccessible(opts)).rejects.toThrow();
+        await checkA11yErrorWdio(
+            async (_opts: Partial<WdioOptions>) => await assertAccessible(_opts),
+            a11yIssuesCountFiltered,
+            opts
+        );
     });
     /* eslint-enable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */
 });
