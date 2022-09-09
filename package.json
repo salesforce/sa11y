@@ -68,7 +68,7 @@
         "@wdio/mocha-framework": "6.10.4",
         "@wdio/spec-reporter": "6.11.0",
         "@wdio/sync": "6.10.4",
-        "babel-jest": "27.3.1",
+        "babel-jest": "27.5.1",
         "chromedriver": "105.0.0",
         "commitizen": "4.2.5",
         "conventional-changelog-cli": "2.2.2",
