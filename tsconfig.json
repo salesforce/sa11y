@@ -11,5 +11,6 @@
         { "path": "./packages/jest" },
         { "path": "./packages/wdio" }
     ],
-    "exclude": ["**/node_modules"]
+    "exclude": ["**/node_modules"],
+    "extends": "@tsconfig/node14/tsconfig.json"
 }
