@@ -5322,7 +5322,7 @@ dagre-abstract-renderer@^1.14.1:
     dagre-cluster-fix "0.9.3"
     tslib "1 || 2"
 
-dagre-canvas@^1.11.3:
+dagre-canvas@^1.14.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/dagre-canvas/-/dagre-canvas-1.14.1.tgz#32a6fea1768e9c01d42336cfe1a5138c53788162"
   integrity sha512-aEbMAFV7wCOnmVNeitxE7Xi9qqA5wF7EAI7Dh1MYT9H20sFJmaYsFzNmuaj0U15RWsfN5aV7mEWmbSZwELvUCA==
@@ -5338,7 +5338,7 @@ dagre-cluster-fix@0.9.3:
     graphlib "^2.1.8"
     lodash "^4.17.15"
 
-dagre-svg@^1.11.3:
+dagre-svg@^1.14.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/dagre-svg/-/dagre-svg-1.14.1.tgz#9169bda765946b4c1f1c4336d26786a4a4a10948"
   integrity sha512-kpSpqfbf5x7bOQd/Yn5S/WASjHiwe+H3DJvrqiN27RlzkSavUq5Fs1nE2aarvjQTO+dFEKUJ9EsAsLkkE4S1Ww==
@@ -10205,7 +10205,7 @@ package-dependency-collect@^1.14.2:
     glob "7"
     tslib "1 || 2"
 
-package-dependency-graph-core@^1.11.3:
+package-dependency-graph-core@^1.14.3:
   version "1.14.3"
   resolved "https://registry.yarnpkg.com/package-dependency-graph-core/-/package-dependency-graph-core-1.14.3.tgz#bdbbb2cfc2befb661219c6825c1301e9a02404e5"
   integrity sha512-RDZ9t3IGZYSmsAy2VJANDz3NkUxVi+Ut9GVN/0ysDVbjQtf8NUKmL71Srh8G1+ypBNqbRj89LhwKBJmY/9xd6Q==
@@ -10214,17 +10214,18 @@ package-dependency-graph-core@^1.11.3:
     package-dependency-collect "^1.14.2"
     tslib "1 || 2"
 
-package-dependency-graph@1.11.3:
-  version "1.11.3"
-  resolved "https://registry.yarnpkg.com/package-dependency-graph/-/package-dependency-graph-1.11.3.tgz#36fdfa064c4cc91cf4d0737700736c4b3f03b334"
-  integrity sha512-LEI/xl6IB9YaWhBBWKhBV4rw9pbvVe1YpDff81YiWdgO4kD5hzshzSqsgyLHM/eAvBAiyjQdw8cUtksOyCNEBw==
+package-dependency-graph@1.14.3:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/package-dependency-graph/-/package-dependency-graph-1.14.3.tgz#629f4ddcf6126afd587710a98a66874d2e946896"
+  integrity sha512-RXiudaLpLUUG9e0m+aKaqU5Ysv28Y+7o3wjU4rYxGm2wPGv+jhPfD+72CVva0sy9T4GdikuHutLdcfM/jZnBPA==
   dependencies:
     canvas "2"
-    dagre-canvas "^1.11.3"
-    dagre-svg "^1.11.3"
+    dagre-canvas "^1.14.1"
+    dagre-svg "^1.14.1"
     graphviz-cli "1"
     minimist "1"
-    package-dependency-graph-core "^1.11.3"
+    package-dependency-graph-core "^1.14.3"
+    ts-node "*"
 
 pacote@^13.0.3, pacote@^13.6.1:
   version "13.6.2"
@@ -12093,7 +12094,7 @@ trough@^1.0.0:
   resolved "https://registry.yarnpkg.com/trough/-/trough-1.0.5.tgz#b8b639cefad7d0bb2abd37d433ff8293efa5f406"
   integrity sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==
 
-ts-node@10.9.1, ts-node@^10.8.1:
+ts-node@*, ts-node@10.9.1, ts-node@^10.8.1:
   version "10.9.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.9.1.tgz#e73de9102958af9e1f0b168a6ff320e25adcff4b"
   integrity sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==
