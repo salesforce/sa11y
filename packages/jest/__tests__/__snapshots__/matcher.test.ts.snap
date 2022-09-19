@@ -1,14 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`mock timer helper should result in error when mock timer is being used from API 1`] = `"Cannot run accessibility check when Jest fake timer is in use. Switch to real timer before invoking accessibility check. Ref: https://jestjs.io/docs/timer-mocks"`;
-
-exports[`mock timer helper should skip automatic check when mock timer is being used 1`] = `
-"1 Accessibility issues found
- * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name"
-`;
-
-exports[`mock timer helper should skip automatic check when mock timer is being used 2`] = `""`;
+exports[`mock timer helper should result in error when mock timer is being used from API 1`] = `""`;
 
 exports[`toBeAccessible jest a11y matcher should be able to check a11y of a HTML element: dom-with-issues 1`] = `
 "[2mexpect([22m[31m1 issues[39m[2m)toBeAccessible: expected document to have no accessibility violations but found 1 issues: [22m
