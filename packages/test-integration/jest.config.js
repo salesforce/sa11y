@@ -7,7 +7,6 @@
 
 /** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
-    setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
     testEnvironment: 'jsdom',
     testMatch: ['**/__tests__/**/*.[jt]s?(x)'],
     testRunner: 'jest-jasmine2',

@@ -12,6 +12,9 @@ import {
     domWithNoA11yIssues,
     domWithVisualA11yIssues,
 } from '@sa11y/test-utils';
+import { registerSa11yMatcher } from '@sa11y/jest';
+
+beforeAll(registerSa11yMatcher);
 
 beforeEach(beforeEachSetup);
 
