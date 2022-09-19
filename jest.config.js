@@ -5,9 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-const browserLibTestPath = '<rootDir>/packages/browser-lib';
 const integrationTestPath = '<rootDir>/packages/test-integration';
-const wdioTestPath = '<rootDir>/packages/wdio';
 
 /** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
@@ -19,12 +17,11 @@ module.exports = {
             statements: 80,
         },
     },
-    // Exclude integration tests from being run with config as it has its own config and setup
-    testPathIgnorePatterns: [browserLibTestPath, integrationTestPath, wdioTestPath],
     // Direct Jest to read the jest config file from integration tests
     projects: ['<rootDir>', integrationTestPath],
     testEnvironment: 'jsdom',
     testRunner: 'jest-jasmine2',
+    testMatch: ['**/__tests__/**/*.[jt]s?(x)'],
     // Custom results processor for a11y results. Only affects JSON results file output.
     // To be used with jest cli options --json --outputFile
     //   *  e.g. jest --json --outputFile jestResults.json
