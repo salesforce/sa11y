@@ -23,14 +23,14 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
-        "@jest/test-result": "26.6.2",
+        "@jest/test-result": "^27",
         "@sa11y/assert": "3.1.0",
         "@sa11y/format": "3.1.0",
         "@sa11y/preset-rules": "3.1.0",
-        "jest-matcher-utils": "26.6.2"
+        "jest-matcher-utils": "^27"
     },
     "peerDependencies": {
-        "jest": ">=26.0.0"
+        "jest": ">=27.0.0"
     },
     "devDependencies": {
         "@sa11y/common": "3.1.0",
