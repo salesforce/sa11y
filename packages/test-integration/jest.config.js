@@ -7,8 +7,7 @@
 
 /** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
-    setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
-    testPathIgnorePatterns: ['__tests__/wdio.test.ts'],
     testEnvironment: 'jsdom',
+    testMatch: ['**/__tests__/**/*.[jt]s?(x)'],
     testRunner: 'jest-jasmine2',
 };
