@@ -6,6 +6,7 @@
  */
 import { beforeEachSetup, cartesianProduct, checkA11yError, checkA11yErrorFunc } from '../src';
 import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
+import { expect } from '@jest/globals';
 const testDOMCleanupContent = 'foo';
 
 beforeAll(() => {

@@ -8,6 +8,7 @@ import { WcagMetadata } from '../src';
 import { Result } from 'axe-core';
 import { defaultWcagVersion } from '../src/rules';
 import { extendedRulesInfo } from '../src/extended';
+import { expect } from '@jest/globals';
 
 // input tags, expected version, expected level, expected SC
 const noErrorCases = [

@@ -15,6 +15,7 @@ import {
     domWithNoA11yIssues,
     domWithNoA11yIssuesChildCount,
 } from '@sa11y/test-utils';
+import { expect, jest } from '@jest/globals';
 
 describe('automatic checks registration', () => {
     const prevEnv = process.env;
@@ -33,7 +34,7 @@ describe('automatic checks registration', () => {
 
     it('should run when called directly without setup', () => {
         registerSa11yAutomaticChecks(); // exercising default args for code cov
-        expect(registerAutomaticMock).toHaveBeenCalledWith();
+        expect(registerAutomaticMock).toHaveBeenCalled();
     });
 
     it('should not run by default via setup', () => {

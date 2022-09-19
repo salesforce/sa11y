@@ -29,6 +29,7 @@
         "axe-core": "4.3.3"
     },
     "devDependencies": {
+        "@jest/globals": "^27",
         "@sa11y/test-utils": "3.1.0"
     },
     "publishConfig": {

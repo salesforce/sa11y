@@ -13,6 +13,7 @@ import {
     domWithVisualA11yIssues,
 } from '@sa11y/test-utils';
 import { registerSa11yMatcher } from '@sa11y/jest';
+import { expect } from '@jest/globals';
 
 beforeAll(registerSa11yMatcher);
 

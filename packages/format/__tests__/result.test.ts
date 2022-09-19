@@ -8,6 +8,7 @@ import { A11yResult, A11yResults } from '../src';
 import { getViolations } from './format.test';
 import { AxeResults } from '@sa11y/common';
 import { NodeResult, Result } from 'axe-core';
+import { expect } from '@jest/globals';
 
 const a11yIssues = [
     { impact: undefined },

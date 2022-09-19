@@ -18,6 +18,7 @@ import {
 } from '@sa11y/test-utils';
 import { isTestUsingFakeTimer } from '../src/matcher';
 import { automaticCheck } from '../src/automatic';
+import { expect, jest } from '@jest/globals';
 
 // Collection of values to be tested passed in as different API parameters
 const a11yConfigParams = [extended, base, undefined];

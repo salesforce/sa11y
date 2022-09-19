@@ -19,6 +19,7 @@ import {
     videoURL,
 } from '@sa11y/test-utils';
 import { A11yConfig } from '@sa11y/common';
+import { expect } from '@jest/globals';
 
 // Create a11y config with a map of rules with default priority and wcag sc from given
 // list of rule ids

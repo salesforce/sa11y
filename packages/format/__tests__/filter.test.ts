@@ -8,6 +8,7 @@
 import { exceptionListFilter } from '../src';
 import { AxeResults } from '@sa11y/common';
 import { getViolations } from './format.test';
+import { expect } from '@jest/globals';
 
 let violations: AxeResults = [];
 beforeAll(async () => {
