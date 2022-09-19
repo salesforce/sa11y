@@ -20,7 +20,7 @@ const sync: CallableFunction = require('@wdio/sync').default;
 
 // TODO(refactor): Switch to using sa11y API via browser commands for this test module
 describe('integration test @sa11y/wdio in sync mode', () => {
-    /* eslint-disable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, jest/expect-expect */
+    /* eslint-disable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call*/
     it('should throw error for html with a11y issues', () => {
         return sync(() => {
             void browser.url(htmlFileWithA11yIssues);
@@ -41,5 +41,5 @@ describe('integration test @sa11y/wdio in sync mode', () => {
             void checkA11yErrorWdio(assertAccessibleSync, 1);
         });
     });
-    /* eslint-enable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, jest/expect-expect */
+    /* eslint-enable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call */
 });
