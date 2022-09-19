@@ -72,7 +72,7 @@
         "chromedriver": "105.0.0",
         "commitizen": "4.2.5",
         "conventional-changelog-cli": "2.2.2",
-        "cspell": "6.9.0",
+        "cspell": "6.9.1",
         "depcheck": "1.4.3",
         "doctoc": "2.2.0",
         "eslint": "8.23.1",
