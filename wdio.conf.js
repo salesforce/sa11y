@@ -10,7 +10,7 @@
 
 // Ref: https://webdriver.io/docs/debugging.html
 const debug = !!process.env.DEBUG;
-const testPath = '__tests__/**/*.ts';
+const testPath = '__wdio__/**/*.ts';
 
 /** @type { import("webdriverio").Config } */
 exports.config = {
@@ -36,7 +36,7 @@ exports.config = {
     filesToWatch: ['src/**/*.ts'],
     suites: {
         wdio: [`./packages/wdio/${testPath}`],
-        integration: [`./packages/test-integration/__tests__/wdio.test.ts`],
+        integration: [`./packages/test-integration/${testPath}`],
         browserLib: [`./packages/browser-lib/${testPath}`],
     },
     //
