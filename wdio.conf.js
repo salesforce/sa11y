@@ -12,6 +12,7 @@
 const debug = !!process.env.DEBUG;
 const testPath = '__tests__/**/*.ts';
 
+/** @type { import("webdriverio").Config } */
 exports.config = {
     //
     // ====================
