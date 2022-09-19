@@ -65,7 +65,6 @@ module.exports = {
             },
         ],
 
-        'tsdoc/syntax': 'warn',
         'prefer-arrow-callback': 'warn',
     },
     overrides: [
@@ -73,6 +72,12 @@ module.exports = {
             // Enable the Markdown processor for all .md files.
             files: ['**/*.md'],
             processor: 'markdown/markdown',
+        },
+        {
+            files: ['**/*.ts'],
+            rules: {
+                'tsdoc/syntax': 'warn',
+            },
         },
     ],
     env: {
