@@ -64,7 +64,7 @@
         "@typescript-eslint/parser": "5.38.1",
         "@wdio/cli": "7",
         "@wdio/local-runner": "7",
-        "@wdio/mocha-framework": "7",
+        "@wdio/jasmine-framework": "7",
         "@wdio/spec-reporter": "7",
         "babel-jest": "27.5.1",
         "chromedriver": "105.0.1",

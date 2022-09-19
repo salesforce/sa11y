@@ -46,8 +46,11 @@ describe('integration test axe with WebdriverIO', () => {
     });
 
     it('should get violations', async () => {
-        expect(await getViolationsHtml(htmlFileWithNoA11yIssues)).toHaveLength(0);
-        expect(await getViolationsHtml(htmlFileWithA11yIssues)).toHaveLength(a11yIssuesCount);
+        // ESLint is confused - these are Jasmine matchers, not Jasmine.
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        expect(await getViolationsHtml(htmlFileWithNoA11yIssues)).toHaveSize(0);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        expect(await getViolationsHtml(htmlFileWithA11yIssues)).toHaveSize(a11yIssuesCount);
     });
 });
 
@@ -100,7 +103,7 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         const opts = { exceptionList: exceptionList };
 
         await browser.url(htmlFileWithA11yIssues);
-        await expect(assertAccessible(opts)).rejects.toThrow();
+        await expectAsync(assertAccessible(opts)).toBeRejected();
         await checkA11yErrorWdio(
             async (_opts: Partial<WdioOptions>) => await assertAccessible(_opts),
             a11yIssuesCountFiltered,

@@ -56,8 +56,8 @@ async function verifySa11yLoaded(filePath: string): Promise<void> {
     const packageJSON = JSON.parse(
         (await fs.readFile(path.resolve(__dirname, '../package.json'))).toString()
     ) as ObjectWithVersion;
-    await expect(isLoaded(namespace)).resolves.toEqual(packageJSON.version);
-    await expect(isLoaded('axe')).resolves.toEqual(axeVersion);
+    await expectAsync(isLoaded(namespace)).toBeResolvedTo(packageJSON.version);
+    await expectAsync(isLoaded('axe')).toBeResolvedTo(axeVersion);
 }
 
 async function checkNumViolations(
@@ -74,17 +74,17 @@ async function checkNumViolations(
                 ${JSON.stringify(exceptionList)}))).length;`;
     await browser.url(htmlFileWithNoA11yIssues);
     await loadMinJS();
-    await expect(browser.execute(getViolationsScript)).resolves.toBe(0);
+    await expectAsync(browser.execute(getViolationsScript)).toBeResolvedTo(0);
 
     await browser.url(htmlFileWithA11yIssues);
     await loadMinJS();
-    await expect(browser.execute(getViolationsScript)).resolves.toBe(expectedNumViolations);
+    await expectAsync(browser.execute(getViolationsScript)).toBeResolvedTo(expectedNumViolations);
 }
 
 describe('@sa11y/browser-lib', () => {
     it('should not have axe or sa11y loaded to start with', async () => {
-        await expect(isLoaded(namespace)).resolves.toBe(false);
-        await expect(isLoaded('axe')).resolves.toBe(false);
+        await expectAsync(isLoaded(namespace)).toBeResolvedTo(false);
+        await expectAsync(isLoaded('axe')).toBeResolvedTo(false);
     });
 
     it('should inject minified js', () => verifySa11yLoaded(sa11yMinJS));
@@ -93,7 +93,7 @@ describe('@sa11y/browser-lib', () => {
 
     it('should invoke functions on axe e.g. getRules', async () => {
         await loadMinJS();
-        return expect(browser.execute('return axe.getRules().length')).resolves.toEqual(full.runOnly.values.length);
+        return expectAsync(browser.execute('return axe.getRules().length')).toBeResolvedTo(full.runOnly.values.length);
     });
 
     it('should run a11y checks using axe', () => {

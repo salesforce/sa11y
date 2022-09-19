@@ -139,7 +139,7 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'mocha',
+    framework: 'jasmine',
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
@@ -153,11 +153,9 @@ exports.config = {
     reporters: ['spec'],
 
     //
-    // Options to be passed to Mocha.
-    // See the full list at http://mochajs.org/
-    mochaOpts: {
-        ui: 'bdd',
-        timeout: debug ? 600000000 : 60000,
+    // Options to be passed to Jasmine
+    jasmineOpts: {
+        defaultTimeoutInterval: debug ? 600000000 : 60000,
     },
     autoCompileOpts: {
         autoCompile: true,
