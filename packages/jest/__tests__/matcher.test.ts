@@ -73,7 +73,7 @@ describe('toBeAccessible jest a11y matcher', () => {
 });
 
 describe('mock timer helper', () => {
-    afterAll(jest.useRealTimers);
+    afterEach(jest.useRealTimers);
 
     it('should detect when mock timer is being used', () => {
         // Baseline checks
@@ -97,9 +97,6 @@ describe('mock timer helper', () => {
         // Check for error when using fake timer
         jest.useFakeTimers();
         await checkA11yErrorFunc(() => expect(document).toBeAccessible());
-        // Check for absence of error when using real timer
-        jest.useRealTimers();
-        await checkA11yErrorFunc(() => expect(document).toBeAccessible(), false, true);
     });
 
     // eslint-disable-next-line jest/expect-expect
