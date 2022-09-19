@@ -2959,10 +2959,10 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
-"@testim/chrome-version@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@testim/chrome-version/-/chrome-version-1.1.2.tgz#092005c5b77bd3bb6576a4677110a11485e11864"
-  integrity sha512-1c4ZOETSRpI0iBfIFUqU4KqwBAB2lHUAlBjZz/YqOHqwM9dTTzjV6Km0ZkiEiSCx/tLr1BtESIKyWWMww+RUqw==
+"@testim/chrome-version@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@testim/chrome-version/-/chrome-version-1.1.3.tgz#fbb68696899d7b8c1b9b891eded9c04fe2cd5529"
+  integrity sha512-g697J3WxV/Zytemz8aTuKjTGYtta9+02kva3C1xc7KXB8GdbfE1akGJIsZLyY/FSh2QrnE+fiB7vmWU3XNcb6A==
 
 "@textlint/ast-node-types@^12.2.1":
   version "12.2.1"
@@ -4598,16 +4598,16 @@ chrome-launcher@^0.13.1:
     mkdirp "^0.5.3"
     rimraf "^3.0.2"
 
-chromedriver@105.0.0:
-  version "105.0.0"
-  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-105.0.0.tgz#81a68e2bc0618a640defd7317ddf6ae9127fc5e4"
-  integrity sha512-BX3GOUW5m6eiW9cVVF8hw+EFxvrGqYCxbwOqnpk8PjbNFqL5xjy7yel+e6ilJPjckAYFutMKs8XJvOs/W85vvg==
+chromedriver@105.0.1:
+  version "105.0.1"
+  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-105.0.1.tgz#325cf05aca200328176438991d236ddb6c61711b"
+  integrity sha512-QqylH9mvl4Ybq3mmHsym7jeq/LhEi2sPtD8ffd9ixiDFdPRlh2F4vzrzK+myj1MiXb0TYJK7+OCcMEmsB3Sm/Q==
   dependencies:
-    "@testim/chrome-version" "^1.1.2"
+    "@testim/chrome-version" "^1.1.3"
     axios "^0.27.2"
-    del "^6.0.0"
+    del "^6.1.1"
     extract-zip "^2.0.1"
-    https-proxy-agent "^5.0.0"
+    https-proxy-agent "^5.0.1"
     proxy-from-env "^1.1.0"
     tcp-port-used "^1.0.1"
 
@@ -5470,7 +5470,7 @@ define-properties@^1.1.3, define-properties@^1.1.4:
     has-property-descriptors "^1.0.0"
     object-keys "^1.1.1"
 
-del@^6.0.0:
+del@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/del/-/del-6.1.1.tgz#3b70314f1ec0aa325c6b14eb36b95786671edb7a"
   integrity sha512-ua8BhapfP0JUJKC/zV9yHHDW/rDoDxP4Zhn3AkA6/xT6gY7jYXJiaeyBZznYVujhZZET+UgcbZiQ7sN3WqcImg==
@@ -7142,7 +7142,7 @@ https-proxy-agent@^4.0.0:
     agent-base "5"
     debug "4"
 
-https-proxy-agent@^5.0.0:
+https-proxy-agent@^5.0.0, https-proxy-agent@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-5.0.1.tgz#c59ef224a04fe8b754f3db0063a25ea30d0005d6"
   integrity sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==
