@@ -9,6 +9,7 @@ const browserLibTestPath = '<rootDir>/packages/browser-lib';
 const integrationTestPath = '<rootDir>/packages/test-integration';
 const wdioTestPath = '<rootDir>/packages/wdio';
 
+/** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
     coverageThreshold: {
         global: {
