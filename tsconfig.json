@@ -1,5 +1,5 @@
 {
-    // https://www.typescriptlang.org/docs/handbook/project-references.html
+    "$schema": "https://json.schemastore.org/tsconfig",
     "files": [
         /* only process references */
     ],

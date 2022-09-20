@@ -87,10 +87,7 @@ describe('@sa11y/browser-lib', () => {
         expect(isLoaded('axe')).toBe(false);
     });
 
-    /* eslint-disable jest/expect-expect */
-    it('should inject minified js', () => {
-        verifySa11yLoaded(sa11yMinJS);
-    });
+    it('should inject minified js', () => verifySa11yLoaded(sa11yMinJS));
 
     it('should inject un-minified js', () => {
         verifySa11yLoaded(sa11yJS);
@@ -113,9 +110,5 @@ describe('@sa11y/browser-lib', () => {
         checkNumViolations('', exceptionList, a11yIssuesCountFiltered);
     });
 
-    it('should analyze only specified scope using sa11y', () => {
-        checkNumViolations('div', {}, 1);
-    });
-
-    /* eslint-enable jest/expect-expect */
+    it('should analyze only specified scope using sa11y', () => checkNumViolations('div', {}, 1));
 });
