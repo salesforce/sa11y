@@ -1,4 +1,5 @@
 {
+    "extends": "@tsconfig/node14/tsconfig.json",
     "compilerOptions": {
         // Ref: https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
         "lib": ["DOM", "DOM.Iterable", "ES2019"],
