@@ -1,6 +1,12 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["config:base", ":dependencyDashboardApproval"],
+    "extends": [
+      "config:base",
+      "helpers:disableTypesNodeMajor"
+    ],
+    "major": {
+        "extends": [":dependencyDashboardApproval"]
+    },
     "packageRules": [
         {
             "groupName": "node",
@@ -12,6 +18,15 @@
             "matchPackageNames": ["webdriverio", "wdio-chromedriver-service"],
             "allowedVersions": "<7",
             "groupName": "WebdriverIO"
+        },
+        {
+          "matchPackageNames": ["axe-core"],
+          "extends": [":dependencyDashboardApproval"]
+        },
+        {
+            "matchDepTypes": ["devDependencies"],
+            "matchPackagePatterns": ["chromedriver", "cspell", "eslint", "prettier"],
+            "automerge": true
         }
     ]
 }
