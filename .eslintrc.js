@@ -32,8 +32,7 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         // TODO (spike): Evaluate using https://github.com/standard/eslint-config-standard-with-typescript
         // 'standard-with-typescript',
-        'plugin:jest/recommended',
-        'plugin:jest/style',
+
         'plugin:prettier/recommended',
         'plugin:import/typescript',
         'plugin:import/errors',
@@ -72,6 +71,10 @@ module.exports = {
             // Enable the Markdown processor for all .md files.
             files: ['**/*.md'],
             processor: 'markdown/markdown',
+        },
+        {
+            files: ['**/__tests__/*.[j|t]s'],
+            extends: ['plugin:jest/recommended', 'plugin:jest/style'],
         },
         {
             files: ['**/*.ts'],

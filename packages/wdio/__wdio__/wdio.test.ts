@@ -60,7 +60,6 @@ describe('integration test axe with WebdriverIO', () => {
 
 describe('integration test @sa11y/wdio with WebdriverIO', () => {
     // Note: "expect"s are in the helper method "checkAccessible"
-    /* eslint-disable jest/expect-expect */
     it('should not throw error for html with no a11y issues', async () => {
         await browser.url(htmlFileWithNoA11yIssues);
         await checkA11yErrorWdio(assertAccessible);
@@ -80,7 +79,6 @@ describe('integration test @sa11y/wdio with WebdriverIO', () => {
         await browser.url(htmlFileWithA11yIssues);
         await checkA11yErrorWdio(assertAccessible, 1, { scope: browser.$(`#${domWithA11yIssuesBodyID}`) });
     });
-    /* eslint-enable jest/expect-expect */
 
     /* eslint-disable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call */
     it('should not throw error for html with no a11y issues in sync mode', () => {
