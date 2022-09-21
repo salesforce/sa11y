@@ -503,11 +503,3 @@ Array [
   ],
 ]
 `;
-
-exports[`test utils check a11y error should check for error to be defined 1`] = `
-"[2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
-
-Received: [31mundefined[39m"
-`;
-
-exports[`test utils check a11y error should check for error to match snapshot 1`] = `"foo"`;
