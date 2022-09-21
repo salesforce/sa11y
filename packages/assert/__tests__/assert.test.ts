@@ -11,14 +11,12 @@ import {
     a11yIssuesCount,
     audioURL,
     beforeEachSetup,
-    checkA11yError,
-    checkA11yErrorFunc,
     domWithA11yIssues,
     domWithNoA11yIssues,
     shadowDomID,
     videoURL,
 } from '@sa11y/test-utils';
-import { A11yConfig } from '@sa11y/common';
+import { A11yConfig, axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 import { expect } from '@jest/globals';
 
 // Create a11y config with a map of rules with default priority and wcag sc from given
@@ -27,6 +25,35 @@ function getA11yConfigMap(rules: string[]): A11yConfig {
     return getA11yConfig(
         new Map(rules.map((ruleId) => [ruleId, { priority: defaultPriority, wcagSC: '', wcagLevel: '' }]))
     );
+}
+
+/**
+ * Check error thrown by calling given function.
+ * Preferable to using `checkA11yError` with `expect.assertions(..)` due to
+ * https://github.com/jest-community/eslint-plugin-jest/blob/main/docs/rules/no-conditional-expect.md
+ */
+async function checkA11yErrorFunc(
+    errorThrower: CallableFunction,
+    expectRuntimeError = false,
+    expectNoError = false
+): Promise<void> {
+    expect.hasAssertions();
+    let err = new Error();
+    try {
+        await errorThrower();
+    } catch (e) {
+        err = e as Error;
+    } finally {
+        if (expectNoError) {
+            expect(err.message).toHaveLength(0);
+        } else if (expectRuntimeError) {
+            expect(err.message).toContain(axeRuntimeExceptionMsgPrefix);
+        } else {
+            expect(err).toBeTruthy();
+            expect(err.message).not.toContain(axeRuntimeExceptionMsgPrefix);
+            expect(err.message).toMatchSnapshot();
+        }
+    }
 }
 
 beforeEach(() => {
@@ -48,15 +75,21 @@ describe('assertAccessible API', () => {
 
     it.each([
         // DOM to test, expected assertions, expected a11y violations
-        [domWithNoA11yIssues, 1, 0],
-        [domWithA11yIssues, 4, a11yIssuesCount - 1],
+        [domWithNoA11yIssues, 2, 0],
+        [domWithA11yIssues, 2, a11yIssuesCount - 1],
     ])(
         'should use default document, ruleset, formatter when called with no args - expecting %# assertion',
         async (testDOM: string, expectedAssertions: number, expectedViolations: number) => {
             document.body.innerHTML = testDOM;
             expect.assertions(expectedAssertions);
             await expect(getViolationsJSDOM()).resolves.toHaveLength(expectedViolations);
-            await assertAccessible().catch((e: Error) => checkA11yError(e));
+            if (expectedViolations > 0) {
+                // eslint-disable-next-line jest/no-conditional-expect
+                await expect(assertAccessible()).rejects.toThrow(`${expectedViolations} Accessibility issues found`);
+            } else {
+                // eslint-disable-next-line jest/no-conditional-expect
+                await expect(assertAccessible()).resolves.toBeUndefined();
+            }
         }
     );
 

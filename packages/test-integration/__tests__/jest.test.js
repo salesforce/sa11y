@@ -5,13 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import {
-    beforeEachSetup,
-    checkA11yErrorFunc,
-    domWithA11yIssues,
-    domWithNoA11yIssues,
-    domWithVisualA11yIssues,
-} from '@sa11y/test-utils';
+import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues, domWithVisualA11yIssues } from '@sa11y/test-utils';
 import { registerSa11yMatcher } from '@sa11y/jest';
 import { expect } from '@jest/globals';
 
@@ -28,7 +22,7 @@ describe('integration test @sa11y/jest', () => {
 
     it('should throw error for inaccessible dom', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(() => expect(document).toBeAccessible());
+        await expect(expect(document).toBeAccessible()).rejects.toThrow();
     });
 
     it('will not throw error for audio video color-contrast', async () => {
