@@ -7,3 +7,4 @@
 packages/**/dist/
 node_modules/
 coverage/
+/junit.xml
