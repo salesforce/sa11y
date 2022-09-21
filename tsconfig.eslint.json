@@ -7,6 +7,6 @@
         "declaration": false /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
         "declarationMap": false /* Create sourcemaps for d.ts files. */,
         "sourceMap": false /* Create source map files for emitted JavaScript files. */,
-        "types": ["jest", "node", "webdriverio/async"]
+        "types": ["jest", "node", "webdriverio/async", "@wdio/framework-jasmine", "jasmine"]
     }
 }
