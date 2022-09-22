@@ -14,6 +14,7 @@ beforeAll(registerSa11yMatcher);
 beforeEach(beforeEachSetup);
 
 describe('integration test @sa11y/jest', () => {
+    /* eslint-disable @typescript-eslint/no-unsafe-call */
     it('should have a11y matchers working with setup in jest.config.js', async () => {
         expect(expect.toBeAccessible).toBeDefined();
         document.body.innerHTML = domWithNoA11yIssues;
@@ -31,4 +32,5 @@ describe('integration test @sa11y/jest', () => {
         //  elements etc, Jest/JSDOM will not able to detect them
         await expect(document).toBeAccessible();
     });
+    /* eslint-enable @typescript-eslint/no-unsafe-call */
 });

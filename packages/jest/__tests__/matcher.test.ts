@@ -41,6 +41,7 @@ describe('a11y matchers', () => {
 });
 
 describe('toBeAccessible jest a11y matcher', () => {
+    /* eslint-disable @typescript-eslint/no-unsafe-call */
     it.each(domConfigParams)('should not throw error for dom with no a11y issues (arg: %#)', async (dom, config) => {
         document.body.innerHTML = domWithNoA11yIssues;
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
@@ -74,6 +75,7 @@ describe('toBeAccessible jest a11y matcher', () => {
         const errConfig = getA11yConfig(['non-existent-rule']);
         await expect(expect(document).toBeAccessible(errConfig)).rejects.toThrow(axeRuntimeExceptionMsgPrefix);
     });
+    /* eslint-enable @typescript-eslint/no-unsafe-call */
 });
 
 describe('mock timer helper', () => {
@@ -94,6 +96,7 @@ describe('mock timer helper', () => {
         expect(isTestUsingFakeTimer()).toBeFalsy();
     });
 
+    /* eslint-disable @typescript-eslint/no-unsafe-call */
     it('should result in error when mock timer is being used from API', async () => {
         // Baseline check
         document.body.innerHTML = domWithNoA11yIssues;
@@ -102,6 +105,7 @@ describe('mock timer helper', () => {
         jest.useFakeTimers();
         await expect(expect(document).toBeAccessible()).rejects.toThrow();
     });
+    /* eslint-enable @typescript-eslint/no-unsafe-call */
 
     it('should skip automatic check when mock timer is being used', async () => {
         document.body.innerHTML = domWithA11yIssues;
