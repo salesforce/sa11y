@@ -103,7 +103,7 @@ describe('automatic checks registration', () => {
 });
 
 describe('automatic checks call', () => {
-    const testPath = expect.getState().testPath;
+    const testPath = expect.getState().testPath || 'defaultPath';
     const nonExistentFilePaths = ['foo', `foo${testPath}`, `${testPath}foo`];
     // Note: cleanup required at end of each test to prevent dom being checked again
     // after the test as part of the afterEach automatic check hook

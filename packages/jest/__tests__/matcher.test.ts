@@ -79,7 +79,7 @@ describe('toBeAccessible jest a11y matcher', () => {
 });
 
 describe('mock timer helper', () => {
-    afterEach(jest.useRealTimers);
+    afterEach(() => jest.useRealTimers());
 
     it('should detect when mock timer is being used', () => {
         // Baseline checks
