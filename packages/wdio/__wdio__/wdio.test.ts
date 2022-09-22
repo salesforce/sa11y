@@ -10,14 +10,20 @@ import { assertAccessible, assertAccessibleSync, getAxeVersion, loadAxe, runAxe 
 import {
     a11yIssuesCount,
     a11yIssuesCountFiltered,
-    checkA11yErrorWdio,
     domWithA11yIssuesBodyID,
     exceptionList,
     htmlFileWithA11yIssues,
     htmlFileWithNoA11yIssues,
     shadowDomID,
 } from '@sa11y/test-utils';
-import { AxeResults, axeVersion, WdioOptions } from '@sa11y/common';
+import {
+    AxeResults,
+    axeVersion,
+    WdioAssertFunction,
+    WdioOptions,
+    axeRuntimeExceptionMsgPrefix,
+    errMsgHeader,
+} from '@sa11y/common';
 
 /**
  * Test util function to get violations from given html file
@@ -25,6 +31,38 @@ import { AxeResults, axeVersion, WdioOptions } from '@sa11y/common';
 async function getViolationsHtml(htmlFilePath: string): Promise<AxeResults> {
     await browser.url(htmlFilePath);
     return runAxe();
+}
+
+async function checkA11yErrorWdio(
+    assertFunc: WdioAssertFunction,
+    expectNumA11yIssues = 0,
+    options: Partial<WdioOptions> = {}
+): Promise<void> {
+    // TODO (debug): setting expected number of assertions doesn't seem to be working correctly in mocha
+    //  https://webdriver.io/docs/assertion.html
+    //  Check mocha docs: https://mochajs.org/#assertions
+    //  Checkout Jasmine ? https://webdriver.io/docs/frameworks.html
+    // expect.assertions(99999); // still passes ???
+
+    // TODO (debug): Not able to get the expect().toThrow() with async functions to work with wdio test runner
+    //  hence using the longer try.. catch alternative
+    // expect(async () => await assertAccessible()).toThrow();
+    let err: Error = new Error();
+    try {
+        await assertFunc(options);
+    } catch (e) {
+        err = e as Error;
+    }
+    expect(err).toBeTruthy();
+    expect(err.message).not.toContain(axeRuntimeExceptionMsgPrefix);
+
+    if (expectNumA11yIssues > 0) {
+        expect(err).not.toEqual(new Error());
+        expect(err.toString()).toContain(`${expectNumA11yIssues} ${errMsgHeader}`);
+    } else {
+        expect(err).toEqual(new Error());
+        expect(err.toString()).not.toContain(errMsgHeader);
+    }
 }
 
 describe('integration test axe with WebdriverIO', () => {
