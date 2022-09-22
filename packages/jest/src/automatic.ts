@@ -94,8 +94,6 @@ export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCh
     if (opts.runAfterEach) {
         // TODO (fix): Make registration idempotent
         log('Registering sa11y checks to be run automatically after each test');
-        afterEach(async () => {
-            await automaticCheck(opts);
-        });
+        afterEach(() => automaticCheck(opts));
     }
 }
