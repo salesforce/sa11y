@@ -2,7 +2,13 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
       "config:base",
-      "helpers:disableTypesNodeMajor"
+      "helpers:disableTypesNodeMajor",
+      ":automergeLinters",
+      ":automergeRequireAllStatusChecks",
+      ":automergeTesters",
+      ":automergeTypes",
+      ":enableVulnerabilityAlertsWithLabel(security)",
+      ":maintainLockFilesWeekly"
     ],
     "major": {
         "extends": [":dependencyDashboardApproval"]
@@ -25,7 +31,7 @@
         },
         {
             "matchDepTypes": ["devDependencies"],
-            "matchPackagePatterns": ["chromedriver", "cspell", "eslint", "prettier"],
+            "matchPackagePatterns": ["chromedriver", "cspell"],
             "automerge": true
         }
     ]
