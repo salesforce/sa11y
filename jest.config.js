@@ -5,8 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-const integrationTestPath = '<rootDir>/packages/test-integration';
-
 /** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
     coverageThreshold: {
@@ -17,8 +15,6 @@ module.exports = {
             statements: 80,
         },
     },
-    // Direct Jest to read the jest config file from integration tests
-    projects: ['<rootDir>', integrationTestPath],
     testEnvironment: 'jsdom',
     testRunner: 'jest-jasmine2',
     testMatch: ['**/__tests__/**/*.[jt]s?(x)'],
