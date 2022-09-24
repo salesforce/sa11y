@@ -76,7 +76,7 @@
         "cspell": "6.10.1",
         "depcheck": "1.4.3",
         "doctoc": "2.2.1",
-        "eslint": "8.23.1",
+        "eslint": "8.24.0",
         "eslint-config-prettier": "8.5.0",
         "eslint-import-resolver-typescript": "3.5.1",
         "eslint-plugin-eslint-comments": "3.2.0",
