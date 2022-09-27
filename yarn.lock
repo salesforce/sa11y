@@ -5102,17 +5102,6 @@ cosmiconfig-typescript-loader@^4.0.0:
   resolved "https://registry.yarnpkg.com/cosmiconfig-typescript-loader/-/cosmiconfig-typescript-loader-4.0.0.tgz#4a6d856c1281135197346a6f64dfa73a9cd9fefa"
   integrity sha512-cVpucSc2Tf+VPwCCR7SZzmQTQkPbkk4O01yXsYqXBIbjE1bhwqSyAgYQkRK1un4i0OPziTleqFhdkmOc4RQ/9g==
 
-cosmiconfig@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-6.0.0.tgz#da4fee853c52f6b1e6935f41c1a2fc50bd4a9982"
-  integrity sha512-xb3ZL6+L8b9JLLCx3ZdoZy4+2ECphCMo2PwqgP1tlfVq6M6YReyzBJtvWWtbDSpNr9hn96pkCiZqUcFEc+54Qg==
-  dependencies:
-    "@types/parse-json" "^4.0.0"
-    import-fresh "^3.1.0"
-    parse-json "^5.0.0"
-    path-type "^4.0.0"
-    yaml "^1.7.2"
-
 cosmiconfig@^7.0.0, cosmiconfig@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-7.0.1.tgz#714d756522cace867867ccb4474c5d01bbae5d6d"
@@ -7203,7 +7192,7 @@ immutable@^4.0.0:
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.1.0.tgz#f795787f0db780183307b9eb2091fcac1f6fafef"
   integrity sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==
 
-import-fresh@^3.0.0, import-fresh@^3.1.0, import-fresh@^3.2.1, import-fresh@^3.3.0:
+import-fresh@^3.0.0, import-fresh@^3.2.1, import-fresh@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
   integrity sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==
@@ -8576,22 +8565,22 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lockfile-lint-api@^5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/lockfile-lint-api/-/lockfile-lint-api-5.3.0.tgz#5cffd2d3bf3470f182aee74346e80bb18e2ef20e"
-  integrity sha512-f7nL2q3vhr0qtokV1UwGg1HmAPoNhX96/bqrm0FDcJsFBjmkX3HAcHZQZ7MqojFbioXR0Pgk2EAaoSBbtm+13w==
+lockfile-lint-api@^5.4.4:
+  version "5.4.4"
+  resolved "https://registry.yarnpkg.com/lockfile-lint-api/-/lockfile-lint-api-5.4.4.tgz#9657aff1d5b87d26af9b93f1842345ebe611dfc3"
+  integrity sha512-fofmQur6Ff35fp3egOrOMY6qEvaFDT+erqm2wvqkSeJxRUooTky8fLgDlxqBGI/Z+hy2h9L6QbCZCQnsFSBU3Q==
   dependencies:
     "@yarnpkg/parsers" "^3.0.0-rc.6"
-    object-hash "^2.0.1"
+    object-hash "^3.0.0"
 
-lockfile-lint@4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/lockfile-lint/-/lockfile-lint-4.8.0.tgz#5d68172d81b24cc4159e693950c630b6b22a21d3"
-  integrity sha512-GxrSSWdSE/2E0kjWKzA0G/Ni+SS+MQJp3pOgHj5npQRAZZiAtZTZdTtpmX7glXU/j2sZIzSxpVa8lFRILFveYA==
+lockfile-lint@4.9.4:
+  version "4.9.4"
+  resolved "https://registry.yarnpkg.com/lockfile-lint/-/lockfile-lint-4.9.4.tgz#bcc8dc72b9559c3af294ce753a89aeea3cd92817"
+  integrity sha512-5w9VmEyXo9ig40B91lHM4MDKPKjC6gZd72io+jysG9p+LVacF9PfPDB+CAMxFjUyBlLcrL17Ba+eU/f1A8bQUw==
   dependencies:
-    cosmiconfig "^6.0.0"
+    cosmiconfig "^7.0.1"
     debug "^4.1.1"
-    lockfile-lint-api "^5.3.0"
+    lockfile-lint-api "^5.4.4"
     yargs "^16.0.0"
 
 lodash.clonedeep@^4.5.0:
@@ -9632,10 +9621,10 @@ object-assign@^4.1.1:
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==
 
-object-hash@^2.0.1:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-2.2.0.tgz#5ad518581eefc443bd763472b8ff2e9c2c0d54a5"
-  integrity sha512-gScRMn0bS5fH+IuwyIFgnh9zBdo4DV+6GhygmWM9HyNJSgS0hScp1f5vjtm7oIIOiT9trXrShAkLFSc2IqKNgw==
+object-hash@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-3.0.0.tgz#73f97f753e7baffc0e2cc9d6e079079744ac82e9"
+  integrity sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==
 
 object-inspect@^1.12.0, object-inspect@^1.12.2, object-inspect@^1.9.0:
   version "1.12.2"
@@ -12275,7 +12264,7 @@ yallist@^4.0.0:
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
 
-yaml@^1.10.0, yaml@^1.7.2:
+yaml@^1.10.0:
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"
   integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==
