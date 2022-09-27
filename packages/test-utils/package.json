@@ -20,6 +20,6 @@
         "@sa11y/common": "3.1.0"
     },
     "devDependencies": {
-        "@jest/globals": "^27"
+        "@jest/globals": "27.5.1"
     }
 }
