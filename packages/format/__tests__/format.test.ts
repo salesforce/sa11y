@@ -9,6 +9,7 @@ import * as axe from 'axe-core';
 import { beforeEachSetup, domWithA11yIssues, domWithNoA11yIssues } from '@sa11y/test-utils';
 import { AxeResults } from '@sa11y/common';
 import { A11yError } from '../src';
+import { expect } from '@jest/globals';
 
 // TODO (refactor): Move to common test-utils
 //  - without creating circular dep due to "A11yError"

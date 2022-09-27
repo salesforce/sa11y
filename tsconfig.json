@@ -11,5 +11,9 @@
         { "path": "./packages/jest" },
         { "path": "./packages/wdio" }
     ],
-    "exclude": ["**/node_modules"]
+    "exclude": ["**/node_modules"],
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true
+      },
+    "extends": "@tsconfig/node14/tsconfig.json"
 }

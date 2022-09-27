@@ -99,7 +99,7 @@ exports.config = {
     // - @wdio/mocha-framework, @wdio/jasmine-framework
     // - @wdio/local-runner, @wdio/lambda-runner
     // - @wdio/sumologic-reporter
-    // - @wdio/cli, @wdio/config, @wdio/sync, @wdio/utils
+    // - @wdio/cli, @wdio/config, @wdio/utils
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     // logLevels: {
     //     webdriver: 'info',
@@ -139,7 +139,7 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'mocha',
+    framework: 'jasmine',
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
@@ -153,15 +153,15 @@ exports.config = {
     reporters: ['spec'],
 
     //
-    // Options to be passed to Mocha.
-    // See the full list at http://mochajs.org/
-    mochaOpts: {
-        // TypeScript setup
-        // TODO (fix): when there is a TS warning/error, wdio runner skips tests
-        // TODO (refactor): migrate from ts-node
-        //  https://github.com/salesforce/sa11y/issues/42
-        require: ['ts-node/register'],
-        ui: 'bdd',
-        timeout: debug ? 600000000 : 60000,
+    // Options to be passed to Jasmine
+    jasmineOpts: {
+        defaultTimeoutInterval: debug ? 600000000 : 60000,
+    },
+    autoCompileOpts: {
+        autoCompile: true,
+
+        tsNodeOpts: {
+            transpileOnly: true,
+        },
     },
 };

@@ -20,12 +20,6 @@
             "extends": [":disableMajorUpdates"]
         },
         {
-            "matchPackagePatterns": ["^@wdio/"],
-            "matchPackageNames": ["webdriverio", "wdio-chromedriver-service"],
-            "allowedVersions": "<7",
-            "groupName": "WebdriverIO"
-        },
-        {
           "matchPackageNames": ["axe-core"],
           "extends": [":dependencyDashboardApproval"]
         },

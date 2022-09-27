@@ -34,10 +34,10 @@ export async function checkA11yErrorWdio(
     expect(err.message).not.toContain(axeRuntimeExceptionMsgPrefix);
 
     if (expectNumA11yIssues > 0) {
-        expect(err).not.toStrictEqual(new Error());
+        expect(err).not.toEqual(new Error());
         expect(err.toString()).toContain(`${expectNumA11yIssues} ${errMsgHeader}`);
     } else {
-        expect(err).toStrictEqual(new Error());
+        expect(err).toEqual(new Error());
         expect(err.toString()).not.toContain(errMsgHeader);
     }
 }

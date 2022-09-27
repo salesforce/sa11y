@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import * as fs from 'fs';
+import * as fs from 'fs/promises';
 import * as path from 'path';
 import { namespace } from '../src';
 import { axeVersion } from '@sa11y/common';
@@ -39,76 +39,71 @@ function isLoaded(objName: string): Promise<string | boolean> {
     }, objName);
 }
 
-function loadMinJS(filePath = sa11yMinJS): void {
+async function loadMinJS(filePath = sa11yMinJS): Promise<void> {
     const sa11yMinJsPath = path.resolve(__dirname, filePath);
-    const sa11yMinJs = fs.readFileSync(sa11yMinJsPath).toString();
+    const sa11yMinJs = (await fs.readFile(sa11yMinJsPath)).toString();
     if (sa11yMinJs.length <= 0) throw new Error('Unable to load min js ' + filePath);
-    void browser.execute(sa11yMinJs);
+    return browser.execute(sa11yMinJs);
 }
 
 /**
  * Test util function to inject given file and verify that sa11y and axe are loaded into browser
  */
-function verifySa11yLoaded(filePath: string): void {
-    void browser.reloadSession();
-    loadMinJS(filePath);
+async function verifySa11yLoaded(filePath: string): Promise<void> {
+    await browser.reloadSession();
+    await loadMinJS(filePath);
     // After injecting sa11y and axe should be defined
     const packageJSON = JSON.parse(
-        fs.readFileSync(path.resolve(__dirname, '../package.json')).toString()
+        (await fs.readFile(path.resolve(__dirname, '../package.json'))).toString()
     ) as ObjectWithVersion;
-    expect(isLoaded(namespace)).toEqual(packageJSON.version);
-    expect(isLoaded('axe')).toEqual(axeVersion);
+    await expectAsync(isLoaded(namespace)).toBeResolvedTo(packageJSON.version);
+    await expectAsync(isLoaded('axe')).toBeResolvedTo(axeVersion);
 }
 
-function checkNumViolations(
+async function checkNumViolations(
     scope = '',
     exceptionList = {},
     expectedNumViolations = a11yIssuesCount,
     script = ''
-): void {
+): Promise<void> {
     const getViolationsScript =
         script ||
         `return JSON.parse((await sa11y.checkAccessibility(
                 '${scope}',
                 sa11y.base,
                 ${JSON.stringify(exceptionList)}))).length;`;
-    void browser.url(htmlFileWithNoA11yIssues);
-    loadMinJS();
-    expect(browser.execute(getViolationsScript)).toBe(0);
+    await browser.url(htmlFileWithNoA11yIssues);
+    await loadMinJS();
+    await expectAsync(browser.execute(getViolationsScript)).toBeResolvedTo(0);
 
-    void browser.url(htmlFileWithA11yIssues);
-    loadMinJS();
-    expect(browser.execute(getViolationsScript)).toBe(expectedNumViolations);
+    await browser.url(htmlFileWithA11yIssues);
+    await loadMinJS();
+    await expectAsync(browser.execute(getViolationsScript)).toBeResolvedTo(expectedNumViolations);
 }
 
 describe('@sa11y/browser-lib', () => {
-    it('should not have axe or sa11y loaded to start with', () => {
-        expect(isLoaded(namespace)).toBe(false);
-        expect(isLoaded('axe')).toBe(false);
+    it('should not have axe or sa11y loaded to start with', async () => {
+        await expectAsync(isLoaded(namespace)).toBeResolvedTo(false);
+        await expectAsync(isLoaded('axe')).toBeResolvedTo(false);
     });
 
     it('should inject minified js', () => verifySa11yLoaded(sa11yMinJS));
 
-    it('should inject un-minified js', () => {
-        verifySa11yLoaded(sa11yJS);
-    });
+    it('should inject un-minified js', () => verifySa11yLoaded(sa11yJS));
 
-    it('should invoke functions on axe e.g. getRules', () => {
-        loadMinJS();
-        expect(browser.execute('return axe.getRules().length')).toEqual(full.runOnly.values.length);
+    it('should invoke functions on axe e.g. getRules', async () => {
+        await loadMinJS();
+        return expectAsync(browser.execute('return axe.getRules().length')).toBeResolvedTo(full.runOnly.values.length);
     });
 
     it('should run a11y checks using axe', () => {
-        checkNumViolations('', {}, a11yIssuesCount, 'return (await axe.run()).violations.length;');
+        return checkNumViolations('', {}, a11yIssuesCount, 'return (await axe.run()).violations.length;');
     });
 
-    it('should run a11y checks using sa11y', () => {
-        checkNumViolations();
-    });
+    it('should run a11y checks using sa11y', () => checkNumViolations());
 
-    it('should filter a11y violations using sa11y', () => {
-        checkNumViolations('', exceptionList, a11yIssuesCountFiltered);
-    });
+    it('should filter a11y violations using sa11y', () =>
+        checkNumViolations('', exceptionList, a11yIssuesCountFiltered));
 
     it('should analyze only specified scope using sa11y', () => checkNumViolations('div', {}, 1));
 });

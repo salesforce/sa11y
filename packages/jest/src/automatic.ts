@@ -9,6 +9,7 @@ import { AxeResults, log } from '@sa11y/common';
 import { getViolationsJSDOM } from '@sa11y/assert';
 import { A11yError } from '@sa11y/format';
 import { isTestUsingFakeTimer } from './matcher';
+import { expect } from '@jest/globals';
 
 /**
  * Options for Automatic checks to be passed to {@link registerSa11yAutomaticChecks}
@@ -36,8 +37,8 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
 /**
  * Check if current test file needs to be skipped based on any provided filter
  */
-export function skipTest(testPath: string, filesFilter?: string[]): boolean {
-    if (!filesFilter || !(filesFilter?.length > 0)) return false;
+export function skipTest(testPath: string | undefined, filesFilter?: string[]): boolean {
+    if (!testPath || !filesFilter || !(filesFilter?.length > 0)) return false;
     const skipTest = filesFilter.some((fileName) => testPath.toLowerCase().includes(fileName.toLowerCase()));
 
     if (skipTest) {
@@ -93,8 +94,6 @@ export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCh
     if (opts.runAfterEach) {
         // TODO (fix): Make registration idempotent
         log('Registering sa11y checks to be run automatically after each test');
-        afterEach(async () => {
-            await automaticCheck(opts);
-        });
+        afterEach(() => automaticCheck(opts));
     }
 }

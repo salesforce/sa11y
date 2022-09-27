@@ -1,0 +1,2 @@
+# Ignore webdriverio - we need the types for `WebdriverIO.Browser`
+ignores: ['webdriverio']

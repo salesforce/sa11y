@@ -8,6 +8,7 @@
 import { toBeAccessible } from './matcher';
 import { A11yConfig } from '@sa11y/common';
 import { AutoCheckOpts, registerSa11yAutomaticChecks } from './automatic';
+import { expect } from '@jest/globals';
 
 export const disabledRules = [
     // Descendancy checks that would fail at unit/component level, but pass at page level

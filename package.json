@@ -11,9 +11,7 @@
         "url": "https://github.com/salesforce/sa11y/issues"
     },
     "homepage": "https://github.com/salesforce/sa11y",
-    "workspaces": [
-        "packages/*"
-    ],
+    "workspaces": ["packages/*"],
     "scripts": {
         "build": "tsc --build && yarn workspace @sa11y/browser-lib build",
         "build:ci": "yarn install --frozen-lockfile && yarn build",
@@ -64,11 +62,10 @@
         "@types/node": "15.14.1",
         "@typescript-eslint/eslint-plugin": "5.38.1",
         "@typescript-eslint/parser": "5.38.1",
-        "@wdio/cli": "6.12.1",
-        "@wdio/local-runner": "6.10.5",
-        "@wdio/mocha-framework": "6.10.4",
-        "@wdio/spec-reporter": "6.11.0",
-        "@wdio/sync": "6.10.4",
+        "@wdio/cli": "7",
+        "@wdio/local-runner": "7",
+        "@wdio/jasmine-framework": "7",
+        "@wdio/spec-reporter": "7",
         "babel-jest": "27.5.1",
         "chromedriver": "105.0.1",
         "commitizen": "4.2.5",
@@ -100,10 +97,10 @@
         "ts-node": "10.9.1",
         "typescript": "4.8.3",
         "vertioner": "1.0.6",
-        "wdio-chromedriver-service": "6.0.4",
-        "webdriverio": "6.12.1"
+        "wdio-chromedriver-service": "7",
+        "webdriverio": "7"
     },
     "engines": {
-        "node": "^14"
+        "node": "^14 || ^16"
     }
 }

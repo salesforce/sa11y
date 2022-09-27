@@ -4,7 +4,7 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist",
-        "types": ["webdriverio", "jest"],
+        "types": ["webdriverio/async", "jest"],
         "noEmitOnError": false,
         "declaration": false,
         "declarationMap": false,

@@ -14,6 +14,7 @@ import { axeVersion } from '@sa11y/common';
 import * as axe from 'axe-core';
 import * as fs from 'fs';
 import * as path from 'path';
+import { expect } from '@jest/globals';
 
 /**
  * TODO:

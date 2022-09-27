@@ -10,6 +10,7 @@ import { AggregatedResult, AssertionResult, TestResult } from '@jest/test-result
 import { A11yError, A11yResult } from '@sa11y/format';
 import { getA11yError } from '@sa11y/format/__tests__/format.test';
 import { domWithVisualA11yIssues } from '@sa11y/test-utils';
+import { expect } from '@jest/globals';
 
 const a11yResults: A11yResult[] = [];
 const aggregatedResults = makeEmptyAggregatedTestResult();

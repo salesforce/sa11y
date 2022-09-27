@@ -10,11 +10,11 @@ import * as automatic from '../src/automatic';
 import { automaticCheck, registerSa11yAutomaticChecks, skipTest } from '../src/automatic';
 import {
     beforeEachSetup,
-    checkA11yErrorFunc,
     domWithA11yIssues,
     domWithNoA11yIssues,
     domWithNoA11yIssuesChildCount,
 } from '@sa11y/test-utils';
+import { expect, jest } from '@jest/globals';
 
 describe('automatic checks registration', () => {
     const prevEnv = process.env;
@@ -33,7 +33,7 @@ describe('automatic checks registration', () => {
 
     it('should run when called directly without setup', () => {
         registerSa11yAutomaticChecks(); // exercising default args for code cov
-        expect(registerAutomaticMock).toHaveBeenCalledWith();
+        expect(registerAutomaticMock).toHaveBeenCalled();
     });
 
     it('should not run by default via setup', () => {
@@ -103,34 +103,32 @@ describe('automatic checks registration', () => {
 });
 
 describe('automatic checks call', () => {
-    const testPath = expect.getState().testPath;
+    const testPath = expect.getState().testPath || 'defaultPath';
     const nonExistentFilePaths = ['foo', `foo${testPath}`, `${testPath}foo`];
     // Note: cleanup required at end of each test to prevent dom being checked again
     // after the test as part of the afterEach automatic check hook
     beforeEach(beforeEachSetup);
 
-    it('should not raise a11y issues for DOM without a11y issues', async () => {
+    it('should not raise a11y issues for DOM without a11y issues', () => {
         document.body.innerHTML = domWithNoA11yIssues;
-        await expect(automaticCheck()).resolves.not.toThrow();
+        return expect(automaticCheck()).resolves.not.toThrow();
     });
 
-    // eslint-disable-next-line jest/expect-expect
     it('should raise a11y issues for DOM with a11y issues', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true }));
+        await expect(automaticCheck({ cleanupAfterEach: true })).rejects.toThrow('1 Accessibility');
     });
 
-    // eslint-disable-next-line jest/expect-expect
     it.each([0, 1, 2, 3])(
         'should raise consolidated a11y issues for DOM with multiple a11y issues',
-        async (numNodesWithIssues) => {
+        async (numNodesWithIssues: number) => {
             document.body.innerHTML = domWithA11yIssues;
 
             // Note: Create multiple children in body with a11y issues
             for (let i = 0; i < numNodesWithIssues; i++) {
                 document.body.innerHTML += `<a id="link-${i}" href="#"></a>`;
             }
-            await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true }));
+            await expect(automaticCheck({ cleanupAfterEach: true })).rejects.toThrow();
         }
     );
 
@@ -148,16 +146,15 @@ describe('automatic checks call', () => {
         expect(document.body.childElementCount).toBe(domWithNoA11yIssuesChildCount);
     });
 
-    /* eslint-disable jest/expect-expect */
     it('should not raise error for duplicated issues', async () => {
         // TODO (Refactor): extract out duplicated code to set dom, expect assertions and invoke automatic check
         document.body.innerHTML = domWithA11yIssues;
         const opts = { cleanupAfterEach: false, consolidateResults: true };
-        await checkA11yErrorFunc(() => automaticCheck(opts));
+        await expect(automaticCheck(opts)).rejects.toThrow();
         // Should not throw error for the same DOM with consolidation
-        await checkA11yErrorFunc(() => automaticCheck(opts), false, true);
+        await expect(automaticCheck(opts)).resolves.toBeUndefined();
         // Should throw error again without consolidation
-        await checkA11yErrorFunc(() => automaticCheck({ cleanupAfterEach: true, consolidateResults: false }));
+        await expect(automaticCheck({ cleanupAfterEach: true, consolidateResults: false })).rejects.toThrow();
     });
 
     it.each([
@@ -178,16 +175,11 @@ describe('automatic checks call', () => {
 
     it('should skip auto checks when file is excluded using filter', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(
-            () => automaticCheck({ filesFilter: [...nonExistentFilePaths, testPath] }),
-            false,
-            true
-        );
+        await expect(automaticCheck({ filesFilter: [...nonExistentFilePaths, testPath] })).resolves.toBeUndefined();
     });
 
     it('should run auto checks when file is not excluded using filter', async () => {
         document.body.innerHTML = domWithA11yIssues;
-        await checkA11yErrorFunc(() => automaticCheck({ filesFilter: nonExistentFilePaths }));
+        await expect(automaticCheck({ filesFilter: nonExistentFilePaths })).rejects.toThrow();
     });
-    /* eslint-enable jest/expect-expect */
 });

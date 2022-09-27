@@ -8,25 +8,25 @@
 import * as axe from 'axe-core';
 import { defaultRuleset } from '@sa11y/preset-rules';
 import { A11yError, exceptionListFilter } from '@sa11y/format';
-import { A11yConfig, AxeResults, axeVersion, getViolations, WdioOptions, WdioBrowser } from '@sa11y/common';
+import { A11yConfig, AxeResults, axeVersion, getViolations, WdioOptions } from '@sa11y/common';
 
 /**
  * Merge given options with default options
  */
 function setDefaultOptions(opts: Partial<WdioOptions> = {}): WdioOptions {
     const defaultOptions: WdioOptions = {
-        driver: global.browser, // Need to be defined inside a function as it is populated at runtime
+        driver: browser, // Need to be defined inside a function as it is populated at runtime
         scope: undefined,
         rules: defaultRuleset,
         exceptionList: {},
     };
-    return Object.assign(Object.assign({}, defaultOptions), opts);
+    return Object.assign(Object.assign({}, defaultOptions), opts) as WdioOptions;
 }
 
 /**
  * Return version of axe injected into browser
  */
-export async function getAxeVersion(driver: WdioBrowser): Promise<typeof axeVersion> {
+export function getAxeVersion(driver: WebdriverIO.Browser): Promise<typeof axeVersion> {
     return driver.execute(() => {
         return typeof axe === 'object' ? axe.version : undefined;
     });
@@ -36,7 +36,7 @@ export async function getAxeVersion(driver: WdioBrowser): Promise<typeof axeVers
  * Load axe source into browser if it is not already loaded and return version of axe.
  * Since axe min js is large (400+kb), keep polling until given timeout in milliseconds.
  */
-export async function loadAxe(driver: WdioBrowser, timeout = 10000, pollTime = 100): Promise<void> {
+export async function loadAxe(driver: WebdriverIO.Browser, timeout = 10000, pollTime = 100): Promise<void> {
     // TODO (perf): Conditionally injecting axe based on axe version doesn't
     //  work reliably resulting in axe undefined error sometimes
     await driver.execute(axe.source);
@@ -56,12 +56,12 @@ export async function runAxe(options: Partial<WdioOptions> = {}): Promise<AxeRes
     await loadAxe(driver);
 
     // run axe inside browser and return violations
-    return (await driver.executeAsync(
+    return driver.executeAsync(
         // TODO (chore): Fix lint error
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         // TS2345: Argument of type is not assignable to parameter of type
-        (elemSelector: string, rules: A11yConfig, done: CallableFunction) => {
+        (elemSelector: Selector | undefined, rules?: A11yConfig, done: CallableFunction) => {
             axe.run(
                 (elemSelector || document) as axe.ElementContext,
                 rules as axe.RunOptions,
@@ -73,7 +73,7 @@ export async function runAxe(options: Partial<WdioOptions> = {}): Promise<AxeRes
         },
         elemSelector,
         rules
-    )) as AxeResults;
+    );
 }
 
 /**
@@ -96,9 +96,10 @@ export async function assertAccessible(opts: Partial<WdioOptions> = {}): Promise
  * Verify that the currently loaded page in the browser is accessible.
  * Throw an error with the accessibility issues found if it is not accessible.
  * Synchronous version of {@link assertAccessible}
+ * @deprecated Please update to using async method.
  */
 export function assertAccessibleSync(opts: Partial<WdioOptions> = {}): void {
-    const options = setDefaultOptions(opts);
+    const options: WdioOptions = setDefaultOptions(opts);
     // Note: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-sync#switching-between-sync-and-async
     void options.driver.call(async () => {
         await assertAccessible(options);
