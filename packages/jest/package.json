@@ -33,7 +33,7 @@
         "jest": ">=27.0.0"
     },
     "devDependencies": {
-        "@jest/globals": "27.5.1",
+        "@jest/globals": "28",
         "@sa11y/common": "3.1.0",
         "@sa11y/test-utils": "3.1.0"
     },
