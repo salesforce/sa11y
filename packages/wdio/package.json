@@ -39,7 +39,7 @@
     },
     "devDependencies": {
         "@sa11y/test-utils": "3.1.0",
-        "webdriverio": "7.24.1"
+        "webdriverio": "7.25.0"
     },
     "publishConfig": {
         "access": "public"
