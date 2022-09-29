@@ -24,7 +24,7 @@
         "@sa11y/common": "3.1.0"
     },
     "devDependencies": {
-        "@jest/globals": "27.5.1",
+        "@jest/globals": "28",
         "axe-core": "4.3.3",
         "markdown-table-ts": "1.0.3"
     },
