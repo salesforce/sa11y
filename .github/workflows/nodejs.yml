@@ -36,3 +36,4 @@ jobs:
             - run: yarn test:ci
 
             - uses: codecov/codecov-action@v3
+            - run: npx semantic-release --dry-run

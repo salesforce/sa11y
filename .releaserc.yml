@@ -1,0 +1,14 @@
+branches:
+    - master
+    - name: alpha
+      prerelease: true
+      channel: alpha
+
+plugins:
+    - '@semantic-release/commit-analyzer'
+    - '@semantic-release/release-notes-generator'
+    - '@semantic-release/npm'
+    - '@semantic-release/github'
+
+debug: true
+dryRun: true
