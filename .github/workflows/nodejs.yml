@@ -54,7 +54,9 @@ jobs:
               with:
                   fetch-depth: 0 # Need all git history & tags to determine next release version.
                   persist-credentials: false
-            - run: npx semantic-release --dry-run
+            - run: |
+                  npm install -g semantic-release @semantic-release/changelog
+                  npx semantic-release --dry-run
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
