@@ -1,5 +1,23 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
+## [4.0.0-alpha.1](https://github.com/salesforce/sa11y/compare/v3.1.0...v4.0.0-alpha.1) (2022-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* `sa11y` will no longer support Node.js 12, which is EOL since 30 April 2022
+
+### Features
+
+* remove support for Node.js 12 ([#116](https://github.com/salesforce/sa11y/issues/116)) ([43ade48](https://github.com/salesforce/sa11y/commit/43ade489bfab5d2c407b256117269475a3571fb7))
+* semantic-release ([18d2728](https://github.com/salesforce/sa11y/commit/18d2728c80da8a79792914727d74c57b0ed417b3))
+* tsconfig package for tsconfig.json ([#174](https://github.com/salesforce/sa11y/issues/174)) ([5ff2fd2](https://github.com/salesforce/sa11y/commit/5ff2fd20ef6671cb7eae579bcf6aeaf45f4b0c54))
+* webdriver7 ([#150](https://github.com/salesforce/sa11y/issues/150)) ([70dafc2](https://github.com/salesforce/sa11y/commit/70dafc2b376e754916c3814299148516a4c71037))
+
+# Changelog
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
