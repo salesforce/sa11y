@@ -61,7 +61,7 @@ jobs:
                       @semantic-release/git \
                       conventional-changelog-conventionalcommits
 
-                  npx semantic-release --dry-run
+                  npx semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
