@@ -58,7 +58,9 @@ jobs:
                   npm install -g \
                       semantic-release \
                       @semantic-release/changelog \
-                      @semantic-release/git
+                      @semantic-release/git \
+                      conventional-changelog-conventionalcommits
+
                   npx semantic-release --dry-run
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
