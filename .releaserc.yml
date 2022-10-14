@@ -7,8 +7,16 @@ branches:
 plugins:
     - '@semantic-release/commit-analyzer'
     - '@semantic-release/release-notes-generator'
+    - - '@semantic-release/changelog'
+      - changelogTitle: "# Changelog\n\nAll notable changes to this project will be documented in this file."
+    - - '@semantic-release/git'
+      - assets:
+            - 'CHANGELOG.md'
+            - '**/package.json'
+            - 'yarn.lock'
     - '@semantic-release/npm'
     - '@semantic-release/github'
 
 debug: true
 dryRun: true
+preset: conventionalcommits
