@@ -61,7 +61,7 @@ jobs:
                   cache: 'yarn'
 
             - run: yarn install --frozen-lockfile
-            - run: yarn run semantic-release --dryRun
+            - run: yarn run semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
