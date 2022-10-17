@@ -5,11 +5,13 @@
         "helpers:disableTypesNodeMajor",
         ":automergeLinters",
         ":automergeRequireAllStatusChecks",
+        ":automergePatch",
         ":automergeTesters",
         ":automergeTypes",
         ":enableVulnerabilityAlertsWithLabel(security)",
         ":label(dependencies)",
-        ":maintainLockFilesWeekly"
+        ":maintainLockFilesWeekly",
+        ":timezone(America/Los_Angeles)"
     ],
     "major": {
         "extends": [":dependencyDashboardApproval"]
