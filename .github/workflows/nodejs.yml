@@ -54,14 +54,14 @@ jobs:
               with:
                   fetch-depth: 0 # Need all git history & tags to determine next release version.
                   persist-credentials: false
-            - run: |
-                  npm install -g \
-                      semantic-release \
-                      @semantic-release/changelog \
-                      @semantic-release/git \
-                      conventional-changelog-conventionalcommits
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'yarn'
 
-                  npx semantic-release
+            - run: yarn install --frozen-lockfile
+            - run: yarn run semantic-release --dryRun --debug
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
