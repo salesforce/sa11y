@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0-alpha.2](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2022-10-18)
+
+
+### Bug Fixes
+
+* **docs:** fix broken badge image in README.md ([e3efbaf](https://github.com/salesforce/sa11y/commit/e3efbafa56e2426ffacbdf7b8edee4176e7991ec))
+
 ## [4.0.0-alpha.1](https://github.com/salesforce/sa11y/compare/v3.1.0...v4.0.0-alpha.1) (2022-10-14)
 
 
