@@ -15,8 +15,8 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
   - [Unit Testing](#unit-testing)
   - [Integration Testing](#integration-testing)
 - [Release](#release)
+  - [Making a pre-release](#making-a-pre-release)
     - [Upgrade dependencies](#upgrade-dependencies)
-    - [Use local npm registry for testing](#use-local-npm-registry-for-testing)
 - [Editor Configurations](#editor-configurations)
   - [Types](#types)
   - [ESLint](#eslint)
@@ -30,7 +30,6 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
   - [Check your submission](#check-your-submission)
     - [Lint your changes](#lint-your-changes)
     - [Run tests](#run-tests)
-    - [Test CI config](#test-ci-config)
   - [Create a pull request](#create-a-pull-request)
     - [Pull Request Title](#pull-request-title)
   - [Update the pull request](#update-the-pull-request)
@@ -63,7 +62,7 @@ Before you start, it helps to be familiar with [Web Accessibility](https://trail
 
 ## Requirements
 
--   [Node](https://nodejs.org/) >= 14
+-   [Node](https://nodejs.org/) >= 16
 -   [Yarn](https://yarnpkg.com/) >= 1.22
 
 ## Installation
@@ -139,44 +138,25 @@ Your test should now be running in the Chrome debugger. You get your handy conso
 
 ## Release
 
--   Generate Changelog
-    -   `yarn release:changelog`
-    -   Cleanup `CHANGELOG` to remove references to squashed commits and replace them with references to corresponding PRs where possible
--   `yarn release:version` to bump versions interactively
-    -   `yarn release:version:auto` to automatically determine version bump based on commits
--   To publish packages to npm
-    -   `npm config get registry`
-        -   ensure the correct OSS public registry is selected
-    -   `npm login`
-    -   `yarn release:publish`
-    -   `npm view <pkg>`
-        -   check meta-data about published packages
--   Create a release in github
-    -   Bump `version` in root `package.json` to reflect the changes to the packages since last release
-        -   Use that root `version` for the github release
-    -   Add release notes to reflect Changelog since last release
--   If you couldn't make these changes in the last PR that went into master, you can make a separate PR for release
-    -   Create a `release` branch from `master`
-    -   Commit changes to versions, changelog
-        -   Changes should be limited to non-source code changes (docs, config)
-    -   Push the `release` branch and create a pull request against `master`
-        -   with PR title of the format `chore(release): ...`
+-   Merge to the default branch. This project uses `semantic-release`, so your changes will be released immediately. The version bump comes from the conventional commit type:
+
+| Type            | Release type | Trigger a release |
+|-----------------|--------------|-------------------|
+| breaking change | major        | Yes               |
+| `feat`          | minor        | yes               |
+| `fix`           | patch        | yes               |
+| `perf`          | patch        | yes               |
+| `docs(README)`  | patch        | yes               |
+
+### Making a pre-release
+
+-   Merge to the `alpha` branch. It will always publish with the NPM `@alpha` tag.
 
 #### Upgrade dependencies
 
 -   `yarn install:update`
     -   Select dependencies to update
--   Check for CircleCI Orb updates
-    -   [circleci/node](https://circleci.com/developer/orbs/orb/circleci/node)
-    -   [circleci/browser-tools](https://circleci.com/developer/orbs/orb/circleci/browser-tools)
-    -   update CircleCI config file
-    -   [Test CI config](#test-ci-config)
-
-#### Use local npm registry for testing
-
--   Use [verdaccio](https://github.com/verdaccio/verdaccio) to spin-up a local npm registry
--   Packages can be published to it by overriding the `registry` option
-    -   e.g. `yarn release:publish --registry http://localhost:4873/`
+-   Check for GitHub Action updates
 
 ## Editor Configurations
 
@@ -285,13 +265,6 @@ Test your change by running [the unit tests and integration tests](#testing).
 
 -   `yarn test`
 
-#### Test CI config
-
-**Optionally** test any changes to CI config locally by using [the CircleCI local CLI](https://circleci.com/docs/2.0/local-cli/)
-
--   `circleci config validate`
--   `circleci local execute --job build-and-test`
-
 ### Create a pull request
 
 If you've never created a pull request before, follow [these
@@ -348,7 +321,7 @@ The **header** is mandatory, and the **scope** of the header is optional.
 Any line of the commit message cannot be longer 100 characters! This allows the message to be easier
 to read on GitHub as well as in various git tools.
 
-Footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
+Footer should contain a [closing reference to an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) if any.
 
 Samples: (even more [samples](https://github.com/salesforce/sa11y/pulls))
 
@@ -408,8 +381,8 @@ The footer should contain any information about **Breaking Changes** and is also
 
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message is then used for this.
 
-[fork-a-repo]: https://help.github.com/en/articles/fork-a-repo
-[configuring-a-remote-for-a-fork]: https://help.github.com/en/articles/configuring-a-remote-for-a-fork
-[setup-github-ssh]: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
-[creating-a-pull-request]: https://help.github.com/articles/creating-a-pull-request/
+[fork-a-repo]: https://docs.github.com/en/get-started/quickstart/fork-a-repo
+[configuring-a-remote-for-a-fork]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/configuring-a-remote-for-a-fork
+[setup-github-ssh]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+[creating-a-pull-request]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
 [eslint-integrations]: http://eslint.org/docs/user-guide/integrations
