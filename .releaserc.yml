@@ -11,13 +11,13 @@ plugins:
     - '@semantic-release/release-notes-generator'
     - - '@semantic-release/changelog'
       - changelogTitle: "# Changelog\n\nAll notable changes to this project will be documented in this file."
+    - - '@semantic-release/exec'
+      - publishCmd: yarn lerna publish --no-git-tag-version --no-git-reset --no-push --yes --dist-tag=${nextRelease.channel} --force-publish=* ${nextRelease.version}
     - - '@semantic-release/git'
       - assets:
             - 'CHANGELOG.md'
             - '**/package.json'
             - 'yarn.lock'
-    - - '@semantic-release/exec'
-      - publishCmd: yarn lerna publish --no-git-tag-version --no-git-reset --no-push --yes --dist-tag=${nextRelease.channel} --force-publish=* ${nextRelease.version}
     - '@semantic-release/github'
 
 debug: true
