@@ -2,15 +2,15 @@
     "name": "sa11y-monorepo",
     "private": true,
     "description": "Salesforce Accessibility Automated Testing Libraries and Tools (@sa11y packages)",
-    "license": "BSD-3-Clause",
+    "homepage": "https://github.com/salesforce/sa11y",
+    "bugs": {
+        "url": "https://github.com/salesforce/sa11y/issues"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/salesforce/sa11y.git"
     },
-    "bugs": {
-        "url": "https://github.com/salesforce/sa11y/issues"
-    },
-    "homepage": "https://github.com/salesforce/sa11y",
+    "license": "BSD-3-Clause",
     "workspaces": [
         "packages/*"
     ],
@@ -24,29 +24,29 @@
         "install:update": "yarn audit; yarn upgrade-interactive --latest && yarn install:clean && yarn test:clean",
         "lint": "eslint . --ext ts,js,md",
         "lint:all": "tsc --noEmit && yarn lint && yarn lint:lockfile && yarn lint:deps && yarn lint:depgraph",
-        "lint:deps": "lerna exec depcheck",
         "lint:depgraph": "yarn pkg:depgraph && git diff --quiet docs/sa11y_dependency_graph.svg || (echo 'Dependency graph needs to be updated!'; exit 1)",
+        "lint:deps": "lerna exec depcheck",
         "lint:fix": "yarn lint --fix",
         "lint:lockfile": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
         "lint:staged": "lint-staged",
         "lint:version": "lerna exec --stream --no-bail --since master vertioner",
         "lint:watch": "esw --watch --changed --color --ext .js,.ts",
+        "pkg:depgraph": "package-dependency-graph --graphviz --svg docs/sa11y_dependency_graph.svg",
+        "pkg:deps": "yarn pkg:list --graph",
         "pkg:diff": "lerna exec --stream --no-bail 'git diff --relative --stat origin/master'",
         "pkg:list": "lerna list --long --all --toposort",
-        "pkg:deps": "yarn pkg:list --graph",
-        "pkg:depgraph": "package-dependency-graph --graphviz --svg docs/sa11y_dependency_graph.svg",
+        "prepare": "is-ci || husky install",
         "release:changelog": "conventional-changelog --infile CHANGELOG.md --same-file --preset angular --output-unreleased",
+        "release:publish": "yarn test:clean && lerna publish from-package",
         "release:version": "yarn pkg:diff; lerna version --no-push --no-git-tag-version && yarn build:clean",
         "release:version:auto": "yarn release:version --conventional-commits --no-changelog && yarn build:clean",
-        "release:publish": "yarn test:clean && lerna publish from-package",
         "test": "jest --coverage --runInBand",
+        "test:auto": "SA11Y_AUTO=1 yarn test --json --outputFile jestResults.json",
         "test:ci": "yarn lint:all && yarn test --ci --reporters=default --reporters=jest-junit && yarn test:wdio",
         "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "SA11Y_DEBUG=1 node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "jest --watch",
-        "test:auto": "SA11Y_AUTO=1 yarn test --json --outputFile jestResults.json",
-        "test:wdio": "wdio run wdio.conf.js --suite wdio --suite integration --suite browserLib < /dev/null",
-        "prepare": "is-ci || husky install"
+        "test:wdio": "wdio run wdio.conf.js --suite wdio --suite integration --suite browserLib < /dev/null"
     },
     "config": {
         "commitizen": {
@@ -101,6 +101,7 @@
         "markdown-link-check": "3.10.3",
         "package-dependency-graph": "1.14.3",
         "prettier": "2.7.1",
+        "prettier-plugin-packagejson": "2.3.0",
         "rimraf": "3.0.2",
         "semantic-release": "19.0.5",
         "ts-node": "10.9.1",
