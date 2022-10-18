@@ -2,13 +2,6 @@
     "name": "@sa11y/wdio",
     "version": "4.0.0-alpha.0",
     "description": "Accessibility testing API for WebdriverIO",
-    "license": "BSD-3-Clause",
-    "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/wdio#readme",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/salesforce/sa11y.git",
-        "directory": "packages/wdio"
-    },
     "keywords": [
         "accessibility",
         "automated test",
@@ -17,6 +10,13 @@
         "WebdriverIO",
         "axe"
     ],
+    "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/wdio#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/salesforce/sa11y.git",
+        "directory": "packages/wdio"
+    },
+    "license": "BSD-3-Clause",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
@@ -34,17 +34,17 @@
         "@sa11y/preset-rules": "4.0.0-alpha.0",
         "axe-core": "4.3.3"
     },
-    "peerDependencies": {
-        "webdriverio": ">=6.0.0"
-    },
     "devDependencies": {
         "@sa11y/test-utils": "4.0.0-alpha.0",
         "webdriverio": "7.25.1"
     },
-    "publishConfig": {
-        "access": "public"
+    "peerDependencies": {
+        "webdriverio": ">=6.0.0"
     },
     "engines": {
         "node": "^14 || ^16"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
