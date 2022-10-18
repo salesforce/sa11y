@@ -16,7 +16,8 @@ plugins:
     - - '@semantic-release/git'
       - assets:
             - 'CHANGELOG.md'
-            - '**/package.json'
+            - 'package.json'
+            - 'packages/*/package.json'
             - 'yarn.lock'
     - '@semantic-release/github'
 
