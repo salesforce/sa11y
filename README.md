@@ -53,6 +53,7 @@ This repo contains the following packages for automated accessibility testing:
 ### [Jest integration](./packages/jest/README.md)
 
 [![published npm version of @sa11y/jest](https://img.shields.io/npm/v/@sa11y/jest)](https://www.npmjs.com/package/@sa11y/jest)
+![node-current (scoped)](https://img.shields.io/node/v/@sa11y/jest)
 
 -   Provides a `toBeAccessible()` accessibility matcher for Jest
     -   integrates the [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
@@ -64,6 +65,7 @@ This repo contains the following packages for automated accessibility testing:
 ### [WDIO integration](./packages/wdio/README.md)
 
 [![published npm version of @sa11y/wdio](https://img.shields.io/npm/v/@sa11y/wdio)](https://www.npmjs.com/package/@sa11y/wdio)
+![node-current (scoped)](https://img.shields.io/node/v/@sa11y/wdio)
 
 -   Provides `assertAccessible()`, `assertAccessibleSync()` APIs that can be used with [WebdriverIO](https://webdriver.io/) to check accessibility of web pages rendered in browsers
 
@@ -72,6 +74,7 @@ This repo contains the following packages for automated accessibility testing:
 ### [assertAccessible API](./packages/assert/README.md)
 
 [![published npm version of @sa11y/assert](https://img.shields.io/npm/v/@sa11y/assert)](https://www.npmjs.com/package/@sa11y/assert)
+![node-current (scoped)](https://img.shields.io/node/v/@sa11y/assert)
 
 -   Checks DOM or HTML Element for accessibility issues and throws an error if a11y issues are found
 -   To add accessibility testing to your Javascript unit tests _not_ using Jest, use this package
@@ -79,6 +82,7 @@ This repo contains the following packages for automated accessibility testing:
 ### [a11y results formatter](./packages/format/README.md)
 
 [![published npm version of @sa11y/format](https://img.shields.io/npm/v/@sa11y/format)](https://www.npmjs.com/package/@sa11y/format)
+![node-current (scoped)](https://img.shields.io/node/v/@sa11y/format)
 
 -   Formats raw JSON output of a11y issues from [axe] into an easy to consume format by consolidating and cross-referencing
 -   Used by assert Accessible API and Jest a11y matcher
@@ -87,6 +91,7 @@ This repo contains the following packages for automated accessibility testing:
 ### [Preset accessibility rules](./packages/preset-rules/README.md)
 
 [![published npm version of @sa11y/preset-rules](https://img.shields.io/npm/v/@sa11y/preset-rules)](https://www.npmjs.com/package/@sa11y/preset-rules)
+![node-current (scoped)](https://img.shields.io/node/v/@sa11y/preset-rules)
 
 -   Provides Base, Extended, Full accessibility preset rules as [axe] configuration
 -   The Base preset rule is used by default in the Jest a11y matcher and assert Accessible APIs
@@ -95,6 +100,7 @@ This repo contains the following packages for automated accessibility testing:
 ### [Minified bundle for testing in browser](./packages/browser-lib/README.md)
 
 [![published npm version of @sa11y/browser-lib](https://img.shields.io/npm/v/@sa11y/browser-lib)](https://www.npmjs.com/package/@sa11y/browser-lib)
+![node-current (scoped)](https://img.shields.io/node/v/@sa11y/browser-lib)
 
 -   Provides a minified version of selected `@sa11y` libraries to be injected into a browser (using webdriver) and executed from integration testing workflows.
 
