@@ -16,5 +16,8 @@
         "@sa11y/jest": "4.0.0-alpha.0",
         "@sa11y/test-utils": "4.0.0-alpha.0",
         "@sa11y/wdio": "4.0.0-alpha.0"
+    },
+    "engines": {
+        "node": "^14 || ^16"
     }
 }
