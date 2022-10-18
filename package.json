@@ -46,7 +46,7 @@
         "test:watch": "jest --watch",
         "test:auto": "SA11Y_AUTO=1 yarn test --json --outputFile jestResults.json",
         "test:wdio": "wdio run wdio.conf.js --suite wdio --suite integration --suite browserLib < /dev/null",
-        "prepare": "husky install"
+        "prepare": "is-ci || husky install"
     },
     "config": {
         "commitizen": {
@@ -87,6 +87,7 @@
         "eslint-plugin-tsdoc": "0.2.17",
         "eslint-watch": "8.0.0",
         "husky": "8.0.1",
+        "is-ci": "3.0.1",
         "jest": "28.1.3",
         "jest-environment-jsdom": "28.1.3",
         "jest-jasmine2": "28.1.3",
