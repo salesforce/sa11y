@@ -102,7 +102,7 @@ This repo contains the following packages for automated accessibility testing:
 [![published npm version of @sa11y/browser-lib](https://img.shields.io/npm/v/@sa11y/browser-lib)](https://www.npmjs.com/package/@sa11y/browser-lib)
 ![node-current (scoped)](https://img.shields.io/node/v/@sa11y/browser-lib)
 
--   Provides a minified version of selected `@sa11y` libraries to be injected into a browser (using webdriver) and executed from integration testing workflows.
+-   Provides a minified version of selected `@sa11y` libraries to be injected into a browser (using WebDriverIO) and executed from integration testing workflows.
 
 ### Internal packages
 
