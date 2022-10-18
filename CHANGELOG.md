@@ -9,6 +9,13 @@ All notable changes to this project will be documented in this file.
 
 * **package.json:** declare engines supported ([c3a212f](https://github.com/salesforce/sa11y/commit/c3a212f8437b0b63435c7c427caa659340b7b951))
 
+## [4.0.0-alpha.3](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2022-10-18)
+
+
+### Bug Fixes
+
+* **package.json:** declare engines supported ([c3a212f](https://github.com/salesforce/sa11y/commit/c3a212f8437b0b63435c7c427caa659340b7b951))
+
 ## [4.0.0-alpha.2](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2022-10-18)
 
 
