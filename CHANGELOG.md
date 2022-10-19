@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0-alpha.4](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2022-10-19)
+
 ## [4.0.0-alpha.3](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2022-10-18)
 
 
