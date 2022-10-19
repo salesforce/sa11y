@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0-alpha.6](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.5...v4.0.0-alpha.6) (2022-10-19)
+
+
+### Bug Fixes
+
+* **workflows:** set npm auth token correctly ([32a8608](https://github.com/salesforce/sa11y/commit/32a8608b7299edb326e446c37102a184ca92d0d0))
+
 ## [4.0.0-alpha.5](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.4...v4.0.0-alpha.5) (2022-10-19)
 
 
