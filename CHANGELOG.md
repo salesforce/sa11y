@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0-alpha.5](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.4...v4.0.0-alpha.5) (2022-10-19)
+
+
+### Bug Fixes
+
+* **semantic-release:** avoid verifying access, and turn log level up ([58ac699](https://github.com/salesforce/sa11y/commit/58ac69947eec5d0fbcefe6394eb1b125977637a4))
+
 ## [4.0.0-alpha.4](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2022-10-19)
 
 ## [4.0.0-alpha.3](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2022-10-18)
