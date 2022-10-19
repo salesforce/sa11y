@@ -62,7 +62,9 @@ jobs:
                   registry-url: 'https://registry.npmjs.org'
 
             - run: yarn install --frozen-lockfile
-            - run: yarn run semantic-release
+            - run: |
+                  npm whoami
+                  yarn run semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
