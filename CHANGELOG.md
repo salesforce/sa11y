@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0-alpha.7](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2022-10-19)
+
+
+### Bug Fixes
+
+* **ci:** node auth token had extra character ([c387311](https://github.com/salesforce/sa11y/commit/c387311996fde4ed3e3d1c2a44c66469bdbe9203))
+* troubleshoot npm auth ([72da605](https://github.com/salesforce/sa11y/commit/72da605b2830c5a23a2167fe14c8af48e10041a1))
+
 ## [4.0.0-alpha.6](https://github.com/salesforce/sa11y/compare/v4.0.0-alpha.5...v4.0.0-alpha.6) (2022-10-19)
 
 
