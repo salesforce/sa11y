@@ -59,9 +59,11 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'yarn'
+                  registry-url: 'https://registry.npmjs.org'
 
             - run: yarn install --frozen-lockfile
             - run: yarn run semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NODE_AUTH_TOKEN: $${{ secrets.NPM_TOKEN }} # used by setup-node@v3 action
