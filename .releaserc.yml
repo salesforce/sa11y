@@ -27,6 +27,4 @@ plugins:
             - 'yarn.lock'
     - '@semantic-release/github'
 
-debug: true
-dryRun: true
 preset: conventionalcommits
