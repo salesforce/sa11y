@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://json.schemastore.org/semantic-release.json
+---
+branches:
+    - master
+    - name: alpha
+      prerelease: true
+      channel: alpha
+
+plugins:
+    - - '@semantic-release/commit-analyzer'
+      - preset: conventionalcommits
+        releaseRules:
+            - type: docs
+              scope: README
+              release: patch
+
+    - '@semantic-release/release-notes-generator'
+    - - '@semantic-release/changelog'
+      - changelogTitle: "# Changelog\n\nAll notable changes to this project will be documented in this file."
+    - - '@semantic-release/exec'
+      - publishCmd: yarn lerna publish --no-git-tag-version --no-git-reset --no-push --yes --dist-tag=${nextRelease.channel} --exact ${nextRelease.version}
+    - - '@semantic-release/git'
+      - assets:
+            - 'CHANGELOG.md'
+            - 'package.json'
+            - 'packages/*/package.json'
+            - 'yarn.lock'
+    - '@semantic-release/github'
+
+debug: true
+dryRun: true
+preset: conventionalcommits

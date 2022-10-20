@@ -5,7 +5,7 @@ name: CI
 
 on:
     push:
-        branches: [master]
+        branches: [master, alpha, beta]
     pull_request:
         branches: [master]
 
@@ -36,3 +36,34 @@ jobs:
             - run: yarn test:ci
 
             - uses: codecov/codecov-action@v3
+    release:
+        name: Release
+        needs: lint-build-test # previous job MUST pass to make a release!
+        runs-on: ubuntu-latest
+
+        # Skip running release workflow on forks
+        if: github.repository_owner == 'salesforce' && github.event_name == 'push'
+
+        permissions:
+            contents: write # to be able to publish a GitHub release
+            issues: write # to be able to comment on released issues
+            pull-requests: write # to be able to comment on released pull requests
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0 # Need all git history & tags to determine next release version.
+                  persist-credentials: false
+            - name: Use Node.js 16.x
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16.x
+                  cache: 'yarn'
+                  registry-url: 'https://registry.npmjs.org'
+
+            - run: yarn install --frozen-lockfile
+            - run: yarn run semantic-release --dryRun --debug
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # used by setup-node@v3 action

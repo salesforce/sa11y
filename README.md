@@ -4,6 +4,7 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
 
 ![Sa11y](https://github.com/salesforce/sa11y/workflows/Node.js%20CI/badge.svg)
 [![Code Coverage](https://codecov.io/gh/salesforce/sa11y/branch/master/graph/badge.svg)](https://codecov.io/gh/salesforce/sa11y)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat)](https://github.com/semantic-release/semantic-release)
 [![License](https://img.shields.io/npm/l/@sa11y/common)](./LICENSE.txt)
 [![NPM downloads per month of @sa11y/common package](https://img.shields.io/npm/dm/@sa11y/common)](https://www.npmtrends.com/@sa11y/common)
 [![Known Vulnerabilities](https://snyk.io/test/github/salesforce/sa11y/badge.svg?targetFile=package.json)](https://snyk.io/test/github/salesforce/sa11y?targetFile=package.json)

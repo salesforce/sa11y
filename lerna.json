@@ -7,6 +7,13 @@
     "command": {
         "publish": {
             "registry": "https://registry.npmjs.org/"
+        },
+        "version": {
+            "conventionalCommits": true
         }
-    }
+    },
+    "changelogPreset": {
+        "name": "conventional-changelog-conventionalcommits"
+    },
+    "conventional-commits": true
 }
