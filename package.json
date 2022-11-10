@@ -83,7 +83,7 @@
         "eslint-import-resolver-typescript": "3.5.2",
         "eslint-plugin-eslint-comments": "3.2.0",
         "eslint-plugin-import": "2.26.0",
-        "eslint-plugin-jest": "27.1.4",
+        "eslint-plugin-jest": "27.1.5",
         "eslint-plugin-markdown": "3.0.0",
         "eslint-plugin-notice": "0.9.10",
         "eslint-plugin-prettier": "4.2.1",
