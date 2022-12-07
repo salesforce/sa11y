@@ -99,7 +99,7 @@
         "lockfile-lint": "4.9.6",
         "markdown-link-check": "3.10.3",
         "package-dependency-graph": "1.14.3",
-        "prettier": "2.8.0",
+        "prettier": "2.8.1",
         "rimraf": "3.0.2",
         "semantic-release": "19.0.5",
         "ts-node": "10.9.1",
