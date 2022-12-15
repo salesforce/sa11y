@@ -13,8 +13,8 @@ import typescript from 'rollup-plugin-typescript2';
 import sizes from 'rollup-plugin-sizes';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { terser } from 'rollup-plugin-terser';
-import pkg from './package.json';
-import { namespace } from './src/index.ts';
+import pkg from './package.json' assert { type: 'json' };
+export const namespace = 'sa11y';
 
 const globalName = '__SA11Y__';
 
@@ -27,8 +27,10 @@ function getConfig(minified = false) {
         output: {
             file: minified ? `dist/${namespace}.min.js` : `dist/${namespace}.js`,
             format: 'iife',
+            generatedCode: {
+                constBindings: true,
+            },
             name: globalName,
-            preferConst: true,
             // Note: Following is required for the object to get declared in browser using webdriver
             banner: `typeof ${namespace} === "undefined" && (${namespace} = {});`,
             footer: `Object.assign(${namespace}, ${globalName}); ${namespace}.version = '${pkg.version}';`,
