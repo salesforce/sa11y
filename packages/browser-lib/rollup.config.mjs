@@ -13,15 +13,27 @@ import typescript from 'rollup-plugin-typescript2';
 import sizes from 'rollup-plugin-sizes';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { terser } from 'rollup-plugin-terser';
-import pkg from './package.json' assert { type: 'json' };
+import fs from 'fs'
+
 export const namespace = 'sa11y';
 
 const globalName = '__SA11Y__';
 
+/**
+ * Get the `version` from `package.json`
+ *
+ * @returns {string} the version from package.json
+ */
+function getPackageVersion() {
+    const packageData = fs.readFileSync('./package.json')
+    const obj = JSON.parse(packageData)
+    return obj.version;
+}
+
 /* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
 function getConfig(minified = false) {
     const debug = !!process.env.DEBUG;
-
+    const pkgVersion = getPackageVersion();
     return {
         input: 'src/index.ts',
         output: {
@@ -33,7 +45,7 @@ function getConfig(minified = false) {
             name: globalName,
             // Note: Following is required for the object to get declared in browser using webdriver
             banner: `typeof ${namespace} === "undefined" && (${namespace} = {});`,
-            footer: `Object.assign(${namespace}, ${globalName}); ${namespace}.version = '${pkg.version}';`,
+            footer: `Object.assign(${namespace}, ${globalName}); ${namespace}.version = '${pkgVersion}';`,
         },
         plugins: [
             debug ? progress({ clearLine: false }) : {},
