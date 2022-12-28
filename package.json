@@ -96,7 +96,7 @@
         "jest-junit": "14.0.1",
         "lerna": "6.1.0",
         "lint-staged": "13.1.0",
-        "lockfile-lint": "4.9.6",
+        "lockfile-lint": "4.10.0",
         "markdown-link-check": "3.10.3",
         "package-dependency-graph": "1.14.3",
         "prettier": "2.8.1",
