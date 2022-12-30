@@ -3644,10 +3644,10 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.45.tgz#a3fffa7489eafff38d984e23d0236e230c818bc2"
   integrity sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==
 
-"@wdio/cli@7.29.0":
-  version "7.29.0"
-  resolved "https://registry.yarnpkg.com/@wdio/cli/-/cli-7.29.0.tgz#600d1ed4ba5d30d00842cfb628c9f2a0ff1910f3"
-  integrity sha512-gVHYmXEEHBBGRwTzAvp6mJnQVEq4IlT1U32F1VSTtz33d8rogchmhwti9fBbSYKMv5Chg3txXPXuMJMhKtfvaQ==
+"@wdio/cli@7.29.1":
+  version "7.29.1"
+  resolved "https://registry.yarnpkg.com/@wdio/cli/-/cli-7.29.1.tgz#1b47f5a45f21754d42be814dbae94ff723a6a1a2"
+  integrity sha512-dldHNYlnuFUG10TlENbeL41tujqgYD7S/9nzV1J/szBryCO6AIVz/QWn/AUv3zrsO2sn8TNF8BMEXRvLgCxyeg==
   dependencies:
     "@types/ejs" "^3.0.5"
     "@types/fs-extra" "^9.0.4"
@@ -3667,14 +3667,14 @@
     chokidar "^3.0.0"
     cli-spinners "^2.1.0"
     ejs "^3.0.1"
-    fs-extra "^11.1.0"
+    fs-extra "^10.0.0"
     inquirer "8.2.4"
     lodash.flattendeep "^4.4.0"
     lodash.pickby "^4.6.0"
     lodash.union "^4.6.0"
     mkdirp "^1.0.4"
     recursive-readdir "^2.2.2"
-    webdriverio "7.29.0"
+    webdriverio "7.29.1"
     yargs "^17.0.0"
     yarn-install "^1.0.0"
 
@@ -3702,15 +3702,15 @@
     expect-webdriverio "^3.0.0"
     jasmine "3.10.0"
 
-"@wdio/local-runner@7.29.0":
-  version "7.29.0"
-  resolved "https://registry.yarnpkg.com/@wdio/local-runner/-/local-runner-7.29.0.tgz#ceef0debc4564a9c297af2f0a168a14fae6682df"
-  integrity sha512-tuRFDDxtiJCk1Z4gVZyZXTzVHnl0DzQNg5MepVTOe83feBLsfgd8qrZ3PiR5AyKBsxjUhRPn6YpVjkUEhao8Ig==
+"@wdio/local-runner@7.29.1":
+  version "7.29.1"
+  resolved "https://registry.yarnpkg.com/@wdio/local-runner/-/local-runner-7.29.1.tgz#f93a2953847b4271b59ba1b9635920e8046f0e55"
+  integrity sha512-4w9Dsp9/4+MEU8yG7M8ynsCqpSP6UbKqZ2M/gWpvkvy57rb3eS9evFdIFfRzuQmbsztG9qeAlGILwlZ4/oaopg==
   dependencies:
     "@types/stream-buffers" "^3.0.3"
     "@wdio/logger" "7.26.0"
     "@wdio/repl" "7.26.0"
-    "@wdio/runner" "7.29.0"
+    "@wdio/runner" "7.29.1"
     "@wdio/types" "7.26.0"
     async-exit-hook "^2.0.1"
     split2 "^4.0.0"
@@ -3754,10 +3754,10 @@
     object-inspect "^1.10.3"
     supports-color "8.1.1"
 
-"@wdio/runner@7.29.0":
-  version "7.29.0"
-  resolved "https://registry.yarnpkg.com/@wdio/runner/-/runner-7.29.0.tgz#4b06d163eac5521f9e9464908d292ecd7e2ac44f"
-  integrity sha512-PuQ9yKeHlEQarsjBuQbQoqfsOVMp3Q2V5pfVvZ6RwM9gaMjSDEZ9voLzY2O7xMiYwSq5HW8QBAQrFnQ0pJL+8A==
+"@wdio/runner@7.29.1":
+  version "7.29.1"
+  resolved "https://registry.yarnpkg.com/@wdio/runner/-/runner-7.29.1.tgz#9fd2fa6dd28b8b130a10d23452eb155e1e887576"
+  integrity sha512-lJEk/HJ5IiuvAJws8zTx9XL5LJuoexvjWIZmOmFJ6Gv8qRpUx6b0n+JM7vhhbTeIqs4QLXOwTQUHlDDRldQlzQ==
   dependencies:
     "@wdio/config" "7.26.0"
     "@wdio/logger" "7.26.0"
@@ -3766,7 +3766,7 @@
     deepmerge "^4.0.0"
     gaze "^1.1.2"
     webdriver "7.27.0"
-    webdriverio "7.29.0"
+    webdriverio "7.29.1"
 
 "@wdio/spec-reporter@7.28.0":
   version "7.28.0"
@@ -12690,10 +12690,10 @@ webdriver@7.27.0:
     ky "0.30.0"
     lodash.merge "^4.6.1"
 
-webdriverio@7.29.0:
-  version "7.29.0"
-  resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-7.29.0.tgz#fd6a7e6b8ccd6841d7f73e6b7a397cc878e4e10c"
-  integrity sha512-mp7ABwE/fzXhsPCBWjkxhVx6ZJutF0yCziTfEd7G7SNJuQgzAGmQGI1QMc/oXYdxgGgKNv3QC878SIB7oBkA+g==
+webdriverio@7.29.1:
+  version "7.29.1"
+  resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-7.29.1.tgz#f71c9de317326cff36d22f6277669477e5340c6f"
+  integrity sha512-2xhoaZvV0tzOgnj8H/B4Yol8LTcIrWdfTdfe01d+ERtdzKCoqimmPNP4vpr2lVRVKL/TW4rfoBTBNvDUaJHe2g==
   dependencies:
     "@types/aria-query" "^5.0.0"
     "@types/node" "^18.0.0"
@@ -12709,7 +12709,7 @@ webdriverio@7.29.0:
     css-value "^0.0.1"
     devtools "7.28.1"
     devtools-protocol "^0.0.1085790"
-    fs-extra "^11.1.0"
+    fs-extra "^10.0.0"
     grapheme-splitter "^1.0.2"
     lodash.clonedeep "^4.5.0"
     lodash.isobject "^3.0.2"
