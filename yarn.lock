@@ -4168,7 +4168,7 @@ axe-core@4.6.3:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.6.3.tgz#fc0db6fdb65cc7a80ccf85286d91d64ababa3ece"
   integrity sha512-/BQzOX780JhsxDnPpH4ZiyrJAzcd8AfzFPkv+89veFSr1rcMjuq2JDCwypKaPeB6ljHp9KjXhPpjgCvQlWYuqg==
 
-axios@^1.0.0, axios@^1.1.3:
+axios@^1.0.0, axios@^1.2.1:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.3.3.tgz#e7011384ba839b885007c9c9fae1ff23dceb295b"
   integrity sha512-eYq77dYIFS77AQlhzEL937yUBSepBfPIe8FcgEDN35vMNZKMrs81pgnyrQpwfy4NF4b4XWX1Zgx7yX+25w8QJA==
@@ -4651,13 +4651,13 @@ chrome-launcher@^0.15.0:
     is-wsl "^2.2.0"
     lighthouse-logger "^1.0.0"
 
-chromedriver@108.0.0:
-  version "108.0.0"
-  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-108.0.0.tgz#7994013f423d8b95a513bb9553a55088de81b252"
-  integrity sha512-/kb0rb0dlC4RfXh2BOT7RV87K6d+It3VV5YXebLzO5a8t2knNffiTE23XPJQCH+l1xmgoW8/sOX/NB9irskvOQ==
+chromedriver@110.0.0:
+  version "110.0.0"
+  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-110.0.0.tgz#d00a1a2976592d933faa8e9839e97692922834a4"
+  integrity sha512-Le6q8xrA/3fAt+g8qiN0YjsYxINIhQMC6wj9X3W5L77uN4NspEzklDrqYNwBcEVn7PcAEJ73nLlS7mTyZRspHA==
   dependencies:
     "@testim/chrome-version" "^1.1.3"
-    axios "^1.1.3"
+    axios "^1.2.1"
     compare-versions "^5.0.1"
     extract-zip "^2.0.1"
     https-proxy-agent "^5.0.1"
