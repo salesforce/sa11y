@@ -26,7 +26,7 @@
     "dependencies": {
         "@sa11y/common": "4.0.0-alpha.0",
         "@sa11y/preset-rules": "4.0.0-alpha.0",
-        "axe-core": "4.3.3"
+        "axe-core": "4.6.3"
     },
     "devDependencies": {
         "@jest/globals": "28.1.3",
