@@ -49,31 +49,31 @@ describe('a11y Results Formatter', () => {
         }
     );
 
-    // it.each([{ formatter: JSON.stringify }, { highlighter: (text: string) => `"${text}"` }, {}, undefined, null])(
-    //     'should format using specified options: %#',
-    //     async (formatOptions) => {
-    //         expect((await getA11yError(domWithA11yIssues)).format(formatOptions)).toMatchSnapshot();
-    //     }
-    // );
+    it.each([{ formatter: JSON.stringify }, { highlighter: (text: string) => `"${text}"` }, {}, undefined, null])(
+        'should format using specified options: %#',
+        async (formatOptions) => {
+            expect((await getA11yError(domWithA11yIssues)).format(formatOptions)).toMatchSnapshot();
+        }
+    );
 
-    // it('should not throw error when no violations are present', async () => {
-    //     const a11yError = await getA11yError(domWithNoA11yIssues);
-    //     expect(() => A11yError.checkAndThrow(a11yError.violations)).not.toThrow();
-    // });
+    it('should not throw error when no violations are present', async () => {
+        const a11yError = await getA11yError(domWithNoA11yIssues);
+        expect(() => A11yError.checkAndThrow(a11yError.violations)).not.toThrow();
+    });
 
-    // it('should throw error when violations are present', async () => {
-    //     const a11yError = await getA11yError(domWithA11yIssues);
-    //     expect(() => A11yError.checkAndThrow(a11yError.violations)).toThrowErrorMatchingSnapshot();
-    // });
+    it('should throw error when violations are present', async () => {
+        const a11yError = await getA11yError(domWithA11yIssues);
+        expect(() => A11yError.checkAndThrow(a11yError.violations)).toThrowErrorMatchingSnapshot();
+    });
 
-    // it('should not throw error for repeated violations with consolidation', async () => {
-    //     const a11yError = await getA11yError(domWithA11yIssues);
-    //     const violations = a11yError.violations;
-    //     // Should throw error for the first time
-    //     expect(() => A11yError.checkAndThrow(violations, { deduplicate: true })).toThrowErrorMatchingSnapshot();
-    //     // Should not throw error for repeated violations with consolidation
-    //     expect(() => A11yError.checkAndThrow(violations, { deduplicate: true })).not.toThrow();
-    //     // Should throw error for repeated violations without consolidation
-    //     expect(() => A11yError.checkAndThrow(violations, { deduplicate: false })).toThrowErrorMatchingSnapshot();
-    // });
+    it('should not throw error for repeated violations with consolidation', async () => {
+        const a11yError = await getA11yError(domWithA11yIssues);
+        const violations = a11yError.violations;
+        // Should throw error for the first time
+        expect(() => A11yError.checkAndThrow(violations, { deduplicate: true })).toThrowErrorMatchingSnapshot();
+        // Should not throw error for repeated violations with consolidation
+        expect(() => A11yError.checkAndThrow(violations, { deduplicate: true })).not.toThrow();
+        // Should throw error for repeated violations without consolidation
+        expect(() => A11yError.checkAndThrow(violations, { deduplicate: false })).toThrowErrorMatchingSnapshot();
+    });
 });
