@@ -91,7 +91,7 @@ describe('preset-rules documentation', () => {
         // Note: To update the readme when rulesets are updated, pass in the readmePath
         //  after removing the existing outdated ruleset table.
         // expect(readme).toContain(getRulesDoc(readmePath));
-        expect(readme).toContain(getRulesDoc());
+        expect(readme.replace(/\s+/g, ' ').trim()).toContain(getRulesDoc().replace(/\s+/g, ' ').trim());
     });
 
     it('should throw error for non existent rule', () => {
