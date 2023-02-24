@@ -59,6 +59,7 @@ function createA11yRuleViolation(a11yRule: A11yViolation, ruleIndex: number) {
 function processA11yErrors(results: AggregatedResult, testSuite: TestResult, testResult: AssertionResult) {
     const a11yFailureDetails: FailureDetail[] = [];
     const a11yFailureMessages: string[] = [];
+    let a11yErrorsExist = false;
 
     testResult.failureDetails.forEach((failure) => {
         let error = (failure as FailureDetail).error;
@@ -67,6 +68,7 @@ function processA11yErrors(results: AggregatedResult, testSuite: TestResult, tes
         /* istanbul ignore next */
         if (error === undefined) error = failure as A11yError;
         if (error.name === A11yError.name) {
+            a11yErrorsExist = true;
             a11yFailureDetails.push({ ...(failure as FailureDetail) } as FailureDetail);
             const a11yRuleViolations: { [key: string]: A11yViolation } = {};
             let a11yRuleViolationsCount = 0;
@@ -103,12 +105,13 @@ function processA11yErrors(results: AggregatedResult, testSuite: TestResult, tes
             Questions? Post on Accessibility Team Chatter: https://sfdc.co/a11y-gus
             `;
             a11yFailureMessages.push(a11yFailureMessage);
-        } else {
-            testSuite.numFailingTests -= 1;
-            results.numFailedTests -= 1;
-            if (testSuite.numFailingTests === 0) results.numFailedTestSuites -= 1;
         }
     });
+    if (!a11yErrorsExist) {
+        testSuite.numFailingTests -= 1;
+        results.numFailedTests -= 1;
+        if (testSuite.numFailingTests === 0) results.numFailedTestSuites -= 1;
+    }
 
     testResult.failureDetails = [...a11yFailureDetails];
     testResult.failureMessages = [...a11yFailureMessages];
