@@ -88,6 +88,7 @@ This repo contains the following packages for automated accessibility testing:
 -   Formats raw JSON output of a11y issues from [axe] into an easy to consume format by consolidating and cross-referencing
 -   Used by assert Accessible API and Jest a11y matcher
 -   To use axe directly and want to format the results from `axe.run` use this package
+-   A new formatter `groupViolationResultsProcessor` also made available to group the a11y violations per jest test case as the existing formatter would generate test failures for each violation
 
 ### [Preset accessibility rules](./packages/preset-rules/README.md)
 
