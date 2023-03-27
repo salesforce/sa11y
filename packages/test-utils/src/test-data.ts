@@ -13,8 +13,10 @@ const dataDir = path.resolve(__dirname, '../__data__/');
 // DOM with a11y issues
 export const domWithA11yIssuesBodyID = 'dom-with-issues';
 const fileWithA11yIssues = path.resolve(dataDir, 'a11yIssues.html');
+const fileWithDescendancyA11yIssues = path.resolve(dataDir, 'descendancyA11yIssues.html');
 export const htmlFileWithA11yIssues = 'file:///' + fileWithA11yIssues;
 export const domWithA11yIssues = fs.readFileSync(fileWithA11yIssues).toString();
+export const domWithDescendancyA11yIssues = fs.readFileSync(fileWithDescendancyA11yIssues).toString();
 export const a11yIssuesCount = 5;
 export const exceptionList = {
     'document-title': ['html'],

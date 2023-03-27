@@ -13,6 +13,7 @@ import {
     domWithA11yIssues,
     domWithNoA11yIssues,
     domWithNoA11yIssuesChildCount,
+    domWithDescendancyA11yIssues,
 } from '@sa11y/test-utils';
 import { expect, jest } from '@jest/globals';
 
@@ -155,6 +156,12 @@ describe('automatic checks call', () => {
         await expect(automaticCheck(opts)).resolves.toBeUndefined();
         // Should throw error again without consolidation
         await expect(automaticCheck({ cleanupAfterEach: true, consolidateResults: false })).rejects.toThrow();
+    });
+
+    it('should skip descendancy checks', async () => {
+        document.body.innerHTML = domWithDescendancyA11yIssues;
+        const opts = { cleanupAfterEach: false };
+        await expect(automaticCheck(opts)).resolves.toBeUndefined();
     });
 
     it.each([
