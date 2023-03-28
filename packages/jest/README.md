@@ -18,6 +18,7 @@ Accessibility matcher for [Jest](https://jestjs.io)
   - [Sa11y results processor](#sa11y-results-processor)
     - [JSON result transformation](#json-result-transformation)
   - [Limitations](#limitations)
+  - [Disabled Checks](#disabled-checks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -273,3 +274,7 @@ Automatic checks currently has the following limitations.
 -   With the sa11y results processor, the originating test from which the a11y failures are extracted is disabled and test counts adjusted accordingly
     -   But the original test suite failure message still contains the a11y failures.
     -   The test suite failure message is typically not displayed or used in testing workflows. But if your testing workflow uses the test suite failure message, this might cause confusion.
+
+### Disabled Checks
+
+-   @sa11y/jest automatic checks also disabled rules which were disabled in `toBeAccessible` Jest API ([disabled-checks](https://github.com/salesforce/sa11y/tree/master/packages/jest#disabled-checks))
