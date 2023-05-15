@@ -2,33 +2,21 @@
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name
-
-* (landmark-one-main) Document should have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
-
-* (page-has-heading-one) Page should contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
 `;
 
-exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 2`] = `4`;
+exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 2`] = `2`;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 3`] = `
-"4 Accessibility issues found
+"2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name
-
-* (landmark-one-main) Document should have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
-
-* (page-has-heading-one) Page should contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 1 1`] = `""`;
@@ -40,107 +28,65 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
  "
 `;
 
-exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.text-alternatives\\",\\"wcag2a\\",\\"wcag242\\",\\"ACT\\"],\\"description\\":\\"Ensures each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.name-role-value\\",\\"wcag2a\\",\\"wcag412\\",\\"wcag244\\",\\"section508\\",\\"section508.22.a\\",\\"ACT\\"],\\"description\\":\\"Ensures links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"minor\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"non-empty-title\\",\\"data\\":{\\"messageKey\\":\\"noAttr\\"},\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element has no title attribute\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element has no title attribute\\"}]},{\\"id\\":\\"landmark-one-main\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"cat.semantics\\",\\"best-practice\\"],\\"description\\":\\"Ensures the document has a main landmark\\",\\"help\\":\\"Document should have one main landmark\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/landmark-one-main?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[],\\"all\\":[{\\"id\\":\\"page-has-main\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Document does not have a main landmark\\"}],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Document does not have a main landmark\\"}]},{\\"id\\":\\"page-has-heading-one\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"cat.semantics\\",\\"best-practice\\"],\\"description\\":\\"Ensure that the page, or at least one of its frames contains a level-one heading\\",\\"help\\":\\"Page should contain a level-one heading\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[],\\"all\\":[{\\"id\\":\\"page-has-heading-one\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Page must have a level-one heading\\"}],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Page must have a level-one heading\\"}]}]"`;
+exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.text-alternatives\\",\\"wcag2a\\",\\"wcag242\\",\\"ACT\\",\\"TTv5\\",\\"TT12.a\\"],\\"description\\":\\"Ensures each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.7/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head><style>* { pointer-events: all }</style></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.name-role-value\\",\\"wcag2a\\",\\"wcag412\\",\\"wcag244\\",\\"section508\\",\\"section508.22.a\\",\\"ACT\\",\\"TTv5\\",\\"TT6.a\\"],\\"description\\":\\"Ensures links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.7/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"minor\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"non-empty-title\\",\\"data\\":{\\"messageKey\\":\\"noAttr\\"},\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element has no title attribute\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element has no title attribute\\"}]}]"`;
 
 exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 "\\"* (document-title) Documents must have <title> element to aid in navigation: html\\"
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
 
 \\"* (link-name) Links must have discernible text: a\\"
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name
-
-\\"* (landmark-one-main) Document should have one main landmark: html\\"
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
-
-\\"* (page-has-heading-one) Page should contain a level-one heading: html\\"
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name
-
-* (landmark-one-main) Document should have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
-
-* (page-has-heading-one) Page should contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name
-
-* (landmark-one-main) Document should have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
-
-* (page-has-heading-one) Page should contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name
-
-* (landmark-one-main) Document should have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
-
-* (page-has-heading-one) Page should contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 1`] = `
-"4 Accessibility issues found
+"2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name
-
-* (landmark-one-main) Document should have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
-
-* (page-has-heading-one) Page should contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 2`] = `
-"4 Accessibility issues found
+"2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name
-
-* (landmark-one-main) Document should have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
-
-* (page-has-heading-one) Page should contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
 `;
 
 exports[`a11y Results Formatter should throw error when violations are present 1`] = `
-"4 Accessibility issues found
+"2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/link-name
-
-* (landmark-one-main) Document should have one main landmark: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/landmark-one-main
-
-* (page-has-heading-one) Page should contain a level-one heading: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
 `;
 
 exports[`a11y results filter should be setup with violations that can be reused across tests 1`] = `
@@ -148,7 +94,7 @@ Array [
   Object {
     "description": "Ensures each HTML document contains a non-empty <title> element",
     "help": "Documents must have <title> element to aid in navigation",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/document-title?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/document-title?application=axeAPI",
     "id": "document-title",
     "impact": "serious",
     "nodes": Array [
@@ -185,12 +131,14 @@ Array [
       "wcag2a",
       "wcag242",
       "ACT",
+      "TTv5",
+      "TT12.a",
     ],
   },
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -229,12 +177,14 @@ Array [
       "wcag2a",
       "wcag311",
       "ACT",
+      "TTv5",
+      "TT11.a",
     ],
   },
   Object {
     "description": "Ensures links have discernible text",
     "help": "Links must have discernible text",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/link-name?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/link-name?application=axeAPI",
     "id": "link-name",
     "impact": "serious",
     "nodes": Array [
@@ -304,86 +254,8 @@ Fix any of the following:
       "section508",
       "section508.22.a",
       "ACT",
-    ],
-  },
-  Object {
-    "description": "Ensures the document has a main landmark",
-    "help": "Document should have one main landmark",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/landmark-one-main?application=axeAPI",
-    "id": "landmark-one-main",
-    "impact": "moderate",
-    "nodes": Array [
-      Object {
-        "all": Array [
-          CheckResult {
-            "data": null,
-            "id": "page-has-main",
-            "impact": "moderate",
-            "message": "Document does not have a main landmark",
-            "relatedNodes": Array [],
-          },
-        ],
-        "any": Array [],
-        "failureSummary": "Fix all of the following:
-  Document does not have a main landmark",
-        "html": "<html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>",
-        "impact": "moderate",
-        "none": Array [],
-        "target": Array [
-          "html",
-        ],
-      },
-    ],
-    "tags": Array [
-      "cat.semantics",
-      "best-practice",
-    ],
-  },
-  Object {
-    "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
-    "help": "Page should contain a level-one heading",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one?application=axeAPI",
-    "id": "page-has-heading-one",
-    "impact": "moderate",
-    "nodes": Array [
-      Object {
-        "all": Array [
-          CheckResult {
-            "data": null,
-            "id": "page-has-heading-one",
-            "impact": "moderate",
-            "message": "Page must have a level-one heading",
-            "relatedNodes": Array [],
-          },
-        ],
-        "any": Array [],
-        "failureSummary": "Fix all of the following:
-  Page must have a level-one heading",
-        "html": "<html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>",
-        "impact": "moderate",
-        "none": Array [],
-        "target": Array [
-          "html",
-        ],
-      },
-    ],
-    "tags": Array [
-      "cat.semantics",
-      "best-practice",
+      "TTv5",
+      "TT6.a",
     ],
   },
 ]
@@ -394,7 +266,7 @@ Array [
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -433,12 +305,14 @@ Array [
       "wcag2a",
       "wcag311",
       "ACT",
+      "TTv5",
+      "TT11.a",
     ],
   },
   Object {
     "description": "Ensures links have discernible text",
     "help": "Links must have discernible text",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/link-name?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/link-name?application=axeAPI",
     "id": "link-name",
     "impact": "serious",
     "nodes": Array [
@@ -508,86 +382,8 @@ Fix any of the following:
       "section508",
       "section508.22.a",
       "ACT",
-    ],
-  },
-  Object {
-    "description": "Ensures the document has a main landmark",
-    "help": "Document should have one main landmark",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/landmark-one-main?application=axeAPI",
-    "id": "landmark-one-main",
-    "impact": "moderate",
-    "nodes": Array [
-      Object {
-        "all": Array [
-          CheckResult {
-            "data": null,
-            "id": "page-has-main",
-            "impact": "moderate",
-            "message": "Document does not have a main landmark",
-            "relatedNodes": Array [],
-          },
-        ],
-        "any": Array [],
-        "failureSummary": "Fix all of the following:
-  Document does not have a main landmark",
-        "html": "<html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>",
-        "impact": "moderate",
-        "none": Array [],
-        "target": Array [
-          "html",
-        ],
-      },
-    ],
-    "tags": Array [
-      "cat.semantics",
-      "best-practice",
-    ],
-  },
-  Object {
-    "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
-    "help": "Page should contain a level-one heading",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one?application=axeAPI",
-    "id": "page-has-heading-one",
-    "impact": "moderate",
-    "nodes": Array [
-      Object {
-        "all": Array [
-          CheckResult {
-            "data": null,
-            "id": "page-has-heading-one",
-            "impact": "moderate",
-            "message": "Page must have a level-one heading",
-            "relatedNodes": Array [],
-          },
-        ],
-        "any": Array [],
-        "failureSummary": "Fix all of the following:
-  Page must have a level-one heading",
-        "html": "<html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>",
-        "impact": "moderate",
-        "none": Array [],
-        "target": Array [
-          "html",
-        ],
-      },
-    ],
-    "tags": Array [
-      "cat.semantics",
-      "best-practice",
+      "TTv5",
+      "TT6.a",
     ],
   },
 ]
@@ -598,7 +394,7 @@ Array [
   Object {
     "description": "Ensures each HTML document contains a non-empty <title> element",
     "help": "Documents must have <title> element to aid in navigation",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/document-title?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/document-title?application=axeAPI",
     "id": "document-title",
     "impact": "serious",
     "nodes": Array [
@@ -635,12 +431,14 @@ Array [
       "wcag2a",
       "wcag242",
       "ACT",
+      "TTv5",
+      "TT12.a",
     ],
   },
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -679,86 +477,8 @@ Array [
       "wcag2a",
       "wcag311",
       "ACT",
-    ],
-  },
-  Object {
-    "description": "Ensures the document has a main landmark",
-    "help": "Document should have one main landmark",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/landmark-one-main?application=axeAPI",
-    "id": "landmark-one-main",
-    "impact": "moderate",
-    "nodes": Array [
-      Object {
-        "all": Array [
-          CheckResult {
-            "data": null,
-            "id": "page-has-main",
-            "impact": "moderate",
-            "message": "Document does not have a main landmark",
-            "relatedNodes": Array [],
-          },
-        ],
-        "any": Array [],
-        "failureSummary": "Fix all of the following:
-  Document does not have a main landmark",
-        "html": "<html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>",
-        "impact": "moderate",
-        "none": Array [],
-        "target": Array [
-          "html",
-        ],
-      },
-    ],
-    "tags": Array [
-      "cat.semantics",
-      "best-practice",
-    ],
-  },
-  Object {
-    "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
-    "help": "Page should contain a level-one heading",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one?application=axeAPI",
-    "id": "page-has-heading-one",
-    "impact": "moderate",
-    "nodes": Array [
-      Object {
-        "all": Array [
-          CheckResult {
-            "data": null,
-            "id": "page-has-heading-one",
-            "impact": "moderate",
-            "message": "Page must have a level-one heading",
-            "relatedNodes": Array [],
-          },
-        ],
-        "any": Array [],
-        "failureSummary": "Fix all of the following:
-  Page must have a level-one heading",
-        "html": "<html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>",
-        "impact": "moderate",
-        "none": Array [],
-        "target": Array [
-          "html",
-        ],
-      },
-    ],
-    "tags": Array [
-      "cat.semantics",
-      "best-practice",
+      "TTv5",
+      "TT11.a",
     ],
   },
 ]
@@ -769,7 +489,7 @@ Array [
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -808,86 +528,8 @@ Array [
       "wcag2a",
       "wcag311",
       "ACT",
-    ],
-  },
-  Object {
-    "description": "Ensures the document has a main landmark",
-    "help": "Document should have one main landmark",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/landmark-one-main?application=axeAPI",
-    "id": "landmark-one-main",
-    "impact": "moderate",
-    "nodes": Array [
-      Object {
-        "all": Array [
-          CheckResult {
-            "data": null,
-            "id": "page-has-main",
-            "impact": "moderate",
-            "message": "Document does not have a main landmark",
-            "relatedNodes": Array [],
-          },
-        ],
-        "any": Array [],
-        "failureSummary": "Fix all of the following:
-  Document does not have a main landmark",
-        "html": "<html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>",
-        "impact": "moderate",
-        "none": Array [],
-        "target": Array [
-          "html",
-        ],
-      },
-    ],
-    "tags": Array [
-      "cat.semantics",
-      "best-practice",
-    ],
-  },
-  Object {
-    "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
-    "help": "Page should contain a level-one heading",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.3/page-has-heading-one?application=axeAPI",
-    "id": "page-has-heading-one",
-    "impact": "moderate",
-    "nodes": Array [
-      Object {
-        "all": Array [
-          CheckResult {
-            "data": null,
-            "id": "page-has-heading-one",
-            "impact": "moderate",
-            "message": "Page must have a level-one heading",
-            "relatedNodes": Array [],
-          },
-        ],
-        "any": Array [],
-        "failureSummary": "Fix all of the following:
-  Page must have a level-one heading",
-        "html": "<html><head></head><body>
-
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>",
-        "impact": "moderate",
-        "none": Array [],
-        "target": Array [
-          "html",
-        ],
-      },
-    ],
-    "tags": Array [
-      "cat.semantics",
-      "best-practice",
+      "TTv5",
+      "TT11.a",
     ],
   },
 ]
