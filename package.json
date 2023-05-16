@@ -109,6 +109,6 @@
         "webdriverio": "7.29.1"
     },
     "engines": {
-        "node": "^14 || ^16"
+        "node": "^16"
     }
 }
