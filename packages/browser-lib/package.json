@@ -36,18 +36,18 @@
     "dependencies": {
         "@sa11y/format": "4.0.0-alpha.0",
         "@sa11y/preset-rules": "4.0.0-alpha.0",
-        "axe-core": "4.3.3"
+        "axe-core": "4.7.0"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "23.0.7",
-        "@rollup/plugin-node-resolve": "15.0.1",
+        "@rollup/plugin-node-resolve": "15.0.2",
         "@rollup/plugin-replace": "5.0.2",
         "@sa11y/common": "4.0.0-alpha.0",
         "@sa11y/test-utils": "4.0.0-alpha.0",
         "rollup": "3.7.4",
-        "rollup-plugin-polyfill-node": "0.11.0",
+        "rollup-plugin-polyfill-node": "0.12.0",
         "rollup-plugin-progress": "1.1.2",
-        "rollup-plugin-sizes": "1.0.4",
+        "rollup-plugin-sizes": "1.0.5",
         "rollup-plugin-terser": "7.0.2",
         "rollup-plugin-typescript2": "0.34.1"
     },
@@ -55,6 +55,6 @@
         "access": "public"
     },
     "engines": {
-        "node": "^14 || ^16"
+        "node": "^16"
     }
 }

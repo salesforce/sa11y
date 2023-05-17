@@ -9,6 +9,7 @@ export {
     audioURL,
     exceptionList,
     domWithA11yIssues,
+    domWithDescendancyA11yIssues,
     domWithA11yIssuesBodyID,
     domWithNoA11yIssues,
     domWithNoA11yIssuesChildCount,

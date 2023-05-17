@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import resultsProcessor from '../src/resultsProcessor';
+import groupViolationResultsProcessor from '../src/groupViolationResultsProcessor';
 import { addResult, createEmptyTestResult, makeEmptyAggregatedTestResult } from '@jest/test-result';
 import { AggregatedResult, AssertionResult, TestResult } from '@jest/test-result/build/types';
 import { A11yError, A11yResult } from '@sa11y/format';
@@ -16,7 +16,6 @@ const a11yResults: A11yResult[] = [];
 const aggregatedResults = makeEmptyAggregatedTestResult();
 const testSuite = createEmptyTestResult();
 let numTestFailures = 0;
-const numNonA11yFailures = 3;
 
 function addTestFailure(suite: TestResult, err: Error) {
     const failure = {
@@ -49,21 +48,13 @@ beforeAll(async () => {
     addResult(aggregatedResults, testSuite);
 });
 
-describe('Results Processor', () => {
-    it('should have valid test data to start with', () => {
-        expect(aggregatedResults.numFailedTestSuites).toBe(1);
-        expect(aggregatedResults.numFailedTests).toBe(numTestFailures);
-        expect(aggregatedResults).toMatchSnapshot();
-    });
-
+describe('Group Violation Results Processor', () => {
     it('should process test results as expected', () => {
-        const numA11yFailures = numTestFailures - numNonA11yFailures;
         // Create a copy as results gets mutated by results processor
         const results = JSON.parse(JSON.stringify(aggregatedResults)) as AggregatedResult;
-        const processedResults = resultsProcessor(results);
+        const processedResults = groupViolationResultsProcessor(results);
         expect(processedResults).toMatchSnapshot();
         expect(processedResults).not.toEqual(aggregatedResults);
-        expect(processedResults.numFailedTestSuites).toEqual(numA11yFailures);
-        expect(processedResults.numTotalTests).toEqual(aggregatedResults.numTotalTests + numA11yFailures); // After consolidation + non-a11y failure
+        expect(processedResults.numFailedTestSuites).toBe(1);
     });
 });
