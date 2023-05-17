@@ -19,7 +19,7 @@
         "axe-core": "4.7.0"
     },
     "devDependencies": {
-        "webdriverio": "7.29.1"
+        "webdriverio": "7.31.1"
     },
     "publishConfig": {
         "access": "public"
