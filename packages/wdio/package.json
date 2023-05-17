@@ -32,19 +32,19 @@
         "@sa11y/common": "4.0.0-alpha.0",
         "@sa11y/format": "4.0.0-alpha.0",
         "@sa11y/preset-rules": "4.0.0-alpha.0",
-        "axe-core": "4.3.3"
+        "axe-core": "4.7.0"
     },
     "peerDependencies": {
         "webdriverio": ">=6.0.0"
     },
     "devDependencies": {
         "@sa11y/test-utils": "4.0.0-alpha.0",
-        "webdriverio": "7.28.0"
+        "webdriverio": "7.31.1"
     },
     "publishConfig": {
         "access": "public"
     },
     "engines": {
-        "node": "^14 || ^16"
+        "node": "^16"
     }
 }

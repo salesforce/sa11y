@@ -2,7 +2,7 @@
 
 Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://www.npmjs.com/org/sa11y)) based on [axe-core][axe] providing support for [Jest](#jest-integration) unit tests, [WebdriverIO](#wdio-integration) component/integration tests used by teams in Salesforce. However, they are not specific to Salesforce and can be used to test any UI [supported by axe-core](https://github.com/dequelabs/axe-core#supported-browsers) for accessibility. These libraries are designed to be flexible, customizable and reusable to support automated accessibility testing in different testing workflows from unit to integration tests.
 
-![Sa11y](https://github.com/salesforce/sa11y/workflows/Node.js%20CI/badge.svg)
+![Sa11y](https://github.com/salesforce/sa11y/workflows/CI/badge.svg)
 [![Code Coverage](https://codecov.io/gh/salesforce/sa11y/branch/master/graph/badge.svg)](https://codecov.io/gh/salesforce/sa11y)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat)](https://github.com/semantic-release/semantic-release)
 [![License](https://img.shields.io/npm/l/@sa11y/common)](./LICENSE.txt)
@@ -88,6 +88,7 @@ This repo contains the following packages for automated accessibility testing:
 -   Formats raw JSON output of a11y issues from [axe] into an easy to consume format by consolidating and cross-referencing
 -   Used by assert Accessible API and Jest a11y matcher
 -   To use axe directly and want to format the results from `axe.run` use this package
+-   A new formatter `groupViolationResultsProcessor` also made available to group the a11y violations per jest test case as the existing formatter would generate test failures for each violation
 
 ### [Preset accessibility rules](./packages/preset-rules/README.md)
 

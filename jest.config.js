@@ -23,4 +23,5 @@ module.exports = {
     //   *  e.g. jest --json --outputFile jestResults.json
     // Ref: https://jestjs.io/docs/configuration#testresultsprocessor-string
     testResultsProcessor: '<rootDir>/packages/jest/dist/resultsProcessor.js',
+    setupFilesAfterEnv: ['./jest.setup.js'],
 };

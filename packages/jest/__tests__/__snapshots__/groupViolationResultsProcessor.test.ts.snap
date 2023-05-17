@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Results Processor should have valid test data to start with 1`] = `
+exports[`Group Violation Results Processor should process test results as expected 1`] = `
 Object {
   "numFailedTestSuites": 1,
-  "numFailedTests": 6,
+  "numFailedTests": 5,
   "numPassedTestSuites": 0,
   "numPassedTests": 0,
   "numPendingTestSuites": 0,
@@ -34,162 +34,7 @@ Object {
   "testResults": Array [
     Object {
       "leaks": false,
-      "numFailingTests": 6,
-      "numPassingTests": 0,
-      "numPendingTests": 0,
-      "numTodoTests": 0,
-      "openHandles": Array [],
-      "perfStats": Object {
-        "end": 0,
-        "runtime": 0,
-        "slow": false,
-        "start": 0,
-      },
-      "skipped": false,
-      "snapshot": Object {
-        "added": 0,
-        "fileDeleted": false,
-        "matched": 0,
-        "unchecked": 0,
-        "uncheckedKeys": Array [],
-        "unmatched": 0,
-        "updated": 0,
-      },
-      "testFilePath": "/test/data/sa11y-auto-checks.js",
-      "testResults": Array [
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-          ],
-          "failureDetails": Array [
-            [A11yError: 3 Accessibility issues found
- * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
-
-* (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
-
-* (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name],
-          ],
-          "fullName": "A11yError-0",
-          "status": "failed",
-        },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-          ],
-          "failureDetails": Array [
-            [A11yError: 1 Accessibility issues found
- * (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang],
-          ],
-          "fullName": "A11yError-1",
-          "status": "failed",
-        },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-          ],
-          "failureDetails": Array [
-            [A11yError: 3 Accessibility issues found
- * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
-
-* (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
-
-* (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name],
-          ],
-          "fullName": "A11yError-2",
-          "status": "failed",
-        },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-          ],
-          "failureDetails": Array [
-            [A11yError: 1 Accessibility issues found
- * (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang],
-          ],
-          "fullName": "A11yError-3",
-          "status": "failed",
-        },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-          ],
-          "failureDetails": Array [
-            [A11yError: 4 Accessibility issues found
- * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
-
-* (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
-
-* (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name
-
-* (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang],
-          ],
-          "fullName": "A11yError-4",
-          "status": "failed",
-        },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-          ],
-          "failureDetails": Array [
-            [Error: foo],
-          ],
-          "fullName": "Error-5",
-          "status": "failed",
-        },
-      ],
-    },
-  ],
-  "wasInterrupted": false,
-}
-`;
-
-exports[`Results Processor should process test results as expected 1`] = `
-Object {
-  "numFailedTestSuites": 3,
-  "numFailedTests": 3,
-  "numPassedTestSuites": 0,
-  "numPassedTests": 0,
-  "numPendingTestSuites": 0,
-  "numPendingTests": 0,
-  "numRuntimeErrorTestSuites": 0,
-  "numTodoTests": 0,
-  "numTotalTestSuites": 0,
-  "numTotalTests": 9,
-  "openHandles": Array [],
-  "snapshot": Object {
-    "added": 0,
-    "didUpdate": false,
-    "failure": false,
-    "filesAdded": 0,
-    "filesRemoved": 0,
-    "filesRemovedList": Array [],
-    "filesUnmatched": 0,
-    "filesUpdated": 0,
-    "matched": 0,
-    "total": 0,
-    "unchecked": 0,
-    "uncheckedKeysByFile": Array [],
-    "unmatched": 0,
-    "updated": 0,
-  },
-  "startTime": 0,
-  "success": true,
-  "testResults": Array [
-    Object {
-      "leaks": false,
-      "numFailingTests": 0,
+      "numFailingTests": 5,
       "numPassingTests": 0,
       "numPendingTests": 0,
       "numTodoTests": 0,
@@ -630,8 +475,62 @@ Fix any of the following:
               ],
             },
           ],
+          "failureMessages": Array [
+            "
+            The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+            3 HTML elements have accessibility issue(s). 3 rules failed.
+
+            (1) [document-title] Documents must have <title> element to aid in navigation
+            * Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+            * More info: Fix any of the following:
+  Document does not have a non-empty <title> element
+            * Error element(s) : 1
+            - (1) HTML element : <html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>
+             - CSS selector(s) : html
+             - HTML Tag Hierarchy : document-title--html
+(2) [html-has-lang] <html> element must have a lang attribute
+            * Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
+            * More info: Fix any of the following:
+  The <html> element does not have a lang attribute
+            * Error element(s) : 1
+            - (1) HTML element : <html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>
+             - CSS selector(s) : html
+             - HTML Tag Hierarchy : html-has-lang--html
+(3) [link-name] Links must have discernible text
+            * Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name
+            * More info: Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute
+            * Error element(s) : 1
+            - (1) HTML element : <a href=\\"#\\"></a>
+             - CSS selector(s) : a
+             - HTML Tag Hierarchy : link-name--a
+            For more info about automated accessibility testing: https://sfdc.co/a11y-test
+            For tips on fixing accessibility bugs: https://sfdc.co/a11y
+            Questions? Post on Accessibility Team Chatter: https://sfdc.co/a11y-gus
+            ",
+          ],
           "fullName": "A11yError-0",
-          "status": "disabled",
+          "status": "failed",
         },
         Object {
           "ancestorTitles": Array [
@@ -740,9 +639,27 @@ Fix any of the following:
                 },
               ],
             },
+          ],
+          "failureMessages": Array [
+            "
+            The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+            1 HTML elements have accessibility issue(s). 1 rules failed.
+
+            (1) [html-has-lang] <html> element must have a lang attribute
+            * Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
+            * More info: Fix any of the following:
+  The <html> element does not have a lang attribute
+            * Error element(s) : 1
+            - (1) HTML element : <html>
+             - CSS selector(s) : html
+             - HTML Tag Hierarchy : html-has-lang--html
+            For more info about automated accessibility testing: https://sfdc.co/a11y-test
+            For tips on fixing accessibility bugs: https://sfdc.co/a11y
+            Questions? Post on Accessibility Team Chatter: https://sfdc.co/a11y-gus
+            ",
           ],
           "fullName": "A11yError-1",
-          "status": "disabled",
+          "status": "failed",
         },
         Object {
           "ancestorTitles": Array [
@@ -1161,9 +1078,63 @@ Fix any of the following:
                 },
               ],
             },
+          ],
+          "failureMessages": Array [
+            "
+            The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+            3 HTML elements have accessibility issue(s). 3 rules failed.
+
+            (1) [document-title] Documents must have <title> element to aid in navigation
+            * Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+            * More info: Fix any of the following:
+  Document does not have a non-empty <title> element
+            * Error element(s) : 1
+            - (1) HTML element : <html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>
+             - CSS selector(s) : html
+             - HTML Tag Hierarchy : document-title--html
+(2) [html-has-lang] <html> element must have a lang attribute
+            * Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
+            * More info: Fix any of the following:
+  The <html> element does not have a lang attribute
+            * Error element(s) : 1
+            - (1) HTML element : <html><head></head><body>
+
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>
+             - CSS selector(s) : html
+             - HTML Tag Hierarchy : html-has-lang--html
+(3) [link-name] Links must have discernible text
+            * Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name
+            * More info: Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute
+            * Error element(s) : 1
+            - (1) HTML element : <a href=\\"#\\"></a>
+             - CSS selector(s) : a
+             - HTML Tag Hierarchy : link-name--a
+            For more info about automated accessibility testing: https://sfdc.co/a11y-test
+            For tips on fixing accessibility bugs: https://sfdc.co/a11y
+            Questions? Post on Accessibility Team Chatter: https://sfdc.co/a11y-gus
+            ",
           ],
           "fullName": "A11yError-2",
-          "status": "disabled",
+          "status": "failed",
         },
         Object {
           "ancestorTitles": Array [
@@ -1273,8 +1244,26 @@ Fix any of the following:
               ],
             },
           ],
+          "failureMessages": Array [
+            "
+            The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+            1 HTML elements have accessibility issue(s). 1 rules failed.
+
+            (1) [html-has-lang] <html> element must have a lang attribute
+            * Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
+            * More info: Fix any of the following:
+  The <html> element does not have a lang attribute
+            * Error element(s) : 1
+            - (1) HTML element : <html>
+             - CSS selector(s) : html
+             - HTML Tag Hierarchy : html-has-lang--html
+            For more info about automated accessibility testing: https://sfdc.co/a11y-test
+            For tips on fixing accessibility bugs: https://sfdc.co/a11y
+            Questions? Post on Accessibility Team Chatter: https://sfdc.co/a11y-gus
+            ",
+          ],
           "fullName": "A11yError-3",
-          "status": "disabled",
+          "status": "failed",
         },
         Object {
           "ancestorTitles": Array [
@@ -1789,57 +1778,17 @@ Fix any of the following:
               ],
             },
           ],
-          "fullName": "A11yError-4",
-          "status": "disabled",
-        },
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-          ],
-          "failureDetails": Array [
-            Object {},
-          ],
-          "fullName": "Error-5",
-          "status": "disabled",
-        },
-      ],
-    },
-    Object {
-      "leaks": false,
-      "numFailingTests": 1,
-      "numPassingTests": 0,
-      "numPendingTests": 0,
-      "numTodoTests": 0,
-      "openHandles": Array [],
-      "perfStats": Object {
-        "end": 0,
-        "runtime": 0,
-        "slow": false,
-        "start": 0,
-      },
-      "skipped": false,
-      "snapshot": Object {
-        "added": 0,
-        "fileDeleted": false,
-        "matched": 0,
-        "unchecked": 0,
-        "uncheckedKeys": Array [],
-        "unmatched": 0,
-        "updated": 0,
-      },
-      "testFilePath": "/test/data/sa11y-auto-checks.js::SA11Y-WCAG-SC2.4.2-P2",
-      "testResults": Array [
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-            "A11yError-0",
-          ],
-          "failureDetails": Array [],
           "failureMessages": Array [
-            "Accessibility issues found: Documents must have <title> element to aid in navigation
-Help: https://dequeuniversity.com/rules/axe/4.7/document-title
-CSS Selectors: html
-HTML element: <html><head></head><body>
+            "
+            The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+            4 HTML elements have accessibility issue(s). 3 rules failed.
+
+            (1) [document-title] Documents must have <title> element to aid in navigation
+            * Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+            * More info: Fix any of the following:
+  Document does not have a non-empty <title> element
+            * Error element(s) : 1
+            - (1) HTML element : <html><head></head><body>
 
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
@@ -1847,51 +1796,14 @@ HTML element: <html><head></head><body>
 
 
 </body></html>
-Tests: \\"A11yError-0\\"
-Summary: Fix any of the following:
-  Document does not have a non-empty <title> element",
-          ],
-          "fullName": "Documents must have <title> element to aid in navigation::html",
-          "status": "failed",
-        },
-      ],
-    },
-    Object {
-      "leaks": false,
-      "numFailingTests": 1,
-      "numPassingTests": 0,
-      "numPendingTests": 0,
-      "numTodoTests": 0,
-      "openHandles": Array [],
-      "perfStats": Object {
-        "end": 0,
-        "runtime": 0,
-        "slow": false,
-        "start": 0,
-      },
-      "skipped": false,
-      "snapshot": Object {
-        "added": 0,
-        "fileDeleted": false,
-        "matched": 0,
-        "unchecked": 0,
-        "uncheckedKeys": Array [],
-        "unmatched": 0,
-        "updated": 0,
-      },
-      "testFilePath": "/test/data/sa11y-auto-checks.js::SA11Y-WCAG-SC3.1.1-P2",
-      "testResults": Array [
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-            "A11yError-0",
-          ],
-          "failureDetails": Array [],
-          "failureMessages": Array [
-            "Accessibility issues found: <html> element must have a lang attribute
-Help: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
-CSS Selectors: html
-HTML element: <html><head></head><body>
+             - CSS selector(s) : html
+             - HTML Tag Hierarchy : document-title--html
+(2) [html-has-lang] <html> element must have a lang attribute
+            * Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
+            * More info: Fix any of the following:
+  The <html> element does not have a lang attribute
+            * Error element(s) : 2
+            - (1) HTML element : <html><head></head><body>
 
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
@@ -1899,63 +1811,41 @@ HTML element: <html><head></head><body>
 
 
 </body></html>
-Tests: \\"A11yError-0\\"
-Summary: Fix any of the following:
-  The <html> element does not have a lang attribute",
-          ],
-          "fullName": "<html> element must have a lang attribute::html",
-          "status": "failed",
-        },
-      ],
-    },
-    Object {
-      "leaks": false,
-      "numFailingTests": 1,
-      "numPassingTests": 0,
-      "numPendingTests": 0,
-      "numTodoTests": 0,
-      "openHandles": Array [],
-      "perfStats": Object {
-        "end": 0,
-        "runtime": 0,
-        "slow": false,
-        "start": 0,
-      },
-      "skipped": false,
-      "snapshot": Object {
-        "added": 0,
-        "fileDeleted": false,
-        "matched": 0,
-        "unchecked": 0,
-        "uncheckedKeys": Array [],
-        "unmatched": 0,
-        "updated": 0,
-      },
-      "testFilePath": "/test/data/sa11y-auto-checks.js::SA11Y-WCAG-SC4.1.2-P1",
-      "testResults": Array [
-        Object {
-          "ancestorTitles": Array [
-            "sa11y",
-            "A11yError-0",
-          ],
-          "failureDetails": Array [],
-          "failureMessages": Array [
-            "Accessibility issues found: Links must have discernible text
-Help: https://dequeuniversity.com/rules/axe/4.7/link-name
-CSS Selectors: a
-HTML element: <a href=\\"#\\"></a>
-Tests: \\"A11yError-0\\"
-Summary: Fix all of the following:
+             - CSS selector(s) : html
+             - HTML Tag Hierarchy : html-has-lang--html
+- (2) HTML element : <html>
+             - CSS selector(s) : html
+             - HTML Tag Hierarchy : html-has-lang--html
+(3) [link-name] Links must have discernible text
+            * Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name
+            * More info: Fix all of the following:
   Element is in tab order and does not have accessible text
 
 Fix any of the following:
   Element does not have text that is visible to screen readers
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-  Element has no title attribute",
+  Element has no title attribute
+            * Error element(s) : 1
+            - (1) HTML element : <a href=\\"#\\"></a>
+             - CSS selector(s) : a
+             - HTML Tag Hierarchy : link-name--a
+            For more info about automated accessibility testing: https://sfdc.co/a11y-test
+            For tips on fixing accessibility bugs: https://sfdc.co/a11y
+            Questions? Post on Accessibility Team Chatter: https://sfdc.co/a11y-gus
+            ",
           ],
-          "fullName": "Links must have discernible text::a",
+          "fullName": "A11yError-4",
           "status": "failed",
+        },
+        Object {
+          "ancestorTitles": Array [
+            "sa11y",
+          ],
+          "failureDetails": Array [],
+          "failureMessages": Array [],
+          "fullName": "Error-5",
+          "status": "passed",
         },
       ],
     },

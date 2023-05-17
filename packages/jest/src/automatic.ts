@@ -10,6 +10,8 @@ import { getViolationsJSDOM } from '@sa11y/assert';
 import { A11yError } from '@sa11y/format';
 import { isTestUsingFakeTimer } from './matcher';
 import { expect } from '@jest/globals';
+import { adaptA11yConfig } from './setup';
+import { defaultRuleset } from '@sa11y/preset-rules';
 
 /**
  * Options for Automatic checks to be passed to {@link registerSa11yAutomaticChecks}
@@ -74,7 +76,8 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
             //      for test "${expect.getState().currentTestName}"
             //      : ${testPath}`
             // );
-            violations.push(...(await getViolationsJSDOM(currNode)));
+            // W-10004832 - Exclude descendancy based rules from automatic checks
+            violations.push(...(await getViolationsJSDOM(currNode, adaptA11yConfig(defaultRuleset))));
             currNode = walker.nextSibling();
         }
     } finally {
@@ -94,6 +97,6 @@ export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCh
     if (opts.runAfterEach) {
         // TODO (fix): Make registration idempotent
         log('Registering sa11y checks to be run automatically after each test');
-        afterEach(() => automaticCheck(opts));
+        afterEach(async () => await automaticCheck(opts));
     }
 }
