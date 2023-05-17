@@ -16,7 +16,7 @@ const a11yResults: A11yResult[] = [];
 const aggregatedResults = makeEmptyAggregatedTestResult();
 const testSuite = createEmptyTestResult();
 let numTestFailures = 0;
-const numNonA11yFailures = 1;
+const numNonA11yFailures = 3;
 
 function addTestFailure(suite: TestResult, err: Error) {
     const failure = {

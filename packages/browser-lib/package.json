@@ -36,7 +36,7 @@
     "dependencies": {
         "@sa11y/format": "4.0.0-alpha.0",
         "@sa11y/preset-rules": "4.0.0-alpha.0",
-        "axe-core": "4.3.3"
+        "axe-core": "4.7.0"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "23.0.7",
@@ -55,6 +55,6 @@
         "access": "public"
     },
     "engines": {
-        "node": "^14 || ^16"
+        "node": "^16"
     }
 }
