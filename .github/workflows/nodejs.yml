@@ -17,13 +17,12 @@ jobs:
         strategy:
             matrix:
                 node-version:
-                    - 14.x
                     - 16.x
                 os:
                     - ubuntu-latest
 
         steps:
-            - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+            - uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
 
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
@@ -35,7 +34,7 @@ jobs:
             - run: yarn build:ci
             - run: yarn test:ci
 
-            - uses: codecov/codecov-action@40a12dcee2df644d47232dde008099a3e9e4f865 # v3.1.2
+            - uses: codecov/codecov-action@eaaf4bedf32dbdc6b720b63067d99c4d77d6047d # v3.1.4
     release:
         name: Release
         needs: lint-build-test # previous job MUST pass to make a release!
@@ -50,7 +49,7 @@ jobs:
             pull-requests: write # to be able to comment on released pull requests
 
         steps:
-            - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+            - uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
               with:
                   fetch-depth: 0 # Need all git history & tags to determine next release version.
                   persist-credentials: false
