@@ -1,0 +1,14 @@
+
+# rollup.config.mjs isn't detected by Depcheck
+# Explicitly permit them
+ignores:
+- "@rollup/plugin-commonjs"
+- "@rollup/plugin-node-resolve"
+- "@rollup/plugin-replace"
+- "rollup"
+- "rollup-plugin-polyfill-node"
+- "rollup-plugin-progress"
+- "rollup-plugin-sizes"
+- "rollup-plugin-terser"
+- "rollup-plugin-typescript2"
+skip-missing: true
