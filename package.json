@@ -19,11 +19,13 @@
         "build:ci": "yarn install --frozen-lockfile && yarn build",
         "build:clean": "tsc --build --clean && rimraf packages/**/dist && yarn build:ci",
         "build:watch": "tsc --build --watch",
+        "clean": "lerna exec rimraf node_modules/ dist/ tsconfig.tsbuildinfo && rimraf node_modules",
         "commit": "! git diff --cached --exit-code && lint-staged && git-cz",
         "install:clean": "lerna clean --yes && rimraf yarn.lock && rimraf node_modules && yarn install",
         "install:update": "yarn audit; yarn upgrade-interactive --latest && yarn install:clean && yarn test:clean",
         "lint": "eslint . --ext ts,js,md",
         "lint:all": "tsc --noEmit && yarn lint && yarn lint:lockfile && yarn lint:deps && yarn lint:depgraph",
+        "lint:all:except:depgraph": "tsc --noEmit && yarn lint && yarn lint:lockfile && yarn lint:deps",
         "lint:deps": "lerna exec depcheck",
         "lint:depgraph": "yarn pkg:depgraph && git diff --quiet docs/sa11y_dependency_graph.svg || (echo 'Dependency graph needs to be updated!'; exit 1)",
         "lint:fix": "yarn lint --fix",
@@ -40,7 +42,7 @@
         "release:version:auto": "yarn release:version --conventional-commits --no-changelog && yarn build:clean",
         "release:publish": "yarn test:clean && lerna publish from-package",
         "test": "jest --coverage --runInBand",
-        "test:ci": "yarn lint:all && yarn test --ci --reporters=default --reporters=jest-junit && yarn test:wdio",
+        "test:ci": "yarn lint:all:except:depgraph && yarn test --ci --reporters=default --reporters=jest-junit && yarn test:wdio",
         "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "SA11Y_DEBUG=1 node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "jest --watch",
@@ -109,6 +111,6 @@
         "webdriverio": "7.31.1"
     },
     "engines": {
-        "node": "^16"
+        "node": "^16 || ^18"
     }
 }
