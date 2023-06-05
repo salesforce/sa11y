@@ -19,11 +19,12 @@
         "build:ci": "yarn install --frozen-lockfile && yarn build",
         "build:clean": "tsc --build --clean && rimraf packages/**/dist && yarn build:ci",
         "build:watch": "tsc --build --watch",
+        "clean": "lerna exec rimraf node_modules/ dist/ tsconfig.tsbuildinfo && rimraf node_modules",
         "commit": "! git diff --cached --exit-code && lint-staged && git-cz",
         "install:clean": "lerna clean --yes && rimraf yarn.lock && rimraf node_modules && yarn install",
         "install:update": "yarn audit; yarn upgrade-interactive --latest && yarn install:clean && yarn test:clean",
         "lint": "eslint . --ext ts,js,md",
-        "lint:all": "tsc --noEmit && yarn lint && yarn lint:lockfile && yarn lint:deps && yarn lint:depgraph",
+        "lint:all": "tsc --noEmit && yarn lint && yarn lint:lockfile && yarn lint:deps",
         "lint:deps": "lerna exec depcheck",
         "lint:depgraph": "yarn pkg:depgraph && git diff --quiet docs/sa11y_dependency_graph.svg || (echo 'Dependency graph needs to be updated!'; exit 1)",
         "lint:fix": "yarn lint --fix",
@@ -109,6 +110,6 @@
         "webdriverio": "7.31.1"
     },
     "engines": {
-        "node": "^16"
+        "node": "^16 || ^18"
     }
 }

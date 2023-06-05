@@ -45,6 +45,6 @@
         "access": "public"
     },
     "engines": {
-        "node": "^16"
+        "node": "^16 || ^18"
     }
 }
