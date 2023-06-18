@@ -41,7 +41,7 @@
         "release:version": "yarn pkg:diff; lerna version --no-push --no-git-tag-version && yarn build:clean",
         "release:version:auto": "yarn release:version --conventional-commits --no-changelog && yarn build:clean",
         "release:publish": "yarn test:clean && lerna publish from-package",
-        "test": "jest --runInBand",
+        "test": "jest --coverage --runInBand",
         "test:ci": "yarn lint:all:except:depgraph && yarn test --ci --reporters=default --reporters=jest-junit && yarn test:wdio",
         "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "SA11Y_DEBUG=1 node --inspect node_modules/.bin/jest --runInBand --watch",
