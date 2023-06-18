@@ -19,6 +19,7 @@ Accessibility matcher for [Jest](https://jestjs.io)
     - [JSON result transformation](#json-result-transformation)
   - [Limitations](#limitations)
   - [Disabled Checks](#disabled-checks)
+  - [Jest toMatchSnapshot() API Wrapper](#jest-tomatchsnapshot-api-wrapper)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -278,3 +279,7 @@ Automatic checks currently has the following limitations.
 ### Disabled Checks
 
 -   @sa11y/jest automatic checks also disabled rules which were disabled in `toBeAccessible` Jest API ([disabled-checks](https://github.com/salesforce/sa11y/tree/master/packages/jest#disabled-checks))
+
+### Jest toMatchSnapshot() API Wrapper
+
+-   When Snapshot testing is done, jest's `toMatchSnapshot()` API is altering the document.body element attributes as needed to generate snapshots thereby the a11y checks which happen later on `document.body` isn't running on actual elements. To solve this, a wrapper has been introduced to restore the document.body DOM before jest's `toMatchSnapshot` is invoked and use the restored version of document.body for a11y checks.

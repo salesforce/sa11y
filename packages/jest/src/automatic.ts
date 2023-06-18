@@ -36,6 +36,12 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
     filesFilter: [],
 };
 
+let originalDocumentBodyHtml: string | null = null;
+
+export const setOriginalDocumentBodyHtml = (bodyHtml: string | null) => {
+    originalDocumentBodyHtml = bodyHtml ?? null;
+};
+
 /**
  * Check if current test file needs to be skipped based on any provided filter
  */
@@ -65,6 +71,9 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     }
 
     const violations: AxeResults = [];
+    if (originalDocumentBodyHtml) {
+        document.body.innerHTML = originalDocumentBodyHtml;
+    }
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();
@@ -81,6 +90,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
             currNode = walker.nextSibling();
         }
     } finally {
+        setOriginalDocumentBodyHtml(null);
         if (opts.cleanupAfterEach) document.body.innerHTML = ''; // remove non-element nodes
         // TODO (spike): Disable stack trace for automatic checks.
         //  Will this affect all errors globally?

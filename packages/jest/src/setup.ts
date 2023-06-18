@@ -7,8 +7,14 @@
 
 import { toBeAccessible } from './matcher';
 import { A11yConfig } from '@sa11y/common';
-import { AutoCheckOpts, registerSa11yAutomaticChecks } from './automatic';
+import { AutoCheckOpts, registerSa11yAutomaticChecks, setOriginalDocumentBodyHtml } from './automatic';
 import { expect } from '@jest/globals';
+import { toMatchSnapshot, SnapshotState } from 'jest-snapshot';
+import type { MatcherFunctionWithState, MatcherState } from 'expect';
+
+interface Context extends MatcherState {
+    snapshotState: SnapshotState;
+}
 
 export const disabledRules = [
     // Descendancy checks that would fail at unit/component level, but pass at page level
@@ -28,6 +34,15 @@ export const disabledRules = [
     'audio-caption',
     'video-caption',
 ];
+
+function wrapperSnapshotMatcher(originalMatcher: MatcherFunctionWithState<Context>) {
+    return function (...args: Context[]) {
+        setOriginalDocumentBodyHtml(document?.body?.innerHTML ?? '');
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        return originalMatcher.call(expect.getState(), ...args);
+    };
+}
 
 /**
  * Options to be passed on to {@link setup}
@@ -72,8 +87,9 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
  * Register accessibility helpers toBeAccessible as jest matchers
  */
 export function registerSa11yMatcher(): void {
+    const wrapper = wrapperSnapshotMatcher(toMatchSnapshot);
     if (expect !== undefined) {
-        expect.extend({ toBeAccessible });
+        expect.extend({ toBeAccessible, toMatchSnapshot: wrapper });
     } else {
         throw new Error(
             "Unable to find Jest's expect function." +
