@@ -9113,10 +9113,10 @@ lockfile-lint-api@^5.5.5:
     "@yarnpkg/parsers" "^3.0.0-rc.32"
     object-hash "^3.0.0"
 
-lockfile-lint@4.10.5:
-  version "4.10.5"
-  resolved "https://registry.yarnpkg.com/lockfile-lint/-/lockfile-lint-4.10.5.tgz#336c1f18f3d31542c4ef532751d3e06dfbd01eed"
-  integrity sha512-OMl5eKlTI14JYXDYC3yT+54C6gszU45emNA+1EUK2i54GKrP8aXqReSqdpZt0Rwa2Dy+mIpoaD+oUuW05HRtcA==
+lockfile-lint@4.10.6:
+  version "4.10.6"
+  resolved "https://registry.yarnpkg.com/lockfile-lint/-/lockfile-lint-4.10.6.tgz#8b410f7ba5c800a42736a193225f8286d24e96b6"
+  integrity sha512-DDE09SZRW/DPTukxSbe2KEaWMuIJbu4hMMNxXsLqkalC0jVA42IKz5IaVqgmrYZqPYjfTFFCVxroDcZ+J03PqA==
   dependencies:
     cosmiconfig "^7.0.1"
     debug "^4.1.1"
