@@ -44,7 +44,7 @@
         "@rollup/plugin-replace": "5.0.2",
         "@sa11y/common": "5.1.0",
         "@sa11y/test-utils": "5.1.0",
-        "rollup": "3.25.3",
+        "rollup": "3.26.1",
         "rollup-plugin-polyfill-node": "0.12.0",
         "rollup-plugin-progress": "1.1.2",
         "rollup-plugin-sizes": "1.0.5",
