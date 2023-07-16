@@ -76,7 +76,7 @@
         "chromedriver": "113.0.0",
         "commitizen": "4.3.0",
         "conventional-changelog-cli": "2.2.2",
-        "cspell": "6.31.1",
+        "cspell": "6.31.2",
         "depcheck": "1.4.3",
         "doctoc": "2.2.1",
         "eslint": "8.45.0",
