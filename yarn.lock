@@ -5129,7 +5129,7 @@ cosmiconfig@8.0.0:
     parse-json "^5.0.0"
     path-type "^4.0.0"
 
-cosmiconfig@^7.0.0, cosmiconfig@^7.0.1:
+cosmiconfig@^7.0.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-7.1.0.tgz#1443b9afa596b670082ea46cbd8f6a62b84635f6"
   integrity sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==
@@ -5140,7 +5140,7 @@ cosmiconfig@^7.0.0, cosmiconfig@^7.0.1:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-cosmiconfig@^8.0.0:
+cosmiconfig@^8.0.0, cosmiconfig@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-8.2.0.tgz#f7d17c56a590856cd1e7cee98734dca272b0d8fd"
   integrity sha512-3rTMnFJA1tCOPwRxtgF4wd7Ab2qvDbL8jX+3smjIbS4HlZBagTlpERbdN7iAbWlrfxE3M8c27kTwTawQ7st+OQ==
@@ -9068,7 +9068,7 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lockfile-lint-api@^5.5.5:
+lockfile-lint-api@^5.8.0:
   version "5.8.0"
   resolved "https://registry.yarnpkg.com/lockfile-lint-api/-/lockfile-lint-api-5.8.0.tgz#c7ffdce754523a50a1eb4a03bab8d70cadb9588f"
   integrity sha512-RHa+ofSGMGQvPFG1oD2qZmSWF2MfxWXhle/unpzmDjpi8F8Ou5sreNUcAscgGRfcX+BszBuVKddD0X5YKQ0TeA==
@@ -9077,15 +9077,16 @@ lockfile-lint-api@^5.5.5:
     debug "^4.3.4"
     object-hash "^3.0.0"
 
-lockfile-lint@4.10.6:
-  version "4.10.6"
-  resolved "https://registry.yarnpkg.com/lockfile-lint/-/lockfile-lint-4.10.6.tgz#8b410f7ba5c800a42736a193225f8286d24e96b6"
-  integrity sha512-DDE09SZRW/DPTukxSbe2KEaWMuIJbu4hMMNxXsLqkalC0jVA42IKz5IaVqgmrYZqPYjfTFFCVxroDcZ+J03PqA==
+lockfile-lint@4.12.0:
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/lockfile-lint/-/lockfile-lint-4.12.0.tgz#0ddd5d0fc517c9205dbfcc2213c783a84fa3bfdc"
+  integrity sha512-ygE4KVagojmV9IIM4swoSP7Rilu1esYVq2dUpnDsMLy9v/mKrWULTDSYM7kqKsGf/C+/K0ONJsxitpEPXXhBVQ==
   dependencies:
-    cosmiconfig "^7.0.1"
-    debug "^4.1.1"
-    lockfile-lint-api "^5.5.5"
-    yargs "^16.0.0"
+    cosmiconfig "^8.2.0"
+    debug "^4.3.4"
+    fast-glob "^3.3.1"
+    lockfile-lint-api "^5.8.0"
+    yargs "^17.7.2"
 
 lodash.camelcase@^4.3.0:
   version "4.3.0"
@@ -13601,7 +13602,7 @@ yargs-parser@^20.2.2, yargs-parser@^20.2.3:
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-20.2.9.tgz#2eb7dc3b0289718fc295f362753845c41a0c94ee"
   integrity sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==
 
-yargs@16.2.0, yargs@^16.0.0, yargs@^16.1.0, yargs@^16.2.0:
+yargs@16.2.0, yargs@^16.1.0, yargs@^16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-16.2.0.tgz#1c82bf0f6b6a66eafce7ef30e376f49a12477f66"
   integrity sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==
@@ -13614,7 +13615,7 @@ yargs@16.2.0, yargs@^16.0.0, yargs@^16.1.0, yargs@^16.2.0:
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
 
-yargs@^17.0.0, yargs@^17.3.1, yargs@^17.6.2:
+yargs@^17.0.0, yargs@^17.3.1, yargs@^17.6.2, yargs@^17.7.2:
   version "17.7.2"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-17.7.2.tgz#991df39aca675a192b816e1e0363f9d75d2aa269"
   integrity sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==
