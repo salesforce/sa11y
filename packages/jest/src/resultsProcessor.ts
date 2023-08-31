@@ -31,6 +31,7 @@ function createA11yTestResult(testResult: AssertionResult, a11yResult: A11yResul
         failureMessages: [
             `${errMsgHeader}: ${a11yResult.description}
 Help: ${a11yResult.helpUrl}
+WCAG Criteria: ${a11yResult.wcag}
 CSS Selectors: ${a11yResult.selectors}
 HTML element: ${a11yResult.html}
 Tests: "${testResult.fullName}"

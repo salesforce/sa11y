@@ -482,6 +482,7 @@ Fix any of the following:
 
             (1) [document-title] Documents must have <title> element to aid in navigation
             * Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+            * WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
             * More info: Fix any of the following:
   Document does not have a non-empty <title> element
             * Error element(s) : 1
@@ -497,6 +498,7 @@ Fix any of the following:
              - HTML Tag Hierarchy : document-title--html
 (2) [html-has-lang] <html> element must have a lang attribute
             * Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
+            * WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
             * More info: Fix any of the following:
   The <html> element does not have a lang attribute
             * Error element(s) : 1
@@ -512,6 +514,7 @@ Fix any of the following:
              - HTML Tag Hierarchy : html-has-lang--html
 (3) [link-name] Links must have discernible text
             * Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name
+            * WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
             * More info: Fix all of the following:
   Element is in tab order and does not have accessible text
 
@@ -647,6 +650,7 @@ Fix any of the following:
 
             (1) [html-has-lang] <html> element must have a lang attribute
             * Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
+            * WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
             * More info: Fix any of the following:
   The <html> element does not have a lang attribute
             * Error element(s) : 1
@@ -1086,6 +1090,7 @@ Fix any of the following:
 
             (1) [document-title] Documents must have <title> element to aid in navigation
             * Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+            * WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
             * More info: Fix any of the following:
   Document does not have a non-empty <title> element
             * Error element(s) : 1
@@ -1101,6 +1106,7 @@ Fix any of the following:
              - HTML Tag Hierarchy : document-title--html
 (2) [html-has-lang] <html> element must have a lang attribute
             * Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
+            * WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
             * More info: Fix any of the following:
   The <html> element does not have a lang attribute
             * Error element(s) : 1
@@ -1116,6 +1122,7 @@ Fix any of the following:
              - HTML Tag Hierarchy : html-has-lang--html
 (3) [link-name] Links must have discernible text
             * Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name
+            * WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
             * More info: Fix all of the following:
   Element is in tab order and does not have accessible text
 
@@ -1251,6 +1258,7 @@ Fix any of the following:
 
             (1) [html-has-lang] <html> element must have a lang attribute
             * Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
+            * WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
             * More info: Fix any of the following:
   The <html> element does not have a lang attribute
             * Error element(s) : 1
@@ -1785,6 +1793,7 @@ Fix any of the following:
 
             (1) [document-title] Documents must have <title> element to aid in navigation
             * Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+            * WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
             * More info: Fix any of the following:
   Document does not have a non-empty <title> element
             * Error element(s) : 1
@@ -1800,6 +1809,7 @@ Fix any of the following:
              - HTML Tag Hierarchy : document-title--html
 (2) [html-has-lang] <html> element must have a lang attribute
             * Help URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang
+            * WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
             * More info: Fix any of the following:
   The <html> element does not have a lang attribute
             * Error element(s) : 2
@@ -1818,6 +1828,7 @@ Fix any of the following:
              - HTML Tag Hierarchy : html-has-lang--html
 (3) [link-name] Links must have discernible text
             * Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name
+            * WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
             * More info: Fix all of the following:
   Element is in tab order and does not have accessible text
 
@@ -1856,10 +1867,12 @@ Fix any of the following:
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 2`] = `2`;
@@ -1867,10 +1880,12 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 3`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 1 1`] = `""`;
@@ -1886,59 +1901,73 @@ exports[`a11y Results Formatter should format using specified options: 0 1`] = `
 
 exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 "\\"* (document-title) Documents must have <title> element to aid in navigation: html\\"
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 \\"* (link-name) Links must have discernible text: a\\"
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 1`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 2`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should throw error when violations are present 1`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;

@@ -96,7 +96,8 @@ export class A11yError extends Error {
                 return (
                     options.highlighter(
                         `${options.a11yViolationIndicator} (${a11yResult.id}) ${a11yResult.description}: ${a11yResult.selectors}`
-                    ) + `\n\t${options.helpUrlIndicator} Help URL: ${a11yResult.helpUrl}`
+                    ) +
+                    `\n\t${options.helpUrlIndicator} Help URL: ${a11yResult.helpUrl} \n\t${options.helpUrlIndicator} WCAG Criteria: ${a11yResult.wcag}`
                 );
             })
             .join('\n\n');
