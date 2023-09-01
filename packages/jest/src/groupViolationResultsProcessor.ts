@@ -22,6 +22,7 @@ type A11yViolation = {
     id: string;
     description: string;
     helpUrl: string;
+    wcagCriteria: string;
     summary: string;
     errorElements: ErrorElement[];
 };
@@ -48,6 +49,7 @@ function createA11yErrorElements(errorElements: ErrorElement[]) {
 function createA11yRuleViolation(a11yRule: A11yViolation, ruleIndex: number) {
     return `(${ruleIndex}) [${a11yRule.id}] ${a11yRule.description}
             * Help URL: ${a11yRule.helpUrl}
+            * WCAG Criteria: ${a11yRule.wcagCriteria}
             * More info: ${a11yRule.summary}
             * Error element(s) : ${a11yRule.errorElements.length}
             ${createA11yErrorElements(a11yRule.errorElements)}`;
@@ -82,6 +84,7 @@ function processA11yErrors(results: AggregatedResult, testSuite: TestResult, tes
                         id: a11yResult.id,
                         description: a11yResult.description,
                         helpUrl: a11yResult.helpUrl,
+                        wcagCriteria: a11yResult.wcag,
                         summary: a11yResult.summary,
                         errorElements: [],
                     };
