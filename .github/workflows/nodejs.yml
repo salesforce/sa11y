@@ -17,6 +17,7 @@ jobs:
         strategy:
             matrix:
                 node-version:
+                    - 16.x
                     - 18.x
                 os:
                     - ubuntu-latest
@@ -53,10 +54,10 @@ jobs:
               with:
                   fetch-depth: 0 # Need all git history & tags to determine next release version.
                   persist-credentials: false
-            - name: Use Node.js 18.x
+            - name: Use Node.js 16.x
               uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
               with:
-                  node-version: 18.x
+                  node-version: 16.x
                   cache: 'yarn'
                   registry-url: 'https://registry.npmjs.org'
 
