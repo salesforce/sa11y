@@ -20,7 +20,7 @@ jobs:
                     - 16.x
                     - 18.x
                 os:
-                    - ubuntu-latest
+                    - salesforce-Ubuntu
 
         steps:
             - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
@@ -39,7 +39,7 @@ jobs:
     release:
         name: Release
         needs: lint-build-test # previous job MUST pass to make a release!
-        runs-on: ubuntu-latest
+        runs-on: salesforce-Ubuntu
 
         # Skip running release workflow on forks
         if: github.repository_owner == 'salesforce' && github.event_name == 'push'
