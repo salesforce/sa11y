@@ -6615,7 +6615,7 @@ expect-webdriverio@^3.0.0:
     expect "^28.1.0"
     jest-matcher-utils "^28.1.0"
 
-expect@28.1.3, expect@^28.0.0, expect@^28.1.0, expect@^28.1.3:
+expect@^28.0.0, expect@^28.1.0, expect@^28.1.3:
   version "28.1.3"
   resolved "https://registry.yarnpkg.com/expect/-/expect-28.1.3.tgz#90a7c1a124f1824133dd4533cce2d2bdcb6603ec"
   integrity sha512-eEh0xn8HlsuOBxFgIss+2mX85VAS4Qy3OSkjV7rlBWljtA4oWH37glVGyOZSZvErDT/yBywZdPGwCXuTvSG85g==
@@ -8690,7 +8690,7 @@ jest-runtime@^28.1.3:
     slash "^3.0.0"
     strip-bom "^4.0.0"
 
-jest-snapshot@28.1.3, jest-snapshot@^28.1.3:
+jest-snapshot@^28.1.3:
   version "28.1.3"
   resolved "https://registry.yarnpkg.com/jest-snapshot/-/jest-snapshot-28.1.3.tgz#17467b3ab8ddb81e2f605db05583d69388fc0668"
   integrity sha512-4lzMgtiNlc3DU/8lZfmqxN3AYD6GGLbl+72rdBpXvcV+whX7mDrREzkPdp2RnmfIiWBg1YbuFSkXduF2JcafJg==

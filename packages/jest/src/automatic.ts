@@ -42,6 +42,10 @@ export const setOriginalDocumentBodyHtml = (bodyHtml: string | null) => {
     originalDocumentBodyHtml = bodyHtml ?? null;
 };
 
+export const getOriginalDocumentBodyHtml = () => {
+    return originalDocumentBodyHtml;
+};
+
 /**
  * Check if current test file needs to be skipped based on any provided filter
  */
@@ -107,6 +111,8 @@ export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCh
     if (opts.runAfterEach) {
         // TODO (fix): Make registration idempotent
         log('Registering sa11y checks to be run automatically after each test');
-        afterEach(async () => await automaticCheck(opts));
+        afterEach(async () => {
+            await automaticCheck(opts);
+        });
     }
 }
