@@ -13,7 +13,6 @@ describe('jest setup', () => {
     registerSa11yMatcher();
     it('should define matcher on expect object', () => {
         expect(expect['toBeAccessible']).toBeDefined();
-        expect(expect['toMatchSnapshot']).toBeDefined();
     });
 
     it.each([extended, base])('should customize %s preset-rule as expected', (config) => {

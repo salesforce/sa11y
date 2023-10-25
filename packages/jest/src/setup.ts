@@ -7,14 +7,13 @@
 
 import { toBeAccessible } from './matcher';
 import { A11yConfig } from '@sa11y/common';
-import { AutoCheckOpts, registerSa11yAutomaticChecks, setOriginalDocumentBodyHtml } from './automatic';
+import {
+    AutoCheckOpts,
+    registerSa11yAutomaticChecks,
+    getOriginalDocumentBodyHtml,
+    setOriginalDocumentBodyHtml,
+} from './automatic';
 import { expect } from '@jest/globals';
-import { toMatchSnapshot, SnapshotState } from 'jest-snapshot';
-import type { MatcherFunctionWithState, MatcherState } from 'expect';
-
-interface Context extends MatcherState {
-    snapshotState: SnapshotState;
-}
 
 export const disabledRules = [
     // Descendancy checks that would fail at unit/component level, but pass at page level
@@ -34,15 +33,6 @@ export const disabledRules = [
     'audio-caption',
     'video-caption',
 ];
-
-function wrapperSnapshotMatcher(originalMatcher: MatcherFunctionWithState<Context>) {
-    return function (...args: Context[]) {
-        setOriginalDocumentBodyHtml(document?.body?.innerHTML ?? '');
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        return originalMatcher.call(expect.getState(), ...args);
-    };
-}
 
 /**
  * Options to be passed on to {@link setup}
@@ -66,11 +56,29 @@ const defaultSa11yOpts: Sa11yOpts = {
     },
 };
 
+function registerRemoveChild() {
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    const originalRemoveChild = Element.prototype.removeChild;
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+    (Element.prototype as any).removeChild = function (oldChild: Node): Node {
+        if (oldChild.parentNode === this) {
+            // Your custom implementation here
+            if (!getOriginalDocumentBodyHtml()) {
+                setOriginalDocumentBodyHtml(document?.body?.innerHTML ?? '');
+            }
+        }
+
+        return originalRemoveChild.call(this, oldChild);
+    };
+}
+
 /**
  * Register Sa11y Jest API and automatic checks depending on {@link Sa11yOpts}
  * @param opts - {@link Sa11yOpts} to opt-in to automatic checks
  */
 export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
+    registerRemoveChild();
     registerSa11yMatcher();
     // Set defaults from env vars
     const autoCheckOpts = opts.autoCheckOpts;
@@ -87,9 +95,8 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
  * Register accessibility helpers toBeAccessible as jest matchers
  */
 export function registerSa11yMatcher(): void {
-    const wrapper = wrapperSnapshotMatcher(toMatchSnapshot);
     if (expect !== undefined) {
-        expect.extend({ toBeAccessible, toMatchSnapshot: wrapper });
+        expect.extend({ toBeAccessible });
     } else {
         throw new Error(
             "Unable to find Jest's expect function." +
