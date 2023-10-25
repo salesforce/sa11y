@@ -49,8 +49,9 @@ Before you start, it helps to be familiar with [Web Accessibility](https://trail
 
 ## Quick start
 
-1. `yarn install` to install dependencies
-2. Make changes while building, testing and linting the changed files
+1. `yarn clean` to remove installed dependencies and clean dist folders
+2. `yarn install` to install dependencies
+3. Make changes while building, testing and linting the changed files
 
 -   `yarn build:watch`
 -   `yarn test:watch`
