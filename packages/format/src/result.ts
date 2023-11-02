@@ -28,8 +28,8 @@ export class A11yResults {
     }
 
     /**
-     * Consolidate given a11y results based on given key (test scope)
-     *  and return new results that are not already present
+     * Consolidate given a11y results based on the given key (test scope)
+     * and return new results that are not already present
      */
     static add(results: A11yResult[], key = ''): A11yResult[] {
         const existingResults = this.consolidated.get(key) || [];
@@ -43,7 +43,7 @@ export class A11yResults {
     }
 
     /**
-     * Sorts give a11y violations from axe in order of impact
+     * Sort a11y violations from axe in order of impact
      */
     static sort(violations: AxeResults): AxeResults {
         return violations.sort((a, b) => {
@@ -100,7 +100,7 @@ export class A11yResult {
     }
 
     /**
-     * Sort result by Priority and WCAG Level
+     * Sort results by Priority and WCAG Level
      */
     static sort(results: A11yResult[]): A11yResult[] {
         return results.sort((a, b) => {
@@ -110,5 +110,16 @@ export class A11yResult {
             const wcagLevelB = wcagLevels.indexOf(b.wcagData.wcagLevel);
             return priorityA - priorityB || wcagLevelA - wcagLevelB;
         });
+    }
+}
+
+/**
+ * Adds WCAG Success Criteria Info to result violations
+ * @param results - Array of Axe results
+ */
+export function appendWcag(results: AxeResults) {
+    for (const violation of results) {
+        const wcagMetadata = new WcagMetadata(violation);
+        violation.tags.push(wcagMetadata.toString());
     }
 }
