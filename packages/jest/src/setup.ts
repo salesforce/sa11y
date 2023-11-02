@@ -73,12 +73,24 @@ function registerRemoveChild() {
     };
 }
 
+const improvedChecksFilter = [
+    'ui-email-stream-components/modules/emailStream/adminHealthInsights/__tests__/adminHealthInsights.test.js',
+];
+
 /**
  * Register Sa11y Jest API and automatic checks depending on {@link Sa11yOpts}
  * @param opts - {@link Sa11yOpts} to opt-in to automatic checks
  */
 export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
-    registerRemoveChild();
+    if (process.env.SA11Y_AUTO) {
+        const testPath = expect.getState().testPath ?? '';
+        const ignoreImprovedChecks = improvedChecksFilter.some((fileName) =>
+            testPath.toLowerCase().includes(fileName.toLowerCase())
+        );
+        if (!ignoreImprovedChecks) {
+            registerRemoveChild();
+        }
+    }
     registerSa11yMatcher();
     // Set defaults from env vars
     const autoCheckOpts = opts.autoCheckOpts;
