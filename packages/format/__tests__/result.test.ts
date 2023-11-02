@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { A11yResult, A11yResults } from '../src';
+import { A11yResult, A11yResults, appendWcag } from '../src';
 import { getViolations } from './format.test';
 import { AxeResults } from '@sa11y/common';
 import { NodeResult, Result } from 'axe-core';
@@ -122,5 +122,23 @@ describe('a11y result', () => {
     it.each(['', 'foo', 'bar'])('should consolidate based on given key: %#', (key) => {
         expect(A11yResults.add(a11yResults, key)).toHaveLength(a11yResults.length);
         expect(A11yResults.add(a11yResults, key)).toHaveLength(0);
+    });
+});
+
+describe('appendWcag', () => {
+    it('should add WCAG metadata to each result', () => {
+        appendWcag(violations);
+
+        // Expect that WCAG metadata is added to each result
+        expect(violations[0].tags).toContain('SA11Y-WCAG-SC2.4.2-P2');
+        expect(violations[1].tags).toContain('SA11Y-WCAG-SC3.1.1-P2');
+    });
+
+    it('should handle results with no WCAG metadata', () => {
+        appendWcag(violations);
+
+        // Expect that no additional tags are added to results with no WCAG metadata
+        expect(violations[0].tags).not.toContain('SA11Y-WCAG');
+        expect(violations[1].tags).not.toContain('SA11Y-WCAG');
     });
 });

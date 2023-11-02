@@ -105,6 +105,7 @@ This repo contains the following packages for automated accessibility testing:
 ![node-current (scoped)](https://img.shields.io/node/v/@sa11y/browser-lib)
 
 -   Provides a minified version of selected `@sa11y` libraries to be injected into a browser (using webdriver) and executed from integration testing workflows.
+-   Gives WCAG SC for rulesets in addition with [axe] tags
 
 ### Internal packages
 
