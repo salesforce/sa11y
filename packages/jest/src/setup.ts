@@ -6,7 +6,7 @@
  */
 
 import { toBeAccessible } from './matcher';
-import { A11yConfig } from '@sa11y/common';
+import { A11yConfig, useFilesToBeExempted } from '@sa11y/common';
 import {
     AutoCheckOpts,
     registerSa11yAutomaticChecks,
@@ -100,6 +100,7 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
     autoCheckOpts.cleanupAfterEach ||= !!process.env.SA11Y_CLEANUP;
     if (process.env.SA11Y_AUTO_FILTER?.trim().length)
         autoCheckOpts.filesFilter ||= process.env.SA11Y_AUTO_FILTER.split(',');
+    if (useFilesToBeExempted().length != 0) autoCheckOpts.filesFilter ||= useFilesToBeExempted();
     registerSa11yAutomaticChecks(autoCheckOpts);
 }
 
