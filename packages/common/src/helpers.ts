@@ -11,7 +11,6 @@
  * Convenience wrapper to prefix a standard header for console log messages.
  * Logging is enabled only when environment variable `SA11Y_DEBUG` is set.
  */
-import { execSync } from 'child_process';
 
 export function log(...args: unknown[]): void {
     // Probably not worth it to mock and test console logging for this helper util
@@ -21,34 +20,14 @@ export function log(...args: unknown[]): void {
 
 export function useFilesToBeExempted(): string[] {
     const packageName: string = process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME || '';
-
-    const installPackageIfNeeded = (packageName: string): number => {
-        const installCommand = `npm install ${packageName}`;
-
-        console.log(`Downloading package: ${packageName}`);
-        try {
-            execSync(installCommand, { stdio: 'inherit' });
-            return 1;
-        } catch (error) {
-            return 0;
-        }
-    };
-
+    let getFilesToBeExempted: () => string[];
     if (packageName != '') {
-        let getFilesToBeExempted: () => any[]; // Declare the function outside the try block scope
         try {
             getFilesToBeExempted = require(packageName);
-            const filesToBeExempted: string[] = getFilesToBeExempted();
+            const filesToBeExempted = getFilesToBeExempted();
             return filesToBeExempted;
         } catch (error) {
-            if (process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_REQUIREMENT != '') {
-                const status = installPackageIfNeeded(packageName);
-                if (status == 1) {
-                    getFilesToBeExempted = require(packageName);
-                    const filesToBeExempted: string[] = getFilesToBeExempted();
-                    return filesToBeExempted;
-                }
-            }
+            console.log('Package not found : ', packageName);
         }
     }
     return [];

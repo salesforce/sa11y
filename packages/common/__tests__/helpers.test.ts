@@ -5,14 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { useFilesToBeExempted, log } from '@sa11y/common'; // Replace 'yourFileName' with the actual file path
-import { execSync } from 'child_process';
-
-jest.mock('child_process', () => ({
-    execSync: jest.fn(() => {
-        throw new Error('this is throw');
-    }),
-}));
+import { useFilesToBeExempted, log } from '../src/helpers';
 
 describe('Your Module', () => {
     afterEach(() => {
@@ -41,12 +34,36 @@ describe('Your Module', () => {
         process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME = 'somePackage';
         process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_REQUIREMENT = '';
 
-        const result: string[] = useFilesToBeExempted();
+        const result = useFilesToBeExempted();
 
         expect(result).toEqual([]);
 
         // Cleanup
         delete process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_REQUIREMENT;
+        delete process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME;
+    });
+
+    it('should use the package if packageName is set', () => {
+        const packageName = '../testMocks/packageTestHelper.ts';
+        process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME = packageName;
+
+        const result = useFilesToBeExempted();
+
+        expect(result).toEqual(['file1', 'file2']);
+
+        // Cleanup
+        delete process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME;
+    });
+
+    it('no package  found if packageName is set', () => {
+        const packageName = '../testMocks/packageTestHelperWrong.ts';
+
+        process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME = packageName;
+
+        const result = useFilesToBeExempted();
+
+        expect(result).toEqual([]);
+        // Cleanup
         delete process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME;
     });
 });
