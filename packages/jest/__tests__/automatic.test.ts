@@ -90,6 +90,9 @@ describe('automatic checks registration', () => {
     it('should set run only files option when specified', () => {
         const testFiles = 'foo,bar';
         process.env.SA11Y_AUTO_FILTER = testFiles;
+        process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME = '../testMocks/packageTestHelper.ts';
+        let filterFiles = testFiles.split(',');
+        filterFiles = filterFiles.concat(['file1', 'file2']);
         setup();
         expect(registerAutomaticMock).toHaveBeenCalledWith({
             // TODO (debug): Values seem to be carrying over from previous test
@@ -98,7 +101,7 @@ describe('automatic checks registration', () => {
             runAfterEach: true,
             cleanupAfterEach: true,
             consolidateResults: true,
-            filesFilter: testFiles.split(','),
+            filesFilter: filterFiles,
         });
     });
 });
