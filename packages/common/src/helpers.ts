@@ -1,5 +1,3 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /*
  * Copyright (c) 2021, salesforce.com, inc.
  * All rights reserved.
@@ -21,8 +19,9 @@ export function log(...args: unknown[]): void {
 export function useFilesToBeExempted(): string[] {
     const packageName: string = process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME || '';
     let getFilesToBeExempted: () => string[];
-    if (packageName != '') {
+    if (packageName !== '') {
         try {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             getFilesToBeExempted = require(packageName);
             const filesToBeExempted = getFilesToBeExempted();
             return filesToBeExempted;

@@ -100,7 +100,10 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
     autoCheckOpts.cleanupAfterEach ||= !!process.env.SA11Y_CLEANUP;
     if (process.env.SA11Y_AUTO_FILTER?.trim().length)
         autoCheckOpts.filesFilter ||= process.env.SA11Y_AUTO_FILTER.split(',');
-    if (useFilesToBeExempted().length != 0) autoCheckOpts.filesFilter ||= useFilesToBeExempted();
+    if (useFilesToBeExempted().length !== 0) {
+        autoCheckOpts.filesFilter = autoCheckOpts.filesFilter || [];
+        autoCheckOpts.filesFilter = autoCheckOpts.filesFilter.concat(useFilesToBeExempted());
+    }
     registerSa11yAutomaticChecks(autoCheckOpts);
 }
 
