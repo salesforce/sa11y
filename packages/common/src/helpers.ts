@@ -21,8 +21,8 @@ export function useFilesToBeExempted(): string[] {
     let getFilesToBeExempted: () => string[];
     if (packageName !== '') {
         try {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            getFilesToBeExempted = require(packageName);
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            getFilesToBeExempted = require(packageName) as () => string[];
             const filesToBeExempted = getFilesToBeExempted();
             return filesToBeExempted;
         } catch (error) {
