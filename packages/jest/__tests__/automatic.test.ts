@@ -15,6 +15,7 @@ import {
     domWithNoA11yIssuesChildCount,
     domWithDescendancyA11yIssues,
 } from '@sa11y/test-utils';
+import * as Sa11yCommon from '@sa11y/common';
 import { expect, jest } from '@jest/globals';
 
 describe('automatic checks registration', () => {
@@ -90,9 +91,7 @@ describe('automatic checks registration', () => {
     it('should set run only files option when specified', () => {
         const testFiles = 'foo,bar';
         process.env.SA11Y_AUTO_FILTER = testFiles;
-        process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME = '../testMocks/packageTestHelper.ts';
-        let filterFiles = testFiles.split(',');
-        filterFiles = filterFiles.concat(['file1', 'file2']);
+        jest.spyOn(Sa11yCommon, 'useFilesToBeExempted').mockReturnValueOnce(['file1', 'file2']);
         setup();
         expect(registerAutomaticMock).toHaveBeenCalledWith({
             // TODO (debug): Values seem to be carrying over from previous test
@@ -101,7 +100,7 @@ describe('automatic checks registration', () => {
             runAfterEach: true,
             cleanupAfterEach: true,
             consolidateResults: true,
-            filesFilter: filterFiles,
+            filesFilter: ['foo', 'bar', 'file1', 'file2'],
         });
     });
 });
