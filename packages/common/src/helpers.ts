@@ -17,7 +17,8 @@ export function log(...args: unknown[]): void {
 }
 
 export function useFilesToBeExempted(): string[] {
-    const packageName: string = process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME || '';
+    const packageName: string =
+        process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME ?? 'sa11y-jest-automated-check-file-exclusion';
     let getFilesToBeExempted: () => string[];
     if (packageName !== '') {
         try {
