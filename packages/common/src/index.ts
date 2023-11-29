@@ -8,4 +8,4 @@
 export { A11yConfig, AxeResults, axeRuntimeExceptionMsgPrefix, axeVersion, getAxeRules, getViolations } from './axe';
 export { WdioAssertFunction, WdioOptions } from './wdio';
 export { errMsgHeader, ExceptionList } from './format';
-export { log } from './helpers';
+export { log, useFilesToBeExempted } from './helpers';
