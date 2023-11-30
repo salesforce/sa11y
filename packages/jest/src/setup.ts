@@ -108,7 +108,7 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
     autoCheckOpts.filesFilter = (autoCheckOpts.filesFilter ?? []).concat([
         "ui-help-components/modules/forceHelp/linkToReleaseNotes/__tests__/linkToReleaseNotes.spec.js",
         "ui-help-components/modules/forceHelp/linkToAppexchange/__tests__/linkToAppexchange.spec.js",
-        "ui-help-components/modules/forceHelp/linkToTrailblazer/__tests__/linkToTrailblazer.spec.js,
+        "ui-help-components/modules/forceHelp/linkToTrailblazer/__tests__/linkToTrailblazer.spec.js",
         "ui-help-components/modules/forceHelp/linkToVidyard/__tests__/linkToVidyard.spec.js",
         "ui-help-components/modules/forceHelp/linkToSalesforceDevelopers/__tests__/linkToSalesforceDevelopers.spec.js",
         "ui-help-components/modules/forceHelp/linkToWebinar/__tests__/linkToWebinar.spec.js",
