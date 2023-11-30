@@ -121,7 +121,7 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
         "ui-help-components/modules/forceHelp/linkToSalesforceHelp/__tests__/linkToSalesforceHelp.spec.js",
         "ui-help-components/modules/forceHelp/link/__tests__/link.spec.js",
         "ui-help-components/modules/forceHelp/searchResults/__tests__/searchResults.spec.js",
-        "ui-help-components/modules/forceHelp/linkToKnownIssue/__tests__/linkToKnownIssue.spec.js"
+        "ui-help-components/modules/forceHelp/linkToKnownIssue/__tests__/linkToKnownIssue.spec.js",
     ]);
     registerSa11yAutomaticChecks(autoCheckOpts);
 }
