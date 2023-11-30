@@ -107,6 +107,7 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
     // TODO remove @W-14447754 - add files filter
     autoCheckOpts.filesFilter = (autoCheckOpts.filesFilter ?? []).concat([
         'ui-help-components/modules/forceHelp/linkToReleaseNotes/__tests__/linkToReleaseNotes.spec.js',
+        'ui-help-components/modules/forceHelp/linkToNonSalesforceResource/__tests__/linkToNonSalesforceResource.spec.js',
         'ui-help-components/modules/forceHelp/linkToAppexchange/__tests__/linkToAppexchange.spec.js',
         'ui-help-components/modules/forceHelp/linkToTrailblazer/__tests__/linkToTrailblazer.spec.js',
         'ui-help-components/modules/forceHelp/linkToVidyard/__tests__/linkToVidyard.spec.js',
