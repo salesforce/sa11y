@@ -106,22 +106,22 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
     }
     // TODO remove @W-14447754 - add files filter
     autoCheckOpts.filesFilter = (autoCheckOpts.filesFilter ?? []).concat([
-        "ui-help-components/modules/forceHelp/linkToReleaseNotes/__tests__/linkToReleaseNotes.spec.js",
-        "ui-help-components/modules/forceHelp/linkToAppexchange/__tests__/linkToAppexchange.spec.js",
-        "ui-help-components/modules/forceHelp/linkToTrailblazer/__tests__/linkToTrailblazer.spec.js",
-        "ui-help-components/modules/forceHelp/linkToVidyard/__tests__/linkToVidyard.spec.js",
-        "ui-help-components/modules/forceHelp/linkToSalesforceDevelopers/__tests__/linkToSalesforceDevelopers.spec.js",
-        "ui-help-components/modules/forceHelp/linkToWebinar/__tests__/linkToWebinar.spec.js",
-        "ui-help-components/modules/forceHelp/linkToTrust/__tests__/linkToTrust.spec.js",
-        "ui-help-components/modules/forceHelp/linkToPartnerCommunity/__tests__/linkToPartnerCommunity.spec.js",
-        "ui-help-components/modules/forceHelp/linkToDocResource/__tests__/linkToDocResource.spec.js",
-        "ui-help-components/modules/forceHelp/searchResultItem/__tests__/searchResultItem.spec.js",
-        "ui-help-components/modules/forceHelp/linkToTrailhead/__tests__/linkToTrailhead.spec.js",
-        "ui-help-components/modules/forceHelp/linkToSalesforceSuccess/__tests__/linkToSalesforceSuccess.spec.js",
-        "ui-help-components/modules/forceHelp/linkToSalesforceHelp/__tests__/linkToSalesforceHelp.spec.js",
-        "ui-help-components/modules/forceHelp/link/__tests__/link.spec.js",
-        "ui-help-components/modules/forceHelp/searchResults/__tests__/searchResults.spec.js",
-        "ui-help-components/modules/forceHelp/linkToKnownIssue/__tests__/linkToKnownIssue.spec.js",
+        'ui-help-components/modules/forceHelp/linkToReleaseNotes/__tests__/linkToReleaseNotes.spec.js',
+        'ui-help-components/modules/forceHelp/linkToAppexchange/__tests__/linkToAppexchange.spec.js',
+        'ui-help-components/modules/forceHelp/linkToTrailblazer/__tests__/linkToTrailblazer.spec.js',
+        'ui-help-components/modules/forceHelp/linkToVidyard/__tests__/linkToVidyard.spec.js',
+        'ui-help-components/modules/forceHelp/linkToSalesforceDevelopers/__tests__/linkToSalesforceDevelopers.spec.js',
+        'ui-help-components/modules/forceHelp/linkToWebinar/__tests__/linkToWebinar.spec.js',
+        'ui-help-components/modules/forceHelp/linkToTrust/__tests__/linkToTrust.spec.js',
+        'ui-help-components/modules/forceHelp/linkToPartnerCommunity/__tests__/linkToPartnerCommunity.spec.js',
+        'ui-help-components/modules/forceHelp/linkToDocResource/__tests__/linkToDocResource.spec.js',
+        'ui-help-components/modules/forceHelp/searchResultItem/__tests__/searchResultItem.spec.js',
+        'ui-help-components/modules/forceHelp/linkToTrailhead/__tests__/linkToTrailhead.spec.js',
+        'ui-help-components/modules/forceHelp/linkToSalesforceSuccess/__tests__/linkToSalesforceSuccess.spec.js',
+        'ui-help-components/modules/forceHelp/linkToSalesforceHelp/__tests__/linkToSalesforceHelp.spec.js',
+        'ui-help-components/modules/forceHelp/link/__tests__/link.spec.js',
+        'ui-help-components/modules/forceHelp/searchResults/__tests__/searchResults.spec.js',
+        'ui-help-components/modules/forceHelp/linkToKnownIssue/__tests__/linkToKnownIssue.spec.js',
     ]);
     registerSa11yAutomaticChecks(autoCheckOpts);
 }
