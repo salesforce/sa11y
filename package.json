@@ -56,9 +56,9 @@
         }
     },
     "devDependencies": {
-        "@babel/core": "7.22.20",
-        "@babel/preset-env": "7.22.20",
-        "@babel/preset-typescript": "7.22.15",
+        "@babel/core": "7.23.6",
+        "@babel/preset-env": "7.23.6",
+        "@babel/preset-typescript": "7.23.3",
         "@commitlint/cli": "17.8.1",
         "@commitlint/config-conventional": "17.8.1",
         "@semantic-release/changelog": "6.0.3",
