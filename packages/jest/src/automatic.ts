@@ -75,6 +75,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     }
 
     const violations: AxeResults = [];
+    const currentDocumentHtml = document.body.innerHTML;
     if (originalDocumentBodyHtml) {
         document.body.innerHTML = originalDocumentBodyHtml;
     }
@@ -95,6 +96,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
         }
     } finally {
         setOriginalDocumentBodyHtml(null);
+        document.body.innerHTML = currentDocumentHtml;
         if (opts.cleanupAfterEach) document.body.innerHTML = ''; // remove non-element nodes
         // TODO (spike): Disable stack trace for automatic checks.
         //  Will this affect all errors globally?
