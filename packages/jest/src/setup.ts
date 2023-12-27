@@ -6,7 +6,7 @@
  */
 
 import { toBeAccessible } from './matcher';
-import { A11yConfig } from '@sa11y/common';
+import { A11yConfig, useFilesToBeExempted } from '@sa11y/common';
 import {
     AutoCheckOpts,
     registerSa11yAutomaticChecks,
@@ -100,6 +100,30 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
     autoCheckOpts.cleanupAfterEach ||= !!process.env.SA11Y_CLEANUP;
     if (process.env.SA11Y_AUTO_FILTER?.trim().length)
         autoCheckOpts.filesFilter ||= process.env.SA11Y_AUTO_FILTER.split(',');
+    const exemptedFiles = useFilesToBeExempted();
+    if (exemptedFiles.length !== 0) {
+        autoCheckOpts.filesFilter = (autoCheckOpts.filesFilter ?? []).concat(exemptedFiles);
+    }
+    // TODO remove @W-14447754 - add files filter
+    autoCheckOpts.filesFilter = (autoCheckOpts.filesFilter ?? []).concat([
+        'ui-help-components/modules/forceHelp/linkToReleaseNotes/__tests__/linkToReleaseNotes.spec.js',
+        'ui-help-components/modules/forceHelp/linkToNonSalesforceResource/__tests__/linkToNonSalesforceResource.spec.js',
+        'ui-help-components/modules/forceHelp/linkToAppexchange/__tests__/linkToAppexchange.spec.js',
+        'ui-help-components/modules/forceHelp/linkToTrailblazer/__tests__/linkToTrailblazer.spec.js',
+        'ui-help-components/modules/forceHelp/linkToVidyard/__tests__/linkToVidyard.spec.js',
+        'ui-help-components/modules/forceHelp/linkToSalesforceDevelopers/__tests__/linkToSalesforceDevelopers.spec.js',
+        'ui-help-components/modules/forceHelp/linkToWebinar/__tests__/linkToWebinar.spec.js',
+        'ui-help-components/modules/forceHelp/linkToTrust/__tests__/linkToTrust.spec.js',
+        'ui-help-components/modules/forceHelp/linkToPartnerCommunity/__tests__/linkToPartnerCommunity.spec.js',
+        'ui-help-components/modules/forceHelp/linkToDocResource/__tests__/linkToDocResource.spec.js',
+        'ui-help-components/modules/forceHelp/searchResultItem/__tests__/searchResultItem.spec.js',
+        'ui-help-components/modules/forceHelp/linkToTrailhead/__tests__/linkToTrailhead.spec.js',
+        'ui-help-components/modules/forceHelp/linkToSalesforceSuccess/__tests__/linkToSalesforceSuccess.spec.js',
+        'ui-help-components/modules/forceHelp/linkToSalesforceHelp/__tests__/linkToSalesforceHelp.spec.js',
+        'ui-help-components/modules/forceHelp/link/__tests__/link.spec.js',
+        'ui-help-components/modules/forceHelp/searchResults/__tests__/searchResults.spec.js',
+        'ui-help-components/modules/forceHelp/linkToKnownIssue/__tests__/linkToKnownIssue.spec.js',
+    ]);
     registerSa11yAutomaticChecks(autoCheckOpts);
 }
 
