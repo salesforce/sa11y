@@ -20,8 +20,16 @@ export interface Filter {
 // const ruleIDs = getRules().map((ruleObj) => ruleObj.ruleId);
 // type RuleID = keyof ruleIDs;
 // type RuleID = typeof ruleIDs[number];
+// Array of length 2 or greater
+type MultiArray<T> = [T, T, ...T[]];
+
+// Selectors within a frame
+type BaseSelector = string;
+
+type ShadowDomSelector = MultiArray<BaseSelector>;
+type CrossTreeSelector = BaseSelector | ShadowDomSelector;
 type RuleID = string;
-type CssSelectors = string[];
+type CssSelectors = CrossTreeSelector[];
 /**
  * Exception list of map of rule to corresponding css targets that needs to be filtered from a11y results.
  */
