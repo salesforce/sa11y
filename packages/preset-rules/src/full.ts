@@ -11,8 +11,8 @@ import { extendedRulesInfo } from './extended';
 export const excludedRules = [
     'aria-braille-equivalent',
     'aria-conditional-attr',
-    'aria-deprecated-role',
     'aria-prohibited-attr',
+    'aria-deprecated-role',
 ];
 
 // Add excluded rules to extended to get the full list
