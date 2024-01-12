@@ -105,7 +105,8 @@ function processA11yErrors(results: AggregatedResult, testSuite: TestResult, tes
                 .join('\n')}
             For more info about automated accessibility testing: https://sfdc.co/a11y-test
             For tips on fixing accessibility bugs: https://sfdc.co/a11y
-            Questions? Post on Accessibility Team Chatter: https://sfdc.co/a11y-gus
+            For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+            For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
             `;
             a11yFailureMessages.push(a11yFailureMessage);
         }
