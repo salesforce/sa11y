@@ -63,7 +63,7 @@ describe('Your Module', () => {
         const result = useFilesToBeExempted();
 
         expect(result).toEqual([]);
-        // Cleanup
+
         delete process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME;
     });
 });
