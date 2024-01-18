@@ -13,6 +13,7 @@ const dataDir = path.resolve(__dirname, '../__data__/');
 // DOM with a11y issues
 export const domWithA11yIssuesBodyID = 'dom-with-issues';
 const fileWithA11yIssues = path.resolve(dataDir, 'a11yIssues.html');
+export const customRulesFilePath = path.resolve(dataDir, 'sa11y-custom-rules.json');
 const fileWithDescendancyA11yIssues = path.resolve(dataDir, 'descendancyA11yIssues.html');
 export const htmlFileWithA11yIssues = 'file:///' + fileWithA11yIssues;
 export const domWithA11yIssues = fs.readFileSync(fileWithA11yIssues).toString();

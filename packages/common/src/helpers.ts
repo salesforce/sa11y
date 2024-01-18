@@ -10,6 +10,7 @@
  * Logging is enabled only when environment variable `SA11Y_DEBUG` is set.
  */
 
+import * as fs from 'fs';
 export function log(...args: unknown[]): void {
     // Probably not worth it to mock and test console logging for this helper util
     /* istanbul ignore next */
@@ -28,6 +29,23 @@ export function useFilesToBeExempted(): string[] {
             return filesToBeExempted;
         } catch (error) {
             console.log('Package not found : ', packageName);
+        }
+    }
+    return [];
+}
+
+export function useCustomRules(): string[] {
+    const filePath = process.env.SA11Y_CUSTOM_RULES ?? '';
+    if (filePath !== '') {
+        try {
+            // Read the file synchronously
+            const data = fs.readFileSync(filePath, 'utf-8');
+            const jsonData = JSON.parse(data) as { rules: string[] };
+            // Access the rules array
+            const rules = jsonData.rules;
+            return rules;
+        } catch (err) {
+            console.error('Error reading the custom ruleset file:', err);
         }
     }
     return [];

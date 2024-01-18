@@ -151,3 +151,8 @@ export function adaptA11yConfig(config: A11yConfig, filterRules = disabledRules)
     adaptedConfig.runOnly.values = config.runOnly.values.filter((rule) => !filterRules.includes(rule));
     return adaptedConfig;
 }
+export function adaptA11yConfigCustomRules(config: A11yConfig, customRules: string[]): A11yConfig {
+    const adaptedConfig = JSON.parse(JSON.stringify(config)) as A11yConfig;
+    adaptedConfig.runOnly.values = customRules;
+    return adaptedConfig;
+}
