@@ -82,7 +82,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();
-    const customRules = useCustomRules();
+    const customRules = await useCustomRules();
     try {
         while (currNode !== null) {
             // TODO (spike): Use a logger lib with log levels selectable at runtime
