@@ -40,9 +40,8 @@ export function useCustomRules(): string[] {
         try {
             // Read the file synchronously
             const data = fs.readFileSync(filePath, 'utf-8');
-            const jsonData = JSON.parse(data) as { rules: string[] };
+            const { rules } = JSON.parse(data) as { rules: string[] };
             // Access the rules array
-            const rules = jsonData.rules;
             return rules;
         } catch (err) {
             console.error('Error reading the custom ruleset file:', err);

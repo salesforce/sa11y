@@ -92,7 +92,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
             //      : ${testPath}`
             // );
             // W-10004832 - Exclude descendancy based rules from automatic checks
-            if (customRules.length == 0)
+            if (customRules.length === 0)
                 violations.push(...(await getViolationsJSDOM(currNode, adaptA11yConfig(defaultRuleset))));
             else
                 violations.push(
