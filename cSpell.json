@@ -14,7 +14,8 @@
         "wcag",
         "wdio",
         "webdriverio",
-        "webm"
+        "webm",
+        "Vidyard"
     ],
     "flagWords": ["master-slave", "slave", "blacklist", "whitelist"],
     "allowCompoundWords": true

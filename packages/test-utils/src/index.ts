@@ -21,5 +21,6 @@ export {
     a11yIssuesCountFiltered,
     shadowDomID,
     videoURL,
+    customRulesFilePath,
 } from './test-data';
 export { beforeEachSetup, cartesianProduct } from './utils';

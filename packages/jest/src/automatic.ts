@@ -5,12 +5,12 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { AxeResults, log } from '@sa11y/common';
+import { AxeResults, log, useCustomRules } from '@sa11y/common';
 import { getViolationsJSDOM } from '@sa11y/assert';
 import { A11yError } from '@sa11y/format';
 import { isTestUsingFakeTimer } from './matcher';
 import { expect } from '@jest/globals';
-import { adaptA11yConfig } from './setup';
+import { adaptA11yConfig, adaptA11yConfigCustomRules } from './setup';
 import { defaultRuleset } from '@sa11y/preset-rules';
 
 /**
@@ -82,6 +82,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();
+    const customRules = await useCustomRules();
     try {
         while (currNode !== null) {
             // TODO (spike): Use a logger lib with log levels selectable at runtime
@@ -91,7 +92,12 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
             //      : ${testPath}`
             // );
             // W-10004832 - Exclude descendancy based rules from automatic checks
-            violations.push(...(await getViolationsJSDOM(currNode, adaptA11yConfig(defaultRuleset))));
+            if (customRules.length === 0)
+                violations.push(...(await getViolationsJSDOM(currNode, adaptA11yConfig(defaultRuleset))));
+            else
+                violations.push(
+                    ...(await getViolationsJSDOM(currNode, adaptA11yConfigCustomRules(defaultRuleset, customRules)))
+                );
             currNode = walker.nextSibling();
         }
     } finally {

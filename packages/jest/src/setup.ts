@@ -126,7 +126,6 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
     ]);
     registerSa11yAutomaticChecks(autoCheckOpts);
 }
-
 /**
  * Register accessibility helpers toBeAccessible as jest matchers
  */
@@ -141,10 +140,14 @@ export function registerSa11yMatcher(): void {
         );
     }
 }
-
 /**
  * Customize sa11y preset rules specific to JSDOM
  */
+export function adaptA11yConfigCustomRules(config: A11yConfig, customRules: string[]): A11yConfig {
+    const adaptedConfig = JSON.parse(JSON.stringify(config)) as A11yConfig;
+    adaptedConfig.runOnly.values = customRules;
+    return adaptedConfig;
+}
 export function adaptA11yConfig(config: A11yConfig, filterRules = disabledRules): A11yConfig {
     // TODO (refactor): Move into preset-rules pkg as a generic rules filter util
     const adaptedConfig = JSON.parse(JSON.stringify(config)) as A11yConfig;
