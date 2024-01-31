@@ -46,7 +46,7 @@ describe('WCAG Metadata extractor', () => {
     );
 
     it.each([
-        'accesskeys', // base rule
+        'area-alt', // base rule
         'table-duplicate-name', // extended rule without WCAG SC
     ])('should populate WCAG metadata as expected for rule (arg:%p)', (ruleID) => {
         const wcag = new WcagMetadata({ id: ruleID, tags: [] } as Result);
