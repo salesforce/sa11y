@@ -67,22 +67,22 @@ describe('Your Module', () => {
         delete process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME;
     });
 
-    it('should return empty array if SA11Y_CUSTOM_RULES env variable is not set', async () => {
+    it('should return empty array if SA11Y_CUSTOM_RULES env variable is not set', () => {
         process.env.SA11Y_CUSTOM_RULES = '';
-        const result = await useCustomRules();
+        const result = useCustomRules();
         expect(result).toEqual([]);
     });
 
-    it('should return empty array if reading file encounters an error', async () => {
+    it('should return empty array if reading file encounters an error', () => {
         process.env.SA11Y_CUSTOM_RULES = 'packages/common/testMocks/WrongFile.json';
-        const result = await useCustomRules();
+        const result = useCustomRules();
         expect(result).toEqual([]);
     });
 
-    it('should return rules array if file is read successfully', async () => {
+    it('should return rules array if file is read successfully', () => {
         process.env.SA11Y_CUSTOM_RULES = 'packages/common/testMocks/sa11y-custom-rules.json';
         const mockRules = ['rule1', 'rule2'];
-        const result = await useCustomRules();
+        const result = useCustomRules();
         expect(result).toEqual(mockRules);
     });
 });
