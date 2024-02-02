@@ -10,7 +10,7 @@
  * Logging is enabled only when environment variable `SA11Y_DEBUG` is set.
  */
 
-import * as fs from 'fs/promises';
+import * as fs from 'fs';
 export function log(...args: unknown[]): void {
     // Probably not worth it to mock and test console logging for this helper util
     /* istanbul ignore next */
@@ -34,12 +34,12 @@ export function useFilesToBeExempted(): string[] {
     return [];
 }
 
-export async function useCustomRules(): Promise<string[]> {
+export function useCustomRules(): string[] {
     const filePath = process.env.SA11Y_CUSTOM_RULES ?? '';
     if (filePath !== '') {
         try {
             // Read the file asynchronously
-            const data = await fs.readFile(filePath, 'utf-8');
+            const data = fs.readFileSync(filePath, 'utf-8');
             const { rules } = JSON.parse(data) as { rules: string[] };
             // Access the rules array
             return rules;
