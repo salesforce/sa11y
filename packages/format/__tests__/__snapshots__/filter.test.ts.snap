@@ -2,11 +2,11 @@
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
@@ -15,11 +15,11 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 3`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
@@ -32,78 +32,78 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
  "
 `;
 
-exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.text-alternatives\\",\\"wcag2a\\",\\"wcag242\\",\\"ACT\\",\\"TTv5\\",\\"TT12.a\\"],\\"description\\":\\"Ensures each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.7/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head><style>* { pointer-events: all }</style></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.name-role-value\\",\\"wcag2a\\",\\"wcag412\\",\\"wcag244\\",\\"section508\\",\\"section508.22.a\\",\\"ACT\\",\\"TTv5\\",\\"TT6.a\\"],\\"description\\":\\"Ensures links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.7/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"minor\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"non-empty-title\\",\\"data\\":{\\"messageKey\\":\\"noAttr\\"},\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element has no title attribute\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element has no title attribute\\"}]}]"`;
+exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.text-alternatives\\",\\"wcag2a\\",\\"wcag242\\",\\"TTv5\\",\\"TT12.a\\",\\"EN-301-549\\",\\"EN-9.2.4.2\\",\\"ACT\\"],\\"description\\":\\"Ensures each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.8/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head><style>* { pointer-events: all }</style></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.name-role-value\\",\\"wcag2a\\",\\"wcag244\\",\\"wcag412\\",\\"section508\\",\\"section508.22.a\\",\\"TTv5\\",\\"TT6.a\\",\\"EN-301-549\\",\\"EN-9.2.4.4\\",\\"EN-9.4.1.2\\",\\"ACT\\"],\\"description\\":\\"Ensures links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.8/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"non-empty-title\\",\\"data\\":{\\"messageKey\\":\\"noAttr\\"},\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element has no title attribute\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element has no title attribute\\"}]}]"`;
 
 exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 "\\"* (document-title) Documents must have <title> element to aid in navigation: html\\"
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 \\"* (link-name) Links must have discernible text: a\\"
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 1`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 2`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should throw error when violations are present 1`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.7/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
@@ -112,7 +112,7 @@ Array [
   Object {
     "description": "Ensures each HTML document contains a non-empty <title> element",
     "help": "Documents must have <title> element to aid in navigation",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/document-title?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/document-title?application=axeAPI",
     "id": "document-title",
     "impact": "serious",
     "nodes": Array [
@@ -148,15 +148,17 @@ Array [
       "cat.text-alternatives",
       "wcag2a",
       "wcag242",
-      "ACT",
       "TTv5",
       "TT12.a",
+      "EN-301-549",
+      "EN-9.2.4.2",
+      "ACT",
     ],
   },
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -194,15 +196,17 @@ Array [
       "cat.language",
       "wcag2a",
       "wcag311",
-      "ACT",
       "TTv5",
       "TT11.a",
+      "EN-301-549",
+      "EN-9.3.1.1",
+      "ACT",
     ],
   },
   Object {
     "description": "Ensures links have discernible text",
     "help": "Links must have discernible text",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/link-name?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/link-name?application=axeAPI",
     "id": "link-name",
     "impact": "serious",
     "nodes": Array [
@@ -212,7 +216,7 @@ Array [
           CheckResult {
             "data": null,
             "id": "has-visible-text",
-            "impact": "minor",
+            "impact": "serious",
             "message": "Element does not have text that is visible to screen readers",
             "relatedNodes": Array [],
           },
@@ -267,13 +271,16 @@ Fix any of the following:
     "tags": Array [
       "cat.name-role-value",
       "wcag2a",
-      "wcag412",
       "wcag244",
+      "wcag412",
       "section508",
       "section508.22.a",
-      "ACT",
       "TTv5",
       "TT6.a",
+      "EN-301-549",
+      "EN-9.2.4.4",
+      "EN-9.4.1.2",
+      "ACT",
     ],
   },
 ]
@@ -284,7 +291,7 @@ Array [
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -322,15 +329,17 @@ Array [
       "cat.language",
       "wcag2a",
       "wcag311",
-      "ACT",
       "TTv5",
       "TT11.a",
+      "EN-301-549",
+      "EN-9.3.1.1",
+      "ACT",
     ],
   },
   Object {
     "description": "Ensures links have discernible text",
     "help": "Links must have discernible text",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/link-name?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/link-name?application=axeAPI",
     "id": "link-name",
     "impact": "serious",
     "nodes": Array [
@@ -340,7 +349,7 @@ Array [
           CheckResult {
             "data": null,
             "id": "has-visible-text",
-            "impact": "minor",
+            "impact": "serious",
             "message": "Element does not have text that is visible to screen readers",
             "relatedNodes": Array [],
           },
@@ -395,13 +404,16 @@ Fix any of the following:
     "tags": Array [
       "cat.name-role-value",
       "wcag2a",
-      "wcag412",
       "wcag244",
+      "wcag412",
       "section508",
       "section508.22.a",
-      "ACT",
       "TTv5",
       "TT6.a",
+      "EN-301-549",
+      "EN-9.2.4.4",
+      "EN-9.4.1.2",
+      "ACT",
     ],
   },
 ]
@@ -412,7 +424,7 @@ Array [
   Object {
     "description": "Ensures each HTML document contains a non-empty <title> element",
     "help": "Documents must have <title> element to aid in navigation",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/document-title?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/document-title?application=axeAPI",
     "id": "document-title",
     "impact": "serious",
     "nodes": Array [
@@ -448,15 +460,17 @@ Array [
       "cat.text-alternatives",
       "wcag2a",
       "wcag242",
-      "ACT",
       "TTv5",
       "TT12.a",
+      "EN-301-549",
+      "EN-9.2.4.2",
+      "ACT",
     ],
   },
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -494,9 +508,11 @@ Array [
       "cat.language",
       "wcag2a",
       "wcag311",
-      "ACT",
       "TTv5",
       "TT11.a",
+      "EN-301-549",
+      "EN-9.3.1.1",
+      "ACT",
     ],
   },
 ]
@@ -507,7 +523,7 @@ Array [
   Object {
     "description": "Ensures every HTML document has a lang attribute",
     "help": "<html> element must have a lang attribute",
-    "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/html-has-lang?application=axeAPI",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/html-has-lang?application=axeAPI",
     "id": "html-has-lang",
     "impact": "serious",
     "nodes": Array [
@@ -545,9 +561,11 @@ Array [
       "cat.language",
       "wcag2a",
       "wcag311",
-      "ACT",
       "TTv5",
       "TT11.a",
+      "EN-301-549",
+      "EN-9.3.1.1",
+      "ACT",
     ],
   },
 ]
