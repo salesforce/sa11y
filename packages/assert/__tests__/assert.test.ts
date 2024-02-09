@@ -115,6 +115,17 @@ describe('assertAccessible API', () => {
         await checkA11yErrorFunc(() => assertAccessible(elem));
     });
 
+    it('should throw error with HTML element with a11y issues when passed with selector keywords', async () => {
+        document.body.innerHTML = domWithA11yIssues;
+        const elements = document.getElementsByTagName('body');
+        expect(elements).toHaveLength(1);
+        const elem = elements[0];
+        expect(elem).toBeTruthy();
+        process.env.SELECTOR_FILTER_KEYWORDS = 'lightning-';
+        await checkA11yErrorFunc(() => assertAccessible(elem));
+        delete process.env.SELECTOR_FILTER_KEYWORDS;
+    });
+
     // eslint-disable-next-line jest/expect-expect
     it.each(['', 'non-existent-audio.mp3', audioURL])(
         'should test audio without timing-out using src %#',
