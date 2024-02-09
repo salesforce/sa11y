@@ -7,7 +7,7 @@
 
 import * as axe from 'axe-core';
 import { defaultRuleset } from '@sa11y/preset-rules';
-import { A11yError } from '@sa11y/format';
+import { A11yError, exceptionListFilterSelectorKeywords } from '@sa11y/format';
 import { A11yConfig, AxeResults, getViolations } from '@sa11y/common';
 
 /**
@@ -40,6 +40,9 @@ export async function getViolationsJSDOM(
  * */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function assertAccessible(context: A11yCheckableContext = document, rules: A11yConfig = defaultRuleset) {
-    const violations = await getViolationsJSDOM(context, rules);
+    let violations = await getViolationsJSDOM(context, rules);
+    if (process.env.SELECTOR_FILTER_KEYWORDS) {
+        violations = exceptionListFilterSelectorKeywords(violations, process.env.SELECTOR_FILTER_KEYWORDS.split(','));
+    }
     A11yError.checkAndThrow(violations);
 }

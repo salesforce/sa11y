@@ -211,4 +211,11 @@ describe('automatic checks call', () => {
         await expect(automaticCheck({ cleanupAfterEach: true })).rejects.toThrow('1 Accessibility');
         delete process.env.SA11Y_CUSTOM_RULES;
     });
+
+    it('should pass filter selector keywords', async () => {
+        document.body.innerHTML = domWithA11yIssues;
+        process.env.SELECTOR_FILTER_KEYWORDS = 'lightning-';
+        await expect(automaticCheck({ filesFilter: nonExistentFilePaths })).rejects.toThrow();
+        delete process.env.SELECTOR_FILTER_KEYWORDS;
+    });
 });

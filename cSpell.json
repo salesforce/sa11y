@@ -15,7 +15,11 @@
         "wdio",
         "webdriverio",
         "webm",
-        "Vidyard"
+        "Vidyard",
+        "pdnejk",
+        "slds",
+        "labelledby",
+        "describedby"
     ],
     "flagWords": ["master-slave", "slave", "blacklist", "whitelist"],
     "allowCompoundWords": true

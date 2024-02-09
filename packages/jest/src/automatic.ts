@@ -7,7 +7,7 @@
 
 import { AxeResults, log, useCustomRules } from '@sa11y/common';
 import { getViolationsJSDOM } from '@sa11y/assert';
-import { A11yError } from '@sa11y/format';
+import { A11yError, exceptionListFilterSelectorKeywords } from '@sa11y/format';
 import { isTestUsingFakeTimer } from './matcher';
 import { expect } from '@jest/globals';
 import { adaptA11yConfig, adaptA11yConfigCustomRules } from './setup';
@@ -74,7 +74,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
         return;
     }
 
-    const violations: AxeResults = [];
+    let violations: AxeResults = [];
     const currentDocumentHtml = document.body.innerHTML;
     if (originalDocumentBodyHtml) {
         document.body.innerHTML = originalDocumentBodyHtml;
@@ -107,6 +107,12 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
         // TODO (spike): Disable stack trace for automatic checks.
         //  Will this affect all errors globally?
         // Error.stackTraceLimit = 0;
+        if (process.env.SELECTOR_FILTER_KEYWORDS) {
+            violations = exceptionListFilterSelectorKeywords(
+                violations,
+                process.env.SELECTOR_FILTER_KEYWORDS.split(',')
+            );
+        }
         A11yError.checkAndThrow(violations, { deduplicate: opts.consolidateResults });
     }
 }

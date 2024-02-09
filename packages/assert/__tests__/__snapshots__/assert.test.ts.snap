@@ -17,3 +17,10 @@ exports[`assertAccessible API should throw error with HTML element with a11y iss
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
+
+exports[`assertAccessible API should throw error with HTML element with a11y issues when passed with selector keywords 1`] = `
+"1 Accessibility issues found
+ * (link-name) Links must have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+`;
