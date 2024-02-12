@@ -63,10 +63,13 @@ export function exceptionListFilterSelectorKeywords(
 }
 
 function checkSelectorFilterKeyWordsExists(node: axe.NodeResult, selectorFilterKeywords: string[]): boolean {
-    const selectorAncestry = node.ancestry?.flat(Infinity) ?? [];
+    const selectorAncestry = (node.ancestry?.flat(Infinity) ?? []) as string[];
     let isExists = false;
     selectorFilterKeywords.some((keyword) => {
-        isExists = selectorAncestry.some((selector) => selector.includes(keyword));
+        isExists = selectorAncestry.some((selector) => {
+            const lastSelector = selector.split('>').pop();
+            return lastSelector?.includes(keyword) ?? false;
+        });
         return isExists;
     });
     return isExists;
