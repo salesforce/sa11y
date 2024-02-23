@@ -6,12 +6,14 @@
  */
 import { AggregatedResult, AssertionResult, TestResult } from '@jest/test-result';
 import { log } from '@sa11y/common';
-import { A11yError } from '@sa11y/format';
+import { A11yError, AxeError } from '@sa11y/format';
 
-type FailureDetail = {
+type a11yFailureDetail = {
     error?: A11yError;
 };
-
+type axeFailureDetail = {
+    error?: AxeError;
+};
 type ErrorElement = {
     html: string;
     selectors: string;
@@ -59,19 +61,21 @@ function createA11yRuleViolation(a11yRule: A11yViolation, ruleIndex: number) {
  * Convert any a11y errors from test failures into their own test suite, results
  */
 function processA11yErrors(results: AggregatedResult, testSuite: TestResult, testResult: AssertionResult) {
-    const a11yFailureDetails: FailureDetail[] = [];
+    const a11yFailureDetails: a11yFailureDetail[] = [];
+    const axeFailureDetails: axeFailureDetail[] = [];
     const a11yFailureMessages: string[] = [];
-    let a11yErrorsExist = false;
+    const axeFailureMessages: string[] = [];
+    let a11yAxeErrorsExist = false;
 
     testResult.failureDetails.forEach((failure) => {
-        let error = (failure as FailureDetail).error;
+        let error = (failure as a11yFailureDetail).error;
         // If using circus test runner https://github.com/facebook/jest/issues/11405#issuecomment-843549606
         // TODO (code cov): Add test data covering the case for circus test runner
         /* istanbul ignore next */
         if (error === undefined) error = failure as A11yError;
         if (error.name === A11yError.name) {
-            a11yErrorsExist = true;
-            a11yFailureDetails.push({ ...(failure as FailureDetail) } as FailureDetail);
+            a11yAxeErrorsExist = true;
+            a11yFailureDetails.push({ ...(failure as a11yFailureDetail) } as a11yFailureDetail);
             const a11yRuleViolations: { [key: string]: A11yViolation } = {};
             let a11yRuleViolationsCount = 0;
             let a11yErrorElementsCount = 0;
@@ -110,16 +114,27 @@ function processA11yErrors(results: AggregatedResult, testSuite: TestResult, tes
             `;
             a11yFailureMessages.push(a11yFailureMessage);
         }
+        if (error.name === AxeError.name) {
+            a11yAxeErrorsExist = true;
+            axeFailureDetails.push({ ...(failure as axeFailureDetail) } as axeFailureDetail);
+            axeFailureMessages.push(`
+            The test has failed to execute accessibility check. Accessibility Stacktrace/Issues:
+            ${error.message}
+            For more info about the axe Error: http://sfdc.co/axeIssues
+            For more info about automated accessibility testing: https://sfdc.co/a11y-test
+            For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+            `);
+        }
     });
-    if (!a11yErrorsExist) {
+    if (!a11yAxeErrorsExist) {
         testSuite.numFailingTests -= 1;
         results.numFailedTests -= 1;
         if (testSuite.numFailingTests === 0) results.numFailedTestSuites -= 1;
     }
 
-    testResult.failureDetails = [...a11yFailureDetails];
-    testResult.failureMessages = [...a11yFailureMessages];
-    testResult.status = a11yFailureDetails.length === 0 ? 'passed' : testResult.status;
+    testResult.failureDetails = [...a11yFailureDetails, ...axeFailureDetails];
+    testResult.failureMessages = [...a11yFailureMessages, ...axeFailureMessages];
+    testResult.status = testResult.failureDetails.length === 0 ? 'passed' : testResult.status;
 }
 
 /**
