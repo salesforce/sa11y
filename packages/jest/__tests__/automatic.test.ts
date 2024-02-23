@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { setup, toBeAccessible } from '../src';
+import { setup } from '../src';
 import * as automatic from '../src/automatic';
 import { automaticCheck, registerSa11yAutomaticChecks, skipTest } from '../src/automatic';
 import {
@@ -18,7 +18,6 @@ import {
     customRulesFilePathInvalid,
 } from '@sa11y/test-utils';
 import * as Sa11yCommon from '@sa11y/common';
-import { getA11yConfig } from '@sa11y/preset-rules';
 
 import { expect, jest } from '@jest/globals';
 
