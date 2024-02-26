@@ -15,8 +15,10 @@ import {
     domWithNoA11yIssuesChildCount,
     domWithDescendancyA11yIssues,
     customRulesFilePath,
+    customRulesFilePathInvalid,
 } from '@sa11y/test-utils';
 import * as Sa11yCommon from '@sa11y/common';
+
 import { expect, jest } from '@jest/globals';
 
 describe('automatic checks registration', () => {
@@ -204,7 +206,6 @@ describe('automatic checks call', () => {
         document.body.innerHTML = domWithA11yIssues;
         await expect(automaticCheck({ filesFilter: nonExistentFilePaths })).rejects.toThrow();
     });
-
     it('should take only custom rules if specified', async () => {
         document.body.innerHTML = domWithA11yIssues;
         process.env.SA11Y_CUSTOM_RULES = customRulesFilePath;
@@ -217,5 +218,14 @@ describe('automatic checks call', () => {
         process.env.SELECTOR_FILTER_KEYWORDS = 'lightning-';
         await expect(automaticCheck({ filesFilter: nonExistentFilePaths })).rejects.toThrow();
         delete process.env.SELECTOR_FILTER_KEYWORDS;
+    });
+    it('should throw an Axe error for axe related issues', async () => {
+        document.body.innerHTML = domWithNoA11yIssues;
+        // expect(document).toBeAccessible();
+        process.env.SA11Y_CUSTOM_RULES = customRulesFilePathInvalid;
+        await expect(automaticCheck({ cleanupAfterEach: true })).rejects.toThrow(
+            'Error running accessibility checks using axe'
+        );
+        delete process.env.SA11Y_CUSTOM_RULES;
     });
 });

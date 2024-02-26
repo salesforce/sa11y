@@ -49,6 +49,23 @@ const defaultOptions: Options = {
 /**
  *  Custom error object to represent a11y violations
  */
+
+export class AxeError extends Error {
+    /**
+     * Throw error with Axe error
+     */
+
+    constructor(message: string) {
+        super(message);
+        this.name = AxeError.name;
+        this.message = message;
+    }
+
+    static throwAxeError(e: Error): void {
+        throw new AxeError(`${e.message}`);
+    }
+}
+
 export class A11yError extends Error {
     /**
      * Throw error with formatted a11y violations
