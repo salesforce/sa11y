@@ -118,11 +118,8 @@ function processA11yErrors(results: AggregatedResult, testSuite: TestResult, tes
             a11yAxeErrorsExist = true;
             axeFailureDetails.push({ ...(failure as axeFailureDetail) } as axeFailureDetail);
             axeFailureMessages.push(`
-            The test has failed to execute accessibility check. Accessibility Stacktrace/Issues:
-            ${error.message}
-            For more info about the axe Error: http://sfdc.co/axeIssues
-            For more info about automated accessibility testing: https://sfdc.co/a11y-test
-            For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+            The test has failed to execute the accessibility check.
+            Please contact our Sa11y team: http://sfdc.co/sa11y-users
             `);
         }
     });
