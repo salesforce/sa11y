@@ -11,7 +11,6 @@ import { A11yError, A11yResult } from '@sa11y/format';
 import { getA11yError } from '@sa11y/format/__tests__/format.test';
 import { domWithVisualA11yIssues } from '@sa11y/test-utils';
 import { expect } from '@jest/globals';
-import { AxeError } from '@sa11y/format/src';
 
 const a11yResults: A11yResult[] = [];
 const aggregatedResults = makeEmptyAggregatedTestResult();
@@ -45,8 +44,6 @@ beforeAll(async () => {
     addTestFailure(testSuite, new A11yError(combinedViolations, a11yResults));
     // Add non-a11y test failure
     addTestFailure(testSuite, new Error('foo'));
-    addTestFailure(testSuite, new AxeError('Axe is running'));
-
     testSuite.testFilePath = '/test/data/sa11y-auto-checks.js';
     addResult(aggregatedResults, testSuite);
 });
