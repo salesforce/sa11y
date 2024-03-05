@@ -22,6 +22,5 @@ export {
     shadowDomID,
     videoURL,
     customRulesFilePath,
-    customRulesFilePathInvalid,
 } from './test-data';
 export { beforeEachSetup, cartesianProduct } from './utils';
