@@ -69,6 +69,8 @@ Object {
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/document-title",
                   "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -106,6 +108,8 @@ Object {
   Document does not have a non-empty <title> element",
                           "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -139,6 +143,8 @@ Object {
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/html-has-lang",
                   "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -178,6 +184,8 @@ Object {
   The <html> element does not have a lang attribute",
                           "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -309,6 +317,154 @@ Fix any of the following:
                     "wcagVersion": "2.1",
                   },
                 },
+                Object {
+                  "description": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region",
+                  "html": "<h1>Header One</h1>",
+                  "id": "region",
+                  "key": "region--h1:nth-child(1)",
+                  "selectors": "h1:nth-child(1)",
+                  "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcagData": Object {
+                    "priority": "P3",
+                    "successCriteria": "",
+                    "violation": Object {
+                      "description": "Ensures all page content is contained by landmarks",
+                      "help": "All page content should be contained by landmarks",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region?application=axeAPI",
+                      "id": "region",
+                      "impact": "moderate",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header One</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(1)",
+                          ],
+                        },
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header Two</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(2)",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.keyboard",
+                        "best-practice",
+                      ],
+                    },
+                    "wcagLevel": "",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "description": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region",
+                  "html": "<h1>Header Two</h1>",
+                  "id": "region",
+                  "key": "region--h1:nth-child(2)",
+                  "selectors": "h1:nth-child(2)",
+                  "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcagData": Object {
+                    "priority": "P3",
+                    "successCriteria": "",
+                    "violation": Object {
+                      "description": "Ensures all page content is contained by landmarks",
+                      "help": "All page content should be contained by landmarks",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region?application=axeAPI",
+                      "id": "region",
+                      "impact": "moderate",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header One</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(1)",
+                          ],
+                        },
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header Two</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(2)",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.keyboard",
+                        "best-practice",
+                      ],
+                    },
+                    "wcagLevel": "",
+                    "wcagVersion": "2.1",
+                  },
+                },
               ],
               "name": "A11yError",
               "violations": Array [
@@ -334,6 +490,8 @@ Fix any of the following:
   Document does not have a non-empty <title> element",
                       "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -382,6 +540,8 @@ Fix any of the following:
   The <html> element does not have a lang attribute",
                       "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -486,13 +646,70 @@ Fix any of the following:
                     "ACT",
                   ],
                 },
+                Object {
+                  "description": "Ensures all page content is contained by landmarks",
+                  "help": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region?application=axeAPI",
+                  "id": "region",
+                  "impact": "moderate",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "isIframe": false,
+                          },
+                          "id": "region",
+                          "impact": "moderate",
+                          "message": "Some page content is not contained by landmarks",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                      "html": "<h1>Header One</h1>",
+                      "impact": "moderate",
+                      "none": Array [],
+                      "target": Array [
+                        "h1:nth-child(1)",
+                      ],
+                    },
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "isIframe": false,
+                          },
+                          "id": "region",
+                          "impact": "moderate",
+                          "message": "Some page content is not contained by landmarks",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                      "html": "<h1>Header Two</h1>",
+                      "impact": "moderate",
+                      "none": Array [],
+                      "target": Array [
+                        "h1:nth-child(2)",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.keyboard",
+                    "best-practice",
+                  ],
+                },
               ],
             },
           ],
           "failureMessages": Array [
             "
             The test has failed the accessibility check. Accessibility Stacktrace/Issues:
-            3 HTML elements have accessibility issue(s). 3 rules failed.
+            5 HTML elements have accessibility issue(s). 4 rules failed.
 
             (1) [document-title] Documents must have <title> element to aid in navigation
             * Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title
@@ -502,6 +719,8 @@ Fix any of the following:
             * Error element(s) : 1
             - (1) HTML element : <html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -518,6 +737,8 @@ Fix any of the following:
             * Error element(s) : 1
             - (1) HTML element : <html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -541,6 +762,18 @@ Fix any of the following:
             - (1) HTML element : <a href=\\"#\\"></a>
              - CSS selector(s) : a
              - HTML Tag Hierarchy : link-name--a
+(4) [region] All page content should be contained by landmarks
+            * Help URL: https://dequeuniversity.com/rules/axe/4.8/region
+            * WCAG Criteria: SA11Y-WCAG-SC-P3
+            * More info: Fix any of the following:
+  Some page content is not contained by landmarks
+            * Error element(s) : 2
+            - (1) HTML element : <h1>Header One</h1>
+             - CSS selector(s) : h1:nth-child(1)
+             - HTML Tag Hierarchy : region--h1:nth-child(1)
+- (2) HTML element : <h1>Header Two</h1>
+             - CSS selector(s) : h1:nth-child(2)
+             - HTML Tag Hierarchy : region--h1:nth-child(2)
             For more info about automated accessibility testing: https://sfdc.co/a11y-test
             For tips on fixing accessibility bugs: https://sfdc.co/a11y
             For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
@@ -697,6 +930,8 @@ Fix any of the following:
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/document-title",
                   "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -734,6 +969,8 @@ Fix any of the following:
   Document does not have a non-empty <title> element",
                           "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -767,6 +1004,8 @@ Fix any of the following:
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/html-has-lang",
                   "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -806,6 +1045,8 @@ Fix any of the following:
   The <html> element does not have a lang attribute",
                           "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -937,6 +1178,154 @@ Fix any of the following:
                     "wcagVersion": "2.1",
                   },
                 },
+                Object {
+                  "description": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region",
+                  "html": "<h1>Header One</h1>",
+                  "id": "region",
+                  "key": "region--h1:nth-child(1)",
+                  "selectors": "h1:nth-child(1)",
+                  "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcagData": Object {
+                    "priority": "P3",
+                    "successCriteria": "",
+                    "violation": Object {
+                      "description": "Ensures all page content is contained by landmarks",
+                      "help": "All page content should be contained by landmarks",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region?application=axeAPI",
+                      "id": "region",
+                      "impact": "moderate",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header One</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(1)",
+                          ],
+                        },
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header Two</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(2)",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.keyboard",
+                        "best-practice",
+                      ],
+                    },
+                    "wcagLevel": "",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "description": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region",
+                  "html": "<h1>Header Two</h1>",
+                  "id": "region",
+                  "key": "region--h1:nth-child(2)",
+                  "selectors": "h1:nth-child(2)",
+                  "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcagData": Object {
+                    "priority": "P3",
+                    "successCriteria": "",
+                    "violation": Object {
+                      "description": "Ensures all page content is contained by landmarks",
+                      "help": "All page content should be contained by landmarks",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region?application=axeAPI",
+                      "id": "region",
+                      "impact": "moderate",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header One</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(1)",
+                          ],
+                        },
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header Two</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(2)",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.keyboard",
+                        "best-practice",
+                      ],
+                    },
+                    "wcagLevel": "",
+                    "wcagVersion": "2.1",
+                  },
+                },
               ],
               "name": "A11yError",
               "violations": Array [
@@ -962,6 +1351,8 @@ Fix any of the following:
   Document does not have a non-empty <title> element",
                       "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1010,6 +1401,8 @@ Fix any of the following:
   The <html> element does not have a lang attribute",
                       "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1114,13 +1507,70 @@ Fix any of the following:
                     "ACT",
                   ],
                 },
+                Object {
+                  "description": "Ensures all page content is contained by landmarks",
+                  "help": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region?application=axeAPI",
+                  "id": "region",
+                  "impact": "moderate",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "isIframe": false,
+                          },
+                          "id": "region",
+                          "impact": "moderate",
+                          "message": "Some page content is not contained by landmarks",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                      "html": "<h1>Header One</h1>",
+                      "impact": "moderate",
+                      "none": Array [],
+                      "target": Array [
+                        "h1:nth-child(1)",
+                      ],
+                    },
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "isIframe": false,
+                          },
+                          "id": "region",
+                          "impact": "moderate",
+                          "message": "Some page content is not contained by landmarks",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                      "html": "<h1>Header Two</h1>",
+                      "impact": "moderate",
+                      "none": Array [],
+                      "target": Array [
+                        "h1:nth-child(2)",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.keyboard",
+                    "best-practice",
+                  ],
+                },
               ],
             },
           ],
           "failureMessages": Array [
             "
             The test has failed the accessibility check. Accessibility Stacktrace/Issues:
-            3 HTML elements have accessibility issue(s). 3 rules failed.
+            5 HTML elements have accessibility issue(s). 4 rules failed.
 
             (1) [document-title] Documents must have <title> element to aid in navigation
             * Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title
@@ -1130,6 +1580,8 @@ Fix any of the following:
             * Error element(s) : 1
             - (1) HTML element : <html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1146,6 +1598,8 @@ Fix any of the following:
             * Error element(s) : 1
             - (1) HTML element : <html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1169,6 +1623,18 @@ Fix any of the following:
             - (1) HTML element : <a href=\\"#\\"></a>
              - CSS selector(s) : a
              - HTML Tag Hierarchy : link-name--a
+(4) [region] All page content should be contained by landmarks
+            * Help URL: https://dequeuniversity.com/rules/axe/4.8/region
+            * WCAG Criteria: SA11Y-WCAG-SC-P3
+            * More info: Fix any of the following:
+  Some page content is not contained by landmarks
+            * Error element(s) : 2
+            - (1) HTML element : <h1>Header One</h1>
+             - CSS selector(s) : h1:nth-child(1)
+             - HTML Tag Hierarchy : region--h1:nth-child(1)
+- (2) HTML element : <h1>Header Two</h1>
+             - CSS selector(s) : h1:nth-child(2)
+             - HTML Tag Hierarchy : region--h1:nth-child(2)
             For more info about automated accessibility testing: https://sfdc.co/a11y-test
             For tips on fixing accessibility bugs: https://sfdc.co/a11y
             For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
@@ -1325,6 +1791,8 @@ Fix any of the following:
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/document-title",
                   "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1362,6 +1830,8 @@ Fix any of the following:
   Document does not have a non-empty <title> element",
                           "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1395,6 +1865,8 @@ Fix any of the following:
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/html-has-lang",
                   "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1434,6 +1906,8 @@ Fix any of the following:
   The <html> element does not have a lang attribute",
                           "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1566,6 +2040,154 @@ Fix any of the following:
                   },
                 },
                 Object {
+                  "description": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region",
+                  "html": "<h1>Header One</h1>",
+                  "id": "region",
+                  "key": "region--h1:nth-child(1)",
+                  "selectors": "h1:nth-child(1)",
+                  "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcagData": Object {
+                    "priority": "P3",
+                    "successCriteria": "",
+                    "violation": Object {
+                      "description": "Ensures all page content is contained by landmarks",
+                      "help": "All page content should be contained by landmarks",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region?application=axeAPI",
+                      "id": "region",
+                      "impact": "moderate",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header One</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(1)",
+                          ],
+                        },
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header Two</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(2)",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.keyboard",
+                        "best-practice",
+                      ],
+                    },
+                    "wcagLevel": "",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "description": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region",
+                  "html": "<h1>Header Two</h1>",
+                  "id": "region",
+                  "key": "region--h1:nth-child(2)",
+                  "selectors": "h1:nth-child(2)",
+                  "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcagData": Object {
+                    "priority": "P3",
+                    "successCriteria": "",
+                    "violation": Object {
+                      "description": "Ensures all page content is contained by landmarks",
+                      "help": "All page content should be contained by landmarks",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region?application=axeAPI",
+                      "id": "region",
+                      "impact": "moderate",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header One</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(1)",
+                          ],
+                        },
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header Two</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(2)",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.keyboard",
+                        "best-practice",
+                      ],
+                    },
+                    "wcagLevel": "",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/html-has-lang",
                   "html": "<html>",
@@ -1648,6 +2270,8 @@ Fix any of the following:
   Document does not have a non-empty <title> element",
                       "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1696,6 +2320,8 @@ Fix any of the following:
   The <html> element does not have a lang attribute",
                       "html": "<html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1801,6 +2427,63 @@ Fix any of the following:
                   ],
                 },
                 Object {
+                  "description": "Ensures all page content is contained by landmarks",
+                  "help": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/region?application=axeAPI",
+                  "id": "region",
+                  "impact": "moderate",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "isIframe": false,
+                          },
+                          "id": "region",
+                          "impact": "moderate",
+                          "message": "Some page content is not contained by landmarks",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                      "html": "<h1>Header One</h1>",
+                      "impact": "moderate",
+                      "none": Array [],
+                      "target": Array [
+                        "h1:nth-child(1)",
+                      ],
+                    },
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "isIframe": false,
+                          },
+                          "id": "region",
+                          "impact": "moderate",
+                          "message": "Some page content is not contained by landmarks",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                      "html": "<h1>Header Two</h1>",
+                      "impact": "moderate",
+                      "none": Array [],
+                      "target": Array [
+                        "h1:nth-child(2)",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.keyboard",
+                    "best-practice",
+                  ],
+                },
+                Object {
                   "description": "Ensures every HTML document has a lang attribute",
                   "help": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/html-has-lang?application=axeAPI",
@@ -1847,7 +2530,7 @@ Fix any of the following:
           "failureMessages": Array [
             "
             The test has failed the accessibility check. Accessibility Stacktrace/Issues:
-            4 HTML elements have accessibility issue(s). 3 rules failed.
+            6 HTML elements have accessibility issue(s). 4 rules failed.
 
             (1) [document-title] Documents must have <title> element to aid in navigation
             * Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title
@@ -1857,6 +2540,8 @@ Fix any of the following:
             * Error element(s) : 1
             - (1) HTML element : <html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1873,6 +2558,8 @@ Fix any of the following:
             * Error element(s) : 2
             - (1) HTML element : <html><head></head><body>
 
+<h1>Header One</h1>
+<h1>Header Two</h1>
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
 </div>
@@ -1899,6 +2586,18 @@ Fix any of the following:
             - (1) HTML element : <a href=\\"#\\"></a>
              - CSS selector(s) : a
              - HTML Tag Hierarchy : link-name--a
+(4) [region] All page content should be contained by landmarks
+            * Help URL: https://dequeuniversity.com/rules/axe/4.8/region
+            * WCAG Criteria: SA11Y-WCAG-SC-P3
+            * More info: Fix any of the following:
+  Some page content is not contained by landmarks
+            * Error element(s) : 2
+            - (1) HTML element : <h1>Header One</h1>
+             - CSS selector(s) : h1:nth-child(1)
+             - HTML Tag Hierarchy : region--h1:nth-child(1)
+- (2) HTML element : <h1>Header Two</h1>
+             - CSS selector(s) : h1:nth-child(2)
+             - HTML Tag Hierarchy : region--h1:nth-child(2)
             For more info about automated accessibility testing: https://sfdc.co/a11y-test
             For tips on fixing accessibility bugs: https://sfdc.co/a11y
             For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
@@ -1931,20 +2630,36 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+* (region) All page content should be contained by landmarks: h1:nth-child(1)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3
+
+* (region) All page content should be contained by landmarks: h1:nth-child(2)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
-exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 2`] = `2`;
+exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 2`] = `4`;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 3`] = `
-"2 Accessibility issues found
+"4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+* (region) All page content should be contained by landmarks: h1:nth-child(1)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3
+
+* (region) All page content should be contained by landmarks: h1:nth-child(2)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 1 1`] = `""`;
@@ -1956,7 +2671,7 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
  "
 `;
 
-exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.text-alternatives\\",\\"wcag2a\\",\\"wcag242\\",\\"TTv5\\",\\"TT12.a\\",\\"EN-301-549\\",\\"EN-9.2.4.2\\",\\"ACT\\"],\\"description\\":\\"Ensures each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.8/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head><style>* { pointer-events: all }</style></head><body>\\\\n\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.name-role-value\\",\\"wcag2a\\",\\"wcag244\\",\\"wcag412\\",\\"section508\\",\\"section508.22.a\\",\\"TTv5\\",\\"TT6.a\\",\\"EN-301-549\\",\\"EN-9.2.4.4\\",\\"EN-9.4.1.2\\",\\"ACT\\"],\\"description\\":\\"Ensures links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.8/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"non-empty-title\\",\\"data\\":{\\"messageKey\\":\\"noAttr\\"},\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element has no title attribute\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element has no title attribute\\"}]}]"`;
+exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.text-alternatives\\",\\"wcag2a\\",\\"wcag242\\",\\"TTv5\\",\\"TT12.a\\",\\"EN-301-549\\",\\"EN-9.2.4.2\\",\\"ACT\\"],\\"description\\":\\"Ensures each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.8/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head><style>* { pointer-events: all }</style></head><body>\\\\n\\\\n<h1>Header One</h1>\\\\n<h1>Header Two</h1>\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.name-role-value\\",\\"wcag2a\\",\\"wcag244\\",\\"wcag412\\",\\"section508\\",\\"section508.22.a\\",\\"TTv5\\",\\"TT6.a\\",\\"EN-301-549\\",\\"EN-9.2.4.4\\",\\"EN-9.4.1.2\\",\\"ACT\\"],\\"description\\":\\"Ensures links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.8/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"non-empty-title\\",\\"data\\":{\\"messageKey\\":\\"noAttr\\"},\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element has no title attribute\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element has no title attribute\\"}]},{\\"id\\":\\"region\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"cat.keyboard\\",\\"best-practice\\"],\\"description\\":\\"Ensures all page content is contained by landmarks\\",\\"help\\":\\"All page content should be contained by landmarks\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.8/region?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"region\\",\\"data\\":{\\"isIframe\\":false},\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Some page content is not contained by landmarks\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<h1>Header One</h1>\\",\\"target\\":[\\"h1:nth-child(1)\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Some page content is not contained by landmarks\\"},{\\"any\\":[{\\"id\\":\\"region\\",\\"data\\":{\\"isIframe\\":false},\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Some page content is not contained by landmarks\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<h1>Header Two</h1>\\",\\"target\\":[\\"h1:nth-child(2)\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Some page content is not contained by landmarks\\"}]}]"`;
 
 exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 "\\"* (document-title) Documents must have <title> element to aid in navigation: html\\"
@@ -1965,7 +2680,15 @@ exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 
 \\"* (link-name) Links must have discernible text: a\\"
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+\\"* (region) All page content should be contained by landmarks: h1:nth-child(1)\\"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3
+
+\\"* (region) All page content should be contained by landmarks: h1:nth-child(2)\\"
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 2 1`] = `
@@ -1975,7 +2698,15 @@ exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+* (region) All page content should be contained by landmarks: h1:nth-child(1)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3
+
+* (region) All page content should be contained by landmarks: h1:nth-child(2)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 3 1`] = `
@@ -1985,7 +2716,15 @@ exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+* (region) All page content should be contained by landmarks: h1:nth-child(1)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3
+
+* (region) All page content should be contained by landmarks: h1:nth-child(2)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 4 1`] = `
@@ -1995,38 +2734,70 @@ exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+* (region) All page content should be contained by landmarks: h1:nth-child(1)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3
+
+* (region) All page content should be contained by landmarks: h1:nth-child(2)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 1`] = `
-"2 Accessibility issues found
+"4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+* (region) All page content should be contained by landmarks: h1:nth-child(1)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3
+
+* (region) All page content should be contained by landmarks: h1:nth-child(2)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 2`] = `
-"2 Accessibility issues found
+"4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+* (region) All page content should be contained by landmarks: h1:nth-child(1)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3
+
+* (region) All page content should be contained by landmarks: h1:nth-child(2)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should throw error when violations are present 1`] = `
-"2 Accessibility issues found
+"4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
 	- Help URL: https://dequeuniversity.com/rules/axe/4.8/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+* (region) All page content should be contained by landmarks: h1:nth-child(1)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3
+
+* (region) All page content should be contained by landmarks: h1:nth-child(2)
+	- Help URL: https://dequeuniversity.com/rules/axe/4.8/region 
+	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;

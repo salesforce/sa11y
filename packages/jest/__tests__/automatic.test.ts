@@ -205,10 +205,10 @@ describe('automatic checks call', () => {
         await expect(automaticCheck({ filesFilter: nonExistentFilePaths })).rejects.toThrow();
     });
 
-    it('should take only custom rules if specified', async () => {
+    it('should take only custom rules if specified/testing for new rule', async () => {
         document.body.innerHTML = domWithA11yIssues;
         process.env.SA11Y_CUSTOM_RULES = customRulesFilePath;
-        await expect(automaticCheck({ cleanupAfterEach: true })).rejects.toThrow('1 Accessibility');
+        await expect(automaticCheck({ cleanupAfterEach: true })).rejects.toThrow('2 Accessibility');
         delete process.env.SA11Y_CUSTOM_RULES;
     });
 

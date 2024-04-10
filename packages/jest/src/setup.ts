@@ -14,6 +14,7 @@ import {
     setOriginalDocumentBodyHtml,
 } from './automatic';
 import { expect } from '@jest/globals';
+import { registerCustomRules } from '@sa11y/preset-rules';
 
 export const disabledRules = [
     // Descendancy checks that would fail at unit/component level, but pass at page level
@@ -92,6 +93,7 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
         }
     }
     registerSa11yMatcher();
+    registerCustomRules();
     // Set defaults from env vars
     const autoCheckOpts = opts.autoCheckOpts;
     autoCheckOpts.runAfterEach ||= !!process.env.SA11Y_AUTO;
