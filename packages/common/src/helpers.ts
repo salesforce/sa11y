@@ -9,6 +9,7 @@
  * Convenience wrapper to prefix a standard header for console log messages.
  * Logging is enabled only when environment variable `SA11Y_DEBUG` is set.
  */
+const sa11yAutoFilterListDefaultPackageName = 'sa11y-jest-automated-check-file-exclusion';
 
 import * as fs from 'fs';
 export function log(...args: unknown[]): void {
@@ -19,7 +20,7 @@ export function log(...args: unknown[]): void {
 
 export function useFilesToBeExempted(): string[] {
     const packageName: string =
-        process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME ?? 'sa11y-jest-automated-check-file-exclusion';
+        process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME ?? sa11yAutoFilterListDefaultPackageName;
     let getFilesToBeExempted: () => string[];
     if (packageName !== '') {
         try {
@@ -28,7 +29,7 @@ export function useFilesToBeExempted(): string[] {
             const filesToBeExempted = getFilesToBeExempted();
             return filesToBeExempted;
         } catch (error) {
-            console.log('Package not found : ', packageName);
+            if (packageName !== sa11yAutoFilterListDefaultPackageName) console.log('Package not found : ', packageName);
         }
     }
     return [];
