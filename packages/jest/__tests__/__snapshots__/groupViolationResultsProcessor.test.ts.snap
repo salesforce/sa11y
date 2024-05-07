@@ -65,6 +65,9 @@ Object {
             Object {
               "a11yResults": Array [
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Document does not have a non-empty <title> element",
                   "description": "Documents must have <title> element to aid in navigation",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
                   "html": "<html><head></head><body>
@@ -77,6 +80,7 @@ Object {
 </body></html>",
                   "id": "document-title",
                   "key": "document-title--html",
+                  "none": "",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
@@ -135,6 +139,9 @@ Object {
                   },
                 },
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html><head></head><body>
@@ -147,6 +154,7 @@ Object {
 </body></html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
+                  "none": "",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
@@ -207,11 +215,18 @@ Object {
                   },
                 },
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Element does not have text that is visible to screen readers
+												• aria-label attribute does not exist or is empty
+												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+												• Element has no title attribute",
                   "description": "Links must have discernible text",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
+                  "none": "												• Element is in tab order and does not have accessible text",
                   "selectors": "a",
                   "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -495,12 +510,8 @@ Fix any of the following:
             3 HTML elements have accessibility issue(s). 3 rules failed.
 
             (1) [document-title] Documents must have <title> element to aid in navigation
-            * Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title
-            * WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
-            * More info: Fix any of the following:
-  Document does not have a non-empty <title> element
             * Error element(s) : 1
-            - (1) HTML element : <html><head></head><body>
+								(1)  - HTML element : <html><head></head><body>
 
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
@@ -508,15 +519,16 @@ Fix any of the following:
 
 
 </body></html>
-             - CSS selector(s) : html
-             - HTML Tag Hierarchy : document-title--html
+                        - CSS selector(s) : html
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• Document does not have a non-empty <title> element
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title
+                • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [html-has-lang] <html> element must have a lang attribute
-            * Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang
-            * WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
-            * More info: Fix any of the following:
-  The <html> element does not have a lang attribute
             * Error element(s) : 1
-            - (1) HTML element : <html><head></head><body>
+								(1)  - HTML element : <html><head></head><body>
 
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
@@ -524,23 +536,30 @@ Fix any of the following:
 
 
 </body></html>
-             - CSS selector(s) : html
-             - HTML Tag Hierarchy : html-has-lang--html
+                        - CSS selector(s) : html
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• The <html> element does not have a lang attribute
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang
+                • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 (3) [link-name] Links must have discernible text
-            * Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name
-            * WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
-            * More info: Fix all of the following:
-  Element is in tab order and does not have accessible text
-
-Fix any of the following:
-  Element does not have text that is visible to screen readers
-  aria-label attribute does not exist or is empty
-  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-  Element has no title attribute
             * Error element(s) : 1
-            - (1) HTML element : <a href=\\"#\\"></a>
-             - CSS selector(s) : a
-             - HTML Tag Hierarchy : link-name--a
+								(1)  - HTML element : <a href=\\"#\\"></a>
+                        - CSS selector(s) : a
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• Element does not have text that is visible to screen readers
+												• aria-label attribute does not exist or is empty
+												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+												• Element has no title attribute
+										- And fix the following:
+												• Element is in tab order and does not have accessible text
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name
+                • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+
             For more info about automated accessibility testing: https://sfdc.co/a11y-test
             For tips on fixing accessibility bugs: https://sfdc.co/a11y
             For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
@@ -558,11 +577,15 @@ Fix any of the following:
             Object {
               "a11yResults": Array [
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
+                  "none": "",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
@@ -668,14 +691,17 @@ Fix any of the following:
             1 HTML elements have accessibility issue(s). 1 rules failed.
 
             (1) [html-has-lang] <html> element must have a lang attribute
-            * Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang
-            * WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
-            * More info: Fix any of the following:
-  The <html> element does not have a lang attribute
             * Error element(s) : 1
-            - (1) HTML element : <html>
-             - CSS selector(s) : html
-             - HTML Tag Hierarchy : html-has-lang--html
+								(1)  - HTML element : <html>
+                        - CSS selector(s) : html
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• The <html> element does not have a lang attribute
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang
+                • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
+
+
             For more info about automated accessibility testing: https://sfdc.co/a11y-test
             For tips on fixing accessibility bugs: https://sfdc.co/a11y
             For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
@@ -693,6 +719,9 @@ Fix any of the following:
             Object {
               "a11yResults": Array [
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Document does not have a non-empty <title> element",
                   "description": "Documents must have <title> element to aid in navigation",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
                   "html": "<html><head></head><body>
@@ -705,6 +734,7 @@ Fix any of the following:
 </body></html>",
                   "id": "document-title",
                   "key": "document-title--html",
+                  "none": "",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
@@ -763,6 +793,9 @@ Fix any of the following:
                   },
                 },
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html><head></head><body>
@@ -775,6 +808,7 @@ Fix any of the following:
 </body></html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
+                  "none": "",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
@@ -835,11 +869,18 @@ Fix any of the following:
                   },
                 },
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Element does not have text that is visible to screen readers
+												• aria-label attribute does not exist or is empty
+												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+												• Element has no title attribute",
                   "description": "Links must have discernible text",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
+                  "none": "												• Element is in tab order and does not have accessible text",
                   "selectors": "a",
                   "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -1123,12 +1164,8 @@ Fix any of the following:
             3 HTML elements have accessibility issue(s). 3 rules failed.
 
             (1) [document-title] Documents must have <title> element to aid in navigation
-            * Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title
-            * WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
-            * More info: Fix any of the following:
-  Document does not have a non-empty <title> element
             * Error element(s) : 1
-            - (1) HTML element : <html><head></head><body>
+								(1)  - HTML element : <html><head></head><body>
 
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
@@ -1136,15 +1173,16 @@ Fix any of the following:
 
 
 </body></html>
-             - CSS selector(s) : html
-             - HTML Tag Hierarchy : document-title--html
+                        - CSS selector(s) : html
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• Document does not have a non-empty <title> element
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title
+                • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [html-has-lang] <html> element must have a lang attribute
-            * Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang
-            * WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
-            * More info: Fix any of the following:
-  The <html> element does not have a lang attribute
             * Error element(s) : 1
-            - (1) HTML element : <html><head></head><body>
+								(1)  - HTML element : <html><head></head><body>
 
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
@@ -1152,23 +1190,30 @@ Fix any of the following:
 
 
 </body></html>
-             - CSS selector(s) : html
-             - HTML Tag Hierarchy : html-has-lang--html
+                        - CSS selector(s) : html
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• The <html> element does not have a lang attribute
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang
+                • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 (3) [link-name] Links must have discernible text
-            * Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name
-            * WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
-            * More info: Fix all of the following:
-  Element is in tab order and does not have accessible text
-
-Fix any of the following:
-  Element does not have text that is visible to screen readers
-  aria-label attribute does not exist or is empty
-  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-  Element has no title attribute
             * Error element(s) : 1
-            - (1) HTML element : <a href=\\"#\\"></a>
-             - CSS selector(s) : a
-             - HTML Tag Hierarchy : link-name--a
+								(1)  - HTML element : <a href=\\"#\\"></a>
+                        - CSS selector(s) : a
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• Element does not have text that is visible to screen readers
+												• aria-label attribute does not exist or is empty
+												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+												• Element has no title attribute
+										- And fix the following:
+												• Element is in tab order and does not have accessible text
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name
+                • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+
             For more info about automated accessibility testing: https://sfdc.co/a11y-test
             For tips on fixing accessibility bugs: https://sfdc.co/a11y
             For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
@@ -1186,11 +1231,15 @@ Fix any of the following:
             Object {
               "a11yResults": Array [
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
+                  "none": "",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
@@ -1296,14 +1345,17 @@ Fix any of the following:
             1 HTML elements have accessibility issue(s). 1 rules failed.
 
             (1) [html-has-lang] <html> element must have a lang attribute
-            * Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang
-            * WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
-            * More info: Fix any of the following:
-  The <html> element does not have a lang attribute
             * Error element(s) : 1
-            - (1) HTML element : <html>
-             - CSS selector(s) : html
-             - HTML Tag Hierarchy : html-has-lang--html
+								(1)  - HTML element : <html>
+                        - CSS selector(s) : html
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• The <html> element does not have a lang attribute
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang
+                • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
+
+
             For more info about automated accessibility testing: https://sfdc.co/a11y-test
             For tips on fixing accessibility bugs: https://sfdc.co/a11y
             For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
@@ -1321,6 +1373,9 @@ Fix any of the following:
             Object {
               "a11yResults": Array [
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Document does not have a non-empty <title> element",
                   "description": "Documents must have <title> element to aid in navigation",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
                   "html": "<html><head></head><body>
@@ -1333,6 +1388,7 @@ Fix any of the following:
 </body></html>",
                   "id": "document-title",
                   "key": "document-title--html",
+                  "none": "",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
@@ -1391,6 +1447,9 @@ Fix any of the following:
                   },
                 },
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html><head></head><body>
@@ -1403,6 +1462,7 @@ Fix any of the following:
 </body></html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
+                  "none": "",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
@@ -1463,11 +1523,18 @@ Fix any of the following:
                   },
                 },
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Element does not have text that is visible to screen readers
+												• aria-label attribute does not exist or is empty
+												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+												• Element has no title attribute",
                   "description": "Links must have discernible text",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
+                  "none": "												• Element is in tab order and does not have accessible text",
                   "selectors": "a",
                   "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -1566,11 +1633,15 @@ Fix any of the following:
                   },
                 },
                 Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
+                  "none": "",
                   "selectors": "html",
                   "summary": "Fix any of the following:
   The <html> element does not have a lang attribute",
@@ -1850,12 +1921,8 @@ Fix any of the following:
             4 HTML elements have accessibility issue(s). 3 rules failed.
 
             (1) [document-title] Documents must have <title> element to aid in navigation
-            * Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title
-            * WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
-            * More info: Fix any of the following:
-  Document does not have a non-empty <title> element
             * Error element(s) : 1
-            - (1) HTML element : <html><head></head><body>
+								(1)  - HTML element : <html><head></head><body>
 
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
@@ -1863,15 +1930,16 @@ Fix any of the following:
 
 
 </body></html>
-             - CSS selector(s) : html
-             - HTML Tag Hierarchy : document-title--html
+                        - CSS selector(s) : html
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• Document does not have a non-empty <title> element
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title
+                • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [html-has-lang] <html> element must have a lang attribute
-            * Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang
-            * WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
-            * More info: Fix any of the following:
-  The <html> element does not have a lang attribute
             * Error element(s) : 2
-            - (1) HTML element : <html><head></head><body>
+								(1)  - HTML element : <html><head></head><body>
 
 <div id=\\"dom-with-issues\\">
     <a href=\\"#\\"></a>
@@ -1879,26 +1947,35 @@ Fix any of the following:
 
 
 </body></html>
-             - CSS selector(s) : html
-             - HTML Tag Hierarchy : html-has-lang--html
-- (2) HTML element : <html>
-             - CSS selector(s) : html
-             - HTML Tag Hierarchy : html-has-lang--html
+                        - CSS selector(s) : html
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• The <html> element does not have a lang attribute
+								(2)  - HTML element : <html>
+                        - CSS selector(s) : html
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• The <html> element does not have a lang attribute
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang
+                • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 (3) [link-name] Links must have discernible text
-            * Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name
-            * WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
-            * More info: Fix all of the following:
-  Element is in tab order and does not have accessible text
-
-Fix any of the following:
-  Element does not have text that is visible to screen readers
-  aria-label attribute does not exist or is empty
-  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-  Element has no title attribute
             * Error element(s) : 1
-            - (1) HTML element : <a href=\\"#\\"></a>
-             - CSS selector(s) : a
-             - HTML Tag Hierarchy : link-name--a
+								(1)  - HTML element : <a href=\\"#\\"></a>
+                        - CSS selector(s) : a
+                        - HTML Tag Hierarchy : 
+										- More Info: To solve the problem, you need to fix at least (1) of the following:
+												• Element does not have text that is visible to screen readers
+												• aria-label attribute does not exist or is empty
+												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+												• Element has no title attribute
+										- And fix the following:
+												• Element is in tab order and does not have accessible text
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name
+                • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+
+
             For more info about automated accessibility testing: https://sfdc.co/a11y-test
             For tips on fixing accessibility bugs: https://sfdc.co/a11y
             For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
