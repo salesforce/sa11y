@@ -9,6 +9,7 @@ import { NodeResult, Result } from 'axe-core';
 import { priorities, wcagLevels, WcagMetadata } from '@sa11y/preset-rules';
 
 const defaultImpact = 'minor'; // if impact is undefined
+const formatSpacing = '\t'.repeat(12);
 // Helper object to sort violations by impact order
 const impactOrder = {
     critical: 1,
@@ -83,6 +84,10 @@ export class A11yResult {
     public readonly wcag: string;
     public readonly summary: string;
     public readonly key: string; // Represent a key with uniquely identifiable info
+    public readonly ancestry: string;
+    public readonly any: string;
+    public readonly all: string;
+    public readonly none: string;
     private readonly wcagData: WcagMetadata; // Used to sort results
 
     constructor(violation: Result, node: NodeResult) {
@@ -97,6 +102,10 @@ export class A11yResult {
         /* istanbul ignore next */
         this.summary = node.failureSummary || '';
         this.key = `${this.id}--${this.selectors}`;
+        this.ancestry = (node.ancestry?.flat(Infinity) ?? []).join('\n');
+        this.any = node.any?.map((item) => `${formatSpacing}• ${item.message}`).join('\n');
+        this.all = node.all?.map((item) => `${formatSpacing}• ${item.message}`).join('\n');
+        this.none = node.none?.map((item) => `${formatSpacing}• ${item.message}`).join('\n');
     }
 
     /**

@@ -16,6 +16,9 @@ type ErrorElement = {
     html: string;
     selectors: string;
     hierarchy: string;
+    any: string;
+    all: string;
+    none: string;
 };
 
 type A11yViolation = {
@@ -27,17 +30,45 @@ type A11yViolation = {
     errorElements: ErrorElement[];
 };
 
+const formatSpacing = '\t'.repeat(8);
+const formatForAxeMessage = `\n${formatSpacing}\t\t`;
+
+const axeMessages = {
+    toSolveAny: `${formatForAxeMessage}- More Info: To solve the problem, you need to fix at least (1) of the following:\n`,
+    toSolveFirst: `${formatForAxeMessage}- More Info: To solve the problem, you need to fix one of the following:\n`,
+    toSolveSecond: `${formatForAxeMessage}- And fix the following:\n`,
+};
 /**
  * Create a test failure html elements array grouped by rule violation
  */
 function createA11yErrorElements(errorElements: ErrorElement[]) {
     const a11yErrorElements: string[] = [];
     errorElements.forEach((errorElement, index) => {
-        a11yErrorElements.push(
-            `- (${index + 1}) HTML element : ${errorElement.html.replace(/&lt;/g, '<').replace(/&gt;/, '>')}
-             - CSS selector(s) : ${errorElement.selectors.replace(/&gt;/, '>')}
-             - HTML Tag Hierarchy : ${errorElement.hierarchy}`
-        );
+        let errorMessage = `${formatSpacing}(${index + 1})  - HTML element : ${errorElement.html
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/, '>')}
+                        - CSS selector(s) : ${errorElement.selectors.replace(/&gt;/, '>')}
+                        - HTML Tag Hierarchy : ${errorElement.hierarchy}`;
+
+        if (errorElement.any && errorElement.any.length > 0) {
+            errorMessage += `${axeMessages.toSolveAny}${errorElement.any}`;
+            if (errorElement.all && errorElement.all.length > 0) {
+                errorMessage += `${axeMessages.toSolveSecond}${errorElement.all}`;
+            }
+            if (errorElement.none && errorElement.none.length > 0) {
+                errorMessage += `${axeMessages.toSolveSecond}${errorElement.none}`;
+            }
+        } else if (errorElement.all && errorElement.all.length > 0) {
+            errorMessage += `${axeMessages.toSolveFirst}${errorElement.all}`;
+            if (errorElement.none && errorElement.none.length > 0) {
+                errorMessage += `${axeMessages.toSolveSecond}${errorElement.none}`;
+            }
+        } else {
+            if (errorElement.none && errorElement.none.length > 0) {
+                errorMessage += `${axeMessages.toSolveFirst}${errorElement.none}`;
+            }
+        }
+        a11yErrorElements.push(errorMessage);
     });
 
     return a11yErrorElements.join('\n');
@@ -48,11 +79,10 @@ function createA11yErrorElements(errorElements: ErrorElement[]) {
  */
 function createA11yRuleViolation(a11yRule: A11yViolation, ruleIndex: number) {
     return `(${ruleIndex}) [${a11yRule.id}] ${a11yRule.description}
-            * Help URL: ${a11yRule.helpUrl}
-            * WCAG Criteria: ${a11yRule.wcagCriteria}
-            * More info: ${a11yRule.summary}
-            * Error element(s) : ${a11yRule.errorElements.length}
-            ${createA11yErrorElements(a11yRule.errorElements)}`;
+            * Error element(s) : ${a11yRule.errorElements.length}\n${createA11yErrorElements(a11yRule.errorElements)}
+            * Help:
+                • Help URL: ${a11yRule.helpUrl}
+                • WCAG Criteria: ${a11yRule.wcagCriteria}`;
 }
 
 /**
@@ -92,7 +122,10 @@ function processA11yErrors(results: AggregatedResult, testSuite: TestResult, tes
                 a11yRuleViolations[a11yResult.wcag].errorElements.push({
                     html: a11yResult.html,
                     selectors: a11yResult.selectors,
-                    hierarchy: a11yResult.key,
+                    hierarchy: a11yResult.ancestry,
+                    any: a11yResult.any,
+                    all: a11yResult.all,
+                    none: a11yResult.none,
                 });
             });
 
@@ -103,6 +136,8 @@ function processA11yErrors(results: AggregatedResult, testSuite: TestResult, tes
             ${Object.values(a11yRuleViolations)
                 .map((a11yRuleViolation, index) => createA11yRuleViolation(a11yRuleViolation, index + 1))
                 .join('\n')}
+
+
             For more info about automated accessibility testing: https://sfdc.co/a11y-test
             For tips on fixing accessibility bugs: https://sfdc.co/a11y
             For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
