@@ -9,7 +9,7 @@ import { NodeResult, Result } from 'axe-core';
 import { priorities, wcagLevels, WcagMetadata } from '@sa11y/preset-rules';
 
 const defaultImpact = 'minor'; // if impact is undefined
-const formatSpacing = '\t\t\t\t\t\t\t\t\t\t\t\t';
+const formatSpacing = '\t'.repeat(12);
 // Helper object to sort violations by impact order
 const impactOrder = {
     critical: 1,

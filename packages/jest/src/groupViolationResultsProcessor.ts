@@ -30,7 +30,7 @@ type A11yViolation = {
     errorElements: ErrorElement[];
 };
 
-const formatSpacing = '\t\t\t\t\t\t\t\t';
+const formatSpacing = '\t'.repeat(8);
 const formatForAxeMessage = `\n${formatSpacing}\t\t`;
 
 const axeMessages = {
