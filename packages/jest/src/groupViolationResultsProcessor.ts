@@ -30,13 +30,13 @@ type A11yViolation = {
     errorElements: ErrorElement[];
 };
 
-const formatSpacing = '\t'.repeat(8);
-const formatForAxeMessage = `\n${formatSpacing}\t\t`;
+const formatSpacing = '&ensp;'.repeat(2);
+const formatForError = '&ensp;'.repeat(4);
 
 const axeMessages = {
-    toSolveAny: `${formatForAxeMessage}- More Info: To solve the problem, you need to fix at least (1) of the following:\n`,
-    toSolveFirst: `${formatForAxeMessage}- More Info: To solve the problem, you need to fix one of the following:\n`,
-    toSolveSecond: `${formatForAxeMessage}- And fix the following:\n`,
+    toSolveAny: `\n${formatForError}- More Info: To solve the problem, you need to fix at least (1) of the following:\n`,
+    toSolveFirst: `\n${formatForError}- More Info: To solve the problem, you need to fix one of the following:\n`,
+    toSolveSecond: `\n${formatForError}- And fix the following:\n`,
 };
 /**
  * Create a test failure html elements array grouped by rule violation
@@ -44,11 +44,11 @@ const axeMessages = {
 function createA11yErrorElements(errorElements: ErrorElement[]) {
     const a11yErrorElements: string[] = [];
     errorElements.forEach((errorElement, index) => {
-        let errorMessage = `${formatSpacing}(${index + 1})  - HTML element : ${errorElement.html
+        let errorMessage = `${formatForError}(${index + 1})  - HTML element : ${errorElement.html
             .replace(/&lt;/g, '<')
             .replace(/&gt;/, '>')}
-                        - CSS selector(s) : ${errorElement.selectors.replace(/&gt;/, '>')}
-                        - HTML Tag Hierarchy : ${errorElement.hierarchy}`;
+        ${formatForError}- CSS selector(s) : ${errorElement.selectors.replace(/&gt;/, '>')}
+        ${formatForError}- HTML Tag Hierarchy : ${errorElement.hierarchy}`;
 
         if (errorElement.any && errorElement.any.length > 0) {
             errorMessage += `${axeMessages.toSolveAny}${errorElement.any}`;
@@ -79,10 +79,11 @@ function createA11yErrorElements(errorElements: ErrorElement[]) {
  */
 function createA11yRuleViolation(a11yRule: A11yViolation, ruleIndex: number) {
     return `(${ruleIndex}) [${a11yRule.id}] ${a11yRule.description}
-            * Error element(s) : ${a11yRule.errorElements.length}\n${createA11yErrorElements(a11yRule.errorElements)}
-            * Help:
-                • Help URL: ${a11yRule.helpUrl}
-                • WCAG Criteria: ${a11yRule.wcagCriteria}`;
+    ${formatSpacing}* Error element(s) : ${a11yRule.errorElements.length}
+    \n${createA11yErrorElements(a11yRule.errorElements)}
+    ${formatSpacing}* Help:
+    ${formatSpacing}${formatSpacing}• Help URL: ${a11yRule.helpUrl}
+    ${formatSpacing}${formatSpacing}• WCAG Criteria: ${a11yRule.wcagCriteria}`;
 }
 
 /**

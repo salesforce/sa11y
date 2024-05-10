@@ -234,7 +234,7 @@ Object {
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• Document does not have a non-empty <title> element",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Document does not have a non-empty <title> element",
                   "description": "Documents must have <title> element to aid in navigation",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
                   "html": "<html><head></head><body>
@@ -308,7 +308,7 @@ Object {
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• The <html> element does not have a lang attribute",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html><head></head><body>
@@ -384,16 +384,16 @@ Object {
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• Element does not have text that is visible to screen readers
-												• aria-label attribute does not exist or is empty
-												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-												• Element has no title attribute",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element does not have text that is visible to screen readers
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-label attribute does not exist or is empty
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element has no title attribute",
                   "description": "Links must have discernible text",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
-                  "none": "												• Element is in tab order and does not have accessible text",
+                  "none": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element is in tab order and does not have accessible text",
                   "selectors": "a",
                   "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -684,7 +684,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• The <html> element does not have a lang attribute",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html>",
@@ -803,7 +803,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• Document does not have a non-empty <title> element",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Document does not have a non-empty <title> element",
                   "description": "Documents must have <title> element to aid in navigation",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
                   "html": "<html><head></head><body>
@@ -877,7 +877,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• The <html> element does not have a lang attribute",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html><head></head><body>
@@ -953,16 +953,16 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• Element does not have text that is visible to screen readers
-												• aria-label attribute does not exist or is empty
-												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-												• Element has no title attribute",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element does not have text that is visible to screen readers
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-label attribute does not exist or is empty
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element has no title attribute",
                   "description": "Links must have discernible text",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
-                  "none": "												• Element is in tab order and does not have accessible text",
+                  "none": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element is in tab order and does not have accessible text",
                   "selectors": "a",
                   "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -1253,7 +1253,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• The <html> element does not have a lang attribute",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html>",
@@ -1372,7 +1372,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• Document does not have a non-empty <title> element",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Document does not have a non-empty <title> element",
                   "description": "Documents must have <title> element to aid in navigation",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
                   "html": "<html><head></head><body>
@@ -1446,7 +1446,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• The <html> element does not have a lang attribute",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html><head></head><body>
@@ -1522,16 +1522,16 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• Element does not have text that is visible to screen readers
-												• aria-label attribute does not exist or is empty
-												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-												• Element has no title attribute",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element does not have text that is visible to screen readers
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-label attribute does not exist or is empty
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element has no title attribute",
                   "description": "Links must have discernible text",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
-                  "none": "												• Element is in tab order and does not have accessible text",
+                  "none": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element is in tab order and does not have accessible text",
                   "selectors": "a",
                   "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -1632,7 +1632,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "												• The <html> element does not have a lang attribute",
+                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html>",
