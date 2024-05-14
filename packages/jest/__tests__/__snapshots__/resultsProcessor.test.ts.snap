@@ -64,16 +64,16 @@ Object {
           "failureDetails": Array [
             [A11yError: 3 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1],
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1],
           ],
           "fullName": "A11yError-0",
           "status": "failed",
@@ -85,8 +85,8 @@ Object {
           "failureDetails": Array [
             [A11yError: 1 Accessibility issues found
  * (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
           ],
           "fullName": "A11yError-1",
           "status": "failed",
@@ -98,16 +98,16 @@ Object {
           "failureDetails": Array [
             [A11yError: 3 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1],
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1],
           ],
           "fullName": "A11yError-2",
           "status": "failed",
@@ -119,8 +119,8 @@ Object {
           "failureDetails": Array [
             [A11yError: 1 Accessibility issues found
  * (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
           ],
           "fullName": "A11yError-3",
           "status": "failed",
@@ -132,20 +132,20 @@ Object {
           "failureDetails": Array [
             [A11yError: 4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
 * (link-name) Links must have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (html-has-lang) <html> element must have a lang attribute: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
+&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
           ],
           "fullName": "A11yError-4",
           "status": "failed",
