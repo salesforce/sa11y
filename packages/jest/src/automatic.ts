@@ -24,6 +24,7 @@ export type AutoCheckOpts = {
     // excludeTests?: string[];
     // List of test file paths (as regex) to filter for automatic checks
     filesFilter?: string[];
+    runDOMMutationObserver?: boolean;
 };
 
 /**
@@ -37,6 +38,8 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
 };
 
 let originalDocumentBodyHtml: string | null = null;
+
+let mutatedNodes: string[] = [];
 
 export const setOriginalDocumentBodyHtml = (bodyHtml: string | null) => {
     originalDocumentBodyHtml = bodyHtml ?? null;
@@ -84,23 +87,48 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     let currNode = walker.firstChild();
     const customRules = useCustomRules();
     try {
-        while (currNode !== null) {
-            // TODO (spike): Use a logger lib with log levels selectable at runtime
-            // console.log(
-            //     `♿ [DEBUG] Automatically checking a11y of ${currNode.nodeName}
-            //      for test "${expect.getState().currentTestName}"
-            //      : ${testPath}`
-            // );
-            // W-10004832 - Exclude descendancy based rules from automatic checks
-            if (customRules.length === 0)
-                violations.push(...(await getViolationsJSDOM(currNode, adaptA11yConfig(defaultRuleset))));
-            else
-                violations.push(
-                    ...(await getViolationsJSDOM(currNode, adaptA11yConfigCustomRules(defaultRuleset, customRules)))
-                );
-            currNode = walker.nextSibling();
+        if (!opts.runDOMMutationObserver) {
+            while (currNode !== null) {
+                // TODO (spike): Use a logger lib with log levels selectable at runtime
+                // console.log(
+                //     `♿ [DEBUG] Automatically checking a11y of ${currNode.nodeName}
+                //      for test "${expect.getState().currentTestName}"
+                //      : ${testPath}`
+                // );
+                // W-10004832 - Exclude descendancy based rules from automatic checks
+                if (customRules.length === 0)
+                    violations.push(...(await getViolationsJSDOM(currNode, adaptA11yConfig(defaultRuleset))));
+                else
+                    violations.push(
+                        ...(await getViolationsJSDOM(currNode, adaptA11yConfigCustomRules(defaultRuleset, customRules)))
+                    );
+                currNode = walker.nextSibling();
+            }
+        } else {
+            for (let i = 0; i < mutatedNodes.length; i++) {
+                if (mutatedNodes[i]) {
+                    document.body.innerHTML = mutatedNodes[i];
+                    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
+                    let currNode = walker.firstChild();
+                    while (currNode !== null) {
+                        if (customRules.length === 0)
+                            violations.push(...(await getViolationsJSDOM(currNode, adaptA11yConfig(defaultRuleset))));
+                        else
+                            violations.push(
+                                ...(await getViolationsJSDOM(
+                                    currNode,
+                                    adaptA11yConfigCustomRules(defaultRuleset, customRules)
+                                ))
+                            );
+                        currNode = walker.nextSibling();
+                    }
+                }
+            }
         }
     } finally {
+        if (opts.runDOMMutationObserver) {
+            mutatedNodes = [];
+        }
         setOriginalDocumentBodyHtml(null);
         document.body.innerHTML = currentDocumentHtml;
         if (opts.cleanupAfterEach) document.body.innerHTML = ''; // remove non-element nodes
@@ -117,15 +145,44 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     }
 }
 
+function observerCallback(mutations: MutationRecord[], _observer: MutationObserver) {
+    for (const mutation of mutations) {
+        mutation.addedNodes.forEach((node) => {
+            if (node?.parentElement?.innerHTML) {
+                mutatedNodes.push(node.parentElement.innerHTML);
+            }
+        });
+    }
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit
+const observerOptions: MutationObserverInit = {
+    subtree: true, // extend monitoring to the entire subtree of nodes rooted at target
+    childList: true, // monitor target node for addition/removal of child nodes
+    attributes: true, // monitor changes to the value of attributes of nodes
+    characterData: true, // monitor changes to the character data contained within nodes
+};
+
 /**
  * Register accessibility checks to be run automatically after each test
  * @param opts - Options for automatic checks {@link AutoCheckOpts}
  */
 export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
     if (opts.runAfterEach) {
+        const observer = new MutationObserver(observerCallback);
         // TODO (fix): Make registration idempotent
         log('Registering sa11y checks to be run automatically after each test');
+
+        beforeEach(() => {
+            if (opts.runDOMMutationObserver) {
+                observer.observe(document.body, observerOptions);
+            }
+        });
+
         afterEach(async () => {
+            if (opts.runDOMMutationObserver) {
+                observer.disconnect(); // stop mutation observer
+            }
             await automaticCheck(opts);
         });
     }
