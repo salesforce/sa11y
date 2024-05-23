@@ -1,0 +1,12 @@
+{
+    "id": "h1-no-duplicate",
+    "selector": "h1:not([role]), [role=heading][aria-level=1]",
+    "tags": ["cat.semantics", "best-practice"],
+    "metadata": {
+        "description": "Ensures the document has at most one h1 element",
+        "help": "Document must not have more than one h1 element"
+    },
+    "all": [],
+    "any": ["page-no-duplicate-h1"],
+    "none": []
+}

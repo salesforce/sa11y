@@ -15,7 +15,7 @@
         "packages/*"
     ],
     "scripts": {
-        "build": "tsc --build && yarn workspace @sa11y/browser-lib build",
+        "build": "tsc --build && yarn workspace @sa11y/browser-lib build && lerna exec --scope @sa11y/preset-rules -- yarn copy-json",
         "build:ci": "yarn install --frozen-lockfile && yarn build",
         "build:clean": "tsc --build --clean && rimraf packages/**/dist && yarn build:ci",
         "build:watch": "tsc --build --watch",
@@ -76,6 +76,7 @@
         "chromedriver": "115.0.1",
         "commitizen": "4.3.0",
         "conventional-changelog-cli": "2.2.2",
+        "cpx": "1.5.0",
         "cspell": "6.31.3",
         "depcheck": "1.4.3",
         "doctoc": "2.2.1",

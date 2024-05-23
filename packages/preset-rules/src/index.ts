@@ -11,3 +11,4 @@ export { extended } from './extended';
 export { base } from './base';
 export { full, excludedRules } from './full';
 export { WcagMetadata } from './wcag';
+export { registerCustomRules } from './customRules';
