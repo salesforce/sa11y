@@ -7,6 +7,7 @@
 import * as fs from 'fs';
 import path from 'path';
 import axe from 'axe-core';
+import { processFiles } from '@sa11y/common';
 
 // Directory containing custom rules and checks
 const customRulesPathDir = 'custom-rules';
@@ -26,23 +27,12 @@ export function registerCustomRules(): void {
             newRules.push(...rules);
         }
 
-        // Function to process JSON files in a directory and push their content to a target array
-        const processJsonFiles = <T>(dir: string, targetArray: T[]): void => {
-            const files = fs.readdirSync(dir);
-            files.forEach((file) => {
-                if (path.extname(file) === '.json') {
-                    const filePath = path.join(dir, file);
-                    const fileData = JSON.parse(fs.readFileSync(filePath, 'utf8')) as T;
-                    targetArray.push(fileData);
-                }
-            });
-        };
-
         // Process checks and rules JSON files
-        processJsonFiles<axe.Check>(path.join(directoryPath, 'checks'), newChecks);
-        processJsonFiles<axe.Rule>(path.join(directoryPath, 'rules'), newRules);
-    } catch (err) {
-        console.error('Error in reading Custom Rules files:', err);
+        processFiles<axe.Check>(path.join(directoryPath, 'checks'), newChecks, '.json', JSON.parse);
+        processFiles<axe.Rule>(path.join(directoryPath, 'rules'), newRules, '.json', JSON.parse);
+    } catch (e) {
+        const err = e as Error;
+        console.error('Error in reading Custom Rules files:', err.message);
     }
 
     // Configure axe with the new checks and rules
