@@ -32,7 +32,7 @@ export function registerCustomRules(): void {
         processFiles<axe.Rule>(path.join(directoryPath, 'rules'), newRules, '.json', JSON.parse);
     } catch (e) {
         const err = e as Error;
-        console.error('Error in reading Custom Rules files:', err.message);
+        console.error('Error in reading Custom Rules files: ', err.message);
     }
 
     // Configure axe with the new checks and rules

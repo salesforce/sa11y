@@ -63,7 +63,7 @@ describe('registerCustomRules', () => {
 
         registerCustomRules();
 
-        expect(consoleErrorSpy).toHaveBeenCalledWith('Error in reading Custom Rules files:', expect.any(Error));
+        expect(consoleErrorSpy).toHaveBeenCalledWith('Error in reading Custom Rules files: ', 'File read error');
 
         consoleErrorSpy.mockRestore();
     });
