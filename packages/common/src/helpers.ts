@@ -12,6 +12,7 @@
 const sa11yAutoFilterListDefaultPackageName = 'sa11y-jest-automated-check-file-exclusion';
 
 import * as fs from 'fs';
+import path from 'path';
 export function log(...args: unknown[]): void {
     // Probably not worth it to mock and test console logging for this helper util
     /* istanbul ignore next */
@@ -50,3 +51,20 @@ export function useCustomRules(): string[] {
     }
     return [];
 }
+
+// Function to process files in a directory and push their content to a target array
+export const processFiles = <T>(
+    dir: string,
+    targetArray: T[],
+    extension: string,
+    parser: (data: string) => T
+): void => {
+    const files = fs.readdirSync(dir);
+    files.forEach((file) => {
+        if (path.extname(file) === extension) {
+            const filePath = path.join(dir, file);
+            const fileData = parser(fs.readFileSync(filePath, 'utf8'));
+            targetArray.push(fileData);
+        }
+    });
+};
