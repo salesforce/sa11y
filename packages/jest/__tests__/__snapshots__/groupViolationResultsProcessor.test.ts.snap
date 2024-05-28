@@ -3,7 +3,7 @@
 exports[`Group Violation Results Processor should process test results as expected 1`] = `
 Object {
   "numFailedTestSuites": 1,
-  "numFailedTests": 5,
+  "numFailedTests": 6,
   "numPassedTestSuites": 0,
   "numPassedTests": 0,
   "numPendingTestSuites": 0,
@@ -34,7 +34,7 @@ Object {
   "testResults": Array [
     Object {
       "leaks": false,
-      "numFailingTests": 5,
+      "numFailingTests": 6,
       "numPassingTests": 0,
       "numPendingTests": 0,
       "numTodoTests": 0,
@@ -63,14 +63,17 @@ Object {
           ],
           "failureDetails": Array [
             Object {
-              "a11yResults": Array [
-                Object {
-                  "all": "",
-                  "ancestry": "",
-                  "any": "												• Document does not have a non-empty <title> element",
-                  "description": "Documents must have <title> element to aid in navigation",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
-                  "html": "<html><head></head><body>
+              "error": Object {
+                "matcherResult": Object {
+                  "a11yError": Object {
+                    "a11yResults": Array [
+                      Object {
+                        "all": "",
+                        "ancestry": "",
+                        "any": "												• Document does not have a non-empty <title> element",
+                        "description": "Documents must have <title> element to aid in navigation",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
+                        "html": "<html><head></head><body>
 
 <h1>Header One</h1>
 <h1>Header Two</h1>
@@ -80,37 +83,37 @@ Object {
 
 
 </body></html>",
-                  "id": "document-title",
-                  "key": "document-title--html",
-                  "none": "",
-                  "selectors": "html",
-                  "summary": "Fix any of the following:
+                        "id": "document-title",
+                        "key": "document-title--html",
+                        "none": "",
+                        "selectors": "html",
+                        "summary": "Fix any of the following:
   Document does not have a non-empty <title> element",
-                  "wcag": "SA11Y-WCAG-SC2.4.2-P2",
-                  "wcagData": Object {
-                    "priority": "P2",
-                    "successCriteria": "2.4.2",
-                    "violation": Object {
-                      "description": "Ensures each HTML document contains a non-empty <title> element",
-                      "help": "Documents must have <title> element to aid in navigation",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title?application=axeAPI",
-                      "id": "document-title",
-                      "impact": "serious",
-                      "nodes": Array [
-                        Object {
-                          "all": Array [],
-                          "any": Array [
-                            Object {
-                              "data": null,
-                              "id": "doc-has-title",
-                              "impact": "serious",
-                              "message": "Document does not have a non-empty <title> element",
-                              "relatedNodes": Array [],
-                            },
-                          ],
-                          "failureSummary": "Fix any of the following:
+                        "wcag": "SA11Y-WCAG-SC2.4.2-P2",
+                        "wcagData": Object {
+                          "priority": "P2",
+                          "successCriteria": "2.4.2",
+                          "violation": Object {
+                            "description": "Ensures each HTML document contains a non-empty <title> element",
+                            "help": "Documents must have <title> element to aid in navigation",
+                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title?application=axeAPI",
+                            "id": "document-title",
+                            "impact": "serious",
+                            "nodes": Array [
+                              Object {
+                                "all": Array [],
+                                "any": Array [
+                                  Object {
+                                    "data": null,
+                                    "id": "doc-has-title",
+                                    "impact": "serious",
+                                    "message": "Document does not have a non-empty <title> element",
+                                    "relatedNodes": Array [],
+                                  },
+                                ],
+                                "failureSummary": "Fix any of the following:
   Document does not have a non-empty <title> element",
-                          "html": "<html><head></head><body>
+                                "html": "<html><head></head><body>
 
 <h1>Header One</h1>
 <h1>Header Two</h1>
@@ -120,77 +123,35 @@ Object {
 
 
 </body></html>",
-                          "impact": "serious",
-                          "none": Array [],
-                          "target": Array [
-                            "html",
-                          ],
-                        },
-                      ],
-                      "tags": Array [
-                        "cat.text-alternatives",
-                        "wcag2a",
-                        "wcag242",
-                        "TTv5",
-                        "TT12.a",
-                        "EN-301-549",
-                        "EN-9.2.4.2",
-                        "ACT",
-                      ],
-                    },
-                    "wcagLevel": "A",
-                    "wcagVersion": "2.1",
-                  },
-                },
-                Object {
-                  "all": "",
-                  "ancestry": "",
-                  "any": "												• The <html> element does not have a lang attribute",
-                  "description": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
-                  "html": "<html><head></head><body>
-
-<h1>Header One</h1>
-<h1>Header Two</h1>
-<div id=\\"dom-with-issues\\">
-    <a href=\\"#\\"></a>
-</div>
-
-
-</body></html>",
-                  "id": "html-has-lang",
-                  "key": "html-has-lang--html",
-                  "none": "",
-                  "selectors": "html",
-                  "summary": "Fix any of the following:
-  The <html> element does not have a lang attribute",
-                  "wcag": "SA11Y-WCAG-SC3.1.1-P2",
-                  "wcagData": Object {
-                    "priority": "P2",
-                    "successCriteria": "3.1.1",
-                    "violation": Object {
-                      "description": "Ensures every HTML document has a lang attribute",
-                      "help": "<html> element must have a lang attribute",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
-                      "id": "html-has-lang",
-                      "impact": "serious",
-                      "nodes": Array [
-                        Object {
-                          "all": Array [],
-                          "any": Array [
-                            Object {
-                              "data": Object {
-                                "messageKey": "noLang",
+                                "impact": "serious",
+                                "none": Array [],
+                                "target": Array [
+                                  "html",
+                                ],
                               },
-                              "id": "has-lang",
-                              "impact": "serious",
-                              "message": "The <html> element does not have a lang attribute",
-                              "relatedNodes": Array [],
-                            },
-                          ],
-                          "failureSummary": "Fix any of the following:
-  The <html> element does not have a lang attribute",
-                          "html": "<html><head></head><body>
+                            ],
+                            "tags": Array [
+                              "cat.text-alternatives",
+                              "wcag2a",
+                              "wcag242",
+                              "TTv5",
+                              "TT12.a",
+                              "EN-301-549",
+                              "EN-9.2.4.2",
+                              "ACT",
+                            ],
+                          },
+                          "wcagLevel": "A",
+                          "wcagVersion": "2.1",
+                        },
+                      },
+                      Object {
+                        "all": "",
+                        "ancestry": "",
+                        "any": "												• The <html> element does not have a lang attribute",
+                        "description": "<html> element must have a lang attribute",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
+                        "html": "<html><head></head><body>
 
 <h1>Header One</h1>
 <h1>Header Two</h1>
@@ -200,43 +161,85 @@ Object {
 
 
 </body></html>",
-                          "impact": "serious",
-                          "none": Array [],
-                          "target": Array [
-                            "html",
-                          ],
+                        "id": "html-has-lang",
+                        "key": "html-has-lang--html",
+                        "none": "",
+                        "selectors": "html",
+                        "summary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                        "wcag": "SA11Y-WCAG-SC3.1.1-P2",
+                        "wcagData": Object {
+                          "priority": "P2",
+                          "successCriteria": "3.1.1",
+                          "violation": Object {
+                            "description": "Ensures every HTML document has a lang attribute",
+                            "help": "<html> element must have a lang attribute",
+                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                            "id": "html-has-lang",
+                            "impact": "serious",
+                            "nodes": Array [
+                              Object {
+                                "all": Array [],
+                                "any": Array [
+                                  Object {
+                                    "data": Object {
+                                      "messageKey": "noLang",
+                                    },
+                                    "id": "has-lang",
+                                    "impact": "serious",
+                                    "message": "The <html> element does not have a lang attribute",
+                                    "relatedNodes": Array [],
+                                  },
+                                ],
+                                "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                                "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                                "impact": "serious",
+                                "none": Array [],
+                                "target": Array [
+                                  "html",
+                                ],
+                              },
+                            ],
+                            "tags": Array [
+                              "cat.language",
+                              "wcag2a",
+                              "wcag311",
+                              "TTv5",
+                              "TT11.a",
+                              "EN-301-549",
+                              "EN-9.3.1.1",
+                              "ACT",
+                            ],
+                          },
+                          "wcagLevel": "A",
+                          "wcagVersion": "2.1",
                         },
-                      ],
-                      "tags": Array [
-                        "cat.language",
-                        "wcag2a",
-                        "wcag311",
-                        "TTv5",
-                        "TT11.a",
-                        "EN-301-549",
-                        "EN-9.3.1.1",
-                        "ACT",
-                      ],
-                    },
-                    "wcagLevel": "A",
-                    "wcagVersion": "2.1",
-                  },
-                },
-                Object {
-                  "all": "",
-                  "ancestry": "",
-                  "any": "												• Element does not have text that is visible to screen readers
+                      },
+                      Object {
+                        "all": "",
+                        "ancestry": "",
+                        "any": "												• Element does not have text that is visible to screen readers
 												• aria-label attribute does not exist or is empty
 												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
 												• Element has no title attribute",
-                  "description": "Links must have discernible text",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
-                  "html": "<a href=\\"#\\"></a>",
-                  "id": "link-name",
-                  "key": "link-name--a",
-                  "none": "												• Element is in tab order and does not have accessible text",
-                  "selectors": "a",
-                  "summary": "Fix all of the following:
+                        "description": "Links must have discernible text",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
+                        "html": "<a href=\\"#\\"></a>",
+                        "id": "link-name",
+                        "key": "link-name--a",
+                        "none": "												• Element is in tab order and does not have accessible text",
+                        "selectors": "a",
+                        "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
 
 Fix any of the following:
@@ -244,52 +247,52 @@ Fix any of the following:
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
-                  "wcag": "SA11Y-WCAG-SC4.1.2-P1",
-                  "wcagData": Object {
-                    "priority": "P1",
-                    "successCriteria": "4.1.2",
-                    "violation": Object {
-                      "description": "Ensures links have discernible text",
-                      "help": "Links must have discernible text",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name?application=axeAPI",
-                      "id": "link-name",
-                      "impact": "serious",
-                      "nodes": Array [
-                        Object {
-                          "all": Array [],
-                          "any": Array [
-                            Object {
-                              "data": null,
-                              "id": "has-visible-text",
-                              "impact": "serious",
-                              "message": "Element does not have text that is visible to screen readers",
-                              "relatedNodes": Array [],
-                            },
-                            Object {
-                              "data": null,
-                              "id": "aria-label",
-                              "impact": "serious",
-                              "message": "aria-label attribute does not exist or is empty",
-                              "relatedNodes": Array [],
-                            },
-                            Object {
-                              "data": null,
-                              "id": "aria-labelledby",
-                              "impact": "serious",
-                              "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                              "relatedNodes": Array [],
-                            },
-                            Object {
-                              "data": Object {
-                                "messageKey": "noAttr",
-                              },
-                              "id": "non-empty-title",
-                              "impact": "serious",
-                              "message": "Element has no title attribute",
-                              "relatedNodes": Array [],
-                            },
-                          ],
-                          "failureSummary": "Fix all of the following:
+                        "wcag": "SA11Y-WCAG-SC4.1.2-P1",
+                        "wcagData": Object {
+                          "priority": "P1",
+                          "successCriteria": "4.1.2",
+                          "violation": Object {
+                            "description": "Ensures links have discernible text",
+                            "help": "Links must have discernible text",
+                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name?application=axeAPI",
+                            "id": "link-name",
+                            "impact": "serious",
+                            "nodes": Array [
+                              Object {
+                                "all": Array [],
+                                "any": Array [
+                                  Object {
+                                    "data": null,
+                                    "id": "has-visible-text",
+                                    "impact": "serious",
+                                    "message": "Element does not have text that is visible to screen readers",
+                                    "relatedNodes": Array [],
+                                  },
+                                  Object {
+                                    "data": null,
+                                    "id": "aria-label",
+                                    "impact": "serious",
+                                    "message": "aria-label attribute does not exist or is empty",
+                                    "relatedNodes": Array [],
+                                  },
+                                  Object {
+                                    "data": null,
+                                    "id": "aria-labelledby",
+                                    "impact": "serious",
+                                    "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                                    "relatedNodes": Array [],
+                                  },
+                                  Object {
+                                    "data": Object {
+                                      "messageKey": "noAttr",
+                                    },
+                                    "id": "non-empty-title",
+                                    "impact": "serious",
+                                    "message": "Element has no title attribute",
+                                    "relatedNodes": Array [],
+                                  },
+                                ],
+                                "failureSummary": "Fix all of the following:
   Element is in tab order and does not have accessible text
 
 Fix any of the following:
@@ -297,221 +300,221 @@ Fix any of the following:
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
-                          "html": "<a href=\\"#\\"></a>",
-                          "impact": "serious",
-                          "none": Array [
-                            Object {
-                              "data": null,
-                              "id": "focusable-no-name",
-                              "impact": "serious",
-                              "message": "Element is in tab order and does not have accessible text",
-                              "relatedNodes": Array [],
-                            },
-                          ],
-                          "target": Array [
-                            "a",
-                          ],
-                        },
-                      ],
-                      "tags": Array [
-                        "cat.name-role-value",
-                        "wcag2a",
-                        "wcag244",
-                        "wcag412",
-                        "section508",
-                        "section508.22.a",
-                        "TTv5",
-                        "TT6.a",
-                        "EN-301-549",
-                        "EN-9.2.4.4",
-                        "EN-9.4.1.2",
-                        "ACT",
-                      ],
-                    },
-                    "wcagLevel": "A",
-                    "wcagVersion": "2.1",
-                  },
-                },
-                Object {
-                  "all": "",
-                  "ancestry": "",
-                  "any": "												• Some page content is not contained by landmarks",
-                  "description": "All page content should be contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region",
-                  "html": "<h1>Header One</h1>",
-                  "id": "region",
-                  "key": "region--h1:nth-child(1)",
-                  "none": "",
-                  "selectors": "h1:nth-child(1)",
-                  "summary": "Fix any of the following:
-  Some page content is not contained by landmarks",
-                  "wcag": "SA11Y-WCAG-SC-P3",
-                  "wcagData": Object {
-                    "priority": "P3",
-                    "successCriteria": "",
-                    "violation": Object {
-                      "description": "Ensures all page content is contained by landmarks",
-                      "help": "All page content should be contained by landmarks",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
-                      "id": "region",
-                      "impact": "moderate",
-                      "nodes": Array [
-                        Object {
-                          "all": Array [],
-                          "any": Array [
-                            Object {
-                              "data": Object {
-                                "isIframe": false,
+                                "html": "<a href=\\"#\\"></a>",
+                                "impact": "serious",
+                                "none": Array [
+                                  Object {
+                                    "data": null,
+                                    "id": "focusable-no-name",
+                                    "impact": "serious",
+                                    "message": "Element is in tab order and does not have accessible text",
+                                    "relatedNodes": Array [],
+                                  },
+                                ],
+                                "target": Array [
+                                  "a",
+                                ],
                               },
-                              "id": "region",
-                              "impact": "moderate",
-                              "message": "Some page content is not contained by landmarks",
-                              "relatedNodes": Array [],
-                            },
-                          ],
-                          "failureSummary": "Fix any of the following:
-  Some page content is not contained by landmarks",
-                          "html": "<h1>Header One</h1>",
-                          "impact": "moderate",
-                          "none": Array [],
-                          "target": Array [
-                            "h1:nth-child(1)",
-                          ],
+                            ],
+                            "tags": Array [
+                              "cat.name-role-value",
+                              "wcag2a",
+                              "wcag244",
+                              "wcag412",
+                              "section508",
+                              "section508.22.a",
+                              "TTv5",
+                              "TT6.a",
+                              "EN-301-549",
+                              "EN-9.2.4.4",
+                              "EN-9.4.1.2",
+                              "ACT",
+                            ],
+                          },
+                          "wcagLevel": "A",
+                          "wcagVersion": "2.1",
                         },
-                        Object {
-                          "all": Array [],
-                          "any": Array [
-                            Object {
-                              "data": Object {
-                                "isIframe": false,
+                      },
+                      Object {
+                        "all": "",
+                        "ancestry": "",
+                        "any": "												• Some page content is not contained by landmarks",
+                        "description": "All page content should be contained by landmarks",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region",
+                        "html": "<h1>Header One</h1>",
+                        "id": "region",
+                        "key": "region--h1:nth-child(1)",
+                        "none": "",
+                        "selectors": "h1:nth-child(1)",
+                        "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                        "wcag": "SA11Y-WCAG-SC-P3",
+                        "wcagData": Object {
+                          "priority": "P3",
+                          "successCriteria": "",
+                          "violation": Object {
+                            "description": "Ensures all page content is contained by landmarks",
+                            "help": "All page content should be contained by landmarks",
+                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
+                            "id": "region",
+                            "impact": "moderate",
+                            "nodes": Array [
+                              Object {
+                                "all": Array [],
+                                "any": Array [
+                                  Object {
+                                    "data": Object {
+                                      "isIframe": false,
+                                    },
+                                    "id": "region",
+                                    "impact": "moderate",
+                                    "message": "Some page content is not contained by landmarks",
+                                    "relatedNodes": Array [],
+                                  },
+                                ],
+                                "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                                "html": "<h1>Header One</h1>",
+                                "impact": "moderate",
+                                "none": Array [],
+                                "target": Array [
+                                  "h1:nth-child(1)",
+                                ],
                               },
-                              "id": "region",
-                              "impact": "moderate",
-                              "message": "Some page content is not contained by landmarks",
-                              "relatedNodes": Array [],
-                            },
-                          ],
-                          "failureSummary": "Fix any of the following:
+                              Object {
+                                "all": Array [],
+                                "any": Array [
+                                  Object {
+                                    "data": Object {
+                                      "isIframe": false,
+                                    },
+                                    "id": "region",
+                                    "impact": "moderate",
+                                    "message": "Some page content is not contained by landmarks",
+                                    "relatedNodes": Array [],
+                                  },
+                                ],
+                                "failureSummary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                          "html": "<h1>Header Two</h1>",
-                          "impact": "moderate",
-                          "none": Array [],
-                          "target": Array [
-                            "h1:nth-child(2)",
-                          ],
-                        },
-                      ],
-                      "tags": Array [
-                        "cat.keyboard",
-                        "best-practice",
-                      ],
-                    },
-                    "wcagLevel": "",
-                    "wcagVersion": "2.1",
-                  },
-                },
-                Object {
-                  "all": "",
-                  "ancestry": "",
-                  "any": "												• Some page content is not contained by landmarks",
-                  "description": "All page content should be contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region",
-                  "html": "<h1>Header Two</h1>",
-                  "id": "region",
-                  "key": "region--h1:nth-child(2)",
-                  "none": "",
-                  "selectors": "h1:nth-child(2)",
-                  "summary": "Fix any of the following:
-  Some page content is not contained by landmarks",
-                  "wcag": "SA11Y-WCAG-SC-P3",
-                  "wcagData": Object {
-                    "priority": "P3",
-                    "successCriteria": "",
-                    "violation": Object {
-                      "description": "Ensures all page content is contained by landmarks",
-                      "help": "All page content should be contained by landmarks",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
-                      "id": "region",
-                      "impact": "moderate",
-                      "nodes": Array [
-                        Object {
-                          "all": Array [],
-                          "any": Array [
-                            Object {
-                              "data": Object {
-                                "isIframe": false,
+                                "html": "<h1>Header Two</h1>",
+                                "impact": "moderate",
+                                "none": Array [],
+                                "target": Array [
+                                  "h1:nth-child(2)",
+                                ],
                               },
-                              "id": "region",
-                              "impact": "moderate",
-                              "message": "Some page content is not contained by landmarks",
-                              "relatedNodes": Array [],
-                            },
-                          ],
-                          "failureSummary": "Fix any of the following:
-  Some page content is not contained by landmarks",
-                          "html": "<h1>Header One</h1>",
-                          "impact": "moderate",
-                          "none": Array [],
-                          "target": Array [
-                            "h1:nth-child(1)",
-                          ],
+                            ],
+                            "tags": Array [
+                              "cat.keyboard",
+                              "best-practice",
+                            ],
+                          },
+                          "wcagLevel": "",
+                          "wcagVersion": "2.1",
                         },
-                        Object {
-                          "all": Array [],
-                          "any": Array [
-                            Object {
-                              "data": Object {
-                                "isIframe": false,
+                      },
+                      Object {
+                        "all": "",
+                        "ancestry": "",
+                        "any": "												• Some page content is not contained by landmarks",
+                        "description": "All page content should be contained by landmarks",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region",
+                        "html": "<h1>Header Two</h1>",
+                        "id": "region",
+                        "key": "region--h1:nth-child(2)",
+                        "none": "",
+                        "selectors": "h1:nth-child(2)",
+                        "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                        "wcag": "SA11Y-WCAG-SC-P3",
+                        "wcagData": Object {
+                          "priority": "P3",
+                          "successCriteria": "",
+                          "violation": Object {
+                            "description": "Ensures all page content is contained by landmarks",
+                            "help": "All page content should be contained by landmarks",
+                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
+                            "id": "region",
+                            "impact": "moderate",
+                            "nodes": Array [
+                              Object {
+                                "all": Array [],
+                                "any": Array [
+                                  Object {
+                                    "data": Object {
+                                      "isIframe": false,
+                                    },
+                                    "id": "region",
+                                    "impact": "moderate",
+                                    "message": "Some page content is not contained by landmarks",
+                                    "relatedNodes": Array [],
+                                  },
+                                ],
+                                "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                                "html": "<h1>Header One</h1>",
+                                "impact": "moderate",
+                                "none": Array [],
+                                "target": Array [
+                                  "h1:nth-child(1)",
+                                ],
                               },
-                              "id": "region",
-                              "impact": "moderate",
-                              "message": "Some page content is not contained by landmarks",
-                              "relatedNodes": Array [],
-                            },
-                          ],
-                          "failureSummary": "Fix any of the following:
+                              Object {
+                                "all": Array [],
+                                "any": Array [
+                                  Object {
+                                    "data": Object {
+                                      "isIframe": false,
+                                    },
+                                    "id": "region",
+                                    "impact": "moderate",
+                                    "message": "Some page content is not contained by landmarks",
+                                    "relatedNodes": Array [],
+                                  },
+                                ],
+                                "failureSummary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                          "html": "<h1>Header Two</h1>",
-                          "impact": "moderate",
-                          "none": Array [],
-                          "target": Array [
-                            "h1:nth-child(2)",
-                          ],
+                                "html": "<h1>Header Two</h1>",
+                                "impact": "moderate",
+                                "none": Array [],
+                                "target": Array [
+                                  "h1:nth-child(2)",
+                                ],
+                              },
+                            ],
+                            "tags": Array [
+                              "cat.keyboard",
+                              "best-practice",
+                            ],
+                          },
+                          "wcagLevel": "",
+                          "wcagVersion": "2.1",
                         },
-                      ],
-                      "tags": Array [
-                        "cat.keyboard",
-                        "best-practice",
-                      ],
-                    },
-                    "wcagLevel": "",
-                    "wcagVersion": "2.1",
-                  },
-                },
-              ],
-              "name": "A11yError",
-              "violations": Array [
-                Object {
-                  "description": "Ensures each HTML document contains a non-empty <title> element",
-                  "help": "Documents must have <title> element to aid in navigation",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title?application=axeAPI",
-                  "id": "document-title",
-                  "impact": "serious",
-                  "nodes": Array [
-                    Object {
-                      "all": Array [],
-                      "any": Array [
-                        Object {
-                          "data": null,
-                          "id": "doc-has-title",
-                          "impact": "serious",
-                          "message": "Document does not have a non-empty <title> element",
-                          "relatedNodes": Array [],
-                        },
-                      ],
-                      "failureSummary": "Fix any of the following:
+                      },
+                    ],
+                    "name": "A11yError",
+                    "violations": Array [
+                      Object {
+                        "description": "Ensures each HTML document contains a non-empty <title> element",
+                        "help": "Documents must have <title> element to aid in navigation",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title?application=axeAPI",
+                        "id": "document-title",
+                        "impact": "serious",
+                        "nodes": Array [
+                          Object {
+                            "all": Array [],
+                            "any": Array [
+                              Object {
+                                "data": null,
+                                "id": "doc-has-title",
+                                "impact": "serious",
+                                "message": "Document does not have a non-empty <title> element",
+                                "relatedNodes": Array [],
+                              },
+                            ],
+                            "failureSummary": "Fix any of the following:
   Document does not have a non-empty <title> element",
-                      "html": "<html><head></head><body>
+                            "html": "<html><head></head><body>
 
 <h1>Header One</h1>
 <h1>Header Two</h1>
@@ -521,47 +524,47 @@ Fix any of the following:
 
 
 </body></html>",
-                      "impact": "serious",
-                      "none": Array [],
-                      "target": Array [
-                        "html",
-                      ],
-                    },
-                  ],
-                  "tags": Array [
-                    "cat.text-alternatives",
-                    "wcag2a",
-                    "wcag242",
-                    "TTv5",
-                    "TT12.a",
-                    "EN-301-549",
-                    "EN-9.2.4.2",
-                    "ACT",
-                  ],
-                },
-                Object {
-                  "description": "Ensures every HTML document has a lang attribute",
-                  "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
-                  "id": "html-has-lang",
-                  "impact": "serious",
-                  "nodes": Array [
-                    Object {
-                      "all": Array [],
-                      "any": Array [
-                        Object {
-                          "data": Object {
-                            "messageKey": "noLang",
+                            "impact": "serious",
+                            "none": Array [],
+                            "target": Array [
+                              "html",
+                            ],
                           },
-                          "id": "has-lang",
-                          "impact": "serious",
-                          "message": "The <html> element does not have a lang attribute",
-                          "relatedNodes": Array [],
-                        },
-                      ],
-                      "failureSummary": "Fix any of the following:
+                        ],
+                        "tags": Array [
+                          "cat.text-alternatives",
+                          "wcag2a",
+                          "wcag242",
+                          "TTv5",
+                          "TT12.a",
+                          "EN-301-549",
+                          "EN-9.2.4.2",
+                          "ACT",
+                        ],
+                      },
+                      Object {
+                        "description": "Ensures every HTML document has a lang attribute",
+                        "help": "<html> element must have a lang attribute",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                        "id": "html-has-lang",
+                        "impact": "serious",
+                        "nodes": Array [
+                          Object {
+                            "all": Array [],
+                            "any": Array [
+                              Object {
+                                "data": Object {
+                                  "messageKey": "noLang",
+                                },
+                                "id": "has-lang",
+                                "impact": "serious",
+                                "message": "The <html> element does not have a lang attribute",
+                                "relatedNodes": Array [],
+                              },
+                            ],
+                            "failureSummary": "Fix any of the following:
   The <html> element does not have a lang attribute",
-                      "html": "<html><head></head><body>
+                            "html": "<html><head></head><body>
 
 <h1>Header One</h1>
 <h1>Header Two</h1>
@@ -571,66 +574,66 @@ Fix any of the following:
 
 
 </body></html>",
-                      "impact": "serious",
-                      "none": Array [],
-                      "target": Array [
-                        "html",
-                      ],
-                    },
-                  ],
-                  "tags": Array [
-                    "cat.language",
-                    "wcag2a",
-                    "wcag311",
-                    "TTv5",
-                    "TT11.a",
-                    "EN-301-549",
-                    "EN-9.3.1.1",
-                    "ACT",
-                  ],
-                },
-                Object {
-                  "description": "Ensures links have discernible text",
-                  "help": "Links must have discernible text",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name?application=axeAPI",
-                  "id": "link-name",
-                  "impact": "serious",
-                  "nodes": Array [
-                    Object {
-                      "all": Array [],
-                      "any": Array [
-                        Object {
-                          "data": null,
-                          "id": "has-visible-text",
-                          "impact": "serious",
-                          "message": "Element does not have text that is visible to screen readers",
-                          "relatedNodes": Array [],
-                        },
-                        Object {
-                          "data": null,
-                          "id": "aria-label",
-                          "impact": "serious",
-                          "message": "aria-label attribute does not exist or is empty",
-                          "relatedNodes": Array [],
-                        },
-                        Object {
-                          "data": null,
-                          "id": "aria-labelledby",
-                          "impact": "serious",
-                          "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                          "relatedNodes": Array [],
-                        },
-                        Object {
-                          "data": Object {
-                            "messageKey": "noAttr",
+                            "impact": "serious",
+                            "none": Array [],
+                            "target": Array [
+                              "html",
+                            ],
                           },
-                          "id": "non-empty-title",
-                          "impact": "serious",
-                          "message": "Element has no title attribute",
-                          "relatedNodes": Array [],
-                        },
-                      ],
-                      "failureSummary": "Fix all of the following:
+                        ],
+                        "tags": Array [
+                          "cat.language",
+                          "wcag2a",
+                          "wcag311",
+                          "TTv5",
+                          "TT11.a",
+                          "EN-301-549",
+                          "EN-9.3.1.1",
+                          "ACT",
+                        ],
+                      },
+                      Object {
+                        "description": "Ensures links have discernible text",
+                        "help": "Links must have discernible text",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name?application=axeAPI",
+                        "id": "link-name",
+                        "impact": "serious",
+                        "nodes": Array [
+                          Object {
+                            "all": Array [],
+                            "any": Array [
+                              Object {
+                                "data": null,
+                                "id": "has-visible-text",
+                                "impact": "serious",
+                                "message": "Element does not have text that is visible to screen readers",
+                                "relatedNodes": Array [],
+                              },
+                              Object {
+                                "data": null,
+                                "id": "aria-label",
+                                "impact": "serious",
+                                "message": "aria-label attribute does not exist or is empty",
+                                "relatedNodes": Array [],
+                              },
+                              Object {
+                                "data": null,
+                                "id": "aria-labelledby",
+                                "impact": "serious",
+                                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                                "relatedNodes": Array [],
+                              },
+                              Object {
+                                "data": Object {
+                                  "messageKey": "noAttr",
+                                },
+                                "id": "non-empty-title",
+                                "impact": "serious",
+                                "message": "Element has no title attribute",
+                                "relatedNodes": Array [],
+                              },
+                            ],
+                            "failureSummary": "Fix all of the following:
   Element is in tab order and does not have accessible text
 
 Fix any of the following:
@@ -638,103 +641,106 @@ Fix any of the following:
   aria-label attribute does not exist or is empty
   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
   Element has no title attribute",
-                      "html": "<a href=\\"#\\"></a>",
-                      "impact": "serious",
-                      "none": Array [
-                        Object {
-                          "data": null,
-                          "id": "focusable-no-name",
-                          "impact": "serious",
-                          "message": "Element is in tab order and does not have accessible text",
-                          "relatedNodes": Array [],
-                        },
-                      ],
-                      "target": Array [
-                        "a",
-                      ],
-                    },
-                  ],
-                  "tags": Array [
-                    "cat.name-role-value",
-                    "wcag2a",
-                    "wcag244",
-                    "wcag412",
-                    "section508",
-                    "section508.22.a",
-                    "TTv5",
-                    "TT6.a",
-                    "EN-301-549",
-                    "EN-9.2.4.4",
-                    "EN-9.4.1.2",
-                    "ACT",
-                  ],
-                },
-                Object {
-                  "description": "Ensures all page content is contained by landmarks",
-                  "help": "All page content should be contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
-                  "id": "region",
-                  "impact": "moderate",
-                  "nodes": Array [
-                    Object {
-                      "all": Array [],
-                      "any": Array [
-                        Object {
-                          "data": Object {
-                            "isIframe": false,
+                            "html": "<a href=\\"#\\"></a>",
+                            "impact": "serious",
+                            "none": Array [
+                              Object {
+                                "data": null,
+                                "id": "focusable-no-name",
+                                "impact": "serious",
+                                "message": "Element is in tab order and does not have accessible text",
+                                "relatedNodes": Array [],
+                              },
+                            ],
+                            "target": Array [
+                              "a",
+                            ],
                           },
-                          "id": "region",
-                          "impact": "moderate",
-                          "message": "Some page content is not contained by landmarks",
-                          "relatedNodes": Array [],
-                        },
-                      ],
-                      "failureSummary": "Fix any of the following:
+                        ],
+                        "tags": Array [
+                          "cat.name-role-value",
+                          "wcag2a",
+                          "wcag244",
+                          "wcag412",
+                          "section508",
+                          "section508.22.a",
+                          "TTv5",
+                          "TT6.a",
+                          "EN-301-549",
+                          "EN-9.2.4.4",
+                          "EN-9.4.1.2",
+                          "ACT",
+                        ],
+                      },
+                      Object {
+                        "description": "Ensures all page content is contained by landmarks",
+                        "help": "All page content should be contained by landmarks",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
+                        "id": "region",
+                        "impact": "moderate",
+                        "nodes": Array [
+                          Object {
+                            "all": Array [],
+                            "any": Array [
+                              Object {
+                                "data": Object {
+                                  "isIframe": false,
+                                },
+                                "id": "region",
+                                "impact": "moderate",
+                                "message": "Some page content is not contained by landmarks",
+                                "relatedNodes": Array [],
+                              },
+                            ],
+                            "failureSummary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                      "html": "<h1>Header One</h1>",
-                      "impact": "moderate",
-                      "none": Array [],
-                      "target": Array [
-                        "h1:nth-child(1)",
-                      ],
-                    },
-                    Object {
-                      "all": Array [],
-                      "any": Array [
-                        Object {
-                          "data": Object {
-                            "isIframe": false,
+                            "html": "<h1>Header One</h1>",
+                            "impact": "moderate",
+                            "none": Array [],
+                            "target": Array [
+                              "h1:nth-child(1)",
+                            ],
                           },
-                          "id": "region",
-                          "impact": "moderate",
-                          "message": "Some page content is not contained by landmarks",
-                          "relatedNodes": Array [],
-                        },
-                      ],
-                      "failureSummary": "Fix any of the following:
+                          Object {
+                            "all": Array [],
+                            "any": Array [
+                              Object {
+                                "data": Object {
+                                  "isIframe": false,
+                                },
+                                "id": "region",
+                                "impact": "moderate",
+                                "message": "Some page content is not contained by landmarks",
+                                "relatedNodes": Array [],
+                              },
+                            ],
+                            "failureSummary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                      "html": "<h1>Header Two</h1>",
-                      "impact": "moderate",
-                      "none": Array [],
-                      "target": Array [
-                        "h1:nth-child(2)",
-                      ],
-                    },
-                  ],
-                  "tags": Array [
-                    "cat.keyboard",
-                    "best-practice",
-                  ],
+                            "html": "<h1>Header Two</h1>",
+                            "impact": "moderate",
+                            "none": Array [],
+                            "target": Array [
+                              "h1:nth-child(2)",
+                            ],
+                          },
+                        ],
+                        "tags": Array [
+                          "cat.keyboard",
+                          "best-practice",
+                        ],
+                      },
+                    ],
+                  },
                 },
-              ],
+              },
             },
           ],
           "failureMessages": Array [
             "
-            The test has failed the accessibility check. Accessibility Stacktrace/Issues:
-            5 HTML elements have accessibility issue(s). 4 rules failed.
+    The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+    5 HTML elements have accessibility issue(s). 4 rules failed.
 
-            (1) [document-title] Documents must have <title> element to aid in navigation
+    (1) [document-title] Documents must have <title> element to aid in navigation
             * Error element(s) : 1
 								(1)  - HTML element : <html><head></head><body>
 
@@ -804,14 +810,1788 @@ Fix any of the following:
                 • WCAG Criteria: SA11Y-WCAG-SC-P3
 
 
-            For more info about automated accessibility testing: https://sfdc.co/a11y-test
-            For tips on fixing accessibility bugs: https://sfdc.co/a11y
-            For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
-            For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
-            ",
+    For more info about automated accessibility testing: https://sfdc.co/a11y-test
+    For tips on fixing accessibility bugs: https://sfdc.co/a11y
+    For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+    For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
+    ",
           ],
-          "fullName": "A11yError-0",
+          "fullName": "A11yError#0",
           "status": "failed",
+        },
+        Object {
+          "ancestorTitles": Array [
+            "sa11y",
+          ],
+          "failureDetails": Array [
+            Object {
+              "a11yResults": Array [
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• The <html> element does not have a lang attribute",
+                  "description": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
+                  "html": "<html>",
+                  "id": "html-has-lang",
+                  "key": "html-has-lang--html",
+                  "none": "",
+                  "selectors": "html",
+                  "summary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                  "wcag": "SA11Y-WCAG-SC3.1.1-P2",
+                  "wcagData": Object {
+                    "priority": "P2",
+                    "successCriteria": "3.1.1",
+                    "violation": Object {
+                      "description": "Ensures every HTML document has a lang attribute",
+                      "help": "<html> element must have a lang attribute",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                      "id": "html-has-lang",
+                      "impact": "serious",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "messageKey": "noLang",
+                              },
+                              "id": "has-lang",
+                              "impact": "serious",
+                              "message": "The <html> element does not have a lang attribute",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                          "html": "<html>",
+                          "impact": "serious",
+                          "none": Array [],
+                          "target": Array [
+                            "html",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.language",
+                        "wcag2a",
+                        "wcag311",
+                        "TTv5",
+                        "TT11.a",
+                        "EN-301-549",
+                        "EN-9.3.1.1",
+                        "ACT",
+                      ],
+                    },
+                    "wcagLevel": "A",
+                    "wcagVersion": "2.1",
+                  },
+                },
+              ],
+              "name": "A11yError",
+              "violations": Array [
+                Object {
+                  "description": "Ensures every HTML document has a lang attribute",
+                  "help": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                  "id": "html-has-lang",
+                  "impact": "serious",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "messageKey": "noLang",
+                          },
+                          "id": "has-lang",
+                          "impact": "serious",
+                          "message": "The <html> element does not have a lang attribute",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                      "html": "<html>",
+                      "impact": "serious",
+                      "none": Array [],
+                      "target": Array [
+                        "html",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.language",
+                    "wcag2a",
+                    "wcag311",
+                    "TTv5",
+                    "TT11.a",
+                    "EN-301-549",
+                    "EN-9.3.1.1",
+                    "ACT",
+                  ],
+                },
+              ],
+            },
+          ],
+          "fullName": "A11yError@1",
+          "status": "failed",
+        },
+        Object {
+          "ancestorTitles": Array [
+            "sa11y",
+          ],
+          "failureDetails": Array [
+            Object {
+              "a11yResults": Array [
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Document does not have a non-empty <title> element",
+                  "description": "Documents must have <title> element to aid in navigation",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
+                  "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                  "id": "document-title",
+                  "key": "document-title--html",
+                  "none": "",
+                  "selectors": "html",
+                  "summary": "Fix any of the following:
+  Document does not have a non-empty <title> element",
+                  "wcag": "SA11Y-WCAG-SC2.4.2-P2",
+                  "wcagData": Object {
+                    "priority": "P2",
+                    "successCriteria": "2.4.2",
+                    "violation": Object {
+                      "description": "Ensures each HTML document contains a non-empty <title> element",
+                      "help": "Documents must have <title> element to aid in navigation",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title?application=axeAPI",
+                      "id": "document-title",
+                      "impact": "serious",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": null,
+                              "id": "doc-has-title",
+                              "impact": "serious",
+                              "message": "Document does not have a non-empty <title> element",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Document does not have a non-empty <title> element",
+                          "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                          "impact": "serious",
+                          "none": Array [],
+                          "target": Array [
+                            "html",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.text-alternatives",
+                        "wcag2a",
+                        "wcag242",
+                        "TTv5",
+                        "TT12.a",
+                        "EN-301-549",
+                        "EN-9.2.4.2",
+                        "ACT",
+                      ],
+                    },
+                    "wcagLevel": "A",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• The <html> element does not have a lang attribute",
+                  "description": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
+                  "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                  "id": "html-has-lang",
+                  "key": "html-has-lang--html",
+                  "none": "",
+                  "selectors": "html",
+                  "summary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                  "wcag": "SA11Y-WCAG-SC3.1.1-P2",
+                  "wcagData": Object {
+                    "priority": "P2",
+                    "successCriteria": "3.1.1",
+                    "violation": Object {
+                      "description": "Ensures every HTML document has a lang attribute",
+                      "help": "<html> element must have a lang attribute",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                      "id": "html-has-lang",
+                      "impact": "serious",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "messageKey": "noLang",
+                              },
+                              "id": "has-lang",
+                              "impact": "serious",
+                              "message": "The <html> element does not have a lang attribute",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                          "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                          "impact": "serious",
+                          "none": Array [],
+                          "target": Array [
+                            "html",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.language",
+                        "wcag2a",
+                        "wcag311",
+                        "TTv5",
+                        "TT11.a",
+                        "EN-301-549",
+                        "EN-9.3.1.1",
+                        "ACT",
+                      ],
+                    },
+                    "wcagLevel": "A",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Element does not have text that is visible to screen readers
+												• aria-label attribute does not exist or is empty
+												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+												• Element has no title attribute",
+                  "description": "Links must have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
+                  "html": "<a href=\\"#\\"></a>",
+                  "id": "link-name",
+                  "key": "link-name--a",
+                  "none": "												• Element is in tab order and does not have accessible text",
+                  "selectors": "a",
+                  "summary": "Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute",
+                  "wcag": "SA11Y-WCAG-SC4.1.2-P1",
+                  "wcagData": Object {
+                    "priority": "P1",
+                    "successCriteria": "4.1.2",
+                    "violation": Object {
+                      "description": "Ensures links have discernible text",
+                      "help": "Links must have discernible text",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name?application=axeAPI",
+                      "id": "link-name",
+                      "impact": "serious",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": null,
+                              "id": "has-visible-text",
+                              "impact": "serious",
+                              "message": "Element does not have text that is visible to screen readers",
+                              "relatedNodes": Array [],
+                            },
+                            Object {
+                              "data": null,
+                              "id": "aria-label",
+                              "impact": "serious",
+                              "message": "aria-label attribute does not exist or is empty",
+                              "relatedNodes": Array [],
+                            },
+                            Object {
+                              "data": null,
+                              "id": "aria-labelledby",
+                              "impact": "serious",
+                              "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                              "relatedNodes": Array [],
+                            },
+                            Object {
+                              "data": Object {
+                                "messageKey": "noAttr",
+                              },
+                              "id": "non-empty-title",
+                              "impact": "serious",
+                              "message": "Element has no title attribute",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute",
+                          "html": "<a href=\\"#\\"></a>",
+                          "impact": "serious",
+                          "none": Array [
+                            Object {
+                              "data": null,
+                              "id": "focusable-no-name",
+                              "impact": "serious",
+                              "message": "Element is in tab order and does not have accessible text",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "target": Array [
+                            "a",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.name-role-value",
+                        "wcag2a",
+                        "wcag244",
+                        "wcag412",
+                        "section508",
+                        "section508.22.a",
+                        "TTv5",
+                        "TT6.a",
+                        "EN-301-549",
+                        "EN-9.2.4.4",
+                        "EN-9.4.1.2",
+                        "ACT",
+                      ],
+                    },
+                    "wcagLevel": "A",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Some page content is not contained by landmarks",
+                  "description": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region",
+                  "html": "<h1>Header One</h1>",
+                  "id": "region",
+                  "key": "region--h1:nth-child(1)",
+                  "none": "",
+                  "selectors": "h1:nth-child(1)",
+                  "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcagData": Object {
+                    "priority": "P3",
+                    "successCriteria": "",
+                    "violation": Object {
+                      "description": "Ensures all page content is contained by landmarks",
+                      "help": "All page content should be contained by landmarks",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
+                      "id": "region",
+                      "impact": "moderate",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header One</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(1)",
+                          ],
+                        },
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header Two</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(2)",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.keyboard",
+                        "best-practice",
+                      ],
+                    },
+                    "wcagLevel": "",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Some page content is not contained by landmarks",
+                  "description": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region",
+                  "html": "<h1>Header Two</h1>",
+                  "id": "region",
+                  "key": "region--h1:nth-child(2)",
+                  "none": "",
+                  "selectors": "h1:nth-child(2)",
+                  "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcagData": Object {
+                    "priority": "P3",
+                    "successCriteria": "",
+                    "violation": Object {
+                      "description": "Ensures all page content is contained by landmarks",
+                      "help": "All page content should be contained by landmarks",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
+                      "id": "region",
+                      "impact": "moderate",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header One</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(1)",
+                          ],
+                        },
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header Two</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(2)",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.keyboard",
+                        "best-practice",
+                      ],
+                    },
+                    "wcagLevel": "",
+                    "wcagVersion": "2.1",
+                  },
+                },
+              ],
+              "name": "A11yError",
+              "violations": Array [
+                Object {
+                  "description": "Ensures each HTML document contains a non-empty <title> element",
+                  "help": "Documents must have <title> element to aid in navigation",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title?application=axeAPI",
+                  "id": "document-title",
+                  "impact": "serious",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": null,
+                          "id": "doc-has-title",
+                          "impact": "serious",
+                          "message": "Document does not have a non-empty <title> element",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Document does not have a non-empty <title> element",
+                      "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                      "impact": "serious",
+                      "none": Array [],
+                      "target": Array [
+                        "html",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.text-alternatives",
+                    "wcag2a",
+                    "wcag242",
+                    "TTv5",
+                    "TT12.a",
+                    "EN-301-549",
+                    "EN-9.2.4.2",
+                    "ACT",
+                  ],
+                },
+                Object {
+                  "description": "Ensures every HTML document has a lang attribute",
+                  "help": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                  "id": "html-has-lang",
+                  "impact": "serious",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "messageKey": "noLang",
+                          },
+                          "id": "has-lang",
+                          "impact": "serious",
+                          "message": "The <html> element does not have a lang attribute",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                      "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                      "impact": "serious",
+                      "none": Array [],
+                      "target": Array [
+                        "html",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.language",
+                    "wcag2a",
+                    "wcag311",
+                    "TTv5",
+                    "TT11.a",
+                    "EN-301-549",
+                    "EN-9.3.1.1",
+                    "ACT",
+                  ],
+                },
+                Object {
+                  "description": "Ensures links have discernible text",
+                  "help": "Links must have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name?application=axeAPI",
+                  "id": "link-name",
+                  "impact": "serious",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": null,
+                          "id": "has-visible-text",
+                          "impact": "serious",
+                          "message": "Element does not have text that is visible to screen readers",
+                          "relatedNodes": Array [],
+                        },
+                        Object {
+                          "data": null,
+                          "id": "aria-label",
+                          "impact": "serious",
+                          "message": "aria-label attribute does not exist or is empty",
+                          "relatedNodes": Array [],
+                        },
+                        Object {
+                          "data": null,
+                          "id": "aria-labelledby",
+                          "impact": "serious",
+                          "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                          "relatedNodes": Array [],
+                        },
+                        Object {
+                          "data": Object {
+                            "messageKey": "noAttr",
+                          },
+                          "id": "non-empty-title",
+                          "impact": "serious",
+                          "message": "Element has no title attribute",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute",
+                      "html": "<a href=\\"#\\"></a>",
+                      "impact": "serious",
+                      "none": Array [
+                        Object {
+                          "data": null,
+                          "id": "focusable-no-name",
+                          "impact": "serious",
+                          "message": "Element is in tab order and does not have accessible text",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "target": Array [
+                        "a",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.name-role-value",
+                    "wcag2a",
+                    "wcag244",
+                    "wcag412",
+                    "section508",
+                    "section508.22.a",
+                    "TTv5",
+                    "TT6.a",
+                    "EN-301-549",
+                    "EN-9.2.4.4",
+                    "EN-9.4.1.2",
+                    "ACT",
+                  ],
+                },
+                Object {
+                  "description": "Ensures all page content is contained by landmarks",
+                  "help": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
+                  "id": "region",
+                  "impact": "moderate",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "isIframe": false,
+                          },
+                          "id": "region",
+                          "impact": "moderate",
+                          "message": "Some page content is not contained by landmarks",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                      "html": "<h1>Header One</h1>",
+                      "impact": "moderate",
+                      "none": Array [],
+                      "target": Array [
+                        "h1:nth-child(1)",
+                      ],
+                    },
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "isIframe": false,
+                          },
+                          "id": "region",
+                          "impact": "moderate",
+                          "message": "Some page content is not contained by landmarks",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                      "html": "<h1>Header Two</h1>",
+                      "impact": "moderate",
+                      "none": Array [],
+                      "target": Array [
+                        "h1:nth-child(2)",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.keyboard",
+                    "best-practice",
+                  ],
+                },
+              ],
+            },
+          ],
+          "fullName": "A11yError@2",
+          "status": "failed",
+        },
+        Object {
+          "ancestorTitles": Array [
+            "sa11y",
+          ],
+          "failureDetails": Array [
+            Object {
+              "a11yResults": Array [
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• The <html> element does not have a lang attribute",
+                  "description": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
+                  "html": "<html>",
+                  "id": "html-has-lang",
+                  "key": "html-has-lang--html",
+                  "none": "",
+                  "selectors": "html",
+                  "summary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                  "wcag": "SA11Y-WCAG-SC3.1.1-P2",
+                  "wcagData": Object {
+                    "priority": "P2",
+                    "successCriteria": "3.1.1",
+                    "violation": Object {
+                      "description": "Ensures every HTML document has a lang attribute",
+                      "help": "<html> element must have a lang attribute",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                      "id": "html-has-lang",
+                      "impact": "serious",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "messageKey": "noLang",
+                              },
+                              "id": "has-lang",
+                              "impact": "serious",
+                              "message": "The <html> element does not have a lang attribute",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                          "html": "<html>",
+                          "impact": "serious",
+                          "none": Array [],
+                          "target": Array [
+                            "html",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.language",
+                        "wcag2a",
+                        "wcag311",
+                        "TTv5",
+                        "TT11.a",
+                        "EN-301-549",
+                        "EN-9.3.1.1",
+                        "ACT",
+                      ],
+                    },
+                    "wcagLevel": "A",
+                    "wcagVersion": "2.1",
+                  },
+                },
+              ],
+              "name": "A11yError",
+              "violations": Array [
+                Object {
+                  "description": "Ensures every HTML document has a lang attribute",
+                  "help": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                  "id": "html-has-lang",
+                  "impact": "serious",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "messageKey": "noLang",
+                          },
+                          "id": "has-lang",
+                          "impact": "serious",
+                          "message": "The <html> element does not have a lang attribute",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                      "html": "<html>",
+                      "impact": "serious",
+                      "none": Array [],
+                      "target": Array [
+                        "html",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.language",
+                    "wcag2a",
+                    "wcag311",
+                    "TTv5",
+                    "TT11.a",
+                    "EN-301-549",
+                    "EN-9.3.1.1",
+                    "ACT",
+                  ],
+                },
+              ],
+            },
+          ],
+          "fullName": "A11yError@3",
+          "status": "failed",
+        },
+        Object {
+          "ancestorTitles": Array [
+            "sa11y",
+          ],
+          "failureDetails": Array [
+            Object {
+              "a11yResults": Array [
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Document does not have a non-empty <title> element",
+                  "description": "Documents must have <title> element to aid in navigation",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
+                  "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                  "id": "document-title",
+                  "key": "document-title--html",
+                  "none": "",
+                  "selectors": "html",
+                  "summary": "Fix any of the following:
+  Document does not have a non-empty <title> element",
+                  "wcag": "SA11Y-WCAG-SC2.4.2-P2",
+                  "wcagData": Object {
+                    "priority": "P2",
+                    "successCriteria": "2.4.2",
+                    "violation": Object {
+                      "description": "Ensures each HTML document contains a non-empty <title> element",
+                      "help": "Documents must have <title> element to aid in navigation",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title?application=axeAPI",
+                      "id": "document-title",
+                      "impact": "serious",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": null,
+                              "id": "doc-has-title",
+                              "impact": "serious",
+                              "message": "Document does not have a non-empty <title> element",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Document does not have a non-empty <title> element",
+                          "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                          "impact": "serious",
+                          "none": Array [],
+                          "target": Array [
+                            "html",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.text-alternatives",
+                        "wcag2a",
+                        "wcag242",
+                        "TTv5",
+                        "TT12.a",
+                        "EN-301-549",
+                        "EN-9.2.4.2",
+                        "ACT",
+                      ],
+                    },
+                    "wcagLevel": "A",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• The <html> element does not have a lang attribute",
+                  "description": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
+                  "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                  "id": "html-has-lang",
+                  "key": "html-has-lang--html",
+                  "none": "",
+                  "selectors": "html",
+                  "summary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                  "wcag": "SA11Y-WCAG-SC3.1.1-P2",
+                  "wcagData": Object {
+                    "priority": "P2",
+                    "successCriteria": "3.1.1",
+                    "violation": Object {
+                      "description": "Ensures every HTML document has a lang attribute",
+                      "help": "<html> element must have a lang attribute",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                      "id": "html-has-lang",
+                      "impact": "serious",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "messageKey": "noLang",
+                              },
+                              "id": "has-lang",
+                              "impact": "serious",
+                              "message": "The <html> element does not have a lang attribute",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                          "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                          "impact": "serious",
+                          "none": Array [],
+                          "target": Array [
+                            "html",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.language",
+                        "wcag2a",
+                        "wcag311",
+                        "TTv5",
+                        "TT11.a",
+                        "EN-301-549",
+                        "EN-9.3.1.1",
+                        "ACT",
+                      ],
+                    },
+                    "wcagLevel": "A",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Element does not have text that is visible to screen readers
+												• aria-label attribute does not exist or is empty
+												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+												• Element has no title attribute",
+                  "description": "Links must have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
+                  "html": "<a href=\\"#\\"></a>",
+                  "id": "link-name",
+                  "key": "link-name--a",
+                  "none": "												• Element is in tab order and does not have accessible text",
+                  "selectors": "a",
+                  "summary": "Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute",
+                  "wcag": "SA11Y-WCAG-SC4.1.2-P1",
+                  "wcagData": Object {
+                    "priority": "P1",
+                    "successCriteria": "4.1.2",
+                    "violation": Object {
+                      "description": "Ensures links have discernible text",
+                      "help": "Links must have discernible text",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name?application=axeAPI",
+                      "id": "link-name",
+                      "impact": "serious",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": null,
+                              "id": "has-visible-text",
+                              "impact": "serious",
+                              "message": "Element does not have text that is visible to screen readers",
+                              "relatedNodes": Array [],
+                            },
+                            Object {
+                              "data": null,
+                              "id": "aria-label",
+                              "impact": "serious",
+                              "message": "aria-label attribute does not exist or is empty",
+                              "relatedNodes": Array [],
+                            },
+                            Object {
+                              "data": null,
+                              "id": "aria-labelledby",
+                              "impact": "serious",
+                              "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                              "relatedNodes": Array [],
+                            },
+                            Object {
+                              "data": Object {
+                                "messageKey": "noAttr",
+                              },
+                              "id": "non-empty-title",
+                              "impact": "serious",
+                              "message": "Element has no title attribute",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute",
+                          "html": "<a href=\\"#\\"></a>",
+                          "impact": "serious",
+                          "none": Array [
+                            Object {
+                              "data": null,
+                              "id": "focusable-no-name",
+                              "impact": "serious",
+                              "message": "Element is in tab order and does not have accessible text",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "target": Array [
+                            "a",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.name-role-value",
+                        "wcag2a",
+                        "wcag244",
+                        "wcag412",
+                        "section508",
+                        "section508.22.a",
+                        "TTv5",
+                        "TT6.a",
+                        "EN-301-549",
+                        "EN-9.2.4.4",
+                        "EN-9.4.1.2",
+                        "ACT",
+                      ],
+                    },
+                    "wcagLevel": "A",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Some page content is not contained by landmarks",
+                  "description": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region",
+                  "html": "<h1>Header One</h1>",
+                  "id": "region",
+                  "key": "region--h1:nth-child(1)",
+                  "none": "",
+                  "selectors": "h1:nth-child(1)",
+                  "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcagData": Object {
+                    "priority": "P3",
+                    "successCriteria": "",
+                    "violation": Object {
+                      "description": "Ensures all page content is contained by landmarks",
+                      "help": "All page content should be contained by landmarks",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
+                      "id": "region",
+                      "impact": "moderate",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header One</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(1)",
+                          ],
+                        },
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header Two</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(2)",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.keyboard",
+                        "best-practice",
+                      ],
+                    },
+                    "wcagLevel": "",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• Some page content is not contained by landmarks",
+                  "description": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region",
+                  "html": "<h1>Header Two</h1>",
+                  "id": "region",
+                  "key": "region--h1:nth-child(2)",
+                  "none": "",
+                  "selectors": "h1:nth-child(2)",
+                  "summary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcagData": Object {
+                    "priority": "P3",
+                    "successCriteria": "",
+                    "violation": Object {
+                      "description": "Ensures all page content is contained by landmarks",
+                      "help": "All page content should be contained by landmarks",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
+                      "id": "region",
+                      "impact": "moderate",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header One</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(1)",
+                          ],
+                        },
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "isIframe": false,
+                              },
+                              "id": "region",
+                              "impact": "moderate",
+                              "message": "Some page content is not contained by landmarks",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                          "html": "<h1>Header Two</h1>",
+                          "impact": "moderate",
+                          "none": Array [],
+                          "target": Array [
+                            "h1:nth-child(2)",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.keyboard",
+                        "best-practice",
+                      ],
+                    },
+                    "wcagLevel": "",
+                    "wcagVersion": "2.1",
+                  },
+                },
+                Object {
+                  "all": "",
+                  "ancestry": "",
+                  "any": "												• The <html> element does not have a lang attribute",
+                  "description": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
+                  "html": "<html>",
+                  "id": "html-has-lang",
+                  "key": "html-has-lang--html",
+                  "none": "",
+                  "selectors": "html",
+                  "summary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                  "wcag": "SA11Y-WCAG-SC3.1.1-P2",
+                  "wcagData": Object {
+                    "priority": "P2",
+                    "successCriteria": "3.1.1",
+                    "violation": Object {
+                      "description": "Ensures every HTML document has a lang attribute",
+                      "help": "<html> element must have a lang attribute",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                      "id": "html-has-lang",
+                      "impact": "serious",
+                      "nodes": Array [
+                        Object {
+                          "all": Array [],
+                          "any": Array [
+                            Object {
+                              "data": Object {
+                                "messageKey": "noLang",
+                              },
+                              "id": "has-lang",
+                              "impact": "serious",
+                              "message": "The <html> element does not have a lang attribute",
+                              "relatedNodes": Array [],
+                            },
+                          ],
+                          "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                          "html": "<html>",
+                          "impact": "serious",
+                          "none": Array [],
+                          "target": Array [
+                            "html",
+                          ],
+                        },
+                      ],
+                      "tags": Array [
+                        "cat.language",
+                        "wcag2a",
+                        "wcag311",
+                        "TTv5",
+                        "TT11.a",
+                        "EN-301-549",
+                        "EN-9.3.1.1",
+                        "ACT",
+                      ],
+                    },
+                    "wcagLevel": "A",
+                    "wcagVersion": "2.1",
+                  },
+                },
+              ],
+              "name": "A11yError",
+              "violations": Array [
+                Object {
+                  "description": "Ensures each HTML document contains a non-empty <title> element",
+                  "help": "Documents must have <title> element to aid in navigation",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title?application=axeAPI",
+                  "id": "document-title",
+                  "impact": "serious",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": null,
+                          "id": "doc-has-title",
+                          "impact": "serious",
+                          "message": "Document does not have a non-empty <title> element",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Document does not have a non-empty <title> element",
+                      "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                      "impact": "serious",
+                      "none": Array [],
+                      "target": Array [
+                        "html",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.text-alternatives",
+                    "wcag2a",
+                    "wcag242",
+                    "TTv5",
+                    "TT12.a",
+                    "EN-301-549",
+                    "EN-9.2.4.2",
+                    "ACT",
+                  ],
+                },
+                Object {
+                  "description": "Ensures every HTML document has a lang attribute",
+                  "help": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                  "id": "html-has-lang",
+                  "impact": "serious",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "messageKey": "noLang",
+                          },
+                          "id": "has-lang",
+                          "impact": "serious",
+                          "message": "The <html> element does not have a lang attribute",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                      "html": "<html><head></head><body>
+
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>",
+                      "impact": "serious",
+                      "none": Array [],
+                      "target": Array [
+                        "html",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.language",
+                    "wcag2a",
+                    "wcag311",
+                    "TTv5",
+                    "TT11.a",
+                    "EN-301-549",
+                    "EN-9.3.1.1",
+                    "ACT",
+                  ],
+                },
+                Object {
+                  "description": "Ensures links have discernible text",
+                  "help": "Links must have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name?application=axeAPI",
+                  "id": "link-name",
+                  "impact": "serious",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": null,
+                          "id": "has-visible-text",
+                          "impact": "serious",
+                          "message": "Element does not have text that is visible to screen readers",
+                          "relatedNodes": Array [],
+                        },
+                        Object {
+                          "data": null,
+                          "id": "aria-label",
+                          "impact": "serious",
+                          "message": "aria-label attribute does not exist or is empty",
+                          "relatedNodes": Array [],
+                        },
+                        Object {
+                          "data": null,
+                          "id": "aria-labelledby",
+                          "impact": "serious",
+                          "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                          "relatedNodes": Array [],
+                        },
+                        Object {
+                          "data": Object {
+                            "messageKey": "noAttr",
+                          },
+                          "id": "non-empty-title",
+                          "impact": "serious",
+                          "message": "Element has no title attribute",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix all of the following:
+  Element is in tab order and does not have accessible text
+
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute",
+                      "html": "<a href=\\"#\\"></a>",
+                      "impact": "serious",
+                      "none": Array [
+                        Object {
+                          "data": null,
+                          "id": "focusable-no-name",
+                          "impact": "serious",
+                          "message": "Element is in tab order and does not have accessible text",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "target": Array [
+                        "a",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.name-role-value",
+                    "wcag2a",
+                    "wcag244",
+                    "wcag412",
+                    "section508",
+                    "section508.22.a",
+                    "TTv5",
+                    "TT6.a",
+                    "EN-301-549",
+                    "EN-9.2.4.4",
+                    "EN-9.4.1.2",
+                    "ACT",
+                  ],
+                },
+                Object {
+                  "description": "Ensures all page content is contained by landmarks",
+                  "help": "All page content should be contained by landmarks",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/region?application=axeAPI",
+                  "id": "region",
+                  "impact": "moderate",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "isIframe": false,
+                          },
+                          "id": "region",
+                          "impact": "moderate",
+                          "message": "Some page content is not contained by landmarks",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                      "html": "<h1>Header One</h1>",
+                      "impact": "moderate",
+                      "none": Array [],
+                      "target": Array [
+                        "h1:nth-child(1)",
+                      ],
+                    },
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "isIframe": false,
+                          },
+                          "id": "region",
+                          "impact": "moderate",
+                          "message": "Some page content is not contained by landmarks",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  Some page content is not contained by landmarks",
+                      "html": "<h1>Header Two</h1>",
+                      "impact": "moderate",
+                      "none": Array [],
+                      "target": Array [
+                        "h1:nth-child(2)",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.keyboard",
+                    "best-practice",
+                  ],
+                },
+                Object {
+                  "description": "Ensures every HTML document has a lang attribute",
+                  "help": "<html> element must have a lang attribute",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang?application=axeAPI",
+                  "id": "html-has-lang",
+                  "impact": "serious",
+                  "nodes": Array [
+                    Object {
+                      "all": Array [],
+                      "any": Array [
+                        Object {
+                          "data": Object {
+                            "messageKey": "noLang",
+                          },
+                          "id": "has-lang",
+                          "impact": "serious",
+                          "message": "The <html> element does not have a lang attribute",
+                          "relatedNodes": Array [],
+                        },
+                      ],
+                      "failureSummary": "Fix any of the following:
+  The <html> element does not have a lang attribute",
+                      "html": "<html>",
+                      "impact": "serious",
+                      "none": Array [],
+                      "target": Array [
+                        "html",
+                      ],
+                    },
+                  ],
+                  "tags": Array [
+                    "cat.language",
+                    "wcag2a",
+                    "wcag311",
+                    "TTv5",
+                    "TT11.a",
+                    "EN-301-549",
+                    "EN-9.3.1.1",
+                    "ACT",
+                  ],
+                },
+              ],
+            },
+          ],
+          "fullName": "A11yError@4",
+          "status": "failed",
+        },
+        Object {
+          "ancestorTitles": Array [
+            "sa11y",
+          ],
+          "failureDetails": Array [
+            Object {},
+          ],
+          "fullName": "Error@5",
+          "status": "failed",
+        },
+      ],
+    },
+  ],
+  "wasInterrupted": false,
+}
+`;
+
+exports[`Group Violation Results Processor should process test results as expected 2`] = `
+Object {
+  "numFailedTestSuites": 1,
+  "numFailedTests": 4,
+  "numPassedTestSuites": 0,
+  "numPassedTests": 0,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 0,
+  "numRuntimeErrorTestSuites": 0,
+  "numTodoTests": 0,
+  "numTotalTestSuites": 0,
+  "numTotalTests": 6,
+  "openHandles": Array [],
+  "snapshot": Object {
+    "added": 0,
+    "didUpdate": false,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": Array [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": Array [],
+    "unmatched": 0,
+    "updated": 0,
+  },
+  "startTime": 0,
+  "success": true,
+  "testResults": Array [
+    Object {
+      "leaks": false,
+      "numFailingTests": 4,
+      "numPassingTests": 0,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "openHandles": Array [],
+      "perfStats": Object {
+        "end": 0,
+        "runtime": 0,
+        "slow": false,
+        "start": 0,
+      },
+      "skipped": false,
+      "snapshot": Object {
+        "added": 0,
+        "fileDeleted": false,
+        "matched": 0,
+        "unchecked": 0,
+        "uncheckedKeys": Array [],
+        "unmatched": 0,
+        "updated": 0,
+      },
+      "testFilePath": "/test/data/sa11y-auto-checks.js",
+      "testResults": Array [
+        Object {
+          "ancestorTitles": Array [
+            "sa11y",
+          ],
+          "failureDetails": Array [],
+          "failureMessages": Array [],
+          "fullName": "A11yError#0",
+          "status": "passed",
         },
         Object {
           "ancestorTitles": Array [
@@ -931,10 +2711,10 @@ Fix any of the following:
           ],
           "failureMessages": Array [
             "
-            The test has failed the accessibility check. Accessibility Stacktrace/Issues:
-            1 HTML elements have accessibility issue(s). 1 rules failed.
+    The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+    1 HTML elements have accessibility issue(s). 1 rules failed.
 
-            (1) [html-has-lang] <html> element must have a lang attribute
+    (1) [html-has-lang] <html> element must have a lang attribute
             * Error element(s) : 1
 								(1)  - HTML element : <html>
                         - CSS selector(s) : html
@@ -946,13 +2726,13 @@ Fix any of the following:
                 • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
 
-            For more info about automated accessibility testing: https://sfdc.co/a11y-test
-            For tips on fixing accessibility bugs: https://sfdc.co/a11y
-            For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
-            For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
-            ",
+    For more info about automated accessibility testing: https://sfdc.co/a11y-test
+    For tips on fixing accessibility bugs: https://sfdc.co/a11y
+    For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+    For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
+    ",
           ],
-          "fullName": "A11yError-1",
+          "fullName": "A11yError@1",
           "status": "failed",
         },
         Object {
@@ -1629,10 +3409,10 @@ Fix any of the following:
           ],
           "failureMessages": Array [
             "
-            The test has failed the accessibility check. Accessibility Stacktrace/Issues:
-            5 HTML elements have accessibility issue(s). 4 rules failed.
+    The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+    5 HTML elements have accessibility issue(s). 4 rules failed.
 
-            (1) [document-title] Documents must have <title> element to aid in navigation
+    (1) [document-title] Documents must have <title> element to aid in navigation
             * Error element(s) : 1
 								(1)  - HTML element : <html><head></head><body>
 
@@ -1702,13 +3482,13 @@ Fix any of the following:
                 • WCAG Criteria: SA11Y-WCAG-SC-P3
 
 
-            For more info about automated accessibility testing: https://sfdc.co/a11y-test
-            For tips on fixing accessibility bugs: https://sfdc.co/a11y
-            For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
-            For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
-            ",
+    For more info about automated accessibility testing: https://sfdc.co/a11y-test
+    For tips on fixing accessibility bugs: https://sfdc.co/a11y
+    For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+    For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
+    ",
           ],
-          "fullName": "A11yError-2",
+          "fullName": "A11yError@2",
           "status": "failed",
         },
         Object {
@@ -1829,10 +3609,10 @@ Fix any of the following:
           ],
           "failureMessages": Array [
             "
-            The test has failed the accessibility check. Accessibility Stacktrace/Issues:
-            1 HTML elements have accessibility issue(s). 1 rules failed.
+    The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+    1 HTML elements have accessibility issue(s). 1 rules failed.
 
-            (1) [html-has-lang] <html> element must have a lang attribute
+    (1) [html-has-lang] <html> element must have a lang attribute
             * Error element(s) : 1
 								(1)  - HTML element : <html>
                         - CSS selector(s) : html
@@ -1844,13 +3624,13 @@ Fix any of the following:
                 • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
 
-            For more info about automated accessibility testing: https://sfdc.co/a11y-test
-            For tips on fixing accessibility bugs: https://sfdc.co/a11y
-            For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
-            For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
-            ",
+    For more info about automated accessibility testing: https://sfdc.co/a11y-test
+    For tips on fixing accessibility bugs: https://sfdc.co/a11y
+    For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+    For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
+    ",
           ],
-          "fullName": "A11yError-3",
+          "fullName": "A11yError@3",
           "status": "failed",
         },
         Object {
@@ -2630,10 +4410,10 @@ Fix any of the following:
           ],
           "failureMessages": Array [
             "
-            The test has failed the accessibility check. Accessibility Stacktrace/Issues:
-            6 HTML elements have accessibility issue(s). 4 rules failed.
+    The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+    6 HTML elements have accessibility issue(s). 4 rules failed.
 
-            (1) [document-title] Documents must have <title> element to aid in navigation
+    (1) [document-title] Documents must have <title> element to aid in navigation
             * Error element(s) : 1
 								(1)  - HTML element : <html><head></head><body>
 
@@ -2708,13 +4488,13 @@ Fix any of the following:
                 • WCAG Criteria: SA11Y-WCAG-SC-P3
 
 
-            For more info about automated accessibility testing: https://sfdc.co/a11y-test
-            For tips on fixing accessibility bugs: https://sfdc.co/a11y
-            For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
-            For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
-            ",
+    For more info about automated accessibility testing: https://sfdc.co/a11y-test
+    For tips on fixing accessibility bugs: https://sfdc.co/a11y
+    For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+    For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
+    ",
           ],
-          "fullName": "A11yError-4",
+          "fullName": "A11yError@4",
           "status": "failed",
         },
         Object {
@@ -2723,7 +4503,7 @@ Fix any of the following:
           ],
           "failureDetails": Array [],
           "failureMessages": Array [],
-          "fullName": "Error-5",
+          "fullName": "Error@5",
           "status": "passed",
         },
       ],
