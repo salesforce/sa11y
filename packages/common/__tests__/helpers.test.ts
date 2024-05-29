@@ -6,7 +6,9 @@
  */
 
 import path from 'path';
-import { useFilesToBeExempted, log, useCustomRules, processFiles } from '../src/helpers';
+import { useFilesToBeExempted, log, useCustomRules, processFiles, registerCustomRules } from '../src/helpers';
+import axe from 'axe-core';
+jest.mock('axe-core');
 
 describe('Your Module', () => {
     afterEach(() => {
@@ -92,5 +94,17 @@ describe('Your Module', () => {
         const directoryPath = path.join(__dirname, '../testMocks/testProcessFiles');
         processFiles<{ key: string }>(directoryPath, targetArray, '.json', JSON.parse);
         expect(targetArray).toEqual([{ key: 'value' }]);
+    });
+
+    it('register custom Rules', () => {
+        const mockConfigure = axe.configure as jest.MockedFunction<typeof axe.configure>;
+        const mockRules = [{ id: 'rule1' }] as axe.Rule[];
+        const mockChecks = [{ id: 'check1' }] as axe.Check[];
+        const mockChanges = { rules: [{ id: 'rule2' }] } as { rules: axe.Rule[] };
+        registerCustomRules(mockChanges, mockRules, mockChecks);
+        expect(mockConfigure).toHaveBeenCalledWith({
+            rules: [...mockChanges.rules, ...mockRules],
+            checks: [...mockChecks],
+        });
     });
 });

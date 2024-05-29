@@ -7,7 +7,8 @@
 
 import * as axe from 'axe-core';
 import { exceptionListFilter, appendWcag } from '@sa11y/format';
-import { defaultRuleset, registerCustomRules } from '@sa11y/preset-rules';
+import { registerCustomRules } from '@sa11y/common';
+import { defaultRuleset, changesData, rulesData, checkData } from '@sa11y/preset-rules';
 export { base, extended, full } from '@sa11y/preset-rules';
 export const namespace = 'sa11y';
 
@@ -32,7 +33,7 @@ export async function checkAccessibility(
     //  which could then result in getting rid of the rollup typescript plugins.
 
     // To register custom rules
-    registerCustomRules();
+    registerCustomRules(changesData, rulesData, checkData);
 
     const results = await axe.run(scope || document, rules);
     const filteredResults = exceptionListFilter(results.violations, exceptionList);
