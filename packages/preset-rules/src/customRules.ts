@@ -14,9 +14,9 @@ export function registerCustomRules(): void {
     const newRules: axe.Rule[] = [];
 
     // Read and parse existing rule changes
-    const { rules } = changes as { rules: axe.Rule[] };
-    const newRulesData = rulesData as axe.Rule[];
-    const newChecksData = checkData as axe.Check[];
+    const { rules } = changes;
+    const newRulesData = rulesData;
+    const newChecksData = checkData;
 
     if (rules && Array.isArray(rules)) {
         newRules.push(...rules);

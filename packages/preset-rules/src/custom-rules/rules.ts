@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+import axe from 'axe-core';
 const rulesData = [
     {
         id: 'sa11y-Keyboard',
@@ -21,4 +22,4 @@ const rulesData = [
     },
 ];
 
-export default rulesData;
+export default rulesData as axe.Rule[];

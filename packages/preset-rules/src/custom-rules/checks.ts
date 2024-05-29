@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+import axe from 'axe-core';
 const checkData = [
     {
         id: 'sa11y-Keyboard-check',
@@ -19,4 +20,4 @@ const checkData = [
     },
 ];
 
-export default checkData;
+export default checkData as axe.Check[];
