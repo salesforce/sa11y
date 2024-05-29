@@ -140,6 +140,23 @@ describe('a11y results filter', () => {
         expect(ruleIDs.filter((ruleID) => ruleID !== validRule)).toStrictEqual(filteredRuleIDs);
     });
 
+    it('should filter results appropriately for exception list with multi-array result target', () => {
+        const modifiedViolations: AxeResults = JSON.parse(JSON.stringify(violations)) as AxeResults;
+        modifiedViolations.forEach((violation) => {
+            violation.nodes.forEach((node) => {
+                node.target = [node.target];
+            });
+        });
+        const validRule = 'document-title'; // Rule with valid css selector that matches violations
+        const mixedExceptionList = { 'document-title': ['html'], 'link-name': ['html'], 'bypass': ['a'] };
+        const ruleIDs = modifiedViolations.map((violation) => violation.id);
+        const filteredViolations = exceptionListFilter(modifiedViolations, mixedExceptionList);
+        const filteredRuleIDs = filteredViolations.map((violation) => violation.id);
+        expect(filteredRuleIDs).not.toContain(validRule);
+        expect(ruleIDs).toContain(validRule);
+        expect(ruleIDs.filter((ruleID) => ruleID !== validRule)).toStrictEqual(filteredRuleIDs);
+    });
+
     it('should filter violations based on selector keywords', () => {
         // add ancestry keys
         mockViolations[0].nodes[0]['ancestry'] = [
