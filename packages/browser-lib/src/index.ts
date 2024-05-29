@@ -7,7 +7,7 @@
 
 import * as axe from 'axe-core';
 import { exceptionListFilter, appendWcag } from '@sa11y/format';
-import { defaultRuleset } from '@sa11y/preset-rules';
+import { defaultRuleset, registerCustomRules } from '@sa11y/preset-rules';
 export { base, extended, full } from '@sa11y/preset-rules';
 export const namespace = 'sa11y';
 
@@ -30,6 +30,10 @@ export async function checkAccessibility(
     //  Compiling the index.ts file with tsc and using the dist/index.js file results
     //  in error when importing the "namespace" var. This would probably be easier to fix
     //  which could then result in getting rid of the rollup typescript plugins.
+
+    // To register custom rules
+    registerCustomRules();
+
     const results = await axe.run(scope || document, rules);
     const filteredResults = exceptionListFilter(results.violations, exceptionList);
 
