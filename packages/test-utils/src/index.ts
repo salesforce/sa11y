@@ -22,5 +22,6 @@ export {
     shadowDomID,
     videoURL,
     customRulesFilePath,
+    domWithA11yCustomIssues,
 } from './test-data';
 export { beforeEachSetup, cartesianProduct } from './utils';

@@ -15,7 +15,7 @@
         "packages/*"
     ],
     "scripts": {
-        "build": "tsc --build && yarn workspace @sa11y/browser-lib build && lerna exec --scope @sa11y/preset-rules -- yarn copy-json",
+        "build": "tsc --build && yarn workspace @sa11y/browser-lib build",
         "build:ci": "yarn install --frozen-lockfile && yarn build",
         "build:clean": "tsc --build --clean && rimraf packages/**/dist && yarn build:ci",
         "build:watch": "tsc --build --watch",
