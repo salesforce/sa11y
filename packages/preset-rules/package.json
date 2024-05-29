@@ -21,8 +21,7 @@
         "dist/**/*.d.ts*"
     ],
     "dependencies": {
-        "@sa11y/common": "5.1.0",
-        "axe-core": "4.9.0"
+        "@sa11y/common": "5.1.0"
     },
     "devDependencies": {
         "@jest/globals": "28.1.3",

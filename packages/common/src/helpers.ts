@@ -11,6 +11,7 @@
  */
 const sa11yAutoFilterListDefaultPackageName = 'sa11y-jest-automated-check-file-exclusion';
 
+import axe from 'axe-core';
 import * as fs from 'fs';
 import path from 'path';
 export function log(...args: unknown[]): void {
@@ -67,4 +68,28 @@ export const processFiles = <T>(
             targetArray.push(fileData);
         }
     });
+};
+
+export const registerCustomRules = (
+    changesData: { rules: axe.Rule[] },
+    rulesData: axe.Rule[],
+    checksData: axe.Check[]
+): void => {
+    const newChecks: axe.Check[] = [];
+    const newRules: axe.Rule[] = [];
+
+    // Read and parse existing rule changes
+    const { rules } = changesData;
+    const newRulesData = rulesData;
+    const newChecksData = checksData;
+
+    if (rules && Array.isArray(rules)) {
+        newRules.push(...rules);
+    }
+    newRules.push(...newRulesData);
+    newChecks.push(...newChecksData);
+
+    // Configure axe with the new checks and rules
+    const spec: axe.Spec = { rules: newRules, checks: newChecks };
+    axe.configure(spec);
 };

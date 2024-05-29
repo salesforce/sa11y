@@ -19,7 +19,6 @@ import {
 } from '@sa11y/test-utils';
 import * as Sa11yCommon from '@sa11y/common';
 import { expect, jest } from '@jest/globals';
-import { registerCustomRules } from '@sa11y/preset-rules';
 
 describe('automatic checks registration', () => {
     const prevEnv = process.env;
