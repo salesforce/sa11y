@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+   <title>Button and links</title>
+
+   <style>
+    .visually-hidden {
+      clip-path: inset(100%);
+      clip: rect(1px, 1px, 1px, 1px);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    #next:hover{
+      background-color: lightcoral !important;            
+     }
+   </style>
+   <template id="template">
+      <style>
+        @keyframes roll {
+          0% {transform: rotateY(0deg)}
+          100% {transform: rotateY(360deg)}
+        }
+        .webcomponents {
+          transform-style: preserve-3d;
+          animation: roll 2s infinite linear;
+        }
+        #container {
+          perspective: 800px;
+          font-family: sans-serif;
+        }
+
+      
+
+      </style>
+      <div id="container">
+        <img class="webcomponents" src="http://webcomponents.org/img/logo.svg">
+        <content select="h1"></content>
+      </div>
+    </template>
+</head>
+
+<body>
+
+<h1>Label in Name (WCAG 2.5.3) and Keyboard checks </h1>
+
+<div onclick="alert('This is button one')" role="button" aria-label="its a div"> Button one</div>
+
+<div onclick="alert('This is button two')" role="button" aria-label="its a div" tabindex="0"> Button two</div>
+
+<button id="Validate" > validate </button>
+<button id="Validate1" >  </button>
+
+<img src="./text" class="thumbnail" />
+<div id="results" role="button" hidden>hi</div>
+
+
+
+ <video controls>
+   <source src="movie2.mp4" type="video/mp4">
+   <!-- This video is missing captions -->
+ </video>
+
+ <video controls>
+   <source src="movie.mp4" type="video/mp4">
+   <track src="captions_en.vtt" kind="captions" srclang="en" label="English">
+ </video>
+ <show-hello name="John"></show-hello>
+
+ <input type="text"  />
+
+ <img src="" />
+
+ <button >+</button>
+ <button style="margin-left: -10px">-</button>
+
+ <button id="next" style="background-color:black;  color: white; "> Next </button>
+
+ <button id="back" style="background-color:black;  color: white; "> Back </button> <br> <br>
+
+
+ <button id="bank" style="background-color:black;  color: white; "> <img alt="after" src="./Next.png" /></button>
+
+</body>
+
+<script src="./dist/accName.js" ></script>
+<script src="./button.js" ></script>
+<script>
+   
+      customElements.define('show-hello', class extends HTMLElement {
+        connectedCallback() {
+          const shadow = this.attachShadow({mode: 'open'});
+          shadow.innerHTML = `<h2> Buttons container </h2><p role="button">
+            Hello, ${this.getAttribute('name')}
+          </p>
+          
+          <label for="json"> Json </label>
+          <input id="json" type="text" />
+          `;
+        }
+      });
+      
+   
+</script>
+
+
+</html>
