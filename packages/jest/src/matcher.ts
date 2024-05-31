@@ -45,7 +45,7 @@ const formatOptions: Options = {
 export async function toBeAccessible(
     received: A11yCheckableContext = document,
     config: A11yConfig = defaultRuleset
-): Promise<jest.CustomMatcherResult> {
+): Promise<jest.CustomMatcherResult & { a11yError: A11yError }> {
     let isAccessible = true;
     // a11yError can be 'undefined' when used with `not` matcher and there is no error
     let a11yError: A11yError = new A11yError([], []);
@@ -74,6 +74,7 @@ export async function toBeAccessible(
                 `${a11yError.length} issues`,
                 expectedMsg
             ),
+        a11yError: a11yError,
     };
 }
 

@@ -11,7 +11,9 @@
  */
 const sa11yAutoFilterListDefaultPackageName = 'sa11y-jest-automated-check-file-exclusion';
 
+import axe from 'axe-core';
 import * as fs from 'fs';
+import path from 'path';
 export function log(...args: unknown[]): void {
     // Probably not worth it to mock and test console logging for this helper util
     /* istanbul ignore next */
@@ -50,3 +52,44 @@ export function useCustomRules(): string[] {
     }
     return [];
 }
+
+// Function to process files in a directory and push their content to a target array
+export const processFiles = <T>(
+    dir: string,
+    targetArray: T[],
+    extension: string,
+    parser: (data: string) => T
+): void => {
+    const files = fs.readdirSync(dir);
+    files.forEach((file) => {
+        if (path.extname(file) === extension) {
+            const filePath = path.join(dir, file);
+            const fileData = parser(fs.readFileSync(filePath, 'utf8'));
+            targetArray.push(fileData);
+        }
+    });
+};
+
+export const registerCustomRules = (
+    changesData: { rules: axe.Rule[] },
+    rulesData: axe.Rule[],
+    checksData: axe.Check[]
+): void => {
+    const newChecks: axe.Check[] = [];
+    const newRules: axe.Rule[] = [];
+
+    // Read and parse existing rule changes
+    const { rules } = changesData;
+    const newRulesData = rulesData;
+    const newChecksData = checksData;
+
+    if (rules && Array.isArray(rules)) {
+        newRules.push(...rules);
+    }
+    newRules.push(...newRulesData);
+    newChecks.push(...newChecksData);
+
+    // Configure axe with the new checks and rules
+    const spec: axe.Spec = { rules: newRules, checks: newChecks };
+    axe.configure(spec);
+};

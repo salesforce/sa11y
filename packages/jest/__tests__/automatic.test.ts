@@ -15,6 +15,7 @@ import {
     domWithNoA11yIssuesChildCount,
     domWithDescendancyA11yIssues,
     customRulesFilePath,
+    domWithA11yCustomIssues,
 } from '@sa11y/test-utils';
 import * as Sa11yCommon from '@sa11y/common';
 import { expect, jest } from '@jest/globals';
@@ -205,8 +206,9 @@ describe('automatic checks call', () => {
         await expect(automaticCheck({ filesFilter: nonExistentFilePaths })).rejects.toThrow();
     });
 
-    it('should take only custom rules if specified', async () => {
-        document.body.innerHTML = domWithA11yIssues;
+    it('should take only custom rules if specified/testing for new rule', async () => {
+        setup();
+        document.body.innerHTML = domWithA11yCustomIssues;
         process.env.SA11Y_CUSTOM_RULES = customRulesFilePath;
         await expect(automaticCheck({ cleanupAfterEach: true })).rejects.toThrow('1 Accessibility');
         delete process.env.SA11Y_CUSTOM_RULES;
