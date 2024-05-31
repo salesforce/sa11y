@@ -105,6 +105,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
                 currNode = walker.nextSibling();
             }
         } else {
+            // loop mutated nodes
             for (let i = 0; i < mutatedNodes.length; i++) {
                 if (mutatedNodes[i]) {
                     document.body.innerHTML = mutatedNodes[i];
