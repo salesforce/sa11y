@@ -64,16 +64,16 @@ Object {
           "failureDetails": Array [
             [A11yError: 3 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (html-has-lang) <html> element must have a lang attribute: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
 * (link-name) Links must have discernible text: a
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1],
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1],
           ],
           "fullName": "A11yError-0",
           "status": "failed",
@@ -85,8 +85,8 @@ Object {
           "failureDetails": Array [
             [A11yError: 1 Accessibility issues found
  * (html-has-lang) <html> element must have a lang attribute: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
           ],
           "fullName": "A11yError-1",
           "status": "failed",
@@ -98,16 +98,16 @@ Object {
           "failureDetails": Array [
             [A11yError: 3 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (html-has-lang) <html> element must have a lang attribute: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
 * (link-name) Links must have discernible text: a
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1],
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1],
           ],
           "fullName": "A11yError-2",
           "status": "failed",
@@ -119,8 +119,8 @@ Object {
           "failureDetails": Array [
             [A11yError: 1 Accessibility issues found
  * (html-has-lang) <html> element must have a lang attribute: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
           ],
           "fullName": "A11yError-3",
           "status": "failed",
@@ -132,20 +132,20 @@ Object {
           "failureDetails": Array [
             [A11yError: 4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (html-has-lang) <html> element must have a lang attribute: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
 * (link-name) Links must have discernible text: a
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (html-has-lang) <html> element must have a lang attribute: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
           ],
           "fullName": "A11yError-4",
           "status": "failed",
@@ -234,7 +234,7 @@ Object {
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Document does not have a non-empty <title> element",
+                  "any": "												• Document does not have a non-empty <title> element",
                   "description": "Documents must have <title> element to aid in navigation",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
                   "html": "<html><head></head><body>
@@ -308,7 +308,7 @@ Object {
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html><head></head><body>
@@ -384,16 +384,16 @@ Object {
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element does not have text that is visible to screen readers
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-label attribute does not exist or is empty
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element has no title attribute",
+                  "any": "												• Element does not have text that is visible to screen readers
+												• aria-label attribute does not exist or is empty
+												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+												• Element has no title attribute",
                   "description": "Links must have discernible text",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
-                  "none": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element is in tab order and does not have accessible text",
+                  "none": "												• Element is in tab order and does not have accessible text",
                   "selectors": "a",
                   "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -684,7 +684,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html>",
@@ -803,7 +803,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Document does not have a non-empty <title> element",
+                  "any": "												• Document does not have a non-empty <title> element",
                   "description": "Documents must have <title> element to aid in navigation",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
                   "html": "<html><head></head><body>
@@ -877,7 +877,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html><head></head><body>
@@ -953,16 +953,16 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element does not have text that is visible to screen readers
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-label attribute does not exist or is empty
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element has no title attribute",
+                  "any": "												• Element does not have text that is visible to screen readers
+												• aria-label attribute does not exist or is empty
+												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+												• Element has no title attribute",
                   "description": "Links must have discernible text",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
-                  "none": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element is in tab order and does not have accessible text",
+                  "none": "												• Element is in tab order and does not have accessible text",
                   "selectors": "a",
                   "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -1253,7 +1253,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html>",
@@ -1372,7 +1372,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Document does not have a non-empty <title> element",
+                  "any": "												• Document does not have a non-empty <title> element",
                   "description": "Documents must have <title> element to aid in navigation",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/document-title",
                   "html": "<html><head></head><body>
@@ -1446,7 +1446,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html><head></head><body>
@@ -1522,16 +1522,16 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element does not have text that is visible to screen readers
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-label attribute does not exist or is empty
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element has no title attribute",
+                  "any": "												• Element does not have text that is visible to screen readers
+												• aria-label attribute does not exist or is empty
+												• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+												• Element has no title attribute",
                   "description": "Links must have discernible text",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
-                  "none": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• Element is in tab order and does not have accessible text",
+                  "none": "												• Element is in tab order and does not have accessible text",
                   "selectors": "a",
                   "summary": "Fix all of the following:
   Element is in tab order and does not have accessible text
@@ -1632,7 +1632,7 @@ Fix any of the following:
                 Object {
                   "all": "",
                   "ancestry": "",
-                  "any": "&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;• The <html> element does not have a lang attribute",
+                  "any": "												• The <html> element does not have a lang attribute",
                   "description": "<html> element must have a lang attribute",
                   "helpUrl": "https://dequeuniversity.com/rules/axe/4.9/html-has-lang",
                   "html": "<html>",
@@ -2092,12 +2092,12 @@ Fix any of the following:
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 2`] = `2`;
@@ -2105,12 +2105,12 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 3`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 1 1`] = `""`;
@@ -2126,73 +2126,73 @@ exports[`a11y Results Formatter should format using specified options: 0 1`] = `
 
 exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 "\\"* (document-title) Documents must have <title> element to aid in navigation: html\\"
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 \\"* (link-name) Links must have discernible text: a\\"
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 1`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 2`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`a11y Results Formatter should throw error when violations are present 1`] = `
 "2 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-&ensp;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
-&ensp;- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
