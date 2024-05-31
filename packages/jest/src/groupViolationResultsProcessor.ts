@@ -11,6 +11,13 @@ import { A11yError } from '@sa11y/format';
 type FailureDetail = {
     error?: A11yError;
 };
+interface FailureMatcherDetail {
+    error?: {
+        matcherResult?: {
+            a11yError?: A11yError;
+        };
+    };
+}
 
 type ErrorElement = {
     html: string;
@@ -86,6 +93,54 @@ function createA11yRuleViolation(a11yRule: A11yViolation, ruleIndex: number) {
 }
 
 /**
+ * Create a test processA11yDetailsAndMessages violation error message grouped by rule violation
+ */
+function processA11yDetailsAndMessages(error: A11yError, a11yFailureMessages: string[]) {
+    const a11yRuleViolations: { [key: string]: A11yViolation } = {};
+    let a11yRuleViolationsCount = 0;
+    let a11yErrorElementsCount = 0;
+    error.a11yResults.forEach((a11yResult) => {
+        a11yErrorElementsCount++;
+        if (!(a11yRuleViolations as never)[a11yResult.wcag]) {
+            a11yRuleViolationsCount++;
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            a11yRuleViolations[a11yResult.wcag] = {
+                id: a11yResult.id,
+                description: a11yResult.description,
+                helpUrl: a11yResult.helpUrl,
+                wcagCriteria: a11yResult.wcag,
+                summary: a11yResult.summary,
+                errorElements: [],
+            };
+        }
+        a11yRuleViolations[a11yResult.wcag].errorElements.push({
+            html: a11yResult.html,
+            selectors: a11yResult.selectors,
+            hierarchy: a11yResult.ancestry,
+            any: a11yResult.any,
+            all: a11yResult.all,
+            none: a11yResult.none,
+        });
+    });
+
+    const a11yFailureMessage = `
+    The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+    ${a11yErrorElementsCount} HTML elements have accessibility issue(s). ${a11yRuleViolationsCount} rules failed.
+
+    ${Object.values(a11yRuleViolations)
+        .map((a11yRuleViolation, index) => createA11yRuleViolation(a11yRuleViolation, index + 1))
+        .join('\n')}
+
+
+    For more info about automated accessibility testing: https://sfdc.co/a11y-test
+    For tips on fixing accessibility bugs: https://sfdc.co/a11y
+    For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+    For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
+    `;
+    a11yFailureMessages.push(a11yFailureMessage);
+}
+
+/**
  * Convert any a11y errors from test failures into their own test suite, results
  */
 function processA11yErrors(results: AggregatedResult, testSuite: TestResult, testResult: AssertionResult) {
@@ -102,48 +157,7 @@ function processA11yErrors(results: AggregatedResult, testSuite: TestResult, tes
         if (error.name === A11yError.name) {
             a11yErrorsExist = true;
             a11yFailureDetails.push({ ...(failure as FailureDetail) } as FailureDetail);
-            const a11yRuleViolations: { [key: string]: A11yViolation } = {};
-            let a11yRuleViolationsCount = 0;
-            let a11yErrorElementsCount = 0;
-            error.a11yResults.forEach((a11yResult) => {
-                a11yErrorElementsCount++;
-                if (!(a11yRuleViolations as never)[a11yResult.wcag]) {
-                    a11yRuleViolationsCount++;
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                    a11yRuleViolations[a11yResult.wcag] = {
-                        id: a11yResult.id,
-                        description: a11yResult.description,
-                        helpUrl: a11yResult.helpUrl,
-                        wcagCriteria: a11yResult.wcag,
-                        summary: a11yResult.summary,
-                        errorElements: [],
-                    };
-                }
-                a11yRuleViolations[a11yResult.wcag].errorElements.push({
-                    html: a11yResult.html,
-                    selectors: a11yResult.selectors,
-                    hierarchy: a11yResult.ancestry,
-                    any: a11yResult.any,
-                    all: a11yResult.all,
-                    none: a11yResult.none,
-                });
-            });
-
-            const a11yFailureMessage = `
-            The test has failed the accessibility check. Accessibility Stacktrace/Issues:
-            ${a11yErrorElementsCount} HTML elements have accessibility issue(s). ${a11yRuleViolationsCount} rules failed.
-
-            ${Object.values(a11yRuleViolations)
-                .map((a11yRuleViolation, index) => createA11yRuleViolation(a11yRuleViolation, index + 1))
-                .join('\n')}
-
-
-            For more info about automated accessibility testing: https://sfdc.co/a11y-test
-            For tips on fixing accessibility bugs: https://sfdc.co/a11y
-            For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
-            For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
-            `;
-            a11yFailureMessages.push(a11yFailureMessage);
+            processA11yDetailsAndMessages(error, a11yFailureMessages);
         }
     });
     if (!a11yErrorsExist) {
@@ -151,10 +165,21 @@ function processA11yErrors(results: AggregatedResult, testSuite: TestResult, tes
         results.numFailedTests -= 1;
         if (testSuite.numFailingTests === 0) results.numFailedTestSuites -= 1;
     }
-
     testResult.failureDetails = [...a11yFailureDetails];
     testResult.failureMessages = [...a11yFailureMessages];
     testResult.status = a11yFailureDetails.length === 0 ? 'passed' : testResult.status;
+}
+
+function processA11yMatcherErrors(results: AggregatedResult, testSuite: TestResult, testResult: AssertionResult) {
+    const a11yFailureMessages: string[] = [];
+
+    testResult.failureDetails.forEach((failure) => {
+        const error = (failure as FailureMatcherDetail)?.error?.matcherResult?.a11yError as A11yError;
+        if (error !== undefined) {
+            processA11yDetailsAndMessages(error, a11yFailureMessages);
+            testResult.failureMessages = [...a11yFailureMessages];
+        }
+    });
 }
 
 /**
@@ -164,7 +189,7 @@ function processA11yErrors(results: AggregatedResult, testSuite: TestResult, tes
  * Ref: https://jestjs.io/docs/configuration#testresultsprocessor-string
  *  - Mapping of AggregatedResult to JSON format to https://github.com/facebook/jest/blob/master/packages/jest-test-result/src/formatTestResults.ts
  */
-export default function resultsProcessor(results: AggregatedResult): AggregatedResult {
+export function resultsProcessor(results: AggregatedResult): AggregatedResult {
     log(`Processing ${results.numTotalTests} tests ..`);
     results.testResults // suite results
         .filter((testSuite) => testSuite.numFailingTests > 0)
@@ -179,5 +204,25 @@ export default function resultsProcessor(results: AggregatedResult): AggregatedR
     return results;
 }
 
+export function resultsProcessorManualChecks(results: AggregatedResult): AggregatedResult {
+    log(`Processing ${results.numTotalTests} tests ..`);
+    results.testResults // suite results
+        .filter((testSuite) => testSuite.numFailingTests > 0)
+        .forEach((testSuite) => {
+            testSuite.testResults // individual test results
+                .filter((testResult) => testResult.status === 'failed')
+                .forEach((testResult) => {
+                    processA11yMatcherErrors(results, testSuite, testResult);
+                });
+        });
+
+    return results;
+}
 // The processor must be a node module that exports a function
-module.exports = resultsProcessor;
+// Explicitly typing the exports for Node.js compatibility
+const exportedFunctions = {
+    resultsProcessor,
+    resultsProcessorManualChecks,
+};
+
+module.exports = exportedFunctions;

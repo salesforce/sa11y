@@ -5,7 +5,10 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { useFilesToBeExempted, log, useCustomRules } from '../src/helpers';
+import path from 'path';
+import { useFilesToBeExempted, log, useCustomRules, processFiles, registerCustomRules } from '../src/helpers';
+import axe from 'axe-core';
+jest.mock('axe-core');
 
 describe('Your Module', () => {
     afterEach(() => {
@@ -84,5 +87,24 @@ describe('Your Module', () => {
         const mockRules = ['rule1', 'rule2'];
         const result = useCustomRules();
         expect(result).toEqual(mockRules);
+    });
+
+    it('should process only .json files and parse their content', () => {
+        const targetArray: Array<{ key: string }> = [];
+        const directoryPath = path.join(__dirname, '../testMocks/testProcessFiles');
+        processFiles<{ key: string }>(directoryPath, targetArray, '.json', JSON.parse);
+        expect(targetArray).toEqual([{ key: 'value' }]);
+    });
+
+    it('register custom Rules', () => {
+        const mockConfigure = axe.configure as jest.MockedFunction<typeof axe.configure>;
+        const mockRules = [{ id: 'rule1' }] as axe.Rule[];
+        const mockChecks = [{ id: 'check1' }] as axe.Check[];
+        const mockChanges = { rules: [{ id: 'rule2' }] } as { rules: axe.Rule[] };
+        registerCustomRules(mockChanges, mockRules, mockChecks);
+        expect(mockConfigure).toHaveBeenCalledWith({
+            rules: [...mockChanges.rules, ...mockRules],
+            checks: [...mockChecks],
+        });
     });
 });

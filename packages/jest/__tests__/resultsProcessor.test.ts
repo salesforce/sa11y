@@ -63,7 +63,7 @@ describe('Results Processor', () => {
         const processedResults = resultsProcessor(results);
         expect(processedResults).toMatchSnapshot();
         expect(processedResults).not.toEqual(aggregatedResults);
-        expect(processedResults.numFailedTestSuites).toEqual(numA11yFailures);
-        expect(processedResults.numTotalTests).toEqual(aggregatedResults.numTotalTests + numA11yFailures); // After consolidation + non-a11y failure
+        expect(processedResults.numFailedTestSuites).toEqual(numA11yFailures + 1);
+        expect(processedResults.numTotalTests).toEqual(aggregatedResults.numTotalTests + numA11yFailures + 2); // After consolidation + non-a11y failure
     });
 });

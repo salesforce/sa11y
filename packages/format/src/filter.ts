@@ -23,9 +23,20 @@ export function exceptionListFilter(violations: AxeResults, exceptionList: Excep
             filteredViolations.push(violation);
         } else {
             for (const result of violation.nodes) {
-                const filteredResults = result.target.filter(
-                    (cssSelector) => !exceptionList[violation.id].includes(cssSelector)
-                );
+                const filteredResults = [];
+                result.target.forEach((cssSelectorItem) => {
+                    if (Array.isArray(cssSelectorItem)) {
+                        cssSelectorItem.forEach((cssSelector) => {
+                            if (!exceptionList[violation.id].includes(cssSelector)) {
+                                filteredResults.push(cssSelector);
+                            }
+                        });
+                    } else {
+                        if (!exceptionList[violation.id].includes(cssSelectorItem)) {
+                            filteredResults.push(cssSelectorItem);
+                        }
+                    }
+                });
                 if (filteredResults.length > 0) {
                     filteredViolations.push(violation);
                 }
