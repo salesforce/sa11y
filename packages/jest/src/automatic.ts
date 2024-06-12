@@ -106,24 +106,34 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
             }
         } else {
             customRules = [];
+            if (customRules.length === 0)
+                violations.push(...(await getViolationsJSDOM(document.body, adaptA11yConfig(defaultRuleset))));
+            else
+                violations.push(
+                    ...(await getViolationsJSDOM(
+                        document.body,
+                        adaptA11yConfigCustomRules(defaultRuleset, customRules)
+                    ))
+                );
+            document.body.innerHTML = '';
             // loop mutated nodes
-            for (let i = 0; i < mutatedNodes.length; i++) {
-                if (mutatedNodes[i]) {
-                    document.body.innerHTML = mutatedNodes[i];
-                    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
-                    let currNode = walker.firstChild();
-                    while (currNode !== null) {
-                        if (customRules.length === 0)
-                            violations.push(...(await getViolationsJSDOM(currNode, adaptA11yConfig(defaultRuleset))));
-                        else
-                            violations.push(
-                                ...(await getViolationsJSDOM(
-                                    currNode,
-                                    adaptA11yConfigCustomRules(defaultRuleset, customRules)
-                                ))
-                            );
-                        currNode = walker.nextSibling();
-                    }
+            for await (const mutatedNode of mutatedNodes) {
+                if (mutatedNode) {
+                    document.body.innerHTML = mutatedNode;
+                    // const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
+                    // let currNode = walker.firstChild();
+                    // while (currNode !== null) {
+                    if (customRules.length === 0)
+                        violations.push(...(await getViolationsJSDOM(document.body, adaptA11yConfig(defaultRuleset))));
+                    else
+                        violations.push(
+                            ...(await getViolationsJSDOM(
+                                document.body,
+                                adaptA11yConfigCustomRules(defaultRuleset, customRules)
+                            ))
+                        );
+                    // currNode = walker.nextSibling();
+                    // }
                 }
             }
         }
@@ -152,6 +162,8 @@ function observerCallback(mutations: MutationRecord[], _observer: MutationObserv
         mutation.addedNodes.forEach((node) => {
             if (node?.parentElement?.innerHTML) {
                 mutatedNodes.push(node.parentElement.innerHTML);
+            } else if ((node as Element)?.outerHTML) {
+                mutatedNodes.push((node as Element)?.outerHTML);
             }
         });
     }
