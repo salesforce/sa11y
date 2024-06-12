@@ -120,6 +120,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
             for await (const mutatedNode of mutatedNodes) {
                 if (mutatedNode) {
                     document.body.innerHTML = mutatedNode;
+                    // remove walker
                     // const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
                     // let currNode = walker.firstChild();
                     // while (currNode !== null) {
