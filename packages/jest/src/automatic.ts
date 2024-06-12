@@ -85,7 +85,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();
-    const customRules = useCustomRules();
+    let customRules = useCustomRules();
     try {
         if (!opts.runDOMMutationObserver) {
             while (currNode !== null) {
@@ -105,6 +105,8 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
                 currNode = walker.nextSibling();
             }
         } else {
+            customRules = [];
+            // loop mutated nodes
             for (let i = 0; i < mutatedNodes.length; i++) {
                 if (mutatedNodes[i]) {
                     document.body.innerHTML = mutatedNodes[i];

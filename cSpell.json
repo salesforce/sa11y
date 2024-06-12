@@ -19,8 +19,7 @@
         "pdnejk",
         "slds",
         "labelledby",
-        "describedby",
-        "ensp"
+        "describedby"
     ],
     "flagWords": ["master-slave", "slave", "blacklist", "whitelist"],
     "allowCompoundWords": true

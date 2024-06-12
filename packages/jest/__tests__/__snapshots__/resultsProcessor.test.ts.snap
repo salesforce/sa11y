@@ -64,23 +64,23 @@ Object {
           "failureDetails": Array [
             [A11yError: 5 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (html-has-lang) <html> element must have a lang attribute: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
 	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
 * (link-name) Links must have discernible text: a
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (region) All page content should be contained by landmarks: h1:nth-child(1)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (region) All page content should be contained by landmarks: h1:nth-child(2)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3],
           ],
           "fullName": "A11yError-0",
@@ -93,7 +93,7 @@ Object {
           "failureDetails": Array [
             [A11yError: 1 Accessibility issues found
  * (html-has-lang) <html> element must have a lang attribute: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
 	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
           ],
           "fullName": "A11yError-1",
@@ -106,23 +106,23 @@ Object {
           "failureDetails": Array [
             [A11yError: 5 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (html-has-lang) <html> element must have a lang attribute: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
 	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
 * (link-name) Links must have discernible text: a
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (region) All page content should be contained by landmarks: h1:nth-child(1)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (region) All page content should be contained by landmarks: h1:nth-child(2)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3],
           ],
           "fullName": "A11yError-2",
@@ -135,7 +135,7 @@ Object {
           "failureDetails": Array [
             [A11yError: 1 Accessibility issues found
  * (html-has-lang) <html> element must have a lang attribute: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
 	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
           ],
           "fullName": "A11yError-3",
@@ -148,27 +148,27 @@ Object {
           "failureDetails": Array [
             [A11yError: 6 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (html-has-lang) <html> element must have a lang attribute: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
 	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
 * (link-name) Links must have discernible text: a
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (region) All page content should be contained by landmarks: h1:nth-child(1)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (region) All page content should be contained by landmarks: h1:nth-child(2)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (html-has-lang) <html> element must have a lang attribute: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/html-has-lang 
 	- WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2],
           ],
           "fullName": "A11yError-4",
@@ -2860,19 +2860,19 @@ Summary: Fix any of the following:
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (region) All page content should be contained by landmarks: h1:nth-child(1)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (region) All page content should be contained by landmarks: h1:nth-child(2)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
@@ -2881,19 +2881,19 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 3`] = `
 "4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (region) All page content should be contained by landmarks: h1:nth-child(1)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (region) All page content should be contained by landmarks: h1:nth-child(2)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
@@ -2910,129 +2910,129 @@ exports[`a11y Results Formatter should format using specified options: 0 1`] = `
 
 exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 "\\"* (document-title) Documents must have <title> element to aid in navigation: html\\"
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 \\"* (link-name) Links must have discernible text: a\\"
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 \\"* (region) All page content should be contained by landmarks: h1:nth-child(1)\\"
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 \\"* (region) All page content should be contained by landmarks: h1:nth-child(2)\\"
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (region) All page content should be contained by landmarks: h1:nth-child(1)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (region) All page content should be contained by landmarks: h1:nth-child(2)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (region) All page content should be contained by landmarks: h1:nth-child(1)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (region) All page content should be contained by landmarks: h1:nth-child(2)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 "* (document-title) Documents must have <title> element to aid in navigation: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (region) All page content should be contained by landmarks: h1:nth-child(1)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (region) All page content should be contained by landmarks: h1:nth-child(2)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 1`] = `
 "4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (region) All page content should be contained by landmarks: h1:nth-child(1)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (region) All page content should be contained by landmarks: h1:nth-child(2)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 2`] = `
 "4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (region) All page content should be contained by landmarks: h1:nth-child(1)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (region) All page content should be contained by landmarks: h1:nth-child(2)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
 
 exports[`a11y Results Formatter should throw error when violations are present 1`] = `
 "4 Accessibility issues found
  * (document-title) Documents must have <title> element to aid in navigation: html
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
 * (link-name) Links must have discernible text: a
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 
 * (region) All page content should be contained by landmarks: h1:nth-child(1)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3
 
 * (region) All page content should be contained by landmarks: h1:nth-child(2)
-	;- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
+	- Help URL: https://dequeuniversity.com/rules/axe/4.9/region 
 	- WCAG Criteria: SA11Y-WCAG-SC-P3"
 `;
