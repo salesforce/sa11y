@@ -5,11 +5,11 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { AxeResults } from '@sa11y/common';
-import { NodeResult, Result } from 'axe-core';
+import { NodeResult, Result, CheckResult } from 'axe-core';
 import { priorities, wcagLevels, WcagMetadata } from '@sa11y/preset-rules';
 
 const defaultImpact = 'minor'; // if impact is undefined
-const formatSpacing = '\t'.repeat(12);
+const formatSpacing = '\t'.repeat(6);
 // Helper object to sort violations by impact order
 const impactOrder = {
     critical: 1,
@@ -88,11 +88,14 @@ export class A11yResult {
     public readonly any: string;
     public readonly all: string;
     public readonly none: string;
+    public readonly relatedNodeAny: string;
+    public readonly relatedNodeAll: string;
+    public readonly relatedNodeNone: string;
     private readonly wcagData: WcagMetadata; // Used to sort results
 
     constructor(violation: Result, node: NodeResult) {
         this.id = violation.id;
-        this.description = violation.help;
+        this.description = violation.description;
         this.wcagData = new WcagMetadata(violation);
         this.wcag = this.wcagData.toString();
         this.helpUrl = violation.helpUrl.split('?')[0];
@@ -106,6 +109,9 @@ export class A11yResult {
         this.any = node.any?.map((item) => `${formatSpacing}• ${item.message}`).join('\n');
         this.all = node.all?.map((item) => `${formatSpacing}• ${item.message}`).join('\n');
         this.none = node.none?.map((item) => `${formatSpacing}• ${item.message}`).join('\n');
+        this.relatedNodeAny = this.formatRelatedNodes(node.any);
+        this.relatedNodeAll = this.formatRelatedNodes(node.all);
+        this.relatedNodeNone = this.formatRelatedNodes(node.none);
     }
 
     /**
@@ -119,6 +125,16 @@ export class A11yResult {
             const wcagLevelB = wcagLevels.indexOf(b.wcagData.wcagLevel);
             return priorityA - priorityB || wcagLevelA - wcagLevelB;
         });
+    }
+    formatRelatedNodes(node: CheckResult[]) {
+        return node
+            ?.map((item) =>
+                item.relatedNodes && item.relatedNodes.length > 0
+                    ? item.relatedNodes.map((relatedNode) => `${formatSpacing}• ${relatedNode.html}`).join('\n')
+                    : null
+            )
+            .filter(Boolean)
+            .join('\n');
     }
 }
 
