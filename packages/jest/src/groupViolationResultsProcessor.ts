@@ -26,6 +26,9 @@ type ErrorElement = {
     any: string;
     all: string;
     none: string;
+    relatedNodeAny: string;
+    relatedNodeAll: string;
+    relatedNodeNone: string;
 };
 
 type A11yViolation = {
@@ -37,44 +40,65 @@ type A11yViolation = {
     errorElements: ErrorElement[];
 };
 
-const formatSpacing = '\t'.repeat(8);
-const formatForAxeMessage = `\n${formatSpacing}\t\t`;
+const formatSpacing = '\t'.repeat(4);
+const formatForAxeMessage = `\n${formatSpacing}\t`;
 
 const axeMessages = {
     toSolveAny: `${formatForAxeMessage}- More Info: To solve the problem, you need to fix at least (1) of the following:\n`,
     toSolveFirst: `${formatForAxeMessage}- More Info: To solve the problem, you need to fix one of the following:\n`,
     toSolveSecond: `${formatForAxeMessage}- And fix the following:\n`,
+    relatedNodes: `${formatForAxeMessage}- Related Nodes: \n`,
 };
 /**
  * Create a test failure html elements array grouped by rule violation
  */
 function createA11yErrorElements(errorElements: ErrorElement[]) {
     const a11yErrorElements: string[] = [];
-    errorElements.forEach((errorElement, index) => {
-        let errorMessage = `${formatSpacing}(${index + 1})  - HTML element : ${errorElement.html
-            .replace(/&lt;/g, '<')
-            .replace(/&gt;/, '>')}
-                        - CSS selector(s) : ${errorElement.selectors.replace(/&gt;/, '>')}
-                        - HTML Tag Hierarchy : ${errorElement.hierarchy}`;
+    let onlyOneSummary = false;
 
-        if (errorElement.any && errorElement.any.length > 0) {
-            errorMessage += `${axeMessages.toSolveAny}${errorElement.any}`;
-            if (errorElement.all && errorElement.all.length > 0) {
-                errorMessage += `${axeMessages.toSolveSecond}${errorElement.all}`;
-            }
-            if (errorElement.none && errorElement.none.length > 0) {
-                errorMessage += `${axeMessages.toSolveSecond}${errorElement.none}`;
-            }
-        } else if (errorElement.all && errorElement.all.length > 0) {
-            errorMessage += `${axeMessages.toSolveFirst}${errorElement.all}`;
-            if (errorElement.none && errorElement.none.length > 0) {
-                errorMessage += `${axeMessages.toSolveSecond}${errorElement.none}`;
+    const appendRelatedNodes = (errorMessage: string, relatedNodes: string | undefined) => {
+        return relatedNodes ? `${errorMessage}${axeMessages.relatedNodes}${relatedNodes}` : errorMessage;
+    };
+
+    errorElements.forEach((errorElement, index) => {
+        let errorMessage = `${formatSpacing}(${index + 1}) - HTML element : ${errorElement.html
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/, '>')}`;
+        errorMessage += `${formatForAxeMessage}- CSS selector(s) : ${errorElement.selectors.replace(/&gt;/, '>')}`;
+        errorMessage += `${formatForAxeMessage}- HTML Tag Hierarchy : ${errorElement.hierarchy}`;
+        const isAny = errorElement.any?.length > 0;
+        const isAll = errorElement.all?.length > 0;
+        const isNone = errorElement.none?.length > 0;
+
+        if (!onlyOneSummary) {
+            if (isAny) {
+                errorMessage += `${axeMessages.toSolveAny}${errorElement.any}`;
+                errorMessage = appendRelatedNodes(errorMessage, errorElement.relatedNodeAny);
+                if (isAll) {
+                    errorMessage += `${axeMessages.toSolveSecond}${errorElement.all}`;
+                    errorMessage = appendRelatedNodes(errorMessage, errorElement.relatedNodeAll);
+                }
+                if (isNone) {
+                    errorMessage += `${axeMessages.toSolveSecond}${errorElement.none}`;
+                    errorMessage = appendRelatedNodes(errorMessage, errorElement.relatedNodeNone);
+                }
+            } else if (isAll) {
+                errorMessage += `${axeMessages.toSolveFirst}${errorElement.all}`;
+                errorMessage = appendRelatedNodes(errorMessage, errorElement.relatedNodeAll);
+                if (isNone) {
+                    errorMessage += `${axeMessages.toSolveSecond}${errorElement.none}`;
+                    errorMessage = appendRelatedNodes(errorMessage, errorElement.relatedNodeNone);
+                }
+            } else {
+                if (isNone) {
+                    errorMessage += `${axeMessages.toSolveFirst}${errorElement.none}`;
+                    errorMessage = appendRelatedNodes(errorMessage, errorElement.relatedNodeNone);
+                }
             }
         } else {
-            if (errorElement.none && errorElement.none.length > 0) {
-                errorMessage += `${axeMessages.toSolveFirst}${errorElement.none}`;
-            }
+            errorMessage = appendRelatedNodes(errorMessage, errorElement.relatedNodeAny);
         }
+        onlyOneSummary = isAny && !isAll && !isNone;
         a11yErrorElements.push(errorMessage);
     });
 
@@ -120,22 +144,25 @@ function processA11yDetailsAndMessages(error: A11yError, a11yFailureMessages: st
             any: a11yResult.any,
             all: a11yResult.all,
             none: a11yResult.none,
+            relatedNodeAny: a11yResult.relatedNodeAny,
+            relatedNodeAll: a11yResult.relatedNodeAll,
+            relatedNodeNone: a11yResult.relatedNodeNone,
         });
     });
 
     const a11yFailureMessage = `
-    The test has failed the accessibility check. Accessibility Stacktrace/Issues:
-    ${a11yErrorElementsCount} HTML elements have accessibility issue(s). ${a11yRuleViolationsCount} rules failed.
+The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+${a11yErrorElementsCount} HTML elements have accessibility issue(s). ${a11yRuleViolationsCount} rules failed.
 
-    ${Object.values(a11yRuleViolations)
-        .map((a11yRuleViolation, index) => createA11yRuleViolation(a11yRuleViolation, index + 1))
-        .join('\n')}
+${Object.values(a11yRuleViolations)
+    .map((a11yRuleViolation, index) => createA11yRuleViolation(a11yRuleViolation, index + 1))
+    .join('\n')}
 
-
-    For more info about automated accessibility testing: https://sfdc.co/a11y-test
-    For tips on fixing accessibility bugs: https://sfdc.co/a11y
-    For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
-    For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
+    
+For more info about automated accessibility testing: https://sfdc.co/a11y-test
+For tips on fixing accessibility bugs: https://sfdc.co/a11y
+For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
     `;
     a11yFailureMessages.push(a11yFailureMessage);
 }
