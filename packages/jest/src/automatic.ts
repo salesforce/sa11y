@@ -187,7 +187,7 @@ export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCh
                 observer.observe(document.body, observerOptions);
             }
         });
-        
+
         afterEach(async () => {
             if (opts.runDOMMutationObserver) {
                 observer.disconnect(); // stop mutation observer
