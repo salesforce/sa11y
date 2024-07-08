@@ -69,11 +69,13 @@ describe('automatic checks registration', () => {
         process.env.SA11Y_AUTO = '';
         process.env.SA11Y_CLEANUP = '';
         setup();
+        process.env.SA11Y_ENABLE_DOM_MUTATION_OBSERVER = '';
         expect(registerAutomaticMock).toHaveBeenCalledWith(
             expect.objectContaining({
                 runAfterEach: false,
                 cleanupAfterEach: false,
                 consolidateResults: false,
+                runDOMMutationObserver: false,
             })
         );
     });
@@ -219,5 +221,22 @@ describe('automatic checks call', () => {
         process.env.SELECTOR_FILTER_KEYWORDS = 'lightning-';
         await expect(automaticCheck({ filesFilter: nonExistentFilePaths })).rejects.toThrow();
         delete process.env.SELECTOR_FILTER_KEYWORDS;
+    });
+    
+    it('should pass when run in DOM Mutation Observer mode', async () => {
+        document.body.innerHTML = domWithA11yIssues;
+        await expect(
+            automaticCheck({ filesFilter: [...nonExistentFilePaths, testPath], runDOMMutationObserver: true })
+        ).resolves.toBeUndefined();
+    });
+
+    it('should take only custom rules if specified/testing for new rule in DOM Mutation Observer mode', async () => {
+        setup();
+        document.body.innerHTML = domWithA11yCustomIssues;
+        process.env.SA11Y_CUSTOM_RULES = customRulesFilePath;
+        await expect(automaticCheck({ cleanupAfterEach: true, runDOMMutationObserver: true })).rejects.toThrow(
+            '1 Accessibility'
+        );
+        delete process.env.SA11Y_CUSTOM_RULES;
     });
 });
