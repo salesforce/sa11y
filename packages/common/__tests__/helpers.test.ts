@@ -70,6 +70,12 @@ describe('Your Module', () => {
         delete process.env.SA11Y_AUTO_FILTER_LIST_PACKAGE_NAME;
     });
 
+    it('empty array if packageName is not set', () => {
+        const result = useFilesToBeExempted();
+
+        expect(result).toEqual([]);
+    });
+
     it('should return empty array if SA11Y_CUSTOM_RULES env variable is not set', () => {
         process.env.SA11Y_CUSTOM_RULES = '';
         const result = useCustomRules();
@@ -87,6 +93,12 @@ describe('Your Module', () => {
         const mockRules = ['rule1', 'rule2'];
         const result = useCustomRules();
         expect(result).toEqual(mockRules);
+    });
+
+    it('should return empty array if custom rules path is empty', () => {
+        delete process.env.SA11Y_CUSTOM_RULES;
+        const result = useCustomRules();
+        expect(result).toEqual([]);
     });
 
     it('should process only .json files and parse their content', () => {
