@@ -222,7 +222,7 @@ describe('automatic checks call', () => {
         await expect(automaticCheck({ filesFilter: nonExistentFilePaths })).rejects.toThrow();
         delete process.env.SELECTOR_FILTER_KEYWORDS;
     });
-    
+
     it('should pass when run in DOM Mutation Observer mode', async () => {
         document.body.innerHTML = domWithA11yIssues;
         await expect(
