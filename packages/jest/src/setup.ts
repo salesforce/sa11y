@@ -54,7 +54,6 @@ const defaultSa11yOpts: Sa11yOpts = {
         runAfterEach: false,
         cleanupAfterEach: false,
         consolidateResults: false,
-        runDOMMutationObserver: false,
     },
 };
 
