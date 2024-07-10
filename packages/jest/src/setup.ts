@@ -127,11 +127,6 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
         'ui-help-components/modules/forceHelp/searchResults/__tests__/searchResults.spec.js',
         'ui-help-components/modules/forceHelp/linkToKnownIssue/__tests__/linkToKnownIssue.spec.js',
     ]);
-
-    // TODO: For testing purposes, using SA11Y_CUSTOM_RULES config
-    // autoCheckOpts.runDOMMutationObserver ||= !!process.env.SA11Y_ENABLE_DOM_MUTATION_CHECKS;
-    autoCheckOpts.runDOMMutationObserver ||= !!process.env.SA11Y_CUSTOM_RULES;
-
     registerSa11yAutomaticChecks(autoCheckOpts);
 }
 /**
