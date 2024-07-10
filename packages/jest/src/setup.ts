@@ -54,6 +54,7 @@ const defaultSa11yOpts: Sa11yOpts = {
         runAfterEach: false,
         cleanupAfterEach: false,
         consolidateResults: false,
+        runDOMMutationObserver: false,
     },
 };
 
@@ -126,6 +127,9 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
         'ui-help-components/modules/forceHelp/searchResults/__tests__/searchResults.spec.js',
         'ui-help-components/modules/forceHelp/linkToKnownIssue/__tests__/linkToKnownIssue.spec.js',
     ]);
+
+    // set the flag to true to run sa11y in DOM Mutation Observer mode
+    autoCheckOpts.runDOMMutationObserver ||= !!process.env.SA11Y_ENABLE_DOM_MUTATION_OBSERVER;
     registerSa11yAutomaticChecks(autoCheckOpts);
 }
 /**

@@ -78,8 +78,8 @@ function checkSelectorFilterKeyWordsExists(node: axe.NodeResult, selectorFilterK
     let isExists = false;
     selectorFilterKeywords.some((keyword) => {
         isExists = selectorAncestry.some((selector) => {
-            const lastSelector = selector.split('>').pop();
-            return lastSelector?.includes(keyword) ?? false;
+            const lastSelector = selector.split('>').pop() as string;
+            return lastSelector.includes(keyword);
         });
         return isExists;
     });
