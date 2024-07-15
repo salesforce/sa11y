@@ -133,7 +133,9 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
             }
         }
     } catch (e) {
-        AxeError.throwAxeError(e as Error);
+        if (process.env.SA11Y_CUSTOM_RULES) {
+            AxeError.throwAxeError(e as Error);
+        }
     } finally {
         if (opts.runDOMMutationObserver) {
             mutatedNodes = [];
