@@ -86,7 +86,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();
-    const customRules = useCustomRules();
+    const customRules = []; // useCustomRules();
     try {
         if (!opts.runDOMMutationObserver) {
             while (currNode !== null) {
