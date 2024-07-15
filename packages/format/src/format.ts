@@ -103,3 +103,19 @@ export class A11yError extends Error {
             .join('\n\n');
     }
 }
+
+export class AxeError extends Error {
+    /**
+     * Throw error with Axe error
+     */
+
+    constructor(message: string) {
+        super(message);
+        this.name = AxeError.name;
+        this.message = message;
+    }
+
+    static throwAxeError(e: Error): void {
+        throw new AxeError(`${e.message}`);
+    }
+}
