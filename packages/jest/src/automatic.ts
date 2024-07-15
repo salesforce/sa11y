@@ -133,6 +133,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
             }
         }
     } catch (e) {
+        // TODO - remove after validation on custom ruleset AB
         if (process.env.SA11Y_CUSTOM_RULES) {
             AxeError.throwAxeError(e as Error);
         }
