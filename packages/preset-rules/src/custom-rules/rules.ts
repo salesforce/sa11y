@@ -20,6 +20,14 @@ const rulesData = [
         none: [],
         tags: ['wcag22aa', 'wcag211'],
     },
+    {
+        id: 'Resize-reflow-textoverflow',
+        selector: '*', // Target all <img> elements
+        enabled: true,
+        any: ['Resize-reflow-textoverflow-check'],
+        all: [],
+        tags: ['custom'],
+    },
 ];
 
 export default rulesData as axe.Rule[];
