@@ -24,7 +24,7 @@ export async function checkAccessibility(
     scope = document,
     rules = defaultRuleset,
     exceptionList = {},
-    addWcagInfo = false
+    addWcagInfo = true
 ) {
     // TODO (debug): adding type annotations to args, return type results in error:
     //  "[!] Error: Unexpected token" in both rollup-plugin-typescript2 and @rollup/plugin-typescript
