@@ -123,6 +123,15 @@ describe('a11y result', () => {
         expect(A11yResults.add(a11yResults, key)).toHaveLength(a11yResults.length);
         expect(A11yResults.add(a11yResults, key)).toHaveLength(0);
     });
+    it('should handle empty nodes violations', () => {
+        const violationWithoutNodes: AxeResults = [];
+        violations.forEach((violation) => {
+            violation.nodes = [];
+            violationWithoutNodes.push(violation);
+        });
+        a11yResults = A11yResults.convert(violationWithoutNodes);
+        expect(a11yResults).toHaveLength(violationWithoutNodes.length);
+    });
 });
 
 describe('appendWcag', () => {

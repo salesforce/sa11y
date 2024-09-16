@@ -16,19 +16,30 @@ import { A11yConfig, AxeResults, getViolations } from '@sa11y/common';
  */
 export type A11yCheckableContext = Document | Node | string;
 
+export async function getA11yResults(
+    context: A11yCheckableContext = document,
+    rules: A11yConfig = defaultRuleset,
+    enableIncompleteResults = false
+): Promise<AxeResults> {
+    return enableIncompleteResults
+        ? getViolationsJSDOM(context, rules, 'incomplete')
+        : getViolationsJSDOM(context, rules, 'violations');
+}
 /**
- * Get list of a11y violations for given element and ruleset
+ * Get list of a11y issues (violations or incomplete) for given element and ruleset
  * @param context - DOM or HTML Node to be tested for accessibility
  * @param rules - A11yConfig preset rule to use, defaults to `base` ruleset
+ * @param reportType - Type of report ('violations' or 'incomplete')
  * @returns {@link AxeResults} - list of accessibility issues found
  */
 export async function getViolationsJSDOM(
     context: A11yCheckableContext = document,
-    rules: A11yConfig = defaultRuleset
+    rules: A11yConfig = defaultRuleset,
+    reportType: 'violations' | 'incomplete' = 'violations'
 ): Promise<AxeResults> {
     return await getViolations(async () => {
         const results = await axe.run(context as axe.ElementContext, rules as axe.RunOptions);
-        return results.violations;
+        return results[reportType];
     });
 }
 

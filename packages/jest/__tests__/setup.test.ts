@@ -5,30 +5,13 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { adaptA11yConfig, adaptA11yConfigCustomRules, registerSa11yMatcher } from '../src/setup';
-import { base, extended } from '@sa11y/preset-rules';
+import { registerSa11yMatcher } from '../src/setup';
 import { expect, jest } from '@jest/globals';
 
 describe('jest setup', () => {
     registerSa11yMatcher();
     it('should define matcher on expect object', () => {
         expect(expect['toBeAccessible']).toBeDefined();
-    });
-
-    it.each([extended, base])('should customize %s preset-rule as expected', (config) => {
-        expect(config.runOnly.values).toContain('color-contrast');
-        expect(adaptA11yConfig(config).runOnly.values).not.toContain('color-contrast');
-        // original ruleset is not modified
-        expect(config.runOnly.values).toContain('color-contrast');
-    });
-    it('should customize preset-rule as expected for custom rules', () => {
-        expect(base.runOnly.values).toContain('color-contrast');
-        const rules = adaptA11yConfigCustomRules(base, ['rule1', 'rule2']).runOnly.values;
-        expect(rules).toContain('rule1');
-        expect(rules).toContain('rule2');
-
-        // original ruleset is not modified
-        expect(base.runOnly.values).toContain('color-contrast');
     });
 
     /* Skipped: Difficult to mock the global "expect" when we are `import {expect} from '@jest/globals'` */

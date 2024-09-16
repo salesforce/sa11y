@@ -6,7 +6,7 @@
  */
 
 import { toBeAccessible } from './matcher';
-import { A11yConfig, useFilesToBeExempted, registerCustomRules } from '@sa11y/common';
+import { useFilesToBeExempted, registerCustomRules } from '@sa11y/common';
 import {
     AutoCheckOpts,
     registerSa11yAutomaticChecks,
@@ -15,25 +15,6 @@ import {
 } from './automatic';
 import { expect } from '@jest/globals';
 import { changesData, rulesData, checkData } from '@sa11y/preset-rules';
-
-export const disabledRules = [
-    // Descendancy checks that would fail at unit/component level, but pass at page level
-    'aria-required-children',
-    'aria-required-parent',
-    'dlitem',
-    'definition-list',
-    'list',
-    'listitem',
-    'landmark-one-main',
-    // color-contrast doesn't work for JSDOM and might affect performance
-    //  https://github.com/dequelabs/axe-core/issues/595
-    //  https://github.com/dequelabs/axe-core/blob/develop/doc/examples/jsdom/test/a11y.js
-    'color-contrast',
-    // audio, video elements are stubbed out in JSDOM
-    //  https://github.com/jsdom/jsdom/issues/2155
-    'audio-caption',
-    'video-caption',
-];
 
 /**
  * Options to be passed on to {@link setup}
@@ -55,6 +36,7 @@ const defaultSa11yOpts: Sa11yOpts = {
         cleanupAfterEach: false,
         consolidateResults: false,
         runDOMMutationObserver: false,
+        enableIncompleteResults: false,
     },
 };
 
@@ -130,6 +112,7 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
 
     // set the flag to true to run sa11y in DOM Mutation Observer mode
     autoCheckOpts.runDOMMutationObserver ||= !!process.env.SA11Y_ENABLE_DOM_MUTATION_OBSERVER;
+    autoCheckOpts.enableIncompleteResults ||= !!process.env.SA11Y_ENABLE_INCOMPLETE_RESULTS;
     registerSa11yAutomaticChecks(autoCheckOpts);
 }
 /**
@@ -145,20 +128,4 @@ export function registerSa11yMatcher(): void {
                 '\nSee https://github.com/salesforce/sa11y/tree/master/packages/jest#readme for help.'
         );
     }
-}
-/**
- * Customize sa11y preset rules specific to JSDOM
- */
-export function adaptA11yConfigCustomRules(config: A11yConfig, customRules: string[]): A11yConfig {
-    const adaptedConfig = JSON.parse(JSON.stringify(config)) as A11yConfig;
-    adaptedConfig.runOnly.values = customRules;
-    adaptedConfig.ancestry = true;
-    return adaptedConfig;
-}
-export function adaptA11yConfig(config: A11yConfig, filterRules = disabledRules): A11yConfig {
-    // TODO (refactor): Move into preset-rules pkg as a generic rules filter util
-    const adaptedConfig = JSON.parse(JSON.stringify(config)) as A11yConfig;
-    adaptedConfig.runOnly.values = config.runOnly.values.filter((rule) => !filterRules.includes(rule));
-    adaptedConfig.ancestry = true;
-    return adaptedConfig;
 }

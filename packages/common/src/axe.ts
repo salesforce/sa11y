@@ -6,19 +6,22 @@
  */
 
 import * as axe from 'axe-core';
-import { RuleMetadata } from 'axe-core';
+import { resultGroups, RuleMetadata } from 'axe-core';
 
 export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks using axe:';
 
 export const axeVersion: string | undefined = axe.version;
 
-export type AxeResults = axe.Result[];
+export type AxeResults = axe.Result[] | axeIncompleteResults[];
 
 /**
  * Interface that represents a function that runs axe and returns violations
  */
 interface AxeRunner {
     (): Promise<AxeResults>;
+}
+export interface axeIncompleteResults extends axe.Result {
+    message?: string;
 }
 
 /**
@@ -29,7 +32,7 @@ export interface A11yConfig extends axe.RunOptions {
         type: 'rule';
         values: string[];
     };
-    resultTypes: ['violations'];
+    resultTypes: resultGroups[];
 }
 
 /**

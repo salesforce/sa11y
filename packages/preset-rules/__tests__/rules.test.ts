@@ -9,7 +9,15 @@ import { base, full, extended, defaultRuleset, excludedRules, getDefaultRuleset 
 import { baseRulesInfo } from '../src/base';
 import { extendedRulesInfo } from '../src/extended';
 import { getRulesDoc } from '../src/docgen';
-import { filterRulesByPriority, getPriorityFilter, priorities, RuleInfo } from '../src/rules';
+import {
+    filterRulesByPriority,
+    getPriorityFilter,
+    priorities,
+    RuleInfo,
+    adaptA11yConfig,
+    adaptA11yConfigCustomRules,
+    adaptA11yConfigIncompleteResults,
+} from '../src/rules';
 import { axeVersion } from '@sa11y/common';
 import * as axe from 'axe-core';
 import * as fs from 'fs';
@@ -132,5 +140,30 @@ describe('preset-rules priority config', () => {
     it.each(priorities)('should set priority based on env var', (priority) => {
         process.env.SA11Y_RULESET_PRIORITY = priority;
         expect(getPriorityFilter()).toEqual(priority);
+    });
+});
+
+describe('config adapt functions', () => {
+    it.each([extended, base])('should customize %s preset-rule as expected', (config) => {
+        expect(config.runOnly.values).toContain('color-contrast');
+        expect(adaptA11yConfig(config).runOnly.values).not.toContain('color-contrast');
+        // original ruleset is not modified
+        expect(config.runOnly.values).toContain('color-contrast');
+    });
+
+    it('should customize preset-rule as expected for custom rules', () => {
+        expect(base.runOnly.values).toContain('color-contrast');
+        const rules = adaptA11yConfigCustomRules(base, ['rule1', 'rule2']).runOnly.values;
+        expect(rules).toContain('rule1');
+        expect(rules).toContain('rule2');
+
+        // original ruleset is not modified
+        expect(base.runOnly.values).toContain('color-contrast');
+    });
+
+    it('should customize config as expected for incomplete results', () => {
+        expect(base.reporter).toBe('no-passes');
+        const changedReporter = adaptA11yConfigIncompleteResults(base).reporter;
+        expect(changedReporter).toContain('v2');
     });
 });
