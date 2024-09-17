@@ -22,12 +22,11 @@ export const namespace = 'sa11y';
  * Wrapper function to check accessibility to be invoked after the sa11y minified JS file
  * is injected into the browser.
  *
- * @param {Document | HTMLElement} scope - Scope of the analysis, defaults to the document.
- * @param {Object} rules - Preset sa11y rules, defaults to {@link base}.
- * @param {Object} exceptionList - Mapping of rule to CSS selectors to be filtered out using {@link exceptionListFilter}.
- * @param {boolean} addWcagInfo - Flag to add WCAG information to the results, defaults to false.
- * @param {boolean} enableIncompleteResults - Flag to include incomplete results in the analysis, defaults to false.
- * @returns {Promise<string>} JSON stringified filtered results.
+ * @param scope - Scope of the analysis, defaults to the document.
+ * @param rules - Preset sa11y rules, defaults to {@link base}.
+ * @param exceptionList - Mapping of rule to CSS selectors to be filtered out using {@link exceptionListFilter}.
+ * @param addWcagInfo - Flag to add WCAG information to the results, defaults to false.
+ * @param enableIncompleteResults - Flag to include incomplete results in the analysis, defaults to false.
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function checkAccessibility(

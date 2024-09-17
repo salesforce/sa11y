@@ -8,7 +8,7 @@
 import * as axe from 'axe-core';
 import { defaultRuleset } from '@sa11y/preset-rules';
 import { A11yError, exceptionListFilterSelectorKeywords } from '@sa11y/format';
-import { A11yConfig, AxeResults, getViolations } from '@sa11y/common';
+import { A11yConfig, AxeResults, getViolations, getIncomplete } from '@sa11y/common';
 
 /**
  * Context that can be checked for accessibility: Document, Node or CSS selector.
@@ -16,17 +16,33 @@ import { A11yConfig, AxeResults, getViolations } from '@sa11y/common';
  */
 export type A11yCheckableContext = Document | Node | string;
 
-export async function getA11yResults(
+export async function getA11yResultsJSDOM(
     context: A11yCheckableContext = document,
     rules: A11yConfig = defaultRuleset,
     enableIncompleteResults = false
 ): Promise<AxeResults> {
-    return enableIncompleteResults
-        ? getViolationsJSDOM(context, rules, 'incomplete')
-        : getViolationsJSDOM(context, rules, 'violations');
+    return enableIncompleteResults ? getIncompleteJSDOM(context, rules) : getViolationsJSDOM(context, rules);
 }
+
 /**
- * Get list of a11y issues (violations or incomplete) for given element and ruleset
+ * Get list of a11y issues incomplete for given element and ruleset
+ * @param context - DOM or HTML Node to be tested for accessibility
+ * @param rules - A11yConfig preset rule to use, defaults to `base` ruleset
+ * @param reportType - Type of report ('violations' or 'incomplete')
+ * @returns {@link AxeResults} - list of accessibility issues found
+ */
+export async function getIncompleteJSDOM(
+    context: A11yCheckableContext = document,
+    rules: A11yConfig = defaultRuleset
+): Promise<AxeResults> {
+    return await getIncomplete(async () => {
+        const results = await axe.run(context as axe.ElementContext, rules as axe.RunOptions);
+        return results.incomplete;
+    });
+}
+
+/**
+ * Get list of a11y issues violations for given element and ruleset
  * @param context - DOM or HTML Node to be tested for accessibility
  * @param rules - A11yConfig preset rule to use, defaults to `base` ruleset
  * @param reportType - Type of report ('violations' or 'incomplete')
@@ -34,12 +50,11 @@ export async function getA11yResults(
  */
 export async function getViolationsJSDOM(
     context: A11yCheckableContext = document,
-    rules: A11yConfig = defaultRuleset,
-    reportType: 'violations' | 'incomplete' = 'violations'
+    rules: A11yConfig = defaultRuleset
 ): Promise<AxeResults> {
     return await getViolations(async () => {
         const results = await axe.run(context as axe.ElementContext, rules as axe.RunOptions);
-        return results[reportType];
+        return results.violations;
     });
 }
 

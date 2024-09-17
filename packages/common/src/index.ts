@@ -13,6 +13,7 @@ export {
     axeVersion,
     getAxeRules,
     getViolations,
+    getIncomplete,
 } from './axe';
 export { WdioAssertFunction, WdioOptions } from './wdio';
 export { errMsgHeader, ExceptionList } from './format';

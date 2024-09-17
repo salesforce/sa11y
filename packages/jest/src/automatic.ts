@@ -6,7 +6,7 @@
  */
 
 import { AxeResults, log, useCustomRules } from '@sa11y/common';
-import { getA11yResults } from '@sa11y/assert';
+import { getA11yResultsJSDOM } from '@sa11y/assert';
 import { A11yError, exceptionListFilterSelectorKeywords } from '@sa11y/format';
 import { isTestUsingFakeTimer } from './matcher';
 import { expect } from '@jest/globals';
@@ -108,17 +108,19 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
                 //      : ${testPath}`
                 // );
                 // W-10004832 - Exclude descendancy based rules from automatic checks
-                a11yResults.push(...(await getA11yResults(currNode, config, opts.enableIncompleteResults)));
+                a11yResults.push(...(await getA11yResultsJSDOM(currNode, config, opts.enableIncompleteResults)));
                 currNode = walker.nextSibling();
             }
         } else {
-            a11yResults.push(...(await getA11yResults(document.body, config, opts.enableIncompleteResults)));
+            a11yResults.push(...(await getA11yResultsJSDOM(document.body, config, opts.enableIncompleteResults)));
             document.body.innerHTML = '';
             // loop mutated nodes
             for await (const mutatedNode of mutatedNodes) {
                 if (mutatedNode) {
                     document.body.innerHTML = mutatedNode;
-                    a11yResults.push(...(await getA11yResults(document.body, config, opts.enableIncompleteResults)));
+                    a11yResults.push(
+                        ...(await getA11yResultsJSDOM(document.body, config, opts.enableIncompleteResults))
+                    );
                 }
             }
         }

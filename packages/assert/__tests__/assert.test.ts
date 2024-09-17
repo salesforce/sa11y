@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { assertAccessible, getA11yResults } from '../src/assert';
+import { assertAccessible, getA11yResultsJSDOM } from '../src/assert';
 import { base, extended, defaultPriority, getA11yConfig, adaptA11yConfigIncompleteResults } from '@sa11y/preset-rules';
 import {
     a11yIssuesCount,
@@ -70,14 +70,14 @@ describe('assertAccessible API', () => {
 
     it.each([base, extended])('should throw no errors for dom with no a11y issues with config %#', async (config) => {
         document.body.innerHTML = domWithNoA11yIssues;
-        expect(async () => await getA11yResults(document, config, false)).toHaveLength(0);
+        expect(async () => await getA11yResultsJSDOM(document, config, false)).toHaveLength(0);
         await assertAccessible(document, config); // No error thrown
     });
 
     it('should throw errors for dom with incomplete issues with base config', async () => {
         document.body.innerHTML = domWithA11yIncompleteIssues;
         const config = adaptA11yConfigIncompleteResults(base);
-        expect(await getA11yResults(document, config, true)).toHaveLength(1);
+        expect(await getA11yResultsJSDOM(document, config, true)).toHaveLength(1);
     });
 
     it.each([
@@ -89,7 +89,7 @@ describe('assertAccessible API', () => {
         async (testDOM: string, expectedAssertions: number, expectedViolations: number) => {
             document.body.innerHTML = testDOM;
             expect.assertions(expectedAssertions);
-            await expect(getA11yResults()).resolves.toHaveLength(expectedViolations);
+            await expect(getA11yResultsJSDOM()).resolves.toHaveLength(expectedViolations);
             if (expectedViolations > 0) {
                 // eslint-disable-next-line jest/no-conditional-expect
                 await expect(assertAccessible()).rejects.toThrow(`${expectedViolations} Accessibility issues found`);

@@ -36,17 +36,33 @@ export interface A11yConfig extends axe.RunOptions {
 }
 
 /**
+ * Get results by running axe with given function
+ * @param axeRunner - function satisfying AxeRunner interface
+ */
+export async function getA11yResults(axeRunner: AxeRunner): Promise<AxeResults> {
+    let results;
+    try {
+        results = await axeRunner();
+    } catch (e) {
+        throw new Error(`${axeRuntimeExceptionMsgPrefix} ${(e as Error).message}`);
+    }
+    return results;
+}
+
+/**
+ * Get incomplete by running axe with given function
+ * @param axeRunner - function satisfying AxeRunner interface
+ */
+export async function getIncomplete(axeRunner: AxeRunner): Promise<AxeResults> {
+    return getA11yResults(axeRunner);
+}
+
+/**
  * Get violations by running axe with given function
  * @param axeRunner - function satisfying AxeRunner interface
  */
 export async function getViolations(axeRunner: AxeRunner): Promise<AxeResults> {
-    let violations;
-    try {
-        violations = await axeRunner();
-    } catch (e) {
-        throw new Error(`${axeRuntimeExceptionMsgPrefix} ${(e as Error).message}`);
-    }
-    return violations;
+    return getA11yResults(axeRunner);
 }
 
 /**
