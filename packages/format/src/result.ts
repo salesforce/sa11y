@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { AxeResults } from '@sa11y/common';
+import { AxeResults, axeIncompleteResults } from '@sa11y/common';
 import { NodeResult, Result, CheckResult } from 'axe-core';
 import { priorities, wcagLevels, WcagMetadata } from '@sa11y/preset-rules';
 
@@ -61,6 +61,17 @@ export class A11yResults {
      */
     static convert(violations: AxeResults): A11yResult[] {
         return A11yResults.sort(violations).flatMap((violation) => {
+            if (!violation.nodes?.length) {
+                // Handle case where nodes are empty by creating a default A11yResult
+                const emptyNodeResult: NodeResult = {
+                    html: '',
+                    target: [],
+                    any: [],
+                    all: [],
+                    none: [],
+                };
+                return [new A11yResult(violation, emptyNodeResult)];
+            }
             return violation.nodes.map((node) => {
                 return new A11yResult(violation, node);
             });
@@ -92,8 +103,9 @@ export class A11yResult {
     public readonly relatedNodeAll: string;
     public readonly relatedNodeNone: string;
     private readonly wcagData: WcagMetadata; // Used to sort results
+    public readonly message: string | undefined;
 
-    constructor(violation: Result, node: NodeResult) {
+    constructor(violation: Result | axeIncompleteResults, node: NodeResult) {
         this.id = violation.id;
         this.description = violation.description;
         this.wcagData = new WcagMetadata(violation);
@@ -112,6 +124,7 @@ export class A11yResult {
         this.relatedNodeAny = this.formatRelatedNodes(node.any);
         this.relatedNodeAll = this.formatRelatedNodes(node.all);
         this.relatedNodeNone = this.formatRelatedNodes(node.none);
+        if ('message' in violation) this.message = violation?.message;
     }
 
     /**

@@ -15,6 +15,25 @@ export type Priority = (typeof priorities)[number];
 export const defaultPriority: Priority = 'P3';
 export const defaultWcagVersion: WcagVersion = '2.1';
 
+export const disabledRules = [
+    // Descendancy checks that would fail at unit/component level, but pass at page level
+    'aria-required-children',
+    'aria-required-parent',
+    'dlitem',
+    'definition-list',
+    'list',
+    'listitem',
+    'landmark-one-main',
+    // color-contrast doesn't work for JSDOM and might affect performance
+    //  https://github.com/dequelabs/axe-core/issues/595
+    //  https://github.com/dequelabs/axe-core/blob/develop/doc/examples/jsdom/test/a11y.js
+    'color-contrast',
+    // audio, video elements are stubbed out in JSDOM
+    //  https://github.com/jsdom/jsdom/issues/2155
+    'audio-caption',
+    'video-caption',
+];
+
 /**
  * Metadata about rules such as Priority and WCAG SC (overriding values from axe tags)
  */
@@ -61,6 +80,36 @@ export function filterRulesByPriority(rules: RuleInfo, priority: Priority = ''):
         }
     }
     return ruleIDs.sort();
+}
+
+/**
+ * Customize sa11y preset rules specific to JSDOM
+ */
+export function adaptA11yConfigCustomRules(config: A11yConfig, customRules: string[]): A11yConfig {
+    const adaptedConfig = JSON.parse(JSON.stringify(config)) as A11yConfig;
+    adaptedConfig.runOnly.values = customRules;
+    adaptedConfig.ancestry = true;
+    return adaptedConfig;
+}
+
+/**
+ * Adapt a11y config to report only incomplete results
+ */
+export function adaptA11yConfigIncompleteResults(config: A11yConfig): A11yConfig {
+    const adaptedConfig = JSON.parse(JSON.stringify(config)) as A11yConfig;
+    adaptedConfig.reporter = 'v2';
+    adaptedConfig.resultTypes = ['incomplete'];
+    return adaptedConfig;
+}
+
+/**
+ * Adapt a11y config by filtering out disabled rules
+ */
+export function adaptA11yConfig(config: A11yConfig, filterRules = disabledRules): A11yConfig {
+    const adaptedConfig = JSON.parse(JSON.stringify(config)) as A11yConfig;
+    adaptedConfig.runOnly.values = config.runOnly.values.filter((rule) => !filterRules.includes(rule));
+    adaptedConfig.ancestry = true;
+    return adaptedConfig;
 }
 
 /**

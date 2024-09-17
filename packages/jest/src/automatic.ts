@@ -6,12 +6,16 @@
  */
 
 import { AxeResults, log, useCustomRules } from '@sa11y/common';
-import { getViolationsJSDOM } from '@sa11y/assert';
+import { getA11yResultsJSDOM } from '@sa11y/assert';
 import { A11yError, exceptionListFilterSelectorKeywords } from '@sa11y/format';
 import { isTestUsingFakeTimer } from './matcher';
 import { expect } from '@jest/globals';
-import { adaptA11yConfig, adaptA11yConfigCustomRules } from './setup';
-import { defaultRuleset } from '@sa11y/preset-rules';
+import {
+    defaultRuleset,
+    adaptA11yConfig,
+    adaptA11yConfigCustomRules,
+    adaptA11yConfigIncompleteResults,
+} from '@sa11y/preset-rules';
 
 /**
  * Options for Automatic checks to be passed to {@link registerSa11yAutomaticChecks}
@@ -25,6 +29,7 @@ export type AutoCheckOpts = {
     // List of test file paths (as regex) to filter for automatic checks
     filesFilter?: string[];
     runDOMMutationObserver?: boolean;
+    enableIncompleteResults?: boolean;
 };
 
 /**
@@ -36,6 +41,7 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
     consolidateResults: true,
     filesFilter: [],
     runDOMMutationObserver: false,
+    enableIncompleteResults: false,
 };
 
 let originalDocumentBodyHtml: string | null = null;
@@ -78,7 +84,13 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
         return;
     }
 
-    let violations: AxeResults = [];
+    const customRules = useCustomRules();
+    let config =
+        customRules.length === 0
+            ? adaptA11yConfig(defaultRuleset)
+            : adaptA11yConfigCustomRules(defaultRuleset, customRules);
+    if (opts.enableIncompleteResults) config = adaptA11yConfigIncompleteResults(config);
+    let a11yResults: AxeResults = [];
     const currentDocumentHtml = document.body.innerHTML;
     if (originalDocumentBodyHtml) {
         document.body.innerHTML = originalDocumentBodyHtml;
@@ -86,7 +98,6 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();
-    const customRules = useCustomRules();
     try {
         if (!opts.runDOMMutationObserver) {
             while (currNode !== null) {
@@ -97,38 +108,19 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
                 //      : ${testPath}`
                 // );
                 // W-10004832 - Exclude descendancy based rules from automatic checks
-                if (customRules.length === 0)
-                    violations.push(...(await getViolationsJSDOM(currNode, adaptA11yConfig(defaultRuleset))));
-                else
-                    violations.push(
-                        ...(await getViolationsJSDOM(currNode, adaptA11yConfigCustomRules(defaultRuleset, customRules)))
-                    );
+                a11yResults.push(...(await getA11yResultsJSDOM(currNode, config, opts.enableIncompleteResults)));
                 currNode = walker.nextSibling();
             }
         } else {
-            if (customRules.length === 0)
-                violations.push(...(await getViolationsJSDOM(document.body, adaptA11yConfig(defaultRuleset))));
-            else
-                violations.push(
-                    ...(await getViolationsJSDOM(
-                        document.body,
-                        adaptA11yConfigCustomRules(defaultRuleset, customRules)
-                    ))
-                );
+            a11yResults.push(...(await getA11yResultsJSDOM(document.body, config, opts.enableIncompleteResults)));
             document.body.innerHTML = '';
             // loop mutated nodes
             for await (const mutatedNode of mutatedNodes) {
                 if (mutatedNode) {
                     document.body.innerHTML = mutatedNode;
-                    if (customRules.length === 0)
-                        violations.push(...(await getViolationsJSDOM(document.body, adaptA11yConfig(defaultRuleset))));
-                    else
-                        violations.push(
-                            ...(await getViolationsJSDOM(
-                                document.body,
-                                adaptA11yConfigCustomRules(defaultRuleset, customRules)
-                            ))
-                        );
+                    a11yResults.push(
+                        ...(await getA11yResultsJSDOM(document.body, config, opts.enableIncompleteResults))
+                    );
                 }
             }
         }
@@ -143,12 +135,12 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
         //  Will this affect all errors globally?
         // Error.stackTraceLimit = 0;
         if (process.env.SELECTOR_FILTER_KEYWORDS) {
-            violations = exceptionListFilterSelectorKeywords(
-                violations,
+            a11yResults = exceptionListFilterSelectorKeywords(
+                a11yResults,
                 process.env.SELECTOR_FILTER_KEYWORDS.split(',')
             );
         }
-        A11yError.checkAndThrow(violations, { deduplicate: opts.consolidateResults });
+        A11yError.checkAndThrow(a11yResults, { deduplicate: opts.consolidateResults });
     }
 }
 

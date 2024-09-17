@@ -10,7 +10,12 @@ import { A11yError, A11yResult } from '@sa11y/format';
 import { getA11yError } from '@sa11y/format/__tests__/format.test';
 import { domWithVisualA11yIssues } from '@sa11y/test-utils';
 import { expect } from '@jest/globals';
-import { resultsProcessor, resultsProcessorManualChecks } from '../src/groupViolationResultsProcessor';
+import {
+    resultsProcessor,
+    resultsProcessorManualChecks,
+    ErrorElement,
+    createA11yErrorElements,
+} from '../src/groupViolationResultsProcessor';
 
 const a11yResults: A11yResult[] = [];
 const aggregatedResults = makeEmptyAggregatedTestResult();
@@ -82,5 +87,37 @@ describe('Group Violation Results Processor', () => {
         expect(processedResults).toMatchSnapshot();
         expect(processedResults).not.toEqual(aggregatedResults);
         expect(processedResults.numFailedTestSuites).toBe(1);
+    });
+
+    it('should process error Elements as expected', () => {
+        const errorElements: ErrorElement[] = [
+            {
+                html: '<div role="button" tabindex="0">Click me</div>',
+                selectors: '.button',
+                hierarchy: 'body > div.button',
+                any: 'role button is interactive',
+                all: 'element should be focusable and have a click handler',
+                none: 'no color contrast issues',
+                relatedNodeAny: 'none',
+                relatedNodeAll: 'none',
+                relatedNodeNone: 'none',
+                message: 'Ensure the element has a valid interactive role and behavior.',
+            },
+            {
+                html: '<img src="image.jpg" alt="">',
+                selectors: 'img',
+                hierarchy: 'body > img',
+                all: 'image elements must have an alt attribute',
+                none: 'no missing alt attribute allowed',
+                relatedNodeAny: 'none',
+                relatedNodeAll: 'none',
+                relatedNodeNone: 'none',
+                message: 'Add an appropriate alt attribute describing the image.',
+                any: '',
+            },
+        ];
+
+        const createdA11yErrorElements = createA11yErrorElements(errorElements);
+        expect(createdA11yErrorElements).toMatchSnapshot();
     });
 });

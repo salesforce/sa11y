@@ -6,19 +6,22 @@
  */
 
 import * as axe from 'axe-core';
-import { RuleMetadata } from 'axe-core';
+import { resultGroups, RuleMetadata } from 'axe-core';
 
 export const axeRuntimeExceptionMsgPrefix = 'Error running accessibility checks using axe:';
 
 export const axeVersion: string | undefined = axe.version;
 
-export type AxeResults = axe.Result[];
+export type AxeResults = axe.Result[] | axeIncompleteResults[];
 
 /**
  * Interface that represents a function that runs axe and returns violations
  */
 interface AxeRunner {
     (): Promise<AxeResults>;
+}
+export interface axeIncompleteResults extends axe.Result {
+    message?: string;
 }
 
 /**
@@ -29,7 +32,29 @@ export interface A11yConfig extends axe.RunOptions {
         type: 'rule';
         values: string[];
     };
-    resultTypes: ['violations'];
+    resultTypes: resultGroups[];
+}
+
+/**
+ * Get results by running axe with given function
+ * @param axeRunner - function satisfying AxeRunner interface
+ */
+export async function getA11yResults(axeRunner: AxeRunner): Promise<AxeResults> {
+    let results;
+    try {
+        results = await axeRunner();
+    } catch (e) {
+        throw new Error(`${axeRuntimeExceptionMsgPrefix} ${(e as Error).message}`);
+    }
+    return results;
+}
+
+/**
+ * Get incomplete by running axe with given function
+ * @param axeRunner - function satisfying AxeRunner interface
+ */
+export async function getIncomplete(axeRunner: AxeRunner): Promise<AxeResults> {
+    return getA11yResults(axeRunner);
 }
 
 /**
@@ -37,13 +62,7 @@ export interface A11yConfig extends axe.RunOptions {
  * @param axeRunner - function satisfying AxeRunner interface
  */
 export async function getViolations(axeRunner: AxeRunner): Promise<AxeResults> {
-    let violations;
-    try {
-        violations = await axeRunner();
-    } catch (e) {
-        throw new Error(`${axeRuntimeExceptionMsgPrefix} ${(e as Error).message}`);
-    }
-    return violations;
+    return getA11yResults(axeRunner);
 }
 
 /**

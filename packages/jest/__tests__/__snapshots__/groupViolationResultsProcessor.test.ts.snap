@@ -1,5 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Group Violation Results Processor should process error Elements as expected 1`] = `
+"				(1) - HTML element : <div role=\\"button\\" tabindex=\\"0\\">Click me</div>
+					- CSS selector(s) : .button
+					- HTML Tag Hierarchy : body > div.button
+					- Error Message (Needs Review) : Ensure the element has a valid interactive role and behavior.
+					- More Info: To solve the problem, you need to fix at least (1) of the following:
+role button is interactive
+					- Related Nodes: 
+none
+					- And fix the following:
+element should be focusable and have a click handler
+					- Related Nodes: 
+none
+					- And fix the following:
+no color contrast issues
+					- Related Nodes: 
+none
+				(2) - HTML element : <img src=\\"image.jpg\\" alt=\\"\\">
+					- CSS selector(s) : img
+					- HTML Tag Hierarchy : body > img
+					- Error Message (Needs Review) : Add an appropriate alt attribute describing the image.
+					- More Info: To solve the problem, you need to fix one of the following:
+image elements must have an alt attribute
+					- Related Nodes: 
+none
+					- And fix the following:
+no missing alt attribute allowed
+					- Related Nodes: 
+none"
+`;
+
 exports[`Group Violation Results Processor should process test results as expected 1`] = `
 Object {
   "numFailedTestSuites": 1,

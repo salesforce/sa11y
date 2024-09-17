@@ -23,5 +23,6 @@ export {
     videoURL,
     customRulesFilePath,
     domWithA11yCustomIssues,
+    domWithA11yIncompleteIssues,
 } from './test-data';
 export { beforeEachSetup, cartesianProduct } from './utils';

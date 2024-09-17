@@ -19,7 +19,7 @@ interface FailureMatcherDetail {
     };
 }
 
-type ErrorElement = {
+export type ErrorElement = {
     html: string;
     selectors: string;
     hierarchy: string;
@@ -29,6 +29,7 @@ type ErrorElement = {
     relatedNodeAny: string;
     relatedNodeAll: string;
     relatedNodeNone: string;
+    message?: string;
 };
 
 type A11yViolation = {
@@ -52,7 +53,7 @@ const axeMessages = {
 /**
  * Create a test failure html elements array grouped by rule violation
  */
-function createA11yErrorElements(errorElements: ErrorElement[]) {
+export function createA11yErrorElements(errorElements: ErrorElement[]) {
     const a11yErrorElements: string[] = [];
     let onlyOneSummary = false;
 
@@ -66,6 +67,8 @@ function createA11yErrorElements(errorElements: ErrorElement[]) {
             .replace(/&gt;/, '>')}`;
         errorMessage += `${formatForAxeMessage}- CSS selector(s) : ${errorElement.selectors.replace(/&gt;/, '>')}`;
         errorMessage += `${formatForAxeMessage}- HTML Tag Hierarchy : ${errorElement.hierarchy}`;
+        if (errorElement.message)
+            errorMessage += `${formatForAxeMessage}- Error Message (Needs Review) : ${errorElement.message}`;
         const isAny = errorElement.any?.length > 0;
         const isAll = errorElement.all?.length > 0;
         const isNone = errorElement.none?.length > 0;
@@ -147,6 +150,7 @@ function processA11yDetailsAndMessages(error: A11yError, a11yFailureMessages: st
             relatedNodeAny: a11yResult.relatedNodeAny,
             relatedNodeAll: a11yResult.relatedNodeAll,
             relatedNodeNone: a11yResult.relatedNodeNone,
+            message: a11yResult?.message,
         });
     });
 
@@ -250,6 +254,7 @@ export function resultsProcessorManualChecks(results: AggregatedResult): Aggrega
 const exportedFunctions = {
     resultsProcessor,
     resultsProcessorManualChecks,
+    createA11yErrorElements,
 };
 
 module.exports = exportedFunctions;
