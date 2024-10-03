@@ -2,25 +2,25 @@
 
 exports[`assertAccessible API should throw an error with a11y issues found for dom with a11y issues 1`] = `
 "2 Accessibility issues found
- * (document-title) Ensures each HTML document contains a non-empty <title> element: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/document-title 
+ * (document-title) Ensure each HTML document contains a non-empty <title> element: html
+	- Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title 
 	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 
-* (link-name) Ensures links have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+* (link-name) Ensure links have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`assertAccessible API should throw error with HTML element with a11y issues 1`] = `
 "1 Accessibility issues found
- * (link-name) Ensures links have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+ * (link-name) Ensure links have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
 
 exports[`assertAccessible API should throw error with HTML element with a11y issues when passed with selector keywords 1`] = `
 "1 Accessibility issues found
- * (link-name) Ensures links have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.9/link-name 
+ * (link-name) Ensure links have discernible text: a
+	- Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name 
 	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
 `;
