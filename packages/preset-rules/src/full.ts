@@ -13,6 +13,7 @@ export const excludedRules = [
     'aria-conditional-attr',
     'aria-prohibited-attr',
     'aria-deprecated-role',
+    'summary-name',
 ];
 
 // Add excluded rules to extended to get the full list
