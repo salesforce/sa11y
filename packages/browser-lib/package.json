@@ -36,15 +36,15 @@
     "dependencies": {
         "@sa11y/format": "5.1.0",
         "@sa11y/preset-rules": "5.1.0",
-        "axe-core": "4.9.0"
+        "axe-core": "4.10.0"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "23.0.7",
-        "@rollup/plugin-node-resolve": "15.2.3",
+        "@rollup/plugin-node-resolve": "15.3.0",
         "@rollup/plugin-replace": "5.0.7",
         "@sa11y/common": "5.1.0",
         "@sa11y/test-utils": "5.1.0",
-        "rollup": "3.29.4",
+        "rollup": "3.29.5",
         "rollup-plugin-polyfill-node": "0.13.0",
         "rollup-plugin-progress": "1.1.2",
         "rollup-plugin-sizes": "1.0.6",

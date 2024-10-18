@@ -32,14 +32,14 @@
         "@sa11y/common": "5.1.0",
         "@sa11y/format": "5.1.0",
         "@sa11y/preset-rules": "5.1.0",
-        "axe-core": "4.9.0"
+        "axe-core": "4.10.0"
     },
     "peerDependencies": {
         "webdriverio": ">=6.0.0"
     },
     "devDependencies": {
         "@sa11y/test-utils": "5.1.0",
-        "webdriverio": "8.40.5"
+        "webdriverio": "8.40.6"
     },
     "publishConfig": {
         "access": "public"
