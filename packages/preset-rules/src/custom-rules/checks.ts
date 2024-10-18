@@ -21,7 +21,7 @@ const checkData = [
     {
         id: 'Resize-reflow-textoverflow-check',
         evaluate:
-            "function (node) {const style = window.getComputedStyle(node); const tabIndex = node.getAttribute('tabindex'); if (tabIndex === '-1' && node.actualNode && !isVisibleOnScreen(node) && !isVisibleToScreenReaders(node)) { return false; } if (node.innerText === '') { return false; } if (style.getPropertyValue('text-overflow') === 'ellipsis') { function isTextTruncated(element) {const isTruncated = (element.scrollWidth > element.clientWidth); return isTruncated; } return !isTextTruncated(node); } return true; }",
+            "function (node) {const style = window.getComputedStyle(node); const tabIndex = node.getAttribute('tabindex'); if (tabIndex === '-1' && node.actualNode && !isVisibleOnScreen(node) && !isVisibleToScreenReaders(node)) { return false; } if (!node.innerText ===\"\") { return false; } if (style.getPropertyValue('text-overflow') === 'ellipsis') { function isTextTruncated(element) {const isTruncated = (element.scrollWidth > element.clientWidth); return isTruncated; } return !isTextTruncated(node); } if (style.getPropertyValue('display') === '-webkit-box' && style.getPropertyValue('-webkit-line-clamp') != 0 && style.getPropertyValue('overflow') === 'hidden' && style.getPropertyValue('-webkit-box-orient') === 'vertical') { function isTextTruncated(element) { const isTruncated = (element.scrollWidth>element.clientWidth); return isTruncated; } return !isTextTruncated(node); } return true; }",
         metadata: {
             impact: 'moderate',
             messages: {
