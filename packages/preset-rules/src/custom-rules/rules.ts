@@ -22,11 +22,17 @@ const rulesData = [
     },
     {
         id: 'Resize-reflow-textoverflow',
-        selector: '*', // Target all <img> elements
+        selector: '*',
         enabled: true,
         any: ['Resize-reflow-textoverflow-check'],
         all: [],
-        tags: ['custom'],
+        metadata: {
+            description: 'Ensure Ellipses are not present as text is truncated.',
+            help: 'Text elements do not have ellipsis as text is truncated.',
+            helpUrl: 'https://example.com/custom-rule-help',
+            impact: 'moderate',
+            tags: ['wcag1410', 'custom'],
+        },
     },
 ];
 
