@@ -34,7 +34,7 @@ none"
 exports[`Group Violation Results Processor should process test results as expected 1`] = `
 Object {
   "numFailedTestSuites": 1,
-  "numFailedTests": 6,
+  "numFailedTests": 7,
   "numPassedTestSuites": 0,
   "numPassedTests": 0,
   "numPendingTestSuites": 0,
@@ -42,7 +42,7 @@ Object {
   "numRuntimeErrorTestSuites": 0,
   "numTodoTests": 0,
   "numTotalTestSuites": 0,
-  "numTotalTests": 6,
+  "numTotalTests": 7,
   "openHandles": Array [],
   "snapshot": Object {
     "added": 0,
@@ -65,7 +65,7 @@ Object {
   "testResults": Array [
     Object {
       "leaks": false,
-      "numFailingTests": 6,
+      "numFailingTests": 7,
       "numPassingTests": 0,
       "numPendingTests": 0,
       "numTodoTests": 0,
@@ -2603,6 +2603,18 @@ Fix any of the following:
           "fullName": "Error@5",
           "status": "failed",
         },
+        Object {
+          "ancestorTitles": Array [
+            "sa11y",
+          ],
+          "failureDetails": Array [
+            Object {
+              "name": "AxeError",
+            },
+          ],
+          "fullName": "AxeError@6",
+          "status": "failed",
+        },
       ],
     },
   ],
@@ -2613,7 +2625,7 @@ Fix any of the following:
 exports[`Group Violation Results Processor should process test results as expected 2`] = `
 Object {
   "numFailedTestSuites": 1,
-  "numFailedTests": 4,
+  "numFailedTests": 5,
   "numPassedTestSuites": 0,
   "numPassedTests": 0,
   "numPendingTestSuites": 0,
@@ -2621,7 +2633,7 @@ Object {
   "numRuntimeErrorTestSuites": 0,
   "numTodoTests": 0,
   "numTotalTestSuites": 0,
-  "numTotalTests": 6,
+  "numTotalTests": 7,
   "openHandles": Array [],
   "snapshot": Object {
     "added": 0,
@@ -2644,7 +2656,7 @@ Object {
   "testResults": Array [
     Object {
       "leaks": false,
-      "numFailingTests": 4,
+      "numFailingTests": 5,
       "numPassingTests": 0,
       "numPendingTests": 0,
       "numTodoTests": 0,
@@ -4621,6 +4633,24 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
           "failureMessages": Array [],
           "fullName": "Error@5",
           "status": "passed",
+        },
+        Object {
+          "ancestorTitles": Array [
+            "sa11y",
+          ],
+          "failureDetails": Array [
+            Object {
+              "name": "AxeError",
+            },
+          ],
+          "failureMessages": Array [
+            "
+            The test has failed to execute the accessibility check.
+            Please contact our Sa11y team: http://sfdc.co/sa11y-users
+            ",
+          ],
+          "fullName": "AxeError@6",
+          "status": "failed",
         },
       ],
     },
