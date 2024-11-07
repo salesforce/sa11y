@@ -43,7 +43,7 @@ The accessibility APIs need to be registered with Jest before they can be used i
 
 You can set up the sa11y API once at the project level to make it available to all the Jest tests in the project. For an example look at the [Integration test setup in @sa11y](../test-integration/README.md).
 
--   Add a Jest setup file (e.g. `jest-setup.js`) and add the following code that registers the sa11y API
+-   Add a Jest setup file (e.g. `jest-setup.js`) and add the following code that registers the sa11y API:
 
 ```javascript
 // Import using either CommonJS `require` or ES6 `import`
