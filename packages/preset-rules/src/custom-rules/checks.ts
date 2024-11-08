@@ -30,6 +30,15 @@ const checkData = [
             },
         },
     },
+    {
+        id: 'sa11y-Keyboard-button-check',
+        evaluate:
+            "function (node) { const tabIndex = node.getAttribute('tabindex'); if ( tabIndex === '-1' && node.actualNode && !isVisibleOnScreen(node) && !isVisibleToScreenReaders(node)) { return false; } if(!node.innerText ===\"\"){ return false; } if(!node.hasAttribute('tabindex')){ return false; } return true; }",
+        messages: {
+            pass: 'Button element are keyboard operable',
+            fail: "Button element are not keyboard operable, To fix add tabindex='0' attribute and appropriate keyboard event handler.",
+        },
+    },
 ];
 
 export default checkData as axe.Check[];
