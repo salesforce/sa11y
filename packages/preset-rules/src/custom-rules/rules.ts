@@ -34,6 +34,24 @@ const rulesData = [
             tags: ['wcag1410', 'custom'],
         },
     },
+    {
+        id: 'sa11y-Keyboard-button',
+        selector:
+            "[role='button']:not(a[href],button,input,select,area[href],textarea,[contentEditable=true],[disabled],details)",
+        enabled: true,
+        any: ['sa11y-Keyboard-button-check'],
+        all: [],
+        metadata: {
+            description: 'Element is not keyboard operable',
+            help: "Fix any one of the following :\n \
+                       1.The button element missing keyboard operability. To fix add tabindex='0' attribute and  appropriate keyboard event handler.\n \
+                       2.Remove role='button' attribute",
+            helpUrl: '',
+
+            impact: 'critical',
+            tags: ['wcag211', 'custom'],
+        },
+    },
 ];
 
 export default rulesData as axe.Rule[];
