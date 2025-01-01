@@ -100,7 +100,7 @@
         "lerna": "6.6.2",
         "lint-staged": "13.3.0",
         "lockfile-lint": "4.12.1",
-        "markdown-link-check": "3.11.2",
+        "markdown-link-check": "3.13.6",
         "package-dependency-graph": "1.14.4",
         "prettier": "2.8.8",
         "rimraf": "3.0.2",
