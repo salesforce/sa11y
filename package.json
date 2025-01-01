@@ -78,7 +78,7 @@
         "conventional-changelog-cli": "2.2.2",
         "cpx2": "2.0.0",
         "cspell": "6.31.3",
-        "depcheck": "1.4.3",
+        "depcheck": "1.4.7",
         "doctoc": "2.2.1",
         "eslint": "8.57.1",
         "eslint-config-prettier": "8.10.0",
