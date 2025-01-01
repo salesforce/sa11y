@@ -29,7 +29,7 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
   - [Dependency graph](#dependency-graph)
   - [Epilogue](#epilogue)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc generated TOC please keep comment here to allow the auto update -->
 
 ## Docs
 
