@@ -9,6 +9,6 @@ ignores:
 - "rollup-plugin-polyfill-node"
 - "rollup-plugin-progress"
 - "rollup-plugin-sizes"
-- "rollup-plugin-terser"
+- "@rollup/plugin-terser"
 - "rollup-plugin-typescript2"
 skip-missing: true
