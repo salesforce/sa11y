@@ -48,7 +48,7 @@
         "rollup-plugin-polyfill-node": "0.13.0",
         "rollup-plugin-progress": "1.1.2",
         "rollup-plugin-sizes": "1.0.6",
-        "@rollup/plugin-terser": "0.1.0",
+        "@rollup/plugin-terser": "0.4.4",
         "rollup-plugin-typescript2": "0.36.0"
     },
     "publishConfig": {
