@@ -12,7 +12,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import sizes from 'rollup-plugin-sizes';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import fs from 'fs'
 
 export const namespace = 'sa11y';
