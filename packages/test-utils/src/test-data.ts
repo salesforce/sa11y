@@ -14,6 +14,7 @@ const dataDir = path.resolve(__dirname, '../__data__/');
 export const domWithA11yIssuesBodyID = 'dom-with-issues';
 const fileWithA11yIssues = path.resolve(dataDir, 'a11yIssues.html');
 export const customRulesFilePath = path.resolve(dataDir, 'sa11y-custom-rules.json');
+export const customRulesFilePathInvalid = path.resolve(dataDir, 'sa11y-custom-rules-invalid.json');
 export const domWithA11yCustomIssuesPath = path.resolve(dataDir, 'a11yCustomIssues.html');
 export const domWithA11yIncompleteIssuesPath = path.resolve(dataDir, 'a11yIncompleteIssues.html');
 

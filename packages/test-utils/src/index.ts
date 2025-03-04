@@ -22,6 +22,7 @@ export {
     shadowDomID,
     videoURL,
     customRulesFilePath,
+    customRulesFilePathInvalid,
     domWithA11yCustomIssues,
     domWithA11yIncompleteIssues,
 } from './test-data';
