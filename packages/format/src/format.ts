@@ -46,6 +46,22 @@ const defaultOptions: Options = {
     deduplicate: false,
 };
 
+export class AxeError extends Error {
+    /**
+     * Throw error with Axe error
+     */
+
+    constructor(message: string) {
+        super(message);
+        this.name = AxeError.name;
+        this.message = message;
+    }
+
+    static throwAxeError(e: Error): void {
+        throw new AxeError(`${e.message}`);
+    }
+}
+
 /**
  *  Custom error object to represent a11y violations
  */

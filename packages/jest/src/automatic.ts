@@ -7,7 +7,7 @@
 
 import { AxeResults, log, useCustomRules } from '@sa11y/common';
 import { getA11yResultsJSDOM } from '@sa11y/assert';
-import { A11yError, exceptionListFilterSelectorKeywords } from '@sa11y/format';
+import { A11yError, AxeError, exceptionListFilterSelectorKeywords } from '@sa11y/format';
 import { isTestUsingFakeTimer } from './matcher';
 import { expect } from '@jest/globals';
 import {
@@ -124,6 +124,8 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
                 }
             }
         }
+    } catch (e) {
+        AxeError.throwAxeError(e as Error);
     } finally {
         if (opts.runDOMMutationObserver) {
             mutatedNodes = [];
