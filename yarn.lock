@@ -3610,10 +3610,10 @@
     deepmerge "^4.0.0"
     glob "^8.0.3"
 
-"@wdio/config@8.41.0":
-  version "8.41.0"
-  resolved "https://registry.yarnpkg.com/@wdio/config/-/config-8.41.0.tgz#367a578b9bd20557fd037d35dc79bf3c1d122d2a"
-  integrity sha512-/6Z3sfSyhX5oVde0l01fyHimbqRYIVUDBnhDG2EMSCoC2lsaJX3Bm3IYpYHYHHFsgoDCi3B3Gv++t9dn2eSZZw==
+"@wdio/config@8.43.0":
+  version "8.43.0"
+  resolved "https://registry.yarnpkg.com/@wdio/config/-/config-8.43.0.tgz#6165e9138e068fbc9ef35908667e6d1940eb5bb6"
+  integrity sha512-mptlO5Lt8hV/8T9vRkp24G4o/kpI4qa9k4bRlOsI777MgeOlCEu2xLdRvVNGcg7RigDkx4jdYXX1pIHFg7gpSA==
   dependencies:
     "@wdio/logger" "8.38.0"
     "@wdio/types" "8.41.0"
@@ -14733,14 +14733,14 @@ webdriver@7.40.0:
     ky "0.30.0"
     lodash.merge "^4.6.1"
 
-webdriver@8.42.0:
-  version "8.42.0"
-  resolved "https://registry.yarnpkg.com/webdriver/-/webdriver-8.42.0.tgz#a1b47b0ff8ffcb6c57312fc7525cee98b04c9c10"
-  integrity sha512-lPF8kkjGE9jkR8V9N9OuGdWTJEbxGbCwSQ+ym54O1MtGOALsS7is5WPRvneC4lsm57e8K6QM6bCKtaqbAnokXg==
+webdriver@8.43.0:
+  version "8.43.0"
+  resolved "https://registry.yarnpkg.com/webdriver/-/webdriver-8.43.0.tgz#98c3b027c6534285b1cda3331dd146e91ac97add"
+  integrity sha512-cfyqymgFae4gtxuvp/nz7Yat3qqlEyxopQL7H6MSSOey+mXq3kYZZ0auyuhGaaPvDidOY3Oh597cEB2ft8pW3A==
   dependencies:
     "@types/node" "^22.2.0"
     "@types/ws" "^8.5.3"
-    "@wdio/config" "8.41.0"
+    "@wdio/config" "8.43.0"
     "@wdio/logger" "8.38.0"
     "@wdio/protocols" "8.40.3"
     "@wdio/types" "8.41.0"
@@ -14783,13 +14783,13 @@ webdriverio@7.40.0:
     serialize-error "^8.0.0"
     webdriver "7.40.0"
 
-webdriverio@8.42.0:
-  version "8.42.0"
-  resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-8.42.0.tgz#3b9b22ab3af1fd33cb8914a68d06a3467c7ef1ff"
-  integrity sha512-C1dp1RioeNOUWuZTne7ZXy+hcqpdaKWSctdqpcoxEBF3+EkrU4PII0RRM8MbY8HPAongV+/66HoiJgmNOOy2/w==
+webdriverio@8.43.0:
+  version "8.43.0"
+  resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-8.43.0.tgz#3e6faab835c2de6226b18895a8786570b1f0c35b"
+  integrity sha512-aBwK25CmBQZ98MMlLteMiDiqpuQUsd1RcK6OU2eS921SM1JX4WJGCo27FAgcweb1ehX7rECL1qai1WFCrGfWIA==
   dependencies:
     "@types/node" "^22.2.0"
-    "@wdio/config" "8.41.0"
+    "@wdio/config" "8.43.0"
     "@wdio/logger" "8.38.0"
     "@wdio/protocols" "8.40.3"
     "@wdio/repl" "8.40.3"
@@ -14812,7 +14812,7 @@ webdriverio@8.42.0:
     resq "^1.9.1"
     rgb2hex "0.2.5"
     serialize-error "^11.0.1"
-    webdriver "8.42.0"
+    webdriver "8.43.0"
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
