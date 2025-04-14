@@ -14913,10 +14913,10 @@ webdriverio@7.40.0:
     serialize-error "^8.0.0"
     webdriver "7.40.0"
 
-webdriverio@8.44.0:
-  version "8.44.0"
-  resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-8.44.0.tgz#0128a905a58c306a5ea5a1b440a4b0bbb24290b0"
-  integrity sha512-yipf4nqJgFT4JsuP1pMai/4aEluPWIqY2YGQuZGamiabZFy74CCpgoRMVI1V+C7AsrLwZLKvOxOvTFmohIFTeg==
+webdriverio@8.44.1:
+  version "8.44.1"
+  resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-8.44.1.tgz#a8d80dceb842ab76156c11d9b2d45960c9b680ba"
+  integrity sha512-oICYl524/wtl7c9vagAe7OIn0vgzVPg4uqh9NdNAw0Lg3PZPNjb8JFELm/3+CvBH5Gjdt1HLbe6RJwphz0jnKw==
   dependencies:
     "@types/node" "^22.2.0"
     "@wdio/config" "8.43.0"
