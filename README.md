@@ -58,7 +58,7 @@ This repo contains the following packages for automated accessibility testing:
 
 -   Provides a `toBeAccessible()` accessibility matcher for Jest
     -   integrates the [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
--   Provides an option to set up the sa11y API to be invoked automatically at the end of each test
+-   Provides an option to set up the sa11y API to be invoked automatically at the end of each Jest test
 -   To add accessibility testing to your Jest tests use this package
 
 ![Screenshot showing Sa11y Jest API usage and a11y errors showing up in VSCode](https://github.com/salesforce/sa11y/blob/media/screenshot/jest.png?raw=true)
