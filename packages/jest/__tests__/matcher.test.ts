@@ -16,7 +16,7 @@ import {
     shadowDomID,
 } from '@sa11y/test-utils';
 import { isTestUsingFakeTimer } from '../src/matcher';
-import { automaticCheck } from '../src/automatic';
+import { runAutomaticCheck } from '@sa11y/matcher';
 import { expect, jest } from '@jest/globals';
 import { axeRuntimeExceptionMsgPrefix } from '@sa11y/common';
 
@@ -111,10 +111,10 @@ describe('mock timer helper', () => {
     it('should skip automatic check when mock timer is being used', async () => {
         document.body.innerHTML = domWithA11yIssues;
 
-        await expect(automaticCheck()).rejects.toThrow();
+        await expect(runAutomaticCheck()).rejects.toThrow();
 
         jest.useFakeTimers();
-        await expect(automaticCheck()).resolves.toBeUndefined();
+        await expect(runAutomaticCheck()).resolves.toBeUndefined();
 
         //jest.useRealTimers();
         //await expect(automaticCheck()).rejects.toThrow();
