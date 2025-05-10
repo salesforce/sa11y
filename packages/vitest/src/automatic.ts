@@ -4,15 +4,16 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { expect } from '@jest/globals';
+import { beforeEach, afterEach, expect } from 'vitest';
 import { defaultAutoCheckOpts, mutationObserverCallback, observerOptions, runAutomaticCheck } from '@sa11y/matcher';
-import { isTestUsingFakeTimer } from './matcher';
 import type { AutoCheckOpts } from '@sa11y/matcher';
+import { isTestUsingFakeTimer } from './matcher';
 
 export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
     if (!opts.runAfterEach) return;
-
+    // TODO (fix): Make registration idempotent
     const observer = new MutationObserver(mutationObserverCallback);
+
     beforeEach(() => {
         if (opts.runDOMMutationObserver) {
             observer.observe(document.body, observerOptions);
@@ -20,7 +21,7 @@ export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCh
     });
 
     afterEach(async () => {
-        if (opts.runDOMMutationObserver) observer.disconnect();
+        if (opts.runDOMMutationObserver) observer.disconnect(); // stop mutation observer
         await runAutomaticCheck(opts, expect.getState().testPath, isTestUsingFakeTimer);
     });
 }

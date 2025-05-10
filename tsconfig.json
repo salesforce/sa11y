@@ -9,11 +9,13 @@
         { "path": "./packages/test-utils" },
         { "path": "./packages/assert" },
         { "path": "./packages/jest" },
+        { "path": "./packages/vitest" },
+        { "path": "./packages/matcher" },
         { "path": "./packages/wdio" }
     ],
     "exclude": ["**/node_modules"],
     "compilerOptions": {
         "allowSyntheticDefaultImports": true
-      },
+    },
     "extends": "@tsconfig/node14/tsconfig.json"
 }
