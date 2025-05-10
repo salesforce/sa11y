@@ -10,7 +10,6 @@
         { "path": "../preset-rules" },
         { "path": "../assert" },
         { "path": "../format" },
-        { "path": "../test-utils" },
-        { "path": "../matcher" }
+        { "path": "../test-utils" }
     ]
 }
