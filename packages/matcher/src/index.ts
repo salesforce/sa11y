@@ -21,3 +21,4 @@ export {
     updateAutoCheckOpts,
     registerCustomSa11yRules,
 } from './setup';
+export { createA11yErrorElements, processA11yDetailsAndMessages, ErrorElement } from './groupViolationResultsProcessor';
