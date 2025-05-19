@@ -12,6 +12,7 @@ import {
     registerSa11yAutomaticChecks,
     getOriginalDocumentBodyHtml,
     setOriginalDocumentBodyHtml,
+    RenderedDOMSaveOpts,
 } from './automatic';
 import { expect } from '@jest/globals';
 import { changesData, rulesData, checkData } from '@sa11y/preset-rules';
@@ -21,6 +22,7 @@ import { changesData, rulesData, checkData } from '@sa11y/preset-rules';
  */
 export type Sa11yOpts = {
     autoCheckOpts: AutoCheckOpts;
+    renderedDOMSaveOpts: RenderedDOMSaveOpts
     // TODO (feat): add support for global opts to control formatting, filtering etc
     // runOpts: RunOpts; // including ruleset, include/exclude selectors etc
     // formatOpts: FormatOpts; // including format.Options etc
@@ -38,6 +40,9 @@ const defaultSa11yOpts: Sa11yOpts = {
         runDOMMutationObserver: false,
         enableIncompleteResults: false,
     },
+    renderedDOMSaveOpts: {
+        renderedDOMDumpDirPath: '',
+    }
 };
 
 function registerRemoveChild() {
@@ -113,7 +118,9 @@ export function setup(opts: Sa11yOpts = defaultSa11yOpts): void {
     // set the flag to true to run sa11y in DOM Mutation Observer mode
     autoCheckOpts.runDOMMutationObserver ||= !!process.env.SA11Y_ENABLE_DOM_MUTATION_OBSERVER;
     autoCheckOpts.enableIncompleteResults ||= !!process.env.SA11Y_ENABLE_INCOMPLETE_RESULTS;
-    registerSa11yAutomaticChecks(autoCheckOpts);
+
+    const renderedDOMSaveOpts = opts.renderedDOMSaveOpts;
+    registerSa11yAutomaticChecks(autoCheckOpts, renderedDOMSaveOpts);
 }
 /**
  * Register accessibility helpers toBeAccessible as jest matchers

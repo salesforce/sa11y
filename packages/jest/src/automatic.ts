@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { AxeResults, log, useCustomRules } from '@sa11y/common';
+import { AxeResults, log, useCustomRules, writeHtmlFileInPath } from '@sa11y/common';
 import { getA11yResultsJSDOM } from '@sa11y/assert';
 import { A11yError, exceptionListFilterSelectorKeywords } from '@sa11y/format';
 import { isTestUsingFakeTimer } from './matcher';
@@ -32,6 +32,11 @@ export type AutoCheckOpts = {
     enableIncompleteResults?: boolean;
 };
 
+export type RenderedDOMSaveOpts = {
+    renderedDOMDumpDirPath?: string;
+    generateRenderedDOMFileSaveLocation?: (testFilePath: string, testName: string) => { fileName: string, fileUrl: string };
+}
+
 /**
  * Default options when {@link registerSa11yAutomaticChecks} is invoked
  */
@@ -43,6 +48,10 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
     runDOMMutationObserver: false,
     enableIncompleteResults: false,
 };
+
+const defaultRenderedDOMSaveOpts: RenderedDOMSaveOpts = {
+    renderedDOMDumpDirPath: '',
+}
 
 let originalDocumentBodyHtml: string | null = null;
 
@@ -75,7 +84,7 @@ export function skipTest(testPath: string | undefined, filesFilter?: string[]): 
  * Run accessibility check on each element node in the body using {@link toBeAccessible}
  * @param opts - Options for automatic checks {@link AutoCheckOpts}
  */
-export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts): Promise<void> {
+export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts, renderedDOMSaveOpts: RenderedDOMSaveOpts = defaultRenderedDOMSaveOpts): Promise<void> {
     if (skipTest(expect.getState().testPath, opts.filesFilter)) return;
 
     // Skip automatic check if test is using fake timer as it would result in timeout
@@ -98,6 +107,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();
+    let renderedDOMSavedFileName = '';
     try {
         if (!opts.runDOMMutationObserver) {
             while (currNode !== null) {
@@ -112,7 +122,32 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
                 currNode = walker.nextSibling();
             }
         } else {
-            a11yResults.push(...(await getA11yResultsJSDOM(document.body, config, opts.enableIncompleteResults)));
+            const a11yResultsJSDOM = await getA11yResultsJSDOM(document.body, config, opts.enableIncompleteResults);
+            if (a11yResultsJSDOM?.length > 0) {
+                if(!renderedDOMSaveOpts.renderedDOMDumpDirPath || !renderedDOMSaveOpts.generateRenderedDOMFileSaveLocation) {
+                    console.log(
+                        `Skipping saving rendered DOM HTML as one or both of renderedDOMDumpDirPath and generateRenderedDOMFileSaveLocation are empty`
+                    );
+                } else {
+                    try {
+                        // save the document body HTML
+                        const testFilePath = expect.getState().testPath ?? '';
+                        const testName = expect.getState().currentTestName ?? '';
+                        if (!testFilePath || !testName) {
+                            console.log(
+                                `Skipping saving rendered DOM HTML as one or both of test file path and test name are empty`
+                            );
+                        } else {
+                            const { fileName, fileUrl } = renderedDOMSaveOpts.generateRenderedDOMFileSaveLocation(testFilePath, testName);
+                            renderedDOMSavedFileName = fileUrl;
+                            writeHtmlFileInPath(renderedDOMSaveOpts.renderedDOMDumpDirPath, fileName, document.body.innerHTML);
+                        }
+                    } catch (e) {
+                        console.log(`ran into an error while saving rendered DOM - ${e}`)
+                    }
+                }
+            }
+            a11yResults.push(...a11yResultsJSDOM);
             document.body.innerHTML = '';
             // loop mutated nodes
             for await (const mutatedNode of mutatedNodes) {
@@ -140,7 +175,7 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts)
                 process.env.SELECTOR_FILTER_KEYWORDS.split(',')
             );
         }
-        A11yError.checkAndThrow(a11yResults, { deduplicate: opts.consolidateResults });
+        A11yError.checkAndThrow(a11yResults, { deduplicate: opts.consolidateResults, renderedDOMSavedFileName });
     }
 }
 
@@ -168,7 +203,7 @@ const observerOptions: MutationObserverInit = {
  * Register accessibility checks to be run automatically after each test
  * @param opts - Options for automatic checks {@link AutoCheckOpts}
  */
-export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
+export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts, renderedDOMSaveOpts: RenderedDOMSaveOpts = defaultRenderedDOMSaveOpts): void {
     if (opts.runAfterEach) {
         const observer = new MutationObserver(observerCallback);
         // TODO (fix): Make registration idempotent
@@ -184,7 +219,7 @@ export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCh
             if (opts.runDOMMutationObserver) {
                 observer.disconnect(); // stop mutation observer
             }
-            await automaticCheck(opts);
+            await automaticCheck(opts, renderedDOMSaveOpts);
         });
     }
 }

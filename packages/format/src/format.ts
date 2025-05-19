@@ -31,7 +31,8 @@ export interface Options {
     helpUrlIndicator: string;
     formatter?: Formatter;
     highlighter: Highlighter;
-    deduplicate: boolean; // Remove duplicate A11yResult with the same key (id, css)
+    deduplicate: boolean; // Remove duplicate A11yResult with the same key (id, css),
+    renderedDOMSavedFileName?: string;
 }
 
 /**
@@ -44,12 +45,14 @@ const defaultOptions: Options = {
     formatter: undefined,
     highlighter: (text: string): string => text,
     deduplicate: false,
+    renderedDOMSavedFileName: ''
 };
 
 /**
  *  Custom error object to represent a11y violations
  */
 export class A11yError extends Error {
+    renderedDOMSavedFileName: string;
     /**
      * Throw error with formatted a11y violations
      * @param violations - List of a11y violations
@@ -73,6 +76,7 @@ export class A11yError extends Error {
         super(`${a11yResults.length} ${errMsgHeader}`);
         this.name = A11yError.name;
         this.message = `${a11yResults.length} ${errMsgHeader}\n ${this.format(opts)}`;
+        this.renderedDOMSavedFileName = opts.renderedDOMSavedFileName ?? '';
     }
 
     get length(): number {
@@ -97,7 +101,7 @@ export class A11yError extends Error {
                     options.highlighter(
                         `${options.a11yViolationIndicator} (${a11yResult.id}) ${a11yResult.description}: ${a11yResult.selectors}`
                     ) +
-                    `\n\t${options.helpUrlIndicator} Help URL: ${a11yResult.helpUrl} \n\t${options.helpUrlIndicator} WCAG Criteria: ${a11yResult.wcag}`
+                    `\n\t${options.helpUrlIndicator} Help URL: ${a11yResult.helpUrl} \n\t${options.helpUrlIndicator} WCAG Criteria: ${a11yResult.wcag}${opts.renderedDOMSavedFileName ? `\n\t${options.helpUrlIndicator} Rendered DOM Source: ${opts.renderedDOMSavedFileName}` : ''}`
                 );
             })
             .join('\n\n');
