@@ -696,6 +696,7 @@ Fix any of the following:
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure each HTML document contains a non-empty <title> element",
@@ -1012,6 +1013,7 @@ Fix any of the following:
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
@@ -1508,6 +1510,7 @@ Fix any of the following:
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure each HTML document contains a non-empty <title> element",
@@ -1824,6 +1827,7 @@ Fix any of the following:
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
@@ -2385,6 +2389,7 @@ Fix any of the following:
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure each HTML document contains a non-empty <title> element",

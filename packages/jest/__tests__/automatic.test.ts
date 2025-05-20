@@ -48,17 +48,23 @@ describe('automatic checks registration', () => {
                 runAfterEach: false,
                 cleanupAfterEach: false,
                 consolidateResults: false,
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
     });
 
     it('should run when opted in via setup', () => {
-        setup({ autoCheckOpts: { runAfterEach: true } });
+        setup({ autoCheckOpts: { runAfterEach: true }, renderedDOMSaveOpts: { renderedDOMDumpDirPath: '' } });
         expect(registerAutomaticMock).toHaveBeenCalledWith(
             expect.objectContaining({
                 runAfterEach: true,
                 cleanupAfterEach: false,
                 consolidateResults: true,
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
     });
@@ -77,6 +83,9 @@ describe('automatic checks registration', () => {
                 cleanupAfterEach: false,
                 consolidateResults: false,
                 runDOMMutationObserver: false,
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
     });
@@ -89,6 +98,9 @@ describe('automatic checks registration', () => {
                 runAfterEach: true,
                 cleanupAfterEach: false,
                 consolidateResults: true,
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
 
@@ -99,6 +111,9 @@ describe('automatic checks registration', () => {
                 runAfterEach: true,
                 cleanupAfterEach: true,
                 consolidateResults: true,
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
     });
@@ -117,6 +132,9 @@ describe('automatic checks registration', () => {
                 cleanupAfterEach: true,
                 consolidateResults: true,
                 // filesFilter: ['foo', 'bar', 'file1', 'file2'],
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
     });

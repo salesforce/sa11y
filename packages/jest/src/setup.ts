@@ -22,7 +22,7 @@ import { changesData, rulesData, checkData } from '@sa11y/preset-rules';
  */
 export type Sa11yOpts = {
     autoCheckOpts: AutoCheckOpts;
-    renderedDOMSaveOpts: RenderedDOMSaveOpts
+    renderedDOMSaveOpts: RenderedDOMSaveOpts;
     // TODO (feat): add support for global opts to control formatting, filtering etc
     // runOpts: RunOpts; // including ruleset, include/exclude selectors etc
     // formatOpts: FormatOpts; // including format.Options etc
@@ -42,7 +42,7 @@ const defaultSa11yOpts: Sa11yOpts = {
     },
     renderedDOMSaveOpts: {
         renderedDOMDumpDirPath: '',
-    }
+    },
 };
 
 function registerRemoveChild() {

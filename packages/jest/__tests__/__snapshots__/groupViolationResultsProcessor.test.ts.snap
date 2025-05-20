@@ -539,6 +539,7 @@ Fix any of the following:
                       },
                     ],
                     "name": "A11yError",
+                    "renderedDOMSavedFileName": "",
                     "violations": Array [
                       Object {
                         "description": "Ensure each HTML document contains a non-empty <title> element",
@@ -783,6 +784,7 @@ Fix any of the following:
           ],
           "failureMessages": Array [
             "
+
 The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 5 HTML elements have accessibility issue(s). 4 rules failed.
 
@@ -937,6 +939,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
@@ -1433,6 +1436,7 @@ Fix any of the following:
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure each HTML document contains a non-empty <title> element",
@@ -1749,6 +1753,7 @@ Fix any of the following:
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
@@ -2310,6 +2315,7 @@ Fix any of the following:
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure each HTML document contains a non-empty <title> element",
@@ -2750,6 +2756,7 @@ Object {
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
@@ -2797,6 +2804,7 @@ Object {
           ],
           "failureMessages": Array [
             "
+
 The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 1 HTML elements have accessibility issue(s). 1 rules failed.
 
@@ -3269,6 +3277,7 @@ Fix any of the following:
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure each HTML document contains a non-empty <title> element",
@@ -3510,6 +3519,7 @@ Fix any of the following:
           ],
           "failureMessages": Array [
             "
+
 The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 5 HTML elements have accessibility issue(s). 4 rules failed.
 
@@ -3664,6 +3674,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
@@ -3711,6 +3722,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
           ],
           "failureMessages": Array [
             "
+
 The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 1 HTML elements have accessibility issue(s). 1 rules failed.
 
@@ -4248,6 +4260,7 @@ Fix any of the following:
                 },
               ],
               "name": "A11yError",
+              "renderedDOMSavedFileName": "",
               "violations": Array [
                 Object {
                   "description": "Ensure each HTML document contains a non-empty <title> element",
@@ -4530,6 +4543,7 @@ Fix any of the following:
           ],
           "failureMessages": Array [
             "
+
 The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 6 HTML elements have accessibility issue(s). 4 rules failed.
 

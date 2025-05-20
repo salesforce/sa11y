@@ -34,8 +34,11 @@ export type AutoCheckOpts = {
 
 export type RenderedDOMSaveOpts = {
     renderedDOMDumpDirPath?: string;
-    generateRenderedDOMFileSaveLocation?: (testFilePath: string, testName: string) => { fileName: string, fileUrl: string };
-}
+    generateRenderedDOMFileSaveLocation?: (
+        testFilePath: string,
+        testName: string
+    ) => { fileName: string; fileUrl: string };
+};
 
 /**
  * Default options when {@link registerSa11yAutomaticChecks} is invoked
@@ -51,7 +54,7 @@ const defaultAutoCheckOpts: AutoCheckOpts = {
 
 const defaultRenderedDOMSaveOpts: RenderedDOMSaveOpts = {
     renderedDOMDumpDirPath: '',
-}
+};
 
 let originalDocumentBodyHtml: string | null = null;
 
@@ -84,7 +87,10 @@ export function skipTest(testPath: string | undefined, filesFilter?: string[]): 
  * Run accessibility check on each element node in the body using {@link toBeAccessible}
  * @param opts - Options for automatic checks {@link AutoCheckOpts}
  */
-export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts, renderedDOMSaveOpts: RenderedDOMSaveOpts = defaultRenderedDOMSaveOpts): Promise<void> {
+export async function automaticCheck(
+    opts: AutoCheckOpts = defaultAutoCheckOpts,
+    renderedDOMSaveOpts: RenderedDOMSaveOpts = defaultRenderedDOMSaveOpts
+): Promise<void> {
     if (skipTest(expect.getState().testPath, opts.filesFilter)) return;
 
     // Skip automatic check if test is using fake timer as it would result in timeout
@@ -124,11 +130,10 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts,
         } else {
             const a11yResultsJSDOM = await getA11yResultsJSDOM(document.body, config, opts.enableIncompleteResults);
             if (a11yResultsJSDOM?.length > 0) {
-                if(!renderedDOMSaveOpts.renderedDOMDumpDirPath || !renderedDOMSaveOpts.generateRenderedDOMFileSaveLocation) {
-                    console.log(
-                        `Skipping saving rendered DOM HTML as one or both of renderedDOMDumpDirPath and generateRenderedDOMFileSaveLocation are empty`
-                    );
-                } else {
+                if (
+                    !!renderedDOMSaveOpts.renderedDOMDumpDirPath &&
+                    !!renderedDOMSaveOpts.generateRenderedDOMFileSaveLocation
+                ) {
                     try {
                         // save the document body HTML
                         const testFilePath = expect.getState().testPath ?? '';
@@ -138,12 +143,19 @@ export async function automaticCheck(opts: AutoCheckOpts = defaultAutoCheckOpts,
                                 `Skipping saving rendered DOM HTML as one or both of test file path and test name are empty`
                             );
                         } else {
-                            const { fileName, fileUrl } = renderedDOMSaveOpts.generateRenderedDOMFileSaveLocation(testFilePath, testName);
+                            const { fileName, fileUrl } = renderedDOMSaveOpts.generateRenderedDOMFileSaveLocation(
+                                testFilePath,
+                                testName
+                            );
                             renderedDOMSavedFileName = fileUrl;
-                            writeHtmlFileInPath(renderedDOMSaveOpts.renderedDOMDumpDirPath, fileName, document.body.innerHTML);
+                            writeHtmlFileInPath(
+                                renderedDOMSaveOpts.renderedDOMDumpDirPath,
+                                fileName,
+                                document.body.innerHTML
+                            );
                         }
                     } catch (e) {
-                        console.log(`ran into an error while saving rendered DOM - ${e}`)
+                        console.log(`ran into an error while saving rendered DOM - ${(e as Error).message}`);
                     }
                 }
             }
@@ -203,7 +215,10 @@ const observerOptions: MutationObserverInit = {
  * Register accessibility checks to be run automatically after each test
  * @param opts - Options for automatic checks {@link AutoCheckOpts}
  */
-export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts, renderedDOMSaveOpts: RenderedDOMSaveOpts = defaultRenderedDOMSaveOpts): void {
+export function registerSa11yAutomaticChecks(
+    opts: AutoCheckOpts = defaultAutoCheckOpts,
+    renderedDOMSaveOpts: RenderedDOMSaveOpts = defaultRenderedDOMSaveOpts
+): void {
     if (opts.runAfterEach) {
         const observer = new MutationObserver(observerCallback);
         // TODO (fix): Make registration idempotent
