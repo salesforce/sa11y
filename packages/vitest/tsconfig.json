@@ -2,7 +2,10 @@
     "extends": "../../tsconfig.common.json",
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "dist"
+        "outDir": "dist",
+        // ESM-specific settings
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext"
     },
     "include": ["src"],
     "references": [

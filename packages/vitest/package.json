@@ -3,6 +3,7 @@
     "version": "5.1.0",
     "description": "Accessibility testing matcher for vitest",
     "license": "BSD-3-Clause",
+    "type": "module",
     "homepage": "https://github.com/salesforce/sa11y/tree/master/packages/vitest#readme",
     "repository": {
         "type": "git",

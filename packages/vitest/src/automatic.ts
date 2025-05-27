@@ -7,7 +7,7 @@
 import { beforeEach, afterEach, expect } from 'vitest';
 import { defaultAutoCheckOpts, mutationObserverCallback, observerOptions, runAutomaticCheck } from '@sa11y/matcher';
 import type { AutoCheckOpts } from '@sa11y/matcher';
-import { isTestUsingFakeTimer } from './matcher';
+import { isTestUsingFakeTimer } from './matcher.js';
 
 export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
     if (!opts.runAfterEach) return;

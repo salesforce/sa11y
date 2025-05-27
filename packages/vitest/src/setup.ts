@@ -12,8 +12,8 @@ import {
     updateAutoCheckOpts,
     registerCustomSa11yRules,
 } from '@sa11y/matcher';
-import { registerSa11yAutomaticChecks } from './automatic';
-import { toBeAccessible } from './matcher';
+import { registerSa11yAutomaticChecks } from './automatic.js';
+import { toBeAccessible } from './matcher.js';
 
 export function setup(opts = defaultSa11yOpts): void {
     const testPath = expect.getState().testPath ?? '';
