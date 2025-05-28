@@ -19,6 +19,7 @@ Accessibility matcher for [Jest](https://jestjs.io)
     - [JSON result transformation](#json-result-transformation)
   - [Limitations](#limitations)
   - [Disabled Checks](#disabled-checks)
+- [Related Packages](#related-packages)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -278,3 +279,7 @@ Automatic checks currently has the following limitations.
 ### Disabled Checks
 
 -   @sa11y/jest automatic checks also disabled rules which were disabled in `toBeAccessible` Jest API ([disabled-checks](https://github.com/salesforce/sa11y/tree/master/packages/jest#disabled-checks))
+
+## Related Packages
+
+-   [`@sa11y/matcher`](../matcher/README.md): Provides the core accessibility checking APIs used by this package. Use it directly for custom test runners or advanced integrations.

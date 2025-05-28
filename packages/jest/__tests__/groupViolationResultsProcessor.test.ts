@@ -10,12 +10,8 @@ import { A11yError, A11yResult } from '@sa11y/format';
 import { getA11yError } from '@sa11y/format/__tests__/format.test';
 import { domWithVisualA11yIssues } from '@sa11y/test-utils';
 import { expect } from '@jest/globals';
-import {
-    resultsProcessor,
-    resultsProcessorManualChecks,
-    ErrorElement,
-    createA11yErrorElements,
-} from '../src/groupViolationResultsProcessor';
+import { resultsProcessor, resultsProcessorManualChecks } from '../src/groupViolationResultsProcessor';
+import { ErrorElement, createA11yErrorElements } from '@sa11y/matcher';
 
 const a11yResults: A11yResult[] = [];
 const aggregatedResults = makeEmptyAggregatedTestResult();
