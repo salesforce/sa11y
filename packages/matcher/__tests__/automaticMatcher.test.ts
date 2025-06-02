@@ -18,9 +18,19 @@ import {
     domWithA11yIncompleteIssues,
 } from '@sa11y/test-utils';
 import { expect } from '@jest/globals';
+import {
+    setOriginalDocumentBodyHtml,
+    getOriginalDocumentBodyHtml,
+    observerOptions,
+    defaultAutoCheckOpts,
+    defaultRenderedDOMSaveOpts,
+} from '../src/automatic';
+import * as common from '@sa11y/common';
+import * as assert from '@sa11y/assert';
 
 describe('automatic checks call', () => {
     const testPath = expect.getState().testPath || 'defaultPath';
+    const testName = expect.getState().currentTestName || 'defaultTestName';
     const nonExistentFilePaths = ['foo', `foo${testPath}`, `${testPath}foo`];
     // Note: cleanup required at end of each test to prevent dom being checked again
     // after the test as part of the afterEach automatic check hook
@@ -36,7 +46,7 @@ describe('automatic checks call', () => {
         await expect(runAutomaticCheck({ cleanupAfterEach: true })).rejects.toThrow('1 Accessibility');
     });
 
-    it.each([0, 1, 2, 3])(
+    test.each([0, 1, 2, 3])(
         'should raise consolidated a11y issues for DOM with multiple a11y issues',
         async (numNodesWithIssues: number) => {
             document.body.innerHTML = domWithA11yIssues;
@@ -80,7 +90,7 @@ describe('automatic checks call', () => {
         await expect(runAutomaticCheck(opts)).resolves.toBeUndefined();
     });
 
-    it.each([
+    test.each([
         ['foo', undefined, false],
         ['foo', [], false],
         ['foo', ['foo'], true],
@@ -99,7 +109,12 @@ describe('automatic checks call', () => {
     it('should skip auto checks when file is excluded using filter', async () => {
         document.body.innerHTML = domWithA11yIssues;
         await expect(
-            runAutomaticCheck({ filesFilter: [...nonExistentFilePaths, testPath] }, testPath)
+            runAutomaticCheck(
+                { filesFilter: [...nonExistentFilePaths, testPath] },
+                { renderedDOMDumpDirPath: '' },
+                testPath,
+                testName
+            )
         ).resolves.toBeUndefined();
     });
 
@@ -139,7 +154,9 @@ describe('automatic checks call', () => {
         await expect(
             runAutomaticCheck(
                 { filesFilter: [...nonExistentFilePaths, testPath], runDOMMutationObserver: true },
-                testPath
+                { renderedDOMDumpDirPath: '' },
+                testPath,
+                testName
             )
         ).resolves.toBeUndefined();
     });
@@ -152,5 +169,137 @@ describe('automatic checks call', () => {
             '1 Accessibility'
         );
         delete process.env.SA11Y_CUSTOM_RULES;
+    });
+});
+
+describe('automatic.ts exports', () => {
+    afterEach(() => {
+        setOriginalDocumentBodyHtml(null);
+    });
+
+    it('setOriginalDocumentBodyHtml and getOriginalDocumentBodyHtml should set and get the value', () => {
+        setOriginalDocumentBodyHtml('<div>test</div>');
+        expect(getOriginalDocumentBodyHtml()).toBe('<div>test</div>');
+        setOriginalDocumentBodyHtml(null);
+        expect(getOriginalDocumentBodyHtml()).toBeNull();
+    });
+
+    it('observerOptions should have the correct structure', () => {
+        expect(observerOptions).toEqual({
+            subtree: true,
+            childList: true,
+            attributes: true,
+            characterData: true,
+        });
+    });
+
+    it('defaultAutoCheckOpts should have the correct defaults', () => {
+        expect(defaultAutoCheckOpts).toEqual({
+            runAfterEach: true,
+            cleanupAfterEach: true,
+            consolidateResults: true,
+            filesFilter: [],
+            runDOMMutationObserver: false,
+            enableIncompleteResults: false,
+        });
+    });
+
+    it('defaultRenderedDOMSaveOpts should have the correct defaults', () => {
+        expect(defaultRenderedDOMSaveOpts).toEqual({
+            renderedDOMDumpDirPath: '',
+        });
+    });
+});
+
+describe('runAutomaticCheck runDOMMutationObserver checks', () => {
+    const mockViolations = [
+        {
+            id: 'aria-allowed-attr',
+            impact: 'serious',
+            tags: ['cat.aria', 'wcag2a', 'wcag412'],
+            description: "Ensures ARIA attributes are allowed for an element's role",
+            help: 'Elements must only use allowed ARIA attributes',
+            helpUrl: 'https://dequeuniversity.com/rules/axe/4.7/aria-allowed-attr?application=axeAPI',
+            nodes: [
+                {
+                    any: [],
+                    all: [],
+                    none: [
+                        {
+                            id: 'aria-prohibited-attr',
+                            data: {
+                                role: null,
+                                nodeName: 'lightning-button-icon',
+                                messageKey: 'noRoleSingular',
+                                prohibited: ['aria-label'],
+                            },
+                            relatedNodes: [],
+                            message:
+                                'aria-label attribute cannot be used on a lightning-button-icon with no valid role attribute.',
+                        },
+                    ],
+                    html: '<lightning-button-icon lwc-2pdnejk934a="" class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close" aria-label="AgentWhisper.CloseDialog" title="AgentWhisper.CloseDialog"></lightning-button-icon>',
+                    target: ['lightning-button-icon'],
+                },
+            ],
+        },
+    ];
+
+    afterEach(() => {
+        setOriginalDocumentBodyHtml(null);
+        delete process.env.SELECTOR_FILTER_KEYWORDS;
+        jest.restoreAllMocks();
+    });
+
+    it('should early return if isFakeTimerUsed returns true', async () => {
+        const spy = jest.spyOn(common, 'useCustomRules');
+        await runAutomaticCheck({}, {}, '', '', () => true);
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('should restore originalDocumentBodyHtml if set', async () => {
+        document.body.innerHTML = '<div>changed</div>';
+        setOriginalDocumentBodyHtml('<div>original</div>');
+        await runAutomaticCheck();
+        expect(document.body.innerHTML).toBe('');
+    });
+
+    it('should handle runDOMMutationObserver with file save and error', async () => {
+        const writeHtmlSpy = jest.spyOn(common, 'writeHtmlFileInPath').mockImplementation(() => {
+            throw new Error('fail');
+        });
+        jest.spyOn(assert, 'getA11yResultsJSDOM').mockImplementation(() => {
+            return new Promise((resolve) => {
+                resolve(mockViolations as unknown as common.AxeResults);
+            });
+        });
+        const opts = {
+            runDOMMutationObserver: true,
+        };
+        const renderedDOMSaveOpts = {
+            renderedDOMDumpDirPath: 'dir',
+            generateRenderedDOMFileSaveLocation: () => ({ fileName: 'file.html', fileUrl: 'url' }),
+        };
+        document.body.innerHTML = '<div>test</div>';
+        try {
+            await runAutomaticCheck(opts, renderedDOMSaveOpts, 'testPath', 'testName');
+        } catch (e) {
+            // empty here to avoid jest error
+        }
+        expect(writeHtmlSpy).toHaveBeenCalled();
+    });
+
+    it('should handle runDOMMutationObserver with missing testPath/testName', async () => {
+        const writeHtmlSpy = jest.spyOn(common, 'writeHtmlFileInPath');
+        const opts = {
+            runDOMMutationObserver: true,
+        };
+        const renderedDOMSaveOpts = {
+            renderedDOMDumpDirPath: 'dir',
+            generateRenderedDOMFileSaveLocation: () => ({ fileName: 'file.html', fileUrl: 'url' }),
+        };
+        document.body.innerHTML = '<div>test</div>';
+        await runAutomaticCheck(opts, renderedDOMSaveOpts, '', '');
+        expect(writeHtmlSpy).not.toHaveBeenCalled();
     });
 });

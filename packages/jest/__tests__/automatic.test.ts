@@ -10,6 +10,7 @@ import * as automatic from '../src/automatic';
 import { registerSa11yAutomaticChecks } from '../src/automatic';
 import * as Sa11yCommon from '@sa11y/common';
 import { expect, jest } from '@jest/globals';
+import * as matcher from '@sa11y/matcher';
 
 describe('automatic checks registration', () => {
     const prevEnv = process.env;
@@ -38,17 +39,23 @@ describe('automatic checks registration', () => {
                 runAfterEach: false,
                 cleanupAfterEach: false,
                 consolidateResults: false,
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
     });
 
     it('should run when opted in via setup', () => {
-        setup({ autoCheckOpts: { runAfterEach: true } });
+        setup({ autoCheckOpts: { runAfterEach: true }, renderedDOMSaveOpts: { renderedDOMDumpDirPath: '' } });
         expect(registerAutomaticMock).toHaveBeenCalledWith(
             expect.objectContaining({
                 runAfterEach: true,
                 cleanupAfterEach: false,
                 consolidateResults: true,
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
     });
@@ -67,6 +74,9 @@ describe('automatic checks registration', () => {
                 cleanupAfterEach: false,
                 consolidateResults: false,
                 runDOMMutationObserver: false,
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
     });
@@ -79,6 +89,9 @@ describe('automatic checks registration', () => {
                 runAfterEach: true,
                 cleanupAfterEach: false,
                 consolidateResults: true,
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
 
@@ -89,6 +102,9 @@ describe('automatic checks registration', () => {
                 runAfterEach: true,
                 cleanupAfterEach: true,
                 consolidateResults: true,
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
     });
@@ -107,7 +123,38 @@ describe('automatic checks registration', () => {
                 cleanupAfterEach: true,
                 consolidateResults: true,
                 // filesFilter: ['foo', 'bar', 'file1', 'file2'],
+            }),
+            expect.objectContaining({
+                renderedDOMDumpDirPath: '',
             })
         );
+    });
+});
+
+describe('matcher exports used in jest automatic', () => {
+    it('defaultAutoCheckOpts should have the correct defaults', () => {
+        expect(matcher.defaultAutoCheckOpts).toEqual({
+            runAfterEach: true,
+            cleanupAfterEach: true,
+            consolidateResults: true,
+            filesFilter: [],
+            runDOMMutationObserver: false,
+            enableIncompleteResults: false,
+        });
+    });
+
+    it('defaultRenderedDOMSaveOpts should have the correct defaults', () => {
+        expect(matcher.defaultRenderedDOMSaveOpts).toEqual({
+            renderedDOMDumpDirPath: '',
+        });
+    });
+
+    it('observerOptions should have the correct structure', () => {
+        expect(matcher.observerOptions).toEqual({
+            subtree: true,
+            childList: true,
+            attributes: true,
+            characterData: true,
+        });
     });
 });

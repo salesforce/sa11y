@@ -43,8 +43,16 @@ You can set up the Sa11y API once at the project level to make it available to a
 
 ```typescript
 import { setup } from '@sa11y/vitest';
-// Register the Sa11y matcher
+// Register the Sa11y matcher with default options
 setup();
+
+// Register with custom options for automatic checks and DOM saving
+setup({
+    autoCheckOpts: { runAfterEach: true, cleanupAfterEach: true },
+    renderedDOMSaveOpts: {
+        /* your RenderedDOMSaveOpts here */
+    },
+});
 ```
 
 -   In your `vitest.config.ts`, add the setup file to the `setupFiles` array:
@@ -126,9 +134,22 @@ setup({ autoCheckOpts: { runAfterEach: true } });
 
 // To optionally clean up the body after running accessibility checks
 setup({ autoCheckOpts: { runAfterEach: true, cleanupAfterEach: true } });
+
+// To customize how/where the rendered DOM is saved during automatic checks
+setup({
+    autoCheckOpts: { runAfterEach: true },
+    renderedDOMSaveOpts: {
+        /* your RenderedDOMSaveOpts here */
+    },
+});
 ```
 
 #### Options
+
+-   `autoCheckOpts`: Options for automatic accessibility checks (see below)
+-   `renderedDOMSaveOpts`: Options for saving the rendered DOM during automatic checks. Allows customizing how and where the DOM is saved for debugging or reporting purposes. See [`@sa11y/matcher` RenderedDOMSaveOpts](../matcher/README.md#rendereddomsaveopts) for details.
+
+**autoCheckOpts:**
 
 -   `runAfterEach`: Run after each test (for integration with test runners)
 -   `cleanupAfterEach`: Clean up the DOM after checking

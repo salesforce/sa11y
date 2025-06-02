@@ -5,7 +5,12 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { useFilesToBeExempted, registerCustomRules } from '@sa11y/common';
-import { AutoCheckOpts, getOriginalDocumentBodyHtml, setOriginalDocumentBodyHtml } from './automatic';
+import {
+    AutoCheckOpts,
+    getOriginalDocumentBodyHtml,
+    setOriginalDocumentBodyHtml,
+    RenderedDOMSaveOpts,
+} from './automatic';
 import { changesData, rulesData, checkData } from '@sa11y/preset-rules';
 
 export const improvedChecksFilter = [
@@ -14,6 +19,7 @@ export const improvedChecksFilter = [
 
 export type Sa11yOpts = {
     autoCheckOpts: AutoCheckOpts;
+    renderedDOMSaveOpts: RenderedDOMSaveOpts;
 };
 
 export const defaultSa11yOpts: Sa11yOpts = {
@@ -23,6 +29,9 @@ export const defaultSa11yOpts: Sa11yOpts = {
         consolidateResults: false,
         runDOMMutationObserver: false,
         enableIncompleteResults: false,
+    },
+    renderedDOMSaveOpts: {
+        renderedDOMDumpDirPath: '',
     },
 };
 

@@ -20,6 +20,7 @@ Accessibility matcher for [Jest](https://jestjs.io)
   - [Limitations](#limitations)
   - [Disabled Checks](#disabled-checks)
 - [Related Packages](#related-packages)
+  - [Options](#options)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -52,6 +53,14 @@ const { setup } = require('@sa11y/jest'); // CommonJS
 import { setup } from '@sa11y/jest'; // ES6
 // Register the sa11y matcher
 setup();
+
+// Register with custom options for automatic checks and DOM saving
+setup({
+    autoCheckOpts: { runAfterEach: true, cleanupAfterEach: true },
+    renderedDOMSaveOpts: {
+        /* your RenderedDOMSaveOpts here */
+    },
+});
 ```
 
 -   Add or Modify the Jest config at project root to invoke the Jest setup file as setup above.
@@ -169,6 +178,14 @@ setup({ autoCheckOpts: { runAfterEach: true } });
 
 // To optionally cleanup the body after running a11y checks
 setup({ autoCheckOpts: { runAfterEach: true, cleanupAfterEach: true } });
+
+// To customize how/where the rendered DOM is saved during automatic checks
+setup({
+    autoCheckOpts: { runAfterEach: true },
+    renderedDOMSaveOpts: {
+        /* your RenderedDOMSaveOpts here */
+    },
+});
 ```
 
 ### Using environment variables
@@ -283,3 +300,17 @@ Automatic checks currently has the following limitations.
 ## Related Packages
 
 -   [`@sa11y/matcher`](../matcher/README.md): Provides the core accessibility checking APIs used by this package. Use it directly for custom test runners or advanced integrations.
+
+### Options
+
+-   `autoCheckOpts`: Options for automatic accessibility checks (see below)
+-   `renderedDOMSaveOpts`: Options for saving the rendered DOM during automatic checks. Allows customizing how and where the DOM is saved for debugging or reporting purposes. See [`@sa11y/matcher` RenderedDOMSaveOpts](../matcher/README.md#rendereddomsaveopts) for details.
+
+**autoCheckOpts:**
+
+-   `runAfterEach`: Run after each test (for integration with test runners)
+-   `cleanupAfterEach`: Clean up the DOM after checking
+-   `consolidateResults`: Deduplicate results
+-   `filesFilter`: Array of file path substrings to skip automatic checks for
+-   `runDOMMutationObserver`: Enable DOM mutation observer mode
+-   `enableIncompleteResults`: Include incomplete results

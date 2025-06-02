@@ -93,3 +93,9 @@ export const registerCustomRules = (
     const spec: axe.Spec = { rules: newRules, checks: newChecks };
     axe.configure(spec);
 };
+
+export function writeHtmlFileInPath(baseDir: string, fileName: string, htmlContent: string) {
+    fs.mkdirSync(baseDir, { recursive: true });
+    const fullFilePath = path.join(baseDir, fileName);
+    fs.writeFileSync(fullFilePath, htmlContent, 'utf8');
+}
