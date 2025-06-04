@@ -17,4 +17,11 @@ export {
 } from './axe';
 export { WdioAssertFunction, WdioOptions } from './wdio';
 export { errMsgHeader, ExceptionList } from './format';
-export { log, useFilesToBeExempted, useCustomRules, processFiles, registerCustomRules } from './helpers';
+export {
+    log,
+    useFilesToBeExempted,
+    useCustomRules,
+    processFiles,
+    registerCustomRules,
+    writeHtmlFileInPath,
+} from './helpers';

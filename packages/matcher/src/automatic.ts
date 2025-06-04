@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { AxeResults, log, useCustomRules } from '@sa11y/common';
+import { AxeResults, log, useCustomRules, writeHtmlFileInPath } from '@sa11y/common';
 import { getA11yResultsJSDOM } from '@sa11y/assert';
 import { A11yError, exceptionListFilterSelectorKeywords } from '@sa11y/format';
 import {
@@ -29,6 +29,14 @@ export type AutoCheckOpts = {
     enableIncompleteResults?: boolean;
 };
 
+export type RenderedDOMSaveOpts = {
+    renderedDOMDumpDirPath?: string;
+    generateRenderedDOMFileSaveLocation?: (
+        testFilePath: string,
+        testName: string
+    ) => { fileName: string; fileUrl: string };
+};
+
 /**
  * Default options when {@link registerSa11yAutomaticChecks} is invoked
  */
@@ -39,6 +47,10 @@ export const defaultAutoCheckOpts: AutoCheckOpts = {
     filesFilter: [],
     runDOMMutationObserver: false,
     enableIncompleteResults: false,
+};
+
+export const defaultRenderedDOMSaveOpts: RenderedDOMSaveOpts = {
+    renderedDOMDumpDirPath: '',
 };
 
 let originalDocumentBodyHtml: string | null = null;
@@ -69,7 +81,9 @@ export function skipTest(testPath: string | undefined, filesFilter?: string[]): 
  */
 export async function runAutomaticCheck(
     opts: AutoCheckOpts = defaultAutoCheckOpts,
+    renderedDOMSaveOpts: RenderedDOMSaveOpts = defaultRenderedDOMSaveOpts,
     testPath = '',
+    testName = '',
     isFakeTimerUsed: () => boolean = () => false
 ): Promise<void> {
     if (skipTest(testPath, opts.filesFilter)) return;
@@ -94,7 +108,7 @@ export async function runAutomaticCheck(
     // Create a DOM walker filtering only elements (skipping text, comment nodes etc)
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
     let currNode = walker.firstChild();
-
+    let renderedDOMSavedFileName = '';
     try {
         if (!opts.runDOMMutationObserver) {
             while (currNode) {
@@ -109,7 +123,36 @@ export async function runAutomaticCheck(
                 currNode = walker.nextSibling();
             }
         } else {
-            a11yResults.push(...(await getA11yResultsJSDOM(document.body, config, opts.enableIncompleteResults)));
+            const a11yResultsJSDOM = await getA11yResultsJSDOM(document.body, config, opts.enableIncompleteResults);
+            if (a11yResultsJSDOM?.length > 0) {
+                if (
+                    !!renderedDOMSaveOpts.renderedDOMDumpDirPath &&
+                    !!renderedDOMSaveOpts.generateRenderedDOMFileSaveLocation
+                ) {
+                    try {
+                        // save the document body HTML
+                        if (!testPath || !testName) {
+                            console.log(
+                                `Skipping saving rendered DOM HTML as one or both of test file path and test name are empty`
+                            );
+                        } else {
+                            const { fileName, fileUrl } = renderedDOMSaveOpts.generateRenderedDOMFileSaveLocation(
+                                testPath,
+                                testName
+                            );
+                            renderedDOMSavedFileName = fileUrl;
+                            writeHtmlFileInPath(
+                                renderedDOMSaveOpts.renderedDOMDumpDirPath,
+                                fileName,
+                                document.body.innerHTML
+                            );
+                        }
+                    } catch (e) {
+                        console.log(`ran into an error while saving rendered DOM - ${(e as Error).message}`);
+                    }
+                }
+            }
+            a11yResults.push(...a11yResultsJSDOM);
             document.body.innerHTML = '';
             // loop mutated nodes
             for await (const mutated of mutatedNodes) {
@@ -135,7 +178,7 @@ export async function runAutomaticCheck(
                 process.env.SELECTOR_FILTER_KEYWORDS.split(',')
             );
         }
-        A11yError.checkAndThrow(a11yResults, { deduplicate: opts.consolidateResults });
+        A11yError.checkAndThrow(a11yResults, { deduplicate: opts.consolidateResults, renderedDOMSavedFileName });
     }
 }
 

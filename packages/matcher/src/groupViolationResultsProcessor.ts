@@ -142,6 +142,7 @@ export function processA11yDetailsAndMessages(error: A11yError, a11yFailureMessa
     });
 
     const a11yFailureMessage = `
+${error.renderedDOMSavedFileName ? `HTML Source: ${error.renderedDOMSavedFileName}\n` : ''}
 The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 ${a11yErrorElementsCount} HTML elements have accessibility issue(s). ${a11yRuleViolationsCount} rules failed.
 

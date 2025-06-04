@@ -5,11 +5,20 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { beforeEach, afterEach, expect } from 'vitest';
-import { defaultAutoCheckOpts, mutationObserverCallback, observerOptions, runAutomaticCheck } from '@sa11y/matcher';
-import type { AutoCheckOpts } from '@sa11y/matcher';
+import {
+    defaultAutoCheckOpts,
+    defaultRenderedDOMSaveOpts,
+    mutationObserverCallback,
+    observerOptions,
+    runAutomaticCheck,
+} from '@sa11y/matcher';
+import type { AutoCheckOpts, RenderedDOMSaveOpts } from '@sa11y/matcher';
 import { isTestUsingFakeTimer } from './matcher.js';
 
-export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCheckOpts): void {
+export function registerSa11yAutomaticChecks(
+    opts: AutoCheckOpts = defaultAutoCheckOpts,
+    renderedDOMSaveOpts: RenderedDOMSaveOpts = defaultRenderedDOMSaveOpts
+): void {
     if (!opts.runAfterEach) return;
     // TODO (fix): Make registration idempotent
     const observer = new MutationObserver(mutationObserverCallback);
@@ -22,6 +31,12 @@ export function registerSa11yAutomaticChecks(opts: AutoCheckOpts = defaultAutoCh
 
     afterEach(async () => {
         if (opts.runDOMMutationObserver) observer.disconnect(); // stop mutation observer
-        await runAutomaticCheck(opts, expect.getState().testPath, isTestUsingFakeTimer);
+        await runAutomaticCheck(
+            opts,
+            renderedDOMSaveOpts,
+            expect.getState().testPath,
+            expect.getState().currentTestName,
+            isTestUsingFakeTimer
+        );
     });
 }

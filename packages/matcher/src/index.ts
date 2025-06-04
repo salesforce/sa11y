@@ -13,6 +13,8 @@ export {
     skipTest,
     runAutomaticCheck,
     AutoCheckOpts,
+    RenderedDOMSaveOpts,
+    defaultRenderedDOMSaveOpts,
 } from './automatic';
 export {
     registerRemoveChild,

@@ -27,7 +27,9 @@ export function setup(opts = defaultSa11yOpts): void {
     registerCustomSa11yRules();
     const autoCheckOpts = opts.autoCheckOpts;
     updateAutoCheckOpts(autoCheckOpts);
-    registerSa11yAutomaticChecks(autoCheckOpts);
+
+    const renderedDOMSaveOpts = opts.renderedDOMSaveOpts;
+    registerSa11yAutomaticChecks(autoCheckOpts, renderedDOMSaveOpts);
 }
 export function registerSa11yMatcher(): void {
     if (expect !== undefined) {

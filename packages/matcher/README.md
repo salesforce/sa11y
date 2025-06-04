@@ -67,15 +67,29 @@ await runA11yCheck(document, extended);
 The `runAutomaticCheck` API can be used to automatically check each child element in the DOM body for accessibility issues, similar to the automatic checks in the Jest integration.
 
 ```javascript
-import { runAutomaticCheck } from '@sa11y/matcher';
+import { runAutomaticCheck, defaultAutoCheckOpts, defaultRenderedDOMSaveOpts } from '@sa11y/matcher';
 
-await runAutomaticCheck({
-    cleanupAfterEach: true, // Optionally clean up the DOM after checking
-    runAfterEach: true, // Run after each test (if used in a test runner)
-});
+await runAutomaticCheck(
+    {
+        cleanupAfterEach: true, // Optionally clean up the DOM after checking
+        runAfterEach: true, // Run after each test (if used in a test runner)
+    },
+    {
+        renderedDOMDumpDirPath: './a11y-dumps',
+        generateRenderedDOMFileSaveLocation: (testFilePath, testName) => ({
+            fileName: `${testName}.html`,
+            fileUrl: `/a11y-dumps/${testName}.html`,
+        }),
+    }
+);
 ```
 
 #### Options
+
+-   `autoCheckOpts` (`AutoCheckOpts`): Options for automatic accessibility checks (see below)
+-   `renderedDOMSaveOpts` (`RenderedDOMSaveOpts`): Options for saving the rendered DOM during automatic checks. Allows customizing how and where the DOM is saved for debugging or reporting purposes.
+
+**AutoCheckOpts:**
 
 -   `runAfterEach`: Run after each test (for integration with test runners)
 -   `cleanupAfterEach`: Clean up the DOM after checking
@@ -84,9 +98,16 @@ await runAutomaticCheck({
 -   `runDOMMutationObserver`: Enable DOM mutation observer mode
 -   `enableIncompleteResults`: Include incomplete results
 
+**RenderedDOMSaveOpts:**
+
+-   `renderedDOMDumpDirPath`: Directory path where the rendered DOM HTML files will be saved.
+-   `generateRenderedDOMFileSaveLocation`: Function to generate the file name and URL for saving the rendered DOM, given the test file path and test name.
+
 ### Advanced
 
-You can use other exports for custom integrations, such as `mutationObserverCallback`, `observerOptions`, and more.
+You can use other exports for custom integrations, such as `mutationObserverCallback`, `observerOptions`, `RenderedDOMSaveOpts`, `defaultRenderedDOMSaveOpts`, and more.
+
+Accessibility errors are grouped and reported by rule violation for easier debugging.
 
 ## Caveats
 
