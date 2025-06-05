@@ -162,8 +162,9 @@ describe('config adapt functions', () => {
     });
 
     it('should customize config as expected for incomplete results', () => {
-        expect(base.reporter).toBe('no-passes');
-        const changedReporter = adaptA11yConfigIncompleteResults(base).reporter;
-        expect(changedReporter).toContain('v2');
+        expect(base.resultTypes[0]).toBe('violations');
+        const changedResultType = adaptA11yConfigIncompleteResults(base).resultTypes[0];
+        console.log('changedResultType', changedResultType);
+        expect(changedResultType).toBe('incomplete');
     });
 });

@@ -97,7 +97,6 @@ export function adaptA11yConfigCustomRules(config: A11yConfig, customRules: stri
  */
 export function adaptA11yConfigIncompleteResults(config: A11yConfig): A11yConfig {
     const adaptedConfig = JSON.parse(JSON.stringify(config)) as A11yConfig;
-    adaptedConfig.reporter = 'v2';
     adaptedConfig.resultTypes = ['incomplete'];
     return adaptedConfig;
 }
@@ -134,6 +133,6 @@ export function getA11yConfig(rules: RuleInfo): A11yConfig {
         preload: false,
         // Types not listed will still show a maximum of one node
         resultTypes: ['violations'],
-        reporter: 'no-passes', // return only violation results
+        reporter: 'v1', // Use the default reporter to include failureSummary
     };
 }
