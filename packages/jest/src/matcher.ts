@@ -10,6 +10,18 @@ import { A11yConfig } from '@sa11y/common';
 import { defaultRuleset } from '@sa11y/preset-rules';
 import { fakeTimerErrMsg, runA11yCheck, formatOptions } from '@sa11y/matcher';
 
+// Type def for custom jest a11y matchers
+// Ref: https://jestjs.io/docs/en/expect.html#expectextendmatchers
+declare global {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
+    namespace jest {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        interface Matchers<R> extends jest.CustomMatcher {
+            toBeAccessible(config?: A11yConfig): Promise<CustomMatcherResult>;
+        }
+    }
+}
+
 /**
  * Detect if fake timer is being used in a jest test.
  * Fake timers result in axe timeout https://github.com/dequelabs/axe-core/issues/3055
