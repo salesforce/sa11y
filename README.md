@@ -1,6 +1,6 @@
 # Salesforce Accessibility Automation Libraries
 
-Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://www.npmjs.com/org/sa11y)) based on [axe-core][axe] providing support for [Jest](#jest-integration) unit tests, [WebdriverIO](#wdio-integration) component/integration tests used by teams in Salesforce. However, they are not specific to Salesforce and can be used to test any UI [supported by axe-core](https://github.com/dequelabs/axe-core#supported-browsers) for accessibility. These libraries are designed to be flexible, customizable and reusable to support automated accessibility testing in different testing workflows from unit to integration tests.
+Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://www.npmjs.com/org/sa11y)) based on [axe-core][axe] providing support for [Jest](#jest-integration) unit tests, [Vitest](#vitest-integration) unit tests, [WebdriverIO](#wdio-integration) component/integration tests used by teams in Salesforce. However, they are not specific to Salesforce and can be used to test any UI [supported by axe-core](https://github.com/dequelabs/axe-core#supported-browsers) for accessibility. These libraries are designed to be flexible, customizable and reusable to support automated accessibility testing in different testing workflows from unit to integration tests.
 
 ![Sa11y](https://github.com/salesforce/sa11y/workflows/CI/badge.svg)
 [![Code Coverage](https://codecov.io/gh/salesforce/sa11y/branch/master/graph/badge.svg)](https://codecov.io/gh/salesforce/sa11y)
@@ -17,15 +17,17 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
   - [References](#references)
 - [Packages](#packages)
   - [Jest integration](#jest-integration)
+  - [Vitest integration](#vitest-integration)
   - [WDIO integration](#wdio-integration)
   - [assertAccessible API](#assertaccessible-api)
   - [a11y results formatter](#a11y-results-formatter)
   - [Preset accessibility rules](#preset-accessibility-rules)
+  - [Core accessibility matcher](#core-accessibility-matcher)
   - [Minified bundle for testing in browser](#minified-bundle-for-testing-in-browser)
   - [Internal packages](#internal-packages)
     - [Test utilities](#test-utilities)
     - [Integration Tests](#integration-tests)
-    - [Common](#common)
+    - [Common utilities](#common-utilities)
   - [Dependency graph](#dependency-graph)
   - [Epilogue](#epilogue)
 
@@ -59,9 +61,21 @@ This repo contains the following packages for automated accessibility testing:
 -   Provides a `toBeAccessible()` accessibility matcher for Jest
     -   integrates the [assertAccessible API](./packages/assert/README.md) with the [Jest assertion API](https://jestjs.io/docs/en/using-matchers)
 -   Provides an option to set up the sa11y API to be invoked automatically at the end of each test
+-   Includes custom results processors for enhanced test reporting and grouping violations by rule
 -   To add accessibility testing to your Jest tests use this package
 
 ![Screenshot showing Sa11y Jest API usage and a11y errors showing up in VSCode](https://github.com/salesforce/sa11y/blob/media/screenshot/jest.png?raw=true)
+
+### [Vitest integration](./packages/vitest/README.md)
+
+[![published npm version of @sa11y/vitest](https://img.shields.io/npm/v/@sa11y/vitest)](https://www.npmjs.com/package/@sa11y/vitest)
+![node-current (scoped)](https://img.shields.io/node/v/@sa11y/vitest)
+
+-   Provides a `toBeAccessible()` accessibility matcher for Vitest
+-   Integrates the core accessibility checking logic with the [Vitest testing framework](https://vitest.dev/)
+-   Supports automatic checks and custom results processing for enhanced test reporting
+-   Built on the same core logic as the Jest integration via [@sa11y/matcher](./packages/matcher/README.md)
+-   To add accessibility testing to your Vitest tests use this package
 
 ### [WDIO integration](./packages/wdio/README.md)
 
@@ -78,7 +92,8 @@ This repo contains the following packages for automated accessibility testing:
 ![node-current (scoped)](https://img.shields.io/node/v/@sa11y/assert)
 
 -   Checks DOM or HTML Element for accessibility issues and throws an error if a11y issues are found
--   To add accessibility testing to your Javascript unit tests _not_ using Jest, use this package
+-   Supports both violations and incomplete results reporting
+-   To add accessibility testing to your Javascript unit tests _not_ using Jest or Vitest, use this package
 
 ### [a11y results formatter](./packages/format/README.md)
 
@@ -86,7 +101,8 @@ This repo contains the following packages for automated accessibility testing:
 ![node-current (scoped)](https://img.shields.io/node/v/@sa11y/format)
 
 -   Formats raw JSON output of a11y issues from [axe] into an easy to consume format by consolidating and cross-referencing
--   Used by assert Accessible API and Jest a11y matcher
+-   Used by assert Accessible API and Jest/Vitest a11y matchers
+-   Provides exception list filtering and WCAG metadata enhancement
 -   To use axe directly and want to format the results from `axe.run` use this package
 -   A new formatter `groupViolationResultsProcessor` also made available to group the a11y violations per jest test case as the existing formatter would generate test failures for each violation
 
@@ -96,8 +112,19 @@ This repo contains the following packages for automated accessibility testing:
 ![node-current (scoped)](https://img.shields.io/node/v/@sa11y/preset-rules)
 
 -   Provides Base, Extended, Full accessibility preset rules as [axe] configuration
--   The Base preset rule is used by default in the Jest a11y matcher and assert Accessible APIs
+-   The Base preset rule is used by default in the Jest/Vitest a11y matchers and assert Accessible APIs
     -   The APIs can be overridden to use the Extended or Full ruleset as necessary
+-   Includes custom rule support and WCAG metadata for enhanced reporting
+
+### [Core accessibility matcher](./packages/matcher/README.md)
+
+[![published npm version of @sa11y/matcher](https://img.shields.io/npm/v/@sa11y/matcher)](https://www.npmjs.com/package/@sa11y/matcher)
+![node-current (scoped)](https://img.shields.io/node/v/@sa11y/matcher)
+
+-   Provides the core accessibility checking logic used by Jest and Vitest integrations
+-   Framework-agnostic programmatic APIs for accessibility testing
+-   Supports automatic checks, DOM mutation observation, and custom integrations
+-   Use this package directly for custom test runners or advanced scenarios requiring direct control
 
 ### [Minified bundle for testing in browser](./packages/browser-lib/README.md)
 
@@ -106,20 +133,24 @@ This repo contains the following packages for automated accessibility testing:
 
 -   Provides a minified version of selected `@sa11y` libraries to be injected into a browser (using webdriver) and executed from integration testing workflows.
 -   Gives WCAG SC for rulesets in addition with [axe] tags
+-   Supports both Selenium Java and WebdriverIO integration patterns
 
 ### Internal packages
 
 #### [Test utilities](./packages/test-utils/README.md)
 
--   Private package providing test utilities for `@sa11y` packages
+-   Private package providing test utilities, mock data, and common testing patterns for `@sa11y` packages
+-   Includes DOM fixtures with and without accessibility issues for testing
 
 #### [Integration Tests](./packages/test-integration/README.md)
 
--   Private package providing integration tests for `@sa11y` packages
+-   Private package providing integration tests for `@sa11y` packages across different environments
+-   Ensures cross-package compatibility and end-to-end functionality
 
-#### [Common](./packages/common/README.md)
+#### [Common utilities](./packages/common/README.md)
 
--   Common utilities, constants, error messages for `@sa11y` packages
+-   Common utilities, constants, error messages, and helper functions for `@sa11y` packages
+-   Provides shared functionality for environment detection, custom rules, and file processing
 
 ### Dependency graph
 

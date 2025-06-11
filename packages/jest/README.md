@@ -17,10 +17,12 @@ Accessibility matcher for [Jest](https://jestjs.io)
   - [Using environment variables](#using-environment-variables)
   - [Sa11y results processor](#sa11y-results-processor)
     - [JSON result transformation](#json-result-transformation)
+    - [Group violation results processor](#group-violation-results-processor)
   - [Limitations](#limitations)
   - [Disabled Checks](#disabled-checks)
 - [Related Packages](#related-packages)
   - [Options](#options)
+- [Environment Variables](#environment-variables)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -277,6 +279,16 @@ With sa11y results processor:
 }
 ```
 
+#### Group violation results processor
+
+-   Group violation results processor affects only the JSON result output
+    -   It does not affect the default console reporter or output of any other reporter (e.g., HTML reporter)
+-   a11y errors within a single test file will be de-duped by rule ID and CSS selectors
+-   a11y errors will be transformed into their own test failures
+    -   This would extract the a11y errors from the original tests and create additional test failures with the WCAG version, level, rule ID, CSS selectors as key
+        -   bringing a11y metadata to forefront instead of being part of stacktrace
+    -   The JSON output can be transformed into JUnit XML format e.g., using [jest-junit](https://github.com/jest-community/jest-junit)
+
 ### Limitations
 
 Automatic checks currently has the following limitations.
@@ -314,3 +326,12 @@ Automatic checks currently has the following limitations.
 -   `filesFilter`: Array of file path substrings to skip automatic checks for
 -   `runDOMMutationObserver`: Enable DOM mutation observer mode
 -   `enableIncompleteResults`: Include incomplete results
+
+## Environment Variables
+
+-   `SA11Y_AUTO`: Enable automatic checks (`1` to enable)
+-   `SA11Y_CLEANUP`: Clean up the DOM after checking (`1` to enable)
+-   `SA11Y_DEBUG`: Output verbose logging (`1` to enable)
+-   `SA11Y_AUTO_FILTER`: Comma-separated list of test file paths to filter out from automatic checks
+-   `SA11Y_RULESET`: Override the default ruleset (`base`, `extended`, or `full`)
+-   `SA11Y_RULESET_PRIORITY`: Select rules of specified priority in a ruleset

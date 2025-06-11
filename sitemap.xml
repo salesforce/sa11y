@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Main Documentation -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Package Documentation -->
+    
+    <!-- Jest Integration -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/packages/jest/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Vitest Integration -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/packages/vitest/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- WebdriverIO Integration -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/packages/wdio/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Core Assert API -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/packages/assert/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Results Formatter -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/packages/format/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Preset Rules -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/packages/preset-rules/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Browser Library -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/packages/browser-lib/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Core Matcher -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/packages/matcher/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Common Utilities -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/packages/common/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Test Utilities -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/packages/test-utils/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <!-- Integration Tests -->
+    <url>
+        <loc>https://opensource.salesforce.com/sa11y/packages/test-integration/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+</urlset> 

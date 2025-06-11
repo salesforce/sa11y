@@ -11,6 +11,8 @@ Code in this package should be limited only to wrappers required to facilitate e
 - [Usage](#usage)
   - [Selenium Java](#selenium-java)
   - [WebdriverIO](#webdriverio)
+- [API](#api)
+  - [checkAccessibility](#checkaccessibility)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -40,12 +42,28 @@ public class Sa11yTest {
   void testSa11yVersion() {
     ((JavascriptExecutor) this.driver).executeScript(sa11yMinJS);
     Object response = ((JavascriptExecutor) this.driver).executeScript("return sa11y.version;");
-    assertEquals("0.2.0-alpha.0", response.toString());
+    assertEquals("5.1.0", response.toString());
 
     // Call API to get a11y violations
     Object response = ((JavascriptExecutor) this.driver).executeScript("return await sa11y.checkAccessibility();");
     // Decode response with a JSON de-serialization library ...
     //  e.g. results = new ObjectMapper().readValue(response, ..);
+    driver.quit();
+  }
+
+  @Test
+  void testSa11yWithCustomOptions() {
+    ((JavascriptExecutor) this.driver).executeScript(sa11yMinJS);
+
+    // Check accessibility with custom scope and exception list
+    String script = "return await sa11y.checkAccessibility(" +
+        "document.querySelector('#main-content'), " +
+        "sa11y.base, " +
+        "{'color-contrast': ['body']}, " +
+        "true, " +
+        "'violations');";
+    Object response = ((JavascriptExecutor) this.driver).executeScript(script);
+    // Process results...
     driver.quit();
   }
 }
@@ -67,7 +85,67 @@ describe('demonstrate usage of sa11y.min.js', () => {
         // Call API to get a11y violations
         const results = browser.execute('return await sa11y.checkAccessibility();');
     });
+
+    it('should check accessibility with different report types', () => {
+        const sa11yMinJs = fs.readFileSync(path.resolve(__dirname, '../dist/sa11y.min.js')).toString();
+        browser.execute(sa11yMinJs);
+
+        // Check for violations (default)
+        const violations = browser.execute('return await sa11y.checkAccessibility();');
+
+        // Check for incomplete results
+        const incomplete = browser.execute(
+            "return await sa11y.checkAccessibility(document, sa11y.base, {}, true, 'incomplete');"
+        );
+    });
 });
+```
+
+## API
+
+### checkAccessibility
+
+The main API for checking accessibility in the browser environment.
+
+**Signature:**
+
+```javascript
+async function checkAccessibility(
+    scope = document,
+    rules = defaultRuleset,
+    exceptionList = {},
+    addWcagInfo = true,
+    reportType = 'violations'
+)
+```
+
+**Parameters:**
+
+-   `scope` (optional): Element to check for accessibility. Defaults to the entire document.
+-   `rules` (optional): Preset sa11y rules configuration. Defaults to base ruleset. Available: `sa11y.base`, `sa11y.extended`, `sa11y.full`
+-   `exceptionList` (optional): Mapping of rule ID to CSS selectors to be filtered out from results
+-   `addWcagInfo` (optional): Flag to add WCAG information to the results. Defaults to true.
+-   `reportType` (optional): Type of report to generate. Either 'violations' or 'incomplete'. Defaults to 'violations'.
+
+**Returns:** JSON string containing the accessibility results.
+
+**Examples:**
+
+```javascript
+// Basic usage - check entire document
+const results = await sa11y.checkAccessibility();
+
+// Check specific element with extended rules
+const results = await sa11y.checkAccessibility(document.querySelector('#main-content'), sa11y.extended);
+
+// Use exception list to filter out known issues
+const results = await sa11y.checkAccessibility(document, sa11y.base, {
+    'color-contrast': ['.known-issue'],
+    'landmark-one-main': ['body'],
+});
+
+// Get incomplete results instead of violations
+const incompleteResults = await sa11y.checkAccessibility(document, sa11y.base, {}, true, 'incomplete');
 ```
 
 [selenium java]: https://www.selenium.dev/selenium/docs/api/java/index.html

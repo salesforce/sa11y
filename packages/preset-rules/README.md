@@ -30,8 +30,8 @@ console.log(a11yResults);
 -   `extended` contains WCAG AAA rules, experimental rules and non-WCAG best-practice rules.
 -   `full` ruleset consists of all rules that are enabled by default in axe.
 -   The default ruleset used by the sa11y APIs is `base`.
-    -   This can be overridden using the `SA11Y_RULESET` process environment variable.
--   The `SA11Y_RULESET_PRIORITY` process environment variable can be used to select rules of specified priority in a ruleset.
+    -   This can be overridden using the `SA11Y_RULESET` process environment variable (set to `base`, `extended`, or `full`).
+-   The `SA11Y_RULESET_PRIORITY` process environment variable can be used to select rules of specified priority in a ruleset (e.g., `P1`, `P2`, `P3`).
 
 ### Rules
 
