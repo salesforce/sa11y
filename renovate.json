@@ -30,6 +30,16 @@
             "matchDepTypes": ["devDependencies"],
             "matchPackagePatterns": ["chromedriver", "cspell"],
             "automerge": true
+        },
+        {
+            "matchPackageNames": ["@vitest/runner"],
+            "updateTypes": ["patch"],
+            "enabled": false
+        },
+        {
+            "matchPackagePatterns": ["^vitest"],
+            "updateTypes": ["patch"],
+            "enabled": false
         }
     ]
 }
