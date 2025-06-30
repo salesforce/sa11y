@@ -33,10 +33,6 @@
         },
         {
             "matchPackageNames": ["@vitest/runner"],
-            "updateTypes": ["patch"],
-            "enabled": false
-        },
-        {
             "matchPackagePatterns": ["^vitest"],
             "updateTypes": ["patch"],
             "enabled": false
