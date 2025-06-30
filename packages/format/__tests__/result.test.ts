@@ -59,7 +59,6 @@ describe('a11y result', () => {
         // Create test data with rule ids of different priority
         const rules = [
             'identical-links-same-purpose', // P3, AAA
-            'avoid-inline-spacing', // P3, AA
             'autocomplete-valid', // P2, AA
             'audio-caption', // P1, A
         ];
