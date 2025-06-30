@@ -60,7 +60,7 @@ describe('a11y result', () => {
         const rules = [
             'identical-links-same-purpose', // P3, AAA
             'autocomplete-valid', // P2, AA
-            'audio-caption', // P1, A
+            'object-alt', // P1, A
         ];
         const expectedSortedRules = [...rules].reverse();
         const a11yResults = A11yResults.convert(

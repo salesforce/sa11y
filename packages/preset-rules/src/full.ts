@@ -8,7 +8,7 @@ import { defaultPriority, getA11yConfig } from './rules';
 import { extendedRulesInfo } from './extended';
 
 // Rules that have been excluded due to being new or deprecated by axe
-export const excludedRules = [];
+export const excludedRules = ['aria-roledescription', 'audio-caption', 'duplicate-id', 'duplicate-id-active'];
 
 // Add excluded rules to extended to get the full list
 excludedRules.forEach((rule) => extendedRulesInfo.set(rule, { priority: defaultPriority, wcagSC: '', wcagLevel: '' }));
