@@ -11,11 +11,11 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 2`] = `4`;
@@ -32,11 +32,11 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 1 1`] = `""`;
@@ -61,11 +61,11 @@ exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 
 \\"* (region) Ensure all page content is contained by landmarks: h1:nth-child(1)\\"
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 \\"* (region) Ensure all page content is contained by landmarks: h1:nth-child(2)\\"
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 2 1`] = `
@@ -79,11 +79,11 @@ exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 3 1`] = `
@@ -97,11 +97,11 @@ exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 4 1`] = `
@@ -115,11 +115,11 @@ exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 1`] = `
@@ -134,11 +134,11 @@ exports[`a11y Results Formatter should not throw error for repeated violations w
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 2`] = `
@@ -153,11 +153,11 @@ exports[`a11y Results Formatter should not throw error for repeated violations w
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should throw error when violations are present 1`] = `
@@ -172,11 +172,11 @@ exports[`a11y Results Formatter should throw error when violations are present 1
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y results filter should be setup with violations that can be reused across tests 1`] = `

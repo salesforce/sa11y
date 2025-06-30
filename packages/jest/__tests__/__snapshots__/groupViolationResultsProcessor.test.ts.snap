@@ -391,10 +391,10 @@ Fix any of the following:
                         "selectors": "h1:nth-child(1)",
                         "summary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                        "wcag": "SA11Y-WCAG-SC-P3",
+                        "wcag": "SA11Y-WCAG-SC1.3.1-P3",
                         "wcagData": Object {
                           "priority": "P3",
-                          "successCriteria": "",
+                          "successCriteria": "1.3.1",
                           "violation": Object {
                             "description": "Ensure all page content is contained by landmarks",
                             "help": "All page content should be contained by landmarks",
@@ -472,10 +472,10 @@ Fix any of the following:
                         "selectors": "h1:nth-child(2)",
                         "summary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                        "wcag": "SA11Y-WCAG-SC-P3",
+                        "wcag": "SA11Y-WCAG-SC1.3.1-P3",
                         "wcagData": Object {
                           "priority": "P3",
-                          "successCriteria": "",
+                          "successCriteria": "1.3.1",
                           "violation": Object {
                             "description": "Ensure all page content is contained by landmarks",
                             "help": "All page content should be contained by landmarks",
@@ -853,7 +853,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- HTML Tag Hierarchy : 
             * Help:
                 • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
-                • WCAG Criteria: SA11Y-WCAG-SC-P3
+                • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
     
 For more info about automated accessibility testing: https://sfdc.co/a11y-test
@@ -1288,10 +1288,10 @@ Fix any of the following:
                   "selectors": "h1:nth-child(1)",
                   "summary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcag": "SA11Y-WCAG-SC1.3.1-P3",
                   "wcagData": Object {
                     "priority": "P3",
-                    "successCriteria": "",
+                    "successCriteria": "1.3.1",
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
@@ -1369,10 +1369,10 @@ Fix any of the following:
                   "selectors": "h1:nth-child(2)",
                   "summary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcag": "SA11Y-WCAG-SC1.3.1-P3",
                   "wcagData": Object {
                     "priority": "P3",
-                    "successCriteria": "",
+                    "successCriteria": "1.3.1",
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
@@ -2102,10 +2102,10 @@ Fix any of the following:
                   "selectors": "h1:nth-child(1)",
                   "summary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcag": "SA11Y-WCAG-SC1.3.1-P3",
                   "wcagData": Object {
                     "priority": "P3",
-                    "successCriteria": "",
+                    "successCriteria": "1.3.1",
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
@@ -2183,10 +2183,10 @@ Fix any of the following:
                   "selectors": "h1:nth-child(2)",
                   "summary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcag": "SA11Y-WCAG-SC1.3.1-P3",
                   "wcagData": Object {
                     "priority": "P3",
-                    "successCriteria": "",
+                    "successCriteria": "1.3.1",
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
@@ -3129,10 +3129,10 @@ Fix any of the following:
                   "selectors": "h1:nth-child(1)",
                   "summary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcag": "SA11Y-WCAG-SC1.3.1-P3",
                   "wcagData": Object {
                     "priority": "P3",
-                    "successCriteria": "",
+                    "successCriteria": "1.3.1",
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
@@ -3210,10 +3210,10 @@ Fix any of the following:
                   "selectors": "h1:nth-child(2)",
                   "summary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcag": "SA11Y-WCAG-SC1.3.1-P3",
                   "wcagData": Object {
                     "priority": "P3",
-                    "successCriteria": "",
+                    "successCriteria": "1.3.1",
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
@@ -3588,7 +3588,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- HTML Tag Hierarchy : 
             * Help:
                 • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
-                • WCAG Criteria: SA11Y-WCAG-SC-P3
+                • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
     
 For more info about automated accessibility testing: https://sfdc.co/a11y-test
@@ -4047,10 +4047,10 @@ Fix any of the following:
                   "selectors": "h1:nth-child(1)",
                   "summary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcag": "SA11Y-WCAG-SC1.3.1-P3",
                   "wcagData": Object {
                     "priority": "P3",
-                    "successCriteria": "",
+                    "successCriteria": "1.3.1",
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
@@ -4128,10 +4128,10 @@ Fix any of the following:
                   "selectors": "h1:nth-child(2)",
                   "summary": "Fix any of the following:
   Some page content is not contained by landmarks",
-                  "wcag": "SA11Y-WCAG-SC-P3",
+                  "wcag": "SA11Y-WCAG-SC1.3.1-P3",
                   "wcagData": Object {
                     "priority": "P3",
-                    "successCriteria": "",
+                    "successCriteria": "1.3.1",
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
@@ -4615,7 +4615,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- HTML Tag Hierarchy : 
             * Help:
                 • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
-                • WCAG Criteria: SA11Y-WCAG-SC-P3
+                • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
     
 For more info about automated accessibility testing: https://sfdc.co/a11y-test
@@ -4654,11 +4654,11 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 0 2`] = `4`;
@@ -4675,11 +4675,11 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should format a11y issues as expected with default options for dom 1 1`] = `""`;
@@ -4704,11 +4704,11 @@ exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 
 \\"* (region) Ensure all page content is contained by landmarks: h1:nth-child(1)\\"
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 \\"* (region) Ensure all page content is contained by landmarks: h1:nth-child(2)\\"
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 2 1`] = `
@@ -4722,11 +4722,11 @@ exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 3 1`] = `
@@ -4740,11 +4740,11 @@ exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should format using specified options: 4 1`] = `
@@ -4758,11 +4758,11 @@ exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 1`] = `
@@ -4777,11 +4777,11 @@ exports[`a11y Results Formatter should not throw error for repeated violations w
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should not throw error for repeated violations with consolidation 2`] = `
@@ -4796,11 +4796,11 @@ exports[`a11y Results Formatter should not throw error for repeated violations w
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
 
 exports[`a11y Results Formatter should throw error when violations are present 1`] = `
@@ -4815,9 +4815,9 @@ exports[`a11y Results Formatter should throw error when violations are present 1
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(1)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
 * (region) Ensure all page content is contained by landmarks: h1:nth-child(2)
 	- Help URL: https://dequeuniversity.com/rules/axe/4.10/region 
-	- WCAG Criteria: SA11Y-WCAG-SC-P3"
+	- WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3"
 `;
