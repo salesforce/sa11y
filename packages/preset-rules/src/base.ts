@@ -68,7 +68,7 @@ export const baseRulesInfo: RuleInfo = new Map(
         'server-side-image-map': { priority: 'P1', wcagSC: '2.1.1', wcagLevel: 'A' },
         'summary-name': { priority: 'P1', wcagSC: '4.1.2', wcagLevel: 'A' },
         'svg-img-alt': { priority: 'P1', wcagSC: '1.1.1', wcagLevel: 'A' },
-        'target-size': { priority: 'P2', wcagSC: '2.5.8', wcagLevel: 'AAA' },
+        'target-size': { priority: 'P2', wcagSC: '2.5.8', wcagLevel: 'AA' },
         'td-headers-attr': { priority: 'P1', wcagSC: '1.3.1', wcagLevel: 'A' },
         'th-has-data-cells': { priority: 'P1', wcagSC: '1.3.1', wcagLevel: 'A' },
         'valid-lang': { priority: 'P2', wcagSC: '3.1.2', wcagLevel: 'A' },

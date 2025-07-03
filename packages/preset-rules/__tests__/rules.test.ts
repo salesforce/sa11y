@@ -52,12 +52,12 @@ describe('preset-rules', () => {
         expect(extended.runOnly.values).toEqual(expect.arrayContaining(base.runOnly.values));
     });
 
-    it('should contain both WCAG SC, Level and no AAA rules for base ruleset except target-size', () => {
+    it('should contain both WCAG SC, Level and no AAA rules for base ruleset', () => {
         expect(
             Array.from(baseRulesInfo.values()).filter(
                 (ruleInfo) => !ruleInfo.wcagSC || !ruleInfo.wcagLevel || ruleInfo.wcagLevel === 'AAA'
             )
-        ).toHaveLength(1);
+        ).toHaveLength(0);
     });
 
     it('should contain both WCAG SC and Level or none in base, extended rulesets', () => {
