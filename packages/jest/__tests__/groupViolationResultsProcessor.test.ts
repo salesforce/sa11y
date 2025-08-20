@@ -11,7 +11,7 @@ import { getA11yError } from '@sa11y/format/__tests__/format.test';
 import { domWithVisualA11yIssues } from '@sa11y/test-utils';
 import { expect } from '@jest/globals';
 import { resultsProcessor, resultsProcessorManualChecks } from '../src/groupViolationResultsProcessor';
-import { ErrorElement, createA11yErrorElements } from '@sa11y/matcher';
+import { ErrorElement, createA11yErrorElements } from '@sa11y/common';
 
 const a11yResults: A11yResult[] = [];
 const aggregatedResults = makeEmptyAggregatedTestResult();
