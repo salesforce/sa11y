@@ -6,7 +6,14 @@
  */
 
 import path from 'path';
-import { useFilesToBeExempted, log, useCustomRules, processFiles, registerCustomRules } from '../src/helpers';
+import {
+    useFilesToBeExempted,
+    log,
+    useCustomRules,
+    processFiles,
+    registerCustomRules,
+    createA11yErrorElements,
+} from '../src/helpers';
 import axe from 'axe-core';
 jest.mock('axe-core');
 
@@ -118,5 +125,113 @@ describe('Your Module', () => {
             rules: [...mockChanges.rules, ...mockRules],
             checks: [...mockChecks],
         });
+    });
+});
+
+describe('createA11yErrorElements', () => {
+    it('should format error elements with any, all, none and relatedNodes correctly', () => {
+        const errorElements = [
+            {
+                html: '&lt;button&gt;',
+                selectors: 'button.primary',
+                hierarchy: 'div > button',
+                any: 'Fix aria-label',
+                all: 'Ensure contrast',
+                none: 'Avoid tabindex',
+                relatedNodeAny: 'div.wrapper',
+                relatedNodeAll: 'div.container',
+                relatedNodeNone: 'div.tab-wrapper',
+                message: 'Custom issue message',
+            },
+        ];
+        const output = createA11yErrorElements(errorElements);
+        expect(output).toContain('HTML element : <button>');
+        expect(output).toContain('CSS selector(s) : button.primary');
+        expect(output).toContain('Error Message (Needs Review) : Custom issue message');
+        expect(output).toContain('Fix aria-label');
+        expect(output).toContain('Ensure contrast');
+        expect(output).toContain('Avoid tabindex');
+        expect(output).toContain('Related Nodes');
+        expect(output).toContain('div.wrapper');
+        expect(output).toContain('div.container');
+        expect(output).toContain('div.tab-wrapper');
+    });
+
+    it('should handle missing optional fields gracefully', () => {
+        const errorElements = [
+            {
+                html: '&lt;img&gt;',
+                selectors: 'img.logo',
+                hierarchy: 'div > img',
+                any: '',
+                all: '',
+                none: '',
+                relatedNodeAny: '',
+                relatedNodeAll: '',
+                relatedNodeNone: '',
+            },
+        ];
+        const output = createA11yErrorElements(errorElements);
+        expect(output).toContain('HTML element : <img>');
+        expect(output).toContain('CSS selector(s) : img.logo');
+    });
+
+    it('should generate failure messages grouped by rule', () => {
+        const errorElements = [
+            {
+                id: 'color-contrast',
+                description:
+                    'Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds',
+                helpUrl: 'https://example.com/contrast',
+                wcag: '1.4.3',
+                summary: 'Low contrast text',
+                html: '&lt;div&gt;Low contrast text&lt;/div&gt;',
+                selectors: 'div.low-contrast',
+                hierarchy: 'div > button',
+                ancestry: 'body > div',
+                any: '',
+                all: 'Fix contrast',
+                none: '',
+                relatedNodeAny: 'span.helper-text',
+                relatedNodeAll: '',
+                relatedNodeNone: '',
+                message: 'Text has insufficient contrast',
+                key: '',
+                wcagData: undefined,
+                formatRelatedNodes: function (): string {
+                    throw new Error('Function not implemented.');
+                },
+            },
+            {
+                id: 'color-contrast',
+                description:
+                    'Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds',
+                helpUrl: 'https://example.com/contrast',
+                wcag: '1.4.3',
+                summary: 'Low contrast text again',
+                html: '&lt;span&gt;More low contrast&lt;/span&gt;',
+                selectors: 'span.low-contrast',
+                hierarchy: 'div > button',
+                ancestry: 'body > span',
+                any: 'Fix again',
+                all: '',
+                none: 'Fix',
+                relatedNodeAny: 'div.helper-container',
+                relatedNodeAll: '',
+                relatedNodeNone: '',
+                key: '',
+                wcagData: undefined,
+                message: undefined,
+                formatRelatedNodes: function (): string {
+                    throw new Error('Function not implemented.');
+                },
+            },
+        ];
+        const output = createA11yErrorElements(errorElements);
+        expect(output).toContain('HTML element : <div>');
+        expect(output).toContain('CSS selector(s) : div.low-contrast');
+        expect(output).toContain('HTML Tag Hierarchy : div > button');
+        expect(output).toContain('Fix contrast');
+        expect(output).toContain('Related Nodes');
     });
 });

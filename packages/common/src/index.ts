@@ -24,4 +24,8 @@ export {
     processFiles,
     registerCustomRules,
     writeHtmlFileInPath,
+    type ErrorElement,
+    type A11yViolation,
+    createA11yRuleViolation,
+    createA11yErrorElements,
 } from './helpers';

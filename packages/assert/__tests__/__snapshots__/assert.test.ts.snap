@@ -2,25 +2,112 @@
 
 exports[`assertAccessible API should throw an error with a11y issues found for dom with a11y issues 1`] = `
 "2 Accessibility issues found
- * (document-title) Ensure each HTML document contains a non-empty <title> element: html
-	- Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title 
-	- WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+ 
+    
+    The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+    2 HTML elements have accessibility issue(s). 2 rules failed.
+    
+    (1) [document-title] Ensure each HTML document contains a non-empty <title> element
+            * Error element(s) : 1
+				(1) - HTML element : <html lang=\\"en\\"><head><style>* { pointer-events: all }</style></head><body>
 
-* (link-name) Ensure links have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+<h1>Header One</h1>
+<h1>Header Two</h1>
+<div id=\\"dom-with-issues\\">
+    <a href=\\"#\\"></a>
+</div>
+
+
+</body></html>
+					- CSS selector(s) : html
+					- HTML Tag Hierarchy : 
+					- More Info: To solve the problem, you need to fix at least (1) of the following:
+						• Document does not have a non-empty <title> element
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
+(2) [link-name] Ensure links have discernible text
+            * Error element(s) : 1
+				(1) - HTML element : <a href=\\"#\\"></a>
+					- CSS selector(s) : a
+					- HTML Tag Hierarchy : 
+					- More Info: To solve the problem, you need to fix at least (1) of the following:
+						• Element does not have text that is visible to screen readers
+						• aria-label attribute does not exist or is empty
+						• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+						• Element has no title attribute
+					- And fix the following:
+						• Element is in tab order and does not have accessible text
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+    
+        
+    For more info about automated accessibility testing: https://sfdc.co/a11y-test
+    For tips on fixing accessibility bugs: https://sfdc.co/a11y
+    For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+    For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
+        "
 `;
 
 exports[`assertAccessible API should throw error with HTML element with a11y issues 1`] = `
 "1 Accessibility issues found
- * (link-name) Ensure links have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+ 
+    
+    The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+    1 HTML elements have accessibility issue(s). 1 rules failed.
+    
+    (1) [link-name] Ensure links have discernible text
+            * Error element(s) : 1
+				(1) - HTML element : <a href=\\"#\\"></a>
+					- CSS selector(s) : a
+					- HTML Tag Hierarchy : 
+					- More Info: To solve the problem, you need to fix at least (1) of the following:
+						• Element does not have text that is visible to screen readers
+						• aria-label attribute does not exist or is empty
+						• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+						• Element has no title attribute
+					- And fix the following:
+						• Element is in tab order and does not have accessible text
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+    
+        
+    For more info about automated accessibility testing: https://sfdc.co/a11y-test
+    For tips on fixing accessibility bugs: https://sfdc.co/a11y
+    For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+    For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
+        "
 `;
 
 exports[`assertAccessible API should throw error with HTML element with a11y issues when passed with selector keywords 1`] = `
 "1 Accessibility issues found
- * (link-name) Ensure links have discernible text: a
-	- Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name 
-	- WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1"
+ 
+    
+    The test has failed the accessibility check. Accessibility Stacktrace/Issues:
+    1 HTML elements have accessibility issue(s). 1 rules failed.
+    
+    (1) [link-name] Ensure links have discernible text
+            * Error element(s) : 1
+				(1) - HTML element : <a href=\\"#\\"></a>
+					- CSS selector(s) : a
+					- HTML Tag Hierarchy : 
+					- More Info: To solve the problem, you need to fix at least (1) of the following:
+						• Element does not have text that is visible to screen readers
+						• aria-label attribute does not exist or is empty
+						• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+						• Element has no title attribute
+					- And fix the following:
+						• Element is in tab order and does not have accessible text
+            * Help:
+                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
+    
+        
+    For more info about automated accessibility testing: https://sfdc.co/a11y-test
+    For tips on fixing accessibility bugs: https://sfdc.co/a11y
+    For technical questions regarding Salesforce accessibility tools, contact our Sa11y team: http://sfdc.co/sa11y-users
+    For guidance on accessibility related specifics, contact our A11y team: http://sfdc.co/tmp-a11y
+        "
 `;

@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { createA11yErrorElements, processA11yDetailsAndMessages } from '../src/groupViolationResultsProcessor';
+import { processA11yDetailsAndMessages } from '../src/groupViolationResultsProcessor';
 import type { A11yError, Options } from '@sa11y/format';
+import { createA11yErrorElements } from '@sa11y/common';
 
 describe('createA11yErrorElements', () => {
     it('should format error elements with any, all, none and relatedNodes correctly', () => {
