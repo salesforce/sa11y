@@ -24,10 +24,8 @@
         "install:clean": "lerna clean --yes && rimraf yarn.lock && rimraf node_modules && yarn install",
         "install:update": "yarn audit; yarn upgrade-interactive --latest && yarn install:clean && yarn test:clean",
         "lint": "eslint . --ext ts,js,md",
-        "lint:all": "tsc --noEmit && yarn lint && yarn lint:lockfile && yarn lint:deps && yarn lint:depgraph",
-        "lint:all:except:depgraph": "tsc --noEmit && yarn lint && yarn lint:lockfile && yarn lint:deps",
+        "lint:all": "tsc --noEmit && yarn lint && yarn lint:lockfile && yarn lint:deps",
         "lint:deps": "lerna exec depcheck",
-        "lint:depgraph": "yarn pkg:depgraph && git diff --quiet docs/sa11y_dependency_graph.svg || (echo 'Dependency graph needs to be updated!'; exit 1)",
         "lint:fix": "yarn lint --fix",
         "lint:lockfile": "lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https",
         "lint:staged": "lint-staged",
@@ -36,13 +34,12 @@
         "pkg:diff": "lerna exec --stream --no-bail 'git diff --relative --stat origin/master'",
         "pkg:list": "lerna list --long --all --toposort",
         "pkg:deps": "yarn pkg:list --graph",
-        "pkg:depgraph": "package-dependency-graph --graphviz --svg docs/sa11y_dependency_graph.svg",
         "release:changelog": "conventional-changelog --infile CHANGELOG.md --same-file --preset angular --output-unreleased",
         "release:version": "yarn pkg:diff; lerna version --no-push --no-git-tag-version && yarn build:clean",
         "release:version:auto": "yarn release:version --conventional-commits --no-changelog && yarn build:clean",
         "release:publish": "yarn test:clean && lerna publish from-package",
         "test": "jest --coverage --runInBand",
-        "test:ci": "yarn lint:all:except:depgraph && yarn test --ci --reporters=default --reporters=jest-junit",
+        "test:ci": "yarn lint:all && yarn test --ci --reporters=default --reporters=jest-junit",
         "test:clean": "yarn build:clean && yarn test:ci",
         "test:debug": "SA11Y_DEBUG=1 node --inspect node_modules/.bin/jest --runInBand --watch",
         "test:watch": "jest --watch",
@@ -101,7 +98,6 @@
         "lint-staged": "13.3.0",
         "lockfile-lint": "4.14.1",
         "markdown-link-check": "3.13.7",
-        "package-dependency-graph": "1.14.4",
         "prettier": "2.8.8",
         "rimraf": "3.0.2",
         "semantic-release": "19.0.5",
@@ -112,6 +108,6 @@
         "webdriverio": "7.40.0"
     },
     "engines": {
-        "node": "^18 || ^20"
+        "node": "^20 || ^22 || ^24"
     }
 }
