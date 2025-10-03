@@ -28,7 +28,6 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
     - [Test utilities](#test-utilities)
     - [Integration Tests](#integration-tests)
     - [Common utilities](#common-utilities)
-  - [Dependency graph](#dependency-graph)
   - [Epilogue](#epilogue)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -151,10 +150,6 @@ This repo contains the following packages for automated accessibility testing:
 
 -   Common utilities, constants, error messages, and helper functions for `@sa11y` packages
 -   Provides shared functionality for environment detection, custom rules, and file processing
-
-### Dependency graph
-
-![Dependency graph of sa11y packages](docs/sa11y_dependency_graph.svg)
 
 ---
 
