@@ -86,7 +86,7 @@
         "eslint-plugin-markdown": "3.0.1",
         "eslint-plugin-notice": "0.9.10",
         "eslint-plugin-prettier": "4.2.5",
-        "eslint-plugin-tsdoc": "0.4.0",
+        "eslint-plugin-tsdoc": "0.5.0",
         "eslint-watch": "8.0.0",
         "husky": "8.0.3",
         "is-ci": "3.0.1",
