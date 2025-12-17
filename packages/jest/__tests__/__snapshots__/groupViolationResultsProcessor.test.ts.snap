@@ -103,7 +103,7 @@ Object {
                         "ancestry": "",
                         "any": "						• Document does not have a non-empty <title> element",
                         "description": "Ensure each HTML document contains a non-empty <title> element",
-                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title",
                         "html": "<html><head></head><body>
 
 <h1>Header One</h1>
@@ -130,7 +130,7 @@ Object {
                           "violation": Object {
                             "description": "Ensure each HTML document contains a non-empty <title> element",
                             "help": "Documents must have <title> element to aid in navigation",
-                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI",
+                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title?application=axeAPI",
                             "id": "document-title",
                             "impact": "serious",
                             "nodes": Array [
@@ -173,6 +173,8 @@ Object {
                               "EN-301-549",
                               "EN-9.2.4.2",
                               "ACT",
+                              "RGAAv4",
+                              "RGAA-8.5.1",
                             ],
                           },
                           "wcagLevel": "A",
@@ -184,7 +186,7 @@ Object {
                         "ancestry": "",
                         "any": "						• The <html> element does not have a lang attribute",
                         "description": "Ensure every HTML document has a lang attribute",
-                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang",
                         "html": "<html><head></head><body>
 
 <h1>Header One</h1>
@@ -211,7 +213,7 @@ Object {
                           "violation": Object {
                             "description": "Ensure every HTML document has a lang attribute",
                             "help": "<html> element must have a lang attribute",
-                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                             "id": "html-has-lang",
                             "impact": "serious",
                             "nodes": Array [
@@ -256,6 +258,8 @@ Object {
                               "EN-301-549",
                               "EN-9.3.1.1",
                               "ACT",
+                              "RGAAv4",
+                              "RGAA-8.3.1",
                             ],
                           },
                           "wcagLevel": "A",
@@ -270,7 +274,7 @@ Object {
 						• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
 						• Element has no title attribute",
                         "description": "Ensure links have discernible text",
-                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name",
                         "html": "<a href=\\"#\\"></a>",
                         "id": "link-name",
                         "key": "link-name--a",
@@ -294,7 +298,7 @@ Fix any of the following:
                           "violation": Object {
                             "description": "Ensure links have discernible text",
                             "help": "Links must have discernible text",
-                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI",
+                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=axeAPI",
                             "id": "link-name",
                             "impact": "serious",
                             "nodes": Array [
@@ -369,6 +373,8 @@ Fix any of the following:
                               "EN-9.2.4.4",
                               "EN-9.4.1.2",
                               "ACT",
+                              "RGAAv4",
+                              "RGAA-6.2.1",
                             ],
                           },
                           "wcagLevel": "A",
@@ -380,7 +386,7 @@ Fix any of the following:
                         "ancestry": "",
                         "any": "						• Some page content is not contained by landmarks",
                         "description": "Ensure all page content is contained by landmarks",
-                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region",
                         "html": "<h1>Header One</h1>",
                         "id": "region",
                         "key": "region--h1:nth-child(1)",
@@ -398,7 +404,7 @@ Fix any of the following:
                           "violation": Object {
                             "description": "Ensure all page content is contained by landmarks",
                             "help": "All page content should be contained by landmarks",
-                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                             "id": "region",
                             "impact": "moderate",
                             "nodes": Array [
@@ -450,6 +456,8 @@ Fix any of the following:
                             "tags": Array [
                               "cat.keyboard",
                               "best-practice",
+                              "RGAAv4",
+                              "RGAA-9.2.1",
                             ],
                           },
                           "wcagLevel": "",
@@ -461,7 +469,7 @@ Fix any of the following:
                         "ancestry": "",
                         "any": "						• Some page content is not contained by landmarks",
                         "description": "Ensure all page content is contained by landmarks",
-                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region",
                         "html": "<h1>Header Two</h1>",
                         "id": "region",
                         "key": "region--h1:nth-child(2)",
@@ -479,7 +487,7 @@ Fix any of the following:
                           "violation": Object {
                             "description": "Ensure all page content is contained by landmarks",
                             "help": "All page content should be contained by landmarks",
-                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                             "id": "region",
                             "impact": "moderate",
                             "nodes": Array [
@@ -531,6 +539,8 @@ Fix any of the following:
                             "tags": Array [
                               "cat.keyboard",
                               "best-practice",
+                              "RGAAv4",
+                              "RGAA-9.2.1",
                             ],
                           },
                           "wcagLevel": "",
@@ -544,7 +554,7 @@ Fix any of the following:
                       Object {
                         "description": "Ensure each HTML document contains a non-empty <title> element",
                         "help": "Documents must have <title> element to aid in navigation",
-                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title?application=axeAPI",
                         "id": "document-title",
                         "impact": "serious",
                         "nodes": Array [
@@ -587,12 +597,14 @@ Fix any of the following:
                           "EN-301-549",
                           "EN-9.2.4.2",
                           "ACT",
+                          "RGAAv4",
+                          "RGAA-8.5.1",
                         ],
                       },
                       Object {
                         "description": "Ensure every HTML document has a lang attribute",
                         "help": "<html> element must have a lang attribute",
-                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                         "id": "html-has-lang",
                         "impact": "serious",
                         "nodes": Array [
@@ -637,12 +649,14 @@ Fix any of the following:
                           "EN-301-549",
                           "EN-9.3.1.1",
                           "ACT",
+                          "RGAAv4",
+                          "RGAA-8.3.1",
                         ],
                       },
                       Object {
                         "description": "Ensure links have discernible text",
                         "help": "Links must have discernible text",
-                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=axeAPI",
                         "id": "link-name",
                         "impact": "serious",
                         "nodes": Array [
@@ -717,12 +731,14 @@ Fix any of the following:
                           "EN-9.2.4.4",
                           "EN-9.4.1.2",
                           "ACT",
+                          "RGAAv4",
+                          "RGAA-6.2.1",
                         ],
                       },
                       Object {
                         "description": "Ensure all page content is contained by landmarks",
                         "help": "All page content should be contained by landmarks",
-                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                        "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                         "id": "region",
                         "impact": "moderate",
                         "nodes": Array [
@@ -774,6 +790,8 @@ Fix any of the following:
                         "tags": Array [
                           "cat.keyboard",
                           "best-practice",
+                          "RGAAv4",
+                          "RGAA-9.2.1",
                         ],
                       },
                     ],
@@ -805,7 +823,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [html-has-lang] Ensure every HTML document has a lang attribute
             * Error element(s) : 1
@@ -824,7 +842,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• The <html> element does not have a lang attribute
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/html-has-lang
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/html-has-lang
                 • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 (3) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -839,7 +857,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (4) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -852,7 +870,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
     
@@ -877,7 +895,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                   "ancestry": "",
                   "any": "						• The <html> element does not have a lang attribute",
                   "description": "Ensure every HTML document has a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang",
                   "html": "<html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
@@ -895,7 +913,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                     "violation": Object {
                       "description": "Ensure every HTML document has a lang attribute",
                       "help": "<html> element must have a lang attribute",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                       "id": "html-has-lang",
                       "impact": "serious",
                       "nodes": Array [
@@ -931,6 +949,8 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                         "EN-301-549",
                         "EN-9.3.1.1",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.3.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -944,7 +964,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
                   "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                   "id": "html-has-lang",
                   "impact": "serious",
                   "nodes": Array [
@@ -980,6 +1000,8 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                     "EN-301-549",
                     "EN-9.3.1.1",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.3.1",
                   ],
                 },
               ],
@@ -1000,7 +1022,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                   "ancestry": "",
                   "any": "						• Document does not have a non-empty <title> element",
                   "description": "Ensure each HTML document contains a non-empty <title> element",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title",
                   "html": "<html><head></head><body>
 
 <h1>Header One</h1>
@@ -1027,7 +1049,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                     "violation": Object {
                       "description": "Ensure each HTML document contains a non-empty <title> element",
                       "help": "Documents must have <title> element to aid in navigation",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title?application=axeAPI",
                       "id": "document-title",
                       "impact": "serious",
                       "nodes": Array [
@@ -1070,6 +1092,8 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                         "EN-301-549",
                         "EN-9.2.4.2",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.5.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -1081,7 +1105,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                   "ancestry": "",
                   "any": "						• The <html> element does not have a lang attribute",
                   "description": "Ensure every HTML document has a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang",
                   "html": "<html><head></head><body>
 
 <h1>Header One</h1>
@@ -1108,7 +1132,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                     "violation": Object {
                       "description": "Ensure every HTML document has a lang attribute",
                       "help": "<html> element must have a lang attribute",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                       "id": "html-has-lang",
                       "impact": "serious",
                       "nodes": Array [
@@ -1153,6 +1177,8 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                         "EN-301-549",
                         "EN-9.3.1.1",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.3.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -1167,7 +1193,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
 						• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
 						• Element has no title attribute",
                   "description": "Ensure links have discernible text",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
@@ -1191,7 +1217,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure links have discernible text",
                       "help": "Links must have discernible text",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=axeAPI",
                       "id": "link-name",
                       "impact": "serious",
                       "nodes": Array [
@@ -1266,6 +1292,8 @@ Fix any of the following:
                         "EN-9.2.4.4",
                         "EN-9.4.1.2",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-6.2.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -1277,7 +1305,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• Some page content is not contained by landmarks",
                   "description": "Ensure all page content is contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region",
                   "html": "<h1>Header One</h1>",
                   "id": "region",
                   "key": "region--h1:nth-child(1)",
@@ -1295,7 +1323,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                       "id": "region",
                       "impact": "moderate",
                       "nodes": Array [
@@ -1347,6 +1375,8 @@ Fix any of the following:
                       "tags": Array [
                         "cat.keyboard",
                         "best-practice",
+                        "RGAAv4",
+                        "RGAA-9.2.1",
                       ],
                     },
                     "wcagLevel": "",
@@ -1358,7 +1388,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• Some page content is not contained by landmarks",
                   "description": "Ensure all page content is contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region",
                   "html": "<h1>Header Two</h1>",
                   "id": "region",
                   "key": "region--h1:nth-child(2)",
@@ -1376,7 +1406,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                       "id": "region",
                       "impact": "moderate",
                       "nodes": Array [
@@ -1428,6 +1458,8 @@ Fix any of the following:
                       "tags": Array [
                         "cat.keyboard",
                         "best-practice",
+                        "RGAAv4",
+                        "RGAA-9.2.1",
                       ],
                     },
                     "wcagLevel": "",
@@ -1441,7 +1473,7 @@ Fix any of the following:
                 Object {
                   "description": "Ensure each HTML document contains a non-empty <title> element",
                   "help": "Documents must have <title> element to aid in navigation",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title?application=axeAPI",
                   "id": "document-title",
                   "impact": "serious",
                   "nodes": Array [
@@ -1484,12 +1516,14 @@ Fix any of the following:
                     "EN-301-549",
                     "EN-9.2.4.2",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.5.1",
                   ],
                 },
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
                   "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                   "id": "html-has-lang",
                   "impact": "serious",
                   "nodes": Array [
@@ -1534,12 +1568,14 @@ Fix any of the following:
                     "EN-301-549",
                     "EN-9.3.1.1",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.3.1",
                   ],
                 },
                 Object {
                   "description": "Ensure links have discernible text",
                   "help": "Links must have discernible text",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=axeAPI",
                   "id": "link-name",
                   "impact": "serious",
                   "nodes": Array [
@@ -1614,12 +1650,14 @@ Fix any of the following:
                     "EN-9.2.4.4",
                     "EN-9.4.1.2",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-6.2.1",
                   ],
                 },
                 Object {
                   "description": "Ensure all page content is contained by landmarks",
                   "help": "All page content should be contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                   "id": "region",
                   "impact": "moderate",
                   "nodes": Array [
@@ -1671,6 +1709,8 @@ Fix any of the following:
                   "tags": Array [
                     "cat.keyboard",
                     "best-practice",
+                    "RGAAv4",
+                    "RGAA-9.2.1",
                   ],
                 },
               ],
@@ -1691,7 +1731,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• The <html> element does not have a lang attribute",
                   "description": "Ensure every HTML document has a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang",
                   "html": "<html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
@@ -1709,7 +1749,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure every HTML document has a lang attribute",
                       "help": "<html> element must have a lang attribute",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                       "id": "html-has-lang",
                       "impact": "serious",
                       "nodes": Array [
@@ -1745,6 +1785,8 @@ Fix any of the following:
                         "EN-301-549",
                         "EN-9.3.1.1",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.3.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -1758,7 +1800,7 @@ Fix any of the following:
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
                   "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                   "id": "html-has-lang",
                   "impact": "serious",
                   "nodes": Array [
@@ -1794,6 +1836,8 @@ Fix any of the following:
                     "EN-301-549",
                     "EN-9.3.1.1",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.3.1",
                   ],
                 },
               ],
@@ -1814,7 +1858,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• Document does not have a non-empty <title> element",
                   "description": "Ensure each HTML document contains a non-empty <title> element",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title",
                   "html": "<html><head></head><body>
 
 <h1>Header One</h1>
@@ -1841,7 +1885,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure each HTML document contains a non-empty <title> element",
                       "help": "Documents must have <title> element to aid in navigation",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title?application=axeAPI",
                       "id": "document-title",
                       "impact": "serious",
                       "nodes": Array [
@@ -1884,6 +1928,8 @@ Fix any of the following:
                         "EN-301-549",
                         "EN-9.2.4.2",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.5.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -1895,7 +1941,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• The <html> element does not have a lang attribute",
                   "description": "Ensure every HTML document has a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang",
                   "html": "<html><head></head><body>
 
 <h1>Header One</h1>
@@ -1922,7 +1968,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure every HTML document has a lang attribute",
                       "help": "<html> element must have a lang attribute",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                       "id": "html-has-lang",
                       "impact": "serious",
                       "nodes": Array [
@@ -1967,6 +2013,8 @@ Fix any of the following:
                         "EN-301-549",
                         "EN-9.3.1.1",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.3.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -1981,7 +2029,7 @@ Fix any of the following:
 						• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
 						• Element has no title attribute",
                   "description": "Ensure links have discernible text",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
@@ -2005,7 +2053,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure links have discernible text",
                       "help": "Links must have discernible text",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=axeAPI",
                       "id": "link-name",
                       "impact": "serious",
                       "nodes": Array [
@@ -2080,6 +2128,8 @@ Fix any of the following:
                         "EN-9.2.4.4",
                         "EN-9.4.1.2",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-6.2.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -2091,7 +2141,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• Some page content is not contained by landmarks",
                   "description": "Ensure all page content is contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region",
                   "html": "<h1>Header One</h1>",
                   "id": "region",
                   "key": "region--h1:nth-child(1)",
@@ -2109,7 +2159,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                       "id": "region",
                       "impact": "moderate",
                       "nodes": Array [
@@ -2161,6 +2211,8 @@ Fix any of the following:
                       "tags": Array [
                         "cat.keyboard",
                         "best-practice",
+                        "RGAAv4",
+                        "RGAA-9.2.1",
                       ],
                     },
                     "wcagLevel": "",
@@ -2172,7 +2224,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• Some page content is not contained by landmarks",
                   "description": "Ensure all page content is contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region",
                   "html": "<h1>Header Two</h1>",
                   "id": "region",
                   "key": "region--h1:nth-child(2)",
@@ -2190,7 +2242,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                       "id": "region",
                       "impact": "moderate",
                       "nodes": Array [
@@ -2242,6 +2294,8 @@ Fix any of the following:
                       "tags": Array [
                         "cat.keyboard",
                         "best-practice",
+                        "RGAAv4",
+                        "RGAA-9.2.1",
                       ],
                     },
                     "wcagLevel": "",
@@ -2253,7 +2307,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• The <html> element does not have a lang attribute",
                   "description": "Ensure every HTML document has a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang",
                   "html": "<html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
@@ -2271,7 +2325,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure every HTML document has a lang attribute",
                       "help": "<html> element must have a lang attribute",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                       "id": "html-has-lang",
                       "impact": "serious",
                       "nodes": Array [
@@ -2307,6 +2361,8 @@ Fix any of the following:
                         "EN-301-549",
                         "EN-9.3.1.1",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.3.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -2320,7 +2376,7 @@ Fix any of the following:
                 Object {
                   "description": "Ensure each HTML document contains a non-empty <title> element",
                   "help": "Documents must have <title> element to aid in navigation",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title?application=axeAPI",
                   "id": "document-title",
                   "impact": "serious",
                   "nodes": Array [
@@ -2363,12 +2419,14 @@ Fix any of the following:
                     "EN-301-549",
                     "EN-9.2.4.2",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.5.1",
                   ],
                 },
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
                   "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                   "id": "html-has-lang",
                   "impact": "serious",
                   "nodes": Array [
@@ -2413,12 +2471,14 @@ Fix any of the following:
                     "EN-301-549",
                     "EN-9.3.1.1",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.3.1",
                   ],
                 },
                 Object {
                   "description": "Ensure links have discernible text",
                   "help": "Links must have discernible text",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=axeAPI",
                   "id": "link-name",
                   "impact": "serious",
                   "nodes": Array [
@@ -2493,12 +2553,14 @@ Fix any of the following:
                     "EN-9.2.4.4",
                     "EN-9.4.1.2",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-6.2.1",
                   ],
                 },
                 Object {
                   "description": "Ensure all page content is contained by landmarks",
                   "help": "All page content should be contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                   "id": "region",
                   "impact": "moderate",
                   "nodes": Array [
@@ -2550,12 +2612,14 @@ Fix any of the following:
                   "tags": Array [
                     "cat.keyboard",
                     "best-practice",
+                    "RGAAv4",
+                    "RGAA-9.2.1",
                   ],
                 },
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
                   "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                   "id": "html-has-lang",
                   "impact": "serious",
                   "nodes": Array [
@@ -2591,6 +2655,8 @@ Fix any of the following:
                     "EN-301-549",
                     "EN-9.3.1.1",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.3.1",
                   ],
                 },
               ],
@@ -2694,7 +2760,7 @@ Object {
                   "ancestry": "",
                   "any": "						• The <html> element does not have a lang attribute",
                   "description": "Ensure every HTML document has a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang",
                   "html": "<html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
@@ -2712,7 +2778,7 @@ Object {
                     "violation": Object {
                       "description": "Ensure every HTML document has a lang attribute",
                       "help": "<html> element must have a lang attribute",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                       "id": "html-has-lang",
                       "impact": "serious",
                       "nodes": Array [
@@ -2748,6 +2814,8 @@ Object {
                         "EN-301-549",
                         "EN-9.3.1.1",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.3.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -2761,7 +2829,7 @@ Object {
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
                   "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                   "id": "html-has-lang",
                   "impact": "serious",
                   "nodes": Array [
@@ -2797,6 +2865,8 @@ Object {
                     "EN-301-549",
                     "EN-9.3.1.1",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.3.1",
                   ],
                 },
               ],
@@ -2816,7 +2886,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• The <html> element does not have a lang attribute
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/html-has-lang
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/html-has-lang
                 • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
     
@@ -2841,7 +2911,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                   "ancestry": "",
                   "any": "						• Document does not have a non-empty <title> element",
                   "description": "Ensure each HTML document contains a non-empty <title> element",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title",
                   "html": "<html><head></head><body>
 
 <h1>Header One</h1>
@@ -2868,7 +2938,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                     "violation": Object {
                       "description": "Ensure each HTML document contains a non-empty <title> element",
                       "help": "Documents must have <title> element to aid in navigation",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title?application=axeAPI",
                       "id": "document-title",
                       "impact": "serious",
                       "nodes": Array [
@@ -2911,6 +2981,8 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                         "EN-301-549",
                         "EN-9.2.4.2",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.5.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -2922,7 +2994,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                   "ancestry": "",
                   "any": "						• The <html> element does not have a lang attribute",
                   "description": "Ensure every HTML document has a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang",
                   "html": "<html><head></head><body>
 
 <h1>Header One</h1>
@@ -2949,7 +3021,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                     "violation": Object {
                       "description": "Ensure every HTML document has a lang attribute",
                       "help": "<html> element must have a lang attribute",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                       "id": "html-has-lang",
                       "impact": "serious",
                       "nodes": Array [
@@ -2994,6 +3066,8 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                         "EN-301-549",
                         "EN-9.3.1.1",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.3.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -3008,7 +3082,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
 						• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
 						• Element has no title attribute",
                   "description": "Ensure links have discernible text",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
@@ -3032,7 +3106,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure links have discernible text",
                       "help": "Links must have discernible text",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=axeAPI",
                       "id": "link-name",
                       "impact": "serious",
                       "nodes": Array [
@@ -3107,6 +3181,8 @@ Fix any of the following:
                         "EN-9.2.4.4",
                         "EN-9.4.1.2",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-6.2.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -3118,7 +3194,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• Some page content is not contained by landmarks",
                   "description": "Ensure all page content is contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region",
                   "html": "<h1>Header One</h1>",
                   "id": "region",
                   "key": "region--h1:nth-child(1)",
@@ -3136,7 +3212,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                       "id": "region",
                       "impact": "moderate",
                       "nodes": Array [
@@ -3188,6 +3264,8 @@ Fix any of the following:
                       "tags": Array [
                         "cat.keyboard",
                         "best-practice",
+                        "RGAAv4",
+                        "RGAA-9.2.1",
                       ],
                     },
                     "wcagLevel": "",
@@ -3199,7 +3277,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• Some page content is not contained by landmarks",
                   "description": "Ensure all page content is contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region",
                   "html": "<h1>Header Two</h1>",
                   "id": "region",
                   "key": "region--h1:nth-child(2)",
@@ -3217,7 +3295,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                       "id": "region",
                       "impact": "moderate",
                       "nodes": Array [
@@ -3269,6 +3347,8 @@ Fix any of the following:
                       "tags": Array [
                         "cat.keyboard",
                         "best-practice",
+                        "RGAAv4",
+                        "RGAA-9.2.1",
                       ],
                     },
                     "wcagLevel": "",
@@ -3282,7 +3362,7 @@ Fix any of the following:
                 Object {
                   "description": "Ensure each HTML document contains a non-empty <title> element",
                   "help": "Documents must have <title> element to aid in navigation",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title?application=axeAPI",
                   "id": "document-title",
                   "impact": "serious",
                   "nodes": Array [
@@ -3325,12 +3405,14 @@ Fix any of the following:
                     "EN-301-549",
                     "EN-9.2.4.2",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.5.1",
                   ],
                 },
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
                   "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                   "id": "html-has-lang",
                   "impact": "serious",
                   "nodes": Array [
@@ -3375,12 +3457,14 @@ Fix any of the following:
                     "EN-301-549",
                     "EN-9.3.1.1",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.3.1",
                   ],
                 },
                 Object {
                   "description": "Ensure links have discernible text",
                   "help": "Links must have discernible text",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=axeAPI",
                   "id": "link-name",
                   "impact": "serious",
                   "nodes": Array [
@@ -3455,12 +3539,14 @@ Fix any of the following:
                     "EN-9.2.4.4",
                     "EN-9.4.1.2",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-6.2.1",
                   ],
                 },
                 Object {
                   "description": "Ensure all page content is contained by landmarks",
                   "help": "All page content should be contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                   "id": "region",
                   "impact": "moderate",
                   "nodes": Array [
@@ -3512,6 +3598,8 @@ Fix any of the following:
                   "tags": Array [
                     "cat.keyboard",
                     "best-practice",
+                    "RGAAv4",
+                    "RGAA-9.2.1",
                   ],
                 },
               ],
@@ -3540,7 +3628,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [html-has-lang] Ensure every HTML document has a lang attribute
             * Error element(s) : 1
@@ -3559,7 +3647,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• The <html> element does not have a lang attribute
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/html-has-lang
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/html-has-lang
                 • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 (3) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -3574,7 +3662,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (4) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -3587,7 +3675,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
     
@@ -3612,7 +3700,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                   "ancestry": "",
                   "any": "						• The <html> element does not have a lang attribute",
                   "description": "Ensure every HTML document has a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang",
                   "html": "<html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
@@ -3630,7 +3718,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                     "violation": Object {
                       "description": "Ensure every HTML document has a lang attribute",
                       "help": "<html> element must have a lang attribute",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                       "id": "html-has-lang",
                       "impact": "serious",
                       "nodes": Array [
@@ -3666,6 +3754,8 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                         "EN-301-549",
                         "EN-9.3.1.1",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.3.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -3679,7 +3769,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
                   "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                   "id": "html-has-lang",
                   "impact": "serious",
                   "nodes": Array [
@@ -3715,6 +3805,8 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                     "EN-301-549",
                     "EN-9.3.1.1",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.3.1",
                   ],
                 },
               ],
@@ -3734,7 +3826,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• The <html> element does not have a lang attribute
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/html-has-lang
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/html-has-lang
                 • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 
     
@@ -3759,7 +3851,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                   "ancestry": "",
                   "any": "						• Document does not have a non-empty <title> element",
                   "description": "Ensure each HTML document contains a non-empty <title> element",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title",
                   "html": "<html><head></head><body>
 
 <h1>Header One</h1>
@@ -3786,7 +3878,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                     "violation": Object {
                       "description": "Ensure each HTML document contains a non-empty <title> element",
                       "help": "Documents must have <title> element to aid in navigation",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title?application=axeAPI",
                       "id": "document-title",
                       "impact": "serious",
                       "nodes": Array [
@@ -3829,6 +3921,8 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                         "EN-301-549",
                         "EN-9.2.4.2",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.5.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -3840,7 +3934,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                   "ancestry": "",
                   "any": "						• The <html> element does not have a lang attribute",
                   "description": "Ensure every HTML document has a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang",
                   "html": "<html><head></head><body>
 
 <h1>Header One</h1>
@@ -3867,7 +3961,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                     "violation": Object {
                       "description": "Ensure every HTML document has a lang attribute",
                       "help": "<html> element must have a lang attribute",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                       "id": "html-has-lang",
                       "impact": "serious",
                       "nodes": Array [
@@ -3912,6 +4006,8 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
                         "EN-301-549",
                         "EN-9.3.1.1",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.3.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -3926,7 +4022,7 @@ For guidance on accessibility related specifics, contact our A11y team: http://s
 						• aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
 						• Element has no title attribute",
                   "description": "Ensure links have discernible text",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name",
                   "html": "<a href=\\"#\\"></a>",
                   "id": "link-name",
                   "key": "link-name--a",
@@ -3950,7 +4046,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure links have discernible text",
                       "help": "Links must have discernible text",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=axeAPI",
                       "id": "link-name",
                       "impact": "serious",
                       "nodes": Array [
@@ -4025,6 +4121,8 @@ Fix any of the following:
                         "EN-9.2.4.4",
                         "EN-9.4.1.2",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-6.2.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -4036,7 +4134,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• Some page content is not contained by landmarks",
                   "description": "Ensure all page content is contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region",
                   "html": "<h1>Header One</h1>",
                   "id": "region",
                   "key": "region--h1:nth-child(1)",
@@ -4054,7 +4152,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                       "id": "region",
                       "impact": "moderate",
                       "nodes": Array [
@@ -4106,6 +4204,8 @@ Fix any of the following:
                       "tags": Array [
                         "cat.keyboard",
                         "best-practice",
+                        "RGAAv4",
+                        "RGAA-9.2.1",
                       ],
                     },
                     "wcagLevel": "",
@@ -4117,7 +4217,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• Some page content is not contained by landmarks",
                   "description": "Ensure all page content is contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region",
                   "html": "<h1>Header Two</h1>",
                   "id": "region",
                   "key": "region--h1:nth-child(2)",
@@ -4135,7 +4235,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure all page content is contained by landmarks",
                       "help": "All page content should be contained by landmarks",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                       "id": "region",
                       "impact": "moderate",
                       "nodes": Array [
@@ -4187,6 +4287,8 @@ Fix any of the following:
                       "tags": Array [
                         "cat.keyboard",
                         "best-practice",
+                        "RGAAv4",
+                        "RGAA-9.2.1",
                       ],
                     },
                     "wcagLevel": "",
@@ -4198,7 +4300,7 @@ Fix any of the following:
                   "ancestry": "",
                   "any": "						• The <html> element does not have a lang attribute",
                   "description": "Ensure every HTML document has a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang",
                   "html": "<html>",
                   "id": "html-has-lang",
                   "key": "html-has-lang--html",
@@ -4216,7 +4318,7 @@ Fix any of the following:
                     "violation": Object {
                       "description": "Ensure every HTML document has a lang attribute",
                       "help": "<html> element must have a lang attribute",
-                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                      "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                       "id": "html-has-lang",
                       "impact": "serious",
                       "nodes": Array [
@@ -4252,6 +4354,8 @@ Fix any of the following:
                         "EN-301-549",
                         "EN-9.3.1.1",
                         "ACT",
+                        "RGAAv4",
+                        "RGAA-8.3.1",
                       ],
                     },
                     "wcagLevel": "A",
@@ -4265,7 +4369,7 @@ Fix any of the following:
                 Object {
                   "description": "Ensure each HTML document contains a non-empty <title> element",
                   "help": "Documents must have <title> element to aid in navigation",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/document-title?application=axeAPI",
                   "id": "document-title",
                   "impact": "serious",
                   "nodes": Array [
@@ -4308,12 +4412,14 @@ Fix any of the following:
                     "EN-301-549",
                     "EN-9.2.4.2",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.5.1",
                   ],
                 },
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
                   "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                   "id": "html-has-lang",
                   "impact": "serious",
                   "nodes": Array [
@@ -4358,12 +4464,14 @@ Fix any of the following:
                     "EN-301-549",
                     "EN-9.3.1.1",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.3.1",
                   ],
                 },
                 Object {
                   "description": "Ensure links have discernible text",
                   "help": "Links must have discernible text",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=axeAPI",
                   "id": "link-name",
                   "impact": "serious",
                   "nodes": Array [
@@ -4438,12 +4546,14 @@ Fix any of the following:
                     "EN-9.2.4.4",
                     "EN-9.4.1.2",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-6.2.1",
                   ],
                 },
                 Object {
                   "description": "Ensure all page content is contained by landmarks",
                   "help": "All page content should be contained by landmarks",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
                   "id": "region",
                   "impact": "moderate",
                   "nodes": Array [
@@ -4495,12 +4605,14 @@ Fix any of the following:
                   "tags": Array [
                     "cat.keyboard",
                     "best-practice",
+                    "RGAAv4",
+                    "RGAA-9.2.1",
                   ],
                 },
                 Object {
                   "description": "Ensure every HTML document has a lang attribute",
                   "help": "<html> element must have a lang attribute",
-                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/html-has-lang?application=axeAPI",
                   "id": "html-has-lang",
                   "impact": "serious",
                   "nodes": Array [
@@ -4536,6 +4648,8 @@ Fix any of the following:
                     "EN-301-549",
                     "EN-9.3.1.1",
                     "ACT",
+                    "RGAAv4",
+                    "RGAA-8.3.1",
                   ],
                 },
               ],
@@ -4564,7 +4678,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [html-has-lang] Ensure every HTML document has a lang attribute
             * Error element(s) : 2
@@ -4586,7 +4700,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- CSS selector(s) : html
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/html-has-lang
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/html-has-lang
                 • WCAG Criteria: SA11Y-WCAG-SC3.1.1-P2
 (3) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -4601,7 +4715,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (4) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -4614,7 +4728,7 @@ The test has failed the accessibility check. Accessibility Stacktrace/Issues:
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
 
     
@@ -4666,7 +4780,7 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -4681,7 +4795,7 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (3) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -4694,7 +4808,7 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
     
         
@@ -4731,7 +4845,7 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -4746,7 +4860,7 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (3) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -4759,7 +4873,7 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
     
         
@@ -4805,7 +4919,7 @@ exports[`a11y Results Formatter should format a11y issues as expected with defau
         "
 `;
 
-exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.text-alternatives\\",\\"wcag2a\\",\\"wcag242\\",\\"TTv5\\",\\"TT12.a\\",\\"EN-301-549\\",\\"EN-9.2.4.2\\",\\"ACT\\"],\\"description\\":\\"Ensure each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head><style>* { pointer-events: all }</style></head><body>\\\\n\\\\n<h1>Header One</h1>\\\\n<h1>Header Two</h1>\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.name-role-value\\",\\"wcag2a\\",\\"wcag244\\",\\"wcag412\\",\\"section508\\",\\"section508.22.a\\",\\"TTv5\\",\\"TT6.a\\",\\"EN-301-549\\",\\"EN-9.2.4.4\\",\\"EN-9.4.1.2\\",\\"ACT\\"],\\"description\\":\\"Ensure links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"non-empty-title\\",\\"data\\":{\\"messageKey\\":\\"noAttr\\"},\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element has no title attribute\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element has no title attribute\\"}]},{\\"id\\":\\"region\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"cat.keyboard\\",\\"best-practice\\"],\\"description\\":\\"Ensure all page content is contained by landmarks\\",\\"help\\":\\"All page content should be contained by landmarks\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"region\\",\\"data\\":{\\"isIframe\\":false},\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Some page content is not contained by landmarks\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<h1>Header One</h1>\\",\\"target\\":[\\"h1:nth-child(1)\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Some page content is not contained by landmarks\\"},{\\"any\\":[{\\"id\\":\\"region\\",\\"data\\":{\\"isIframe\\":false},\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Some page content is not contained by landmarks\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<h1>Header Two</h1>\\",\\"target\\":[\\"h1:nth-child(2)\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Some page content is not contained by landmarks\\"}]}]"`;
+exports[`a11y Results Formatter should format using specified options: 0 1`] = `"[{\\"id\\":\\"document-title\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.text-alternatives\\",\\"wcag2a\\",\\"wcag242\\",\\"TTv5\\",\\"TT12.a\\",\\"EN-301-549\\",\\"EN-9.2.4.2\\",\\"ACT\\",\\"RGAAv4\\",\\"RGAA-8.5.1\\"],\\"description\\":\\"Ensure each HTML document contains a non-empty <title> element\\",\\"help\\":\\"Documents must have <title> element to aid in navigation\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.11/document-title?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"doc-has-title\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Document does not have a non-empty <title> element\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"serious\\",\\"html\\":\\"<html lang=\\\\\\"en\\\\\\"><head><style>* { pointer-events: all }</style></head><body>\\\\n\\\\n<h1>Header One</h1>\\\\n<h1>Header Two</h1>\\\\n<div id=\\\\\\"dom-with-issues\\\\\\">\\\\n    <a href=\\\\\\"#\\\\\\"></a>\\\\n</div>\\\\n\\\\n\\\\n</body></html>\\",\\"target\\":[\\"html\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Document does not have a non-empty <title> element\\"}]},{\\"id\\":\\"link-name\\",\\"impact\\":\\"serious\\",\\"tags\\":[\\"cat.name-role-value\\",\\"wcag2a\\",\\"wcag244\\",\\"wcag412\\",\\"section508\\",\\"section508.22.a\\",\\"TTv5\\",\\"TT6.a\\",\\"EN-301-549\\",\\"EN-9.2.4.4\\",\\"EN-9.4.1.2\\",\\"ACT\\",\\"RGAAv4\\",\\"RGAA-6.2.1\\"],\\"description\\":\\"Ensure links have discernible text\\",\\"help\\":\\"Links must have discernible text\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.11/link-name?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"has-visible-text\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element does not have text that is visible to screen readers\\"},{\\"id\\":\\"aria-label\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-label attribute does not exist or is empty\\"},{\\"id\\":\\"aria-labelledby\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\"},{\\"id\\":\\"non-empty-title\\",\\"data\\":{\\"messageKey\\":\\"noAttr\\"},\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element has no title attribute\\"}],\\"all\\":[],\\"none\\":[{\\"id\\":\\"focusable-no-name\\",\\"data\\":null,\\"relatedNodes\\":[],\\"impact\\":\\"serious\\",\\"message\\":\\"Element is in tab order and does not have accessible text\\"}],\\"impact\\":\\"serious\\",\\"html\\":\\"<a href=\\\\\\"#\\\\\\"></a>\\",\\"target\\":[\\"a\\"],\\"failureSummary\\":\\"Fix all of the following:\\\\n  Element is in tab order and does not have accessible text\\\\n\\\\nFix any of the following:\\\\n  Element does not have text that is visible to screen readers\\\\n  aria-label attribute does not exist or is empty\\\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\\\n  Element has no title attribute\\"}]},{\\"id\\":\\"region\\",\\"impact\\":\\"moderate\\",\\"tags\\":[\\"cat.keyboard\\",\\"best-practice\\",\\"RGAAv4\\",\\"RGAA-9.2.1\\"],\\"description\\":\\"Ensure all page content is contained by landmarks\\",\\"help\\":\\"All page content should be contained by landmarks\\",\\"helpUrl\\":\\"https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI\\",\\"nodes\\":[{\\"any\\":[{\\"id\\":\\"region\\",\\"data\\":{\\"isIframe\\":false},\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Some page content is not contained by landmarks\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<h1>Header One</h1>\\",\\"target\\":[\\"h1:nth-child(1)\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Some page content is not contained by landmarks\\"},{\\"any\\":[{\\"id\\":\\"region\\",\\"data\\":{\\"isIframe\\":false},\\"relatedNodes\\":[],\\"impact\\":\\"moderate\\",\\"message\\":\\"Some page content is not contained by landmarks\\"}],\\"all\\":[],\\"none\\":[],\\"impact\\":\\"moderate\\",\\"html\\":\\"<h1>Header Two</h1>\\",\\"target\\":[\\"h1:nth-child(2)\\"],\\"failureSummary\\":\\"Fix any of the following:\\\\n  Some page content is not contained by landmarks\\"}]}]"`;
 
 exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 "
@@ -4830,7 +4944,7 @@ exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -4845,7 +4959,7 @@ exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (3) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -4858,7 +4972,7 @@ exports[`a11y Results Formatter should format using specified options: 1 1`] = `
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
     
         
@@ -4892,7 +5006,7 @@ exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -4907,7 +5021,7 @@ exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (3) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -4920,7 +5034,7 @@ exports[`a11y Results Formatter should format using specified options: 2 1`] = `
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
     
         
@@ -4954,7 +5068,7 @@ exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -4969,7 +5083,7 @@ exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (3) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -4982,7 +5096,7 @@ exports[`a11y Results Formatter should format using specified options: 3 1`] = `
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
     
         
@@ -5016,7 +5130,7 @@ exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -5031,7 +5145,7 @@ exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (3) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -5044,7 +5158,7 @@ exports[`a11y Results Formatter should format using specified options: 4 1`] = `
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
     
         
@@ -5079,7 +5193,7 @@ exports[`a11y Results Formatter should not throw error for repeated violations w
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -5094,7 +5208,7 @@ exports[`a11y Results Formatter should not throw error for repeated violations w
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (3) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -5107,7 +5221,7 @@ exports[`a11y Results Formatter should not throw error for repeated violations w
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
     
         
@@ -5142,7 +5256,7 @@ exports[`a11y Results Formatter should not throw error for repeated violations w
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -5157,7 +5271,7 @@ exports[`a11y Results Formatter should not throw error for repeated violations w
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (3) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -5170,7 +5284,7 @@ exports[`a11y Results Formatter should not throw error for repeated violations w
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
     
         
@@ -5205,7 +5319,7 @@ exports[`a11y Results Formatter should throw error when violations are present 1
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -5220,7 +5334,7 @@ exports[`a11y Results Formatter should throw error when violations are present 1
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
 (3) [region] Ensure all page content is contained by landmarks
             * Error element(s) : 2
@@ -5233,7 +5347,7 @@ exports[`a11y Results Formatter should throw error when violations are present 1
 					- CSS selector(s) : h1:nth-child(2)
 					- HTML Tag Hierarchy : 
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/region
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/region
                 • WCAG Criteria: SA11Y-WCAG-SC1.3.1-P3
     
         

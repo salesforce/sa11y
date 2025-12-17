@@ -129,7 +129,7 @@ describe('automatic checks call', () => {
         process.env.SA11Y_CUSTOM_RULES = customRulesFilePath;
         await expect(
             runAutomaticCheck({ cleanupAfterEach: true, enableIncompleteResults: true, consolidateResults: true })
-        ).rejects.toThrow('1 Accessibility');
+        ).rejects.toThrow('2 Accessibility');
         delete process.env.SA11Y_CUSTOM_RULES;
     });
 
