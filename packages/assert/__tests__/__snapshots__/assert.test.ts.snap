@@ -24,7 +24,7 @@ exports[`assertAccessible API should throw an error with a11y issues found for d
 					- More Info: To solve the problem, you need to fix at least (1) of the following:
 						• Document does not have a non-empty <title> element
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/document-title
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/document-title
                 • WCAG Criteria: SA11Y-WCAG-SC2.4.2-P2
 (2) [link-name] Ensure links have discernible text
             * Error element(s) : 1
@@ -39,7 +39,7 @@ exports[`assertAccessible API should throw an error with a11y issues found for d
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
     
         
@@ -70,7 +70,7 @@ exports[`assertAccessible API should throw error with HTML element with a11y iss
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
     
         
@@ -101,7 +101,7 @@ exports[`assertAccessible API should throw error with HTML element with a11y iss
 					- And fix the following:
 						• Element is in tab order and does not have accessible text
             * Help:
-                • Help URL: https://dequeuniversity.com/rules/axe/4.10/link-name
+                • Help URL: https://dequeuniversity.com/rules/axe/4.11/link-name
                 • WCAG Criteria: SA11Y-WCAG-SC4.1.2-P1
     
         
