@@ -1,0 +1,14 @@
+{
+    "ignorePatterns": [
+        {
+            "pattern": "^https://www\\.npmjs\\.com/org/sa11y$"
+        },
+        {
+            "pattern": "^https://www\\.npmjs\\.com/package/@sa11y/"
+        }
+    ],
+    "aliveStatusCodes": [200, 206],
+    "retryOn429": true,
+    "retryCount": 3,
+    "fallbackRetryDelay": "2s"
+}
