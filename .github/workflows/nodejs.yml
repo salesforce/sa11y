@@ -9,6 +9,9 @@ on:
     pull_request:
         branches: [master]
 
+permissions:
+    id-token: write # Required for OIDC
+
 jobs:
     lint-build-test:
         name: Lint, Build, Test - Node ${{ matrix.node-version }} on ${{ matrix.os }}
