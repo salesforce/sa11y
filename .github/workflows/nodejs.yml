@@ -68,7 +68,24 @@ jobs:
 
             - run: yarn install --frozen-lockfile
             - run: yarn build
+
+            - name: Exchange OIDC token for npm token
+              id: npm-oidc
+              run: |
+                  # Get GitHub OIDC token
+                  OIDC_TOKEN=$(curl -sS -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+                    "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=https://registry.npmjs.org" | jq -r '.value')
+
+                  # Exchange for npm access token
+                  NPM_ACCESS_TOKEN=$(curl -sS -X POST "https://registry.npmjs.org/-/npm/v1/oidc/token" \
+                    -H "Content-Type: application/json" \
+                    -d "{\"oidcToken\": \"${OIDC_TOKEN}\"}" | jq -r '.token')
+
+                  # Mask the token and export for subsequent steps
+                  echo "::add-mask::${NPM_ACCESS_TOKEN}"
+                  echo "NODE_AUTH_TOKEN=${NPM_ACCESS_TOKEN}" >> $GITHUB_ENV
+
             - run: yarn run semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  # NPM_TOKEN no longer needed - using OIDC trusted publishing
+                  # NODE_AUTH_TOKEN is set by the OIDC exchange step above
