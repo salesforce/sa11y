@@ -68,7 +68,46 @@ jobs:
 
             - run: yarn install --frozen-lockfile
             - run: yarn build
+
+            - name: Get npm token via OIDC
+              id: npm-oidc
+              run: |
+                  set -e
+
+                  # Get GitHub OIDC token
+                  echo "Requesting GitHub OIDC token..."
+                  OIDC_RESPONSE=$(curl -sS -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+                    "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm:registry.npmjs.org")
+                  OIDC_TOKEN=$(echo "$OIDC_RESPONSE" | jq -r '.value')
+
+                  if [ -z "$OIDC_TOKEN" ] || [ "$OIDC_TOKEN" = "null" ]; then
+                    echo "::error::Failed to get GitHub OIDC token"
+                    echo "Response: $OIDC_RESPONSE"
+                    exit 1
+                  fi
+                  echo "✓ Got GitHub OIDC token"
+
+                  # Exchange for npm token
+                  echo "Exchanging for npm token..."
+                  NPM_RESPONSE=$(curl -sS -X POST "https://registry.npmjs.org/-/npm/v1/oidc/token" \
+                    -H "Content-Type: application/json" \
+                    -d "{\"oidcToken\": \"${OIDC_TOKEN}\"}")
+                  NPM_TOKEN=$(echo "$NPM_RESPONSE" | jq -r '.token')
+
+                  if [ -z "$NPM_TOKEN" ] || [ "$NPM_TOKEN" = "null" ]; then
+                    echo "::error::Failed to get npm token"
+                    echo "Response: $NPM_RESPONSE"
+                    exit 1
+                  fi
+                  echo "✓ Got npm token via OIDC"
+
+                  # Configure authentication
+                  echo "::add-mask::${NPM_TOKEN}"
+                  echo "NODE_AUTH_TOKEN=${NPM_TOKEN}" >> $GITHUB_ENV
+
+                  # Verify
+                  npm whoami --registry https://registry.npmjs.org && echo "✓ Authenticated to npm"
+
             - run: yarn run semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  # NODE_AUTH_TOKEN is set by the OIDC exchange step above
