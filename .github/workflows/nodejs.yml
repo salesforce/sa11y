@@ -52,6 +52,7 @@ jobs:
             contents: write # to be able to publish a GitHub release
             issues: write # to be able to comment on released issues
             pull-requests: write # to be able to comment on released pull requests
+            id-token: write # Required for npm provenance
 
         steps:
             - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
