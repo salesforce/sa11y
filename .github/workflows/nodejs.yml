@@ -68,6 +68,8 @@ jobs:
 
             - run: yarn install --frozen-lockfile
             - run: yarn build
+            - run: npm whoami # Debug: verify npm auth (note: won't work with OIDC, only during publish)
+              continue-on-error: true
             - run: yarn run semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
