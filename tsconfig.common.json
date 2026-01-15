@@ -1,5 +1,5 @@
 {
-    "extends": "@tsconfig/node14/tsconfig.json",
+    "extends": "@tsconfig/node16/tsconfig.json",
     "compilerOptions": {
         // Ref: https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
         "lib": ["DOM", "DOM.Iterable", "es2020"], // Override @tsconfig/node14
