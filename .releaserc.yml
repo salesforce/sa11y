@@ -18,7 +18,7 @@ plugins:
     - - '@semantic-release/changelog'
       - changelogTitle: "# Changelog\n\nAll notable changes to this project will be documented in this file."
     - - '@semantic-release/exec'
-      - publishCmd: yarn lerna publish --no-git-tag-version --no-git-reset --no-push --yes --loglevel verbose --exact ${nextRelease.version}
+      - publishCmd: yarn lerna publish --no-git-tag-version --no-git-reset --no-push --yes --exact ${nextRelease.version}
     - '@semantic-release/github'
 
 preset: conventionalcommits
