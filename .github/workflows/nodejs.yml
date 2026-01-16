@@ -76,12 +76,5 @@ jobs:
 
             # npm publish runs directly in workflow step so OIDC works
             - name: Publish to npm with OIDC
-              if: success()
-              run: |
-                  # Check if any package was versioned (package.json was modified)
-                  if git diff --name-only HEAD~1 HEAD | grep -q "package.json"; then
-                    echo "Publishing packages to npm..."
-                    npm publish --workspaces --access public --provenance --registry https://registry.npmjs.org
-                  else
-                    echo "No version changes detected, skipping npm publish"
-                  fi
+              if: ${{ hashFiles('.release-created') != '' }}
+              run: npm publish --workspaces --access public --provenance --registry https://registry.npmjs.org
