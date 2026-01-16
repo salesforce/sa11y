@@ -68,11 +68,20 @@ jobs:
             - run: yarn install --frozen-lockfile
             - run: yarn build
 
-            # Configure npm for OIDC (without token-based .npmrc from setup-node)
-            - name: Configure npm registry
-              run: npm config set registry https://registry.npmjs.org
-
-            - run: yarn run semantic-release
+            - name: Run semantic-release
+              id: semantic-release
+              run: yarn run semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  # npm publish uses OIDC automatically with id-token: write permission
+
+            # npm publish runs directly in workflow step so OIDC works
+            - name: Publish to npm with OIDC
+              if: success()
+              run: |
+                  # Check if any package was versioned (package.json was modified)
+                  if git diff --name-only HEAD~1 HEAD | grep -q "package.json"; then
+                    echo "Publishing packages to npm..."
+                    npm publish --workspaces --access public --provenance --registry https://registry.npmjs.org
+                  else
+                    echo "No version changes detected, skipping npm publish"
+                  fi
