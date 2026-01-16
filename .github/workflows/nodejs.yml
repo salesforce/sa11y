@@ -64,6 +64,7 @@ jobs:
               with:
                   node-version: 20.x
                   cache: 'yarn'
+                  registry-url: 'https://registry.npmjs.org'
 
             - run: yarn install --frozen-lockfile
             - run: yarn build
@@ -77,4 +78,7 @@ jobs:
             # npm publish runs directly in workflow step so OIDC works
             - name: Publish to npm with OIDC
               if: ${{ hashFiles('.release-created') != '' }}
-              run: npm publish --workspaces --access public --provenance --registry https://registry.npmjs.org
+              run: |
+                  echo "npm version: $(npm --version)"
+                  echo "OIDC URL available: ${{ env.ACTIONS_ID_TOKEN_REQUEST_URL != '' }}"
+                  npm publish --workspaces --access public --provenance --registry https://registry.npmjs.org
