@@ -64,11 +64,15 @@ jobs:
               with:
                   node-version: 20.x
                   cache: 'yarn'
-                  registry-url: 'https://registry.npmjs.org'
 
             - run: yarn install --frozen-lockfile
             - run: yarn build
+
+            # Configure npm for OIDC (without token-based .npmrc from setup-node)
+            - name: Configure npm registry
+              run: npm config set registry https://registry.npmjs.org
+
             - run: yarn run semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  # npm publish handles OIDC automatically with id-token: write permission
+                  # npm publish uses OIDC automatically with id-token: write permission
