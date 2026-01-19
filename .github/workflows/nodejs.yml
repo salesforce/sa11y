@@ -69,9 +69,7 @@ jobs:
 
             # Upgrade npm to latest for OIDC support
             - name: Upgrade npm
-              run: |
-                  npm install -g npm@latest
-                  echo "npm version: $(npm --version)"
+              run: npm install -g npm@latest
 
             - run: yarn install --frozen-lockfile
             - run: yarn build
@@ -85,11 +83,4 @@ jobs:
             # npm publish runs directly in workflow step so OIDC works
             - name: Publish to npm with OIDC
               if: ${{ hashFiles('.release-created') != '' }}
-              run: |
-                  echo "=== Debug Info ==="
-                  echo "npm version: $(npm --version)"
-                  echo "node version: $(node --version)"
-                  echo "OIDC token URL available: ${ACTIONS_ID_TOKEN_REQUEST_URL:+yes}"
-                  echo "Registry: $(npm config get registry)"
-                  echo "==================="
-                  npm publish --workspaces --access public --provenance
+              run: npm publish --workspaces --access public --provenance
