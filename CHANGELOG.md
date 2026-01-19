@@ -1,26 +1,31 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+**Note:** Version bump only for package sa11y-monorepo
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
 
 ## [4.0.0](https://github.com/salesforce/sa11y/compare/v3.1.0...v4.0.0) (2022-10-20)
 
-
 ### ⚠ BREAKING CHANGES
 
-* Explicitly supporting NodeJS 14.x and 16.x
-* `sa11y` will no longer support Node.js 12, which is EOL since 30 April 2022
+-   Explicitly supporting NodeJS 14.x and 16.x
+-   `sa11y` will no longer support Node.js 12, which is EOL since 30 April 2022
 
 ### Features
 
-* remove support for Node.js 12 ([#116](https://github.com/salesforce/sa11y/issues/116)) ([43ade48](https://github.com/salesforce/sa11y/commit/43ade489bfab5d2c407b256117269475a3571fb7))
-* semantic release ([#227](https://github.com/salesforce/sa11y/issues/227)) ([6b7a180](https://github.com/salesforce/sa11y/commit/6b7a18045c0937469631c32759824dbeddc578cd))
-* tsconfig package for tsconfig.json ([#174](https://github.com/salesforce/sa11y/issues/174)) ([5ff2fd2](https://github.com/salesforce/sa11y/commit/5ff2fd20ef6671cb7eae579bcf6aeaf45f4b0c54))
-* webdriver7 ([#150](https://github.com/salesforce/sa11y/issues/150)) ([70dafc2](https://github.com/salesforce/sa11y/commit/70dafc2b376e754916c3814299148516a4c71037))
-
+-   remove support for Node.js 12 ([#116](https://github.com/salesforce/sa11y/issues/116)) ([43ade48](https://github.com/salesforce/sa11y/commit/43ade489bfab5d2c407b256117269475a3571fb7))
+-   semantic release ([#227](https://github.com/salesforce/sa11y/issues/227)) ([6b7a180](https://github.com/salesforce/sa11y/commit/6b7a18045c0937469631c32759824dbeddc578cd))
+-   tsconfig package for tsconfig.json ([#174](https://github.com/salesforce/sa11y/issues/174)) ([5ff2fd2](https://github.com/salesforce/sa11y/commit/5ff2fd20ef6671cb7eae579bcf6aeaf45f4b0c54))
+-   webdriver7 ([#150](https://github.com/salesforce/sa11y/issues/150)) ([70dafc2](https://github.com/salesforce/sa11y/commit/70dafc2b376e754916c3814299148516a4c71037))
 
 ### Bug Fixes
 
-* set package.json node engines ([#228](https://github.com/salesforce/sa11y/issues/228)) ([42de911](https://github.com/salesforce/sa11y/commit/42de911f2ed9802b9529bc304bce336db1909989))
+-   set package.json node engines ([#228](https://github.com/salesforce/sa11y/issues/228)) ([42de911](https://github.com/salesforce/sa11y/commit/42de911f2ed9802b9529bc304bce336db1909989))
 
 # Changelog
 

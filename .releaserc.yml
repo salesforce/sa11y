@@ -19,6 +19,13 @@ plugins:
       - changelogTitle: "# Changelog\n\nAll notable changes to this project will be documented in this file."
     - - '@semantic-release/exec'
       - publishCmd: yarn lerna version ${nextRelease.version} --no-git-tag-version --no-push --yes --exact && echo "true" > .release-created
+    - - '@semantic-release/git'
+      - assets:
+            - 'package.json'
+            - 'lerna.json'
+            - 'CHANGELOG.md'
+            - 'packages/*/package.json'
+        message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
     - '@semantic-release/github'
 
 preset: conventionalcommits

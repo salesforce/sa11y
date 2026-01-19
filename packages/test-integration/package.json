@@ -1,6 +1,6 @@
 {
     "name": "@sa11y/test-integration",
-    "version": "5.1.0",
+    "version": "8.0.27",
     "private": true,
     "description": "Private package for integration testing @sa11y packages",
     "license": "BSD-3-Clause",
@@ -12,10 +12,10 @@
     },
     "devDependencies": {
         "@jest/globals": "28.1.3",
-        "@sa11y/common": "5.1.0",
-        "@sa11y/jest": "5.1.0",
-        "@sa11y/test-utils": "5.1.0",
-        "@sa11y/wdio": "5.1.0"
+        "@sa11y/common": "8.0.27",
+        "@sa11y/jest": "8.0.27",
+        "@sa11y/test-utils": "8.0.27",
+        "@sa11y/wdio": "8.0.27"
     },
     "engines": {
         "node": "^20 || ^22 || ^24"
