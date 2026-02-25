@@ -4620,12 +4620,13 @@ ajv@~8.12.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-anchor-markdown-header@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/anchor-markdown-header/-/anchor-markdown-header-0.6.0.tgz#908f2031281766f44ac350380ca0de77ab7065b8"
-  integrity sha512-v7HJMtE1X7wTpNFseRhxsY/pivP4uAJbidVhPT+yhz4i/vV1+qx371IXuV9V7bN6KjFtheLJxqaSm0Y/8neJTA==
+anchor-markdown-header@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/anchor-markdown-header/-/anchor-markdown-header-0.8.2.tgz#180f4dab619a35f43f04edc6f5ee75b2b14e1ed0"
+  integrity sha512-ix0Hx6ARkHOsQRmt1++ZmjURq4Pr5MGXQJjh0lQ/l5jTpTURn4aqhbZ+AJMpZ/Sd3JiyNwi7KaeiF64OsMGCPg==
   dependencies:
-    emoji-regex "~10.1.0"
+    emoji-regex "~10.6.0"
+    remove-markdown "^0.6.2"
 
 ansi-colors@^4.1.1:
   version "4.1.3"
@@ -6997,13 +6998,13 @@ dir-glob@^3.0.0, dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-doctoc@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/doctoc/-/doctoc-2.2.1.tgz#83f6a6bf4df97defbe027c9a82d13091a138ffe2"
-  integrity sha512-qNJ1gsuo7hH40vlXTVVrADm6pdg30bns/Mo7Nv1SxuXSM1bwF9b4xQ40a6EFT/L1cI+Yylbyi8MPI4G4y7XJzQ==
+doctoc@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/doctoc/-/doctoc-2.3.0.tgz#55f1d12e9db856de2059c9259b423b82e92385db"
+  integrity sha512-duuDNVnRHE5mFGYlI+oDf1vguML8PIhKnbUCs7iKPHIEdzYhkCldk6MQeX3ZeXQStRtZxGspSHImtgOMQPIS4A==
   dependencies:
     "@textlint/markdown-to-ast" "^12.1.1"
-    anchor-markdown-header "^0.6.0"
+    anchor-markdown-header "^0.8.2"
     htmlparser2 "^7.2.0"
     minimist "^1.2.6"
     underscore "^1.13.2"
@@ -7200,10 +7201,10 @@ emoji-regex@^9.2.2:
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-9.2.2.tgz#840c8803b0d8047f4ff0cf963176b32d4ef3ed72"
   integrity sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==
 
-emoji-regex@~10.1.0:
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-10.1.0.tgz#d50e383743c0f7a5945c47087295afc112e3cf66"
-  integrity sha512-xAEnNCT3w2Tg6MA7ly6QqYJvEoY1tm9iIjJ3yMKK9JPlWuRHAMoe5iETwQnx3M9TVbFMfsrBgWKR+IsmswwNjg==
+emoji-regex@~10.6.0:
+  version "10.6.0"
+  resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-10.6.0.tgz#bf3d6e8f7f8fd22a65d9703475bc0147357a6b0d"
+  integrity sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==
 
 emojilib@^2.4.0:
   version "2.4.0"
@@ -13728,6 +13729,11 @@ remark-parse@^9.0.0:
   integrity sha512-geKatMwSzEXKHuzBNU1z676sGcDcFoChMK38TgdHJNAYfFtsfHDQG7MoJAjs6sgYMqyLduCYWDIWZIxiPeafEw==
   dependencies:
     mdast-util-from-markdown "^0.8.0"
+
+remove-markdown@^0.6.2:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/remove-markdown/-/remove-markdown-0.6.3.tgz#039d4a08d21410a0fe7d13bf8ccf06c2f4c46aaa"
+  integrity sha512-Qvp2p0Q1irE7AaJO7QemJe04HdObHylJrG+q4hszvPlYp7q4EvfINpEIaIEFdB+3XTDp1h6fiyT60ae00gmRow==
 
 repeat-string@^1.0.0:
   version "1.6.1"
