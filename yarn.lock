@@ -7552,10 +7552,10 @@ eslint-plugin-prettier@4.2.5:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-tsdoc@0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-tsdoc/-/eslint-plugin-tsdoc-0.5.1.tgz#d26e7140d0226f4f742ea571aee8031937494480"
-  integrity sha512-+EFu9XAFzogfoRspo2slmHZZ10amXqLAhmgCG0nbR6RZHNZK2XmsE7gfZ8gBjaO/p6C2DOGn09UpTGOlYy6OdQ==
+eslint-plugin-tsdoc@0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-tsdoc/-/eslint-plugin-tsdoc-0.5.2.tgz#5143210e77fffdf0df095f4090d7dd3f6494a4a2"
+  integrity sha512-BlvqjWZdBJDIPO/YU3zcPCF23CvjYT3gyu63yo6b609NNV3D1b6zceAREy2xnweuBoDpZcLNuPyAUq9cvx6bbQ==
   dependencies:
     "@microsoft/tsdoc" "0.16.0"
     "@microsoft/tsdoc-config" "0.18.1"
