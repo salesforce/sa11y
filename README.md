@@ -9,6 +9,7 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
 [![NPM downloads per month of @sa11y/common package](https://img.shields.io/npm/dm/@sa11y/common)](https://www.npmtrends.com/@sa11y/common)
 [![Known Vulnerabilities](https://snyk.io/test/github/salesforce/sa11y/badge.svg?targetFile=package.json)](https://snyk.io/test/github/salesforce/sa11y?targetFile=package.json)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/salesforce/sa11y/badge)](https://api.securityscorecards.dev/projects/github.com/salesforce/sa11y)
+[![AI Readiness](https://img.shields.io/badge/AI%20Readiness-L2%20(56%25%20Human%20%7C%2061%25%20AI)-yellow)](./AI_READINESS_REPORT.md)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
