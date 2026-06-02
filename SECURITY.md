@@ -4,7 +4,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-Please report any security issue to [security@salesforce.com](mailto:security@salesforce.com)
+Please report any security issue to [https://www.sfdc.co/SubmitVuln](https://www.sfdc.co/SubmitVuln)
 as soon as it is discovered. This library limits its runtime dependencies in
 order to reduce the total cost of ownership as much as can be, but all consumers
 should remain vigilant and have their security stakeholders review all third-party
