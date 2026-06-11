@@ -21,10 +21,10 @@ export type AutoCheckOpts = {
     runAfterEach?: boolean;
     cleanupAfterEach?: boolean;
     consolidateResults?: boolean;
-    // TODO (feat): add support for optional exclusion of selected tests
-    // excludeTests?: string[];
-    // List of test file paths (as regex) to filter for automatic checks
+    // List of test file path substrings to filter for automatic checks
     filesFilter?: string[];
+    // List of test name substrings to filter for automatic checks
+    testsFilter?: string[];
     runDOMMutationObserver?: boolean;
     enableIncompleteResults?: boolean;
 };
@@ -45,6 +45,7 @@ export const defaultAutoCheckOpts: AutoCheckOpts = {
     cleanupAfterEach: true,
     consolidateResults: true,
     filesFilter: [],
+    testsFilter: [],
     runDOMMutationObserver: false,
     enableIncompleteResults: false,
 };
@@ -76,6 +77,20 @@ export function skipTest(testPath: string | undefined, filesFilter?: string[]): 
 }
 
 /**
+ * Check if current test needs to be skipped based on test name filter
+ */
+export function skipTestByName(testName: string | undefined, testsFilter?: string[]): boolean {
+    if (!testName || !testsFilter || testsFilter.length === 0) return false;
+    const skip = testsFilter.some((filter) => testName.toLowerCase().includes(filter.toLowerCase()));
+    if (skip) {
+        log(
+            `Skipping automatic accessibility check for test "${testName}" as it matches given tests filter: ${testsFilter.toString()}`
+        );
+    }
+    return skip;
+}
+
+/**
  * Run accessibility check on each element node in the body using {@link toBeAccessible}
  * @param opts - Options for automatic checks {@link AutoCheckOpts}
  */
@@ -87,6 +102,7 @@ export async function runAutomaticCheck(
     isFakeTimerUsed: () => boolean = () => false
 ): Promise<void> {
     if (skipTest(testPath, opts.filesFilter)) return;
+    if (skipTestByName(testName, opts.testsFilter)) return;
 
     // Skip automatic check if test is using fake timer as it would result in timeout
     if (isFakeTimerUsed()) {
