@@ -183,15 +183,12 @@ export async function runAutomaticCheck(
 }
 
 export function mutationObserverCallback(mutations: MutationRecord[]) {
-    for (const mutation of mutations) {
-        mutation.addedNodes.forEach((node) => {
-            if (node?.parentElement?.innerHTML) {
-                mutatedNodes.push(node.parentElement.innerHTML);
-            } else if ((node as Element)?.outerHTML) {
-                mutatedNodes.push((node as Element).outerHTML);
-            }
-        });
-    }
+    // MutationObserver already batches every synchronous DOM change into a single callback
+    // invocation, so document.body reflects one settled state per call. Capturing it once per
+    // call (instead of once per mutation record's addedNodes) avoids queuing many duplicate or
+    // ancestor-redundant snapshots for a single re-render, each of which would otherwise trigger
+    // its own axe.run() during replay in runAutomaticCheck.
+    if (mutations.length > 0) mutatedNodes.push(document.body.innerHTML);
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit
