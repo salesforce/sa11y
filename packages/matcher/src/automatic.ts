@@ -4,14 +4,14 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { AxeResults, log, useCustomRules, writeHtmlFileInPath } from '@sa11y/common';
 import { getA11yResultsJSDOM } from '@sa11y/assert';
+import { AxeResults, log, useCustomRules, writeHtmlFileInPath } from '@sa11y/common';
 import { A11yError, exceptionListFilterSelectorKeywords } from '@sa11y/format';
 import {
-    defaultRuleset,
     adaptA11yConfig,
     adaptA11yConfigCustomRules,
     adaptA11yConfigIncompleteResults,
+    defaultRuleset,
 } from '@sa11y/preset-rules';
 
 /**
@@ -55,6 +55,8 @@ export const defaultRenderedDOMSaveOpts: RenderedDOMSaveOpts = {
 
 let originalDocumentBodyHtml: string | null = null;
 let mutatedNodes: string[] = [];
+
+const moTestsWithMutationNodes: string[] = [];
 
 export const setOriginalDocumentBodyHtml = (bodyHtml: string | null) => {
     originalDocumentBodyHtml = bodyHtml ?? null;
@@ -123,6 +125,18 @@ export async function runAutomaticCheck(
                 currNode = walker.nextSibling();
             }
         } else {
+            // TEMPORARY INSTRUMENTATION (see W-...): mutatedNodes is populated by the observer
+            // before this point and reset in `finally`. Record the name of every test that had
+            // any mutation nodes and log a running count so the autobuild console yields
+            // "<N> tests had mutation nodes" without a cross-worker reporter.
+            if (mutatedNodes.length > 0) {
+                moTestsWithMutationNodes.push(testName);
+            }
+            console.log(
+                `[MutationObserver] aggregate: ${moTestsWithMutationNodes.length} tests had ` +
+                    `mutation nodes (worker-local running total)`
+            );
+
             const a11yResultsJSDOM = await getA11yResultsJSDOM(document.body, config, opts.enableIncompleteResults);
             if (a11yResultsJSDOM?.length > 0) {
                 if (
