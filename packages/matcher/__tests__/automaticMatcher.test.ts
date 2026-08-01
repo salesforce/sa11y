@@ -24,6 +24,7 @@ import {
     observerOptions,
     defaultAutoCheckOpts,
     defaultRenderedDOMSaveOpts,
+    mutationObserverCallback,
 } from '../src/automatic';
 import * as common from '@sa11y/common';
 import * as assert from '@sa11y/assert';
@@ -301,5 +302,40 @@ describe('runAutomaticCheck runDOMMutationObserver checks', () => {
         document.body.innerHTML = '<div>test</div>';
         await runAutomaticCheck(opts, renderedDOMSaveOpts, '', '');
         expect(writeHtmlSpy).not.toHaveBeenCalled();
+    });
+
+    it('should coalesce all mutation records from a single callback invocation into one snapshot', async () => {
+        // A MutationObserver invokes its callback once per settled batch of synchronous DOM
+        // changes, passing every MutationRecord from that batch. A single re-render (e.g. a
+        // framework inserting several nested nodes) can produce many records in one callback
+        // call. mutationObserverCallback should queue one document.body snapshot per callback
+        // invocation, not one per record, since document.body already reflects the same
+        // settled state for every record in the batch.
+        const getA11yResultsSpy = jest.spyOn(assert, 'getA11yResultsJSDOM').mockResolvedValue([]);
+        document.body.innerHTML = domWithNoA11yIssues;
+        const addedNode = document.body.appendChild(document.createElement('div'));
+
+        // 5 records in one batch, each reporting the same added node, mimics what a single
+        // framework re-render produces: many MutationRecords sharing one settled DOM state.
+        const fakeRecords = Array.from({ length: 5 }, () => ({ addedNodes: [addedNode] } as unknown as MutationRecord));
+        mutationObserverCallback(fakeRecords); // one batch, 5 records -> should queue exactly 1 snapshot
+        mutationObserverCallback(fakeRecords); // a second batch -> should queue exactly 1 more snapshot
+
+        await runAutomaticCheck({ runDOMMutationObserver: true }, {}, 'testPath', 'testName');
+
+        // 1 call for the final DOM state + 1 per queued snapshot (2), not 1 + 10
+        expect(getA11yResultsSpy).toHaveBeenCalledTimes(3);
+    });
+
+    it('should not queue a snapshot when the callback is invoked with no mutation records', async () => {
+        const getA11yResultsSpy = jest.spyOn(assert, 'getA11yResultsJSDOM').mockResolvedValue([]);
+        document.body.innerHTML = domWithNoA11yIssues;
+
+        mutationObserverCallback([]);
+
+        await runAutomaticCheck({ runDOMMutationObserver: true }, {}, 'testPath', 'testName');
+
+        // Only the final DOM state is checked; no replay snapshot was queued
+        expect(getA11yResultsSpy).toHaveBeenCalledTimes(1);
     });
 });
