@@ -52,6 +52,46 @@ const rulesData = [
             tags: ['wcag211', 'custom'],
         },
     },
+    {
+        // SC 1.4.12 Text Spacing (AA).
+        // Injects the WCAG text-spacing overrides on the element and flags it when the
+        // content starts to overflow / clip (scrollWidth > clientWidth or scrollHeight > clientHeight)
+        // that was not overflowing before the override. Salesforce ecosystem-specific detection
+        // agreed with Subrahmanyam Putta (see .eclipse/custom-rules.md).
+        id: 'sa11y-text-spacing-overflow',
+        selector: 'p,span,a,button,li,td,th,dd,dt,h1,h2,h3,h4,h5,h6,label,legend,figcaption,summary,div',
+        enabled: true,
+        any: ['sa11y-text-spacing-overflow-check'],
+        all: [],
+        none: [],
+        metadata: {
+            description: 'Content is clipped or overflows when WCAG 1.4.12 text spacing is applied.',
+            help: 'Ensure no loss of content or functionality when text spacing (word-spacing 0.16em, letter-spacing 0.12em, line-height 1.5) is applied.',
+            helpUrl: 'https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html',
+            impact: 'serious',
+            tags: ['wcag1412', 'wcag21aa', 'custom'],
+        },
+    },
+    {
+        // SC 2.5.3 Label in Name (A).
+        // Enhancement over axe's label-content-name-mismatch: flags interactive elements whose
+        // accessible name (aria-label / aria-labelledby) does not contain their visible text label.
+        // Targets the combobox / complex-labeling gap called out in .eclipse/custom-rules.md.
+        id: 'sa11y-label-in-name',
+        selector:
+            "button,a[href],[role='button'],[role='link'],[role='menuitem'],[role='tab'],[role='option'],[role='checkbox'],[role='radio'],[role='switch'],[role='combobox'],[role='menuitemcheckbox'],[role='menuitemradio'],[role='treeitem']",
+        enabled: true,
+        any: ['sa11y-label-in-name-check'],
+        all: [],
+        none: [],
+        metadata: {
+            description: 'The accessible name does not contain the visible label text.',
+            help: 'Ensure the accessible name (aria-label/aria-labelledby) contains the visible label text so speech-input users can activate the control by its visible name.',
+            helpUrl: 'https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html',
+            impact: 'serious',
+            tags: ['wcag253', 'wcag21a', 'custom'],
+        },
+    },
 ];
 
 export default rulesData as axe.Rule[];
