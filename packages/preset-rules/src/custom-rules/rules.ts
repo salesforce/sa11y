@@ -6,25 +6,39 @@
  */
 import axe from 'axe-core';
 const rulesData = [
+    /*
+     * DISABLED for the W-22990841 spike — the keyboard rules are not part of what we are validating,
+     * and their backing checks were removed from `checks/index.ts`. Leaving these rules active would
+     * make axe.configure throw ("unknown check sa11y-Keyboard-check"). Preserved here for reference;
+     * to re-enable, uncomment this entry AND the matching check in `checks/index.ts`.
+     *
+     * {
+     *     id: 'sa11y-Keyboard',
+     *     metadata: {
+     *         description: 'Element is not keyboard operable',
+     *         help: "The following button element <strong>'+ ele.innerText+ '</strong> missing keyboard operability. To fix add tabindex='0' attribute and  appropriate keyboard event handler.",
+     *         helpUrl: '',
+     *     },
+     *     selector:
+     *         "[role='button']:not(a[href],button,input,select,area[href],textarea,[contentEditable=true],[disabled],details)",
+     *     any: [],
+     *     all: ['sa11y-Keyboard-check'],
+     *     none: [],
+     *     tags: ['wcag22aa', 'wcag211'],
+     * },
+     */
     {
-        id: 'sa11y-Keyboard',
-        metadata: {
-            description: 'Element is not keyboard operable',
-            help: "The following button element <strong>'+ ele.innerText+ '</strong> missing keyboard operability. To fix add tabindex='0' attribute and  appropriate keyboard event handler.",
-            helpUrl: '',
-        },
-        selector:
-            "[role='button']:not(a[href],button,input,select,area[href],textarea,[contentEditable=true],[disabled],details)",
-        any: [],
-        all: ['sa11y-Keyboard-check'],
-        none: [],
-        tags: ['wcag22aa', 'wcag211'],
-    },
-    {
-        id: 'Resize-reflow-textoverflow',
-        selector: '*',
+        // Renamed from `Resize-reflow-textoverflow`: this is a single-viewport text-truncation
+        // detector, not a reflow (SC 1.4.10) test on its own — it never resizes the viewport. The
+        // FTest resize harness runs it again at 200% / 400% zoom, and truncation found at 400% is
+        // the reflow failure. See checks/sa11y-text-truncation-check.ts.
+        id: 'sa11y-text-truncation',
+        // Was '*' — running getComputedStyle + innerText on every node forced a full-page reflow
+        // storm and crashed the renderer ("tab crashed"). Text truncation via ellipsis / line-clamp
+        // only applies to text-bearing elements, so restrict to the same set as text-spacing.
+        selector: 'p,span,a,button,li,td,th,dd,dt,h1,h2,h3,h4,h5,h6,label,legend,figcaption,summary,div',
         enabled: true,
-        any: ['Resize-reflow-textoverflow-check'],
+        any: ['sa11y-text-truncation-check'],
         all: [],
         metadata: {
             description: 'Ensure Ellipses are not present as text is truncated.',
@@ -34,24 +48,27 @@ const rulesData = [
             tags: ['wcag1410', 'custom'],
         },
     },
-    {
-        id: 'sa11y-Keyboard-button',
-        selector:
-            "[role='button']:not(a[href],button,input,select,area[href],textarea,[contentEditable=true],[disabled],details)",
-        enabled: true,
-        any: ['sa11y-Keyboard-button-check'],
-        all: [],
-        metadata: {
-            description: 'Element is not keyboard operable',
-            help: "Fix any one of the following :\n \
-                       1.The button element missing keyboard operability. To fix add tabindex='0' attribute and  appropriate keyboard event handler.\n \
-                       2.Remove role='button' attribute",
-            helpUrl: '',
-
-            impact: 'critical',
-            tags: ['wcag211', 'custom'],
-        },
-    },
+    /*
+     * DISABLED for the W-22990841 spike (see note above). Preserved for reference; to re-enable,
+     * uncomment this entry AND the matching check in `checks/index.ts`.
+     *
+     * {
+     *     id: 'sa11y-Keyboard-button',
+     *     selector:
+     *         "[role='button']:not(a[href],button,input,select,area[href],textarea,[contentEditable=true],[disabled],details)",
+     *     any: ['sa11y-Keyboard-button-check'],
+     *     all: [],
+     *     metadata: {
+     *         description: 'Element is not keyboard operable',
+     *         help: "Fix any one of the following :\n \
+     *                    1.The button element missing keyboard operability. To fix add tabindex='0' attribute and  appropriate keyboard event handler.\n \
+     *                    2.Remove role='button' attribute",
+     *         helpUrl: '',
+     *         impact: 'critical',
+     *         tags: ['wcag211', 'custom'],
+     *     },
+     * },
+     */
     {
         // SC 1.4.12 Text Spacing (AA).
         // Injects the WCAG text-spacing overrides on the element and flags it when the
