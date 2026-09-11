@@ -2,3 +2,19 @@ comment:
     layout: 'reach, diff, files'
     branches: # branch names that can post comment
         - 'master'
+
+coverage:
+    status:
+        # `project` compares total coverage to the base commit. The base report is refreshed only by
+        # a successful Codecov upload from CI on `master`; a small threshold keeps this from failing
+        # on tiny, benign dips (e.g. browser-only branches that cannot be exercised in jsdom) or when
+        # the base report is stale.
+        project:
+            default:
+                target: auto
+                threshold: 0.5%
+        # `patch` enforces coverage on the lines changed in the PR itself.
+        patch:
+            default:
+                target: 80%
+                threshold: 0%
