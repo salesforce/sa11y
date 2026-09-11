@@ -29,6 +29,25 @@ function control(visibleText: string, attrs: Record<string, string> = {}, tag = 
 }
 
 /**
+ * jsdom has no layout engine: getBoundingClientRect() always returns a 0x0 box, so every element
+ * trips the sr-only / zero-size guard before reaching the real logic. Stub a non-zero box so the
+ * element is treated as visible and the decision branches below become reachable.
+ */
+function visible(el: HTMLElement, width = 100, height = 20): HTMLElement {
+    el.getBoundingClientRect = () =>
+        ({ width, height, top: 0, left: 0, right: width, bottom: height, x: 0, y: 0, toJSON: () => ({}) } as DOMRect);
+    return el;
+}
+
+/** Script the scroll/client metrics jsdom cannot compute. Accepts fixed values or getter functions. */
+function setMetrics(el: HTMLElement, m: Record<string, number | (() => number)>): void {
+    Object.keys(m).forEach((k) => {
+        const v = m[k];
+        Object.defineProperty(el, k, { configurable: true, get: () => (typeof v === 'function' ? v() : v) });
+    });
+}
+
+/**
  * Run the label-in-name check the way axe does: build the virtual tree for the current DOM and pass
  * the element's virtualNode (the check uses `axe.commons.text.*`, which operate on virtual nodes).
  */
@@ -125,23 +144,138 @@ describe('sa11yLabelInNameCheck (SC 2.5.3)', () => {
     });
 });
 
-describe('layout-dependent checks (smoke — jsdom has no layout)', () => {
-    // jsdom returns 0 for all scroll/client dimensions and never reports text-overflow/line-clamp,
-    // so these exercise the guard/early-return paths only. The clip-detection branches are covered
-    // by the browser FTest run (see the /* istanbul ignore next */ markers in the check files).
-    it('sa11yTextSpacingOverflowCheck passes empty / hidden elements and restores inline styles', () => {
+describe('sa11yTextSpacingOverflowCheck (SC 1.4.12)', () => {
+    it('passes null / style-less nodes and zero-size (sr-only) boxes', () => {
+        expect(sa11yTextSpacingOverflowCheck(null as unknown as HTMLElement)).toBe(true);
+        // jsdom reports a 0x0 box for every element, so an un-stubbed node is treated as sr-only.
         expect(sa11yTextSpacingOverflowCheck(document.createElement('div'))).toBe(true);
+    });
 
-        const el = control('hello world', {}, 'p') as HTMLElement;
+    it('passes hidden elements (display:none / visibility:hidden)', () => {
+        const none = visible(control('hi', {}, 'p') as HTMLElement);
+        none.style.display = 'none';
+        expect(sa11yTextSpacingOverflowCheck(none)).toBe(true);
+
+        const hidden = visible(control('hi', {}, 'p') as HTMLElement);
+        hidden.style.visibility = 'hidden';
+        expect(sa11yTextSpacingOverflowCheck(hidden)).toBe(true);
+    });
+
+    it('passes layout containers with no own (direct-child) text node', () => {
+        const wrapper = visible(control('', {}, 'div') as HTMLElement);
+        wrapper.appendChild(document.createElement('span')); // text lives in a descendant, not here
+        expect(sa11yTextSpacingOverflowCheck(wrapper)).toBe(true);
+    });
+
+    it('passes visible text that does not newly clip when spacing is applied, restoring inline styles', () => {
+        const el = visible(control('hello world', {}, 'p') as HTMLElement);
         el.style.setProperty('word-spacing', '2px');
+        setMetrics(el, { scrollWidth: 100, clientWidth: 100, scrollHeight: 20, clientHeight: 20 });
         expect(sa11yTextSpacingOverflowCheck(el)).toBe(true);
         // inline styles are saved and restored — the check must not mutate the DOM
         expect(el.style.getPropertyValue('word-spacing')).toBe('2px');
         expect(el.style.getPropertyValue('letter-spacing')).toBe('');
     });
 
-    it('sa11yTextTruncationCheck passes elements without ellipsis / clamp', () => {
+    it('fails when applying WCAG text spacing newly clips the content, and restores saved styles', () => {
+        const el = visible(control('hello world', {}, 'p') as HTMLElement);
+        // Pre-existing author styles must survive: they are the saved/restore path.
+        el.style.setProperty('word-spacing', '1px');
+        el.style.setProperty('letter-spacing', '1px');
+        el.style.setProperty('line-height', '1.2');
+        // Not overflowing until the override widens the content past the clientWidth.
+        setMetrics(el, {
+            scrollWidth: () => (el.style.getPropertyValue('word-spacing') === '0.16em' ? 200 : 50),
+            clientWidth: 100,
+            scrollHeight: 20,
+            clientHeight: 20,
+        });
+        expect(sa11yTextSpacingOverflowCheck(el)).toBe(false);
+        expect(el.style.getPropertyValue('word-spacing')).toBe('1px');
+        expect(el.style.getPropertyValue('letter-spacing')).toBe('1px');
+        expect(el.style.getPropertyValue('line-height')).toBe('1.2');
+    });
+});
+
+describe('sa11yTextTruncationCheck (SC 1.4.10 truncation)', () => {
+    it('passes null nodes and zero-size / sr-only boxes', () => {
+        expect(sa11yTextTruncationCheck(null as unknown as HTMLElement)).toBe(true);
         expect(sa11yTextTruncationCheck(document.createElement('div'))).toBe(true);
-        expect(sa11yTextTruncationCheck(control('not truncated', {}, 'p') as HTMLElement)).toBe(true);
+    });
+
+    it('passes hidden elements (display:none / visibility:hidden)', () => {
+        const none = visible(control('hi', {}, 'p') as HTMLElement);
+        none.style.display = 'none';
+        expect(sa11yTextTruncationCheck(none)).toBe(true);
+
+        const hidden = visible(control('hi', {}, 'p') as HTMLElement);
+        hidden.style.visibility = 'hidden';
+        expect(sa11yTextTruncationCheck(hidden)).toBe(true);
+    });
+
+    it('passes an absolutely-positioned clip-rect(0 0 0 0) sr-only node', () => {
+        const el = visible(control('assistive text', {}, 'span') as HTMLElement);
+        el.style.position = 'absolute';
+        el.style.clip = 'rect(0 0 0 0)';
+        expect(sa11yTextTruncationCheck(el)).toBe(true);
+    });
+
+    it('passes when the visible subtree has no rendered text (icon + sr-only child)', () => {
+        const el = visible(control('', {}, 'button') as HTMLElement);
+        const srOnly = document.createElement('span');
+        srOnly.textContent = 'Close';
+        srOnly.style.display = 'none';
+        el.appendChild(srOnly);
+        expect(sa11yTextTruncationCheck(el)).toBe(true);
+    });
+
+    it('passes visible text with no ellipsis / clamp styling', () => {
+        expect(sa11yTextTruncationCheck(visible(control('not truncated', {}, 'p') as HTMLElement))).toBe(true);
+    });
+
+    it('fails single-line ellipsis truncation (overflow:hidden + nowrap, content clipped)', () => {
+        const el = visible(control('a very long truncated line', {}, 'p') as HTMLElement);
+        el.style.textOverflow = 'ellipsis';
+        el.style.overflow = 'hidden';
+        el.style.whiteSpace = 'nowrap';
+        setMetrics(el, { scrollWidth: 200, clientWidth: 100 });
+        expect(sa11yTextTruncationCheck(el)).toBe(false);
+    });
+
+    it('passes ellipsis styling that is not actually clipped (sub-pixel tolerance)', () => {
+        const el = visible(control('fits', {}, 'p') as HTMLElement);
+        el.style.textOverflow = 'ellipsis';
+        el.style.overflow = 'hidden';
+        el.style.whiteSpace = 'nowrap';
+        setMetrics(el, { scrollWidth: 100, clientWidth: 100 });
+        expect(sa11yTextTruncationCheck(el)).toBe(true);
+    });
+
+    it('ignores whitespace-only text and treats a flex child as block-ish (not single-line truncation)', () => {
+        const el = visible(control('', {}, 'div') as HTMLElement);
+        el.appendChild(document.createTextNode('   ')); // whitespace-only: not visible text on its own
+        const child = document.createElement('span');
+        child.textContent = 'label';
+        child.style.display = 'flex';
+        el.appendChild(child);
+        el.style.textOverflow = 'ellipsis';
+        el.style.overflow = 'hidden';
+        el.style.whiteSpace = 'nowrap';
+        setMetrics(el, { scrollWidth: 200, clientWidth: 100 });
+        expect(sa11yTextTruncationCheck(el)).toBe(true);
+    });
+
+    it('does not flag an ellipsis wrapper around a block-level child', () => {
+        const el = visible(control('wrapper text', {}, 'span') as HTMLElement);
+        el.style.textOverflow = 'ellipsis';
+        el.style.overflow = 'hidden';
+        el.style.whiteSpace = 'nowrap';
+        const block = document.createElement('h1');
+        block.style.display = 'block';
+        block.textContent = 'heading';
+        el.appendChild(block);
+        setMetrics(el, { scrollWidth: 200, clientWidth: 100 });
+        // has a block child -> its own scroll metrics don't represent single-line text truncation
+        expect(sa11yTextTruncationCheck(el)).toBe(true);
     });
 });
