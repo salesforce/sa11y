@@ -35,9 +35,7 @@ function control(visibleText: string, attrs: Record<string, string> = {}, tag = 
 function labelInName(el: Element): boolean {
     axe.teardown();
     axe.setup(document.documentElement);
-    const vNode = (axe as unknown as { utils: { getNodeFromTree(n: Element): unknown } }).utils.getNodeFromTree(
-        el
-    );
+    const vNode = (axe as unknown as { utils: { getNodeFromTree(n: Element): unknown } }).utils.getNodeFromTree(el);
     return sa11yLabelInNameCheck(el, {}, vNode);
 }
 
@@ -113,7 +111,7 @@ describe('sa11yLabelInNameCheck (SC 2.5.3)', () => {
         // Regression for the 30-instance false positive: the previous `textContent` implementation
         // pulled in the hidden disclosure control's text, so the long visible string was no longer a
         // substring of the short aria-label. visibleVirtual excludes the hidden subtree, so it passes.
-        const li = control('Slack', { role: 'treeitem', 'aria-label': 'Slack' }, 'li');
+        const li = control('Slack', { 'role': 'treeitem', 'aria-label': 'Slack' }, 'li');
         const hidden = document.createElement('span');
         hidden.textContent = 'Collapse Slack sub menu';
         hidden.setAttribute('style', 'display:none');
@@ -123,7 +121,7 @@ describe('sa11yLabelInNameCheck (SC 2.5.3)', () => {
 
     it('skips aria-hidden and disabled controls', () => {
         expect(labelInName(control('Save Changes', { 'aria-label': 'Submit', 'aria-hidden': 'true' }))).toBe(true);
-        expect(labelInName(control('Save Changes', { 'aria-label': 'Submit', disabled: '' }))).toBe(true);
+        expect(labelInName(control('Save Changes', { 'aria-label': 'Submit', 'disabled': '' }))).toBe(true);
     });
 });
 

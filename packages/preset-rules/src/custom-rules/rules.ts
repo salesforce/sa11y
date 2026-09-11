@@ -84,7 +84,7 @@ const rulesData = [
         metadata: {
             description: 'Ensure Ellipses are not present as text is truncated.',
             help: 'Text elements do not have ellipsis as text is truncated.',
-            helpUrl: 'https://example.com/custom-rule-help',
+            helpUrl: 'https://www.w3.org/WAI/WCAG21/Understanding/reflow.html',
             impact: 'moderate',
             tags: ['wcag1410', 'custom'],
         },
