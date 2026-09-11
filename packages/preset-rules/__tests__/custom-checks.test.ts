@@ -142,6 +142,27 @@ describe('sa11yLabelInNameCheck (SC 2.5.3)', () => {
         expect(labelInName(control('Save Changes', { 'aria-label': 'Submit', 'aria-hidden': 'true' }))).toBe(true);
         expect(labelInName(control('Save Changes', { 'aria-label': 'Submit', 'disabled': '' }))).toBe(true);
     });
+
+    it('returns true (not applicable) for a null node or null virtual node', () => {
+        expect(sa11yLabelInNameCheck(null as unknown as Element, {}, {})).toBe(true);
+        expect(sa11yLabelInNameCheck(document.createElement('button'), {}, null)).toBe(true);
+    });
+
+    it('skips presentational (role=none / role=presentation) controls', () => {
+        expect(labelInName(control('Save Changes', { 'role': 'presentation', 'aria-label': 'Submit' }))).toBe(true);
+        expect(labelInName(control('Save Changes', { 'role': 'none', 'aria-label': 'Submit' }))).toBe(true);
+    });
+
+    it('passes a role that does not take its name from content (no accessible name to compare)', () => {
+        // combobox does not derive its accessible name from text content, so accessibleTextVirtual is
+        // empty while the visible text is real — there is nothing to compare, so it is not applicable.
+        expect(labelInName(control('Choose', { role: 'combobox' }, 'div'))).toBe(true);
+    });
+
+    it('fails when the visible label appears only as a non-contiguous run in the accessible name', () => {
+        // "save" then "changes" both appear, but not as an adjacent ordered run — must not match.
+        expect(labelInName(control('Save Changes', { 'aria-label': 'Save now Changes' }))).toBe(false);
+    });
 });
 
 describe('sa11yTextSpacingOverflowCheck (SC 1.4.12)', () => {
