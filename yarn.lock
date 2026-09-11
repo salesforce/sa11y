@@ -1531,6 +1531,14 @@
   dependencies:
     tslib "^2.4.0"
 
+"@eslint-community/eslint-plugin-eslint-comments@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@eslint-community/eslint-plugin-eslint-comments/-/eslint-plugin-eslint-comments-3.2.0.tgz#033b01852848570713356f3a6843307571c20105"
+  integrity sha512-BjyMKQRjkywhbkrtHzUITQTQQuysxbZk1/z5Cco7cMNxhw0odzWohDgVuxmuhS9LJRFWAkIXhnfuLXjChFmfoA==
+  dependencies:
+    escape-string-regexp "^1.0.5"
+    ignore "^5.0.5"
+
 "@eslint-community/eslint-utils@^4.2.0", "@eslint-community/eslint-utils@^4.9.1":
   version "4.9.1"
   resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.9.1.tgz#4e90af67bc51ddee6cdef5284edf572ec376b595"
@@ -7414,14 +7422,6 @@ eslint-module-utils@^2.12.1:
   integrity sha512-bLohSkT6469rRs8czj0tLTD8vaeIS/whvPRJVjDr7IuoTT1k5DYDERlNycjDj/HkOlvQdYurmfZ/g3fG5bgeLQ==
   dependencies:
     debug "^3.2.7"
-
-eslint-plugin-eslint-comments@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-eslint-comments/-/eslint-plugin-eslint-comments-3.2.0.tgz#9e1cd7b4413526abb313933071d7aba05ca12ffa"
-  integrity sha512-0jkOl0hfojIHHmEHgmNdqv4fmh7300NdpA9FFpF7zaoLvB/QeXOGNLIo86oAveJFrfB1p05kC8hpEMHM8DwWVQ==
-  dependencies:
-    escape-string-regexp "^1.0.5"
-    ignore "^5.0.5"
 
 eslint-plugin-import@2.32.0:
   version "2.32.0"
