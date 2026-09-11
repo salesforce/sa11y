@@ -5,6 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import axe from 'axe-core';
 import checkData from '../src/custom-rules/checks';
 import { sa11yLabelInNameCheck } from '../src/custom-rules/checks/sa11y-label-in-name-check';
 import { sa11yTextSpacingOverflowCheck } from '../src/custom-rules/checks/sa11y-text-spacing-overflow-check';
@@ -27,7 +28,21 @@ function control(visibleText: string, attrs: Record<string, string> = {}, tag = 
     return el;
 }
 
+/**
+ * Run the label-in-name check the way axe does: build the virtual tree for the current DOM and pass
+ * the element's virtualNode (the check uses `axe.commons.text.*`, which operate on virtual nodes).
+ */
+function labelInName(el: Element): boolean {
+    axe.teardown();
+    axe.setup(document.documentElement);
+    const vNode = (axe as unknown as { utils: { getNodeFromTree(n: Element): unknown } }).utils.getNodeFromTree(
+        el
+    );
+    return sa11yLabelInNameCheck(el, {}, vNode);
+}
+
 afterEach(() => {
+    axe.teardown();
     while (document.body.firstChild) {
         document.body.removeChild(document.body.firstChild);
     }
@@ -35,9 +50,12 @@ afterEach(() => {
 
 describe('custom check assembler (checks/index.ts)', () => {
     it('emits one entry per active check function with the expected ids', () => {
-        // The keyboard checks are intentionally disabled for the spike (commented out in
-        // checks/index.ts and rules.ts), so they are absent here.
+        // Existing shipped checks are kept for backward compatibility; the new W-22990841
+        // checks are added alongside them.
         expect(checkData.map((c) => c.id)).toEqual([
+            'sa11y-Keyboard-check',
+            'Resize-reflow-textoverflow-check',
+            'sa11y-Keyboard-button-check',
             'sa11y-text-truncation-check',
             'sa11y-text-spacing-overflow-check',
             'sa11y-label-in-name-check',
@@ -55,40 +73,57 @@ describe('custom check assembler (checks/index.ts)', () => {
 
 describe('sa11yLabelInNameCheck (SC 2.5.3)', () => {
     it('passes when there is no aria-label(ledby) — accessible name is the content', () => {
-        expect(sa11yLabelInNameCheck(control('Save Changes'))).toBe(true);
+        expect(labelInName(control('Save Changes'))).toBe(true);
     });
 
     it('passes when the accessible name contains the visible text', () => {
-        expect(sa11yLabelInNameCheck(control('Save Changes', { 'aria-label': 'Save Changes now' }))).toBe(true);
+        expect(labelInName(control('Save Changes', { 'aria-label': 'Save Changes now' }))).toBe(true);
     });
 
     it('passes on an exact match', () => {
-        expect(sa11yLabelInNameCheck(control('Save Changes', { 'aria-label': 'Save Changes' }))).toBe(true);
+        expect(labelInName(control('Save Changes', { 'aria-label': 'Save Changes' }))).toBe(true);
     });
 
     it('fails when the accessible name does not contain the visible text', () => {
-        expect(sa11yLabelInNameCheck(control('Save Changes', { 'aria-label': 'Submit' }))).toBe(false);
+        expect(labelInName(control('Save Changes', { 'aria-label': 'Submit' }))).toBe(false);
     });
 
     it('ignores punctuation and smart quotes when comparing', () => {
-        expect(sa11yLabelInNameCheck(control('Save Changes!', { 'aria-label': 'save changes' }))).toBe(true);
-        expect(sa11yLabelInNameCheck(control('Can’t do', { 'aria-label': 'cant do' }))).toBe(true);
+        expect(labelInName(control('Save Changes!', { 'aria-label': 'save changes' }))).toBe(true);
+        expect(labelInName(control('Can’t do', { 'aria-label': 'cant do' }))).toBe(true);
     });
 
     it('passes an icon-only control with no visible text', () => {
-        expect(sa11yLabelInNameCheck(control('', { 'aria-label': 'Close' }))).toBe(true);
+        expect(labelInName(control('', { 'aria-label': 'Close' }))).toBe(true);
     });
 
     it('resolves aria-labelledby and fails on mismatch', () => {
         control('Submit', { id: 'lbl-1' }, 'span');
         const btn = control('Save Changes', { 'aria-labelledby': 'lbl-1' });
-        expect(sa11yLabelInNameCheck(btn)).toBe(false);
+        expect(labelInName(btn)).toBe(false);
     });
 
     it('resolves aria-labelledby and passes when it contains the visible text', () => {
         control('Save Changes now', { id: 'lbl-2' }, 'span');
         const btn = control('Save Changes', { 'aria-labelledby': 'lbl-2' });
-        expect(sa11yLabelInNameCheck(btn)).toBe(true);
+        expect(labelInName(btn)).toBe(true);
+    });
+
+    it('does not flag a parent treeitem whose hidden subtree text is excluded (Setup-nav FP)', () => {
+        // Regression for the 30-instance false positive: the previous `textContent` implementation
+        // pulled in the hidden disclosure control's text, so the long visible string was no longer a
+        // substring of the short aria-label. visibleVirtual excludes the hidden subtree, so it passes.
+        const li = control('Slack', { role: 'treeitem', 'aria-label': 'Slack' }, 'li');
+        const hidden = document.createElement('span');
+        hidden.textContent = 'Collapse Slack sub menu';
+        hidden.setAttribute('style', 'display:none');
+        li.appendChild(hidden);
+        expect(labelInName(li)).toBe(true);
+    });
+
+    it('skips aria-hidden and disabled controls', () => {
+        expect(labelInName(control('Save Changes', { 'aria-label': 'Submit', 'aria-hidden': 'true' }))).toBe(true);
+        expect(labelInName(control('Save Changes', { 'aria-label': 'Submit', disabled: '' }))).toBe(true);
     });
 });
 

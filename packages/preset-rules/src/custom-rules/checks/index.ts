@@ -20,26 +20,48 @@ import { sa11yLabelInNameCheck } from './sa11y-label-in-name-check';
  * definitions so the emitted rule catalog is unchanged.
  */
 const checkData = [
-    /*
-     * DISABLED for the W-22990841 spike — the keyboard checks below are not part of the rules we are
-     * validating, so their source files were deleted. The check definitions are preserved here (with
-     * their evaluate as a plain string) in case someone wants to re-enable them later; to do so,
-     * uncomment the entry AND the matching rule in `rules.ts` (`sa11y-Keyboard` / `sa11y-Keyboard-button`),
-     * or restore the standalone `*-check.ts` file and use `<fn>.toString()` like the active checks.
-     *
-     * {
-     *     id: 'sa11y-Keyboard-check',
-     *     options: ['sa11y-Keyboard-check'],
-     *     evaluate: "function (node) { return !!node.hasAttribute('tabindex'); }",
-     *     metadata: {
-     *         impact: 'critical',
-     *         messages: {
-     *             pass: 'Button elements are Keyboard operable',
-     *             fail: "Button elements are not Keyboard operable,To fix add tabindex='0' attribute and  appropriate keyboard event handler.",
-     *         },
-     *     },
-     * },
-     */
+    // ---------------------------------------------------------------------------
+    // Existing shipped checks — kept verbatim (evaluate as inline strings) to back
+    // the existing `sa11y-Keyboard` / `Resize-reflow-textoverflow` /
+    // `sa11y-Keyboard-button` rules for backward compatibility.
+    // ---------------------------------------------------------------------------
+    {
+        id: 'sa11y-Keyboard-check',
+        options: ['sa11y-Keyboard-check'],
+        evaluate: "function(node, options) { return !!node.hasAttribute('tabindex'); }",
+        metadata: {
+            impact: 'critical',
+            messages: {
+                pass: 'Button elements are Keyboard operable',
+                fail: "Button elements are not Keyboard operable,To fix add tabindex='0' attribute and  appropriate keyboard event handler.",
+            },
+        },
+    },
+    {
+        id: 'Resize-reflow-textoverflow-check',
+        evaluate:
+            "function (node) {const style = window.getComputedStyle(node); const tabIndex = node.getAttribute('tabindex'); if (tabIndex === '-1' && node.actualNode && !isVisibleOnScreen(node) && !isVisibleToScreenReaders(node)) { return false; } if (!node.innerText ===\"\") { return false; } if (style.getPropertyValue('text-overflow') === 'ellipsis') { function isTextTruncated(element) {const isTruncated = (element.scrollWidth > element.clientWidth); return isTruncated; } return !isTextTruncated(node); } if (style.getPropertyValue('display') === '-webkit-box' && style.getPropertyValue('-webkit-line-clamp') != 0 && style.getPropertyValue('overflow') === 'hidden' && style.getPropertyValue('-webkit-box-orient') === 'vertical') { function isTextTruncated(element) { const isTruncated = (element.scrollWidth>element.clientWidth); return isTruncated; } return !isTextTruncated(node); } return true; }",
+        metadata: {
+            impact: 'moderate',
+            messages: {
+                pass: 'Text element does not have ellipses ',
+                fail: 'Text element have ellipses which make difficulty to read',
+            },
+        },
+    },
+    {
+        id: 'sa11y-Keyboard-button-check',
+        evaluate:
+            "function (node) { const tabIndex = node.getAttribute('tabindex'); if ( tabIndex === '-1' && node.actualNode && !isVisibleOnScreen(node) && !isVisibleToScreenReaders(node)) { return false; } if(!node.innerText ===\"\"){ return false; } if(!node.hasAttribute('tabindex')){ return false; } return true; }",
+        messages: {
+            pass: 'Button element are keyboard operable',
+            fail: "Button element are not keyboard operable, To fix add tabindex='0' attribute and appropriate keyboard event handler.",
+        },
+    },
+    // ---------------------------------------------------------------------------
+    // New checks added for W-22990841. Logic lives in the sibling `*-check.ts`
+    // files and is serialized with `.toString()` (see note above).
+    // ---------------------------------------------------------------------------
     {
         id: 'sa11y-text-truncation-check',
         evaluate: sa11yTextTruncationCheck.toString(),
@@ -51,17 +73,6 @@ const checkData = [
             },
         },
     },
-    /*
-     * DISABLED for the W-22990841 spike (see note above). Reference definition:
-     * {
-     *     id: 'sa11y-Keyboard-button-check',
-     *     evaluate: "function (node) { return node.hasAttribute('tabindex'); }",
-     *     messages: {
-     *         pass: 'Button element are keyboard operable',
-     *         fail: "Button element are not keyboard operable, To fix add tabindex='0' attribute and appropriate keyboard event handler.",
-     *     },
-     * },
-     */
     {
         id: 'sa11y-text-spacing-overflow-check',
         evaluate: sa11yTextSpacingOverflowCheck.toString(),
