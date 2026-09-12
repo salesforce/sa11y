@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { runAutomaticCheck, skipTest, registerCustomSa11yRules } from '../src';
+import { runAutomaticCheck, skipTest, skipTestByName, registerCustomSa11yRules } from '../src';
 
 import {
     beforeEachSetup,
@@ -106,6 +106,39 @@ describe('automatic checks call', () => {
         }
     );
 
+
+    test.each([
+        ['my test name', undefined, false],
+        ['my test name', [], false],
+        ['my test name', ['my test'], true],
+        ['my test name', ['MY TEST'], true],
+        ['my test name', ['my test', 'other'], true],
+        ['my test name', ['other'], false],
+        ['my test name', ['my test name extra'], false],
+    ])(
+        'should filter test by name as expected with args # %#',
+        (testName: string, testsFilter: string[] | undefined, expectedResult: boolean) => {
+            expect(skipTestByName(testName, testsFilter)).toBe(expectedResult);
+        }
+    );
+
+    it('should skip auto checks when test name is excluded using testsFilter', async () => {
+        document.body.innerHTML = domWithA11yIssues;
+        await expect(
+            runAutomaticCheck(
+                { testsFilter: ['non-matching-name', testName] },
+                { renderedDOMDumpDirPath: '' },
+                testPath,
+                testName
+            )
+        ).resolves.toBeUndefined();
+    });
+
+    it('should run auto checks when test name is not excluded using testsFilter', async () => {
+        document.body.innerHTML = domWithA11yIssues;
+        await expect(runAutomaticCheck({ testsFilter: ['non-matching-name'] }, {}, testPath, testName)).rejects.toThrow();
+    });
+
     it('should skip auto checks when file is excluded using filter', async () => {
         document.body.innerHTML = domWithA11yIssues;
         await expect(
@@ -199,6 +232,7 @@ describe('automatic.ts exports', () => {
             cleanupAfterEach: true,
             consolidateResults: true,
             filesFilter: [],
+            testsFilter: [],
             runDOMMutationObserver: false,
             enableIncompleteResults: false,
         });

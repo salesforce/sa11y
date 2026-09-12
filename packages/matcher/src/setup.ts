@@ -79,6 +79,11 @@ export function updateAutoCheckOpts(autoCheckOpts: AutoCheckOpts): void {
         'ui-help-components/modules/forceHelp/linkToKnownIssue/__tests__/linkToKnownIssue.spec.js',
     ]);
 
+    if (process.env.SA11Y_AUTO_FILTER_TESTS?.trim().length) {
+        autoCheckOpts.testsFilter = (autoCheckOpts.testsFilter ?? []).concat(
+            process.env.SA11Y_AUTO_FILTER_TESTS.split(',')
+        );
+    }
     autoCheckOpts.runDOMMutationObserver ||= !!process.env.SA11Y_ENABLE_DOM_MUTATION_OBSERVER;
     autoCheckOpts.enableIncompleteResults ||= !!process.env.SA11Y_ENABLE_INCOMPLETE_RESULTS;
 }
