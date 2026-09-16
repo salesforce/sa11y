@@ -74,13 +74,20 @@ jobs:
               run: npm install -g npm@12
 
             - run: yarn install --frozen-lockfile
-            - run: yarn build
 
             - name: Run semantic-release
               id: semantic-release
               run: yarn run semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            # Build AFTER semantic-release has bumped the package versions. The
+            # browser-lib bundle stamps sa11y.version from package.json at build
+            # time, so building beforehand would publish a bundle self-reporting
+            # the previous version. Only runs when a release was actually created.
+            - name: Build with released version
+              if: ${{ hashFiles('.release-created') != '' }}
+              run: yarn build
 
             # npm publish runs directly in workflow step so OIDC works
             - name: Publish to npm with OIDC
