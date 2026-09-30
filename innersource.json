@@ -1,0 +1,17 @@
+{
+  "name": "@sa11y",
+  "description": "Salesforce Accessibility Automated Testing Libraries — Jest, Vitest, and WebdriverIO integrations built on axe-core",
+  "participating": true,
+  "governance_level": "contributions_welcome",
+  "trusted_committers": [
+    {
+      "name": "Navateja Alagam",
+      "github": "NavatejAlagam",
+      "role": "Trusted Committer"
+    }
+  ],
+  "communication": {
+    "channel": "<!-- TODO: add your team's verified Slack channel name -->",
+    "issues": "https://github.com/salesforce/sa11y/issues"
+  }
+}
