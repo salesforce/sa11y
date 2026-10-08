@@ -138,6 +138,7 @@ describe('matcher exports used in jest automatic', () => {
             cleanupAfterEach: true,
             consolidateResults: true,
             filesFilter: [],
+            testsFilter: [],
             runDOMMutationObserver: false,
             enableIncompleteResults: false,
         });
