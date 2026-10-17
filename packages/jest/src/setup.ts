@@ -15,7 +15,30 @@ import {
 import { registerSa11yAutomaticChecks } from './automatic';
 import { toBeAccessible } from './matcher';
 
+type CanvasGetContext = typeof HTMLCanvasElement.prototype.getContext;
+
+// Capture jsdom's unimplemented getContext at load time so we can replace it,
+// while leaving a previously installed stub or real canvas implementation alone.
+const jsdomCanvasGetContext: CanvasGetContext | undefined =
+    typeof HTMLCanvasElement === 'undefined'
+        ? undefined
+        : // eslint-disable-next-line @typescript-eslint/unbound-method
+          HTMLCanvasElement.prototype.getContext;
+
+function stubJsdomCanvasGetContext(): void {
+    if (typeof HTMLCanvasElement === 'undefined') {
+        return;
+    }
+    const proto = HTMLCanvasElement.prototype;
+    // Only stub when getContext is still jsdom's unimplemented method (or missing).
+    if (typeof proto.getContext === 'function' && proto.getContext !== jsdomCanvasGetContext) {
+        return;
+    }
+    proto.getContext = (() => null) as CanvasGetContext;
+}
+
 export function setup(opts = defaultSa11yOpts): void {
+    stubJsdomCanvasGetContext();
     const testPath = expect.getState().testPath ?? '';
     const ignoreImprovedChecks = improvedChecksFilter.some((fileName) =>
         testPath.toLowerCase().includes(fileName.toLowerCase())
