@@ -160,8 +160,29 @@ setup({
 
 ## Results Processor
 
-A custom results processor is available for transforming accessibility errors in Vitest test results.  
-See the API: `vitestResultsProcessor`.
+`vitestResultsProcessor` transforms accessibility errors in Vitest test results, mirroring the Jest [group violation results processor](../jest/README.md#group-violation-results-processor). It is meant to be called by a Vitest reporter, e.g. when running [automatic checks](#automatic-checks), before the reporter writes the results:
+
+-   The message and stack of a11y errors are replaced with the a11y violations grouped by rule
+-   Other errors are dropped and failed tests without a11y errors are marked as passed, so that only a11y failures are reported
+-   Tests nested in suites (`describe` blocks) are processed as well
+-   Suites and test files that failed only due to tests marked as passed are marked as passed as well
+-   Test results are modified in place. Hence other reporters see the processed results only when registered after the reporter calling the processor.
+-   The exit code of the test run is not affected as Vitest sets it before calling the reporters at the end of the run
+
+```typescript
+import { experimental_getRunnerTask } from 'vitest/node';
+import type { Reporter, TestModule } from 'vitest/node';
+import { vitestResultsProcessor } from '@sa11y/vitest';
+
+export default class A11yReporter implements Reporter {
+    onTestRunEnd(testModules: ReadonlyArray<TestModule>): void {
+        if (process.env.SA11Y_AUTO) {
+            vitestResultsProcessor(testModules.map((testModule) => experimental_getRunnerTask(testModule)));
+        }
+        // Write the results e.g. as JUnit XML
+    }
+}
+```
 
 ## Related Packages
 
