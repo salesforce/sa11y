@@ -11,6 +11,7 @@ export {
     mutationObserverCallback,
     observerOptions,
     skipTest,
+    skipTestByName,
     runAutomaticCheck,
     AutoCheckOpts,
     RenderedDOMSaveOpts,
