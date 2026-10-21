@@ -40,8 +40,8 @@ function createSuite(name: string, tasks: RunnerTask[], state?: State, errors?: 
     return { type: 'suite', name, tasks, result: createResult(state, errors) } as unknown as RunnerTestSuite;
 }
 
-function createFile(tasks: RunnerTask[], state?: State): RunnerTestFile {
-    return createSuite('sa11y.test.ts', tasks, state) as RunnerTestFile;
+function createFile(tasks: RunnerTask[], state?: State, errors?: Error[]): RunnerTestFile {
+    return createSuite('sa11y.test.ts', tasks, state, errors) as RunnerTestFile;
 }
 
 beforeAll(async () => {
@@ -113,16 +113,31 @@ describe('Vitest Group Violation Results Processor', () => {
         [innerSuite, outerSuite, testFile].forEach((suite) => expect(suite.result?.state).toBe('pass'));
     });
 
-    it('should keep suites failing due to a11y errors or their own errors as failed', () => {
+    it('should keep suites failing due to a11y errors as failed', () => {
         const a11ySuite = createSuite('a11y', [createTest('a11y', 'fail', [a11yError])], 'fail');
         const a11yFile = createFile([a11ySuite], 'fail');
-        // Suite failing due to its own error e.g. in a hook
-        const hookSuite = createSuite('hook', [createTest('passed', 'pass')], 'fail', [new Error('foo')]);
+        // Suite failing due to its own a11y error e.g. in a hook
+        const hookSuite = createSuite('hook', [createTest('passed', 'pass')], 'fail', [new Error('foo'), a11yError]);
         const hookFile = createFile([hookSuite], 'fail');
 
         vitestResultsProcessor([a11yFile, hookFile]);
 
         [a11ySuite, a11yFile, hookSuite, hookFile].forEach((suite) => expect(suite.result?.state).toBe('fail'));
+        expect(hookSuite.result?.errors).toMatchObject([{ name: A11yError.name, message: groupedMessage }]);
+    });
+
+    it('should mark suites and files failing due to their own non-a11y errors as passed', () => {
+        // Suite failing due to its own error e.g. in a hook
+        const hookSuite = createSuite('hook', [createTest('passed', 'pass')], 'fail', [new Error('foo')]);
+        const hookFile = createFile([hookSuite], 'fail');
+        // File failing to be collected e.g. due to an import error
+        const errorFile = createFile([], 'fail', [new Error('foo')]);
+
+        vitestResultsProcessor([hookFile, errorFile]);
+
+        [hookSuite, hookFile, errorFile].forEach((suite) =>
+            expect(suite.result).toEqual({ state: 'pass', errors: [] })
+        );
     });
 
     it('should not modify tests that have not failed', () => {

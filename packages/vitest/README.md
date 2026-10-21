@@ -165,7 +165,7 @@ setup({
 -   The message and stack of a11y errors are replaced with the a11y violations grouped by rule
 -   Other errors are dropped and failed tests without a11y errors are marked as passed, so that only a11y failures are reported
 -   Tests nested in suites (`describe` blocks) are processed as well
--   Suites and test files that failed only due to tests marked as passed are marked as passed as well
+-   Errors of suites and test files themselves, e.g. from hooks or failing to import a test file, are processed the same way. Suites and test files without a11y errors left in them or their tests are marked as passed.
 -   Test results are modified in place. Hence other reporters see the processed results only when registered after the reporter calling the processor.
 -   The exit code of the test run is not affected as Vitest sets it before calling the reporters at the end of the run
 
