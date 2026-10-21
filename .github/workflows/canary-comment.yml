@@ -1,0 +1,58 @@
+# Lets maintainers cut a canary release of a PR by commenting `canary` on it.
+# This workflow never checks out or runs PR code: it checks the commenter and the PR, then dispatches
+# the CI workflow (nodejs.yml) on the PR branch, which tests the branch and publishes the canary with
+# npm OIDC trusted publishing.
+
+name: Canary Comment
+
+on:
+    issue_comment:
+        types: [created]
+
+permissions: {}
+
+jobs:
+    dispatch:
+        name: Dispatch Canary Release
+        runs-on: ubuntu-latest
+
+        # Skip on forks of this repo
+        if: github.repository_owner == 'salesforce' && github.event.issue.pull_request && github.event.comment.body == 'canary'
+
+        permissions:
+            actions: write # to dispatch the CI workflow
+            pull-requests: write # to comment on the PR
+
+        steps:
+            - name: Dispatch canary release
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GH_REPO: ${{ github.repository }}
+                  PR_NUMBER: ${{ github.event.issue.number }}
+                  COMMENTER: ${{ github.event.comment.user.login }}
+                  RUNS_URL: ${{ github.server_url }}/${{ github.repository }}/actions/workflows/nodejs.yml?query=event%3Aworkflow_dispatch
+              run: |
+                  comment() { gh pr comment "$PR_NUMBER" --body "$1"; }
+
+                  # Canaries are published to npm, so only people who can push to this repo may cut one.
+                  # Anyone else is ignored without a reply, so they can't make the bot post on PRs.
+                  permission=$(gh api "repos/$GH_REPO/collaborators/$COMMENTER/permission" --jq .permission)
+                  if [[ "$permission" != admin && "$permission" != write ]]; then
+                      echo "::notice::Ignoring canary request from $COMMENTER (permission: $permission)"
+                      exit 0
+                  fi
+
+                  # The canary is built from the PR branch in this repo, so PRs from forks can't be released
+                  pr=$(gh pr view "$PR_NUMBER" --json isCrossRepository,headRefName,headRefOid)
+                  if [[ $(jq -r .isCrossRepository <<< "$pr") == true ]]; then
+                      comment "🚫 Canary releases aren't supported for PRs from forks. Push the branch to $GH_REPO instead."
+                      exit 0
+                  fi
+                  head_ref=$(jq -r .headRefName <<< "$pr")
+                  head_sha=$(jq -r .headRefOid <<< "$pr")
+
+                  if ! gh workflow run nodejs.yml --ref "$head_ref" -f pr_number="$PR_NUMBER"; then
+                      comment "❌ Couldn't start the canary release. Check that the branch still exists and includes canary support (merge \`master\` into it), then comment \`canary\` again."
+                      exit 1
+                  fi
+                  comment "🚀 Canary release started for ${head_sha::7}. CI runs lint, build and test first, then the version is posted here. [View runs]($RUNS_URL)"
