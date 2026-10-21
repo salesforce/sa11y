@@ -163,11 +163,18 @@ Your test should now be running in the Chrome debugger. You get your handy conso
 
 Canary releases let you try out changes from a PR (e.g. in a consuming project) before they are merged.
 
--   Comment `canary` on the PR. CI runs lint, build and test on the PR branch, then publishes all public `@sa11y/*` packages as `<next patch>-canary.<run number>.<run attempt>.g<commit>` (e.g. `8.2.1-canary.57.1.gd39f94e`) with the NPM `@canary` tag, and comments the version on the PR.
+-   Comment `canary` on the PR. CI runs lint, build and test on the PR branch, then publishes all public `@sa11y/*` packages as `<next patch>-canary.<run number>.<run attempt>.g<commit>` (e.g. `8.2.1-canary.57.1.gd39f94e`) with the NPM `@canary` tag, and comments the version on the PR once npm lists it (usually a few minutes after publishing).
     -   Only people with write access to the repo can trigger it; comments from anyone else are ignored. PRs from forks are not supported.
     -   The PR branch must include the canary workflow, so merge `master` into older branches first.
+    -   If an install still can't find the version right after the comment, try again a few minutes later: npm's CDN can serve package metadata up to 5 minutes old.
 -   To cut a canary without a PR, run the `CI` workflow from the Actions tab ("Run workflow") on any branch.
 -   Pin the exact version when testing, e.g. `yarn add -D @sa11y/jest@8.2.1-canary.57.1.gd39f94e`. The `@canary` tag moves with every canary release, and ranges such as `^8.2.0` never resolve to a pre-release.
+-   If your npm config sets a minimum release age (e.g. `min-release-age=3`), npm won't install a canary until it is that many days old and fails with `No matching version found for ... with a date before ...`. The age check only applies to versions npm picks from the registry, so install the canary tarballs directly instead, together with the `@sa11y/*` packages they depend on. For `@sa11y/jest` (or `@sa11y/vitest`, swapping `jest` for `vitest`):
+
+    ```sh
+    version=8.2.1-canary.57.1.gd39f94e
+    npm install -D $(for pkg in jest matcher assert format preset-rules common; do npm view "@sa11y/$pkg@$version" dist.tarball; done)
+    ```
 
 ## Editor Configurations
 
