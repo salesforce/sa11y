@@ -8,9 +8,18 @@ on:
         branches: [master, alpha, beta]
     pull_request:
         branches: [master]
+    # Canary releases: dispatched by canary-comment.yml when a maintainer comments `canary`
+    # on a PR, or run manually from the Actions tab on any branch.
+    workflow_dispatch:
+        inputs:
+            pr_number:
+                description: 'PR number to comment the canary version on (optional)'
+                required: false
+                type: string
 
+# Jobs that publish to npm request `id-token: write` (OIDC) themselves, so that lint-build-test,
+# which installs and runs dependencies for every PR, can never mint an npm publish token.
 permissions:
-    id-token: write # Required for OIDC
     contents: read
 
 jobs:
@@ -93,3 +102,131 @@ jobs:
             - name: Publish to npm with OIDC
               if: ${{ hashFiles('.release-created') != '' }}
               run: npm publish --workspaces --access public --provenance
+    canary:
+        name: Canary Release
+        needs: lint-build-test # previous job MUST pass to make a canary release!
+        runs-on: ubuntu-latest
+
+        # Only on manual dispatch (directly or via a `canary` PR comment), never on forks.
+        # This lives in nodejs.yml because npm trusted publishing is bound to this workflow file.
+        if: github.repository_owner == 'salesforce' && github.event_name == 'workflow_dispatch'
+
+        permissions:
+            contents: read
+            pull-requests: write # to comment the canary version on the PR
+            id-token: write # Required for OIDC
+
+        steps:
+            - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+              with:
+                  persist-credentials: false
+            - name: Use Node.js 22.x
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+              with:
+                  node-version: 22.x
+                  cache: 'yarn'
+                  registry-url: 'https://registry.npmjs.org'
+
+            # Same npm pin as the release job (OIDC trusted publishing requires npm >= 11.5.1)
+            - name: Upgrade npm
+              run: npm install -g npm@12
+
+            - run: yarn install --frozen-lockfile
+
+            # Next patch of the latest npm release, e.g. 8.2.0 -> 8.2.1-canary.57.1.gd39f94e
+            # (run number, run attempt, commit). npm is the source of truth because semantic-release
+            # doesn't commit version bumps back to the repo. The run attempt lets a re-run after a
+            # partial publish use a fresh version, and the "g" keeps an all-digit short SHA valid semver.
+            - name: Compute canary version
+              id: version
+              run: |
+                  latest=$(npm view @sa11y/common version)
+                  IFS=. read -r major minor patch <<< "$latest"
+                  echo "version=$major.$minor.$((patch + 1))-canary.$GITHUB_RUN_NUMBER.$GITHUB_RUN_ATTEMPT.g${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+
+            # --no-conventional-commits: with an explicit version lerna doesn't need git history,
+            # so this also works when dispatched on a tag (detached HEAD)
+            - name: Set canary version
+              run: yarn lerna version "$CANARY_VERSION" --no-git-tag-version --no-push --yes --exact --force-publish --no-conventional-commits
+              env:
+                  CANARY_VERSION: ${{ steps.version.outputs.version }}
+
+            # Build AFTER versioning so the browser-lib bundle stamps the canary version
+            - run: yarn build
+
+            # Publish on the `canary` dist-tag so `latest` is untouched
+            - name: Publish canary to npm with OIDC
+              run: npm publish --workspaces --access public --provenance --tag canary
+
+            # npm can take several minutes to list a new version after publishing, and installs fail
+            # until it does, so wait for that before reporting the version. If npm is still behind after
+            # 15 minutes, report it anyway with a note: the packages are published either way.
+            - name: Wait for npm to list the canary
+              id: wait-for-npm
+              continue-on-error: true
+              env:
+                  CANARY_VERSION: ${{ steps.version.outputs.version }}
+              run: |
+                  packages=$(jq -r 'select(.private != true) | .name' packages/*/package.json)
+                  mapfile -t pending <<< "$packages"
+                  deadline=$((SECONDS + 15 * 60))
+                  while true; do
+                      unlisted=()
+                      for pkg in "${pending[@]}"; do
+                          # The abbreviated metadata that installs read. The query string bypasses npm's CDN,
+                          # which can serve metadata up to 5 minutes old.
+                          url="https://registry.npmjs.org/${pkg/\//%2f}?t=$(date +%s)"
+                          curl -fsS --max-time 30 -H 'Accept: application/vnd.npm.install-v1+json' "$url" |
+                              jq -e --arg version "$CANARY_VERSION" '.versions | has($version)' > /dev/null || unlisted+=("$pkg")
+                      done
+                      pending=("${unlisted[@]}")
+                      if ((${#pending[@]} == 0)); then
+                          exit 0
+                      fi
+                      if ((SECONDS >= deadline)); then
+                          echo "::warning::npm still doesn't list $CANARY_VERSION for ${pending[*]}"
+                          exit 1
+                      fi
+                      echo "Waiting for npm to list $CANARY_VERSION for ${pending[*]}"
+                      sleep 15
+                  done
+
+            # The packages are already published, so a failed PR comment shouldn't fail the release
+            - name: Report canary version
+              continue-on-error: true
+              env:
+                  CANARY_VERSION: ${{ steps.version.outputs.version }}
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_LISTED: ${{ steps.wait-for-npm.outcome == 'success' }}
+                  PR_NUMBER: ${{ inputs.pr_number }}
+              run: |
+                  # shellcheck disable=SC2016 # the backticks are Markdown, not command substitution
+                  body=$(printf '✅ Canary release published: `%s` (npm dist-tag `canary`)\n\nAll public `@sa11y/*` packages are published at this version, e.g.\n\n```sh\nyarn add -D @sa11y/jest@%s\n```' "$CANARY_VERSION" "$CANARY_VERSION")
+                  if [[ "$NPM_LISTED" != true ]]; then
+                      body+=$'\n\n'"⚠️ Couldn't confirm that npm lists this version for every package yet, so installs may fail for a few more minutes."
+                  fi
+                  echo "$body" >> "$GITHUB_STEP_SUMMARY"
+                  if [[ "$PR_NUMBER" =~ ^[0-9]+$ ]]; then
+                      gh pr comment "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --body "$body"
+                  fi
+    canary-failure:
+        name: Report Canary Failure
+        needs: [lint-build-test, canary]
+        runs-on: ubuntu-latest
+
+        # Also covers lint/build/test failures, where the canary job itself is skipped
+        if: failure() && github.repository_owner == 'salesforce' && github.event_name == 'workflow_dispatch' && inputs.pr_number != ''
+
+        permissions:
+            pull-requests: write # to comment on the PR
+
+        steps:
+            - name: Comment on PR
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  PR_NUMBER: ${{ inputs.pr_number }}
+                  RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+              run: |
+                  if [[ "$PR_NUMBER" =~ ^[0-9]+$ ]]; then
+                      gh pr comment "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --body "❌ Canary release failed. [View run]($RUN_URL)"
+                  fi
