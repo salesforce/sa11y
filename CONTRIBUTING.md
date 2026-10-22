@@ -166,6 +166,7 @@ Your test should now be running in the Chrome debugger. You get your handy conso
 -   Add any new axe rules to `excludedRules` in [preset-rules/src/full.ts](./packages/preset-rules/src/full.ts) so they only run in the `full` ruleset
     -   Request a DAE review to map each new rule to a priority and WCAG SC, then move it into [base.ts](./packages/preset-rules/src/base.ts) or [extended.ts](./packages/preset-rules/src/extended.ts) in a follow-up PR
 -   Regenerate the rules table in the [preset-rules README](./packages/preset-rules/README.md) (see the note in `preset-rules/__tests__/rules.test.ts`) and update snapshots with `yarn test -u`
+-   Bump the axe-core version in the docs in the same PR, e.g. the versioned axe rule help links (`rules/axe/X.Y/<rule-id>`) and any other axe-core version references in the READMEs
 -   Title the PR `feat(deps): upgrade axe-core to vX.Y.Z`. A `chore` commit does not trigger a release, so the upgrade would not be published until an unrelated `feat`/`fix` is merged
 
 ## Editor Configurations
