@@ -15,6 +15,7 @@ export {
     getViolations,
     getIncomplete,
 } from './axe';
+export { canaryDemo } from './canary-demo';
 export { WdioAssertFunction, WdioOptions } from './wdio';
 export { errMsgHeader, ExceptionList } from './format';
 export {
