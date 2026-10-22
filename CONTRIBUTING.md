@@ -17,6 +17,7 @@ We want to encourage the developer community to contribute to Sa11y. This guide 
 - [Release](#release)
   - [Making a pre-release](#making-a-pre-release)
     - [Upgrade dependencies](#upgrade-dependencies)
+    - [Upgrade axe-core](#upgrade-axe-core)
 - [Editor Configurations](#editor-configurations)
   - [Types](#types)
   - [ESLint](#eslint)
@@ -157,6 +158,15 @@ Your test should now be running in the Chrome debugger. You get your handy conso
 -   `yarn install:update`
     -   Select dependencies to update
 -   Check for GitHub Action updates
+
+#### Upgrade axe-core
+
+-   Always upgrade to the latest released axe-core version (not N-1)
+-   Bump `axe-core` to the same exact version in every package that depends on it (`assert`, `browser-lib`, `common`, `format`, `preset-rules`, `wdio`) and run `yarn install`
+-   Add any new axe rules to `excludedRules` in [preset-rules/src/full.ts](./packages/preset-rules/src/full.ts) so they only run in the `full` ruleset
+    -   Request a DAE review to map each new rule to a priority and WCAG SC, then move it into [base.ts](./packages/preset-rules/src/base.ts) or [extended.ts](./packages/preset-rules/src/extended.ts) in a follow-up PR
+-   Regenerate the rules table in the [preset-rules README](./packages/preset-rules/README.md) (see the note in `preset-rules/__tests__/rules.test.ts`) and update snapshots with `yarn test -u`
+-   Title the PR `feat(deps): upgrade axe-core to vX.Y.Z`. A `chore` commit does not trigger a release, so the upgrade would not be published until an unrelated `feat`/`fix` is merged
 
 ## Editor Configurations
 
@@ -377,7 +387,7 @@ The footer should contain any information about **Breaking Changes** and is also
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message is then used for this.
 
 [fork-a-repo]: https://docs.github.com/en/get-started/quickstart/fork-a-repo
-[configuring-a-remote-for-a-fork]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/configuring-a-remote-for-a-fork
+[configuring-a-remote-for-a-fork]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/configuring-a-remote-repository-for-a-fork
 [setup-github-ssh]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 [creating-a-pull-request]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
 [eslint-integrations]: http://eslint.org/docs/user-guide/integrations
