@@ -32,7 +32,6 @@
             "automerge": true
         },
         {
-            "matchPackageNames": ["@vitest/runner"],
             "matchPackagePatterns": ["^vitest"],
             "updateTypes": ["patch"],
             "enabled": false
