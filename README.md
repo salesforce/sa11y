@@ -15,6 +15,7 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
 
 - [Docs](#docs)
   - [References](#references)
+- [Canary releases](#canary-releases)
 - [Packages](#packages)
   - [Jest integration](#jest-integration)
   - [Vitest integration](#vitest-integration)
@@ -43,10 +44,30 @@ Automated Accessibility Testing Libraries and Tools ([@sa11y packages](https://w
 ### References
 
 -   [Automated Accessibility Tests with sa11y | Developer Quick Takes - YouTube](https://www.youtube.com/watch?v=ScqZisOBbUM&list=PLgIMQe2PKPSJdFGHjGpjd1FbCsOqq5H8t&index=21)
--   [Automated Accessibility Testing with sa11y | Salesforce Developers Blog](https://developer.salesforce.com/blogs/2020/10/automated-accessibility-testing-with-sa11y.html)
+-   [Automated Accessibility Testing with sa11y | Salesforce Developers Blog](https://developer.salesforce.com/blogs/2020/10/automated-accessibility-testing-with-sa11y)
 -   [Get Started with Web Accessibility | Salesforce Trailhead](https://trailhead.salesforce.com/en/content/learn/trails/get-started-with-web-accessibility)
 -   [Accessibility Overview - Lightning Design System](https://www.lightningdesignsystem.com/accessibility/overview/)
 -   [LWC Accessibility guide](https://lwc.dev/guide/accessibility)
+
+## Canary releases
+
+To try changes from an open pull request before they are merged and released, e.g. to check a fix in your project, use a canary release: a test build of all public `@sa11y/*` packages published from the PR.
+
+1. Comment `canary` on the PR. Only maintainers (people with write access to this repo) can trigger a canary, so ask one to do it if you can't. PRs from forks are not supported.
+2. CI tests the PR and publishes the packages to npm with the `canary` tag. Once they can be installed, usually within about 10 minutes, a bot replies on the PR with the version, e.g. `8.2.1-canary.57.1.gd39f94e`.
+3. Install that exact version in your project:
+
+    ```sh
+    yarn add -D @sa11y/jest@8.2.1-canary.57.1.gd39f94e
+    # or
+    npm install -D @sa11y/jest@8.2.1-canary.57.1.gd39f94e
+    ```
+
+    Use the same version for every `@sa11y` package your project depends on. The `@sa11y` packages they depend on are installed at that version too.
+
+-   Always pin the exact version. The `canary` tag moves to the newest canary from any PR, and ranges such as `^8.2.0` never pick up a canary.
+-   Canaries are for testing only. Switch back to a regular release once the change is merged and released.
+-   If npm fails with `No matching version found for ... with a date before ...`, your npm config blocks recently published versions. See [Making a canary release](./CONTRIBUTING.md#making-a-canary-release) for how to install a canary anyway, and for how maintainers can cut a canary from a branch without a PR.
 
 ## Packages
 
