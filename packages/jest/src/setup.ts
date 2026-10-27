@@ -15,6 +15,10 @@ import {
 import { registerSa11yAutomaticChecks } from './automatic';
 import { toBeAccessible } from './matcher';
 
+// package.json is outside rootDir, so it can't be imported
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { version } = require('../package.json') as { version: string };
+
 export function setup(opts = defaultSa11yOpts): void {
     const testPath = expect.getState().testPath ?? '';
     const ignoreImprovedChecks = improvedChecksFilter.some((fileName) =>
@@ -34,6 +38,7 @@ export function setup(opts = defaultSa11yOpts): void {
 export function registerSa11yMatcher(): void {
     if (expect !== undefined) {
         expect.extend({ toBeAccessible });
+        console.log(`♿[Sa11y] @sa11y/jest ${version}: registered the toBeAccessible matcher`);
     } else {
         throw new Error(
             "Unable to find Jest's expect function." +
