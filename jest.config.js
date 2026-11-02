@@ -18,6 +18,8 @@ module.exports = {
     testEnvironment: 'jsdom',
     testRunner: 'jest-jasmine2',
     testMatch: ['**/__tests__/**/*.[jt]s?(x)'],
+    // Resolve relative imports of ESM sources (e.g. @sa11y/vitest) with .js extensions to their .ts files
+    moduleNameMapper: { '^(\\.{1,2}/.*)\\.js$': '$1' },
     // Custom results processor for a11y results. Only affects JSON results file output.
     // To be used with jest cli options --json --outputFile
     //   *  e.g. jest --json --outputFile jestResults.json

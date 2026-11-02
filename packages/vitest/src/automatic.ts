@@ -4,14 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { beforeEach, afterEach, expect } from 'vitest';
-import {
-    defaultAutoCheckOpts,
-    defaultRenderedDOMSaveOpts,
-    mutationObserverCallback,
-    observerOptions,
-    runAutomaticCheck,
-} from '@sa11y/matcher';
+import { afterEach, expect } from 'vitest';
+import { defaultAutoCheckOpts, defaultRenderedDOMSaveOpts, runAutomaticCheck } from '@sa11y/matcher';
 import type { AutoCheckOpts, RenderedDOMSaveOpts } from '@sa11y/matcher';
 import { isTestUsingFakeTimer } from './matcher.js';
 
@@ -21,18 +15,11 @@ export function registerSa11yAutomaticChecks(
 ): void {
     if (!opts.runAfterEach) return;
     // TODO (fix): Make registration idempotent
-    const observer = new MutationObserver(mutationObserverCallback);
-
-    beforeEach(() => {
-        if (opts.runDOMMutationObserver) {
-            observer.observe(document.body, observerOptions);
-        }
-    });
-
     afterEach(async () => {
-        if (opts.runDOMMutationObserver) observer.disconnect(); // stop mutation observer
         await runAutomaticCheck(
-            opts,
+            // DOM mutation observer mode is not supported. Turn it off as updateAutoCheckOpts()
+            // also turns it on with the SA11Y_ENABLE_DOM_MUTATION_OBSERVER env var.
+            { ...opts, runDOMMutationObserver: false },
             renderedDOMSaveOpts,
             expect.getState().testPath,
             expect.getState().currentTestName,
