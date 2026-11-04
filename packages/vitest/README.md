@@ -155,8 +155,9 @@ setup({
 -   `cleanupAfterEach`: Clean up the DOM after checking
 -   `consolidateResults`: Deduplicate results
 -   `filesFilter`: Array of file path substrings to skip automatic checks for
--   `runDOMMutationObserver`: Enable DOM mutation observer mode
 -   `enableIncompleteResults`: Include incomplete results
+
+> **Note:** DOM mutation observer mode is not supported: the `runDOMMutationObserver` option and the `SA11Y_ENABLE_DOM_MUTATION_OBSERVER` environment variable are ignored. As `@sa11y/matcher` only saves the rendered DOM in that mode, `renderedDOMSaveOpts` has no effect currently.
 
 ## Results Processor
 
