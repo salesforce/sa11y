@@ -16,6 +16,8 @@ export {
     AutoCheckOpts,
     RenderedDOMSaveOpts,
     defaultRenderedDOMSaveOpts,
+    getOriginalDocumentBodyHtml,
+    setOriginalDocumentBodyHtml,
 } from './automatic';
 export {
     registerRemoveChild,

@@ -35,12 +35,18 @@ export const defaultSa11yOpts: Sa11yOpts = {
     },
 };
 
-export function registerRemoveChild(): void {
+/**
+ * Save the DOM body for the automatic checks before the first node is removed from the DOM, e.g. when
+ * the DOM is cleaned up by a test hook running before the automatic checks.
+ * @param shouldSaveDOM - Optional check if the DOM can be saved when a node is removed. When not given,
+ * the DOM is saved on the first node removal.
+ */
+export function registerRemoveChild(shouldSaveDOM?: () => boolean): void {
     // eslint-disable-next-line @typescript-eslint/unbound-method
     const originalRemoveChild = Element.prototype.removeChild;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
     (Element.prototype as any).removeChild = function (oldChild: Node): Node {
-        if (oldChild.parentNode === this && !getOriginalDocumentBodyHtml()) {
+        if (oldChild.parentNode === this && !getOriginalDocumentBodyHtml() && (!shouldSaveDOM || shouldSaveDOM())) {
             setOriginalDocumentBodyHtml(document?.body?.innerHTML ?? '');
         }
         return originalRemoveChild.call(this, oldChild);

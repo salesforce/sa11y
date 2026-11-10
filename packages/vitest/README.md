@@ -159,6 +159,12 @@ setup({
 
 > **Note:** DOM mutation observer mode is not supported: the `runDOMMutationObserver` option and the `SA11Y_ENABLE_DOM_MUTATION_OBSERVER` environment variable are ignored. As `@sa11y/matcher` only saves the rendered DOM in that mode, `renderedDOMSaveOpts` has no effect currently.
 
+**DOM checked:** With the `SA11Y_AUTO` environment variable set, the automatic checks check the final DOM rendered by each test, even when it is cleaned up by an `afterEach` hook running before the automatic checks (e.g. `cleanup()` of [Testing Library](https://testing-library.com/) registered after `setup()`):
+
+-   The DOM is saved when the first node is removed from it in the `afterEach` hooks of a test, and checked instead of the cleaned up DOM
+-   Nodes removed during a test, e.g. when a component re-renders, don't save the DOM as it isn't final yet
+-   A DOM saved in a test is never checked in another test, e.g. when the automatic checks of the test are skipped
+
 ## Results Processor
 
 `vitestResultsProcessor` transforms accessibility errors in Vitest test results, mirroring the Jest [group violation results processor](../jest/README.md#group-violation-results-processor). It is meant to be called by a Vitest reporter, e.g. when running [automatic checks](#automatic-checks), before the reporter writes the results:
