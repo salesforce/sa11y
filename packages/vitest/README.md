@@ -164,6 +164,8 @@ setup({
 -   The DOM is saved when the first node is removed from it in the `afterEach` hooks of a test, and checked instead of the cleaned up DOM
 -   Nodes removed during a test, e.g. when a component re-renders, don't save the DOM as it isn't final yet
 -   A DOM saved in a test is never checked in another test, e.g. when the automatic checks of the test are skipped
+-   Limitation: when a test is retried after failing in its `afterEach` hooks, e.g. with a11y issues, and a soft assertion (`expect.soft`) fails in the retry, nodes removed during the rest of the retry save the DOM. Such a test fails anyway, but can report a11y issues of a DOM that isn't final.
+-   Concurrent tests (e.g. `describe.concurrent`) aren't supported, as they render in the same DOM
 
 ## Results Processor
 

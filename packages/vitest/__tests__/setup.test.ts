@@ -5,26 +5,32 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { afterEach as vitestAfterEach, beforeEach as vitestBeforeEach } from 'vitest';
-import type { RunnerTaskResult, RunnerTestCase } from 'vitest';
-import { getCurrentTest } from 'vitest/suite';
+import type { RunnerTaskResult } from 'vitest';
 import { getOriginalDocumentBodyHtml, setOriginalDocumentBodyHtml } from '@sa11y/matcher';
 import { setup } from '../src/setup';
 
 const mockTestState = { testPath: 'foo.test.ts', currentTestName: 'foo' };
 
-// Vitest's hooks, expect and current test are only available in a Vitest test run
+// Vitest's hooks and expect are only available in a Vitest test run
 jest.mock('vitest', () => ({
     beforeEach: jest.fn(),
     afterEach: jest.fn(),
     expect: { extend: jest.fn(), getState: () => mockTestState },
 }));
-jest.mock('vitest/suite', () => ({ getCurrentTest: jest.fn() }));
+
+// The current Vitest test, given to the hooks in the test context
+const mockTest: { result?: Partial<RunnerTaskResult> } = {};
+let testFinishedHandlers: (() => unknown)[] = [];
+const mockTestContext = {
+    task: mockTest,
+    onTestFinished: (handler: () => unknown) => testFinishedHandlers.push(handler),
+};
 
 /**
  * Set the result of the current Vitest test
  */
 function setTestResult(result?: Partial<RunnerTaskResult>): void {
-    jest.mocked(getCurrentTest).mockReturnValue(result && ({ result } as RunnerTestCase));
+    mockTest.result = result;
 }
 
 /**
@@ -32,8 +38,16 @@ function setTestResult(result?: Partial<RunnerTaskResult>): void {
  */
 async function runHooks(registerHook: typeof vitestBeforeEach | typeof vitestAfterEach): Promise<void> {
     for (const [hook] of jest.mocked(registerHook).mock.calls) {
-        await (hook as () => unknown)();
+        await (hook as (context: typeof mockTestContext) => unknown)(mockTestContext);
     }
+}
+
+/**
+ * Run the handlers registered with `onTestFinished`, which Vitest runs after the afterEach hooks
+ */
+async function finishTest(): Promise<void> {
+    for (const handler of testFinishedHandlers) await handler();
+    testFinishedHandlers = [];
 }
 
 /**
@@ -57,7 +71,11 @@ async function runTest(testName: string, testFn: () => void): Promise<void> {
     result.state = 'pass';
     result.hooks.afterEach = 'run';
     cleanup();
-    await runHooks(vitestAfterEach);
+    try {
+        await runHooks(vitestAfterEach);
+    } finally {
+        await finishTest();
+    }
 }
 
 /**
@@ -96,6 +114,8 @@ describe('automatic checks DOM lifecycle', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         process.env = { ...prevEnv, SA11Y_AUTO: '1' };
+        setTestResult(undefined);
+        testFinishedHandlers = [];
     });
 
     afterEach(() => {
@@ -130,7 +150,7 @@ describe('automatic checks DOM lifecycle', () => {
 
     it('should check the DOM of a test not cleaned up before the automatic checks', async () => {
         setup({ autoCheckOpts: {}, renderedDOMSaveOpts: {} });
-        setTestResult({ state: 'run', hooks: { beforeEach: 'pass' } });
+        setTestResult({ state: 'run', hooks: { beforeEach: 'run' } });
         await runHooks(vitestBeforeEach);
         reRender(render(paragraph('Loading')), image('photo-no-cleanup'));
         setTestResult({ state: 'pass', hooks: { beforeEach: 'pass', afterEach: 'run' } });
@@ -152,26 +172,42 @@ describe('automatic checks DOM lifecycle', () => {
     });
 
     it.each([
-        ['outside of a test', undefined],
         ['during a test', { state: 'run' }],
         ['during a test with a failed soft assertion', { state: 'fail' }],
         ['during a retried test', { state: 'run', hooks: { afterEach: 'pass' } }],
         ['during a test retried after failed afterEach hooks', { state: 'run', hooks: { afterEach: 'run' } }],
         ['after the afterEach hooks', { state: 'pass', hooks: { afterEach: 'pass' } }],
-    ] as [string, Partial<RunnerTaskResult> | undefined][])(
-        'should not save the DOM when removing nodes %s',
-        (_, result) => {
-            setup({ autoCheckOpts: {}, renderedDOMSaveOpts: {} });
-            setTestResult(result);
-            reRender(render(paragraph('Loading')), paragraph('Loaded'));
-            expect(getOriginalDocumentBodyHtml()).toBeNull();
-        }
-    );
+    ] as [string, Partial<RunnerTaskResult>][])('should not save the DOM when removing nodes %s', async (_, result) => {
+        setup({ autoCheckOpts: {}, renderedDOMSaveOpts: {} });
+        setTestResult({ state: 'run', hooks: { beforeEach: 'run' } });
+        await runHooks(vitestBeforeEach);
+        setTestResult(result);
+        reRender(render(paragraph('Loading')), paragraph('Loaded'));
+        expect(getOriginalDocumentBodyHtml()).toBeNull();
+    });
+
+    it('should not save the DOM when removing nodes before the first test', () => {
+        setup({ autoCheckOpts: {}, renderedDOMSaveOpts: {} });
+        // e.g. the state of a test with failed afterEach hooks
+        setTestResult({ state: 'fail', hooks: { beforeEach: 'pass', afterEach: 'run' } });
+        reRender(render(paragraph('Loading')), paragraph('Loaded'));
+        expect(getOriginalDocumentBodyHtml()).toBeNull();
+    });
+
+    it('should not save the DOM when removing nodes after a test finished', async () => {
+        setup({ autoCheckOpts: {}, renderedDOMSaveOpts: {} });
+        await runTest('previous test', () => render(paragraph('Accessible')));
+        // e.g. the state of the previous test with failed afterEach hooks
+        setTestResult({ state: 'fail', hooks: { beforeEach: 'pass', afterEach: 'run' } });
+        reRender(render(paragraph('Loading')), paragraph('Loaded'));
+        expect(getOriginalDocumentBodyHtml()).toBeNull();
+    });
 
     it.each(['pass', 'fail'] as const)(
         'should save the DOM when removing nodes in afterEach hooks of a test with state %s',
-        (state) => {
+        async (state) => {
             setup({ autoCheckOpts: {}, renderedDOMSaveOpts: {} });
+            await runHooks(vitestBeforeEach);
             setTestResult({ state, hooks: { beforeEach: 'pass', afterEach: 'run' } });
             render(paragraph('Loaded'));
             const renderedDOM = document.body.innerHTML;

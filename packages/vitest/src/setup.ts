@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { beforeEach, expect } from 'vitest';
-import { getCurrentTest } from 'vitest/suite';
+import type { RunnerTestCase } from 'vitest';
 import {
     registerRemoveChild,
     defaultSa11yOpts,
@@ -44,22 +44,29 @@ export function setup(opts = defaultSa11yOpts): void {
  * final yet.
  */
 function registerDOMSave(): void {
-    registerRemoveChild(isAfterEachRunning);
-    // Don't check a DOM saved in a previous test, e.g. when its automatic checks were skipped
-    beforeEach(() => {
+    let currentTest: Readonly<RunnerTestCase> | undefined;
+    registerRemoveChild(() => isAfterEachRunning(currentTest));
+    beforeEach((context) => {
+        // Don't check a DOM saved in a previous test, e.g. when its automatic checks were skipped
         setOriginalDocumentBodyHtml(null);
+        // Track the test from its context as `getCurrentTest()` of "vitest/suite" is deprecated since Vitest 4.1
+        const test = context.task;
+        currentTest = test;
+        context.onTestFinished(() => {
+            if (currentTest === test) currentTest = undefined;
+        });
     });
 }
 
 /**
- * Check if the afterEach hooks of the current test are running.
+ * Check if the afterEach hooks of the given test are running.
  * - Vitest sets the test state from "run" to e.g. "pass" or "fail" before running the afterEach hooks.
  *   The afterEach hook state is checked too as `expect.soft` sets the test state to "fail" during the test.
  * - The test state is checked too as the afterEach hook state stays "run" when a hook fails, e.g. with
  *   a11y issues found by the automatic checks, until the hooks run again when the test is retried.
  */
-function isAfterEachRunning(): boolean {
-    const result = getCurrentTest()?.result;
+function isAfterEachRunning(test?: Readonly<RunnerTestCase>): boolean {
+    const result = test?.result;
     return !!result && result.state !== 'run' && result.hooks?.afterEach === 'run';
 }
 

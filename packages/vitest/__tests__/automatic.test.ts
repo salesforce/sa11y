@@ -16,7 +16,6 @@ jest.mock('vitest', () => ({
     afterEach: jest.fn(),
     expect: { extend: jest.fn(), getState: () => ({ testPath: 'foo.test.ts', currentTestName: 'foo' }) },
 }));
-jest.mock('vitest/suite', () => ({ getCurrentTest: jest.fn() }));
 jest.mock('@sa11y/matcher', () => ({
     ...jest.requireActual<object>('@sa11y/matcher'),
     runAutomaticCheck: jest.fn(),
@@ -28,7 +27,7 @@ jest.mock('@sa11y/matcher', () => ({
 async function runRegisteredHooks(): Promise<void> {
     for (const registerHook of [vitestBeforeEach, vitestAfterEach]) {
         for (const [hook] of jest.mocked(registerHook).mock.calls) {
-            await (hook as () => unknown)();
+            await (hook as (context: object) => unknown)({ task: {}, onTestFinished: jest.fn() });
         }
     }
 }
