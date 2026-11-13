@@ -46,14 +46,14 @@ export function setup(opts = defaultSa11yOpts): void {
 function registerDOMSave(): void {
     let currentTest: Readonly<RunnerTestCase> | undefined;
     registerRemoveChild(() => isAfterEachRunning(currentTest));
-    beforeEach((context) => {
+    // The test context is destructured as Vitest requires it in hooks of tests using fixtures (`test.extend`)
+    beforeEach(({ task, onTestFinished }) => {
         // Don't check a DOM saved in a previous test, e.g. when its automatic checks were skipped
         setOriginalDocumentBodyHtml(null);
         // Track the test from its context as `getCurrentTest()` of "vitest/suite" is deprecated since Vitest 4.1
-        const test = context.task;
-        currentTest = test;
-        context.onTestFinished(() => {
-            if (currentTest === test) currentTest = undefined;
+        currentTest = task;
+        onTestFinished(() => {
+            if (currentTest === task) currentTest = undefined;
         });
     });
 }

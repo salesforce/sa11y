@@ -216,6 +216,14 @@ describe('automatic checks DOM lifecycle', () => {
         }
     );
 
+    it('should destructure the test context in the beforeEach hook, as Vitest requires in tests using fixtures', () => {
+        setup({ autoCheckOpts: {}, renderedDOMSaveOpts: {} });
+        expect(vitestBeforeEach).toHaveBeenCalledTimes(1);
+        const [[hook]] = jest.mocked(vitestBeforeEach).mock.calls;
+        // Vitest parses the source of the hook and throws a FixtureParseError if its first parameter isn't an object pattern
+        expect(String(hook)).toMatch(/^(async\s*)?(function\s*\w*\s*)?\(\s*\{[^}]*\}\s*[,)]/);
+    });
+
     it('should not save the DOM without automatic checks', () => {
         delete process.env.SA11Y_AUTO;
         setup({ autoCheckOpts: {}, renderedDOMSaveOpts: {} });
