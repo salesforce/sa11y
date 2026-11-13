@@ -27,7 +27,7 @@ jest.mock('@sa11y/matcher', () => ({
 async function runRegisteredHooks(): Promise<void> {
     for (const registerHook of [vitestBeforeEach, vitestAfterEach]) {
         for (const [hook] of jest.mocked(registerHook).mock.calls) {
-            await (hook as () => unknown)();
+            await (hook as (context: object) => unknown)({ task: {}, onTestFinished: jest.fn() });
         }
     }
 }

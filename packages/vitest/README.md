@@ -159,6 +159,15 @@ setup({
 
 > **Note:** DOM mutation observer mode is not supported: the `runDOMMutationObserver` option and the `SA11Y_ENABLE_DOM_MUTATION_OBSERVER` environment variable are ignored. As `@sa11y/matcher` only saves the rendered DOM in that mode, `renderedDOMSaveOpts` has no effect currently.
 
+**DOM checked:** With the `SA11Y_AUTO` environment variable set, the automatic checks check the final DOM rendered by each test, even when it is cleaned up by an `afterEach` hook running before the automatic checks (e.g. `cleanup()` of [Testing Library](https://testing-library.com/) registered after `setup()`):
+
+-   The DOM is saved when the first node is removed from it in the `afterEach` hooks of a test, and checked instead of the cleaned up DOM
+-   Nodes removed during a test, e.g. when a component re-renders, don't save the DOM as it isn't final yet
+-   A DOM saved in a test is never checked in another test, e.g. when the automatic checks of the test are skipped
+-   A test removing what it rendered at its end, e.g. with `unmount()` or `cleanup()` of Testing Library, removes it during the test. The automatic checks then check the DOM left, e.g. an empty body. Check the rendered DOM with `toBeAccessible()` before removing it.
+-   Limitation: when a test is retried after failing in its `afterEach` hooks, e.g. with a11y issues, and a soft assertion (`expect.soft`) fails in the retry, nodes removed during the rest of the retry save the DOM. Such a test fails anyway, but can report a11y issues of a DOM that isn't final.
+-   Concurrent tests (e.g. `describe.concurrent`) aren't supported, as they render in the same DOM
+
 ## Results Processor
 
 `vitestResultsProcessor` transforms accessibility errors in Vitest test results, mirroring the Jest [group violation results processor](../jest/README.md#group-violation-results-processor). It is meant to be called by a Vitest reporter, e.g. when running [automatic checks](#automatic-checks), before the reporter writes the results:
