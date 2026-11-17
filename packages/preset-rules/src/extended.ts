@@ -25,7 +25,6 @@ export const extendedRulesInfo: RuleInfo = new Map([
             'hidden-content': { priority: 'P3', wcagSC: '', wcagLevel: '' },
             'identical-links-same-purpose': { priority: 'P3', wcagSC: '2.4.9', wcagLevel: 'AAA' },
             'image-redundant-alt': { priority: 'P3', wcagSC: '1.1.1', wcagLevel: 'A' },
-            'label-content-name-mismatch': { priority: 'P2', wcagSC: '2.5.3', wcagLevel: 'A' },
             'label-title-only': { priority: 'P3', wcagSC: '3.3.2', wcagLevel: 'A' },
             'landmark-banner-is-top-level': { priority: 'P3', wcagSC: '4.1.1', wcagLevel: 'A' },
             'landmark-complementary-is-top-level': { priority: 'P3', wcagSC: '4.1.1', wcagLevel: 'A' },
