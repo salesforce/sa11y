@@ -3494,10 +3494,10 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.4.tgz#0b92dcc0cc1c81f6f306a381f28e31b1a56536e9"
   integrity sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==
 
-"@tsconfig/node24@24.0.6":
-  version "24.0.6"
-  resolved "https://registry.yarnpkg.com/@tsconfig/node24/-/node24-24.0.6.tgz#b68a561876df9bfabdeb9474855bcd80d8c9a226"
-  integrity sha512-/SK4JuydRQLGSCq7+hbiQ8fdAVR4Suv5EcBvkIAG3zo3GbXQvGoSclz4olL12Ar4OpH8gwGYJ67P4wwQqBRxKw==
+"@tsconfig/node26@26.0.0":
+  version "26.0.0"
+  resolved "https://registry.yarnpkg.com/@tsconfig/node26/-/node26-26.0.0.tgz#18078d4b353813cf5a6dbf71513d62fd93ffd139"
+  integrity sha512-AlW882moMu/JzvTVjdGqJEsrqD5nSWHiFD7Aeuw6Rb58S4Aig+09mDUFFlXJx/y6/y77NwGYLlqhWxvolcC0sw==
 
 "@tufjs/canonical-json@2.0.0":
   version "2.0.0"
